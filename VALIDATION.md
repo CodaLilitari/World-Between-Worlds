@@ -18,6 +18,15 @@ inspection; its fixture now waits for explicit parent acknowledgment. The old
 fixed lifetime fails that regression. The corresponding Linux tests pass, with
 the two Windows-only tests explicitly skipped.
 
+The subsequent [native Force UI test](https://github.com/andreipemberton/World-Between-Worlds/blob/main/docs/validation/ninja-force-ui-20260908.json)
+completed 43 native callbacks and verified 42 native/OpenGL frames for the
+corrected Ninja conversion. A real rank-five Jedi character saved Throw 3 and
+Lightning 3 through the native multiplayer menu and reloaded those values and
+appearance in a separate process. Keyboard labels and H/L/F2/F3/F4 mappings
+passed. The [inspected renders](SCREENSHOTS.md) show available, allocated and
+Defense-disabled icons without control overlap. These are bounded menu,
+save-file and reload results; Force combat effects remain a separate gate.
+
 The actual browser UI passed seven additional checks in an isolated headless
 Chrome session with zero browser errors: empty initial selection; dropdown and
 checkbox multi-selection; persistent selection across filters; title search;

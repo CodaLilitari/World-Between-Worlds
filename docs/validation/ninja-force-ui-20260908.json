@@ -1,0 +1,85 @@
+{
+  "schema": "wbw.native-force-ui-evidence.v1",
+  "date": "2026-09-08",
+  "scope": "Ninja Kage conversion in OpenJKDF2 MotS mode; native multiplayer character allocation, disk save and fresh-process reload.",
+  "source_mod": {
+    "title": "Ninja Kage 7.0",
+    "author": "ShadowX",
+    "url": "https://www.massassi.net/levels/files/1333.shtml"
+  },
+  "runtime": {
+    "base_commit": "4dc57962e46a72662b59d36c30f15eacef6234b5",
+    "optional_force_patch_sha256": "c795ae75b86d9316cec91144f7f35c6689d11c579ca32c172f06afe946382cf4",
+    "diagnostic_exe_sha256": "9a25669045eca741bc3a097ff30c547cf4f855e7561cf30a2b0cf99cdeb1b2af",
+    "private_driver_included_in_release": false
+  },
+  "converted_goo_sha256": "e85120238b2612f97f858447819ae3b3a7e4e89003fcfb6b78ac98ef3edb12aa",
+  "native_actions": 43,
+  "native_and_gl_frames_verified": 42,
+  "capture_method": "Unretouched 1280x960 OpenGL framebuffer PNGs after native menu painting and swaps in a hidden, unfocused game window. No desktop capture.",
+  "input_method": "Finite native UI callbacks and native character-save/reload functions; no direct rank or power grants.",
+  "keyboard_labels": [
+    {
+      "action": "Force Throw",
+      "resource": "ACTIVATE9",
+      "key": "H"
+    },
+    {
+      "action": "Force Lightning",
+      "resource": "ACTIVATE11",
+      "key": "L"
+    }
+  ],
+  "additional_bindings_verified": {
+    "Field Light": "F2 / ACTIVATE21",
+    "IR Goggles": "F3 / ACTIVATE20",
+    "Bacta": "F4 / ACTIVATE19"
+  },
+  "disk_save": {
+    "mpc_sha256": "d5de6514131704ab53e96d839f9b7b6baf2bdd35275368a0a0cd948e5515ac73",
+    "bytes": 656,
+    "rank": 5,
+    "throw_rank": 3,
+    "lightning_rank": 3,
+    "unchanged_after_fresh_process_reload": true,
+    "note": "Native multiplayer exit discards unspent allocation stars; the saved spend field is zero. This is not campaign progression evidence."
+  },
+  "visual_inspection": "Inspected available, allocated and Defense-restricted GL views and both pairs of native icon crops. Added icons are distinct when disabled and do not overlap neighboring controls.",
+  "limitations": [
+    "Mouse-hover hints and physical mouse/keyboard operation were not exercised.",
+    "These menu tests do not establish Force combat effects, respawn, campaign saves, other personalities or full mod compatibility.",
+    "The test uses the Ninja conversion; it does not establish gameplay compatibility of the separate stock-MotS Force add-on."
+  ],
+  "images": [
+    {
+      "file": "docs/screenshots/ninja-force-available.png",
+      "sha256": "f4f7a76046d4e9c7e869177fe8b293686abb237eff6052e0d4ce9836fb17292e",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "native_step": 9,
+      "caption": "Native rank-five Jedi allocation: Throw and Lightning are available."
+    },
+    {
+      "file": "docs/screenshots/ninja-force-disabled.png",
+      "sha256": "3b5b14eacddc4fbb0fe53bf817ab19fde72ae0da9f459d3a95e00b9850429dfd",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "native_step": 32,
+      "caption": "Native Defense restrictions disable both added powers; their icons use distinct dark states."
+    },
+    {
+      "file": "docs/screenshots/ninja-force-allocated.png",
+      "sha256": "7acb0c62a7bd86687ba070d88194ec7768ebcdf45cc874f3349ec50a5b7f187d",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "native_step": 40,
+      "caption": "Three points allocated to each restored power; nine of the original fifteen stars remain before leaving the screen."
+    }
+  ]
+}
