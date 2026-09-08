@@ -1,0 +1,421 @@
+{
+  "schema": 1,
+  "date": "2026-09-08",
+  "scope": "Original JK and converted MotS JHS multiplayer maps, tested separately in the same private20-second headless diagnostic. Synthetic normal engine activation events addressed existing authored movers; original COGs controlled all MoveToFrame/arrived/timer behavior. No direct position/frame memory writes or altered game archives.",
+  "private_evidence_sha256": "48662b9c4269b623309034f8385b17f9cf5d95736eabc3ecae81eac5c86094a7",
+  "production_base_commit": "4dc57962e46a72662b59d36c30f15eacef6234b5",
+  "diagnostic_runtime_sha256": "cf524dbb4d1767740ce53f5a27502596d60dd0956bdf95a115691f23faf5c48b",
+  "diagnostic_driver_sha256": "79917c191c79e67662150372592e495012fcd2de2a3ecbbaca38be780d01ad17",
+  "authored_binding_provenance_sha256": "4a536d803edafbfec7a4ddbe56c501e2f1224e54c24772a54bf83b948f9752fa",
+  "original_archive_url": "https://www.jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Game%20Files/jkmp/jhs.zip",
+  "authored_objects": {
+    "door_thing": 12,
+    "elevator_thing": 65
+  },
+  "observation_seconds": 20,
+  "xyz_tolerance_world_units": 0.002,
+  "runs": [
+    {
+      "mode": "jk",
+      "source_sha256": "a62c94789c521af2746cc8378301a4940a59a24f6fb44dd4c443caacc0211b04",
+      "report_sha256": "6e6be855fc73efd23049728faa2a5e50991f1cc2b58fb9a68dffc1d1ffd9a31a",
+      "symbols_sha256": "33068e79826da0c6000faf1bce14b867ba42b9cbc8dd2e2e820ed81621fc1787",
+      "gates": {
+        "clean_exit": true,
+        "only_hidden_own_windows": true,
+        "exact_two_activations": true,
+        "correct_world_mode": true,
+        "advancing_clock": true,
+        "initial_door_closed": true,
+        "door_opened": true,
+        "door_automatically_closed": true,
+        "elevator_reached_lower_frame_button_on": true,
+        "elevator_automatically_returned_button_off": true,
+        "final_states_restored": true,
+        "baseline_unchanged": true,
+        "source_unchanged": true,
+        "no_probe_errors": true
+      },
+      "milestones": {
+        "initial": {
+          "ms": 0,
+          "game_clock_ms": 7,
+          "mots": 0,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "jhs.jkl",
+          "door": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.150000006
+            ]
+          },
+          "elevator": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.30499995,
+              2.98000002
+            ]
+          },
+          "button_cel": 4294967295
+        },
+        "door_open": {
+          "ms": 2398,
+          "game_clock_ms": 2404,
+          "mots": 0,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "jhs.jkl",
+          "door": {
+            "frame": 1,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.450000018
+            ]
+          },
+          "elevator": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.30499995,
+              2.98000002
+            ]
+          },
+          "button_cel": 4294967295
+        },
+        "door_closed": {
+          "ms": 5041,
+          "game_clock_ms": 5048,
+          "mots": 0,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "jhs.jkl",
+          "door": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.149999991
+            ]
+          },
+          "elevator": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.30499995,
+              2.98000002
+            ]
+          },
+          "button_cel": 4294967295
+        },
+        "elevator_lower": {
+          "ms": 11530,
+          "game_clock_ms": 11536,
+          "mots": 0,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "jhs.jkl",
+          "door": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.149999991
+            ]
+          },
+          "elevator": {
+            "frame": 1,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.31000066,
+              0.194990605
+            ]
+          },
+          "button_cel": 1
+        },
+        "elevator_return": {
+          "ms": 16986,
+          "game_clock_ms": 16992,
+          "mots": 0,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "jhs.jkl",
+          "door": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.149999991
+            ]
+          },
+          "elevator": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.30498993,
+              2.94000912
+            ]
+          },
+          "button_cel": 0
+        }
+      },
+      "final_sample": {
+        "ms": 19969,
+        "game_clock_ms": 19976,
+        "mots": 0,
+        "multiplayer": 1,
+        "headless": 1,
+        "world": "jhs.jkl",
+        "door": {
+          "frame": 0,
+          "goal": 0,
+          "pos": [
+            -7.23000002,
+            -2.03999996,
+            0.149999991
+          ]
+        },
+        "elevator": {
+          "frame": 0,
+          "goal": 0,
+          "pos": [
+            -0.665000021,
+            -1.30498993,
+            2.94000912
+          ]
+        },
+        "button_cel": 0
+      },
+      "state_samples": 382,
+      "hidden_window_samples": 207,
+      "endpoint_distance_from_authored_targets": {
+        "door_open": 4.8207883285580735e-08,
+        "door_closed": 4.561797903384129e-08,
+        "elevator_lower": 9.4181774245282e-06,
+        "elevator_return": 1.3586012696842482e-05
+      },
+      "all_endpoint_xyz_gates_passed": true,
+      "source_unchanged": true,
+      "baseline_unchanged": true
+    },
+    {
+      "mode": "mots",
+      "source_sha256": "6276dda2e731d4ff5c3570197086312be6fa0bee9754ae91d799af75501e774e",
+      "report_sha256": "5796daf08734b02c699d60b3f276fca7fdd7f8ee6762ad82848dc02823338c83",
+      "symbols_sha256": "33068e79826da0c6000faf1bce14b867ba42b9cbc8dd2e2e820ed81621fc1787",
+      "gates": {
+        "clean_exit": true,
+        "only_hidden_own_windows": true,
+        "exact_two_activations": true,
+        "correct_world_mode": true,
+        "advancing_clock": true,
+        "initial_door_closed": true,
+        "door_opened": true,
+        "door_automatically_closed": true,
+        "elevator_reached_lower_frame_button_on": true,
+        "elevator_automatically_returned_button_off": true,
+        "final_states_restored": true,
+        "baseline_unchanged": true,
+        "source_unchanged": true,
+        "no_probe_errors": true
+      },
+      "milestones": {
+        "initial": {
+          "ms": 0,
+          "game_clock_ms": 13,
+          "mots": 1,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "br_jhs.jkl",
+          "door": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.150000006
+            ]
+          },
+          "elevator": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.30499995,
+              2.98000002
+            ]
+          },
+          "button_cel": 4294967295
+        },
+        "door_open": {
+          "ms": 2421,
+          "game_clock_ms": 2433,
+          "mots": 1,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "br_jhs.jkl",
+          "door": {
+            "frame": 1,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.450000018
+            ]
+          },
+          "elevator": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.30499995,
+              2.98000002
+            ]
+          },
+          "button_cel": 4294967295
+        },
+        "door_closed": {
+          "ms": 5041,
+          "game_clock_ms": 5055,
+          "mots": 1,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "br_jhs.jkl",
+          "door": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.149999991
+            ]
+          },
+          "elevator": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.30499995,
+              2.98000002
+            ]
+          },
+          "button_cel": 4294967295
+        },
+        "elevator_lower": {
+          "ms": 11544,
+          "game_clock_ms": 11557,
+          "mots": 1,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "br_jhs.jkl",
+          "door": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.149999991
+            ]
+          },
+          "elevator": {
+            "frame": 1,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.31000066,
+              0.194990605
+            ]
+          },
+          "button_cel": 1
+        },
+        "elevator_return": {
+          "ms": 16958,
+          "game_clock_ms": 16971,
+          "mots": 1,
+          "multiplayer": 1,
+          "headless": 1,
+          "world": "br_jhs.jkl",
+          "door": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -7.23000002,
+              -2.03999996,
+              0.149999991
+            ]
+          },
+          "elevator": {
+            "frame": 0,
+            "goal": 0,
+            "pos": [
+              -0.665000021,
+              -1.30498993,
+              2.94000912
+            ]
+          },
+          "button_cel": 0
+        }
+      },
+      "final_sample": {
+        "ms": 19978,
+        "game_clock_ms": 19990,
+        "mots": 1,
+        "multiplayer": 1,
+        "headless": 1,
+        "world": "br_jhs.jkl",
+        "door": {
+          "frame": 0,
+          "goal": 0,
+          "pos": [
+            -7.23000002,
+            -2.03999996,
+            0.149999991
+          ]
+        },
+        "elevator": {
+          "frame": 0,
+          "goal": 0,
+          "pos": [
+            -0.665000021,
+            -1.30498993,
+            2.94000912
+          ]
+        },
+        "button_cel": 0
+      },
+      "state_samples": 383,
+      "hidden_window_samples": 211,
+      "endpoint_distance_from_authored_targets": {
+        "door_open": 4.8207883285580735e-08,
+        "door_closed": 4.561797903384129e-08,
+        "elevator_lower": 9.4181774245282e-06,
+        "elevator_return": 1.3586012696842482e-05
+      },
+      "all_endpoint_xyz_gates_passed": true,
+      "source_unchanged": true,
+      "baseline_unchanged": true
+    }
+  ],
+  "scope_limits": [
+    "Two existing JHS mechanisms, one door and one elevator; not every door/elevator/map.",
+    "Activation requests use normal engine thing/surface message routing with real local-player source; no physical key press or player walk-up is claimed.",
+    "No rider collision/transport, obstructed/blocked behavior, audio audibility or second-peer synchronization check.",
+    "Raw initial button cel is0xffffffff (signed-1); activated cel1 and completed-return cel0 are the observed transitions.",
+    "The authored elevator starts atZ2.98 while its frame0 target isZ2.94; the return to2.94 is expected, not exact return to the initial misplaced Z."
+  ],
+  "paired_behavior_passed": true
+}

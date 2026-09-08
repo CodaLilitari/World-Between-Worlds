@@ -32,6 +32,19 @@ Canyon Oasis, Jedi's High School and Nar Shaddaa. They show corresponding visibl
 geometry and materials in JK and MotS modes. Complete traversal and every
 authored mechanism are not established by those static views.
 
+A subsequent paired JHS test exercised one existing door and one existing
+elevator through normal engine activation-message routing. Their authored COGs
+opened and automatically closed the door, moved the elevator to its lower frame,
+then returned it after the timer and reset the button. Both original JK and
+converted MotS passed all 14 runtime gates and four full-XYZ endpoint checks in
+separate 20-second multiplayer host runs. The elevator returned after 16.986
+seconds in JK and 16.958 seconds in MotS; observation times are sampled, not
+performance benchmarks. The [public action record](docs/validation/jhs-authored-actions-20260908.json)
+pins the diagnostic executable, source archives, observations and exact limits.
+This check did not cover player riding, obstructed movement, physical keyboard
+activation or synchronization with another peer. No production engine change
+was required, and both map archives and the retail baselines retained their hashes.
+
 Release preparation also rejects a source checkout changed since app startup,
 an original archive replaced during conversion, output directories overlapping
 game or application files, and existing generated folders whose contents differ.

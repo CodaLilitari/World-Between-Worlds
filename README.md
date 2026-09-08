@@ -86,6 +86,12 @@ VALIDATION.md. Use a runtime including the backpack fix in fork commit
 the converter does not modify the engine executable. A private game-script
 comparison reproduced the old lost item and recovered it on the corrected build.
 
+Matched-camera JK/MotS screenshots are available for Canyon Oasis, Jedi's High
+School and Nar Shaddaa. A separate JHS comparison also passed the authored
+open/close cycle of one door and the lower/return cycle of one elevator in both
+games. These bounded checks and their remaining gameplay limits are recorded in
+[VALIDATION.md](VALIDATION.md).
+
 ## Supported stock maps
 
 The first six maps come from `Episode/JK1MP.GOB`; the three CTF maps come from
