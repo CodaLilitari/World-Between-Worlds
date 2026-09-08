@@ -50,8 +50,13 @@ def main(argv=None):
     data=Path(os.environ['BLACKWING_USER_DATA_DIR'])
     (data/'ran-version.txt').write_text(VERSION)
     Path(os.environ['BLACKWING_READY_FILE']).write_text(json.dumps({'pid':os.getpid(),'url':'http://127.0.0.1:12345/','version':VERSION}))
-    time.sleep(0.3)
-    return 0
+    # Stay alive until the outer test launcher has accepted readiness, including
+    # a cached launcher's handoff. A short fixed lifetime races OS scheduling.
+    stop = data/'test-parent-accepted-ready'
+    deadline = time.monotonic() + 10
+    while not stop.exists() and time.monotonic() < deadline:
+        time.sleep(0.01)
+    return 0 if stop.exists() else 9
 """
     result = {name: b"# Synthetic unused package fixture.\n" for name in update.SOURCE_REQUIRED}
     launcher_code = (PROJECT / "blackwing_launcher.py").read_text(encoding="utf-8")
@@ -370,6 +375,13 @@ class LauncherIntegration(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.data_dir = Path(self.temp.name)
         self.root = update.cache_root(self.data_dir)
+        original_wait = launcher.wait_application
+        def acknowledge_ready(process):
+            (self.data_dir / "test-parent-accepted-ready").write_text("ready")
+            return original_wait(process)
+        waiter = patch.object(launcher, "wait_application", side_effect=acknowledge_ready)
+        waiter.start()
+        self.addCleanup(waiter.stop)
 
     def test_update_download_stage_launch_and_activate_same_invocation(self):
         release, wire, _, _ = release_wire()
@@ -444,6 +456,19 @@ class LauncherIntegration(unittest.TestCase):
         self.assertEqual((self.data_dir / "ran-version.txt").read_text(), "0.2.0-rc1")
         self.assertIn(bad["name"], update.read_state(self.root)["rejected"])
 
+    @unittest.skipUnless(os.name == "nt" and sys.prefix != sys.base_prefix, "Windows venv ancestry path")
+    def test_fallback_ready_survives_slow_ancestry_lookup(self):
+        original = launcher.is_descendant
+        delayed = []
+        def slow_ancestry(*args, **kwargs):
+            if not delayed:
+                delayed.append(True)
+                time.sleep(0.45)  # Longer than the old fixture's 0.3s lifetime.
+            return original(*args, **kwargs)
+        with patch.object(launcher, "is_descendant", side_effect=slow_ancestry):
+            self.test_broken_new_launcher_handoff_restores_bundled_app()
+        self.assertTrue(delayed)
+
     def test_timeout_returns_without_waiting_for_worker(self):
         def delayed(*args, **kwargs):
             time.sleep(0.25)
@@ -470,6 +495,29 @@ class LauncherIntegration(unittest.TestCase):
         self.assertIsNotNone(process)
         self.assertEqual(process.wait(timeout=3), 0)
         self.assertFalse(launcher.is_descendant(os.getpid(), process.pid))
+
+    @unittest.skipUnless(os.name == "nt", "Windows virtual-environment redirector")
+    def test_windows_venv_source_accepts_owned_interpreter_child(self):
+        for candidate in (None, {"path": self.data_dir, "version": "0.2.0-rc2", "manifest": {"kind": "source"}}):
+            with self.subTest(bundled=candidate is None):
+                version = candidate["version"] if candidate else launcher.VERSION
+                child = "import json,os,time;from pathlib import Path;Path(os.environ['BLACKWING_READY_FILE']).write_text(json.dumps({'pid':os.getpid(),'url':'http://127.0.0.1:12345/','version':" + repr(version) + "}));time.sleep(0.5)"
+                wrapper = "import subprocess,sys;raise SystemExit(subprocess.call([sys.executable,'-B','-c'," + repr(child) + "]))"
+                # Model a venv even when this test runs under the base Python.
+                # The real wrapper child exercises the OS ancestry lookup.
+                with patch.object(launcher.sys, "prefix", "synthetic-venv"), patch.object(launcher.sys, "base_prefix", "synthetic-base"), patch.object(launcher, "launch_command", return_value=[sys.executable, "-B", "-c", wrapper]):
+                    process, error = launcher.start_supervised(candidate, [], self.data_dir, ready_seconds=2)
+                self.assertIsNone(error)
+                self.assertIsNotNone(process)
+                self.assertEqual(process.wait(timeout=3), 0)
+
+    def test_descendant_ready_still_requires_ancestry_version_and_loopback(self):
+        good = {"pid": 124, "version": "1.0.0", "url": "http://127.0.0.1:1234/"}
+        with patch.object(launcher, "process_parents", return_value={124: 123, 125: 999}):
+            self.assertTrue(launcher.valid_ready(good, 123, "1.0.0", allow_descendant=True))
+            for change in ({"pid": 125}, {"pid": True}, {"version": "2.0.0"}, {"url": "http://example.org:1234/"}, {"url": "http://127.0.0.1/"}):
+                with self.subTest(change=change):
+                    self.assertFalse(launcher.valid_ready({**good, **change}, 123, "1.0.0", allow_descendant=True))
 
     def test_failed_ready_timeout_stops_owned_process(self):
         candidate = {"path": self.data_dir, "version": "0.2.0-rc2", "manifest": {"kind": "source"}}

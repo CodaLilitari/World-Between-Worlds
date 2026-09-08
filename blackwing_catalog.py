@@ -11,7 +11,8 @@ SOURCE_ROOT = Path(__file__).resolve().parent
 ENGINE_MODULES = ('bridge.py', 'gob.py', 'caesars_audit.py', 'custom_registry.py',
                   'community_runtime.py', 'custom_catalog.py', 'author_catalog.py',
                   'jhs_catalog.py', 'verify_retail.py', 'ninja_catalog.py',
-                  'ninja_converter.py', 'blackwing_catalog.py', 'blackwing_service.py')
+                  'ninja_converter.py', 'force_icon_palette.py',
+                  'blackwing_catalog.py', 'blackwing_service.py')
 MAP_RUNTIME = {
     'scope': '60-second MotS multiplayer host with advancing simulation',
     'status': 'host-tested',

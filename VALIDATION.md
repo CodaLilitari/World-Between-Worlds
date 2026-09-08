@@ -2,12 +2,21 @@
 
 ## World Between Worlds workbench checkpoint
 
-The current workbench gate completed **183 discovered Python tests: 173 passed,
-10 optional owned-archive checks skipped**, plus **21 UI source tests passed**.
-Ninja Kage's separately configured owned-archive run passed all **41 Ninja
-tests**, including its ten owned-input integration and mutation checks. The
-updater's **43 tests passed on Windows and Linux**. These counts cover the
-source checkpoint described here; final release artifacts have their own gates.
+The current workbench source gate discovered **203 Python tests**. On Windows,
+**190 passed and 13 optional owned-archive checks were skipped**. On Linux,
+**188 passed and 15 were skipped**: the same thirteen owned-data checks and two
+Windows-specific process tests. All **21 UI source tests passed**. The separate
+Ninja Kage/icon-helper run enabled the owned inputs and passed **58 tests with
+zero skips**. Final release artifacts have their own packaging and launch gates.
+
+The updater's **46 tests passed on Windows**. The source launcher now recognizes
+the real interpreter child created by Windows virtual-environment Python, using
+observed process ancestry while retaining version and loopback-URL checks.
+Without that condition, both bundled and cached source-launch regressions fail.
+A separate synthetic-app lifetime race was demonstrated under delayed ancestry
+inspection; its fixture now waits for explicit parent acknowledgment. The old
+fixed lifetime fails that regression. The corresponding Linux tests pass, with
+the two Windows-only tests explicitly skipped.
 
 The actual browser UI passed seven additional checks in an isolated headless
 Chrome session with zero browser errors: empty initial selection; dropdown and

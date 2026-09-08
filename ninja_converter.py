@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 import re
 import struct
+from force_icon_palette import allocation_menu_palette, derivation_report
 import zipfile
 
 import bridge
@@ -223,7 +224,10 @@ def action_bins(value):
     return sorted(number for number, row in items(value).items() if row['flags'] & 0x100)
 
 
-UNI_ROW = re.compile(r'^\s*"((?:[^"\\]|\\.)*)"\s+(-?\d+)\s+"((?:[^"\\]|\\.)*)"\s*(?:#.*)?$')
+# Native stdString_GetQuotedStringContents uses plain quote delimiters; a
+# backslash is literal. Treating it as an escape skipped DIK_BACKSLASH and
+# undercounted the emitted physical records, dropping the final native key.
+UNI_ROW = re.compile(r'^\s*"([^"]*)"\s+(-?\d+)\s+"([^"]*)"\s*(?:#.*)?$')
 
 
 def uni_rows(value):
@@ -367,27 +371,36 @@ def _preload_static(value, files):
     return value
 
 
-def allocation_icon(data):
-    """Retain three original JK 28x28 frames; duplicate normal as state four."""
-    if len(data) < 128 or data[:4] != b'BM  ' or struct.unpack_from('<I',data,4)[0] != 70:
-        raise NinjaError('Unsupported allocation bitmap header')
-    if struct.unpack_from('<I',data,16)[0] != 3:
-        raise NinjaError('Expected three original allocation bitmap frames')
-    bpp = struct.unpack_from('<I',data,36)[0]
-    if bpp not in (8,16):
-        raise NinjaError('Unsupported allocation bitmap depth')
-    frame_bytes = 8 + 28*28*(bpp//8)
+def allocation_icon(data, source_palette, target_palette):
+    """Derive four states in the actual allocation-menu palette."""
+    from force_icon_palette import derive_allocation_icon
+    try:
+        return derive_allocation_icon(data, source_palette, target_palette)
+    except ValueError as error:
+        raise NinjaError(str(error)) from error
+
+
+def validate_hud_bitmap(data, depth):
+    """Check every declared native HUD frame and optional palette payload."""
+    if len(data) < 136 or data[:4] != b'BM  ' or struct.unpack_from('<I', data, 4)[0] != 70:
+        raise NinjaError('Invalid HUD bitmap header')
+    frames = struct.unpack_from('<I', data, 16)[0]
+    if not 1 <= frames <= 64 or struct.unpack_from('<I', data, 36)[0] != depth:
+        raise NinjaError('Invalid HUD bitmap frame count/depth')
     offset = 128
-    for _ in range(3):
-        if offset+frame_bytes > len(data) or struct.unpack_from('<II',data,offset) != (28,28):
-            raise NinjaError('Invalid/truncated original allocation bitmap frame')
-        offset += frame_bytes
-    palette_size = 768 if struct.unpack_from('<I',data,12)[0] & 2 else 0
-    if len(data)-offset != palette_size:
-        raise NinjaError('Unexpected allocation bitmap trailing bytes')
-    header = bytearray(data[:128])
-    struct.pack_into('<III',header,16,4,0,0)
-    return bytes(header) + data[128:offset] + data[128:128+frame_bytes] + data[offset:]
+    for _ in range(frames):
+        if offset + 8 > len(data):
+            raise NinjaError('Truncated HUD bitmap frame header')
+        width, height = struct.unpack_from('<II', data, offset)
+        if not 1 <= width <= 4096 or not 1 <= height <= 4096:
+            raise NinjaError('Invalid HUD bitmap frame dimensions')
+        offset += 8 + width * height * (depth // 8)
+        if offset > len(data):
+            raise NinjaError('Truncated HUD bitmap frame pixels')
+    palette = 768 if struct.unpack_from('<I', data, 12)[0] & 2 else 0
+    if len(data) != offset + palette:
+        raise NinjaError('HUD bitmap palette/trailing payload mismatch')
+    return frames
 
 
 def _omission(path, name):
@@ -469,33 +482,53 @@ def build(archives, original, *, force_ui=False):
         native_items, authored_items, output_items))
     add('misc/sithstrings.uni', merge_uni(txt(archives['motsres'].read('misc/sithstrings.uni')),
         txt(archives['jkres'].read('misc/sithstrings.uni')), txt(original_gob.read('misc/sithstrings.uni'))))
+    # These descriptors are active in every Ninja build. Native HUD startup
+    # requests ic + the first five name characters + 8/16, even headlessly.
+    # MotS lacks the original Throw/Lightning images; retain exact JK assets.
+    for name in catalog.FORCE_UI_EXTENSION['hud_icons']:
+        path = 'ui/bm/' + name
+        files[path] = archives['jksnd'].read(path); modes[path] = 'authored'
+    allocation_reports = {}
+    allocation_backgrounds = None
     if force_ui:
-        jk_palette = archives['jkres'].read('misc/cmp/uicolormap.cmp')
-        mots_palette = archives['motsres'].read('misc/cmp/uicolormap.cmp')
-        if len(jk_palette)<832 or len(mots_palette)<832 or jk_palette[64:832] != mots_palette[64:832]:
-            raise NinjaError('Allocation UI palettes differ; no guessed color remapping')
+        source_background = archives['jksnd'].read('ui/bm/bkforce.bm')
+        target_background = files.get('ui/bm/bkforce.bm', archives['motssnd'].read('ui/bm/bkforce.bm'))
+        try:
+            source_palette = allocation_menu_palette(source_background)
+            target_palette = allocation_menu_palette(target_background)
+        except ValueError as error:
+            raise NinjaError(str(error)) from error
+        allocation_backgrounds = {'source_resource': 'ui/bm/bkforce.bm', 'source_archive': 'jksnd',
+            'source_sha256': digest(source_background), 'target_resource': 'ui/bm/bkforce.bm',
+            'target_provider': 'output' if 'ui/bm/bkforce.bm' in files else 'motssnd',
+            'target_sha256': digest(target_background)}
         for source, target in catalog.FORCE_UI_EXTENSION['allocation_icons'].items():
             path = 'ui/bm/' + target
-            files[path] = allocation_icon(archives['jksnd'].read('ui/bm/' + source)); modes[path] = 'native'
-        for name in catalog.FORCE_UI_EXTENSION['hud_icons']:
-            path = 'ui/bm/' + name
-            files[path] = archives['jksnd'].read(path); modes[path] = 'authored'
+            original_icon = archives['jksnd'].read('ui/bm/' + source)
+            files[path] = allocation_icon(original_icon, source_palette, target_palette); modes[path] = 'native'
+            report = derivation_report(original_icon, files[path], source_palette, target_palette)
+            if report['weighted_rgb_rmse'] > 30 or report['maximum_pixel_weighted_rgb_error'] > 56 or not all(report['transparent_masks_preserved']):
+                raise NinjaError('Allocation icon color quality or transparency gate failed: ' + path)
+            allocation_reports[path] = report
         hints = uni_rows(txt(original_gob.read('ui/jkstrings.uni')))
         add('ui/jkstrings.uni', _write_uni(txt(files['ui/jkstrings.uni']), {key:hints[key] for key in ('GUI_HINT_THROW','GUI_HINT_LIGHTNING')}))
     static = _append_templates(txt(archives['motsres'].read('jkl/static.jkl')), txt(original_gob.read('jkl/static.jkl')))
     add('jkl/static.jkl', static)
     origins, omissions = _closure(files, modes, archives, original)
+    if force_ui and files.get('ui/bm/bkforce.bm', archives['motssnd'].read('ui/bm/bkforce.bm')) != target_background:
+        raise NinjaError('Allocation background changed after icon derivation')
     add('jkl/static.jkl', _preload_static(_grow_capacities(static, files), files))
     for path in merged - {'cog/kyle.cog'} | {'cog/kyle_m.cog'}:
         origins[path] = {'kind': 'derived', 'sha256': digest(files[path])}
     result = build_gob(files)
-    manifest = {'schema': 1, 'recipe': 'ninja-kage-7.0-mots-mp-prototype-' + ('2-force-ui' if force_ui else '1'),
+    manifest = {'schema': 1, 'recipe': 'ninja-kage-7.0-mots-mp-prototype-' + ('5-force-ui-menu-palette' if force_ui else '3-hud-closure'),
                 'original': {key: catalog.SPEC[key] for key in ('author', 'title', 'source_url', 'download_url', 'zip_sha256', 'gob_sha256', 'readme_sha256')},
                 'native_sources': dict(bridge.HASHES), 'startup_overlay': catalog.SPEC['startup_overlay'],
                 'output_sha256': digest(result), 'runtime_test': copy.deepcopy(catalog.RUNTIME_TEST),
                 'known_gaps': list(catalog.KNOWN_GAPS), 'original_omissions': omissions,
                 'native_unused_template': dict(catalog.NATIVE_UNUSED_TEMPLATE),
                 'force_ui_extension': copy.deepcopy(catalog.FORCE_UI_EXTENSION) if force_ui else None,
+                'allocation_backgrounds': allocation_backgrounds, 'allocation_icons': allocation_reports,
                 'control_bindings': [{'action': f'ACTIVATE{i}', 'bin': number,
                     'label': uni_rows(txt(files['ui/jkstrings.uni']))[f'ACTIVATE{i}'][1]}
                     for i, number in enumerate(action_bins(output_items))],
@@ -631,26 +664,45 @@ def verify(archives, original, data, manifest=None, *, force_ui=False):
         require(len(name.encode('cp1252')) <= 31, 'engine resource basename exceeds 31 bytes: ' + name)
         base_names[name] = path
     generated = special | {'cog/kyle_m.cog'}
+    for name in catalog.FORCE_UI_EXTENSION['hud_icons']:
+        path = 'ui/bm/' + name
+        require(path in output.entries and output.read(path) == archives['jksnd'].read(path), 'required Ninja HUD icon absent or changed: ' + path)
+        generated.add(path)
+    # Independently audit the actual native naming contract for every active
+    # item/power, including unchanged MotS icons supplied by its own archives.
+    hud_paths = {f"ui/bm/ic{row['name'].lower()[:5]}{depth}.bm"
+                 for row in now.values() if row['flags'] & 0x00a for depth in (8, 16)}
+    hud_paths |= {f'ui/bm/{name}{depth}.bm' for name in ('icbrack', 'forcebrack', 'icdefau') for depth in (8, 16)}
+    for path in hud_paths:
+        provider = next((archive for archive in (output, archives['motsres'], archives['motssnd']) if path in archive.entries), None)
+        require(provider is not None, 'descriptor HUD bitmap unavailable at native runtime path: ' + path)
+        validate_hud_bitmap(provider.read(path), 16 if path.endswith('16.bm') else 8)
+    checks.append('Every active item/power and required HUD fallback resolves both bit depths with complete frames/palettes; four missing MotS Throw/Lightning icons retain exact JK bytes in every Ninja build.')
+    allocation_reports = {}
+    allocation_backgrounds = None
     if force_ui:
-        require(archives['jkres'].read('misc/cmp/uicolormap.cmp')[64:832] == archives['motsres'].read('misc/cmp/uicolormap.cmp')[64:832], 'Force UI palette mismatch')
+        source_background = archives['jksnd'].read('ui/bm/bkforce.bm')
+        target_background = output.read('ui/bm/bkforce.bm') if 'ui/bm/bkforce.bm' in output.entries else archives['motssnd'].read('ui/bm/bkforce.bm')
+        try:
+            source_palette = allocation_menu_palette(source_background)
+            target_palette = allocation_menu_palette(target_background)
+        except ValueError as error:
+            raise NinjaError('Independent verification: allocation background ' + str(error)) from error
+        allocation_backgrounds = {'source_resource': 'ui/bm/bkforce.bm', 'source_archive': 'jksnd',
+            'source_sha256': digest(source_background), 'target_resource': 'ui/bm/bkforce.bm',
+            'target_provider': 'output' if 'ui/bm/bkforce.bm' in output.entries else 'motssnd',
+            'target_sha256': digest(target_background)}
         for old, new in catalog.FORCE_UI_EXTENSION['allocation_icons'].items():
             old_data = archives['jksnd'].read('ui/bm/'+old)
             path = 'ui/bm/'+new
             new_data = output.read(path)
-            width,height = struct.unpack_from('<II',old_data,128)
-            depth = struct.unpack_from('<I',old_data,36)[0]
-            length = 8 + width*height*(depth//8)
-            header = bytearray(old_data[:128]); header[16:28] = struct.pack('<III',4,0,0)
-            require((width,height)==(28,28) and depth in (8,16), 'invalid original icon dimensions')
-            require(new_data[:128]==header and new_data[128:128+3*length]==old_data[128:128+3*length]
-                    and new_data[128+3*length:128+4*length]==old_data[128:128+length]
-                    and new_data[128+4*length:]==old_data[128+3*length:], 'Force icon frame/header/palette preservation mismatch')
+            require(new_data == allocation_icon(old_data, source_palette, target_palette), 'allocation icon palette/shape/disabled-state derivation mismatch ' + path)
+            report = derivation_report(old_data, new_data, source_palette, target_palette)
+            require(report['weighted_rgb_rmse'] <= 30 and report['maximum_pixel_weighted_rgb_error'] <= 56
+                    and all(report['transparent_masks_preserved']), 'allocation icon quality/transparency mismatch ' + path)
+            allocation_reports[path] = report
             generated.add(path)
-        for name in catalog.FORCE_UI_EXTENSION['hud_icons']:
-            path = 'ui/bm/'+name
-            require(output.read(path)==archives['jksnd'].read(path), 'restored HUD icon changed')
-            generated.add(path)
-        checks.append('Explicit Force UI descriptor gate and original HUD/allocation icons supplied; original three image states preserved with normal-state disabled placeholder, no rank grants.')
+        checks.append('Explicit Force UI opt-in; allocation icons remapped into the actual menu palette with retained28x28 shapes, preserved transparency and a derived dark disabled state; no rank grants. Original HUD icon bytes remain unchanged.')
     for path in set(output.entries) - authored_paths - generated:
         require(any(path in archive.entries and output.read(path) == archive.read(path) for archive in archives.values()), 'imported resource lacks exact pinned source ' + path)
     # The static preload table is derived from this closure, so exclude its
@@ -689,6 +741,7 @@ def verify(archives, original, data, manifest=None, *, force_ui=False):
                         f'COG template absent from authored static/native K1: {path} -> {name}')
     checks.append('Every imported payload matches a pinned source; filename closure has four exact original omissions; COG templates resolve against authored static plus native K1 except one pinned unused native default.')
     if manifest is not None:
+        require(manifest.get('allocation_backgrounds') == allocation_backgrounds and manifest.get('allocation_icons') == allocation_reports, 'manifest allocation palette/provenance mismatch')
         require(manifest.get('force_ui_extension') == (catalog.FORCE_UI_EXTENSION if force_ui else None), 'manifest Force UI option mismatch')
         require(manifest['native_sources'] == bridge.HASHES, 'manifest native source pins mismatch')
         require(manifest['native_unused_template'] == catalog.NATIVE_UNUSED_TEMPLATE, 'manifest native template waiver mismatch')

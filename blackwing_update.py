@@ -43,6 +43,7 @@ SOURCE_FILES = frozenset({
     "community_runtime.py", "blackwing_catalog.py", "blackwing_service.py",
     "blackwing_runtime.py", "LICENSE", "NOTICE.md", "WBW-README.md",
     "caesars_audit.py", "verify_retail.py", "ninja_catalog.py", "ninja_converter.py",
+    "force_icon_palette.py", "test_force_icon_palette.py",
     "ui/index.html", "ui/app.js", "ui/styles.css",
     "ui/test_ui.mjs", "ui/README.md", "README.md", "TESTING.md",
     "SUPPORTED_CUSTOM_SOURCES.txt", "COMMUNITY_RC1.md", "VALIDATION.md",
@@ -57,7 +58,7 @@ SOURCE_FILES = frozenset({
 SOURCE_REQUIRED = frozenset({"blackwing_app.py", "blackwing_version.py",
     "blackwing_launcher.py", "blackwing_update.py", "LICENSE", "bridge.py", "gob.py",
     "community_runtime.py", "custom_registry.py", "custom_catalog.py", "author_catalog.py",
-    "jhs_catalog.py", "blackwing_catalog.py", "blackwing_service.py",
+    "jhs_catalog.py", "blackwing_catalog.py", "blackwing_service.py", "force_icon_palette.py",
     "ui/index.html", "ui/app.js", "ui/styles.css"})
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 

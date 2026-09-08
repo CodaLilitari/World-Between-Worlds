@@ -204,7 +204,10 @@ def start_supervised(candidate, app_args, data_dir, ready_seconds=READY_SECONDS,
                         if updates.Version(reported) < updates.Version(version):
                             continue
                         expected_version = reported
-                    if valid_ready(ready_data, process.pid, expected_version, allow_descendant=standalone):
+                    # Windows venv python.exe redirects to an interpreter child,
+                    # just as a native bootloader may create the serving child.
+                    allow_descendant = standalone or (os.name == "nt" and sys.prefix != sys.base_prefix)
+                    if valid_ready(ready_data, process.pid, expected_version, allow_descendant=allow_descendant):
                         process.blackwing_url = ready_data["url"]
                         process.blackwing_version = ready_data["version"]
                         return process, None
