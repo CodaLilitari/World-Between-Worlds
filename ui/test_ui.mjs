@@ -17,7 +17,16 @@ test('unknown and unavailable status is not selectable',()=>{
   assert.equal(ui.selectable({}),false);assert.equal(ui.selectable({status:'unavailable'}),false);assert.equal(ui.selectable({status:'unreviewed'}),false);
 });
 test('only declared supported status tokens are selectable',()=>{
-  for(const status of ['verified','supported','ready','available'])assert.equal(ui.selectable({status}),true);
+  for(const status of ['verified','supported','ready','available','prototype'])assert.equal(ui.selectable({status}),true);
+});
+test('prototype mod is selected only by explicit ID and stays separate from maps',()=>{
+  const prototype={id:'ninja-kage',title:'Ninja Kage',kind:'mod',gameplay:['mp'],status:'prototype',requires_archive:true};
+  const catalog=[...recipes,prototype];
+  assert.deepEqual(ui.selectedRecipes(catalog,new Set()),[]);
+  assert.deepEqual(ui.selectionPayload(catalog,new Set(['stock-one']),{},{}).ids,['stock-one']);
+  const result=ui.selectionPayload(catalog,new Set(['stock-one','ninja-kage']),{},{'ninja-kage':'original.zip'});
+  assert.deepEqual(result.ids,['stock-one','ninja-kage']);
+  assert.deepEqual(result.archives,{'ninja-kage':'original.zip'});
 });
 test('category and mode filters intersect',()=>assert.deepEqual(ui.visibleRecipes(recipes,{kind:'custom',gameplay:'ctf'}).map(r=>r.id),['custom-two']));
 test('multiword search matches title and author case-insensitively',()=>assert.deepEqual(ui.visibleRecipes(recipes,{search:'STONE author'}).map(r=>r.id),['custom-two']));

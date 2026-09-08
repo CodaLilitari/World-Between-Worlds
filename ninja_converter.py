@@ -12,7 +12,6 @@ import json
 from pathlib import Path
 import re
 import struct
-from force_icon_palette import allocation_menu_palette, derivation_report
 import zipfile
 
 import bridge
@@ -42,7 +41,7 @@ def catalog_entry():
             'source_url': catalog.SPEC['source_url'],
             'archive_hint': catalog.SPEC['archive_hint'], 'requires_archive': True,
             'status': catalog.STATUS,
-            'summary': 'Original Ninja Kage weapons and movement on a native MotS multiplayer base; runtime gates pending.',
+            'summary': 'Ninja Kage weapons and movement with bounded two-peer MotS tests; original Force allocation/cycling remains limited.',
             'startup_overlay': catalog.SPEC['startup_overlay'],
             'runtime_test': copy.deepcopy(catalog.RUNTIME_TEST)}
 
@@ -60,7 +59,7 @@ def recipe_details():
             'script_aliases': dict(catalog.SCRIPT_ALIASES),
             'excluded_sp_scripts': list(catalog.EXCLUDED_SP_SCRIPTS),
             'native_unused_template': dict(catalog.NATIVE_UNUSED_TEMPLATE),
-            'optional_force_ui_extension': copy.deepcopy(catalog.FORCE_UI_EXTENSION),
+            'required_hud_icons': list(catalog.REQUIRED_HUD_ICONS),
             'original_omissions': [{'referrer': a, 'name': b, 'reason': reason}
                                    for (a, b), reason in sorted(catalog.ORIGINAL_MISSING.items())],
             'known_gaps': list(catalog.KNOWN_GAPS)}
@@ -184,7 +183,7 @@ def items(value):
     return result
 
 
-def build_items(native, authored, *, force_ui=False):
+def build_items(native, authored):
     old, source = items(native), items(authored)
     if old[124]['max'] != 30 or source[4]['max'] != 200:
         raise NinjaError('Kunai max source pin did not match')
@@ -206,9 +205,6 @@ def build_items(native, authored, *, force_ui=False):
         if number in old or number not in source:
             raise NinjaError('Custom inventory bin collision')
         row = source[number]['line']
-        if force_ui and number in catalog.FORCE_UI_EXTENSION['descriptors']:
-            match = ITEM_ROW.fullmatch(row)
-            row = row[:match.start(2)] + catalog.FORCE_UI_EXTENSION['descriptors'][number] + row[match.end(2):]
         additions.append(row)
     end_indices = [i for i, line in enumerate(lines) if line.strip().lower() == 'end']
     if len(end_indices) != 1:
@@ -371,15 +367,6 @@ def _preload_static(value, files):
     return value
 
 
-def allocation_icon(data, source_palette, target_palette):
-    """Derive four states in the actual allocation-menu palette."""
-    from force_icon_palette import derive_allocation_icon
-    try:
-        return derive_allocation_icon(data, source_palette, target_palette)
-    except ValueError as error:
-        raise NinjaError(str(error)) from error
-
-
 def validate_hud_bitmap(data, depth):
     """Check every declared native HUD frame and optional palette payload."""
     if len(data) < 136 or data[:4] != b'BM  ' or struct.unpack_from('<I', data, 4)[0] != 70:
@@ -450,7 +437,7 @@ def _closure(files, modes, archives, original):
     return origins, [omissions[key] for key in sorted(omissions)]
 
 
-def build(archives, original, *, force_ui=False):
+def build(archives, original):
     validate_sources(archives, original)
     original_gob = original.archive
     merged = {'misc/items.dat', 'misc/models.dat', 'jkl/static.jkl',
@@ -473,7 +460,7 @@ def build(archives, original, *, force_ui=False):
         files[path] = encoded(value); modes[path] = mode
     native_items = txt(archives['motsres'].read('misc/items.dat'))
     authored_items = txt(original_gob.read('misc/items.dat'))
-    output_items = build_items(native_items, authored_items, force_ui=force_ui)
+    output_items = build_items(native_items, authored_items)
     add('misc/items.dat', output_items)
     add('cog/kyle_m.cog', apply_edits(txt(archives['motsres'].read('cog/kyle_m.cog')), catalog.PLAYER_COG_EDITS))
     add('misc/models.dat', build_models(txt(original_gob.read('misc/models.dat'))), 'authored')
@@ -485,50 +472,22 @@ def build(archives, original, *, force_ui=False):
     # These descriptors are active in every Ninja build. Native HUD startup
     # requests ic + the first five name characters + 8/16, even headlessly.
     # MotS lacks the original Throw/Lightning images; retain exact JK assets.
-    for name in catalog.FORCE_UI_EXTENSION['hud_icons']:
+    for name in catalog.REQUIRED_HUD_ICONS:
         path = 'ui/bm/' + name
         files[path] = archives['jksnd'].read(path); modes[path] = 'authored'
-    allocation_reports = {}
-    allocation_backgrounds = None
-    if force_ui:
-        source_background = archives['jksnd'].read('ui/bm/bkforce.bm')
-        target_background = files.get('ui/bm/bkforce.bm', archives['motssnd'].read('ui/bm/bkforce.bm'))
-        try:
-            source_palette = allocation_menu_palette(source_background)
-            target_palette = allocation_menu_palette(target_background)
-        except ValueError as error:
-            raise NinjaError(str(error)) from error
-        allocation_backgrounds = {'source_resource': 'ui/bm/bkforce.bm', 'source_archive': 'jksnd',
-            'source_sha256': digest(source_background), 'target_resource': 'ui/bm/bkforce.bm',
-            'target_provider': 'output' if 'ui/bm/bkforce.bm' in files else 'motssnd',
-            'target_sha256': digest(target_background)}
-        for source, target in catalog.FORCE_UI_EXTENSION['allocation_icons'].items():
-            path = 'ui/bm/' + target
-            original_icon = archives['jksnd'].read('ui/bm/' + source)
-            files[path] = allocation_icon(original_icon, source_palette, target_palette); modes[path] = 'native'
-            report = derivation_report(original_icon, files[path], source_palette, target_palette)
-            if report['weighted_rgb_rmse'] > 30 or report['maximum_pixel_weighted_rgb_error'] > 56 or not all(report['transparent_masks_preserved']):
-                raise NinjaError('Allocation icon color quality or transparency gate failed: ' + path)
-            allocation_reports[path] = report
-        hints = uni_rows(txt(original_gob.read('ui/jkstrings.uni')))
-        add('ui/jkstrings.uni', _write_uni(txt(files['ui/jkstrings.uni']), {key:hints[key] for key in ('GUI_HINT_THROW','GUI_HINT_LIGHTNING')}))
     static = _append_templates(txt(archives['motsres'].read('jkl/static.jkl')), txt(original_gob.read('jkl/static.jkl')))
     add('jkl/static.jkl', static)
     origins, omissions = _closure(files, modes, archives, original)
-    if force_ui and files.get('ui/bm/bkforce.bm', archives['motssnd'].read('ui/bm/bkforce.bm')) != target_background:
-        raise NinjaError('Allocation background changed after icon derivation')
     add('jkl/static.jkl', _preload_static(_grow_capacities(static, files), files))
     for path in merged - {'cog/kyle.cog'} | {'cog/kyle_m.cog'}:
         origins[path] = {'kind': 'derived', 'sha256': digest(files[path])}
     result = build_gob(files)
-    manifest = {'schema': 1, 'recipe': 'ninja-kage-7.0-mots-mp-prototype-' + ('5-force-ui-menu-palette' if force_ui else '3-hud-closure'),
+    manifest = {'schema': 1, 'recipe': 'ninja-kage-7.0-mots-mp-prototype-3-hud-closure',
                 'original': {key: catalog.SPEC[key] for key in ('author', 'title', 'source_url', 'download_url', 'zip_sha256', 'gob_sha256', 'readme_sha256')},
                 'native_sources': dict(bridge.HASHES), 'startup_overlay': catalog.SPEC['startup_overlay'],
                 'output_sha256': digest(result), 'runtime_test': copy.deepcopy(catalog.RUNTIME_TEST),
                 'known_gaps': list(catalog.KNOWN_GAPS), 'original_omissions': omissions,
                 'native_unused_template': dict(catalog.NATIVE_UNUSED_TEMPLATE),
-                'force_ui_extension': copy.deepcopy(catalog.FORCE_UI_EXTENSION) if force_ui else None,
-                'allocation_backgrounds': allocation_backgrounds, 'allocation_icons': allocation_reports,
                 'control_bindings': [{'action': f'ACTIVATE{i}', 'bin': number,
                     'label': uni_rows(txt(files['ui/jkstrings.uni']))[f'ACTIVATE{i}'][1]}
                     for i, number in enumerate(action_bins(output_items))],
@@ -547,7 +506,7 @@ def _independent_edits(data, edits):
     return value
 
 
-def verify(archives, original, data, manifest=None, *, force_ui=False):
+def verify(archives, original, data, manifest=None):
     """Check source semantics and unchanged payloads without invoking build()."""
     validate_sources(archives, original)
     output = Gob(data, 'Ninja Kage converted startup overlay')
@@ -585,8 +544,6 @@ def verify(archives, original, data, manifest=None, *, force_ui=False):
         require(actual == expected, f'native descriptor semantics changed at bin {number}')
     for number in (30, 32, 116, 117, 118, 119):
         expected = {k:v for k,v in authored[number].items() if k!='line'}
-        if force_ui and number in catalog.FORCE_UI_EXTENSION['descriptors']:
-            expected['name'] = catalog.FORCE_UI_EXTENSION['descriptors'][number]
         require({k:v for k,v in now[number].items() if k!='line'} == expected, f'authored descriptor changed at bin {number}')
     require(output.read('cog/force_push.cog') == archives['motsres'].read('cog/force_push.cog'), 'native Force Push38 overwritten')
     require(output.read('cog/weap_concrifle_m.cog') == archives['motsres'].read('cog/weap_concrifle_m.cog'), 'native concussion129 changed')
@@ -609,9 +566,6 @@ def verify(archives, original, data, manifest=None, *, force_ui=False):
             for number, new in catalog.WEAPON_BINS.items():
                 if f'COG_{number:05d}' in original_rows:
                     expected[f'COG_{new:05d}'] = original_rows[f'COG_{number:05d}']
-            if force_ui:
-                for key in ('GUI_HINT_THROW','GUI_HINT_LIGHTNING'):
-                    expected[key] = original_rows[key]
         require(rows == expected, 'native/authored UI merge mismatch: ' + path)
         header = re.search(r'^MSGS\s+(\d+)', txt(output.read(path)))
         count = sum(UNI_ROW.fullmatch(line) is not None for line in txt(output.read(path)).splitlines())
@@ -664,7 +618,7 @@ def verify(archives, original, data, manifest=None, *, force_ui=False):
         require(len(name.encode('cp1252')) <= 31, 'engine resource basename exceeds 31 bytes: ' + name)
         base_names[name] = path
     generated = special | {'cog/kyle_m.cog'}
-    for name in catalog.FORCE_UI_EXTENSION['hud_icons']:
+    for name in catalog.REQUIRED_HUD_ICONS:
         path = 'ui/bm/' + name
         require(path in output.entries and output.read(path) == archives['jksnd'].read(path), 'required Ninja HUD icon absent or changed: ' + path)
         generated.add(path)
@@ -678,31 +632,6 @@ def verify(archives, original, data, manifest=None, *, force_ui=False):
         require(provider is not None, 'descriptor HUD bitmap unavailable at native runtime path: ' + path)
         validate_hud_bitmap(provider.read(path), 16 if path.endswith('16.bm') else 8)
     checks.append('Every active item/power and required HUD fallback resolves both bit depths with complete frames/palettes; four missing MotS Throw/Lightning icons retain exact JK bytes in every Ninja build.')
-    allocation_reports = {}
-    allocation_backgrounds = None
-    if force_ui:
-        source_background = archives['jksnd'].read('ui/bm/bkforce.bm')
-        target_background = output.read('ui/bm/bkforce.bm') if 'ui/bm/bkforce.bm' in output.entries else archives['motssnd'].read('ui/bm/bkforce.bm')
-        try:
-            source_palette = allocation_menu_palette(source_background)
-            target_palette = allocation_menu_palette(target_background)
-        except ValueError as error:
-            raise NinjaError('Independent verification: allocation background ' + str(error)) from error
-        allocation_backgrounds = {'source_resource': 'ui/bm/bkforce.bm', 'source_archive': 'jksnd',
-            'source_sha256': digest(source_background), 'target_resource': 'ui/bm/bkforce.bm',
-            'target_provider': 'output' if 'ui/bm/bkforce.bm' in output.entries else 'motssnd',
-            'target_sha256': digest(target_background)}
-        for old, new in catalog.FORCE_UI_EXTENSION['allocation_icons'].items():
-            old_data = archives['jksnd'].read('ui/bm/'+old)
-            path = 'ui/bm/'+new
-            new_data = output.read(path)
-            require(new_data == allocation_icon(old_data, source_palette, target_palette), 'allocation icon palette/shape/disabled-state derivation mismatch ' + path)
-            report = derivation_report(old_data, new_data, source_palette, target_palette)
-            require(report['weighted_rgb_rmse'] <= 30 and report['maximum_pixel_weighted_rgb_error'] <= 56
-                    and all(report['transparent_masks_preserved']), 'allocation icon quality/transparency mismatch ' + path)
-            allocation_reports[path] = report
-            generated.add(path)
-        checks.append('Explicit Force UI opt-in; allocation icons remapped into the actual menu palette with retained28x28 shapes, preserved transparency and a derived dark disabled state; no rank grants. Original HUD icon bytes remain unchanged.')
     for path in set(output.entries) - authored_paths - generated:
         require(any(path in archive.entries and output.read(path) == archive.read(path) for archive in archives.values()), 'imported resource lacks exact pinned source ' + path)
     # The static preload table is derived from this closure, so exclude its
@@ -741,8 +670,6 @@ def verify(archives, original, data, manifest=None, *, force_ui=False):
                         f'COG template absent from authored static/native K1: {path} -> {name}')
     checks.append('Every imported payload matches a pinned source; filename closure has four exact original omissions; COG templates resolve against authored static plus native K1 except one pinned unused native default.')
     if manifest is not None:
-        require(manifest.get('allocation_backgrounds') == allocation_backgrounds and manifest.get('allocation_icons') == allocation_reports, 'manifest allocation palette/provenance mismatch')
-        require(manifest.get('force_ui_extension') == (catalog.FORCE_UI_EXTENSION if force_ui else None), 'manifest Force UI option mismatch')
         require(manifest['native_sources'] == bridge.HASHES, 'manifest native source pins mismatch')
         require(manifest['native_unused_template'] == catalog.NATIVE_UNUSED_TEMPLATE, 'manifest native template waiver mismatch')
         require(manifest['output_sha256'] == digest(data), 'manifest output digest mismatch')
@@ -755,14 +682,14 @@ def verify(archives, original, data, manifest=None, *, force_ui=False):
             'known_gaps': list(catalog.KNOWN_GAPS)}
 
 
-def build_to_directory(archives, original_path, stage, *, force_ui=False):
+def build_to_directory(archives, original_path, stage):
     stage = Path(stage).resolve()
     project = Path(__file__).resolve().parent
     if stage == project or project in stage.parents:
         raise NinjaError('Generated game assets must be outside the source project')
     original = open_original(original_path)
-    data, manifest = build(archives, original, force_ui=force_ui)
-    verification = verify(archives, original, data, manifest, force_ui=force_ui)
+    data, manifest = build(archives, original)
+    verification = verify(archives, original, data, manifest)
     folder = stage / catalog.SPEC['startup_overlay']
     if folder.exists():
         raise NinjaError('Ninja Kage output already exists; select a fresh output directory')
@@ -785,8 +712,8 @@ def build_to_directory(archives, original_path, stage, *, force_ui=False):
               'All peers need the same startup mod; restart without -path for other mods.\n'
               'Bind Grappling Hook, Jump/Handspring and Kick in Controls.\n'
               'Also bind F2 Field Light, F3 IR Goggles and F4 Bacta; native defaults use the old action order.\n'
-              'This structural prototype has not passed gameplay or visual tests.\n\n'
-              + ('This variant requires the optional restored-Force allocation/cycling engine extension; it grants no ranks or stars.\n' if force_ui else '')
+              'Bounded two-peer K1 tests passed for startup, basic weapons, handspring, kick and grapple.\n'
+              'Full combat parity, other personalities and broad map compatibility remain unverified.\n\n'
               + '\n'.join('- ' + gap for gap in catalog.KNOWN_GAPS) + '\n')
     (folder / 'README.txt').write_text(readme, encoding='utf-8')
     if filename.read_bytes() != data:

@@ -1,6 +1,6 @@
 # Ninja Kage 7.0 — MotS multiplayer prototype
 
-World Between Worlds can build an **experimental local MotS conversion of ShadowX's Ninja Kage 7.0**. The recipe is still marked `prototype`. The corrected package has passed structural checks and real two-player MotS sessions, with bounded evidence for its weapons, handspring, kick and grappling-hook launch/detach. Live grapple attachment/pull, restored-Force allocation and visual fidelity remain open gates. Single-player campaigns and other MotS personalities are outside the reviewed scope.
+World Between Worlds can build an **experimental local MotS conversion of ShadowX's Ninja Kage 7.0**. The recipe is still marked `prototype`. The corrected package has passed structural checks and real two-player MotS sessions, with bounded evidence for its weapons, handspring, kick, live grappling-hook wall anchor, pull and normal detach. The original mod's Throw/Lightning allocation and activation, full combat behavior and visual fidelity remain open conversion gates. Single-player campaigns and other MotS personalities are outside the reviewed scope.
 
 The original package is a full startup mod: modeled Ninja To, shuriken, caltrops, kunai, grappling hook, jump/handspring, kick, custom Force scripts, skins, animations and sound. It contains no episode map geometry. Its `static.jkl` contains shared resource definitions and fifteen custom templates, so a map-surface lighting conversion is not applicable to this package itself.
 
@@ -35,7 +35,7 @@ These distinctions are deliberate:
 - Original Throw/bin **30**, Lightning/bin **32**, Hook/bin **116**, Jump/bin **117**, Kick/bin **118**, and the network helper/bin **119** are registered without renumbering native MotS inventory.
 - All 29 authored models receive an explicit Jedi-personality column. The first reviewed setup is a fresh Jedi multiplayer character using the authored green saber materials.
 - Authored string changes are merged into native MotS string tables. Native personality/UI keys remain, and the 25 hotkey labels follow the actual inventory enumeration.
-- Both variants include the exact original JK Throw and Lightning HUD icons in 8-bit and 16-bit form. The verifier follows every active inventory descriptor's runtime-derived icon name, checks both depths and validates the required fallback/bracket bitmaps.
+- The package includes the exact original JK Throw and Lightning HUD icons in 8-bit and 16-bit form. These assets are required by Ninja Kage's own descriptors. The verifier follows every active inventory descriptor's runtime-derived icon name, checks both depths and validates the required fallback/bracket bitmaps.
 - The complete typed resource dependency set is preloaded in `static.jkl`. Native preload rows keep their order and indices; computed capacities accommodate the additional resources. The fifteen authored templates retain their parent order and fields. Their global `+sspks_blood` definition intentionally changes native map blood effects as part of the original full-mod behavior.
 
 Native MotS damage multipliers, Force Defense, carbonite, flash, bubble effects, velocity/mana parameters and saber-only restrictions remain. These are MotS adaptation semantics; the tool does not claim identical JK-engine behavior.
@@ -44,7 +44,12 @@ Native MotS damage multipliers, Force Defense, carbonite, flash, bubble effects,
 
 Use the original Ninja Kage ZIP and clean, supported copies of both JK and MotS. The six normal pinned retail archives are sufficient; Ninja Kage does not require the JK single-player archive. Generated assets must remain outside the converter source directory.
 
-The source API is available for explicit prototype evaluation:
+Select Ninja Kage under **Gameplay mods** in the workbench, or use the source
+API below. The prototype label and Force compatibility limits remain visible.
+Conversion creates this mod's own output folder; it does not launch the game,
+enable the mod, modify an installation, or combine it with selected map outputs.
+
+The source API is also available for explicit prototype evaluation:
 
 ```python
 from pathlib import Path
@@ -89,43 +94,35 @@ Native Restore Defaults assumes the normal twenty-action inventory. For this mod
 
 Ordinary headless `-autostart -mp` uses the engine's dummy character path and does not load a Jedi MPC/PER merely because those files exist. A test must use the normal character-loading host/join flow before claiming a Jedi multiplayer result. Private test adapters are separate from the distributable converter and engine.
 
-## Optional restored-Force allocation variant
+## The original mod's Force powers
 
-The default prototype has Throw/Lightning descriptors and control labels, but ordinary native MotS allocation and power cycling omit bins 30 and 32. It therefore does **not** claim that those powers are selectable through the native allocation screen.
+Ninja Kage already includes its own Throw and Lightning COGs. The conversion preserves those authored scripts, descriptors, HUD assets and control labels. This preserves original mod content; World Between Worlds does not install a general Force-restoration add-on or add Force-allocation features to the engine.
 
-An explicit experimental build option, `force_ui=True`, supplies the resource contract for the separately reviewed restored-Force engine extension:
-
-```python
-result = ninja_converter.build_to_directory(
-    archives, original_zip, fresh_output_directory, force_ui=True,
-)
-```
-
-This variant changes the two internal descriptor names to `f_thr_r` and `f_lig_r`, adds local allocation-icon derivatives, and supplies the allocation hint strings. The original JK HUD icons are included in both variants. The original Ninja Kage Force COGs remain unchanged. No Force levels, extra stars or artificial starting powers are granted.
-
-The engine extension implements allocation/category/refund behavior and power cycling for those opt-in descriptors. The current reviewed rebase has source patch SHA256 `c795ae75b86d9316cec91144f7f35c6689d11c579ca32c172f06afe946382cf4`; extracted native-function tests passed 947 assertions with undefined-behavior checks, and the complete Windows build passed. The variant requires an engine with that extension; putting the resource files into an ordinary engine does not add the missing UI logic.
-
-The current v4 allocation icons preserve the original three 28×28 image states and duplicate the normal state as the fourth disabled-state placeholder required by MotS. Palette remapping and a proper disabled appearance are under review. Rendered layout, allocation, refunds, saves/reloads and power activation still require runtime/UI checks. A successful zero-allocation multiplayer session establishes descriptor compatibility, without establishing these UI or restored-power behaviors.
+Ordinary native MotS allocation and power cycling omit bins **30** and **32**. The current prototype therefore does **not** claim that a fresh MotS character can allocate those powers through its native screen. A faithful Ninja-specific migration of a player's already allocated JK character is under source review; it has not been implemented or runtime-validated. No ranks, extra stars or artificial starting powers are granted. General Force restoration is a separate project and is outside this converter's output.
 
 ## Validation and remaining limits
 
-The corrected default v3 produces **1,016 resources / 19,703,558 bytes**, SHA256 `50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df`. The corrected optional Force v4 produces **1,018 resources / 19,710,411 bytes**, SHA256 `4fafc5c6cf194275cd36df496308c423a949cbb4ecfea66b90b6505ddfdc3462`. Each was assembled twice with identical bytes. These hashes describe these specific development artifacts; later recipe revisions require new verification.
+The corrected v3 produces **1,016 resources / 19,703,558 bytes**, SHA256 `50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df`. It was assembled twice with identical bytes. This hash identifies the exact artifact used for the results below; later recipe revisions require new verification.
 
-The current Ninja test gate passed **43 tests**, including configured owned-asset integration and mutation tests. The independent verifier checks original assets, exact COG edits and untouched text, native inventory invariants, controls, models, static template/preload structure, imported resource hashes, dependency reachability, HUD bitmap closure and manifest contents. Structural verification alone does not certify parser execution or gameplay.
+At the v3 repair checkpoint, the Ninja test gate passed **43 tests**, including configured owned-asset integration and mutation tests. The final source release records its current suite separately in [VALIDATION.md](VALIDATION.md). The independent verifier checks original assets, exact COG edits and untouched text, native inventory invariants, controls, models, static template/preload structure, imported resource hashes, dependency reachability, HUD bitmap closure and manifest contents. Structural verification alone does not certify parser execution or gameplay.
 
-The initial default artifact failed real startup because it omitted four Throw/Lightning HUD icons. The native engine attempted to convert a missing bitmap. That failure was retained and the asset dependency repaired; it is not counted as a passing test. The corrected recipe also follows the native string parser's plain quote delimiters so the literal backslash key row is counted correctly and the final authored string is read. These corrections change only the four HUD resources and string table in the default variant, and only the string table in the prior optional variant.
+The initial artifact failed real startup because it omitted four Throw/Lightning HUD icons. The native engine attempted to convert a missing bitmap. That failure was retained and the asset dependency repaired; it is not counted as a passing test. The corrected recipe also follows the native string parser's plain quote delimiters so the literal backslash key row is counted correctly and the final authored string is read. These repairs changed only the four HUD resources and string table.
 
-Private tests used fresh Jedi MPC/PER characters, ordinary engine host/join initialization, two distinct connected peers, and input delivered through the loaded control mappings. The corrected default passed a **75.094-second idle session** and a **75.064-second action session**. The optional Force variant passed a **75.046-second idle session** with zero allocated powers. All 66 descriptor-bound COGs were loaded and validated during the initialized samples; no parser failure or crash was found in those runs, game clocks advanced, and the 48 clean baseline files retained their hashes.
+Private tests used fresh Jedi MPC/PER characters, ordinary engine host/join initialization, two distinct connected peers, and input delivered through the loaded control mappings. The corrected artifact passed a **75.094-second idle session**, a **75.064-second action session** and a **75.056-second corrected grapple session**. All 66 descriptor-bound COGs were loaded and validated during the initialized samples; no parser failure or crash was found in those runs, game clocks advanced, and the 48 clean baseline files retained their hashes.
+
+The first two sessions used a private runtime without the experimental Force extension. The grapple runtime contained a separate experimental extension, but v3's descriptors did not match its opt-in contract, so it remained inactive. Private input/observation code and experimental runtimes are not shipped in the converter or engine release.
 
 The action session established the following bounded effects:
 
 - Shuriken, caltrop and kunai selection/firing produced the corresponding live projectiles and consumed their authored ammunition. Both peers observed the weapon helper's network triggers.
 - The stationary handspring produced its authored backward impulse; kick produced a transient punch projectile and returned its activation state to idle. These observations do not establish hit damage or every transient projectile.
 - The standing Ninja To strike changed its authored attack state and saber flags. Rendered animation and collision damage were not measured.
-- Grappling-hook launch and explicit detach changed the expected COG and inventory states. A live anchor and pull remain **unverified**. Follow-up normal aiming exposed a private observer defect: it treated the engine's highest occupied thing index as a count and omitted that final slot. The earlier apparent hook disappearance therefore does not establish destruction or invalid-handle pulling, and no gameplay-script repair is justified by that observation. The observer is being corrected for a new live-anchor test.
+- Normal turn/look controls aimed the hook at a real K1 wall. The same live hook remained stationary at that wall for **1.054 seconds** through the later detach press. During the authored pull, player-to-anchor distance fell from approximately **0.3225 to 0.2269 world units**. The normal second hook press removed that tracked hook, cleared its COG/inventory state and restored player gravity. This establishes local wall stop, pull and cleanup; it does not establish remote hook rendering or rope appearance.
+
+Earlier hook observations exposed two private-test assumptions: the engine's highest occupied thing index was treated as a count, and a stationary wall hook was incorrectly required to retain an attachment flag. The corrected observer follows the inclusive occupied index and the original script's stationary-or-attached condition. The earlier apparent disappearance did not establish destruction or invalid-handle pulling. No hook COG or template repair was made.
 
 Four exact original missing-resource edges remain: `arimasen.wav` in the sword and Force Speed scripts, `shthrow.key` in the shuriken script, and `starm.3do` in an unused SP limb template. A separate pinned native script declares an absent `EC.3do` template but never uses that symbol; that unused declaration is retained. No replacement sound, animation, model or template is invented.
 
 The original caltrop script contains assignment expressions where comparisons appear intended, and Force Pull has an inherited CTF-condition parenthesis issue. These are preserved and separately documented rather than silently attributed to the converter or declared parser failures.
 
-Live grappling attachment/pull, restored-Force allocation and activation, combat damage, full remote visual replication, rendered appearance, sound, animation and per-map behavior remain runtime gates. A completed input schedule alone is not evidence that an ability worked. Single-player compatibility and other personalities are unverified.
+The original mod's Throw/Lightning allocation and activation, combat damage, full remote visual replication, rendered appearance, sound, animation and per-map behavior remain runtime gates. A completed input schedule alone is not evidence that an ability worked. Single-player compatibility and other personalities are unverified.

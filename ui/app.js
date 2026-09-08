@@ -1,7 +1,7 @@
 /* World Between Worlds: local browser UI. No external dependencies or automatic selection. */
 const KINDS = {all:'All supported content',vanilla:'Vanilla JK',custom:'Custom levels',mod:'Gameplay mods'};
 const MODES = {mp:'Multiplayer',ctf:'Capture the flag',sp:'Singleplayer'};
-const ELIGIBLE = new Set(['verified','supported','ready','available']);
+const ELIGIBLE = new Set(['verified','supported','ready','available','prototype']);
 const TERMINAL = new Set(['complete','completed','done','success','succeeded','failed','error','cancelled','canceled','partial']);
 
 export function selectable(recipe) { return ELIGIBLE.has(String(recipe.status || '').toLowerCase()); }
@@ -81,7 +81,7 @@ function start() {
       const rows=matching().filter(recipe=>recipe.kind===kind && selectable(recipe));
       if (!rows.length) continue;
       const group=document.createElement('optgroup');group.label=KINDS[kind];
-      for (const recipe of rows) {const option=new Option(recipe.title,recipe.id);option.disabled=state.selected.has(recipe.id) || state.jobRunning;group.append(option);}
+      for (const recipe of rows) {const option=new Option(recipe.title+(recipe.status==='prototype'?' (prototype)':''),recipe.id);option.disabled=state.selected.has(recipe.id) || state.jobRunning;group.append(option);}
       $('recipe-picker').append(group);
     }
     if ([...$('recipe-picker').options].some(option=>option.value===previous && !option.disabled)) $('recipe-picker').value=previous;
@@ -112,10 +112,11 @@ function start() {
       const heading=el('div');heading.append(el('h3','',recipe.title),el('p','card-author',recipe.author || KINDS[recipe.kind]));label.append(check,heading);card.append(label);
       if (recipe.summary) card.append(el('p','card-copy',recipe.summary));
       const bottom=el('div','card-bottom');
-      bottom.append(el('span','badge'+(available?' supported':' warning'),available?(recipe.status==='verified'?'Verified recipe':'Supported recipe'):'Unavailable'));
+      const prototype=recipe.status==='prototype';
+      bottom.append(el('span','badge'+(available && !prototype?' supported':' warning'),prototype?'Prototype · limited compatibility':available?(recipe.status==='verified'?'Verified recipe':'Supported recipe'):'Unavailable'));
       for (const mode of recipe.gameplay) bottom.append(el('span','badge',MODES[mode] || mode));
       const details=el('button','card-details','Details');details.type='button';details.setAttribute('aria-label',`Details for ${recipe.title}`);details.addEventListener('click',()=>showDetails(recipe));bottom.append(details);card.append(bottom);
-      if (recipe.startup_overlay) card.append(el('p','overlay-note','Includes a required startup overlay'));
+      if (recipe.startup_overlay) card.append(el('p','overlay-note',recipe.kind==='mod'?'Creates a separate mod folder; load it only when you choose.':'Includes a required startup overlay for this map.'));
       $('recipe-list').append(card);
     }
     $('empty-state').classList.toggle('hidden',rows.length>0);
@@ -143,7 +144,7 @@ function start() {
     $('export-selection').disabled=!rows.length;
     $('convert').disabled=!rows.length || state.jobRunning;
     $('convert').textContent=state.jobRunning?'Conversion in progress…':`Convert selected (${rows.length}) →`;
-    $('conversion-hint').textContent=state.jobRunning?'This queue is locked while its job runs.':rows.length?'Uses the folders above and the original archives you provide.':'Select at least one supported recipe.';
+    $('conversion-hint').textContent=state.jobRunning?'This queue is locked while its job runs.':rows.some(recipe=>recipe.status==='prototype')?'Includes a prototype with the compatibility limits shown in Details. Conversion creates files; it does not launch the game or load a mod.':rows.length?'Uses your original archives. Conversion creates files; it does not launch the game or load a mod.':'Select at least one available recipe.';
     const overridesOpen=$('archive-overrides').querySelector('details')?.open || false;
     $('archive-overrides').replaceChildren();
     const custom=rows.filter(recipe=>recipe.requires_archive);

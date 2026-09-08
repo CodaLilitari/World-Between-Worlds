@@ -46,6 +46,15 @@ class SelectionTests(unittest.TestCase):
             if row['kind'] != 'mod':
                 self.assertFalse(row['runtime_test']['full_gameplay'])
 
+    def test_ninja_is_an_explicit_separate_prototype_selection(self):
+        self.assertEqual([r['id'] for r in catalog.selection(['canyon-oasis'])], ['canyon-oasis'])
+        rows = catalog.selection(['ninja-kage', 'canyon-oasis'])
+        self.assertEqual([r['id'] for r in rows], ['ninja-kage', 'canyon-oasis'])
+        self.assertEqual(rows[0]['status'], 'prototype')
+        self.assertEqual(rows[0]['kind'], 'mod')
+        self.assertIsNone(rows[1]['startup_overlay'])
+        self.assertEqual([r['entry']['id'] for r in catalog.export_plan(['ninja-kage'])['recipes']], ['ninja-kage'])
+
     def test_changed_source_cannot_get_a_fresh_but_false_recipe_lock(self):
         changed = {**catalog.LOADED_SOURCE_HASHES, 'bridge.py': '0' * 64}
         with patch.object(catalog, 'source_hashes', return_value=changed):

@@ -11,7 +11,7 @@ SOURCE_ROOT = Path(__file__).resolve().parent
 ENGINE_MODULES = ('bridge.py', 'gob.py', 'caesars_audit.py', 'custom_registry.py',
                   'community_runtime.py', 'custom_catalog.py', 'author_catalog.py',
                   'jhs_catalog.py', 'verify_retail.py', 'ninja_catalog.py',
-                  'ninja_converter.py', 'force_icon_palette.py',
+                  'ninja_converter.py',
                   'blackwing_catalog.py', 'blackwing_service.py')
 MAP_RUNTIME = {
     'scope': '60-second MotS multiplayer host with advancing simulation',
@@ -112,7 +112,7 @@ def selection(ids):
         raise ValueError('Each recipe may be selected only once.')
     if len(ids) > len(known) or any(key not in known for key in ids):
         raise ValueError('The selection contains an unknown recipe.')
-    if any(known[key]['status'] not in {'verified', 'supported', 'ready', 'available'} for key in ids):
+    if any(known[key]['status'] not in {'verified', 'supported', 'ready', 'available', 'prototype'} for key in ids):
         raise ValueError('The selection contains an unavailable recipe.')
     return [known[key] for key in ids]
 

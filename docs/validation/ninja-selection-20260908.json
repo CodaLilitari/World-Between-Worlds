@@ -1,0 +1,79 @@
+{
+  "schema": "wbw.selectable-mod-browser-evidence.v1",
+  "date": "2026-09-08",
+  "passed": true,
+  "checks": [
+    "Initial selection empty, including Ninja",
+    "Prototype is selectable by dropdown; category, limits, Details and separate-output wording visible",
+    "Ninja-only recipe export contains one asset-free recipe",
+    "Map-only conversion emits Canyon only, without a Ninja file or startup overlay",
+    "Explicit map-plus-Ninja queue preserves Canyon byte-for-byte and emits separate v3 Ninja folder/receipt",
+    "All 112 baseline files unchanged",
+    "No browser errors or external UI requests"
+  ],
+  "source_hashes": {
+    "bridge.py": "160f47deea0fd4abb7589e7cd388fa54c1969d659f18bca0890ab834a4ac980a",
+    "gob.py": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+    "caesars_audit.py": "44672d03fc35fe87d2cd832ce1cfa7168a106b411159d6a6f6cf1eca6cd96dc2",
+    "custom_registry.py": "7964508cbaac7faca6eec49aa8fb892f426cc51521c8506bec19db60ecbb2ca8",
+    "community_runtime.py": "192d3cba7b787c21b9c8412980db7efee8d1527307b43ad4e7bae3b123420e2f",
+    "custom_catalog.py": "6ae67561dd3d3bf4fac4dcae30284ac661fd401b808b99edd677db282aebca89",
+    "author_catalog.py": "8cb3e8d7b464070f120aa4c1ce30bed8f17cf9120eabbd4faaa83d34718b863b",
+    "jhs_catalog.py": "87e6b3e72b0979bf6f4415f905b889edb93a85c1d91d7fe0f5648cb47ff30abc",
+    "verify_retail.py": "a73c4a1d39c8106d4b531a61861e7d5f826d81f1312057e2db2a0a61d0b42ca4",
+    "ninja_catalog.py": "1114401f764130793f82ccb85c68ba1c573ad908b9807fa2336cc5d8d0f5ffee",
+    "ninja_converter.py": "4de32b50c68a57dd9b77de72726d5c869666b40aed8f7b570d5168401f6e2910",
+    "blackwing_catalog.py": "77941a46de8fed687e9dc6ee0e76cd3cf3b49daa6c9d6dc921ee719aa5df2e23",
+    "blackwing_service.py": "f927b22bd108c611d4af45b16d19840c11801abc33e3558a601bce8f4b8eb01b"
+  },
+  "game_runtime_test": "not-run; these tests exercised browser conversion only",
+  "baseline_files_unchanged": 112,
+  "image": {
+    "file": "docs/screenshots/ninja-selectable-prototype.png",
+    "sha256": "eac74a88aa053542068f18c434aaf3b4297e5d9ec07a7106b13b30c3b8044657",
+    "width": 1480,
+    "height": 1040,
+    "method": "Unedited screenshot of isolated headless Chrome before entering local filesystem paths"
+  },
+  "outputs": [
+    [
+      {
+        "id": "canyon-oasis",
+        "sha256": "1da7d9c8bc1ee4630d54fb5125dd1da0a436656789a159d7da72d18c687bfae7",
+        "reused": false,
+        "status": "verified",
+        "runtime_test": {
+          "status": "not-run-on-this-output",
+          "note": "Structural verification does not launch OpenJKDF2."
+        }
+      }
+    ],
+    [
+      {
+        "id": "canyon-oasis",
+        "sha256": "1da7d9c8bc1ee4630d54fb5125dd1da0a436656789a159d7da72d18c687bfae7",
+        "reused": true,
+        "status": "verified",
+        "runtime_test": {
+          "status": "not-run-on-this-output",
+          "note": "Structural verification does not launch OpenJKDF2."
+        }
+      },
+      {
+        "id": "ninja-kage",
+        "sha256": "50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df",
+        "reused": false,
+        "status": "verified",
+        "runtime_test": {
+          "status": "not-run-on-this-output",
+          "note": "Structural verification does not launch OpenJKDF2."
+        }
+      }
+    ]
+  ],
+  "limits": [
+    "Native game was not launched by the converter.",
+    "Ninja original Force allocation/cycling compatibility remains incomplete.",
+    "Earlier private harness used a nonexistent JobManager.get method after successful Canyon conversion; corrected to snapshot in this fresh run."
+  ]
+}

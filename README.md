@@ -7,6 +7,14 @@ mod conversions locally. World Between Worlds supplies the instructions; require
 level assets come from the user's existing installations and original downloads.
 The application ships no retail or community game-asset payloads.
 
+The goal is to make the selected original JK content work in MotS while
+preserving its authored environment, mechanics and mod behavior. Each reviewed
+conversion becomes a repeatable recipe: required resources are extracted from
+the user's own files, and format, inventory and COG differences receive exact,
+documented adaptations. Unresolved behavior stays visible as a compatibility
+limit. General gameplay additions, including Force restoration, are separate
+mods and are not part of the bridge's output.
+
 ![World Between Worlds workbench](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/main/docs/screenshots/workbench.png)
 
 This is a separate project from [OpenJKDF2-MotS-Fixes](https://github.com/andreipemberton/OpenJKDF2-MotS-Fixes).
@@ -35,6 +43,12 @@ an independently checked conversion receipt. **Export selected recipes** saves
 the selected instructions as JSON with no assets. Required startup overlays
 are generated alongside the selected map or mod. Generated files stay outside
 the application and original game folders.
+
+Ninja Kage is a selectable **prototype** conversion with its remaining limits
+shown in the catalog and [Ninja guide](NINJA_KAGE.md). Converting it creates a
+separate startup-mod folder. The workbench does not launch the game, install it
+into an existing game, or load it with other maps. Choosing whether to play with
+that mod is a separate user action.
 
 The launcher checks this project's published GitHub releases on startup. It
 verifies a compatible new package before selecting it, keeps the previous

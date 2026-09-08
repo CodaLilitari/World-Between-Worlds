@@ -5,15 +5,21 @@ reads user-provided originals; this module contains no original asset payloads.
 """
 
 STATUS = 'prototype'
-RUNTIME_TEST = {'status': 'not-run'}
-FORCE_UI_EXTENSION = {
-    'status': 'experimental-not-runtime-verified',
-    'engine_patch_sha256': '4e13ee9ce3dfe5070b0c320226a588ae0cb38fd1f205430ec5a2a712ac8a8677',
-    'descriptors': {30: 'f_thr_r', 32: 'f_lig_r'},
-    'allocation_icons': {'fothrow.bm': 'mfr_throw.bm', 'fothunderbolt.bm': 'mfr_lightning.bm'},
-    'hud_icons': ['icf_thr8.bm', 'icf_thr16.bm', 'icf_lig8.bm', 'icf_lig16.bm'],
-    'note': 'Explicit build option only; requires the separately reviewed engine allocation/cycling extension. No Force ranks or extra stars are granted.',
+RUNTIME_TEST = {
+    'status': 'bounded-mp-pass',
+    'artifact_sha256': '50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df',
+    'game': 'MotS', 'mode': 'multiplayer', 'personality': 'Jedi', 'map': 'k1.jkl',
+    'peers': 2, 'idle_seconds': 75.094, 'basic_action_seconds': 75.064,
+    'grapple_seconds': 75.056, 'descriptor_cog_bindings_checked': 66,
+    'effects': ['weapon selection and ammunition/projectile response',
+                'authored weapon helper network triggers', 'standing Ninja To attack state',
+                'stationary handspring impulse', 'kick activation and punch projectile',
+                'live wall-stopped grapple, pull and normal detach'],
+    'limits': ['No complete combat, rendering, sound or remote visual equivalence claim.',
+               'Single-player and other personalities unreviewed.',
+               'Authored Throw/Lightning allocation and activation remain separate conversion gates.'],
 }
+REQUIRED_HUD_ICONS = ('icf_thr8.bm', 'icf_thr16.bm', 'icf_lig8.bm', 'icf_lig16.bm')
 NORMALIZED_GOB_SHA256 = 'c9f001461ad37e1f3030b2b2d05db8fa591717880e908089d6932cd2e3e443ee'
 NATIVE_UNUSED_TEMPLATE = {
     'path': 'cog/item_heavy_explosive.cog',
@@ -248,7 +254,7 @@ PLAYER_COG_EDITS = [{'old': 'tip_mat=saberorange0.mat',
             'extra-weapon/EWEB/scope handling.'}]
 
 KNOWN_GAPS = [
-    'No game process has been launched by this source builder; MP startup and actions need runtime tests.',
+    'Bounded two-peer Jedi MP startup, weapon/action response and live grapple pull/detach passed on native K1; this is not complete gameplay equivalence.',
     'This prototype targets a fresh Jedi multiplayer character; other personalities and single-player are unreviewed.',
     'Original Force Throw/bin30 and Lightning/bin32 have descriptors and hotkeys, but native MotS allocation/cycling excludes them.',
     'Native Restore Defaults assumes 20 hotkeys; explicitly bind F2 Field Light/ACTIVATE21, F3 IR Goggles/ACTIVATE20 and F4 Bacta/ACTIVATE19 for this 25-action mod.',

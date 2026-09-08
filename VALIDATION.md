@@ -2,12 +2,14 @@
 
 ## World Between Worlds workbench checkpoint
 
-The current workbench source gate discovered **203 Python tests**. On Windows,
-**190 passed and 13 optional owned-archive checks were skipped**. On Linux,
-**188 passed and 15 were skipped**: the same thirteen owned-data checks and two
-Windows-specific process tests. All **21 UI source tests passed**. The separate
-Ninja Kage/icon-helper run enabled the owned inputs and passed **58 tests with
-zero skips**. Final release artifacts have their own packaging and launch gates.
+The current workbench source gate discovered **183 Python tests**. Using the
+Windows build virtual environment, **174 passed and nine optional owned-archive
+checks were skipped**. On Linux, **172 passed and eleven were skipped**: the same
+nine owned-data checks and two Windows-specific process tests. All **22 UI
+source tests passed**. The separate Ninja Kage run enabled the owned inputs and
+passed **37 tests with zero skips**. The lower count reflects removal of the
+separate Force-restoration experiment and its tests from this project. Final
+release artifacts have their own packaging and launch gates.
 
 The updater's **46 tests passed on Windows**. The source launcher now recognizes
 the real interpreter child created by Windows virtual-environment Python, using
@@ -18,14 +20,21 @@ inspection; its fixture now waits for explicit parent acknowledgment. The old
 fixed lifetime fails that regression. The corresponding Linux tests pass, with
 the two Windows-only tests explicitly skipped.
 
-The subsequent [native Force UI test](https://github.com/andreipemberton/World-Between-Worlds/blob/main/docs/validation/ninja-force-ui-20260908.json)
-completed 43 native callbacks and verified 42 native/OpenGL frames for the
-corrected Ninja conversion. A real rank-five Jedi character saved Throw 3 and
-Lightning 3 through the native multiplayer menu and reloaded those values and
-appearance in a separate process. Keyboard labels and H/L/F2/F3/F4 mappings
-passed. The [inspected renders](SCREENSHOTS.md) show available, allocated and
-Defense-disabled icons without control overlap. These are bounded menu,
-save-file and reload results; Force combat effects remain a separate gate.
+Ninja Kage remains a prototype with bounded two-peer K1 startup and action
+tests. Its original Force COGs, inventory descriptors and required HUD assets
+are retained. Native MotS allocation and cycling still omit Throw/Lightning;
+the separate restoration experiment is excluded from this bridge and its
+validation claims. See [NINJA_KAGE.md](NINJA_KAGE.md) for exact limits.
+
+A subsequent isolated Chrome test confirmed that Ninja Kage is selectable as a
+prototype with no initial selection. A Canyon-only conversion generated no Ninja
+files or startup overlay. Explicitly selecting Canyon and Ninja then reused the
+unchanged Canyon output and created a separate Ninja folder with the exact
+runtime-tested v3 archive hash. The Ninja-only recipe export contained one
+asset-free recipe. All 112 baseline files retained their hashes; there were no
+browser errors or external UI requests. This was a conversion test and did not
+launch a game. The [selection evidence](docs/validation/ninja-selection-20260908.json)
+records both jobs and the source hashes.
 
 The actual browser UI passed seven additional checks in an isolated headless
 Chrome session with zero browser errors: empty initial selection; dropdown and

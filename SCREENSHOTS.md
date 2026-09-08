@@ -36,35 +36,15 @@ level author's attribution. They are documentation in the repository; they are
 excluded from the source, native application and updater ZIPs. The application
 packages contain no game assets. See [NOTICE.md](NOTICE.md).
 
-## Restored Force allocation in the Ninja conversion
+## Selecting a mod to convert
 
-These additional images are actual native multiplayer character-menu renders
-from the corrected Ninja Kage conversion in MotS mode. The automated test used
-native menu callbacks to create a rank-five Jedi, allocate/reset/refund points,
-exercise Defense restrictions, and save the resulting character. A separate
-process reloaded the saved ranks and appearance. No direct rank or power grants
-were used.
+![Ninja Kage as a selectable prototype](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/main/docs/screenshots/ninja-selectable-prototype.png)
 
-| Available at rank five | Three points in each power | Disabled by Defense |
-| --- | --- | --- |
-| ![Throw and Lightning available](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/main/docs/screenshots/ninja-force-available.png) | ![Throw and Lightning allocated](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/main/docs/screenshots/ninja-force-allocated.png) | ![Throw and Lightning disabled](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/main/docs/screenshots/ninja-force-disabled.png) |
-
-The added icons retain their original 28×28 shapes. Their colors are remapped
-into the actual MotS menu palette, with visibly distinct dark disabled states.
-The displayed rank-five budget starts at fifteen stars; allocating three to
-each restored power leaves nine on screen. Native multiplayer save behavior
-discards unspent allocation stars on exit, so the saved character's spend field
-is zero. This is not a campaign-progression test.
-
-All 43 native actions and 42 rendered frames passed the independent checks.
-The native keyboard list showed **Force Throw / H** and **Force Lightning / L**;
-F2/F3/F4 bindings also matched their inventory actions. Mouse-hover hints and
-physical mouse/keyboard operation were not exercised. Menu evidence does not
-establish combat, respawn, other personalities or compatibility of the separate
-stock-MotS Force add-on.
-
-These unretouched 1280×960 OpenGL framebuffer PNGs were captured in a hidden,
-unfocused game window. The private test driver is excluded from releases.
-[Exact runtime, GOO, save and image provenance](https://github.com/andreipemberton/World-Between-Worlds/blob/main/docs/validation/ninja-force-ui-20260908.json)
-records the test boundary and hashes without distributing the game or profile
-payloads.
+This unedited 1480×1040 screenshot shows Ninja Kage selected in an isolated
+headless Chrome test, with the prototype limit and separate mod output explained.
+The visible folder examples are empty-field placeholders; the screenshot was
+taken before entering local paths. The accompanying browser test checked that a
+map-only conversion omits Ninja entirely, while explicitly selecting both creates
+separate results. [Screenshot and conversion provenance](docs/validation/ninja-selection-20260908.json)
+records the exact source and output hashes. Conversion does not launch a game or
+load the resulting mod.

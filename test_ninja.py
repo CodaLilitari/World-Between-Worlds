@@ -175,42 +175,6 @@ class OriginalArchiveTests(unittest.TestCase):
                 ninja.open_original(path)
 
 
-class AllocationBitmapTests(unittest.TestCase):
-    palette = bytes(c for i in range(256) for c in (i, i, i))
-    def bitmap(self):
-        header=bytearray(128); header[:4]=b'BM  '
-        struct.pack_into('<I',header,4,70)
-        struct.pack_into('<I',header,16,3)
-        struct.pack_into('<I',header,36,8)
-        frames=[struct.pack('<II',28,28)+bytes([value])*(28*28) for value in (17,38,91)]
-        return bytes(header)+b''.join(frames)
-
-    def test_equal_palette_preserves_original_states_and_derives_disabled(self):
-        original=self.bitmap(); result=ninja.allocation_icon(original, self.palette, self.palette)
-        length=8+28*28
-        self.assertEqual(struct.unpack_from('<I',result,16)[0],4)
-        self.assertEqual(result[128:128+3*length],original[128:])
-        self.assertEqual(result[128+3*length:],struct.pack("<II",28,28)+bytes([5])*784)
-
-    def test_malformed_headers_and_non_native_dimensions_rejected(self):
-        original=self.bitmap()
-        for offset,value in ((4,71),(16,4),(36,24),(128,27)):
-            changed=bytearray(original); struct.pack_into('<I',changed,offset,value)
-            with self.subTest(offset=offset),self.assertRaises(ninja.NinjaError):
-                ninja.allocation_icon(changed, self.palette, self.palette)
-
-    def test_truncated_or_unexpected_pixel_tail_rejected(self):
-        original=self.bitmap()
-        for changed in (original[:127],original[:-1],original+b'\x00'):
-            with self.subTest(size=len(changed)),self.assertRaises(ninja.NinjaError):
-                ninja.allocation_icon(changed, self.palette, self.palette)
-
-    def test_explicit_palette_bytes_remain_at_end(self):
-        original=bytearray(self.bitmap());struct.pack_into('<I',original,12,2)
-        palette=self.palette
-        self.assertTrue(ninja.allocation_icon(bytes(original)+palette, palette, palette).endswith(palette))
-
-
 class ExactSourceEditTests(unittest.TestCase):
     def test_surgical_inventory_edit_preserves_ammo_timer_and_comments(self):
         source = '# Preserve provenance\nSetInv(player, 10, 1);\nSetInv(player, 11, 75);\nSetTimer(10);\n'
@@ -432,6 +396,9 @@ class OwnedArtifactMutationTests(unittest.TestCase):
         result = ninja.verify(self.archives, self.original, self.data, self.manifest)
         self.assertEqual(result['status'], 'structural-pass')
         self.assertEqual(result['gameplay'], 'not-run')
+        self.assertEqual(sha(self.data), '50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df')
+        self.assertEqual(len(self.payloads), 1016)
+        self.assertFalse(any(Path(p).name.startswith('mfr_') for p in self.payloads))
 
     def test_default_build_requires_both_depths_of_original_force_hud_icons(self):
         for name in ('icf_thr8.bm', 'icf_thr16.bm', 'icf_lig8.bm', 'icf_lig16.bm'):
@@ -507,53 +474,6 @@ class OwnedArtifactMutationTests(unittest.TestCase):
                 with self.assertRaisesRegex(ninja.NinjaError, 'manifest native template waiver mismatch'):
                     ninja.verify(self.archives, self.original, self.data, manifest)
 
-    def test_optional_force_ui_retains_authored_scripts_and_allocation_requires_explicit_option(self):
-        data,manifest=ninja.build(self.archives,self.original,force_ui=True)
-        result=ninja.verify(self.archives,self.original,data,manifest,force_ui=True)
-        self.assertEqual(result['status'],'structural-pass')
-        self.assertEqual(result['gameplay'],'not-run')
-        output=Gob(data)
-        for path in ('cog/force_throw.cog','cog/force_lightning.cog','cog/kyle_m.cog'):
-            self.assertEqual(output.read(path),self.payloads[path])
-        rows=ninja.items(ninja.txt(output.read('misc/items.dat')))
-        self.assertEqual(rows[30]['name'],'f_thr_r')
-        self.assertEqual(rows[32]['name'],'f_lig_r')
-        self.assertEqual(rows[30]['min'],0)
-        self.assertEqual(rows[32]['min'],0)
-        with self.assertRaises(ninja.NinjaError):ninja.verify(self.archives,self.original,data,manifest)
-        self.assertEqual(sha(self.data),'50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df')
-
-    def test_optional_force_ui_icon_and_gate_mutations_fail_independently(self):
-        data,manifest=ninja.build(self.archives,self.original,force_ui=True)
-        archive=Gob(data);original={p:archive.read(p) for p in archive.entries}
-        for path in ('ui/bm/mfr_throw.bm','ui/bm/mfr_lightning.bm','ui/bm/icf_thr8.bm'):
-            changed=dict(original);payload=bytearray(changed[path]);payload[-1]^=1;changed[path]=bytes(payload)
-            with self.subTest(path=path),self.assertRaisesRegex(ninja.NinjaError,'icon'):
-                ninja.verify(self.archives,self.original,build_gob(changed),force_ui=True)
-        altered={**manifest,'force_ui_extension':None}
-        with self.assertRaisesRegex(ninja.NinjaError,'Force UI option'):
-            ninja.verify(self.archives,self.original,data,altered,force_ui=True)
-
-    def test_optional_palette_reports_and_background_provenance_are_enforced(self):
-        data,manifest=ninja.build(self.archives,self.original,force_ui=True)
-        for field in ('allocation_backgrounds','allocation_icons'):
-            with self.subTest(field=field),self.assertRaisesRegex(ninja.NinjaError,'allocation palette/provenance'):
-                ninja.verify(self.archives,self.original,data,{**manifest,field:{}},force_ui=True)
-        for report in manifest['allocation_icons'].values():
-            self.assertLessEqual(report['weighted_rgb_rmse'],30)
-            self.assertLessEqual(report['maximum_pixel_weighted_rgb_error'],56)
-            self.assertLess(report['weighted_rgb_rmse'],report['unremapped_weighted_rgb_rmse'])
-            self.assertTrue(all(report['transparent_masks_preserved']))
-
-    def test_old_unremapped_allocation_frames_are_rejected_even_without_manifest(self):
-        data,manifest=ninja.build(self.archives,self.original,force_ui=True)
-        output=Gob(data);files={path:output.read(path) for path in output.entries}
-        for old,new in ninja.catalog.FORCE_UI_EXTENSION['allocation_icons'].items():
-            original=self.archives['jksnd'].read('ui/bm/'+old)
-            header=bytearray(original[:128]);struct.pack_into('<III',header,16,4,0,0)
-            files['ui/bm/'+new]=bytes(header)+original[128:]+original[128:920]
-        with self.assertRaisesRegex(ninja.NinjaError,'allocation icon'):
-            ninja.verify(self.archives,self.original,build_gob(files),force_ui=True)
 
 
 if __name__ == '__main__':
