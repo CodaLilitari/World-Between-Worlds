@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="blackwing-token" content="{{TOKEN}}">
+  <meta name="color-scheme" content="dark">
+  <title>World Between Worlds · Conversion workbench</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 56'%3E%3Cpath fill='none' stroke='%23c59da7' stroke-width='3' d='M35 45 12 36 3 10 23 21 35 39 37 45 60 36 69 10 49 21 37 39'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/ui/styles.css">
+  <script type="module" src="/ui/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#library">Skip to the library</a>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="World Between Worlds home">
+      <svg class="wing" viewBox="0 0 72 56" aria-hidden="true"><path d="M35 45 12 36 3 10 23 21 35 39 37 45 60 36 69 10 49 21 37 39M12 36 23 29 7 18M23 29 29 37 18 38M60 36 49 29 65 18M49 29 43 37 54 38M31 47 36 51 41 47"/></svg>
+      <span><span class="eyebrow">JK → MOTS</span><strong>World Between<br>Worlds</strong></span>
+    </a>
+    <div class="masthead-purpose">JK <span aria-hidden="true">→</span> MotS <span class="muted">conversion workbench</span></div>
+    <div class="header-end"><span class="connection" id="connection" role="status"><i></i> Connecting locally</span><a class="quiet-link" href="/docs/README.md">Documentation <span aria-hidden="true">↗</span></a></div>
+  </header>
+
+  <div class="notice hidden" id="notice" role="alert"><span id="notice-text"></span><button type="button" id="dismiss-notice" aria-label="Dismiss notification">×</button></div>
+  <div class="workbench">
+    <aside class="navigation" aria-label="Library navigation">
+      <div class="sidebar-caption">COLLECTION</div>
+      <nav id="kind-navigation" aria-label="Content categories">
+        <button type="button" class="nav-item active" data-kind="all" aria-pressed="true"><span>All supported content</span><span class="nav-count" data-count="all">—</span></button>
+        <button type="button" class="nav-item" data-kind="vanilla" aria-pressed="false"><span>Vanilla JK</span><span class="nav-count" data-count="vanilla">—</span></button>
+        <button type="button" class="nav-item" data-kind="custom" aria-pressed="false"><span>Custom levels</span><span class="nav-count" data-count="custom">—</span></button>
+        <button type="button" class="nav-item" data-kind="mod" aria-pressed="false"><span>Gameplay mods</span><span class="nav-count" data-count="mod">—</span></button>
+      </nav>
+      <div class="sidebar-divider"></div>
+      <label class="sidebar-caption" for="gameplay-filter">GAMEPLAY</label>
+      <select id="gameplay-filter" class="sidebar-select">
+        <option value="all">All gameplay</option><option value="mp">Multiplayer</option><option value="ctf">Capture the flag</option><option value="sp">Singleplayer</option>
+      </select>
+      <p class="sidebar-note" id="gameplay-note">Availability follows the reviewed recipes in this workbench.</p>
+      <div class="sidebar-bottom"><span class="small-diamond" aria-hidden="true">◇</span><p>Built from your originals.<br>Converted on your computer.</p><span class="version" id="version">Local workbench</span></div>
+    </aside>
+
+    <main id="library" tabindex="-1">
+      <section class="intro" aria-labelledby="intro-title"><div><p class="eyebrow">PRESERVE THE WORLD. EXTEND THE JOURNEY.</p><h1 id="intro-title">A new passage for old worlds.</h1><p class="intro-copy">Bring supported Jedi Knight content into Mysteries of the Sith with reviewed conversion recipes.</p></div><span class="intro-ornament" aria-hidden="true">✧</span></section>
+
+      <details class="setup-panel" id="setup-panel" open>
+        <summary><span><span class="section-number">01</span> Your local folders</span><span class="summary-note">Configure the source and destination</span></summary>
+        <form id="settings-form">
+          <div class="folder-grid">
+            <label>Jedi Knight installation<input id="jk-root" name="jk_root" type="text" spellcheck="false" autocomplete="off" placeholder="C:\Games\Jedi Knight"><span>Folder containing your JK resources.</span></label>
+            <label>Mysteries of the Sith installation<input id="mots-root" name="mots_root" type="text" spellcheck="false" autocomplete="off" placeholder="C:\Games\Mysteries of the Sith"><span>Folder containing your MotS resources.</span></label>
+            <label>Original archive folder<input id="archive-dir" name="archive_dir" type="text" spellcheck="false" autocomplete="off" placeholder="E:\Original level archives"><span>Original downloaded ZIPs for custom content.</span></label>
+            <label>Output folder<input id="output-dir" name="output_dir" type="text" spellcheck="false" autocomplete="off" placeholder="E:\WBW output"><span>Choose where converted files will be created.</span></label>
+          </div>
+          <div class="setup-footer"><p>World Between Worlds supplies conversion instructions. Game and level files come from your own folders.</p><button class="button secondary" type="submit" id="save-settings">Save folders</button></div>
+          <p class="inline-status" id="settings-status" role="status"></p>
+        </form>
+      </details>
+
+      <section class="library-panel" aria-labelledby="library-heading">
+        <div class="section-heading"><h2 id="library-heading"><span class="section-number">02</span> Choose your content</h2><span class="result-count" id="result-count" role="status">Loading the catalog…</span></div>
+        <div class="add-row"><label class="visually-hidden" for="recipe-picker">Add a map or mod to the queue</label><select id="recipe-picker"><option value="">Add a map or mod…</option></select><button type="button" class="button secondary" id="add-recipe" disabled>Add to queue <span aria-hidden="true">+</span></button></div>
+        <div class="search-row"><label class="search-box" for="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input type="search" id="search" placeholder="Search titles, authors, or gameplay" autocomplete="off"><kbd aria-hidden="true">/</kbd></label></div>
+        <div class="list-toolbar"><span id="category-caption">All supported content</span><button type="button" class="text-button" id="select-visible" disabled>Select visible</button></div>
+        <div class="recipe-grid" id="recipe-list" aria-label="Available conversion recipes" aria-busy="true"></div>
+        <div class="empty-state hidden" id="empty-state"><span aria-hidden="true">◇</span><h3 id="empty-title">No content here yet</h3><p id="empty-copy"></p><button type="button" class="button secondary" id="reset-filters">Reset filters</button></div>
+        <p class="library-footnote">A supported recipe describes a specific source version. Conversion checks and runtime tests are reported separately.</p>
+      </section>
+
+      <section class="job-panel hidden" id="job-panel" aria-labelledby="job-heading">
+        <div class="section-heading"><h2 id="job-heading"><span class="section-number">03</span> Conversion activity</h2><span class="badge" id="job-status">Queued</span></div>
+        <div class="progress-caption"><span id="job-current">Preparing the queue…</span><span id="job-count">0 / 0</span></div>
+        <progress id="job-progress" max="1" value="0" aria-label="Conversion progress"></progress>
+        <div class="job-results" id="job-results"></div>
+        <details class="log-details"><summary>Activity log</summary><pre id="job-log" role="log" aria-live="polite" aria-relevant="text" tabindex="0"></pre></details>
+        <div class="job-footer"><p>Review each result before using its output in a game.</p><button class="button secondary hidden" type="button" id="refresh-job">Retry status</button><button class="button secondary" type="button" id="export-report" disabled>Export job report</button></div>
+      </section>
+      <footer class="page-footer"><span>WORLD BETWEEN WORLDS</span><span>Local files · Explicit selection · Recorded provenance</span></footer>
+    </main>
+
+    <aside class="queue-panel" aria-labelledby="queue-heading">
+      <div class="queue-heading"><h2 id="queue-heading">Your queue</h2><span class="queue-number" id="queue-count">0</span></div>
+      <p class="queue-subtitle" id="queue-summary">Nothing selected. Choose content from the library.</p>
+      <ol id="queue-list" class="queue-list"></ol>
+      <div class="queue-empty" id="queue-empty"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M9 12h30v27H9zM17 12V8h14v4M17 23h14M17 29h9"/></svg><p>Start with one world.</p><span>Choose a map from the dropdown<br>or select cards in the library.</span></div>
+      <button type="button" class="text-button clear-queue" id="clear-selection" disabled>Clear selection</button>
+      <div id="archive-overrides"></div>
+      <div class="queue-action"><button type="button" class="button primary" id="convert" disabled>Convert selected (0) <span aria-hidden="true">→</span></button><p id="conversion-hint">Select at least one supported recipe.</p><button type="button" class="button secondary export-selection" id="export-selection" disabled>Export selected recipes</button></div>
+      <div class="boundary-note"><span aria-hidden="true">◇</span><p>Conversion runs locally. Your source files remain the provenance for each result.</p></div>
+    </aside>
+  </div>
+
+  <dialog id="recipe-dialog" aria-labelledby="detail-title"><div class="dialog-heading"><div><p class="eyebrow">RECIPE DETAILS</p><h2 id="detail-title"></h2></div><button class="icon-button" id="close-details" type="button" aria-label="Close recipe details">×</button></div><div id="detail-content"></div></dialog>
+  <div class="visually-hidden" role="status" aria-live="polite" id="announcements"></div>
+</body>
+</html>

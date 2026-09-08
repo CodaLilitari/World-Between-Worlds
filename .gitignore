@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.gob
+*.goo
+*.zip
+*.mat
+*.wav
+*.3do
+*.jkl
+*.bm
+.venv/
+build/
+dist/
+outputs/
+LOCAL_CHECKPOINT.md
+*.log

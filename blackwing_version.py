@@ -1,0 +1,4 @@
+"""Public release identity; account attribution is the actual repository owner."""
+VERSION = '0.2.0-rc1'
+TITLE = 'World Between Worlds'
+REPOSITORY = 'andreipemberton/World-Between-Worlds'

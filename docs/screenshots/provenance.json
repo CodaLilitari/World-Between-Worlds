@@ -1,0 +1,188 @@
+{
+  "scope": "Three matched-camera views of unchanged original JK and converted MotS multiplayer maps, using the same private diagnostic engine based on production04. These are native game framebuffer screenshots; no AI generation, desktop capture, image editing, resizing or shader changes.",
+  "runtime_sha256": "e42bc5700c0cd6075523c82975dae830511e89937d6bf99380f43d0da40a93ba",
+  "production04_sha256": "eb1b61dfa98975a01a09249185396ef606eb26e402a80b6e3a3b38774c508176",
+  "camera_method": "Authored multiplayer spawn 0 orientation/sector, position plus 0.04 Z; both orient and lookPos assigned; camera only, player/map unchanged. Profile vertical FOV 90; actual engine horizontal FOV recorded per capture. Native scene FBO includes the native weapon model, excludes HUD overlay.",
+  "limits": [
+    "Original JK means original archive rendered in OpenJKDF2 JK mode, not the native retail executable.",
+    "One static view per map; no exhaustive geometry/material/traversal validation.",
+    "Native starting weapons differ: JK Bryar pistol versus MotS green saber. Loadouts are not matched.",
+    "Captures occur about seven seconds into gameplay; animation and weather phases are not synchronized to the exact game tick.",
+    "Door/elevator behavior is a separate diagnostic test; these unchanged-map images contain no action fixture."
+  ],
+  "project": "World Between Worlds",
+  "captured_date": "2026-09-08",
+  "pairs": [
+    {
+      "id": "canyon",
+      "visual_review": "inspected_pass_for_this_view",
+      "observation": "The canyon walls, floor, walkway, bridge and cloudy sky are present with matching geometry in this view. No obvious missing visible geometry or replacement texture was observed; this conclusion is limited to the pictured view.",
+      "images": [
+        {
+          "role": "original_jk",
+          "sha256": "c684ad8523a8b7b1ee8b041b5cce39754e0bddf4692e060cae08cb67011858f1",
+          "width": 1280,
+          "height": 960,
+          "source_url": "https://store.steampowered.com/app/32380/STAR_WARS_Jedi_Knight_Dark_Forces_II/",
+          "source_sha256": "27a4b3642e0965753232f35b1e8e846c91df1eca1da77398b5efda66ca369a2e",
+          "settings": {
+            "bFastMissionText": true,
+            "fov": 90,
+            "fovisvertical": true,
+            "windowfullscreen": false,
+            "windowishidpi": false,
+            "texturefiltering": false,
+            "enablebloom": false,
+            "enablessao": false,
+            "enablevsync": false,
+            "gamma": 1.0,
+            "ssaamultiple": 1.0,
+            "bDisableWeaponWaggle": true,
+            "fpslimit": 60
+          },
+          "file": "canyon-jk.png",
+          "caption": "Canyon Oasis \u2014 original JK archive in JK mode. Authored spawn 0 camera; private diagnostic build based on production04; 1280 \u00d7 960 native scene framebuffer. Native Bryar pistol view. Geometry and materials judged only in this view."
+        },
+        {
+          "role": "converted_mots",
+          "sha256": "b9f8a2fe87aa593c27f846fb399e5a76bda343487d3d202188499b3d80345298",
+          "width": 1280,
+          "height": 960,
+          "source_url": "https://store.steampowered.com/app/32380/STAR_WARS_Jedi_Knight_Dark_Forces_II/",
+          "source_sha256": "1da7d9c8bc1ee4630d54fb5125dd1da0a436656789a159d7da72d18c687bfae7",
+          "settings": {
+            "bFastMissionText": true,
+            "fov": 90,
+            "fovisvertical": true,
+            "windowfullscreen": false,
+            "windowishidpi": false,
+            "texturefiltering": false,
+            "enablebloom": false,
+            "enablessao": false,
+            "enablevsync": false,
+            "gamma": 1.0,
+            "ssaamultiple": 1.0,
+            "bDisableWeaponWaggle": true,
+            "fpslimit": 60
+          },
+          "file": "canyon-mots.png",
+          "caption": "Canyon Oasis \u2014 converted archive in MotS mode. Authored spawn 0 camera; private diagnostic build based on production04; 1280 \u00d7 960 native scene framebuffer. Native green saber view. Geometry and materials judged only in this view."
+        }
+      ]
+    },
+    {
+      "id": "jhs",
+      "visual_review": "inspected_pass_for_this_view",
+      "observation": "The hall, floor markings, walkway, ceiling, tiled walls and illuminated far doorway are present with matching geometry in this view. No obvious missing visible geometry or replacement texture was observed; this conclusion is limited to the pictured view.",
+      "images": [
+        {
+          "role": "original_jk",
+          "sha256": "df26a5502ba318f5a22d8410da8fb933bf3a1cba27ce33ebd0bc0e3f003d5eb5",
+          "width": 1280,
+          "height": 960,
+          "source_url": "https://www.jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Game%20Files/jkmp/jhs.zip",
+          "source_sha256": "a62c94789c521af2746cc8378301a4940a59a24f6fb44dd4c443caacc0211b04",
+          "settings": {
+            "bFastMissionText": true,
+            "fov": 90,
+            "fovisvertical": true,
+            "windowfullscreen": false,
+            "windowishidpi": false,
+            "texturefiltering": false,
+            "enablebloom": false,
+            "enablessao": false,
+            "enablevsync": false,
+            "gamma": 1.0,
+            "ssaamultiple": 1.0,
+            "bDisableWeaponWaggle": true,
+            "fpslimit": 60
+          },
+          "file": "jhs-jk.png",
+          "caption": "Jedi's High School 1.0 \u2014 original JK archive in JK mode. Authored spawn 0 camera; private diagnostic build based on production04; 1280 \u00d7 960 native scene framebuffer. Native Bryar pistol view. Geometry and materials judged only in this view."
+        },
+        {
+          "role": "converted_mots",
+          "sha256": "10f55f96baffafc048a7090a43935bca28d90cde05376ee9669ff90fddec2b30",
+          "width": 1280,
+          "height": 960,
+          "source_url": "https://www.jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Game%20Files/jkmp/jhs.zip",
+          "source_sha256": "6276dda2e731d4ff5c3570197086312be6fa0bee9754ae91d799af75501e774e",
+          "settings": {
+            "bFastMissionText": true,
+            "fov": 90,
+            "fovisvertical": true,
+            "windowfullscreen": false,
+            "windowishidpi": false,
+            "texturefiltering": false,
+            "enablebloom": false,
+            "enablessao": false,
+            "enablevsync": false,
+            "gamma": 1.0,
+            "ssaamultiple": 1.0,
+            "bDisableWeaponWaggle": true,
+            "fpslimit": 60
+          },
+          "file": "jhs-mots.png",
+          "caption": "Jedi's High School 1.0 \u2014 converted archive in MotS mode. Authored spawn 0 camera; private diagnostic build based on production04; 1280 \u00d7 960 native scene framebuffer. Native green saber view. Geometry and materials judged only in this view."
+        }
+      ]
+    },
+    {
+      "id": "narshaddaa",
+      "visual_review": "inspected_pass_for_this_view",
+      "observation": "The loading-bay pillars, illuminated crates, wall panels, ceiling beams and floor are present with matching geometry in this view. No obvious missing visible geometry or replacement texture was observed; this conclusion is limited to the pictured view.",
+      "images": [
+        {
+          "role": "original_jk",
+          "sha256": "55561c5f12e215160dce6e6d5d9ae53f2090f13415def881f28f81e295ebdee3",
+          "width": 1280,
+          "height": 960,
+          "source_url": "https://store.steampowered.com/app/32380/STAR_WARS_Jedi_Knight_Dark_Forces_II/",
+          "source_sha256": "27a4b3642e0965753232f35b1e8e846c91df1eca1da77398b5efda66ca369a2e",
+          "settings": {
+            "bFastMissionText": true,
+            "fov": 90,
+            "fovisvertical": true,
+            "windowfullscreen": false,
+            "windowishidpi": false,
+            "texturefiltering": false,
+            "enablebloom": false,
+            "enablessao": false,
+            "enablevsync": false,
+            "gamma": 1.0,
+            "ssaamultiple": 1.0,
+            "bDisableWeaponWaggle": true,
+            "fpslimit": 60
+          },
+          "file": "narshaddaa-jk.png",
+          "caption": "Nar Shaddaa Loading Terminal \u2014 original JK archive in JK mode. Authored spawn 0 camera; private diagnostic build based on production04; 1280 \u00d7 960 native scene framebuffer. Native Bryar pistol view. Geometry and materials judged only in this view."
+        },
+        {
+          "role": "converted_mots",
+          "sha256": "c7d7e0076734c94568b4753044c2f21e018246c56276c4e14ce21ca095f96324",
+          "width": 1280,
+          "height": 960,
+          "source_url": "https://store.steampowered.com/app/32380/STAR_WARS_Jedi_Knight_Dark_Forces_II/",
+          "source_sha256": "0e6e1355955d83056e423e90a1d7dcef5cb00f18d2bf8688b7f00d7633582c86",
+          "settings": {
+            "bFastMissionText": true,
+            "fov": 90,
+            "fovisvertical": true,
+            "windowfullscreen": false,
+            "windowishidpi": false,
+            "texturefiltering": false,
+            "enablebloom": false,
+            "enablessao": false,
+            "enablevsync": false,
+            "gamma": 1.0,
+            "ssaamultiple": 1.0,
+            "bDisableWeaponWaggle": true,
+            "fpslimit": 60
+          },
+          "file": "narshaddaa-mots.png",
+          "caption": "Nar Shaddaa Loading Terminal \u2014 converted archive in MotS mode. Authored spawn 0 camera; private diagnostic build based on production04; 1280 \u00d7 960 native scene framebuffer. Native green saber view. Geometry and materials judged only in this view."
+        }
+      ]
+    }
+  ]
+}

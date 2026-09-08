@@ -1,0 +1,189 @@
+WORLD BETWEEN WORLDS — ORIGINAL CUSTOM CONTENT SOURCES
+Catalog reviewed 2026-09-08; tool version 0.2.0-rc1
+
+This is a source/provenance list, not a mirror or an asset package.
+Download originals from their authors/archives, then convert locally with owned JK and MotS data.
+Only the exact reviewed archive revisions are accepted. Original authors retain their credits and terms.
+
+SUPPORTED CUSTOM MAPS / REVIEWED MOD RECIPES
+
+Jedi Dojo
+  Recipe: dojo
+  Kind: custom; gameplay: mp
+  Original author: Tee
+  Original source: https://www.massassi.net/levels/files/429.shtml
+  Recipe availability: verified
+  zip_sha256: 27f6a44f209cdc8fcebfe0fffd3230b2e7cbc1cf5982ef07133b10bdc70bc4da
+  gob_sha256: 6ce07727918159fefd9f5cb8728bf4a618263a44d3a414fa365ea26c35954910
+
+Caesar's Palace
+  Recipe: caesars
+  Kind: custom; gameplay: mp
+  Original author: WAR_Shockwave
+  Original source: https://www.massassi.net/levels/files/1400.shtml
+  Recipe availability: verified
+  zip_sha256: b7a9f16b9141a4ef56c97784ef5a49914655a87ad6db59a2014429ee6ffe5fbd
+  gob_sha256: 56393dc8b9c855e06799650d08dfe24268344d1fe3f6972140e2525ac3a4e3f0
+
+Atlantis
+  Recipe: atlantis
+  Kind: custom; gameplay: mp
+  Original author: bug
+  Original source: https://www.massassi.net/levels/files/135.shtml
+  Recipe availability: verified
+  zip_sha256: 1e313254fd84115c33e587419798359151ebd35184e2383a7219fe0663bdf6ce
+  gob_sha256: 4fa926646049c17465e21f0a74d70608a2d64c938d0d5b70743584596ca6b3b5
+
+Death Star Arena
+  Recipe: death-star-arena
+  Kind: custom; gameplay: mp
+  Original author: Craig Urquhart
+  Original source: https://www.massassi.net/levels/files/1251.shtml
+  Recipe availability: verified
+  zip_sha256: efc78030cd521845b43b263ac818486072b8e86050cc53af9add3168d3552472
+  gob_sha256: a9bb30bda1fa69ec33352f28e93eb352274b7e260b0030de5c57aff9185265a6
+
+Naboo
+  Recipe: naboo
+  Kind: custom; gameplay: mp
+  Original author: Ortheza
+  Original source: https://www.massassi.net/levels/files/1787.shtml
+  Recipe availability: verified
+  zip_sha256: 655a7e159d65d0a2b859cd2c052ccde3a35411c98d1a9ed863aafbe0d7a7a23a
+  gob_sha256: d672d1b0d2dc71b84cbf5c571bacc173d4bb398618680bdac194cd7484833deb
+
+Morpheus
+  Recipe: morpheus
+  Kind: custom; gameplay: mp
+  Original author: bug
+  Original source: https://www.massassi.net/levels/files/216.shtml
+  Recipe availability: verified
+  zip_sha256: 4352dac36a873de9e9db109df36945497750045b2f981305af5362f6325a0c34
+  gob_sha256: 66bb16ea0fc9fa31c62a2141ae23fc45c8fe5f4c664de7c62e3031b0deed1a73
+
+Duel Of The Fates S.E.
+  Recipe: duel-of-the-fates-se
+  Kind: custom; gameplay: mp
+  Original author: Hoth Rebel
+  Original source: https://www.massassi.net/levels/files/423.shtml
+  Recipe availability: verified
+  zip_sha256: 25641359e15ce03e6911efa11f7fba1778200d7a358da512de3b00322b2a8270
+  gob_sha256: a63d993947386e89a729ccf2306e5e4cd2420827367bdd8de00d5571f5446ca5
+  Required startup overlay: bridge-fatesse-startup
+
+Jawa Dwelling SE
+  Recipe: jawa-dwelling-se
+  Kind: custom; gameplay: mp
+  Original author: Red_0005
+  Original source: https://www.massassi.net/levels/files/454.shtml
+  Recipe availability: verified
+  zip_sha256: ab387c944e559268f3528411bf58af4f6107ba806a62e9be51b11146e7e6db5b
+  gob_sha256: 5611e128bc8215631fd2e94eb951a8108bd8267012b3e4db2dbe150366562fbd
+  Required startup overlay: bridge-jawase-startup
+
+The Mos Espa RPG
+  Recipe: mos-espa-rpg
+  Kind: custom; gameplay: mp
+  Original author: Justin (Saber_Scorpion) Stebbins
+  Original source: https://www.massassi.net/levels/files/1087.shtml
+  Recipe availability: verified
+  zip_sha256: c338460ae0908b9d13fd381069261ab189f6aa77e0c3fa5af7fd9f28e0fceab3
+  gob_sha256: e2ae56691e0c96b783b5ff8a90d85f79f925868c80cca7f0dfb42cdbfa74dbdd
+
+Area 21
+  Recipe: area-21
+  Kind: custom; gameplay: mp
+  Original author: JeDak
+  Original source: https://www.massassi.net/levels/files/1839.shtml
+  Recipe availability: verified
+  zip_sha256: a938f336cb08391db5f8caf4b9a46f5c7af47d0c8b127faae0ce1d3ceb36bf97
+  gob_sha256: 22f27acde1ab81b7ace4719067e459cab8788bf955bab45d0c39782730608e93
+
+Stargate
+  Recipe: stargate
+  Kind: custom; gameplay: mp
+  Original author: JK_addict
+  Original source: https://www.massassi.net/levels/files/1242.shtml
+  Recipe availability: verified
+  zip_sha256: c8480328ab432611b462c597770523a9158b670b0c8664e71953b63d353bc4c3
+  gob_sha256: 94fd3773a9065538679698fed750c80434d89586d7056652f743a16725363052
+  Required startup overlay: bridge-stargate-startup
+
+Drazen Isle
+  Recipe: drazen-isle
+  Kind: custom; gameplay: mp
+  Original author: Jeff Walters
+  Original source: https://www.massassi.net/levels/files/428.shtml
+  Recipe availability: verified
+  zip_sha256: d80d8386a91fe9f2b508010fee4f6358e0743454a476f71285b428501cc8c6f1
+  gob_sha256: 8f3be2422aa4a3a5c5b0ec0b2495160ecc54415f86474e45fdcdb17963b27553
+  Required startup overlay: bridge-drazen-startup
+
+Purgatory
+  Recipe: purgatory
+  Kind: custom; gameplay: mp
+  Original author: SM Sith Lord
+  Original source: https://www.massassi.net/levels/files/1202.shtml
+  Recipe availability: verified
+  zip_sha256: d58c89afcb75820da23cd3844890f8fca589d12ea2ee4cc341f1597d84db6a2d
+  gob_sha256: 49f7365b31f5169b5fc02262bd243989b027c0e0a7535abfc56e436197693a4c
+
+Courtyard
+  Recipe: courtyard
+  Kind: custom; gameplay: mp
+  Original author: Adam (NOFpuXnk) Freeman
+  Original source: https://www.massassi.net/levels/files/1122.shtml
+  Recipe availability: verified
+  zip_sha256: c0a13e6a6ead717eaa7bf3b96f41dcc60fda6ee15f382975c63cc5c8cf8b5109
+  gob_sha256: 408e9a44df3b1ded8abe7b7a49c530b68704671415dd823595078782047ec724
+
+Shadow Caverns
+  Recipe: shadow-caverns
+  Kind: custom; gameplay: mp
+  Original author: NOFpuXnk
+  Original source: https://www.massassi.net/levels/files/1169.shtml
+  Recipe availability: verified
+  zip_sha256: 18fad02f58d755f8e19d4da184354c3d85269c52ec161ee17468a13194fe1765
+  gob_sha256: 31a9af2172aaef14f699d211e7bdf39ac84714fdb384b1481ed98ab662e3aed0
+
+Deicide
+  Recipe: deicide
+  Kind: custom; gameplay: mp
+  Original author: NOFpuXnk
+  Original source: https://www.massassi.net/levels/files/3082.shtml
+  Recipe availability: verified
+  zip_sha256: a6c5c1234d1f679a074e6234e52cc17725d103d1cd895074e412504c81f45a3c
+  gob_sha256: eea53f43b3871043ece301a7fe94258724234cba2f31832234352cb913eb1d8d
+
+Jedi's High School
+  Recipe: jhs
+  Kind: custom; gameplay: mp
+  Original author: PeD_HeAd
+  Original source: https://www.jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Game%20Files/jkmp/jhs.zip
+  Recipe availability: verified
+  zip_sha256: a30e2b74db290b580effe442ac1345b9158a36b9803234a4a347a997039c0411
+  gob_sha256: a62c94789c521af2746cc8378301a4940a59a24f6fb44dd4c443caacc0211b04
+
+Ninja Kage 7.0
+  Recipe: ninja-kage
+  Kind: mod; gameplay: mp
+  Original author: ShadowX
+  Original source: https://www.massassi.net/levels/files/1333.shtml
+  Recipe availability: prototype
+  zip_sha256: 1d71863e564e75278eecd44244ef3a103692c49b4bf11fdbc2de591ccbf05764
+  gob_sha256: 23bd8e18eae4df637a34ddf4f98ed3602c490de521e0cc147bf8e79bb9fe23af
+  Required startup overlay: blackwing-ninja-kage
+
+RESEARCH PROVENANCE
+Massassi JK multiplayer downloads ranking:
+https://www.massassi.net/levels/jkmp/?sortby=dl_count&num=50
+JHS was recovered from the original public JKDF2.NET archive; PeD_HeAd v1.0 readme dated May 2, 1999.
+NOFpuXnk attribution includes the verified Adam (NOFpuXnk) Freeman alias for Courtyard.
+The nine stock JK multiplayer maps are extracted from owned retail archives and require no community download.
+
+ENGINE PROJECTS
+https://github.com/andreipemberton/OpenJKDF2-MotS-Fixes
+https://github.com/shinyquagsire23/OpenJKDF2
+
+BLACKWING TOOL (SEPARATE REPOSITORY)
+https://github.com/andreipemberton/World-Between-Worlds

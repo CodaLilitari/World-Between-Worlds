@@ -1,0 +1,159 @@
+# Kept identical to .github/workflows/release.yml for source-package maintainers.
+# Produces verified build artifacts only; it does not publish a release.
+name: World Between Worlds release packages
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: wbw-release-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+  PYTHONHASHSEED: '0'
+  SOURCE_DATE_EPOCH: '1767225600'
+defaults:
+  run:
+    shell: bash
+jobs:
+  package:
+    name: Package (${{ matrix.os }})
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Preserve committed source bytes on both platforms
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Public synthetic source regression
+        run: python -B -m unittest discover -p 'test_*.py' -v
+      - name: UI source regression
+        run: node --test ui/test_ui.mjs
+      - name: Check recipe lock and workflow template
+        shell: python
+        run: |
+          import pathlib, subprocess, sys, tempfile
+          with tempfile.TemporaryDirectory() as temporary:
+              generated = pathlib.Path(temporary) / 'recipes.json'
+              subprocess.run([sys.executable, '-B', 'packaging/export_catalog.py',
+                              '--output', str(generated)], check=True)
+              if generated.read_bytes() != pathlib.Path('recipes.json').read_bytes():
+                  raise SystemExit('recipes.json is stale; regenerate it from the final source before releasing')
+          if pathlib.Path('.github/workflows/release.yml').read_bytes() != pathlib.Path('packaging/ci-release.yml').read_bytes():
+              raise SystemExit('Keep the actual workflow and source-package CI template identical')
+      - name: Install builder dependency in the job Python
+        run: python -m pip install --disable-pip-version-check -r packaging/requirements-build.txt
+      - name: Build native standalone
+        run: python -B packaging/build_standalone.py --out artifacts
+      - name: Verify native package and execute version smoke
+        shell: python
+        run: |
+          import json, os, pathlib, stat, subprocess, sys, tempfile, zipfile
+          sys.path.insert(0, str(pathlib.Path.cwd()))
+          import blackwing_update as update
+          from blackwing_version import VERSION
+          fragments = list(pathlib.Path('artifacts').glob('*.release.json'))
+          if len(fragments) != 1:
+              raise SystemExit('Expected exactly one native package fragment')
+          release = json.loads(fragments[0].read_text(encoding='utf-8'))
+          package, = release['packages']
+          if (package['kind'], package['platform'], package['arch']) != update.runtime_target(frozen=True):
+              raise SystemExit('Native package target differs from the build runner')
+          if package['platform'] == 'linux' and package.get('libc_min') != [2, 35]:
+              raise SystemExit('Ubuntu 22.04 Linux release must declare glibc 2.35')
+          archive = pathlib.Path('artifacts') / package['filename']
+          update.inspect_archive(archive.read_bytes(), {**package, 'version': VERSION})
+          with tempfile.TemporaryDirectory() as temporary:
+              root = pathlib.Path(temporary)
+              with zipfile.ZipFile(archive) as zipped:
+                  for item in zipped.infolist():
+                      target = root / item.filename
+                      target.parent.mkdir(parents=True, exist_ok=True)
+                      target.write_bytes(zipped.read(item))
+              executable = root / ('WBW.exe' if os.name == 'nt' else 'WBW')
+              executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
+              result = subprocess.run([str(executable), '--version'], cwd=root,
+                                      check=True, capture_output=True, text=True, timeout=60)
+              if result.stdout.strip() != VERSION:
+                  raise SystemExit('Frozen executable version differs from the release source')
+              print('Verified native executable:', package['filename'], result.stdout.strip())
+      - name: Build source fallback twice and require identical bytes
+        if: runner.os == 'Linux'
+        shell: python
+        run: |
+          import hashlib, pathlib, subprocess, sys, tempfile
+          subprocess.run([sys.executable, '-B', 'packaging/build_release.py', '--out', 'artifacts'], check=True)
+          with tempfile.TemporaryDirectory() as temporary:
+              subprocess.run([sys.executable, '-B', 'packaging/build_release.py', '--out', temporary], check=True)
+              first, = pathlib.Path('artifacts').glob('*-source.zip')
+              second, = pathlib.Path(temporary).glob('*-source.zip')
+              if first.read_bytes() != second.read_bytes():
+                  raise SystemExit('Source package is not byte-for-byte reproducible')
+              print('Source reproducibility SHA-256:', hashlib.sha256(first.read_bytes()).hexdigest())
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: wbw-${{ runner.os }}
+          path: |
+            artifacts/*.zip
+            artifacts/*.release.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+  manifest:
+    name: Verify and assemble release assets
+    needs: package
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - name: Preserve committed source bytes
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          pattern: wbw-*
+          merge-multiple: true
+          path: artifacts
+      - name: Verify all package bytes and combine release manifest
+        run: python -B packaging/merge_manifests.py artifacts/*.release.json --out artifacts/wbw-release.json
+      - name: Require complete release targets and record hashes
+        shell: python
+        run: |
+          import json, os, pathlib, sys
+          sys.path.insert(0, str(pathlib.Path.cwd()))
+          from blackwing_version import REPOSITORY, VERSION
+          manifest = json.loads(pathlib.Path('artifacts/wbw-release.json').read_text(encoding='utf-8'))
+          targets = {(p['kind'], p['platform'], p['arch']) for p in manifest['packages']}
+          expected = {('source', 'any', 'any'), ('standalone', 'windows', 'x86_64'), ('standalone', 'linux', 'x86_64')}
+          if manifest['repository'] != REPOSITORY or manifest['version'] != VERSION or len(manifest['packages']) != 3 or targets != expected:
+              raise SystemExit('Release must contain the source fallback and both x86_64 native packages')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as summary:
+              summary.write(f"World Between Worlds {VERSION}\n\nSource commit: `{os.environ['GITHUB_SHA']}`\n\n")
+              summary.write('Verified release assets are in `wbw-release-ready`; no release has been published.\n\n')
+              for package in manifest['packages']:
+                  summary.write(f"- `{package['filename']}` — SHA-256 `{package['sha256']}`\n")
+              summary.write('\nLinux native minimum: glibc 2.35; source fallback: Python 3.10 or newer.\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: wbw-release-ready
+          path: |
+            artifacts/*.zip
+            artifacts/wbw-release.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14

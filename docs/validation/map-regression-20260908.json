@@ -1,0 +1,842 @@
+{
+  "date": "2026-09-08",
+  "scope": "Explicit 26-map GUI-backend conversion regression; each output independently structurally verified. This check does not launch the game.",
+  "private_evidence_sha256": "e6ff6d20ae49fa16f5bc61c97c345449047a1b90e5fba2359417d4fe7c61ca1a",
+  "selected": [
+    "nar-shaddaa",
+    "bespin",
+    "blades-of-death",
+    "canyon-oasis",
+    "valley",
+    "battleground",
+    "ctf-duel",
+    "ctf-arena",
+    "ctf-challenge",
+    "dojo",
+    "caesars",
+    "atlantis",
+    "death-star-arena",
+    "naboo",
+    "morpheus",
+    "duel-of-the-fates-se",
+    "jawa-dwelling-se",
+    "mos-espa-rpg",
+    "area-21",
+    "stargate",
+    "drazen-isle",
+    "purgatory",
+    "courtyard",
+    "shadow-caverns",
+    "deicide",
+    "jhs"
+  ],
+  "baseline_unchanged": true,
+  "baseline_files": 112,
+  "source_snapshot_sha256": {
+    "bridge.py": "160f47deea0fd4abb7589e7cd388fa54c1969d659f18bca0890ab834a4ac980a",
+    "gob.py": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+    "caesars_audit.py": "44672d03fc35fe87d2cd832ce1cfa7168a106b411159d6a6f6cf1eca6cd96dc2",
+    "custom_registry.py": "7964508cbaac7faca6eec49aa8fb892f426cc51521c8506bec19db60ecbb2ca8",
+    "community_runtime.py": "192d3cba7b787c21b9c8412980db7efee8d1527307b43ad4e7bae3b123420e2f",
+    "custom_catalog.py": "8807873a54e634263a4b8516f0dd21c888a0cd08bbdb80d085e3ab33a885a6fe",
+    "author_catalog.py": "ee3a62d8febf1901e6b7b958a5b5e8dc89f78accbb7a195b09e5e1c07d149f4d",
+    "jhs_catalog.py": "87e6b3e72b0979bf6f4415f905b889edb93a85c1d91d7fe0f5648cb47ff30abc",
+    "verify_retail.py": "a73c4a1d39c8106d4b531a61861e7d5f826d81f1312057e2db2a0a61d0b42ca4",
+    "ninja_catalog.py": "807ffd90d44d3f714e8cf067ca2df658782a9c055c526523ae3d28006b5b9aa4",
+    "ninja_converter.py": "964095c43c60bd137c8d1591ed26f18229ef74cb77e6a2ae76991471ca89933e",
+    "blackwing_catalog.py": "627d7433ffd60568ef4e0e92bbbfa8f31bc951b90ade7f43ea3c3cf93e581835",
+    "blackwing_service.py": "78a9ed0e8a5db1b05f2be637dc991f206d885f49bdc003807175b6a94b12ce4f"
+  },
+  "results": [
+    {
+      "id": "nar-shaddaa",
+      "title": "Nar Shaddaa Loading Terminal",
+      "status": "verified",
+      "sha256": "0e6e1355955d83056e423e90a1d7dcef5cb00f18d2bf8688b7f00d7633582c86",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "0e6e1355955d83056e423e90a1d7dcef5cb00f18d2bf8688b7f00d7633582c86",
+        "surface_count": 1217,
+        "placed_thing_count": 139,
+        "resource_count": 574,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "bespin",
+      "title": "Bespin Mining Station",
+      "status": "verified",
+      "sha256": "c4a4d4ccc027427622b77052ba5fbee877bce9a2a7870dedb885016acf1fe733",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "c4a4d4ccc027427622b77052ba5fbee877bce9a2a7870dedb885016acf1fe733",
+        "surface_count": 1974,
+        "placed_thing_count": 149,
+        "resource_count": 563,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "blades-of-death",
+      "title": "Blades of Death",
+      "status": "verified",
+      "sha256": "ab1220d85a7253957fab73ebd01e67de4d8a6c8c586cb18f5233e320e2fd631b",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "ab1220d85a7253957fab73ebd01e67de4d8a6c8c586cb18f5233e320e2fd631b",
+        "surface_count": 4361,
+        "placed_thing_count": 185,
+        "resource_count": 525,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "canyon-oasis",
+      "title": "Canyon Oasis",
+      "status": "verified",
+      "sha256": "1da7d9c8bc1ee4630d54fb5125dd1da0a436656789a159d7da72d18c687bfae7",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "1da7d9c8bc1ee4630d54fb5125dd1da0a436656789a159d7da72d18c687bfae7",
+        "surface_count": 644,
+        "placed_thing_count": 66,
+        "resource_count": 484,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "valley",
+      "title": "The Valley of the Jedi Tower",
+      "status": "verified",
+      "sha256": "8a800f3063e2efb6950e38352d21cebdd04a3a6bfa884495c5fb7b421bbea377",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "8a800f3063e2efb6950e38352d21cebdd04a3a6bfa884495c5fb7b421bbea377",
+        "surface_count": 782,
+        "placed_thing_count": 113,
+        "resource_count": 511,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "battleground",
+      "title": "Battleground Jedi",
+      "status": "verified",
+      "sha256": "e96987f000915b1355185cfc340a1e8cd878c568068f4e0759e757b8e9ae3e8b",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "e96987f000915b1355185cfc340a1e8cd878c568068f4e0759e757b8e9ae3e8b",
+        "surface_count": 594,
+        "placed_thing_count": 41,
+        "resource_count": 444,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "ctf-duel",
+      "title": "The Duel",
+      "status": "verified",
+      "sha256": "abbda835bf5143f82d91831ceb595e2a3f033eb18cb366503eab4c69e23c808a",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "abbda835bf5143f82d91831ceb595e2a3f033eb18cb366503eab4c69e23c808a",
+        "surface_count": 3081,
+        "placed_thing_count": 159,
+        "resource_count": 572,
+        "runtime": "not executed by this verifier",
+        "ctf_startup": {
+          "sha256": "3b16ae3206e2158b113116109d5ef7c05ff2a75e5a8d8c31ab964ea07199d45d",
+          "passed": [
+            "only misc/items.dat is present",
+            "only descriptor81 name changes; all native flags, ranges, COGs and other descriptors unchanged"
+          ],
+          "required_launch_arguments": [
+            "-motsCompat",
+            "-path",
+            "bridge-ctf-ui"
+          ],
+          "runtime": "Packaging verified here; actual startup descriptor loading requires runtime observation"
+        }
+      }
+    },
+    {
+      "id": "ctf-arena",
+      "title": "The Arena of Dark and Light",
+      "status": "verified",
+      "sha256": "d8d50a6e056be6f37607f64a5b90ef8c48c8ab8816787466b5636327955ae908",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "d8d50a6e056be6f37607f64a5b90ef8c48c8ab8816787466b5636327955ae908",
+        "surface_count": 4778,
+        "placed_thing_count": 255,
+        "resource_count": 633,
+        "runtime": "not executed by this verifier",
+        "ctf_startup": {
+          "sha256": "3b16ae3206e2158b113116109d5ef7c05ff2a75e5a8d8c31ab964ea07199d45d",
+          "passed": [
+            "only misc/items.dat is present",
+            "only descriptor81 name changes; all native flags, ranges, COGs and other descriptors unchanged"
+          ],
+          "required_launch_arguments": [
+            "-motsCompat",
+            "-path",
+            "bridge-ctf-ui"
+          ],
+          "runtime": "Packaging verified here; actual startup descriptor loading requires runtime observation"
+        }
+      }
+    },
+    {
+      "id": "ctf-challenge",
+      "title": "The Challenge at Nar Shaddaa",
+      "status": "verified",
+      "sha256": "b4e9edf585ee9e3c57b27e291d64edbd9c0feafc66916749f135fcf875c4c910",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "b4e9edf585ee9e3c57b27e291d64edbd9c0feafc66916749f135fcf875c4c910",
+        "surface_count": 9548,
+        "placed_thing_count": 345,
+        "resource_count": 726,
+        "runtime": "not executed by this verifier",
+        "ctf_startup": {
+          "sha256": "3b16ae3206e2158b113116109d5ef7c05ff2a75e5a8d8c31ab964ea07199d45d",
+          "passed": [
+            "only misc/items.dat is present",
+            "only descriptor81 name changes; all native flags, ranges, COGs and other descriptors unchanged"
+          ],
+          "required_launch_arguments": [
+            "-motsCompat",
+            "-path",
+            "bridge-ctf-ui"
+          ],
+          "runtime": "Packaging verified here; actual startup descriptor loading requires runtime observation"
+        }
+      }
+    },
+    {
+      "id": "dojo",
+      "title": "Jedi Dojo",
+      "status": "verified",
+      "sha256": "98cb6bc35269ea432d047e95251669a82fda98ff60b293b427baab882a44189c",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "98cb6bc35269ea432d047e95251669a82fda98ff60b293b427baab882a44189c",
+        "surface_count": 1681,
+        "placed_thing_count": 82,
+        "resource_count": 601,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "caesars",
+      "title": "Caesar's Palace",
+      "status": "verified",
+      "sha256": "2c72071a547bed9399414353c0bdec0c0c6beed9b7e70763e8947afa5576c469",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "2c72071a547bed9399414353c0bdec0c0c6beed9b7e70763e8947afa5576c469",
+        "surface_count": 6773,
+        "placed_thing_count": 459,
+        "resource_count": 1142,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "atlantis",
+      "title": "Atlantis",
+      "status": "verified",
+      "sha256": "50318501a7864d7fcad5ae0c98dff4052d583dce7be5be60b313a96cd23b513b",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "50318501a7864d7fcad5ae0c98dff4052d583dce7be5be60b313a96cd23b513b",
+        "surface_count": 5153,
+        "placed_thing_count": 212,
+        "resource_count": 649,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "death-star-arena",
+      "title": "Death Star Arena",
+      "status": "verified",
+      "sha256": "dc5e84ee257b4299f13a0d4865660a663f9c20559e1e672d815795caf5e40f50",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "dc5e84ee257b4299f13a0d4865660a663f9c20559e1e672d815795caf5e40f50",
+        "surface_count": 7908,
+        "placed_thing_count": 233,
+        "resource_count": 651,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "naboo",
+      "title": "Naboo",
+      "status": "verified",
+      "sha256": "8f9bb38fa628ea525512202699488d7c73eed8e8f47b2293b3fc36a8e1ee0e08",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "8f9bb38fa628ea525512202699488d7c73eed8e8f47b2293b3fc36a8e1ee0e08",
+        "surface_count": 2989,
+        "placed_thing_count": 441,
+        "resource_count": 606,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "morpheus",
+      "title": "Morpheus",
+      "status": "verified",
+      "sha256": "b84a8bd1a5b1b6865c90b9bcf70ea5a6498b21f6b5f610c40dc8aafb6a3e2877",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "b84a8bd1a5b1b6865c90b9bcf70ea5a6498b21f6b5f610c40dc8aafb6a3e2877",
+        "surface_count": 1000,
+        "placed_thing_count": 81,
+        "resource_count": 601,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "duel-of-the-fates-se",
+      "title": "Duel Of The Fates S.E.",
+      "status": "verified",
+      "sha256": "221d44164d7b625751475be15295c2c34b9d32aa7177c849fcc587a4a2857f6f",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "required community startup archive independently reconstructed from pinned source bytes",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "221d44164d7b625751475be15295c2c34b9d32aa7177c849fcc587a4a2857f6f",
+        "surface_count": 2947,
+        "placed_thing_count": 260,
+        "resource_count": 793,
+        "runtime": "not executed by this verifier",
+        "community_startup": {
+          "sha256": "25df885d47964d9966098e3927257baccb84e1321197b6bc834aa2bcef1b4221",
+          "member_count": 801,
+          "passed": [
+            "complete startup code/model source reconstruction and exact member set",
+            "required isolated startup folder and deterministic archive bytes"
+          ],
+          "runtime": "Startup loading and gameplay are not executed by this verifier"
+        }
+      }
+    },
+    {
+      "id": "jawa-dwelling-se",
+      "title": "Jawa Dwelling SE",
+      "status": "verified",
+      "sha256": "085ea93ca97e171f1263813a2311d5a862e0f607241347b3d2e75629e61808ca",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "required community startup archive independently reconstructed from pinned source bytes",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "085ea93ca97e171f1263813a2311d5a862e0f607241347b3d2e75629e61808ca",
+        "surface_count": 5370,
+        "placed_thing_count": 453,
+        "resource_count": 876,
+        "runtime": "not executed by this verifier",
+        "community_startup": {
+          "sha256": "35ca3ce1da051a6b2a2898cdf9acba1d2cbf1fbb3475c92f25d143a882def602",
+          "member_count": 1,
+          "passed": [
+            "complete startup code/model source reconstruction and exact member set",
+            "required isolated startup folder and deterministic archive bytes"
+          ],
+          "runtime": "Startup loading and gameplay are not executed by this verifier"
+        }
+      }
+    },
+    {
+      "id": "mos-espa-rpg",
+      "title": "The Mos Espa RPG",
+      "status": "verified",
+      "sha256": "7a119a8a55ac5eca3e42d77e848abf14d3fc8ac90ac3800126e9666ae6b9c9cc",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "7a119a8a55ac5eca3e42d77e848abf14d3fc8ac90ac3800126e9666ae6b9c9cc",
+        "surface_count": 2387,
+        "placed_thing_count": 412,
+        "resource_count": 973,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "area-21",
+      "title": "Area 21",
+      "status": "verified",
+      "sha256": "30677ec10bb002d126708202d3e6d6886da250107a13728bda2104847716810c",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "30677ec10bb002d126708202d3e6d6886da250107a13728bda2104847716810c",
+        "surface_count": 31215,
+        "placed_thing_count": 450,
+        "resource_count": 1097,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "stargate",
+      "title": "Stargate",
+      "status": "verified",
+      "sha256": "93924e47292cb7757970d4254fe890e1f0dafde48f1059ad5c4f935ee46d3126",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "required community startup archive independently reconstructed from pinned source bytes",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "93924e47292cb7757970d4254fe890e1f0dafde48f1059ad5c4f935ee46d3126",
+        "surface_count": 3536,
+        "placed_thing_count": 117,
+        "resource_count": 746,
+        "runtime": "not executed by this verifier",
+        "community_startup": {
+          "sha256": "66cd0a3e843b320fe6f4600359884c2c9d2bef9569a6913f0f81f0cfb70298a7",
+          "member_count": 1,
+          "passed": [
+            "complete startup code/model source reconstruction and exact member set",
+            "required isolated startup folder and deterministic archive bytes"
+          ],
+          "runtime": "Startup loading and gameplay are not executed by this verifier"
+        }
+      }
+    },
+    {
+      "id": "drazen-isle",
+      "title": "Drazen Isle",
+      "status": "verified",
+      "sha256": "7ceb6e93f35ca8c3920ab91221efa882d760b7de93cadba834033c878c5467d2",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "required community startup archive independently reconstructed from pinned source bytes",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "7ceb6e93f35ca8c3920ab91221efa882d760b7de93cadba834033c878c5467d2",
+        "surface_count": 30794,
+        "placed_thing_count": 396,
+        "resource_count": 1754,
+        "runtime": "not executed by this verifier",
+        "community_startup": {
+          "sha256": "3d8059a687baba34d29265880267fba9c66a9dfcd3f65029bc9d72a80c1d4d85",
+          "member_count": 2,
+          "passed": [
+            "complete startup code/model source reconstruction and exact member set",
+            "required isolated startup folder and deterministic archive bytes"
+          ],
+          "runtime": "Startup loading and gameplay are not executed by this verifier"
+        }
+      }
+    },
+    {
+      "id": "purgatory",
+      "title": "Purgatory",
+      "status": "verified",
+      "sha256": "3022645af741125d05421dba8975e4ebb0cc1b6fc7835946c1942c25c2c01b63",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "3022645af741125d05421dba8975e4ebb0cc1b6fc7835946c1942c25c2c01b63",
+        "surface_count": 11699,
+        "placed_thing_count": 451,
+        "resource_count": 910,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "courtyard",
+      "title": "Courtyard",
+      "status": "verified",
+      "sha256": "8431fa11cb14a6cb57bbf971b96410bc7b9c4fb33b9a8d3e6ac8c1374a0e1703",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "8431fa11cb14a6cb57bbf971b96410bc7b9c4fb33b9a8d3e6ac8c1374a0e1703",
+        "surface_count": 2269,
+        "placed_thing_count": 158,
+        "resource_count": 589,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "shadow-caverns",
+      "title": "Shadow Caverns",
+      "status": "verified",
+      "sha256": "77cc5161090621194148b01bc4b804c14e958d1fc7cbe507567ad5a4da3bc368",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "77cc5161090621194148b01bc4b804c14e958d1fc7cbe507567ad5a4da3bc368",
+        "surface_count": 1664,
+        "placed_thing_count": 131,
+        "resource_count": 691,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "deicide",
+      "title": "Deicide",
+      "status": "verified",
+      "sha256": "84c9e2f0a4e5d9a8836cbf1ae4e3eb90aa9e6d7248e73db6f3ed4e52b5773cbc",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "84c9e2f0a4e5d9a8836cbf1ae4e3eb90aa9e6d7248e73db6f3ed4e52b5773cbc",
+        "surface_count": 3739,
+        "placed_thing_count": 91,
+        "resource_count": 540,
+        "runtime": "not executed by this verifier"
+      }
+    },
+    {
+      "id": "jhs",
+      "title": "Jedi's High School",
+      "status": "verified",
+      "sha256": "6276dda2e731d4ff5c3570197086312be6fa0bee9754ae91d799af75501e774e",
+      "verification": {
+        "passed": [
+          "vertex positions and indices",
+          "texture vertices and indices",
+          "adjoin records",
+          "sector boundaries and parameters",
+          "all surface topology, flags, UV references, normals and exact replicated light values",
+          "all scene object indices, names, coordinates, rotations, sectors, frames and flags",
+          "all environmental COG arguments, with resource and template namespaces checked by declared symbol type",
+          "unique template names and ordered inheritance",
+          "exact original omission edges, referrer hashes and continued namespaced absence",
+          "independent complete source resource reconstruction, counted code edits and untouched script segments",
+          "independent native template overrides, preserved parents/unrelated fields and complete authored templates",
+          "community episode type and selected output world",
+          "two repeat builds byte-identical to delivered archive",
+          "all binary resources byte-identical to hash-pinned JK source payloads"
+        ],
+        "sha256": "6276dda2e731d4ff5c3570197086312be6fa0bee9754ae91d799af75501e774e",
+        "surface_count": 2236,
+        "placed_thing_count": 263,
+        "resource_count": 728,
+        "runtime": "not executed by this verifier"
+      }
+    }
+  ],
+  "passed": true
+}
