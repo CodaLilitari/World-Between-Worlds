@@ -1,6 +1,6 @@
 # World Between Worlds
 
-**JK → MotS conversion workbench · 0.2.0-rc1 · experimental**
+**JK → MotS conversion workbench · 0.2.0-rc2 · experimental**
 
 A gothic dark-mode desktop workbench for replaying reviewed Jedi Knight map and
 mod conversions locally. World Between Worlds supplies the instructions; required game and
@@ -226,6 +226,18 @@ To play a converted CTF episode:
    `-motsCompat -path bridge-ctf-ui`, then select the CTF episode in Multiplayer.
 4. Every host and client must start with the same overlay. Restart the engine
    without `-path bridge-ctf-ui` before playing other modes.
+
+In MotS mode, use the host menu's **Choose Episode** list: select **JK The Duel –
+MotS bridge prototype**, **JK The Arena of Dark and Light – MotS bridge prototype**,
+or **JK The Challenge at Nar Shaddaa – MotS bridge prototype**, then its level and
+**OK**. CTF is identified by the episode's TYPE 8 metadata; there is no separate
+CTF button to add. A native-menu test selected all three episodes and checked
+their actual returned map names. It also created, saved and reloaded all four
+MotS personalities using the native character menus. The production host and
+character menus needed no CTF-specific patch. See the
+[native menu evidence](https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ctf-native-menu-20260908.json)
+and [screenshots](SCREENSHOTS.md). This establishes menu selection, not flag
+pickup, capture, scoring or multiplayer personality behavior.
 
 For example, with the engine executable in the current runtime directory:
 

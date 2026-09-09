@@ -375,6 +375,15 @@ class LauncherIntegration(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.data_dir = Path(self.temp.name)
         self.root = update.cache_root(self.data_dir)
+        # Model an installed release independently of the checkout's VERSION.
+        # Otherwise an RC bump can make the synthetic update equal/older and
+        # accidentally launch the real app instead of the finite test fixture.
+        package, data = make_package("0.2.0-rc1")
+        base = update.stage_update(self.root, package, data)
+        for attribute, value in (("VERSION", base["version"]), ("APP_ROOT", base["path"])):
+            isolated = patch.object(launcher, attribute, value)
+            isolated.start()
+            self.addCleanup(isolated.stop)
         original_wait = launcher.wait_application
         def acknowledge_ready(process):
             (self.data_dir / "test-parent-accepted-ready").write_text("ready")
@@ -533,6 +542,26 @@ class LauncherIntegration(unittest.TestCase):
 
 
 class Packaging(unittest.TestCase):
+    def test_repository_only_ninja_evidence_preserves_source_update_contract(self):
+        import ninja_catalog
+        evidence = ninja_catalog.RUNTIME_TEST['evidence']
+        relative = 'docs/validation/ninja-maxmana-20260908.json'
+        expected_url = 'https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/' + relative
+        self.assertEqual(evidence['url'], expected_url)
+        self.assertFalse(evidence['bundled'])
+        self.assertNotIn('path', evidence)
+        files = builder.source_payloads(PROJECT)
+        self.assertNotIn(relative, files)
+        self.assertFalse(update.source_member_allowed(relative))
+        for document in ('NINJA_KAGE.md', 'VALIDATION.md'):
+            self.assertIn(expected_url.encode(), files[document])
+            self.assertNotIn(('](' + relative + ')').encode(), files[document])
+        # The repository keeps the report; updater/source ZIPs deliberately do
+        # not. Check its content pin when running in the full repository.
+        report = PROJECT / relative
+        if report.is_file():
+            self.assertEqual(update.sha256(report.read_bytes()), evidence['sha256'])
+
     def test_allowlist_excludes_assets_private_evidence_and_tests(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

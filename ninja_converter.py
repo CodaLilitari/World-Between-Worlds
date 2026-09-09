@@ -41,7 +41,7 @@ def catalog_entry():
             'source_url': catalog.SPEC['source_url'],
             'archive_hint': catalog.SPEC['archive_hint'], 'requires_archive': True,
             'status': catalog.STATUS,
-            'summary': 'Ninja Kage weapons and movement with bounded two-peer MotS tests; original Force allocation/cycling remains limited.',
+            'summary': 'Ninja Kage weapons and movement, with bounded two-peer maximum-mana initialization evidence. Original Force allocation/cycling remains limited.',
             'startup_overlay': catalog.SPEC['startup_overlay'],
             'runtime_test': copy.deepcopy(catalog.RUNTIME_TEST)}
 
@@ -51,7 +51,7 @@ def original_hashes():
 
 
 def recipe_details():
-    return {**copy.deepcopy(catalog.SPEC), 'status': catalog.STATUS,
+    return {**copy.deepcopy(catalog.SPEC), 'status': catalog.STATUS, 'recipe': catalog.RECIPE,
             'runtime_test': copy.deepcopy(catalog.RUNTIME_TEST),
             'original_cog_edits': copy.deepcopy(catalog.ORIGINAL_COG_EDITS),
             'native_player_sha256': catalog.NATIVE_PLAYER_SHA256,
@@ -482,10 +482,11 @@ def build(archives, original):
     for path in merged - {'cog/kyle.cog'} | {'cog/kyle_m.cog'}:
         origins[path] = {'kind': 'derived', 'sha256': digest(files[path])}
     result = build_gob(files)
-    manifest = {'schema': 1, 'recipe': 'ninja-kage-7.0-mots-mp-prototype-3-hud-closure',
+    manifest = {'schema': 1, 'recipe': catalog.RECIPE,
                 'original': {key: catalog.SPEC[key] for key in ('author', 'title', 'source_url', 'download_url', 'zip_sha256', 'gob_sha256', 'readme_sha256')},
                 'native_sources': dict(bridge.HASHES), 'startup_overlay': catalog.SPEC['startup_overlay'],
                 'output_sha256': digest(result), 'runtime_test': copy.deepcopy(catalog.RUNTIME_TEST),
+                'original_cog_edits': copy.deepcopy(catalog.ORIGINAL_COG_EDITS),
                 'known_gaps': list(catalog.KNOWN_GAPS), 'original_omissions': omissions,
                 'native_unused_template': dict(catalog.NATIVE_UNUSED_TEMPLATE),
                 'control_bindings': [{'action': f'ACTIVATE{i}', 'bin': number,
@@ -532,6 +533,13 @@ def verify(archives, original, data, manifest=None):
     require(not any('cog/' + x in output.entries for x in excluded), 'excluded single-player/player script was reintroduced')
     require(txt(output.read('cog/kyle_m.cog')) == _independent_edits(archives['motsres'].read('cog/kyle_m.cog'), catalog.PLAYER_COG_EDITS), 'native player adaptation or untouched native segments changed')
     checks.append('All original MP assets are unchanged except exact counted COG edits; native player edits and untouched segments match.')
+    # Independent byte-level reversal: only the new maximum field may be added.
+    # Do not normalize source bytes here; that could conceal unrelated changes.
+    well = output.read('cog/force_well.cog')
+    added = b'   SetInv(player, 69, GetInv(player, 20) * 50);\r\n'
+    require(well.count(added) == 1 and well.replace(added, b'', 1) == source.read('cog/force_well.cog'),
+            'maximum-mana insertion does not reverse to exact original Force-well bytes')
+    checks.append('Removing the sole maximum-mana initialization recovers the exact pinned Ninja Force well; original regeneration, clamp and costs remain unchanged.')
     old, now, authored = (items(txt(x)) for x in (archives['motsres'].read('misc/items.dat'), output.read('misc/items.dat'), source.read('misc/items.dat')))
     require(set(now) == set(old) | {30, 32, 116, 117, 118, 119}, 'inventory bin set changed')
     for number in old:
@@ -670,6 +678,9 @@ def verify(archives, original, data, manifest=None):
                         f'COG template absent from authored static/native K1: {path} -> {name}')
     checks.append('Every imported payload matches a pinned source; filename closure has four exact original omissions; COG templates resolve against authored static plus native K1 except one pinned unused native default.')
     if manifest is not None:
+        require(manifest['recipe'] == catalog.RECIPE, 'manifest recipe revision mismatch')
+        require(manifest['original_cog_edits'] == catalog.ORIGINAL_COG_EDITS, 'manifest source edits mismatch')
+        require(manifest['runtime_test'] == catalog.RUNTIME_TEST, 'manifest runtime evidence scope mismatch')
         require(manifest['native_sources'] == bridge.HASHES, 'manifest native source pins mismatch')
         require(manifest['native_unused_template'] == catalog.NATIVE_UNUSED_TEMPLATE, 'manifest native template waiver mismatch')
         require(manifest['output_sha256'] == digest(data), 'manifest output digest mismatch')
@@ -704,7 +715,7 @@ def build_to_directory(archives, original_path, stage):
         (folder / 'ORIGINAL-NINJA-KAGE.txt').write_bytes(original.readme)
     readme = ('Ninja Kage 7.0 - local MotS multiplayer prototype\n'
               'Original mod: ShadowX and the contributors credited in the original README.\n'
-              'Original converter: World Between Worlds / Andrei Pemberton with Coda Lilitari.\n'
+              'Converter: World Between Worlds / Andrei Pemberton with Coda Lilitari.\n'
               f"Source: {catalog.SPEC['source_url']}\n\n"
               'Install this entire folder beside the runtime resource/ and episode/ folders.\n'
               'Launch OpenMotS with: -motsCompat -path blackwing-ninja-kage\n'
@@ -712,7 +723,12 @@ def build_to_directory(archives, original_path, stage):
               'All peers need the same startup mod; restart without -path for other mods.\n'
               'Bind Grappling Hook, Jump/Handspring and Kick in Controls.\n'
               'Also bind F2 Field Light, F3 IR Goggles and F4 Bacta; native defaults use the old action order.\n'
-              'Bounded two-peer K1 tests passed for startup, basic weapons, handspring, kick and grapple.\n'
+              'This build ran structural verification only; generation did not launch a game.\n'
+              'Preceding v3 passed bounded two-peer K1 startup, weapon, handspring, kick and grapple tests.\n'
+              'This v4 initializes native maximum mana to Ninja rank*50, without refilling mana or changing regeneration/costs.\n'
+              'Earlier testing of this exact v4 archive passed 75.025 seconds with two native Jedi peers: rank 4, current mana 200 and maximum mana 200, on the older pinned 78c4 diagnostic.\n'
+              f"Repository-only evidence (not bundled): {catalog.RUNTIME_TEST['evidence']['url']}\n"
+              'No ability inputs were used. Current e9 positive-rank initialization, underfunded casts and regeneration recovery remain unverified.\n'
               'Full combat parity, other personalities and broad map compatibility remain unverified.\n\n'
               + '\n'.join('- ' + gap for gap in catalog.KNOWN_GAPS) + '\n')
     (folder / 'README.txt').write_text(readme, encoding='utf-8')

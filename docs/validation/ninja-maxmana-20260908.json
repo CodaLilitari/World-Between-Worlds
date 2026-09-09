@@ -1,0 +1,246 @@
+{
+  "artifact": {
+    "bytes": 19703607,
+    "changed_resources": [
+      {
+        "byte_delta": 49,
+        "new_sha256": "3ffb1d0e5d147a3a7b77c43fa2cb2e2d10a41526aaad55569931627599c65702",
+        "old_sha256": "04b8567af599b3b7eb92a1b2cc5ec3f0d2a0e11e56dba0137a8779217fcd1830",
+        "path": "cog/force_well.cog"
+      }
+    ],
+    "original_source": {
+      "gob_sha256": "23bd8e18eae4df637a34ddf4f98ed3602c490de521e0cc147bf8e79bb9fe23af",
+      "zip_sha256": "1d71863e564e75278eecd44244ef3a103692c49b4bf11fdbc2de591ccbf05764"
+    },
+    "predecessor": {
+      "bytes": 19703558,
+      "resources": 1016,
+      "sha256": "50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df"
+    },
+    "recipe": "ninja-kage-7.0-mots-mp-prototype-4-maxmana",
+    "resources": 1016,
+    "sha256": "f65bded1d3db64602e8cc25a7c96a6e7c2328b2de33bedc7808f27295488806d",
+    "unchanged_resource_count": 1015
+  },
+  "artifact_build_source_sha256": {
+    "NINJA_KAGE.md": "33379fb634100329ff6bcee763d02ac3d228886757360e4f18f3de9751f5f03b",
+    "ninja_catalog.py": "bfe1900495abb894974dd329f793a006b3ed11c6bfdb3510033ee0bb4d3d9e2d",
+    "ninja_converter.py": "158bd90419ea89a1ab5ab84ffabac0d2b775262173a8b86f66fa97ac17ccc997",
+    "test_ninja.py": "58a5344713c12e7c727c02862c0af7c95a76d44aad0c3e10ad419808fdeaffb8"
+  },
+  "current_production_placeholder_check": {
+    "baseline_files_unchanged": 48,
+    "exe_sha256": "0141a8b113b3cac6dc868b5576622c4bdc2c145b878ced034418f8df370c6090",
+    "limitation": "Ordinary headless autostart created a personality0/rank0 placeholder. rank * 50 was 0 for both v3 and v4, so these 30-second load checks do not establish initialization for a playable Ninja Jedi.",
+    "positive_rank_validation": false,
+    "raw_result_sha256": "50985363ca985fdd4e14e45795a38ecd61bff982beb7735963998607600a44f6",
+    "runs": {
+      "ninja-v3": {
+        "advancing_simulation": true,
+        "artifact_sha256": "50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df",
+        "crash_files_detected": false,
+        "elapsed_seconds": 30.092,
+        "full_comparison_passed": false,
+        "observed_amounts": {
+          "current_mana_bin14": 0,
+          "maximum_mana_bin69": 0,
+          "rank_bin20": 0
+        },
+        "observed_personality": 0,
+        "parser_fatal_errors": [],
+        "positive_rank_gate": false,
+        "raw_result_sha256": "96c8ffdf837d6cd15dc4e8a06d113dc5aa71cf971a503c767f947e8eeb038214",
+        "samples": 9,
+        "survived": true
+      },
+      "ninja-v4": {
+        "advancing_simulation": true,
+        "artifact_sha256": "f65bded1d3db64602e8cc25a7c96a6e7c2328b2de33bedc7808f27295488806d",
+        "crash_files_detected": false,
+        "elapsed_seconds": 30.094,
+        "full_comparison_passed": false,
+        "observed_amounts": {
+          "current_mana_bin14": 0,
+          "maximum_mana_bin69": 0,
+          "rank_bin20": 0
+        },
+        "observed_personality": 0,
+        "parser_fatal_errors": [],
+        "positive_rank_gate": false,
+        "raw_result_sha256": "722dc1e6f079f104eec8d2eb20dbbba0f9c62904e352504b2cef980bc2b901aa",
+        "samples": 9,
+        "survived": true
+      }
+    },
+    "source_commit": "e9e293a7a98c9a665509af96f9a87a9ca2470996",
+    "status": "bounded-load-and-simulation-only"
+  },
+  "date": "2026-09-08",
+  "evidence_sha256": {
+    "base-harness-source.py": "7a77e6e1a040650f2585447f09157de5159683df04ef6fed262527e6c50d7bef",
+    "harness-source.py": "a24acf899b131d2898e52a9d39c2bada3a97226eb2a702a586a080683c89fdbd",
+    "maxmana-harness-source.py": "13c5274c97d08164a9df392bde54a35291d683353a0c9358fc45846c0e5aa04e",
+    "ninja-assessment.json": "de5f5ce8c16681b95f2680c1121e38bb2f42e8a7d0e539902b6fcaaa4dad48ba",
+    "ninja-descriptor-oracle.json": "5cb8dd9893a6a1f5296d58ee287d94e885ea2eb20c5029bd253d845494dd8338",
+    "preparation.json": "766ea5ef741d5ac966578389d12651ca4463797cb2fa199826e257090b5e76ad",
+    "result.json": "f7a829d56502f97904097f6c3423a4d69b4d5595b3593c0f966c10dc881c692d"
+  },
+  "not_validated": [
+    "Positive-rank character initialization on the current e9 production executable",
+    "Underfunded native power rejection",
+    "Regeneration recovery after mana consumption",
+    "Throw/Lightning allocation or activation",
+    "Other personalities or ranks",
+    "Combat, rendering, sound, animation or remote visual equivalence",
+    "Imported original JK character allocations"
+  ],
+  "observation": {
+    "archive_inputs_unchanged": true,
+    "baseline_files_unchanged": 48,
+    "elapsed_seconds": 75.025,
+    "episode": "JKM_MP",
+    "exact_runtime_file_set_unchanged": true,
+    "first_connected_elapsed_seconds": 8.102,
+    "full_inventory_bins_sampled": 200,
+    "harness_exit_code": 0,
+    "initialized_samples_total": 71,
+    "map": "k1.jkl",
+    "peer_ids": [
+      1,
+      2
+    ],
+    "peers": 2,
+    "requested_seconds": 75,
+    "roles": {
+      "client": {
+        "all_66_descriptor_bindings_match": true,
+        "all_other_force_allocations_zero": true,
+        "authored_spawn_kit_observed": true,
+        "connected_game_clock_ms": [
+          917,
+          66833
+        ],
+        "crash_file_count": 0,
+        "first_connected_elapsed_seconds": 8.102,
+        "first_initialized_elapsed_seconds": 8.102,
+        "harness_terminated_after_observation": true,
+        "initialized_samples": 34,
+        "input_events": 0,
+        "input_provider_counters_all_zero": true,
+        "last_connected_elapsed_seconds": 74.026,
+        "last_initialized_elapsed_seconds": 74.026,
+        "log_sha256": {
+          "debug.log": "f72e9baf4ac1da140c66bf43365e64ad7ca61613b4725258a6198482a94902ad",
+          "stderr.log": "94697d0d79fb2709b38874c094dca1480a10cfee31ef02f509546ca973c49f08",
+          "stdout.log": "12c68b7c21b90bfb78a3a08ebb3c49e3d2ea20d42b1e71de9989461500d8862e"
+        },
+        "mpc_sha256_after": "50834bc08e2a11c1af178e3549f185d93491dd0c8e50792e07203381d67ff4c5",
+        "native_jedi_per_matches": true,
+        "observed_amounts_all_initialized_samples": {
+          "current_mana_bin14": 200,
+          "maximum_mana_bin69": 200,
+          "rank_bin20": 4
+        },
+        "observed_visible_windows": 0,
+        "parser_error_count": 0,
+        "personality": 1,
+        "plr_sha256_after": "f22c884aed1889f42cae50016ec98fc253ead177674c8ab27b58105d719f565f",
+        "process_exit_code": 1,
+        "spendable_stars_zero": true,
+        "total_samples": 36,
+        "two_peer_samples": 34
+      },
+      "host": {
+        "all_66_descriptor_bindings_match": true,
+        "all_other_force_allocations_zero": true,
+        "authored_spawn_kit_observed": true,
+        "connected_game_clock_ms": [
+          6279,
+          72200
+        ],
+        "crash_file_count": 0,
+        "first_connected_elapsed_seconds": 8.102,
+        "first_initialized_elapsed_seconds": 2.061,
+        "harness_terminated_after_observation": true,
+        "initialized_samples": 37,
+        "input_events": 0,
+        "input_provider_counters_all_zero": true,
+        "last_connected_elapsed_seconds": 74.026,
+        "last_initialized_elapsed_seconds": 74.026,
+        "log_sha256": {
+          "debug.log": "f72e9baf4ac1da140c66bf43365e64ad7ca61613b4725258a6198482a94902ad",
+          "stderr.log": "fa4572a344129607fc5ef15a091fa9dfe76a6aad3fd8a88735d80ba9ff1671fc",
+          "stdout.log": "446418d3ed0a9e592cb73ba78518f8ec2a3a1de40bbc8b2092f6af0e2a02ff63"
+        },
+        "mpc_sha256_after": "50834bc08e2a11c1af178e3549f185d93491dd0c8e50792e07203381d67ff4c5",
+        "native_jedi_per_matches": true,
+        "observed_amounts_all_initialized_samples": {
+          "current_mana_bin14": 200,
+          "maximum_mana_bin69": 200,
+          "rank_bin20": 4
+        },
+        "observed_visible_windows": 0,
+        "parser_error_count": 0,
+        "personality": 1,
+        "plr_sha256_after": "f22c884aed1889f42cae50016ec98fc253ead177674c8ab27b58105d719f565f",
+        "process_exit_code": 1,
+        "spendable_stars_zero": true,
+        "total_samples": 38,
+        "two_peer_samples": 34
+      }
+    },
+    "termination_note": "After the bounded observation window the harness stopped both owned children; their exit code 1 reflects harness termination, not a claimed graceful game exit."
+  },
+  "profile": {
+    "allocated_powers": 0,
+    "character": "NinjaJedi",
+    "kind": "Explicitly authored parser fixture; not an imported user character or native-UI allocation proof",
+    "mpc_sha256_before": "50834bc08e2a11c1af178e3549f185d93491dd0c8e50792e07203381d67ff4c5",
+    "mpc_unchanged_after_both_runs": true,
+    "native_jedi_per_sha256": "75f85dcfa606ff3747b6bc8921be79eb850a7167a1252ea2c281bcda46ae60f1",
+    "personality": "Jedi",
+    "plr_note": "The engine saved profile configuration in each isolated test lane. Both original fixture files remained unchanged; after hashes are recorded by role.",
+    "plr_sha256_before": "7fd437877c7596fe933c0cedb57db446653fcba190b2a545347b940d3d3fd7b3",
+    "rank": 4,
+    "spendable_stars": 0
+  },
+  "review_method": "Independently reread every initialized inventory sample, descriptor row, personality/PER state, provider counter, connected peer ID and advancing clock; checked actual mounted archive/profile/runtime hashes and raw logs. No failed late observations were filtered out.",
+  "runtime": {
+    "base_commit": null,
+    "base_commit_note": "Referenced private build evidence pins the base files and output but does not establish a complete base commit. Legacy embedded version text is not used as a build-base claim.",
+    "base_source_sha256": {
+      "src/Main/Main.c": "b6b8da08fb12cc39922919f237a47d3db80ed11e7e6ab0a546fef3d3c6655018",
+      "src/Platform/SDL2/stdControl.c": "7b2a25539f7342f1650ffeb5f35603e5016a412eee3dd44ec1302770bd9d1d2e"
+    },
+    "build_evidence_sha256": "6a1d29b355b2d24497a79b29cc1e4dd19dd2560083056219036adc82ffb8c426",
+    "exe_sha256": "78c4ac380c55da5c8bf0e36f82c147bdcfef16576a192eb775f2cf4f81006ad0",
+    "general_force_extension": false,
+    "kind": "older-private-diagnostic",
+    "private_changed_source_sha256": {
+      "src/Main/Main.c": "ecf65313041b71723719cbf204abad4d874351e6c62f2a670d456de1d376e415",
+      "src/Main/openmots_private_mp_test.c": "49148f76d643d9b80fa22fff2bbe6c2edfcf007e79ed6dcc8b63768dfc1818aa",
+      "src/Platform/SDL2/openmots_private_input.c": "ff180c49ef00730e0244ba8488446d97fc1df1aed7111dd294b2983a3bd93c96",
+      "src/Platform/SDL2/stdControl.c": "8f0d351d001696704efa7e942bf32c70dce673aae7c4b882615b46f83456a236"
+    },
+    "private_input_provider_enabled": false,
+    "private_patch_sha256": "96fecbe23d3eff8cfbff69f32a835d853ba75335aa2fd26824f274c4e7e3ecd4",
+    "runtime_file_sha256": {
+      "OpenAL32.dll": "26e4b1e693d513daed0356bc0ff4235a2a0e08807c12f0934fd49b2387774ea5",
+      "dbgcore.dll": "ef66084434e77a1fe45001085949a8f20e873431eb6016856c55bd0da7c3d6ae",
+      "dbghelp.dll": "2cef144c25e0af97f53dec368d299d06f9b2d5be0fb057d77b8e18cf618350a7",
+      "exchndl.dll": "bcf3131534502852be6ff7d82cf544cece98ef6615f07009efa40808b14a7645",
+      "libGameNetworkingSockets.dll": "57931fbbcab0fcb5e60b5ff6e4bb3bd5682ff3b9789a40144597c4f540bb8c36",
+      "libfreeglut.dll": "63b24fd51dda842555de45e80352642623412f8a0951690b1954a1a8e8e92ac8",
+      "mgwhelp.dll": "81bebb81e73d2e848fdbb1dec373f9d14988a6eb5ac1b633aaf3e9c487084928",
+      "openjkdf2-64.exe": "78c4ac380c55da5c8bf0e36f82c147bdcfef16576a192eb775f2cf4f81006ad0",
+      "runtime-symbols.txt": "d77e8cff3c941961e5228011f6b9d45c305df1895014f51cbf5afa338aeceb9c",
+      "symsrv.dll": "a604151a45669f414d61392533562ec20ab532db216669143d1a48ddf5b3c05c",
+      "symsrv.yes": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+    },
+    "symbols_sha256": "d77e8cff3c941961e5228011f6b9d45c305df1895014f51cbf5afa338aeceb9c"
+  },
+  "schema": "wbw.ninja-maxmana-validation.v1",
+  "scope": "Ninja Kage v4 maximum-mana initialization on two native Jedi MP peers using the older pinned diagnostic runtime; no ability inputs or full gameplay claim.",
+  "status": "bounded-native-initialization-pass"
+}

@@ -176,6 +176,18 @@ class OriginalArchiveTests(unittest.TestCase):
 
 
 class ExactSourceEditTests(unittest.TestCase):
+    def test_maxmana_anchor_rejects_missing_or_duplicate_startup(self):
+        edits = ninja_catalog.ORIGINAL_COG_EDITS['force_well.cog']
+        anchor = 'startup:\n   player = GetLocalPlayerThing();\n'
+        added = '   SetInv(player, 69, GetInv(player, 20) * 50);\n'
+        # Synthetic surrounding handlers are intentionally different from retail.
+        source = 'code\n' + anchor + '   Return;\npulse:\n   Print("synthetic");\n   Return;\nend\n'
+        converted = ninja.apply_edits(source, edits)
+        self.assertEqual(converted.replace(added, '', 1), source)
+        for changed in (source.replace(anchor, 'startup:\n'), source + anchor):
+            with self.subTest(changed=changed), self.assertRaises(ninja.NinjaError):
+                ninja.apply_edits(changed, edits)
+
     def test_surgical_inventory_edit_preserves_ammo_timer_and_comments(self):
         source = '# Preserve provenance\nSetInv(player, 10, 1);\nSetInv(player, 11, 75);\nSetTimer(10);\n'
         edits = [{'old': 'SetInv(player, 10, 1);', 'new': 'SetInv(player, 131, 1);',
@@ -396,9 +408,53 @@ class OwnedArtifactMutationTests(unittest.TestCase):
         result = ninja.verify(self.archives, self.original, self.data, self.manifest)
         self.assertEqual(result['status'], 'structural-pass')
         self.assertEqual(result['gameplay'], 'not-run')
-        self.assertEqual(sha(self.data), '50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df')
+        self.assertEqual(sha(self.data), 'f65bded1d3db64602e8cc25a7c96a6e7c2328b2de33bedc7808f27295488806d')
         self.assertEqual(len(self.payloads), 1016)
         self.assertFalse(any(Path(p).name.startswith('mfr_') for p in self.payloads))
+
+    def test_maxmana_reversal_recovers_exact_owned_source_and_preserves_every_other_payload(self):
+        path = 'cog/force_well.cog'
+        original = self.original.archive.read(path)
+        self.assertEqual(sha(original), '04b8567af599b3b7eb92a1b2cc5ec3f0d2a0e11e56dba0137a8779217fcd1830')
+        added = b'   SetInv(player, 69, GetInv(player, 20) * 50);\r\n'
+        self.assertEqual(self.payloads[path].count(added), 1)
+        self.assertEqual(self.payloads[path].replace(added, b'', 1), original)
+        predecessor = {**self.payloads, path: original}
+        # Independent canonical v3 archive pin covers every other resource byte.
+        self.assertEqual(sha(build_gob(predecessor)),
+                         '50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df')
+
+    def test_missing_wrong_or_refilling_maxmana_and_changed_regeneration_are_rejected(self):
+        path = 'cog/force_well.cog'
+        added = b'   SetInv(player, 69, GetInv(player, 20) * 50);\r\n'
+        for old, new in ((added, b''), (added, added + added),
+                         (added, added.replace(b', 69,', b', 14,')),
+                         (added, added.replace(b'* 50', b'* 100')),
+                         (b'GetInv(player, 20) * 2);', b'GetInv(player, 20) * 4);')):
+            self.assertEqual(self.payloads[path].count(old), 1)
+            with self.subTest(new=new), self.assertRaises(ninja.NinjaError):
+                self.verify_mutation(path, lambda data: data.replace(old, new, 1))
+
+    def test_maxmana_reversal_rejects_source_byte_drift_hidden_by_text_normalization(self):
+        with self.assertRaisesRegex(ninja.NinjaError, 'maximum-mana insertion'):
+            self.verify_mutation('cog/force_well.cog', lambda data: data.replace(b'\r\n', b'\n', 1))
+
+    def test_maxmana_receipt_cannot_claim_predecessor_runtime_for_this_output(self):
+        self.assertEqual(self.manifest['recipe'], 'ninja-kage-7.0-mots-mp-prototype-4-maxmana')
+        self.assertEqual(self.manifest['runtime_test']['status'], 'bounded-native-initialization-pass')
+        self.assertEqual(self.manifest['runtime_test']['artifact_sha256'], sha(self.data))
+        self.assertEqual(self.manifest['runtime_test']['initialized_samples'], {'host': 37, 'client': 34})
+        self.assertEqual(self.manifest['runtime_test']['engine']['kind'], 'older-private-diagnostic')
+        self.assertIsNone(self.manifest['runtime_test']['engine']['base_commit'])
+        self.assertFalse(self.manifest['runtime_test']['engine']['current_production_positive_rank_validated'])
+        self.assertFalse(self.manifest['runtime_test']['full_gameplay'])
+        self.assertEqual(self.manifest['runtime_test']['predecessor']['artifact_sha256'],
+                         '50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df')
+        for changes in ({'recipe': 'old-recipe'}, {'original_cog_edits': {}},
+                        {'runtime_test': self.manifest['runtime_test']['predecessor']},
+                        {'runtime_test': {**self.manifest['runtime_test'], 'engine': {'kind': 'current-production'}}}):
+            with self.subTest(changes=changes), self.assertRaises(ninja.NinjaError):
+                ninja.verify(self.archives, self.original, self.data, {**self.manifest, **changes})
 
     def test_default_build_requires_both_depths_of_original_force_hud_icons(self):
         for name in ('icf_thr8.bm', 'icf_thr16.bm', 'icf_lig8.bm', 'icf_lig16.bm'):

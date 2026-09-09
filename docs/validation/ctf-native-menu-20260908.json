@@ -1,0 +1,694 @@
+{
+  "actual_mpc_files": {
+    "WBWClass1.mpc": {
+      "appearance": [
+        "model: ky.3do",
+        "soundclass: ky.snd",
+        "sidemat: saberblue1.mat",
+        "tipmat: saberblue0.mat"
+      ],
+      "bins": {
+        "19": 0.0,
+        "20": 7.0,
+        "21": 0.0,
+        "22": 0.0,
+        "23": 0.0,
+        "24": 0.0,
+        "25": 0.0,
+        "26": 0.0,
+        "27": 0.0,
+        "28": 0.0,
+        "29": 0.0,
+        "30": 0.0,
+        "31": 0.0,
+        "32": 0.0,
+        "33": 0.0,
+        "34": 0.0,
+        "35": 0.0,
+        "36": 0.0,
+        "37": 0.0,
+        "38": 0.0,
+        "39": 0.0
+      },
+      "label": "Jedi",
+      "personality": 1,
+      "provenance": "Written by native ShowNewCharacter/Edit Save and parsed again by native ShowLoad; no prewritten MPC fixture.",
+      "rank": 7.0,
+      "sha256": "7c0d15ec1f01eba422d27fb6475908d1ddc617cee0766b93696abe0334d86148"
+    },
+    "WBWClass2.mpc": {
+      "appearance": [
+        "model: ky.3do",
+        "soundclass: ky.snd",
+        "sidemat: saberblue1.mat",
+        "tipmat: saberblue0.mat"
+      ],
+      "bins": {
+        "19": 3.0,
+        "20": 7.0,
+        "21": 0.0,
+        "22": 0.0,
+        "23": 0.0,
+        "24": 0.0,
+        "25": 0.0,
+        "26": 0.0,
+        "27": 0.0,
+        "28": 0.0,
+        "29": 0.0,
+        "30": 0.0,
+        "31": 0.0,
+        "32": 0.0,
+        "33": 0.0,
+        "34": 0.0,
+        "35": 0.0,
+        "36": 0.0,
+        "37": 0.0,
+        "38": 3.0,
+        "39": 0.0
+      },
+      "label": "Bounty Hunter",
+      "personality": 2,
+      "provenance": "Written by native ShowNewCharacter/Edit Save and parsed again by native ShowLoad; no prewritten MPC fixture.",
+      "rank": 7.0,
+      "sha256": "0fa99ba8a0256d81791a4efb29ef069de80754daa1b3e2364a15fa146d0eba24"
+    },
+    "WBWClass3.mpc": {
+      "appearance": [
+        "model: ky.3do",
+        "soundclass: ky.snd",
+        "sidemat: saberblue1.mat",
+        "tipmat: saberblue0.mat"
+      ],
+      "bins": {
+        "19": 2.0,
+        "20": 7.0,
+        "21": 2.0,
+        "22": 0.0,
+        "23": 4.0,
+        "24": 0.0,
+        "25": 0.0,
+        "26": 2.0,
+        "27": 0.0,
+        "28": 0.0,
+        "29": 0.0,
+        "30": 0.0,
+        "31": 0.0,
+        "32": 0.0,
+        "33": 0.0,
+        "34": 0.0,
+        "35": 0.0,
+        "36": 0.0,
+        "37": 0.0,
+        "38": 0.0,
+        "39": 0.0
+      },
+      "label": "Scout",
+      "personality": 3,
+      "provenance": "Written by native ShowNewCharacter/Edit Save and parsed again by native ShowLoad; no prewritten MPC fixture.",
+      "rank": 7.0,
+      "sha256": "f8aa6c94bdaace9d83a4a7fe032ef17a3fd39c6ae7c1f71e807863de68979ae1"
+    },
+    "WBWClass4.mpc": {
+      "appearance": [
+        "model: ky.3do",
+        "soundclass: ky.snd",
+        "sidemat: saberblue1.mat",
+        "tipmat: saberblue0.mat"
+      ],
+      "bins": {
+        "19": 4.0,
+        "20": 7.0,
+        "21": 0.0,
+        "22": 0.0,
+        "23": 0.0,
+        "24": 0.0,
+        "25": 0.0,
+        "26": 0.0,
+        "27": 0.0,
+        "28": 0.0,
+        "29": 0.0,
+        "30": 0.0,
+        "31": 0.0,
+        "32": 0.0,
+        "33": 0.0,
+        "34": 0.0,
+        "35": 0.0,
+        "36": 0.0,
+        "37": 0.0,
+        "38": 0.0,
+        "39": 0.0
+      },
+      "label": "Soldier",
+      "personality": 4,
+      "provenance": "Written by native ShowNewCharacter/Edit Save and parsed again by native ShowLoad; no prewritten MPC fixture.",
+      "rank": 7.0,
+      "sha256": "65dcce8b7937826512c927ba0deb1706adf85fd0b1df09df0ef8e9545c56c2b6"
+    }
+  },
+  "asset_sha256": {
+    "bridge-ctf-ui/bridge-ctf-ui.goo": "3b16ae3206e2158b113116109d5ef7c05ff2a75e5a8d8c31ab964ea07199d45d",
+    "bridge-ctf_arena-v1.goo": "d8d50a6e056be6f37607f64a5b90ef8c48c8ab8816787466b5636327955ae908",
+    "bridge-ctf_challenge-v1.goo": "b4e9edf585ee9e3c57b27e291d64edbd9c0feafc66916749f135fcf875c4c910",
+    "bridge-ctf_duel-v1.goo": "abbda835bf5143f82d91831ceb595e2a3f033eb18cb366503eab4c69e23c808a"
+  },
+  "duration_seconds": 4.622,
+  "engine": {
+    "actual_before_build_snapshot_sha256": "19dc5dc37e48953dc7d12e9b5c5a890b9976dffbc783f767c3b0a92de4f8029d",
+    "base_commit": "e9e293a7a98c9a665509af96f9a87a9ca2470996",
+    "base_version_strings": {
+      "openjkdf2_aReleaseCommit": "e9e293a7a98c9a665509af96f9a87a9ca2470996",
+      "openjkdf2_aReleaseCommitShort": "e9e293a7"
+    },
+    "binary_kind": "private diagnostic; not production or a distributable release",
+    "build_record_sha256": "7935deae0315878ac8a457d27ef165124d9b1456c054ccbaf5cdd80c644eb035",
+    "exe_sha256": "02ebed76650cf64ce90352a73c301dc1c0319921aab2464a9cf05b5daec2ab9f",
+    "force_extension": false,
+    "private_candidate_manifest_sha256": "cab09789ea99431b70294bfc03965d10b7f9bb6f58239e2c36ce16efefa3621f",
+    "private_source_sha256": {
+      "src/Gui/jkGUIRend.c": "09b579409727b7a7131de53678ffae48b4d9d7ced6affe53bb88b1dfd3e88f21",
+      "src/Main/Main.c": "13cff6a078f9b3e7df6e492608a9327ffc42e8ffb2120656d54ddd8e5ac68d6d",
+      "src/Main/ctf_native_ui.c": "ce2d43bfeab4f80fcc10012e848ceda5ef38df870c7d6b7213b7490b509d2a96",
+      "src/Platform/GL/std3D.c": "dbf1d932edcbb7422f9c68927de1cffaeca9ed4185b21342004640422382d9f6",
+      "src/Platform/SDL2/stdControl.c": "ca1f0553eb795d7e06e1be1cfeadb6a64631c283582478e8aa3a0195f775b1b2",
+      "src/Win95/Window.c": "9bc63afdd5913a10cb2b2985c8c7c077307641e64b4d2b510a2c781d9b1fb55a"
+    },
+    "production_source_changes_for_this_menu_test": false,
+    "runtime_file_sha256": {
+      "OpenAL32.dll": "26e4b1e693d513daed0356bc0ff4235a2a0e08807c12f0934fd49b2387774ea5",
+      "libGameNetworkingSockets.dll": "57931fbbcab0fcb5e60b5ff6e4bb3bd5682ff3b9789a40144597c4f540bb8c36",
+      "libfreeglut.dll": "63b24fd51dda842555de45e80352642623412f8a0951690b1954a1a8e8e92ac8",
+      "openjkdf2-64.exe": "02ebed76650cf64ce90352a73c301dc1c0319921aab2464a9cf05b5daec2ab9f",
+      "runtime-symbols.txt": "07f0f9c9dcca0bf536f8a1fb9c75a277eb9db30af74deb1dcd08eb53a9bc2600"
+    },
+    "symbols_sha256": "07f0f9c9dcca0bf536f8a1fb9c75a277eb9db30af74deb1dcd08eb53a9bc2600",
+    "unchanged_native_reference_sha256": {
+      "src/Gui/jkGUIBuildMulti.c": "c15882d30a2f7135245469413405d8dd97df845dc993250e5f43fcf1867bb972",
+      "src/Gui/jkGUIMultiplayer.c": "3524aaf693c3d2aae939227c6c902ea08c77dc12bf698ce23e41a2f5f2997992",
+      "src/Gui/jkGUINetHost.c": "e8b60437e6a454d159c6e38d5af02ab424ccc727a30934299a6e4cece92f8912",
+      "src/World/jkPlayer.c": "c7c77748923eab6e21168448a8b5d137c2d2a46f838d23aeb8a767f4489e044a",
+      "src/types.h": "12e753ee33708366a2ce6fb625b81178aa8400c3bb77191225f2599b01c04f59",
+      "symbols.syms": "662c8c824c73f133f13923f67c710f6b8d06c35bf5f41ff1ac14504cc891eee8"
+    }
+  },
+  "event_counts": {
+    "complete": 1,
+    "framebuffer": 15,
+    "gl_pixel_variation": 15,
+    "gl_readback_result": 15,
+    "gl_readback_start": 15,
+    "hidden_window": 31,
+    "host_selected": 3,
+    "load_arguments": 4,
+    "loaded": 4,
+    "menu": 15,
+    "mode_entry": 7,
+    "mode_leave": 7,
+    "native_char": 36,
+    "native_click": 19,
+    "native_key": 15,
+    "saved": 4,
+    "start": 1,
+    "swapped": 15
+  },
+  "frames": [
+    {
+      "bytes": 432221,
+      "file": "00-new-character-1.png",
+      "height": 960,
+      "inspection": "Native New Character form shows both game formats and all four personalities; Jedi selected for WBWClass1; name and OK/Cancel are readable.",
+      "public_file": "docs/screenshots/mots-native-personalities.png",
+      "sha256": "87c5502bf8010a080b42fd2dc1310b455e4fd7c0b079c9bc1a7283426b507786",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 389708,
+      "file": "01-edit-character-1.png",
+      "height": 960,
+      "inspection": "Native Edit Character form shows WBWClass1, Kyle Katarn model preview, blue saber preview and Save; no missing preview or overlapping control was observed.",
+      "public_file": null,
+      "sha256": "388ae07b9fb4d68cd2fe1349a3547d084a4e598f4ed0ca32fa73ebc2db64eba2",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 432370,
+      "file": "02-new-character-2.png",
+      "height": 960,
+      "inspection": "Native New Character form shows both game formats and all four personalities; Bounty Hunter selected for WBWClass2; name and OK/Cancel are readable.",
+      "public_file": null,
+      "sha256": "ba604fbdd8770e565757f63631dc3e27875871694fe5781e46202fb1881e0a2c",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 389010,
+      "file": "03-edit-character-2.png",
+      "height": 960,
+      "inspection": "Native Edit Character form shows WBWClass2, Kyle Katarn model preview, blue saber preview and Save; no missing preview or overlapping control was observed.",
+      "public_file": null,
+      "sha256": "92d20b17eacb0df63d76a629c488fc1169b99dbf9ccf6ae7d1c5ff24f908b10e",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 432859,
+      "file": "04-new-character-3.png",
+      "height": 960,
+      "inspection": "Native New Character form shows both game formats and all four personalities; Scout selected for WBWClass3; name and OK/Cancel are readable.",
+      "public_file": null,
+      "sha256": "cb4af3fcfe97811b70d77a314f4f3a17b62fa8b3f900ed68b6046850a76ac337",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 389034,
+      "file": "05-edit-character-3.png",
+      "height": 960,
+      "inspection": "Native Edit Character form shows WBWClass3, Kyle Katarn model preview, blue saber preview and Save; no missing preview or overlapping control was observed.",
+      "public_file": null,
+      "sha256": "a4502c307cba153383f60106de1355f1fc241f49078adacc20ff3518b5f539ba",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 432453,
+      "file": "06-new-character-4.png",
+      "height": 960,
+      "inspection": "Native New Character form shows both game formats and all four personalities; Soldier selected for WBWClass4; name and OK/Cancel are readable.",
+      "public_file": null,
+      "sha256": "31e725925585620844fab6b0864c82b796e0790e797f8e5584a78eee7340647b",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 388911,
+      "file": "07-edit-character-4.png",
+      "height": 960,
+      "inspection": "Native Edit Character form shows WBWClass4, Kyle Katarn model preview, blue saber preview and Save; no missing preview or overlapping control was observed.",
+      "public_file": null,
+      "sha256": "8c46458936b5d39a1f3d80712926ad9b162a59401873c1cab3e734eaa8436e84",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 571720,
+      "file": "08-host-episode-1.png",
+      "height": 960,
+      "inspection": "Native Host form selects the converted The Duel episode and displays its complete selected level name. Long episode suffixes clip at the list edge; the selected map remains identifiable and its returned resource name was checked.",
+      "public_file": "docs/screenshots/ctf-host-duel.png",
+      "sha256": "30855889a168de2169fd6d62369b34644b4ccab2137fe384713ef4678457ade3",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 570422,
+      "file": "09-host-episode-2.png",
+      "height": 960,
+      "inspection": "Native Host form selects the converted The Arena of Dark and Light episode and displays its complete selected level name. Long episode suffixes clip at the list edge; the selected map remains identifiable and its returned resource name was checked.",
+      "public_file": "docs/screenshots/ctf-host-arena.png",
+      "sha256": "035afcc7d9cd5a0f291c69c8290adc29a7f23de12de00d0dd505fced2e66a090",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 569594,
+      "file": "10-host-episode-3.png",
+      "height": 960,
+      "inspection": "Native Host form selects the converted The Challenge at Nar Shaddaa episode and displays its complete selected level name. Long episode suffixes clip at the list edge; the selected map remains identifiable and its returned resource name was checked.",
+      "public_file": "docs/screenshots/ctf-host-challenge.png",
+      "sha256": "56e4f6b6a0fcba737b67bb5d35835ffc58561879a054e5f3706dfb7d8a546e3a",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 449026,
+      "file": "11-load-character-1.png",
+      "height": 960,
+      "inspection": "Native Load Character form selects WBWClass1, displays personality Jedi, rank7, and The Duel episode/level context.",
+      "public_file": null,
+      "sha256": "b9c6618cd17383404001303007fad6b671268001cf4778d607f55dee2deeec45",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 449504,
+      "file": "12-load-character-2.png",
+      "height": 960,
+      "inspection": "Native Load Character form selects WBWClass2, displays personality Bounty Hunter, rank7, and The Duel episode/level context.",
+      "public_file": null,
+      "sha256": "59009373ac84c78a8753bd732a97ad5c31b3a75f24d2addc9322deb123189afb",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 447988,
+      "file": "13-load-character-3.png",
+      "height": 960,
+      "inspection": "Native Load Character form selects WBWClass3, displays personality Scout, rank7, and The Duel episode/level context.",
+      "public_file": "docs/screenshots/ctf-load-scout.png",
+      "sha256": "d0c325c0c5c5b4646d945da09143a6ccb3492d275a706f15c8d3531d7b469243",
+      "visually_inspected": true,
+      "width": 1280
+    },
+    {
+      "bytes": 448772,
+      "file": "14-load-character-4.png",
+      "height": 960,
+      "inspection": "Native Load Character form selects WBWClass4, displays personality Soldier, rank7, and The Duel episode/level context.",
+      "public_file": null,
+      "sha256": "97a5e57da97f8c4cbe09fcb726ff42479d737b28d34d962140ba54c70551ea0a",
+      "visually_inspected": true,
+      "width": 1280
+    }
+  ],
+  "helper_sha256": {
+    "build_candidate.py": "5ac3aabf9a9ec1d62c587631001552bce50c53a53292166d65d5fd56a51bd052",
+    "ctf_native_ui.c": "ce2d43bfeab4f80fcc10012e848ceda5ef38df870c7d6b7213b7490b509d2a96",
+    "driver-hooks.patch": "9fd6a11aee608a76f40e32466529ef0c39c994581fdafc916c069793640ec45f",
+    "prepare_candidate.py": "39f8b13279d9f01422aa4bcc15dcbd7c7ea256ea43c105e5f5dc38c195b20899",
+    "run_ui.py": "45c91bae79d53baf589bda4fcbc11cb40275a04eff9dc36b0905e55efabf40c6",
+    "test_candidate.py": "811d16154ac298c9673fb54fbfa311ad12d8450e8998ec92ac78966ff705e1e6",
+    "validate_ui.py": "2d68c954829e536b2ade22d93c70a706c9fde0b120ca5000232247f8556d4064",
+    "window_capture.inc": "decf1d9b5330d784280e9a62716bf4394c1145deab1a14adcb3cfdfed85149c1"
+  },
+  "limitations": [
+    "This is menu behavior and rendering evidence, not a multiplayer host or gameplay test.",
+    "CTF pickup, drop, return, capture, team assignment, scoring and peer synchronization are not established by this run.",
+    "All four characters were reloaded for The Duel; this is not every personality tested in every CTF map.",
+    "Physical keyboard/mouse delivery, foreground operation and the original retail JKM executable were not exercised.",
+    "The private driver bypasses normal navigation to the target dialogs; dialog bodies, labels, lists and Save/OK handlers remain native.",
+    "The rank7 personality defaults came from native character creation, not from test-driver rank or inventory writes.",
+    "No game archives, extracted asset payloads, saved MPC payloads or diagnostic executable are included in this evidence JSON."
+  ],
+  "method": {
+    "asset_setup": "Three canonical converted CTF episodes available in the catalog; the canonical CTF startup overlay is the only mod path.",
+    "framebuffer": {
+      "format": "RGB PNG",
+      "height": 960,
+      "width": 1280
+    },
+    "input": "Finite in-process native CHAR, key and button event handlers; no physical OS input.",
+    "network_game_started": false,
+    "observed_native_menu_raster": {
+      "bpp": 8,
+      "height": 960,
+      "pitch": 1280,
+      "width": 1280
+    },
+    "profiles": "One fresh test-only profile; four native-created characters. Existing user profiles were not used.",
+    "render": "Own hidden SDL window, native GUI drawing, fresh same-menu paint and GL_BACK capture before the next normal swap.",
+    "route": "Native ShowNewCharacter, native Edit Save, native NetHost Show OK, native ShowLoad OK.",
+    "screenshots": "Original captured PNG bytes; no resize, crop, recolor, annotation or synthesized pixels."
+  },
+  "mode_reference_observations": [
+    {
+      "bpp": 8,
+      "case": 0,
+      "depth": 1,
+      "display_open": 1,
+      "event": "mode_entry",
+      "gdi": 1,
+      "height": 960,
+      "phase": 1,
+      "pitch": 1280,
+      "previous_depth": 0,
+      "previous_gdi": 0,
+      "return": 1,
+      "surface_present": 1,
+      "width": 1280
+    },
+    {
+      "case": 0,
+      "depth": 1,
+      "event": "mode_leave",
+      "gdi": 1,
+      "phase": 1,
+      "previous_depth": 2,
+      "previous_gdi": 1
+    },
+    {
+      "bpp": 8,
+      "case": 1,
+      "depth": 2,
+      "display_open": 1,
+      "event": "mode_entry",
+      "gdi": 1,
+      "height": 960,
+      "phase": 1,
+      "pitch": 1280,
+      "previous_depth": 1,
+      "previous_gdi": 1,
+      "return": 0,
+      "surface_present": 1,
+      "width": 1280
+    },
+    {
+      "case": 1,
+      "depth": 1,
+      "event": "mode_leave",
+      "gdi": 1,
+      "phase": 1,
+      "previous_depth": 2,
+      "previous_gdi": 1
+    },
+    {
+      "bpp": 8,
+      "case": 2,
+      "depth": 2,
+      "display_open": 1,
+      "event": "mode_entry",
+      "gdi": 1,
+      "height": 960,
+      "phase": 1,
+      "pitch": 1280,
+      "previous_depth": 1,
+      "previous_gdi": 1,
+      "return": 0,
+      "surface_present": 1,
+      "width": 1280
+    },
+    {
+      "case": 2,
+      "depth": 1,
+      "event": "mode_leave",
+      "gdi": 1,
+      "phase": 1,
+      "previous_depth": 2,
+      "previous_gdi": 1
+    },
+    {
+      "bpp": 8,
+      "case": 3,
+      "depth": 2,
+      "display_open": 1,
+      "event": "mode_entry",
+      "gdi": 1,
+      "height": 960,
+      "phase": 1,
+      "pitch": 1280,
+      "previous_depth": 1,
+      "previous_gdi": 1,
+      "return": 0,
+      "surface_present": 1,
+      "width": 1280
+    },
+    {
+      "case": 3,
+      "depth": 1,
+      "event": "mode_leave",
+      "gdi": 1,
+      "phase": 1,
+      "previous_depth": 2,
+      "previous_gdi": 1
+    },
+    {
+      "bpp": 8,
+      "case": 0,
+      "depth": 2,
+      "display_open": 1,
+      "event": "mode_entry",
+      "gdi": 1,
+      "height": 960,
+      "phase": 2,
+      "pitch": 1280,
+      "previous_depth": 1,
+      "previous_gdi": 1,
+      "return": 0,
+      "surface_present": 1,
+      "width": 1280
+    },
+    {
+      "case": 0,
+      "depth": 1,
+      "event": "mode_leave",
+      "gdi": 1,
+      "phase": 2,
+      "previous_depth": 2,
+      "previous_gdi": 1
+    },
+    {
+      "bpp": 8,
+      "case": 1,
+      "depth": 2,
+      "display_open": 1,
+      "event": "mode_entry",
+      "gdi": 1,
+      "height": 960,
+      "phase": 2,
+      "pitch": 1280,
+      "previous_depth": 1,
+      "previous_gdi": 1,
+      "return": 0,
+      "surface_present": 1,
+      "width": 1280
+    },
+    {
+      "case": 1,
+      "depth": 1,
+      "event": "mode_leave",
+      "gdi": 1,
+      "phase": 2,
+      "previous_depth": 2,
+      "previous_gdi": 1
+    },
+    {
+      "bpp": 8,
+      "case": 2,
+      "depth": 2,
+      "display_open": 1,
+      "event": "mode_entry",
+      "gdi": 1,
+      "height": 960,
+      "phase": 2,
+      "pitch": 1280,
+      "previous_depth": 1,
+      "previous_gdi": 1,
+      "return": 0,
+      "surface_present": 1,
+      "width": 1280
+    },
+    {
+      "case": 2,
+      "depth": 1,
+      "event": "mode_leave",
+      "gdi": 1,
+      "phase": 2,
+      "previous_depth": 2,
+      "previous_gdi": 1
+    }
+  ],
+  "native_results": {
+    "captures": 15,
+    "character_results": [
+      {
+        "case": 0,
+        "event": "loaded",
+        "model": "ky.3do",
+        "name": "WBWClass1",
+        "personality": 1,
+        "rank": 7,
+        "return": 1
+      },
+      {
+        "case": 1,
+        "event": "loaded",
+        "model": "ky.3do",
+        "name": "WBWClass2",
+        "personality": 2,
+        "rank": 7,
+        "return": 1
+      },
+      {
+        "case": 2,
+        "event": "loaded",
+        "model": "ky.3do",
+        "name": "WBWClass3",
+        "personality": 3,
+        "rank": 7,
+        "return": 1
+      },
+      {
+        "case": 3,
+        "event": "loaded",
+        "model": "ky.3do",
+        "name": "WBWClass4",
+        "personality": 4,
+        "rank": 7,
+        "return": 1
+      }
+    ],
+    "host_results": [
+      {
+        "case": 0,
+        "episode": "bridge-ctf_duel-v1",
+        "event": "host_selected",
+        "game_format_argument": 0,
+        "map": "br_ctf_duel.jkl",
+        "max_rank": 8,
+        "mode_flags": 144,
+        "return": 1,
+        "type": 8
+      },
+      {
+        "case": 1,
+        "episode": "bridge-ctf_arena-v1",
+        "event": "host_selected",
+        "game_format_argument": 0,
+        "map": "br_ctf_arena.jkl",
+        "max_rank": 8,
+        "mode_flags": 144,
+        "return": 1,
+        "type": 8
+      },
+      {
+        "case": 2,
+        "episode": "bridge-ctf_challenge-v1",
+        "event": "host_selected",
+        "game_format_argument": 0,
+        "map": "br_ctf_challenge.jkl",
+        "max_rank": 8,
+        "mode_flags": 144,
+        "return": 1,
+        "type": 8
+      }
+    ],
+    "passed": true,
+    "personality_labels": [
+      "Jedi",
+      "Bounty Hunter",
+      "Scout",
+      "Soldier"
+    ],
+    "scope": "Native in-process menu handlers and hidden framebuffer; no physical OS input or gameplay lifecycle proof"
+  },
+  "private_evidence_sha256": {
+    "frames/events.jsonl": "5d03516ce05b7af84d2b10227a179a211e9a64177f4b864d7feade770f24809c",
+    "process.json": "300ec7845f00848cd7c62a88f0ed450ead9cf18bd44ee60b0ebeb580db523803",
+    "result.json": "3ccb2b19d162ffba1be72d8a144175d6fb1d64989f88ece056426d2576460d26",
+    "stderr.log": "3cc42b1e83357fc92b08a21d9453674e33f316d1ab68d4be942840ea63f2dd34",
+    "stdout.log": "4cf9f0011791ee5794e4b476f8864c83e52a5c1c1fd14757d9cb3e3e0c9a4592"
+  },
+  "process_checks": {
+    "baseline_unchanged": true,
+    "exit_code": 0,
+    "no_driver_failure_event": true,
+    "owned_foreground_window_detected": false,
+    "runtime_unchanged": true,
+    "saved_window_samples": 5,
+    "visible_owned_window_detected": false
+  },
+  "schema_version": 1,
+  "started_utc": "2026-09-09T02:52:10.811893+00:00",
+  "status": "passed_native_menu_sequence_and_completed_visual_inspection",
+  "test_date_local": "2026-09-08",
+  "test_id": "ctf-native-menu-20260908",
+  "visual_review": {
+    "all_15_original_frames_viewed": true,
+    "completed": true,
+    "finding": "All intended native class, character, host episode and selected level states are readable and coherent. Long episode suffixes clip at the native list edge; complete selected level names remain readable.",
+    "method": "Each original full-resolution PNG was opened for visual inspection; no contact sheet or generated replacement.",
+    "public_png_count": 5,
+    "raw_visual_inspection_pending_preserved": true
+  }
+}

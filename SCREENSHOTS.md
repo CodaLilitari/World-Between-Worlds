@@ -45,6 +45,37 @@ headless Chrome test, with the prototype limit and separate mod output explained
 The visible folder examples are empty-field placeholders; the screenshot was
 taken before entering local paths. The accompanying browser test checked that a
 map-only conversion omits Ninja entirely, while explicitly selecting both creates
-separate results. [Screenshot and conversion provenance](docs/validation/ninja-selection-20260908.json)
+separate results. [Screenshot and conversion provenance](https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc1/docs/validation/ninja-selection-20260908.json)
 records the exact source and output hashes. Conversion does not launch a game or
 load the resulting mod.
+
+## Native MotS selection of converted CTF episodes
+
+![The Duel selected in the native MotS host menu](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/v0.2.0-rc2/docs/screenshots/ctf-host-duel.png)
+
+The existing **Choose Episode** list offers the converted CTF episodes alongside
+the stock MotS episodes. The native OK result returned the correct TYPE 8 map
+for [The Duel](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/v0.2.0-rc2/docs/screenshots/ctf-host-duel.png),
+[The Arena of Dark and Light](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/v0.2.0-rc2/docs/screenshots/ctf-host-arena.png)
+and [The Challenge at Nar Shaddaa](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/v0.2.0-rc2/docs/screenshots/ctf-host-challenge.png).
+Long episode titles clip within the original list box; the selected level is
+shown in the lower box. CTF is selected through the episode rather than a separate
+game-mode button. No CTF-specific host-menu change was added.
+
+![Native MotS personality choices](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/v0.2.0-rc2/docs/screenshots/mots-native-personalities.png)
+
+The native character form distinguishes **Mysteries of the Sith (personalities)**
+from **Jedi Knight (ranked Jedi only)**. The test used the four native personality
+choices, saved each character and reloaded all four with the room fields returned
+by the CTF host menu. The [Scout selection capture](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/v0.2.0-rc2/docs/screenshots/ctf-load-scout.png)
+shows The Duel, the selected saved character and its Scout personality together.
+
+These five original 1280 × 960 PNGs are unchanged captures from a fifteen-frame
+native-menu replay on the pinned e9-based private diagnostic. The driver invoked
+normal in-process GUI handlers and read its own hidden window framebuffer; it
+used no physical OS input, synthetic image, retouching or resizing. The
+[sanitized evidence](https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ctf-native-menu-20260908.json)
+records exact provenance and image hashes. No network game was started by this
+GUI test, so the images do not establish flag mechanics, scoring or multiplayer
+personality behavior. These are repository documentation only; all five are
+excluded from application and updater ZIPs.

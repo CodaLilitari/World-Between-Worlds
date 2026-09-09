@@ -2,29 +2,44 @@
 
 ## World Between Worlds workbench checkpoint
 
-The current workbench source gate discovered **183 Python tests**. Using the
-Windows build virtual environment, **174 passed and nine optional owned-archive
-checks were skipped**. On Linux, **172 passed and eleven were skipped**: the same
-nine owned-data checks and two Windows-specific process tests. All **22 UI
+The **0.2.0-rc2** workbench source gate discovered **190 Python tests**. Using the
+Windows build virtual environment, **177 passed and thirteen optional owned-archive
+checks were skipped**. On Linux, **175 passed and fifteen were skipped**: the same
+thirteen owned-data checks and two Windows-specific process tests. All **22 UI
 source tests passed**. The separate Ninja Kage run enabled the owned inputs and
-passed **37 tests with zero skips**. The lower count reflects removal of the
-separate Force-restoration experiment and its tests from this project. Final
-release artifacts have their own packaging and launch gates.
+passed **42 tests with zero skips**. Release artifacts have their own packaging
+and launch gates.
 
-The updater's **46 tests passed on Windows**. The source launcher now recognizes
+The updater and packaging gate's **47 tests passed on Windows**. The source launcher recognizes
 the real interpreter child created by Windows virtual-environment Python, using
 observed process ancestry while retaining version and loopback-URL checks.
 Without that condition, both bundled and cached source-launch regressions fail.
 A separate synthetic-app lifetime race was demonstrated under delayed ancestry
 inspection; its fixture now waits for explicit parent acknowledgment. The old
 fixed lifetime fails that regression. The corresponding Linux tests pass, with
-the two Windows-only tests explicitly skipped.
+the two Windows-only tests explicitly skipped. RC2 isolates the updater's
+synthetic installed version and application root from the real checkout. Before
+that test-fixture correction, bumping the application version to RC2 caused four
+tests to exercise the wrong release path, including a real bundled app. No
+production launcher change was required; the corrected full suites pass.
 
-Ninja Kage remains a prototype with bounded two-peer K1 startup and action
-tests. Its original Force COGs, inventory descriptors and required HUD assets
-are retained. Native MotS allocation and cycling still omit Throw/Lightning;
-the separate restoration experiment is excluded from this bridge and its
-validation claims. See [NINJA_KAGE.md](NINJA_KAGE.md) for exact limits.
+Ninja Kage remains a prototype. Its v4 maximum-mana correction passed a
+**75.025-second** two-peer K1 initialization test on the older pinned 78c4
+diagnostic executable: all **37 initialized host and 34 client samples** showed
+rank 4, current mana 200 and maximum mana 200, with no input-provider activity.
+All 66 descriptor bindings matched; clocks advanced and both peers connected.
+The [sanitized record](https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ninja-maxmana-20260908.json) pins the exact
+archive, executable, source and parser fixture. It is repository-only, not bundled
+in the application ZIPs; the plain-text app document retains the full external
+release-tagged URL. Separate e9 production hosts
+only established 30-second loading/simulation with rank-zero placeholders;
+they did not pass positive-rank validation. The focused source gate passed
+**42 Ninja tests and six catalog-selection tests**. Underfunded casts,
+regeneration recovery, other ranks/personalities and current-production
+positive-rank initialization remain unverified. The v3 action and grapple
+results remain separate predecessor evidence. Native allocation/cycling still
+omit Throw/Lightning, and the separate restoration experiment is excluded.
+See [NINJA_KAGE.md](NINJA_KAGE.md) for exact limits.
 
 A subsequent isolated Chrome test confirmed that Ninja Kage is selectable as a
 prototype with no initial selection. A Canyon-only conversion generated no Ninja
@@ -279,6 +294,42 @@ per-lane results and `ctf-review/inventory-layout.json` provenance.
 These reads prove the intended descriptors were active in the running production
 engine. They do not establish actual HUD rendering, flag interactions, captures,
 scoring or synchronization across peers; those acceptance checks remain open.
+
+### Native MotS CTF episode and personality menus
+
+A separate **4.622-second** native-menu replay completed with **15 actual
+1280 × 960 framebuffer captures**. The unmodified host menu offered all three
+converted TYPE 8 CTF episodes; its native OK handler returned each correct
+episode and map, maximum rank 8, mode flags 144 and game-format argument 0.
+The native character menus created and saved Jedi, Bounty Hunter, Scout and
+Soldier characters, then reloaded all four through the actual character parser
+using The Duel host menu's returned room fields. Native personality creation
+assigned rank 7; the test did not set ranks, inventory or personality values.
+
+The private diagnostic used exact production source base
+`e9e293a7a98c9a665509af96f9a87a9ca2470996`, executable SHA256
+`02ebed76650cf64ce90352a73c301dc1c0319921aab2464a9cf05b5daec2ab9f`,
+and candidate-manifest SHA256
+`cab09789ea99431b70294bfc03965d10b7f9bb6f58239e2c36ce16efefa3621f`.
+Its added provider invoked normal in-process GUI handlers and captured its own
+hidden window before native buffer swaps. Physical OS input was disabled. The
+production host and character menu implementations were unchanged; this adds
+no CTF menu feature to the released engine. The original baseline and diagnostic
+runtime retained their hashes, and the owned child exited normally.
+
+Two earlier private attempts remain preserved: one stopped because capture was
+armed before a native repaint completed; another captured and saved the first
+Jedi, then incorrectly treated the native nested-menu return value as failure.
+The successful retry corrected those provider assumptions while retaining fresh
+paint, native-result, backing-surface and menu-reference checks.
+
+The [sanitized native-menu record](https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ctf-native-menu-20260908.json)
+pins the source, build, canonical episodes/overlay, raw observations, native MPC
+files and images. It and the [representative screenshots](SCREENSHOTS.md) are
+repository documentation, excluded from application packages. This was a GUI
+test, with no listening game or gameplay simulation: CTF team entry, flag
+pickup/drop/return/capture, scoring and gameplay across personalities remain
+separate acceptance gates.
 
 
 ## Community RC1 expansion — final converted-v3

@@ -184,6 +184,26 @@ class ApiTests(unittest.TestCase):
         for path in ('/bridge.py', '/../bridge.py', '/docs/../bridge.py', '/docs/settings.json'):
             self.assertEqual(self.request(path)[0], 404)
 
+    def test_packaged_ninja_documentation_references_external_evidence(self):
+        import ninja_catalog
+        source_root = blackwing_app.ROOT
+        with tempfile.TemporaryDirectory() as temp:
+            packaged = Path(temp)
+            for name in ('NINJA_KAGE.md', 'VALIDATION.md'):
+                (packaged / name).write_bytes((source_root / name).read_bytes())
+            # A frozen app contains these Markdown files, but no repository
+            # validation tree. Exercise that exact layout over the real API.
+            with patch.object(blackwing_app, 'ROOT', packaged):
+                for name in ('NINJA_KAGE.md', 'VALIDATION.md'):
+                    code, body, headers = self.request('/docs/' + name)
+                    self.assertEqual(code, 200)
+                    self.assertEqual(headers['Content-Type'], 'text/plain; charset=utf-8')
+                    self.assertEqual(body, (packaged / name).read_bytes())
+                    self.assertIn(ninja_catalog.RUNTIME_TEST['evidence']['url'].encode(), body)
+                for path in ('/docs/validation/ninja-maxmana-20260908.json',
+                             '/docs/docs/validation/ninja-maxmana-20260908.json'):
+                    self.assertEqual(self.request(path)[0], 404)
+
     def test_export_selected_only_and_reject_empty(self):
         code, body, _ = self.request('/api/export', method='POST', body={'ids': ['jhs']})
         self.assertEqual(code, 200)

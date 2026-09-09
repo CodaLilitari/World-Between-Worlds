@@ -5,7 +5,8 @@ reads user-provided originals; this module contains no original asset payloads.
 """
 
 STATUS = 'prototype'
-RUNTIME_TEST = {
+RECIPE = 'ninja-kage-7.0-mots-mp-prototype-4-maxmana'
+PREVIOUS_RUNTIME_TEST = {
     'status': 'bounded-mp-pass',
     'artifact_sha256': '50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df',
     'game': 'MotS', 'mode': 'multiplayer', 'personality': 'Jedi', 'map': 'k1.jkl',
@@ -18,6 +19,27 @@ RUNTIME_TEST = {
     'limits': ['No complete combat, rendering, sound or remote visual equivalence claim.',
                'Single-player and other personalities unreviewed.',
                'Authored Throw/Lightning allocation and activation remain separate conversion gates.'],
+}
+RUNTIME_TEST = {
+    'status': 'bounded-native-initialization-pass',
+    'recipe': RECIPE,
+    'artifact_sha256': 'f65bded1d3db64602e8cc25a7c96a6e7c2328b2de33bedc7808f27295488806d',
+    'game': 'MotS', 'mode': 'multiplayer', 'personality': 'Jedi', 'map': 'k1.jkl',
+    'peers': 2, 'idle_seconds': 75.025,
+    'initialized_samples': {'host': 37, 'client': 34},
+    'observed_amounts': {'rank_bin20': 4, 'current_mana_bin14': 200, 'maximum_mana_bin69': 200},
+    'engine': {'kind': 'older-private-diagnostic', 'base_commit': None,
+               'exe_sha256': '78c4ac380c55da5c8bf0e36f82c147bdcfef16576a192eb775f2cf4f81006ad0',
+               'current_production_positive_rank_validated': False},
+    'full_gameplay': False,
+    'evidence': {'url': 'https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ninja-maxmana-20260908.json',
+                 'bundled': False,
+                 'sha256': '4fef964e4fc08b71264d88fe10b6023d6efcc6a85aab4d8446c78c1e800453cc'},
+    'limits': ['Initialization only, with input disabled and zero allocated powers.',
+               'Current e9 production positive-rank initialization remains unverified.',
+               'Underfunded casts, regeneration recovery, other ranks and personalities remain unverified.',
+               'Throw/Lightning allocation and activation remain separate conversion gates.'],
+    'predecessor': PREVIOUS_RUNTIME_TEST,
 }
 REQUIRED_HUD_ICONS = ('icf_thr8.bm', 'icf_thr16.bm', 'icf_lig8.bm', 'icf_lig16.bm')
 NORMALIZED_GOB_SHA256 = 'c9f001461ad37e1f3030b2b2d05db8fa591717880e908089d6932cd2e3e443ee'
@@ -91,7 +113,15 @@ ORIGINAL_MISSING = {
     ('cog/weap_bryar.cog', 'shthrow.key'): 'Original shuriken throw keyframe is absent.',
     ('jkl/static.jkl', 'starm.3do'): 'Original +stormlimb1 model is absent; SP dismemberment is outside this prototype.',
 }
-ORIGINAL_COG_EDITS = {'pow_single_thermal.cog': [{'count': 2,
+ORIGINAL_COG_EDITS = {
+ 'force_well.cog': [{'count': 1,
+                     'old': 'startup:\n   player = GetLocalPlayerThing();\n',
+                     'new': 'startup:\n   player = GetLocalPlayerThing();\n'
+                            '   SetInv(player, 69, GetInv(player, 20) * 50);\n',
+                     'reason': 'Initialize native MotS maximum-mana bin69 to the original Ninja '
+                               'rank*50 limit. Preserve current mana, rank*2 regeneration each '
+                               'second, the original clamp, and all authored power costs.'}],
+ 'pow_single_thermal.cog': [{'count': 2,
                              'new': 'GetCurWeapon(player) == 11',
                              'old': 'GetCurWeapon(player) == 10',
                              'reason': 'Preserve both auto-pickup and auto-reload saber protection '
@@ -254,7 +284,7 @@ PLAYER_COG_EDITS = [{'old': 'tip_mat=saberorange0.mat',
             'extra-weapon/EWEB/scope handling.'}]
 
 KNOWN_GAPS = [
-    'Bounded two-peer Jedi MP startup, weapon/action response and live grapple pull/detach passed on native K1; this is not complete gameplay equivalence.',
+    'V4 maximum-mana initialization passed a 75.025-second rank 4 two-peer idle test on the older pinned diagnostic; current e9 positive-rank initialization, underfunded casts and regeneration recovery remain unverified. V3 action/grapple evidence is a separate predecessor record.',
     'This prototype targets a fresh Jedi multiplayer character; other personalities and single-player are unreviewed.',
     'Original Force Throw/bin30 and Lightning/bin32 have descriptors and hotkeys, but native MotS allocation/cycling excludes them.',
     'Native Restore Defaults assumes 20 hotkeys; explicitly bind F2 Field Light/ACTIVATE21, F3 IR Goggles/ACTIVATE20 and F4 Bacta/ACTIVATE19 for this 25-action mod.',
