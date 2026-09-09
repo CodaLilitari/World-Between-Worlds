@@ -7,6 +7,20 @@ mod conversions locally. World Between Worlds supplies the instructions; require
 level assets come from the user's existing installations and original downloads.
 The application ships no retail or community game-asset payloads.
 
+For anyone new to these games, [Jedi Knight: Dark Forces II (1997)](https://www.starwars.com/news/lucasfilm-games-team-star-wars-gaming-moments)
+follows Kyle Katarn's journey from gunslinger to Jedi. Its expansion,
+[Mysteries of the Sith (1998)](https://support.starwars.com/hc/en-us/articles/360000721066-About-STAR-WARS-Jedi-Knight-Mysteries-of-the-Sith),
+adds a campaign featuring Mara Jade alongside Kyle. Their cult community has
+kept building for decades: [Massassi's archive](https://www.massassi.net/levels/)
+holds more than 1,200 JK multiplayer levels, and the site was still publishing
+[MotS mod updates in 2026](https://www.massassi.net/).
+
+The name borrows a preservation metaphor from the
+[World Between Worlds](https://www.starwars.com/databank/world-between-worlds)
+in *Star Wars Rebels* and *Ahsoka*: pathways and portals connecting different
+times and places. Here, the connection is between two classic games and the
+worlds their players made.
+
 The goal is to make the selected original JK content work in MotS while
 preserving its authored environment, mechanics and mod behavior. Each reviewed
 conversion becomes a repeatable recipe: required resources are extracted from
@@ -15,11 +29,21 @@ documented adaptations. Unresolved behavior stays visible as a compatibility
 limit. General gameplay additions, including Force restoration, are separate
 mods and are not part of the bridge's output.
 
+Compatibility fixes serve that preservation goal: keep the original creations
+accessible while recording precisely what needs to change. Users must supply
+the original inputs. We publish our original program and recipes; publishing
+those instructions is distinct from distributing modified levels. No source
+game/mod assets or finished conversions are reuploaded with WBW. The MIT license
+covers our original tooling and documentation only. Original-content terms
+remain separate; the [source-based terms review](https://richard-pemberton-research.darkahn.chatgpt.site/projects/wbw-rights-review.md)
+records them without claiming blanket author approval.
+
 ![World Between Worlds workbench](https://raw.githubusercontent.com/andreipemberton/World-Between-Worlds/main/docs/screenshots/workbench.png)
 
 This is a separate project from [OpenJKDF2-MotS-Fixes](https://github.com/andreipemberton/OpenJKDF2-MotS-Fixes).
-Original tooling: Andrei Pemberton, with Coda Lilitari. Original map/mod authors
-retain their own credits. See [NOTICE.md](NOTICE.md) for the asset and license boundary.
+Original tooling: Andrei Pemberton, with Coda Lilitari in Astra Codex. Original
+map/mod authors retain their own credits. See [NOTICE.md](NOTICE.md) for the asset
+and license boundary.
 
 ## Start the workbench
 
