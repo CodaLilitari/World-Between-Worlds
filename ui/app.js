@@ -3,6 +3,33 @@ const KINDS = {all:'All supported content',vanilla:'Vanilla JK',custom:'Custom l
 const MODES = {mp:'Multiplayer',ctf:'Capture the flag',sp:'Singleplayer'};
 const ELIGIBLE = new Set(['verified','supported','ready','available','prototype']);
 const TERMINAL = new Set(['complete','completed','done','success','succeeded','failed','error','cancelled','canceled','partial']);
+const SCAN_STATUSES = {current:'Current',update_available:'Update available',newer:'Newer than this catalog',unversioned:'Unversioned',modified:'Modified',unrecognized:'Unrecognized',error:'Could not inspect'};
+const PATH_FIELDS = {jk_root:'jk-root',mots_root:'mots-root',output_dir:'output-dir',archive_dir:'archive-dir'};
+
+function validRevision(value) { return Number.isSafeInteger(value) && value>0; }
+export function revisionLabel(value, missing='Not recorded') { return validRevision(value)?`wbw_v${value}`:missing; }
+export function scanStatusLabel(status) { return Object.hasOwn(SCAN_STATUSES,status)?SCAN_STATUSES[status]:'Unrecognized'; }
+export function validateScan(data) {
+  if (!data || typeof data.root!=='string' || !Array.isArray(data.results) || !Array.isArray(data.warnings) || typeof data.truncated!=='boolean') throw new Error('The local service returned an invalid folder scan.');
+  for (const row of data.results) {
+    if (!row || typeof row.path!=='string' || typeof row.filename!=='string' || !Object.hasOwn(SCAN_STATUSES,row.status) || typeof row.can_update!=='boolean' ||
+        (row.id!==null && (typeof row.id!=='string' || !row.id)) ||
+        (row.installed_revision!==null && !validRevision(row.installed_revision)) || (row.current_revision!==null && !validRevision(row.current_revision))) {
+      throw new Error('The local service returned an invalid installed-file result.');
+    }
+  }
+  return data;
+}
+export function scanUpdateIds(recipes, results, {locked=false,outdatedOnly=false}={}) {
+  if (locked) return [];
+  const requested=new Set(results.filter(row=>row.can_update===true && (!outdatedOnly || row.status==='update_available')).map(row=>row.id));
+  return selectedRecipes(recipes,requested).map(recipe=>recipe.id);
+}
+export function scanSummary(scan) {
+  const errors=scan.results.filter(row=>row.status==='error').length;
+  const incomplete=scan.truncated || errors>0;
+  return `${incomplete?'Scan incomplete':scan.warnings.length?'Scan complete with warnings':'Scan complete'} · ${scan.results.length} ${scan.results.length===1?'file':'files'} listed${errors?` · ${errors} ${errors===1?'inspection error':'inspection errors'}`:''}.`;
+}
 
 export function selectable(recipe) { return ELIGIBLE.has(String(recipe.status || '').toLowerCase()); }
 export function visibleRecipes(recipes, {kind='all',gameplay='all',search=''}={}) {
@@ -38,7 +65,7 @@ export function validateCatalog(data) {
   if (!Array.isArray(data.recipes)) throw new Error('The local service returned an invalid recipe catalog.');
   const ids = new Set();
   for (const recipe of data.recipes) {
-    if (!recipe || typeof recipe.id!=='string' || !recipe.id || ids.has(recipe.id) || typeof recipe.title!=='string' || !['vanilla','custom','mod'].includes(recipe.kind) || !Array.isArray(recipe.gameplay)) {
+    if (!recipe || typeof recipe.id!=='string' || !recipe.id || ids.has(recipe.id) || typeof recipe.title!=='string' || !['vanilla','custom','mod'].includes(recipe.kind) || !Array.isArray(recipe.gameplay) || (recipe.revision!==undefined && !validRevision(recipe.revision))) {
       throw new Error('The local service returned an invalid or duplicate recipe.');
     }
     ids.add(recipe.id);
@@ -48,19 +75,19 @@ export function validateCatalog(data) {
 
 function start() {
   const $ = id=>document.getElementById(id);
-  const state = {recipes:[],selected:new Set(),archives:Object.create(null),dirtyPaths:new Set(),kind:'all',gameplay:'all',search:'',job:null,jobId:null,jobRunning:false,pollTimer:null,detailRequest:0};
+  const state = {recipes:[],selected:new Set(),archives:Object.create(null),dirtyPaths:new Set(),kind:'all',gameplay:'all',search:'',job:null,jobId:null,jobRunning:false,pollTimer:null,detailRequest:0,scan:null,scanRunning:false,scanRequest:0,scanError:'',scanStale:false,pathPicking:null,pickerStatus:'',settingsSaving:false};
   const el = (tag,className='',text='')=>{const node=document.createElement(tag);if(className)node.className=className;node.textContent=text;return node;};
   const announce = text=>{$('announcements').textContent=text;};
   function notice(message) { $('notice-text').textContent=message;$('notice').classList.remove('hidden'); }
   function errorText(error) { return error instanceof Error ? error.message : String(error); }
-  async function api(path, {method='GET',body}={}) {
+  async function api(path, {method='GET',body,timeoutMs=15000}={}) {
     const token=document.querySelector('meta[name="blackwing-token"]')?.content;
     if (!token || token.includes('{{')) throw new Error('The local security token is missing. Reload this page through the World Between Worlds server.');
     const headers={Accept:'application/json','X-Blackwing-Token':token};
     if (method==='POST') {
       headers['Content-Type']='application/json';
     }
-    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),15000);
+    const controller=new AbortController();const timeout=timeoutMs>0?setTimeout(()=>controller.abort(),timeoutMs):null;
     try {
       const response=await fetch(path,{method,headers,credentials:'same-origin',signal:controller.signal,...(body===undefined?{}:{body:JSON.stringify(body)})});
       let data;
@@ -74,6 +101,90 @@ function start() {
   }
   function formPaths() { return Object.fromEntries(new FormData($('settings-form')).entries()); }
   function matching() { return visibleRecipes(state.recipes,state); }
+  function pathChanged(kind) {
+    state.dirtyPaths.add(kind);
+    if(kind==='mots_root'){state.scanRequest++;state.scanStale=Boolean(state.scan || state.scanRunning);state.scanError='';}
+    renderInstalled();
+  }
+  function renderPathControls() {
+    const locked=state.jobRunning || Boolean(state.pathPicking);
+    for(const [kind,id] of Object.entries(PATH_FIELDS)) {
+      $(id).disabled=locked;
+      $('browse-'+id).disabled=locked;
+      $('browse-'+id).textContent=state.pathPicking?.kind===kind?'Choosing…':'Browse…';
+    }
+    $('save-settings').disabled=locked || state.settingsSaving;
+    $('picker-status').textContent=state.pickerStatus;
+  }
+  async function pickPath(kind,recipeId) {
+    if(state.jobRunning || state.pathPicking)return;
+    const original=kind==='original_archive';
+    const recipe=original?selectedRecipes(state.recipes,state.selected).find(row=>row.id===recipeId && row.requires_archive):null;
+    if(original?!recipe:!Object.hasOwn(PATH_FIELDS,kind))return;
+    const previous=original?state.archives[recipeId] || '':$(PATH_FIELDS[kind]).value;
+    if(!original)state.dirtyPaths.add(kind);
+    state.pathPicking={kind,recipeId};state.pickerStatus=original?`Choose the original archive for ${recipe.title} in the file window.`:'Choose a folder in the file window. Cancel to keep your existing choice.';renderQueue();
+    try {
+      const data=await api('/api/pick-path',{method:'POST',body:{kind,...(original?{recipe_id:recipeId}:{})},timeoutMs:0});
+      if(!data || (data.path!==null && (typeof data.path!=='string' || !data.path.trim() || data.path.includes('\0'))))throw new Error('The local service returned an invalid file selection.');
+      if(data.path===null){state.pickerStatus='Selection cancelled. Your existing choice is unchanged.';return;}
+      if(original) {
+        if(!state.selected.has(recipeId) || (state.archives[recipeId] || '')!==previous){state.pickerStatus='The queue or file choice changed. The returned file was not applied.';return;}
+        state.archives[recipeId]=data.path;state.pickerStatus=`Original archive selected for ${recipe.title}.`;announce(state.pickerStatus);
+      } else {
+        if($(PATH_FIELDS[kind]).value!==previous){state.pickerStatus='The folder choice changed. The returned folder was not applied.';return;}
+        $(PATH_FIELDS[kind]).value=data.path;pathChanged(kind);state.pickerStatus='Folder selected. Save folders to remember this choice.';
+      }
+    } catch(error) {state.pickerStatus='Browse could not complete. You can paste the path into its field.';notice(errorText(error));}
+    finally {state.pathPicking=null;renderQueue();}
+  }
+  function renderInstalled() {
+    const focusedPath=document.activeElement?.dataset?.scanPath;
+    const locked=state.jobRunning || state.scanRunning || state.scanStale || Boolean(state.pathPicking);
+    $('scan-mots').disabled=state.jobRunning || state.scanRunning || Boolean(state.pathPicking) || !$('mots-root').value.trim();
+    $('scan-mots').textContent=state.scanRunning?'Scanning…':'Scan MotS folder';
+    $('scan-results').setAttribute('aria-busy',String(state.scanRunning));
+    $('scan-results').replaceChildren();$('scan-warnings').replaceChildren();
+    $('scan-root').textContent=state.scan?'Scanned folder: '+state.scan.root:'';
+    $('scan-status').classList.toggle('result-error',Boolean(state.scanError));
+    $('scan-status').textContent=state.scanRunning?'Inspecting installed files…':state.scanError?'Scan failed: '+state.scanError:state.scanStale?'The MotS folder changed. Scan again to compare its installed files.':state.scan?scanSummary(state.scan):'Ready when you are. Choose your MotS folder above, then scan it.';
+    $('scan-empty').classList.toggle('hidden',state.scanRunning || Boolean(state.scanError) || !state.scan || state.scan.results.length>0);
+    $('scan-empty').textContent=state.scan?.truncated?'No files were listed in this incomplete scan. Review the warnings and try again.':state.scan?.warnings.length?'No installed GOO files were listed. Review the scan warnings.':'No installed GOO files were found in this scan.';
+    const outdated=scanUpdateIds(state.recipes,state.scan?.results || [],{outdatedOnly:true});
+    const remaining=outdated.filter(id=>!state.selected.has(id));
+    $('queue-outdated').classList.toggle('hidden',!outdated.length);
+    $('queue-outdated').disabled=locked || !remaining.length;
+    $('queue-outdated').textContent=remaining.length?`Queue all outdated (${remaining.length})`:'Outdated recipes queued';
+    if (state.scan) {
+      if (state.scan.truncated) $('scan-warnings').append(el('li','','The scan reached its limit. These results do not cover every installed file.'));
+      for (const warning of state.scan.warnings) $('scan-warnings').append(el('li','',typeof warning==='string'?warning:JSON.stringify(warning)));
+      for (const result of state.scan.results) {
+        const item=el('article','scan-item'),heading=el('div','scan-item-heading');
+        heading.append(el('h3','',result.title || result.filename),el('span','badge'+(result.status==='current'?' supported':result.status==='error'?' error':' warning'),scanStatusLabel(result.status)));
+        item.append(heading,el('span','result-path',result.path));
+        const revisions=el('p','scan-revisions');revisions.append(el('span','',`Installed: ${revisionLabel(result.installed_revision,result.status==='unversioned'?'Unversioned':'Unknown')}`),el('span','',`Catalog: ${revisionLabel(result.current_revision,'No matching recipe')}`));item.append(revisions);
+        if (result.duplicate) item.append(el('p','scan-duplicate','Multiple installed files match this recipe. Review each copy before using a new conversion.'));
+        if (result.message) item.append(el('p','scan-message',String(result.message)));
+        if (scanUpdateIds(state.recipes,[result]).length) {
+          const button=el('button','text-button',state.selected.has(result.id)?'Already queued':'Queue updated recipe');button.type='button';button.disabled=locked || state.selected.has(result.id);button.dataset.scanPath=result.path;button.setAttribute('aria-label',`${state.selected.has(result.id)?'Already queued':'Queue updated recipe for'} ${result.title || result.filename}`);
+          button.addEventListener('click',()=>{if(state.scanRunning || state.scanStale || state.jobRunning || state.pathPicking || !scanUpdateIds(state.recipes,[result]).length)return;setSelection(result.id,true);});item.append(button);
+        }
+        $('scan-results').append(item);
+      }
+    }
+    if(focusedPath && !locked)[...$('scan-results').querySelectorAll('button')].find(button=>button.dataset.scanPath===focusedPath && !button.disabled)?.focus({preventScroll:true});
+  }
+  async function scanInstalled() {
+    const mots_root=$('mots-root').value.trim();
+    if (state.jobRunning || state.scanRunning || state.pathPicking || !mots_root) return;
+    const request=++state.scanRequest;state.scanRunning=true;state.scan=null;state.scanError='';state.scanStale=false;renderInstalled();
+    try {
+      const data=validateScan(await api('/api/scan',{method:'POST',body:{mots_root},timeoutMs:120000}));
+      if (request!==state.scanRequest) return;
+      state.scan=data;announce(scanSummary(data));
+    } catch(error) { if(request===state.scanRequest)state.scanError=errorText(error); }
+    finally { state.scanRunning=false;renderInstalled(); }
+  }
   function renderPicker() {
     const previous=$('recipe-picker').value;
     $('recipe-picker').replaceChildren(new Option('Add a map or mod…',''));
@@ -81,7 +192,7 @@ function start() {
       const rows=matching().filter(recipe=>recipe.kind===kind && selectable(recipe));
       if (!rows.length) continue;
       const group=document.createElement('optgroup');group.label=KINDS[kind];
-      for (const recipe of rows) {const option=new Option(recipe.title+(recipe.status==='prototype'?' (prototype)':''),recipe.id);option.disabled=state.selected.has(recipe.id) || state.jobRunning;group.append(option);}
+      for (const recipe of rows) {const option=new Option(recipe.title+' · '+revisionLabel(recipe.revision,'Revision unavailable')+(recipe.status==='prototype'?' (prototype)':''),recipe.id);option.disabled=state.selected.has(recipe.id) || state.jobRunning;group.append(option);}
       $('recipe-picker').append(group);
     }
     if ([...$('recipe-picker').options].some(option=>option.value===previous && !option.disabled)) $('recipe-picker').value=previous;
@@ -114,6 +225,7 @@ function start() {
       const bottom=el('div','card-bottom');
       const prototype=recipe.status==='prototype';
       bottom.append(el('span','badge'+(available && !prototype?' supported':' warning'),prototype?'Prototype · limited compatibility':available?(recipe.status==='verified'?'Verified recipe':'Supported recipe'):'Unavailable'));
+      bottom.append(el('span','badge revision-badge',revisionLabel(recipe.revision,'Revision unavailable')));
       for (const mode of recipe.gameplay) bottom.append(el('span','badge',MODES[mode] || mode));
       const details=el('button','card-details','Details');details.type='button';details.setAttribute('aria-label',`Details for ${recipe.title}`);details.addEventListener('click',()=>showDetails(recipe));bottom.append(details);card.append(bottom);
       if (recipe.startup_overlay) card.append(el('p','overlay-note',recipe.kind==='mod'?'Creates a separate mod folder; load it only when you choose.':'Includes a required startup overlay for this map.'));
@@ -137,28 +249,37 @@ function start() {
     $('queue-list').replaceChildren();
     rows.forEach((recipe,index)=>{
       const item=el('li','queue-item');item.append(el('span','queue-item-index',String(index+1).padStart(2,'0')));
-      const content=el('div','queue-item-content');content.append(el('div','queue-item-title',recipe.title),el('span','queue-item-kind',`${KINDS[recipe.kind]} · ${recipe.gameplay.map(mode=>MODES[mode] || mode).join(', ')}`));
+      const content=el('div','queue-item-content');content.append(el('div','queue-item-title',recipe.title),el('span','queue-item-kind',`${KINDS[recipe.kind]} · ${recipe.gameplay.map(mode=>MODES[mode] || mode).join(', ')} · ${revisionLabel(recipe.revision,'Revision unavailable')}`));
       const remove=el('button','remove-item','×');remove.type='button';remove.disabled=state.jobRunning;remove.setAttribute('aria-label',`Remove ${recipe.title} from queue`);remove.addEventListener('click',()=>setSelection(recipe.id,false));item.append(content,remove);$('queue-list').append(item);
     });
     $('clear-selection').disabled=!rows.length || state.jobRunning;
     $('export-selection').disabled=!rows.length;
-    $('convert').disabled=!rows.length || state.jobRunning;
+    $('convert').disabled=!rows.length || state.jobRunning || Boolean(state.pathPicking);
     $('convert').textContent=state.jobRunning?'Conversion in progress…':`Convert selected (${rows.length}) →`;
     $('conversion-hint').textContent=state.jobRunning?'This queue is locked while its job runs.':rows.some(recipe=>recipe.status==='prototype')?'Includes a prototype with the compatibility limits shown in Details. Conversion creates files; it does not launch the game or load a mod.':rows.length?'Uses your original archives. Conversion creates files; it does not launch the game or load a mod.':'Select at least one available recipe.';
-    const overridesOpen=$('archive-overrides').querySelector('details')?.open || false;
     $('archive-overrides').replaceChildren();
     const custom=rows.filter(recipe=>recipe.requires_archive);
     if (custom.length) {
-      const details=el('details','archive-details');details.open=overridesOpen;details.append(el('summary','','Archive overrides (optional)'),el('p','','Leave these blank to use the original archive folder. Enter a full path when an archive is stored elsewhere.'));
+      const sources=el('section','archive-details');sources.append(el('h3','','Choose the originals'),el('p','','For each custom level or mod, choose the original downloaded ZIP or GOB.'));
       for (const recipe of custom) {
-        const label=el('label','',recipe.title),input=document.createElement('input');input.type='text';input.autocomplete='off';input.spellcheck=false;input.value=state.archives[recipe.id] || '';input.placeholder=recipe.archive_hint || 'Full path to the original ZIP';input.disabled=state.jobRunning;input.addEventListener('input',()=>{state.archives[recipe.id]=input.value;});label.append(input);details.append(label);
+        const item=el('div','archive-choice'),label=el('label','',recipe.title),input=document.createElement('input');input.type='text';input.autocomplete='off';input.spellcheck=false;input.value=state.archives[recipe.id] || '';input.placeholder='Browse to the original archive, or paste its path';input.disabled=state.jobRunning || Boolean(state.pathPicking);input.setAttribute('aria-label',`Original archive for ${recipe.title}`);input.dataset.archiveId=recipe.id;input.addEventListener('input',()=>{state.archives[recipe.id]=input.value;});label.append(input);item.append(label);
+        const actions=el('div','archive-actions'),browse=el('button','button secondary',state.pathPicking?.recipeId===recipe.id?'Choosing…':'Browse original…');browse.type='button';browse.disabled=state.jobRunning || Boolean(state.pathPicking);browse.dataset.archiveBrowse=recipe.id;browse.setAttribute('aria-label',`Browse for the original archive of ${recipe.title}`);browse.addEventListener('click',()=>pickPath('original_archive',recipe.id));actions.append(browse);
+        const source=safeSourceUrl(recipe.source_url);
+        if(source){const link=el('a','download-original','Download original ↗');link.href=source;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label',`Open the reviewed download page for ${recipe.title}`);actions.append(link);}
+        item.append(actions);
+        if(source)item.append(el('p','source-help','Download original opens the reviewed source page. Download there, then Browse to the saved file.'));
+        if(recipe.archive_hint)item.append(el('p','archive-hint','Reviewed source: '+recipe.archive_hint));
+        if(!state.archives[recipe.id] && $('archive-dir').value.trim())item.append(el('p','archive-hint','Or use the original archive folder set in optional settings.'));
+        sources.append(item);
       }
-      $('archive-overrides').append(details);
+      $('archive-overrides').append(sources);
     }
+    renderPathControls();renderInstalled();
   }
   async function showDetails(recipe) {
     const request=++state.detailRequest;
     $('detail-title').textContent=recipe.title;$('detail-content').replaceChildren(el('p','',recipe.summary || 'Recipe provenance and conversion details.'));
+    $('detail-content').append(el('p','',`Recipe revision: ${revisionLabel(recipe.revision,'Unavailable')}`));
     if (recipe.author) $('detail-content').append(el('p','',`Original author: ${recipe.author}`));
     const source=safeSourceUrl(recipe.source_url);
     if (source) { const link=el('a','quiet-link','Open original source ↗');link.href=source;link.target='_blank';link.rel='noopener noreferrer';$('detail-content').append(link); }
@@ -206,12 +327,12 @@ function start() {
     }
   }
   async function convert() {
-    if(state.jobRunning)return;
+    if(state.jobRunning || state.pathPicking)return;
     const payload=selectionPayload(state.recipes,state.selected,formPaths(),state.archives);
     if(!payload.ids.length)return;
-    if(!payload.jk_root || !payload.mots_root || !payload.output_dir) {notice('Enter your Jedi Knight, Mysteries of the Sith, and output folders before converting.');$('setup-panel').open=true;$(!payload.jk_root?'jk-root':!payload.mots_root?'mots-root':'output-dir').focus();return;}
+    if(!payload.jk_root || !payload.mots_root) {notice('Choose your Jedi Knight and Mysteries of the Sith folders before converting.');$('setup-panel').open=true;$(!payload.jk_root?'browse-jk-root':'browse-mots-root').focus();return;}
     const missing=selectedRecipes(state.recipes,state.selected).find(recipe=>recipe.requires_archive && !payload.archive_dir && !payload.archives[recipe.id]);
-    if(missing) {notice(`Provide an original archive folder or an archive override for ${missing.title}.`);$('setup-panel').open=true;$('archive-dir').focus();return;}
+    if(missing) {notice(`Choose the original archive for ${missing.title} in your queue. If you need it, open Download original first.`);[...$('archive-overrides').querySelectorAll('button')].find(button=>button.dataset.archiveBrowse===missing.id)?.focus();return;}
     state.jobRunning=true;renderLibrary();renderQueue();$('notice').classList.add('hidden');
     try {
       const response=await api('/api/convert',{method:'POST',body:payload});
@@ -235,8 +356,14 @@ function start() {
   $('reset-filters').addEventListener('click',()=>{state.kind='all';state.gameplay='all';state.search='';$('search').value='';$('gameplay-filter').value='all';renderLibrary();});
   $('close-details').addEventListener('click',()=>$('recipe-dialog').close());
   $('recipe-dialog').addEventListener('close',()=>{state.detailRequest++;});
-  $('settings-form').addEventListener('submit',async event=>{event.preventDefault();$('save-settings').disabled=true;$('settings-status').textContent='Saving local folder settings…';try {await api('/api/settings',{method:'POST',body:formPaths()});$('settings-status').textContent='Local folder settings saved.';}catch(error){$('settings-status').textContent='Folders were not saved.';notice(errorText(error));}finally{$('save-settings').disabled=false;}});
-  $('settings-form').addEventListener('input',event=>{if(event.target.name)state.dirtyPaths.add(event.target.name);});
+  $('settings-form').addEventListener('submit',async event=>{event.preventDefault();if(state.pathPicking || state.jobRunning)return;state.settingsSaving=true;renderPathControls();$('settings-status').textContent='Saving local folder settings…';try {await api('/api/settings',{method:'POST',body:formPaths()});$('settings-status').textContent='Local folder settings saved.';}catch(error){$('settings-status').textContent='Folders were not saved.';notice(errorText(error));}finally{state.settingsSaving=false;renderPathControls();}});
+  $('settings-form').addEventListener('input',event=>{if(event.target.name)pathChanged(event.target.name);});
+  for(const [kind,id] of Object.entries(PATH_FIELDS))$('browse-'+id).addEventListener('click',()=>pickPath(kind));
+  $('scan-mots').addEventListener('click',scanInstalled);
+  $('queue-outdated').addEventListener('click',()=>{
+    const ids=scanUpdateIds(state.recipes,state.scan?.results || [],{locked:state.jobRunning || state.scanRunning || state.scanStale || Boolean(state.pathPicking),outdatedOnly:true});
+    if(!ids.length)return;ids.forEach(id=>state.selected.add(id));renderLibrary();renderQueue();announce(`${ids.length} outdated ${ids.length===1?'recipe':'recipes'} queued. Review your selection, source folders, and output folder before converting.`);
+  });
   $('convert').addEventListener('click',convert);$('refresh-job').addEventListener('click',pollJob);
   $('export-report').addEventListener('click',()=>{
     if(!state.job)return;
@@ -253,7 +380,7 @@ function start() {
     }catch(error){notice('Recipes could not be exported: '+errorText(error));}
     finally{$('export-selection').disabled=!state.selected.size;}
   });
-  document.addEventListener('keydown',event=>{if(event.key==='/' && !event.ctrlKey && !event.metaKey && !event.altKey && !['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName) && !$('recipe-dialog').open){event.preventDefault();$('search').focus();}});
+  document.addEventListener('keydown',event=>{if(event.key==='/' && !event.ctrlKey && !event.metaKey && !event.altKey && !['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName) && !$('recipe-dialog').open){event.preventDefault();$('catalog-details').open=true;$('search').focus();}});
   renderQueue();
   Promise.allSettled([api('/api/health'),api('/api/catalog'),api('/api/settings')]).then(results=>{
     const [health,catalog,settings]=results;
@@ -265,6 +392,7 @@ function start() {
     } else {notice('Could not load the local recipe catalog. '+errorText(catalog.reason));$('result-count').textContent='Catalog unavailable';$('recipe-list').setAttribute('aria-busy','false');}
     if(settings.status==='fulfilled') {const paths=settings.value.paths || settings.value;for(const [key,id] of Object.entries({jk_root:'jk-root',mots_root:'mots-root',archive_dir:'archive-dir',output_dir:'output-dir'})){if(typeof paths[key]==='string' && !state.dirtyPaths.has(key))$(id).value=paths[key];}}
     else notice('Saved folder settings could not be loaded. You can enter them above. '+errorText(settings.reason));
+    renderInstalled();
   });
 }
 

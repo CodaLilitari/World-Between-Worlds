@@ -35,6 +35,10 @@ does not collect game assets, mod readmes, private evidence or generated
 conversions. The source release includes an explicit list of public synthetic
 tests, UI test files and maintainer documentation. A generated per-file manifest
 lists the exact payload hashes.
+The original Coda interface illustration is embedded as a PNG data URL in the
+explicitly allowed `ui/coda-wbw.js`. Its decoded bytes match the native original
+documented in `SCREENSHOTS.md`. Reference sheets and game screenshots are not
+package inputs. This packaging preserves older launchers' code-file grammar.
 Repeated source builds with identical input bytes produce identical ZIP bytes.
 
 Standalone packages require a native platform builder; PyInstaller does not
@@ -45,11 +49,19 @@ virtual environment, install `requirements-build.txt`, then run:
 python -B packaging/build_standalone.py --out artifacts
 ```
 
+The build interpreter must include Tkinter and Tcl/Tk runtime data. PyInstaller's
+normal Tk hooks bundle them for the explicit folder/file chooser; missing runtime
+or license notices fail the build. Exact Tcl/Tk notices are appended to the existing
+`PYINSTALLER-NOTICE.txt` so older native bootstraps accept the package file set.
+The chooser is launched only by a user's Browse action in a separate helper
+process. Tests must not open real desktop dialogs. Plain path entry remains
+available when using source builds without Tk or without a desktop session.
+
 The build stages only allowlisted inputs in a temporary tree and uses a fixed
 entrypoint. Public documents are embedded at their exact relative paths for the
 app's documentation routes; source modules are also embedded for recipe exports.
 The resulting one-file executable is placed in a platform ZIP with the MIT,
-Python and PyInstaller notices and generated package manifest. Standalone reproducibility is
+Python, Tcl/Tk and PyInstaller notices and generated package manifest. Standalone reproducibility is
 not claimed: the interpreter, OS and native toolchain must be recorded. A Linux
 build records a conservative `libc_min` equal to its build system's glibc version.
 The updater skips older glibc and musl installations. Ubuntu 22.04 CI therefore

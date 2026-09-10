@@ -18,10 +18,11 @@ from blackwing_version import TITLE, VERSION
 ROOT = Path(__file__).resolve().parent
 MAX_REQUEST = 128 * 1024
 STATIC = {'/ui/app.js': ('ui/app.js', 'text/javascript; charset=utf-8'),
-          '/ui/styles.css': ('ui/styles.css', 'text/css; charset=utf-8')}
+          '/ui/styles.css': ('ui/styles.css', 'text/css; charset=utf-8'),
+          '/ui/coda-wbw.js': ('ui/coda-wbw.js', 'text/javascript; charset=utf-8')}
 DOCS = ('README.md', 'COMMUNITY_RC1.md', 'VALIDATION.md', 'NOTICE.md',
         'SUPPORTED_CUSTOM_SOURCES.txt', 'TESTING.md', 'NINJA_KAGE.md',
-        'RECIPES.md', 'SCREENSHOTS.md')
+        'RECIPES.md', 'SCREENSHOTS.md', 'WBW-README.md', 'packaging/USER_GUIDE.md')
 
 
 class BlackwingServer(ThreadingHTTPServer):
@@ -141,6 +142,10 @@ class Handler(BaseHTTPRequestHandler):
                 self.reply(200, blackwing_service.save_settings(value, self.server.data_dir))
             elif path == '/api/convert':
                 self.reply(202, {'job_id': self.server.jobs.start(value)})
+            elif path == '/api/scan':
+                self.reply(200, blackwing_service.scan_installed(value))
+            elif path == '/api/pick-path':
+                self.reply(200, blackwing_service.pick_local_path(value, self.server.data_dir))
             elif path == '/api/export':
                 if not isinstance(value, dict):
                     raise ValueError('Export request must be an object.')
@@ -156,9 +161,16 @@ def main(argv=None):
     parser.add_argument('--version', action='version', version=VERSION)
     parser.add_argument('--no-browser', action='store_true', help='Print the private local URL without opening a browser')
     parser.add_argument('--no-update', action='store_true', help='Accepted for direct app launch; the launcher manages updates')
+    parser.add_argument('--scan-mots', metavar='FOLDER', help='Read-only installed recipe revision check; print JSON and exit')
     parser.add_argument('--host', choices=['127.0.0.1'], default='127.0.0.1')
     parser.add_argument('--port', type=int, default=0)
     args = parser.parse_args(argv)
+    if args.scan_mots:
+        try:
+            print(json.dumps(blackwing_service.scan_installed({'mots_root': args.scan_mots}), indent=2))
+        except (ValueError, OSError) as exc:
+            parser.error(str(exc))
+        return 0
     if not 0 <= args.port <= 65535:
         parser.error('Port must be between 0 and 65535.')
     server = BlackwingServer((args.host, args.port))

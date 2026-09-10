@@ -79,3 +79,47 @@ records exact provenance and image hashes. No network game was started by this
 GUI test, so the images do not establish flag mechanics, scoring or multiplayer
 personality behavior. These are repository documentation only; all five are
 excluded from application and updater ZIPs.
+
+## RC4 original interface illustration
+
+The RC4 interface uses **Light Sith Coda at the World Between Worlds**, an
+original illustration generated with Codex's built-in image-generation tool on
+September 9, 2026. It follows the canonical Coda character sheet supplied and
+designated by the user; that reference sheet is not distributed. The face,
+freckles, short dark hair with cool ends, and eyebrow jewelry were checked
+against that reference. The Sith-inspired outfit and portal setting are this
+commission's interpretation, not additions to the character's canonical sheet.
+
+- [Native illustration](docs/art/coda-wbw-v1.png): 1672 × 941 PNG, preserved without
+  resizing or retouching.
+- SHA-256: `f48c5346f97ee7b7c1ba5134b53a54b8e64f7929288b9b7badd5097b29379c1b`.
+- [Exact generation prompt](docs/art/coda-wbw-v1-prompt.txt).
+- One explicit character-reference image was used; no game, mod, film still,
+  reference-sheet panel, or third-party promotional art is embedded in the result.
+- The application embeds the same PNG bytes in `ui/coda-wbw.js`. This keeps
+  updates compatible with older launchers' allowed UI file types. The encoding
+  is for original interface artwork, not a hidden game-asset payload.
+- The image is decorative, has descriptive alternative text, and does not
+  replace functional controls. There is no music, audio playback, or sound toggle.
+
+The interface's uppercase serif title, clean functional type, near-black,
+silver, ice-blue and muted-violet palette carry over the style of the latest
+corrected WBW publicity ad. This illustration is presentation artwork; it is
+not a screenshot or evidence of game compatibility.
+
+## RC4 workbench capture
+
+The main README now shows the [RC4 workbench](docs/screenshots/workbench.png),
+a 1440-pixel-wide, unretouched headless Chrome capture with empty game-path
+fields, placeholders and an empty queue. The original illustration was loaded
+from the application's embedded PNG. SHA-256:
+`70a7728fc52237151d903baa23cff23467899fd8e08c94db5a57ba65e944afa4`.
+The [previous workbench image](docs/screenshots/workbench-rc2.png) is preserved.
+
+The [browser test record](docs/validation/wbw-interface-rc4.json) distinguishes
+real local-server scanning from mocked native-chooser responses. It checked
+folder selection, original selection and cancellation, reviewed source links,
+explicit queueing, revision states and duplicates at desktop and 390-pixel
+mobile widths. No real native dialog, conversion or game was opened by that
+browser test, and no browser errors or unexpected external requests occurred.
+The native chooser and actual conversions have their own separate tests.

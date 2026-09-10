@@ -7,6 +7,7 @@ import argparse
 import importlib.util
 import importlib.metadata
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -39,6 +40,43 @@ def runtime_notices():
         "PyInstaller bootloader is distributed under its GPL license with the stated bootloader exception.\n"
         "The bundled application code remains under its own MIT license.\n"
         "See PYINSTALLER-COPYING.txt and PYTHON-LICENSE.txt for the accompanying runtime notices.\n").encode()
+    # Preserve the old native updater's accepted filenames. Tcl/Tk notices belong
+    # in this existing notice file rather than a new, bootstrap-incompatible file.
+    from PyInstaller.utils.hooks.tcl_tk import tcltk_info
+    if not tcltk_info.available:
+        raise update.UpdateError("The standalone builder needs Tcl/Tk for the native path chooser")
+    python_terms = python_license.read_bytes()
+    for component in ("tcl", "tk"):
+        version = ".".join(map(str, getattr(tcltk_info, component + "_version")))
+        data_dir = Path(getattr(tcltk_info, component + "_data_dir"))
+        documents = [data_dir / "license.terms",
+                     Path(sys.base_prefix) / "share/doc" / ("lib" + component + version) / "copyright"]
+        if sys.platform.startswith("linux"):
+            # A setup-python/venv interpreter can live outside /usr while its
+            # Tcl/Tk shared libraries and distro notices still come from /usr.
+            documents.append(Path("/usr/share/doc") / ("lib" + component + version) / "copyright")
+        document = next((path for path in documents if path.is_file()), None)
+        if document is not None:
+            notice = document.read_bytes()
+            origin = document.name if document.name == "license.terms" else document.parent.name + "/copyright"
+        elif sys.platform == "win32":
+            # Official Windows Python includes the Tcl license verbatim in its
+            # combined LICENSE.txt, but does not always ship tcl8.6/license.terms.
+            # Select the complete supplied Tcl/Tk paragraph, never paraphrase it.
+            blocks = re.findall(
+                rb"This software is copyrighted by the Regents of the University of[\s\S]*?"
+                rb"terms specified in this license\.", python_terms)
+            matches = [block for block in blocks if b"Scriptics Corporation" in block
+                       and ((b"Apple Inc." in block) == (component == "tk"))]
+            if len(matches) != 1:
+                raise update.UpdateError("Could not identify the build interpreter's " + component + " license")
+            notice, origin = matches[0], "Python LICENSE.txt"
+        else:
+            raise update.UpdateError("Could not locate the build interpreter's " + component + " license")
+        if not notice.strip():
+            raise update.UpdateError("Empty Tcl/Tk runtime license")
+        heading = f"\n\n--- {component.upper()} {version} runtime notice ({origin}) ---\n"
+        result["PYINSTALLER-NOTICE.txt"] += heading.encode("utf-8") + notice + b"\n"
     return result
 
 
@@ -67,7 +105,7 @@ def main(argv=None):
         command = [sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean", "--onefile",
                    "--name", "WBW", "--distpath", str(work / "dist"),
                    "--workpath", str(work / "work"), "--specpath", str(work)]
-        for ui_name in ("index.html", "app.js", "styles.css"):
+        for ui_name in ("index.html", "app.js", "styles.css", "coda-wbw.js"):
             ui_file = source / "ui" / ui_name
             if ui_file.is_file():
                 command += ["--add-data", str(ui_file) + ":ui"]

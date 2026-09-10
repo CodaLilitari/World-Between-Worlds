@@ -1,0 +1,128 @@
+{
+  "scope": "Production UI and loopback scanner in actual headless Chrome. Native-picker responses intercepted: no dialog opened. No conversion, game, or external asset request.",
+  "version": "0.2.0-rc4",
+  "requests": [
+    {
+      "path": "/",
+      "method": "GET"
+    },
+    {
+      "path": "/ui/styles.css",
+      "method": "GET"
+    },
+    {
+      "path": "/ui/app.js",
+      "method": "GET"
+    },
+    {
+      "path": "/ui/coda-wbw.js",
+      "method": "GET"
+    },
+    {
+      "path": "/api/health",
+      "method": "GET"
+    },
+    {
+      "path": "/api/catalog",
+      "method": "GET"
+    },
+    {
+      "path": "/api/settings",
+      "method": "GET"
+    },
+    {
+      "path": "/api/pick-path",
+      "method": "POST"
+    },
+    {
+      "path": "/api/pick-path",
+      "method": "POST"
+    },
+    {
+      "path": "/api/catalog",
+      "method": "GET"
+    },
+    {
+      "path": "/api/pick-path",
+      "method": "POST"
+    },
+    {
+      "path": "/api/pick-path",
+      "method": "POST"
+    },
+    {
+      "path": "/api/scan",
+      "method": "POST"
+    }
+  ],
+  "pickRequests": [
+    {
+      "kind": "jk_root"
+    },
+    {
+      "kind": "mots_root"
+    },
+    {
+      "kind": "original_archive",
+      "recipe_id": "jhs"
+    },
+    {
+      "kind": "original_archive",
+      "recipe_id": "jhs"
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "unexpected": [],
+  "art": {
+    "naturalWidth": 1672,
+    "naturalHeight": 941,
+    "fit": "contain",
+    "sourceType": "data:image/png;base64"
+  },
+  "publication_screenshot": "workbench-publication.png: primary paths cleared through the UI; only placeholders shown, empty queue, original artwork loaded.",
+  "source_link": "https://www.jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Game%20Files/jkmp/jhs.zip",
+  "original_picker_cancel_preserved": true,
+  "queue": [
+    "Canyon Oasis",
+    "Jedi's High School"
+  ],
+  "scan_statuses": [
+    {
+      "filename": "bridge-canyon-v1.goo",
+      "status": "unversioned",
+      "duplicate": true
+    },
+    {
+      "filename": "canyon_current_wbw_v1.goo",
+      "status": "current",
+      "duplicate": true
+    },
+    {
+      "filename": "canyon_duplicate_wbw_v1.goo",
+      "status": "current",
+      "duplicate": true
+    },
+    {
+      "filename": "canyon_modified_wbw_v1.goo",
+      "status": "modified",
+      "duplicate": true
+    },
+    {
+      "filename": "jhs_newer_wbw_v2.goo",
+      "status": "newer",
+      "duplicate": false
+    },
+    {
+      "filename": "unrelated.goo",
+      "status": "unrecognized",
+      "duplicate": false
+    }
+  ],
+  "mobile_overflow": {
+    "scroll": 390,
+    "viewport": 390
+  },
+  "fixture_hashes_unchanged": true,
+  "result": "passed"
+}

@@ -1,7 +1,8 @@
-"""Local conversion orchestration. Never scans or converts an implicit selection."""
+"""Local conversion orchestration and explicitly requested installation checks."""
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import tempfile
 import threading
@@ -11,6 +12,8 @@ import sys
 import bridge
 import custom_registry
 import verify_retail
+import blackwing_revisions
+import blackwing_picker
 from gob import Gob
 from blackwing_catalog import canonical, recipe_details, selection, source_hashes, require_consistent_sources
 from blackwing_version import VERSION
@@ -46,6 +49,8 @@ def normalize_settings(value):
         if not isinstance(item, str) or len(item) > 4096 or '\x00' in item:
             raise ValueError('Invalid path for ' + key)
         result[key] = item.strip()
+    if not result['output_dir']:
+        result['output_dir'] = str(Path.home() / 'Documents' / 'World Between Worlds conversions')
     return result
 
 
@@ -91,7 +96,8 @@ def validate_request(value):
     if not isinstance(value, dict):
         raise ValueError('Conversion request must be an object.')
     rows = selection(value.get('ids'))
-    paths = {key: path_value(value.get(key), key.replace('_', ' '), existing=key != 'output_dir')
+    settings = normalize_settings(value)
+    paths = {key: path_value(settings[key], key.replace('_', ' '), existing=key != 'output_dir')
              for key in ('jk_root', 'mots_root', 'output_dir')}
     archive_dir = value.get('archive_dir', '')
     if archive_dir:
@@ -182,6 +188,110 @@ def tree_hashes(directory):
             for path in sorted(directory.rglob('*')) if path.is_file()}
 
 
+def scan_installed(value):
+    """Read only the chosen MotS installation; never convert or install a result."""
+    if not isinstance(value, dict):
+        raise ValueError('Scan request must be an object.')
+    require_consistent_sources()
+    selected = value.get('mots_root')
+    if not isinstance(selected, str) or not selected.strip() or len(selected) > 4096 or '\x00' in selected:
+        raise ValueError('Choose the MotS installation to scan.')
+    # Keep the selected spelling until the scanner checks every path component;
+    # resolving here would hide a user path that traverses a junction or link.
+    root = Path(selected.strip()).expanduser()
+    from blackwing_catalog import recipes
+    result = blackwing_revisions.scan_installation(root, recipes())
+    require_consistent_sources()
+    return {**result, 'version': VERSION,
+            'comparison': 'Recipe revisions in this installed WBW catalog'}
+
+
+def pick_local_path(value, directory=None):
+    """Return one path from an explicitly invoked desktop chooser."""
+    if not isinstance(value, dict) or value.get('kind') not in blackwing_picker.KINDS:
+        raise ValueError('Choose a supported folder or original archive.')
+    kind = value['kind']
+    settings = load_settings(directory)
+    if kind == 'original_archive':
+        rows = selection([value.get('recipe_id')])
+        if not rows[0]['requires_archive']:
+            raise ValueError('This stock level reads your game installation; it needs no downloaded archive.')
+        initial = settings['archive_dir'] or None
+    else:
+        initial = settings[kind] or None
+    try:
+        return {'path': blackwing_picker.pick_path(kind, initial_path=initial)}
+    except blackwing_picker.PickerError as exc:
+        raise ValueError(str(exc)) from exc
+
+
+def track_outputs(row, stage, result, lock):
+    """Wrap independently verified payloads with inert revision metadata."""
+    stage = Path(stage).resolve()
+    original_primary = result['filename']
+    artifacts = []
+    for path in sorted(stage.rglob('*.goo')):
+        relative = path.relative_to(stage).as_posix()
+        renamed = blackwing_revisions.versioned_name(relative, row['revision'])
+        target = stage / renamed
+        if not target.resolve().is_relative_to(stage) or target.exists():
+            raise ValueError('Tracked output name collides or leaves staging folder.')
+        payload = path.read_bytes()
+        stamped, metadata = blackwing_revisions.stamp_archive(
+            payload, row['id'], row['revision'], tool_version=VERSION,
+            role='primary' if relative == original_primary else 'startup',
+            recipe_sha256=lock['recipe_sha256'])
+        with target.open('xb') as stream:
+            stream.write(stamped)
+        if blackwing_revisions.validate_archive(target.read_bytes()) != metadata:
+            raise ValueError('Post-write recipe tracking verification failed.')
+        artifacts.append(dict(source_filename=relative, filename=renamed,
+                              payload_sha256=hashlib.sha256(payload).hexdigest(),
+                              sha256=digest(target), metadata=metadata))
+        path.unlink()  # Only this conversion's newly created staging file.
+        if relative == original_primary:
+            result = {**result, 'filename': renamed}
+    if not artifacts or result['filename'] == original_primary:
+        raise ValueError('Conversion produced no primary GOO to track.')
+    # Keep the original payload manifests unchanged. The new outer manifest
+    # binds them to the final archives and explains the verification boundary.
+    original_manifest = result['manifest_filename']
+    final_manifest = Path(result['filename']).with_suffix('.manifest.json').as_posix()
+    manifest = dict(schema='blackwing.tracked-conversion.v1', recipe_id=row['id'],
+                    recipe_revision=row['revision'], version=VERSION,
+                    payload_manifest=original_manifest, archives=artifacts,
+                    verification=result['verification'],
+                    verification_scope='Game payload was independently verified before inert WBW metadata was added; embedded revision and payload checksum were then verified.',
+                    output=Gob((stage / result['filename']).read_bytes(), label=result['filename']).inventory())
+    (stage / final_manifest).write_bytes(canonical(manifest) + b'\n')
+    # Generated installation notes must name the exported files and episodes.
+    from blackwing_catalog import recipes
+    episode_names = [(Path(old).stem, Path(item['output_filename']).stem)
+                     for item in recipes() for old in item['legacy_filenames']]
+    for path in sorted(stage.rglob('README.txt')):
+        if path.is_file():
+            before = path.read_text(encoding='utf-8')
+            after = before
+            for artifact in artifacts:
+                after = after.replace(Path(artifact['source_filename']).name,
+                                      Path(artifact['filename']).name)
+                after = after.replace(artifact['payload_sha256'], artifact['sha256'])
+            for old, new in episode_names:
+                after = re.sub(r'(-episode\s+)' + re.escape(old) + r'(?=\s|$)',
+                               lambda match: match[1] + new, after)
+            after = after.replace('Its only internal member must be misc/items.dat.',
+                                  'Its game payload is misc/items.dat; wbw/recipe.json records the conversion revision.')
+            after = after.replace('The manifest records all input\nand member hashes.',
+                                  'The original payload manifest records input and game-member hashes.\nThe tracked conversion manifest records final archive hashes.')
+            after += ('\nWBW recipe tracking: these GOOs also contain inert wbw/recipe.json metadata.\n'
+                      'Original payload manifests are preserved; the tracked conversion manifest and receipt bind the final archives.\n')
+            if after != before:
+                path.write_text(after, encoding='utf-8')
+    return {**result, 'manifest_filename': final_manifest,
+            'recipe_revision': row['revision'], 'revision_label': row['revision_label'],
+            'tracked_archives': artifacts}
+
+
 def build_one(row, archives, original_path, stage):
     key = row['id']
     kwargs = {}
@@ -245,9 +355,13 @@ def convert_selected(value, progress=None):
                     raise ValueError('Converter source changed during this run; restart with a consistent release.')
                 if key in originals and digest(originals[key]) != original_hash:
                     raise ValueError('Original archive changed during conversion; restore the reviewed download and try again.')
+                result = track_outputs(row, stage, result, lock)
+                if source_hashes() != source_before:
+                    raise ValueError('Converter source changed during tracking; restart with a consistent release.')
                 output_hash = digest(stage / result['filename'])
                 receipt = dict(schema='blackwing.conversion-receipt.v1', version=VERSION,
-                               selected_recipe=lock,
+                               selected_recipe=lock, recipe_revision=row['revision'],
+                               tracked_archives=result['tracked_archives'],
                                original_archive_sha256=original_hash,
                                owned_archive_sha256={name: archive.sha256 for name, archive in archives.items()},
                                generated_files=tree_hashes(stage), verification=result['verification'],
@@ -264,6 +378,7 @@ def convert_selected(value, progress=None):
                     os.rename(stage, final)
                     reused = False
                 result = dict(id=key, title=row['title'], status='verified', reused=reused,
+                              recipe_revision=row['revision'], revision_label=row['revision_label'],
                               output=str(final / result['filename']),
                               manifest=str(final / result['manifest_filename']),
                               receipt=str(final / 'blackwing-receipt.json'),

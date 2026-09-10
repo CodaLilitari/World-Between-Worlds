@@ -46,6 +46,18 @@ class SelectionTests(unittest.TestCase):
             if row['kind'] != 'mod':
                 self.assertFalse(row['runtime_test']['full_gameplay'])
 
+    def test_recipe_revisions_are_explicit_and_separate_from_app_version(self):
+        import blackwing_revisions as revisions
+        rows = catalog.recipes()
+        self.assertEqual(set(revisions.RECIPE_REVISIONS), {row['id'] for row in rows})
+        canyon = next(row for row in rows if row['id'] == 'canyon-oasis')
+        self.assertEqual(canyon['output_filename'], 'bridge-canyon_wbw_v1.goo')
+        with patch.dict(revisions.RECIPE_REVISIONS, {'canyon-oasis': 2}):
+            latest = {row['id']: row for row in catalog.recipes()}
+            self.assertEqual(latest['canyon-oasis']['revision'], 2)
+            self.assertEqual(latest['jhs']['revision'], 1)
+            self.assertEqual(latest['canyon-oasis']['output_filename'], 'bridge-canyon_wbw_v2.goo')
+
     def test_ninja_is_an_explicit_separate_prototype_selection(self):
         self.assertEqual([r['id'] for r in catalog.selection(['canyon-oasis'])], ['canyon-oasis'])
         rows = catalog.selection(['ninja-kage', 'canyon-oasis'])
@@ -135,6 +147,83 @@ class PathTests(unittest.TestCase):
         self.assertEqual(result, service.load_settings(self.root / 'settings'))
         self.assertNotIn('token', (self.root / 'settings/settings.json').read_text())
 
+    def test_default_output_is_separate_and_does_not_create_folders(self):
+        with patch.object(service.Path, 'home', return_value=self.root / 'home'):
+            settings = service.normalize_settings({})
+        self.assertEqual(settings['output_dir'], str(self.root / 'home/Documents/World Between Worlds conversions'))
+        self.assertFalse((self.root / 'home').exists())
+        with patch.object(service.Path, 'home', return_value=self.root / 'home'):
+            _, paths, _ = service.validate_request({**self.request, 'output_dir': ''})
+        self.assertEqual(paths['output_dir'], self.root / 'home/Documents/World Between Worlds conversions')
+        self.assertFalse(paths['output_dir'].exists())
+
+    def test_picker_validates_original_recipe_and_preserves_cancellation(self):
+        with patch.object(service.blackwing_picker, 'pick_path', return_value=None) as picker:
+            for value in ({'kind': 'unknown'}, {'kind': 'original_archive'},
+                          {'kind': 'original_archive', 'recipe_id': 'canyon-oasis'}):
+                with self.assertRaises(ValueError):
+                    service.pick_local_path(value, self.root / 'settings')
+            picker.assert_not_called()
+            self.assertEqual(service.pick_local_path({'kind': 'original_archive', 'recipe_id': 'jhs'},
+                                                    self.root / 'settings'), {'path': None})
+            picker.assert_called_once_with('original_archive', initial_path=None)
+        self.assertFalse((self.root / 'settings/settings.json').exists())
+
+    def test_tracking_is_identical_across_staging_directories(self):
+        from gob import build_gob
+        results = []
+        row = catalog.selection(['canyon-oasis'])[0]
+        for name in ('random-stage-a', 'different-stage-b'):
+            stage = self.root / name
+            stage.mkdir()
+            (stage / 'bridge-canyon-v1.goo').write_bytes(build_gob({'test.txt': b'inert original test data'}))
+            (stage / 'payload.json').write_text('{}')
+            (stage / 'README.txt').write_text('Use -episode bridge-canyon-v1\n', encoding='utf-8')
+            service.track_outputs(row, stage,
+                {'filename': 'bridge-canyon-v1.goo', 'manifest_filename': 'payload.json',
+                 'verification': {'passed': True}}, {'recipe_sha256': 'a' * 64})
+            results.append(service.tree_hashes(stage))
+        self.assertEqual(results[0], results[1])
+
+    def test_tracking_preserves_game_payload_original_readme_and_startup_folder(self):
+        import blackwing_revisions as revisions
+        from gob import build_gob, Gob
+        stage = self.root / 'stage'
+        folder = stage / 'blackwing-ninja-kage'
+        folder.mkdir(parents=True)
+        payload = build_gob({'cog/test.cog': b'synthetic inert test', 'misc/test.dat': b'values'})
+        (folder / 'blackwing-ninja-kage.goo').write_bytes(payload)
+        (folder / 'source.manifest.json').write_text('{"original":true}')
+        original_readme = b'Original author text \xff\xfe blackwing-ninja-kage'
+        (folder / 'ORIGINAL-NINJA-KAGE.txt').write_bytes(original_readme)
+        (folder / 'README.txt').write_text('Use -path blackwing-ninja-kage\nFile: blackwing-ninja-kage.goo\n', encoding='utf-8')
+        row = catalog.selection(['ninja-kage'])[0]
+        result = service.track_outputs(row, stage,
+            {'filename': 'blackwing-ninja-kage/blackwing-ninja-kage.goo',
+             'manifest_filename': 'blackwing-ninja-kage/source.manifest.json',
+             'verification': {'passed': True}, 'startup_overlay': 'blackwing-ninja-kage'},
+            {'recipe_sha256': 'a' * 64})
+        self.assertEqual(result['filename'], 'blackwing-ninja-kage/blackwing-ninja-kage_wbw_v1.goo')
+        generated = Gob.open(stage / result['filename'])
+        for name in Gob(payload).entries:
+            self.assertEqual(generated.read(name), Gob(payload).read(name))
+        metadata = revisions.validate_archive(generated.data)
+        self.assertEqual(metadata['payload_sha256'], hashlib.sha256(payload).hexdigest())
+        self.assertEqual((folder / 'ORIGINAL-NINJA-KAGE.txt').read_bytes(), original_readme)
+        instructions = (folder / 'README.txt').read_text()
+        self.assertIn('-path blackwing-ninja-kage\n', instructions)
+        self.assertIn('File: blackwing-ninja-kage_wbw_v1.goo', instructions)
+        self.assertEqual(json.loads((folder / 'source.manifest.json').read_text()), {'original': True})
+        self.assertEqual(result['startup_overlay'], 'blackwing-ninja-kage')
+
+    def test_scan_needs_only_explicit_mots_folder_and_never_builds(self):
+        with patch.object(service, 'build_one', side_effect=AssertionError('no conversion')):
+            result = service.scan_installed({'mots_root': str(self.root / 'mots')})
+        self.assertEqual(result['results'], [])
+        for value in (None, {}, {'mots_root': 'relative'}):
+            with self.assertRaises(ValueError):
+                service.scan_installed(value)
+
 
 class ApiTests(unittest.TestCase):
     @classmethod
@@ -216,6 +305,38 @@ class ApiTests(unittest.TestCase):
         data = json.loads(self.request('/api/settings')[1])
         self.assertEqual(data['jk_root'], '/user/jk')
         self.assertNotIn('secret', data)
+
+    def test_installation_scan_is_authenticated_explicit_read_only(self):
+        request = {'mots_root': self.temp.name}
+        self.assertEqual(self.request('/api/scan', token=False, method='POST', body=request)[0], 403)
+        self.assertEqual(self.request('/api/scan', method='POST', body={})[0], 400)
+        self.assertEqual(self.request('/api/scan', method='POST', body=request,
+                                      headers={'Origin': 'https://example.com'})[0], 403)
+        with patch.object(service, 'convert_selected', side_effect=AssertionError('must not convert')):
+            code, body, _ = self.request('/api/scan', method='POST', body=request)
+        self.assertEqual(code, 200)
+        self.assertEqual(json.loads(body)['results'], [])
+
+    def test_picker_endpoint_requires_current_window_and_never_saves_selection(self):
+        value = {'kind': 'jk_root'}
+        before = service.load_settings(self.server.data_dir)
+        with patch.object(service.blackwing_picker, 'pick_path', return_value=self.temp.name) as picker:
+            self.assertEqual(self.request('/api/pick-path', token=False, method='POST', body=value)[0], 403)
+            self.assertEqual(self.request('/api/pick-path', method='POST', body=value,
+                                          headers={'Origin': 'https://example.com'})[0], 403)
+            picker.assert_not_called()
+            code, body, _ = self.request('/api/pick-path', method='POST', body=value)
+        self.assertEqual(code, 200)
+        self.assertEqual(json.loads(body), {'path': self.temp.name})
+        self.assertEqual(before, service.load_settings(self.server.data_dir))
+
+    def test_frozen_picker_dispatch_precedes_updater_and_server(self):
+        import blackwing_launcher
+        with patch.object(service.blackwing_picker, 'helper_main', return_value=0) as helper, \
+                patch.object(blackwing_launcher.updates, 'user_data_dir', side_effect=AssertionError('no updater')):
+            args = ['jk_root', '--result-file', str(Path(self.temp.name) / 'result.json')]
+            self.assertEqual(blackwing_launcher.main(['--pick-path-helper', *args]), 0)
+            helper.assert_called_once_with(args)
 
 
 if __name__ == '__main__':

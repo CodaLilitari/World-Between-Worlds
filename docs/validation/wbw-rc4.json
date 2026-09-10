@@ -1,0 +1,204 @@
+{
+  "schema": "wbw.rc4-validation.v1",
+  "version": "0.2.0-rc4",
+  "date_local": "2026-09-09",
+  "owned_source_tests": {
+    "run": 280,
+    "passed": 278,
+    "skipped": 2,
+    "skips": [
+      "Windows symlink privilege",
+      "Windows venv ancestry with base Python"
+    ],
+    "earlier_transient": "Windows loopback 10053 in one HTTP test; focused and complete retries passed"
+  },
+  "ui_tests": {
+    "run": 47,
+    "passed": 47
+  },
+  "recipe_source_sha256": {
+    "bridge.py": "3cb139d32e6d204ad6d1eb03a5d962573c2b3266652103d00ccf3549b04a4d87",
+    "gob.py": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+    "caesars_audit.py": "44672d03fc35fe87d2cd832ce1cfa7168a106b411159d6a6f6cf1eca6cd96dc2",
+    "custom_registry.py": "7964508cbaac7faca6eec49aa8fb892f426cc51521c8506bec19db60ecbb2ca8",
+    "community_runtime.py": "192d3cba7b787c21b9c8412980db7efee8d1527307b43ad4e7bae3b123420e2f",
+    "custom_catalog.py": "6ae67561dd3d3bf4fac4dcae30284ac661fd401b808b99edd677db282aebca89",
+    "author_catalog.py": "8cb3e8d7b464070f120aa4c1ce30bed8f17cf9120eabbd4faaa83d34718b863b",
+    "jhs_catalog.py": "87e6b3e72b0979bf6f4415f905b889edb93a85c1d91d7fe0f5648cb47ff30abc",
+    "verify_retail.py": "2d5d21c1cb37960ca46d4faaa8262259150e47f646e22544f92e0faf988a0270",
+    "ninja_catalog.py": "b4483a440f9bf3828cd59136320d1ec4c4852a3618e43c19d743e62cd26eb490",
+    "ninja_converter.py": "3d7337ef9c5e5075b294e69faa74e548061640caab03521c06d4058fdace0200",
+    "blackwing_catalog.py": "253679ef4b3a52f537c82a9829672068aa17db5962467b1e83c1130b1ec192ac",
+    "blackwing_service.py": "98e8197ec80e8ff9264f7ca025079b8c9ca7ad2146107f8c732757eb8d0cd006",
+    "blackwing_revisions.py": "a6e48973955ed8f6f0fd4c569d0923ee80fab762df0213127a25856c85fd28ff"
+  },
+  "conversions": {
+    "selected": [
+      "canyon-oasis",
+      "ctf-duel",
+      "jhs",
+      "ninja-kage"
+    ],
+    "all_verified": true,
+    "repeat_all_reused": true,
+    "all_output_files_unchanged": true,
+    "output_file_count": 25,
+    "outputs": [
+      {
+        "id": "canyon-oasis",
+        "sha256": "3d94dee9ff31473ff2c6270a8773313aa4cf282b20c7863ae29b47b34537f9f8",
+        "recipe_revision": 1,
+        "filename": "bridge-canyon_wbw_v1.goo"
+      },
+      {
+        "id": "ctf-duel",
+        "sha256": "2130674c1466ebcde0e376212a375dc1ef103bb15c0cfa3f53ddcade1f476850",
+        "recipe_revision": 1,
+        "filename": "bridge-ctf_duel_wbw_v1.goo"
+      },
+      {
+        "id": "jhs",
+        "sha256": "fbefda3216b3ef0936bf799dd4ba527d7c5debec2b6289eaea70042accf51e31",
+        "recipe_revision": 1,
+        "filename": "bridge-jhs_wbw_v1.goo"
+      },
+      {
+        "id": "ninja-kage",
+        "sha256": "29a2a479031032ae7c383fb08acf219584d86a6dac3be6c2992401aa27ad4cbc",
+        "recipe_revision": 1,
+        "filename": "blackwing-ninja-kage_wbw_v1.goo"
+      }
+    ],
+    "payloads_published": false
+  },
+  "canyon_host": {
+    "passed": true,
+    "samples": 38,
+    "active_samples": 34,
+    "game_ms_start": 1956,
+    "game_ms_end": 18507,
+    "exact_item_bindings": {
+      "48": "cog\\wbw_forcesurge.cog",
+      "65": "cog\\wbw_forcesurge.cog",
+      "60": "cog\\wbw_forceboost.cog",
+      "61": "cog\\wbw_forceboost.cog",
+      "62": "cog\\wbw_forceboost.cog",
+      "63": "cog\\wbw_forceboost.cog",
+      "64": "cog\\wbw_forceboost.cog"
+    },
+    "shared_surge_controller": true,
+    "world": {
+      "map": "br_canyon.jkl",
+      "episode": "bridge-canyon_wbw_v1"
+    },
+    "gates": {
+      "survived_20_seconds": true,
+      "active_mots_multiplayer": true,
+      "exact_versioned_episode_loaded": true,
+      "all_seven_item_cogs_bound": true,
+      "no_diagnostic_cog": true,
+      "source_and_staged_archive_unchanged": true,
+      "owned_baseline_unchanged": true,
+      "no_visible_window": true
+    }
+  },
+  "scan_checks": {
+    "final": {
+      "file_count": 25,
+      "all_file_hashes_unchanged": true,
+      "counts": {
+        "current": 5,
+        "update_available": 0,
+        "newer": 0,
+        "unversioned": 0,
+        "modified": 0,
+        "unrecognized": 0,
+        "error": 0,
+        "total": 5,
+        "duplicates": 0
+      },
+      "truncated": false
+    },
+    "legacy_playtest": {
+      "file_count": 11,
+      "all_file_hashes_unchanged": true,
+      "counts": {
+        "current": 0,
+        "update_available": 0,
+        "newer": 0,
+        "unversioned": 1,
+        "modified": 0,
+        "unrecognized": 2,
+        "error": 0,
+        "total": 3,
+        "duplicates": 0
+      },
+      "truncated": false
+    }
+  },
+  "browser_evidence": "wbw-interface-rc4.json",
+  "scope": "Exact exported Canyon archive in one MotS multiplayer host. No diagnostic COG, staged player action, OS input, gameplay screenshot or joined peer. Picker responses were mocked in browser QA.",
+  "packaging": {
+    "source_payload_count": 59,
+    "reproducible_source_copies": 3,
+    "source_sha256": "b7fd90c07b48acf5d7f2ab13174b6dae97200fe2de09a82fa3651e450aaf6ecb",
+    "recipe_count": 27,
+    "recipe_module_hash_count": 14,
+    "packages": [
+      {
+        "arch": "any",
+        "filename": "World-Between-Worlds-0.2.0-rc4-source.zip",
+        "kind": "source",
+        "platform": "any",
+        "python_min": [
+          3,
+          10
+        ],
+        "sha256": "b7fd90c07b48acf5d7f2ab13174b6dae97200fe2de09a82fa3651e450aaf6ecb",
+        "size": 2499170
+      },
+      {
+        "arch": "x86_64",
+        "filename": "World-Between-Worlds-0.2.0-rc4-linux-x86_64.zip",
+        "kind": "standalone",
+        "libc_min": [
+          2,
+          35
+        ],
+        "platform": "linux",
+        "python_min": [
+          3,
+          10
+        ],
+        "sha256": "fbd8c865ca35f2676b384dd883f0f59fb4c5eefd43c7dd1609096c8426868a19",
+        "size": 14009113
+      },
+      {
+        "arch": "x86_64",
+        "filename": "World-Between-Worlds-0.2.0-rc4-windows-x86_64.zip",
+        "kind": "standalone",
+        "platform": "windows",
+        "python_min": [
+          3,
+          10
+        ],
+        "sha256": "69ed8d375ebee0752222926b873f6332e4543643bcad3f684a9e618e2d53a3ec",
+        "size": 14786344
+      }
+    ],
+    "manifest_sha256": "8b35adfddfa2db18348265cc56ebb51e3854616603245237fce76c6c4c100ebb",
+    "tests": {
+      "windows": {
+        "run": 280,
+        "passed": true,
+        "skipped": 14
+      },
+      "linux": {
+        "run": 280,
+        "passed": true,
+        "skipped": 15
+      }
+    },
+    "standalone_bit_reproducibility_claimed": false
+  }
+}

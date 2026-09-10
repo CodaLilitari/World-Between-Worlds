@@ -7,6 +7,7 @@ import re
 
 import bridge
 import custom_registry
+import blackwing_revisions
 from gob import Gob, build_gob
 
 
@@ -25,6 +26,274 @@ STOCK_WORLDS = {
 }
 
 
+def game_payload(generated, expected_recipe, *, role='primary'):
+    """Validate tracking and expose only the canonical game archive to checks.
+
+    A marker does not establish conversion correctness: the returned payload
+    still passes the existing source reconstruction and repeat-build checks.
+    """
+    allowed = {expected_recipe} if isinstance(expected_recipe, str) else set(expected_recipe)
+    marker = blackwing_revisions.validate_archive(generated.data)
+    if marker is None:
+        return generated, None
+    assert marker['id'] in allowed, 'Tracked archive belongs to a different selected recipe'
+    assert marker['role'] == role, 'Tracked archive has the wrong primary/startup role'
+    payload = Gob(build_gob({name: generated.read(name) for name in generated.entries
+                             if name != blackwing_revisions.MARKER_NAME}), generated.label)
+    assert payload.sha256 == marker['payload_sha256'], 'Tracked game-payload hash mismatch'
+    return payload, marker
+
+
+def resolve_output(directory, legacy_filename, expected_recipe, *, role='primary'):
+    """Select one legacy output or a valid marked output, including renamed ones.
+
+    A suffixed filename without a marker cannot assert identity. Multiple
+    matching outputs are rejected instead of choosing whichever loads first.
+    """
+    directory = Path(directory).absolute()
+    allowed = {expected_recipe} if isinstance(expected_recipe, str) else set(expected_recipe)
+    catalog = [dict(id=key, title=key, kind='verification',
+                    revision=blackwing_revisions.RECIPE_REVISIONS.get(key, 1),
+                    legacy_filenames=[legacy_filename]) for key in sorted(allowed)]
+    report = blackwing_revisions.scan_installation(directory, catalog)
+    assert not report['truncated'], 'Archive lookup was incomplete: ' + '; '.join(report['warnings'])
+    candidates = []
+    for row in report['results']:
+        path = Path(row['path'])
+        # A startup/episode lookup refers to this exact directory; do not select
+        # a similarly marked archive from another family's nested output folder.
+        if path.parent != directory:
+            continue
+        legacy_name = path.name.lower() == legacy_filename.lower()
+        marked_identity = row['id'] in allowed and row['role'] == role
+        if not legacy_name and not marked_identity:
+            continue
+        generated = Gob.open(path)
+        _, marker = game_payload(generated, allowed, role=role)
+        assert marker is not None or legacy_name, 'Unmarked renamed archive has no verified recipe identity'
+        candidates.append(path)
+    assert len(candidates) == 1, ('Expected exactly one output for ' + ', '.join(sorted(allowed))
+                                  + '; found ' + str(len(candidates)))
+    return candidates[0]
+
+
+def tracked_result(result, original, payload, marker):
+    """Report the actual delivered hash separately from its verified payload."""
+    if marker is not None:
+        result.update(sha256=original.sha256, payload_sha256=payload.sha256,
+                      tracking=marker)
+    return result
+
+
+# Independent compatibility contract. Never derive this from the converter's
+# tables: a wrong producer binding or edited game script must fail verification.
+FORCE_PICKUP_BINDINGS = {
+    'pow_mana.cog': 'wbw_forceboost.cog',
+    'pow_lightside.cog': 'wbw_forcesurge.cog',
+    'pow_darkside.cog': 'wbw_forcesurge.cog',
+}
+FORCE_PICKUP_SOURCES = {
+    'wbw_forceboost.cog': ('cog/pow_mana.cog',
+        '8147b03115c1d9e8ff8c883a547c6ffe689751a46d27b84dc6ac7544bf3ace11', 2, 3),
+    'wbw_forcesurge.cog': ('cog/pow_darkside.cog',
+        'e57ec1e2e0421e303015b97266d4a2c502aeb0f9ed1ca05a8375ba295f650ddf', 1, 1),
+}
+FORCE_PICKUP_VISUALS = {
+    'wbw_forceboost.cog': ('dark.3do', 'manaboost', 'pow_mana.cog',
+        '3do/dark.3do', '83710448bde751d04df8b378c7de5f7ef56cd701054dfb72b405c03358561fc0',
+        {'mat/00twinkle.mat': '2905c646dd2bf5020e5b0ca666dc43040045aaf7e645be34a6d05bf5a2ca2967'}),
+    'wbw_forcesurge.cog': ('mana1.3do', 'darkside', 'pow_darkside.cog',
+        '3do/mana1.3do', 'f62e393d4f391000118a33275071217cea3efb019f14992ecd1d9610fb684ed6',
+        {'3do/mat/dark.mat': '6ac61efc7e39ca34d1485d528ae06acac556b45db213f8e58cc9dafc3cbbb5c1'}),
+}
+
+
+def native_force_pickup_rows(rows):
+    """Independently substitute only each effective Force binding's model field."""
+    inherited = {}; converted = {}; result = []
+    for row in rows:
+        values = {**inherited.get(row[1].lower(), {})}
+        values.update(field.lower().split('=', 1) for field in row[2:] if '=' in field)
+        inherited[row[0].lower()] = values
+        copied = list(row)
+        if values.get('cog') in FORCE_PICKUP_VISUALS:
+            model = FORCE_PICKUP_VISUALS[values['cog']][0]
+            positions = [i for i in range(2, len(row)) if row[i].lower().startswith('model3d=')]
+            assert len(positions) <= 1, 'Independent duplicate Force model declaration'
+            if positions:
+                copied[positions[0]] = 'model3d=' + model
+            else:
+                copied.append('model3d=' + model)
+        actual = dict(converted.get(copied[1].lower(), {}))
+        actual.update(field.lower().split('=', 1) for field in copied[2:] if '=' in field)
+        if values.get('cog') not in FORCE_PICKUP_VISUALS:
+            assert actual.get('model3d') == values.get('model3d'), 'Independent non-Force inherited model changed: ' + row[0]
+        converted[row[0].lower()] = actual
+        result.append(copied)
+    return result
+
+
+def check_native_force_visual_resources(archives, generated, selected):
+    """Check native visual pins and reject archive overrides of those resources."""
+    if not selected:
+        return []
+    raw = archives['motsmp'].read('jkl/k1.jkl')
+    assert hashlib.sha256(raw).hexdigest() == '6ff496d6aa2434fc392da0bf1a160e3f48b312cd54c3da677bf5669ff6cfb681', 'Independent native Force template world pin'
+    rows = {row.split()[0].lower(): row.split() for row in bridge.records(bridge.text(raw), 'templates')}
+    models = []
+    for cog in sorted(selected):
+        model, template, native_cog, path, digest, materials = FORCE_PICKUP_VISUALS[cog]
+        fields = dict(token.lower().split('=', 1) for token in rows[template][2:] if '=' in token)
+        assert fields.get('model3d') == model and fields.get('cog') == native_cog, 'Independent native Force visual template binding'
+        for member, expected in {path: digest, **materials}.items():
+            original = archives['motsres'].read(member)
+            assert hashlib.sha256(original).hexdigest() == expected, 'Independent native Force visual source pin: ' + member
+            overrides = [name for name in generated.entries if Path(name).name.lower() == Path(member).name.lower()]
+            assert all(generated.read(name) == original for name in overrides), 'Independent native Force visual archive override: ' + member
+        models.append(model)
+    return models
+
+
+def reconstruct_force_pickup(original, player_assignments, rank_limits):
+    """Reconstruct owned native bytes without production transformation code."""
+    value = original.decode('cp1252').replace('\r', '')
+    for before, after, count in (
+        ('symbols\n', 'symbols\n\nflex wbw_maximum local\n', 1),
+        ('player = GetSourceRef();',
+         'player = GetSourceRef();\n   call wbw_get_maximum;', player_assignments),
+        ('GetInv(player, 20) * 50', 'wbw_maximum', rank_limits),
+    ):
+        pieces = value.split(before)
+        assert len(pieces) == count + 1, 'Independent Force pickup anchor count: ' + before
+        value = after.join(pieces)
+    ends = list(re.finditer(r'\nend', value))
+    assert ends and not value[ends[-1].end():].strip(), 'Independent Force pickup final terminator'
+    insertion = ('\n\nwbw_get_maximum:\n'
+                 '   wbw_maximum = GetInv(player, 20) * 50;\n'
+                 '   if(IsMulti())\n'
+                 '      wbw_maximum = GetInv(player, 69);\n'
+                 '   Return;\n')
+    return (value[:ends[-1].start()] + insertion + value[ends[-1].start():]).encode('cp1252')
+
+
+def check_force_pickup_resources(archives, generated, runtime):
+    """Check exact compatibility files, source pins and complete COG contents."""
+    bindings = {name: converted for name, converted in FORCE_PICKUP_BINDINGS.items() if name in runtime}
+    selected = set(bindings.values())
+    present = {path for path in generated.entries if Path(path).name in FORCE_PICKUP_SOURCES}
+    assert present == {'cog/' + name for name in selected}, 'Independent Force pickup member set'
+    for name in selected:
+        path, sha256, players, ranks = FORCE_PICKUP_SOURCES[name]
+        original = archives['motsres'].read(path)
+        assert hashlib.sha256(original).hexdigest() == sha256, 'Independent native Force pickup source pin: ' + path
+        expected = reconstruct_force_pickup(original, players, ranks)
+        assert generated.read('cog/' + name) == expected, 'Independent complete Force pickup source reconstruction: ' + name
+    return bindings
+
+
+def shared_force_surge_rows(rows):
+    """Independently require one inherited COG instance for all Surge roots."""
+    controller = 'wbw_surge_base'
+    roots = [index for index, row in enumerate(rows)
+             if 'cog=wbw_forcesurge.cog' in [field.lower() for field in row[2:]]]
+    if not roots:
+        return rows
+    assert controller not in {row[0].lower() for row in rows}, 'Independent reserved Surge controller collision'
+    parents = {rows[index][1] for index in roots}
+    assert len(parents) == 1, 'Independent shared Surge original parent mismatch'
+    result = []
+    for index, row in enumerate(rows):
+        if index == roots[0]:
+            result.append([controller, next(iter(parents)), 'cog=wbw_forcesurge.cog'])
+        if index in roots:
+            assert sum(field.lower().startswith('cog=') for field in row[2:]) == 1, 'Independent duplicate Surge COG declaration'
+            result.append([row[0], controller] + [field for field in row[2:]
+                                                 if field.lower() != 'cog=wbw_forcesurge.cog'])
+        else:
+            result.append(row)
+    return result
+
+
+def check_force_pickup_templates(source_rows, output_rows, bindings, resource_names, template_map):
+    """Require native Force models; preserve all other inherited template fields."""
+    source = {row.split()[0].lower(): row.split() for row in source_rows}
+    output = {row.split()[0].lower(): row.split() for row in output_rows}
+    templates = {name: template_map.get(name, 'br_' + name) for name in source}
+    effective = {}
+    for name, row in source.items():
+        fields = dict(effective.get(row[1].lower(), {}))
+        fields.update(token.lower().split('=', 1) for token in row[2:] if '=' in token)
+        effective[name] = fields
+    affected = {name: fields for name, fields in effective.items() if fields.get('cog') in bindings}
+    required = set(affected)
+    for name in list(required):
+        parent = source[name][1].lower()
+        while parent in source:
+            required.add(parent)
+            parent = source[parent][1].lower()
+    expected_rows = []
+    for name in source:
+        def renamed(match):
+            original = match[1].lower()
+            return resource_names.get(original, 'br_' + original)
+        tokens = RESOURCE_LITERAL.sub(renamed, ' '.join(source[name])).split()
+        tokens[0] = templates[name]
+        tokens[1] = templates.get(tokens[1].lower(), tokens[1])
+        for index, token in enumerate(tokens[2:], 2):
+            if '=' in token:
+                field, value = token.split('=', 1)
+                tokens[index] = field + '=' + templates.get(value.lower(), value)
+        expected_rows.append(tokens)
+    expected_rows = shared_force_surge_rows(native_force_pickup_rows(expected_rows))
+    expected = {row[0]: row for row in expected_rows}
+    for name in required:
+        assert output.get(templates[name]) == expected[templates[name]], 'Independent Force pickup template fields: ' + name
+    if 'wbw_surge_base' in expected:
+        assert output.get('wbw_surge_base') == expected['wbw_surge_base'], 'Independent shared Surge controller fields'
+        ordered = [row.split()[0].lower() for row in output_rows]
+        first_root = expected_rows[[row[0] for row in expected_rows].index('wbw_surge_base') + 1][0]
+        assert ordered.count('wbw_surge_base') == 1, 'Independent shared Surge controller count'
+        assert ordered.index('wbw_surge_base') + 1 == ordered.index(first_root), 'Independent shared Surge controller order'
+    else:
+        assert 'wbw_surge_base' not in output, 'Independent unexpected shared Surge controller'
+    return affected
+
+
+def check_force_pickup_script_indices(source_rows, output_rows, bindings):
+    """Original preload indices must still resolve to the intended pickup COG."""
+    output = {row.split()[0]: row.split()[1:] for row in output_rows}
+    assert len(output) == len(output_rows), 'Independent duplicate script table index'
+    for row in source_rows:
+        index, name = row.split()
+        if name.lower() in bindings:
+            assert output.get(index) == [bindings[name.lower()]], 'Independent Force pickup script table index: ' + index
+
+
+def check_cog_instance_capacity(source_world, output_world, native_rows):
+    """Check the instance allocation budget separately from the script table."""
+    def declared(value):
+        headers = re.findall(r'^World cogs\s+(\d+)\s*$', value, re.M | re.I)
+        assert len(headers) == 1, 'Independent unique COG capacity header'
+        return int(headers[0])
+
+    def explicit_bindings(rows):
+        return sum(sum(token.lower().startswith('cog=') for token in row.split()) for row in rows)
+
+    templates = bridge.records(output_world, 'templates')
+    controller_count = sum(row.split()[0].lower() == 'wbw_surge_base' for row in templates)
+    assert controller_count in (0, 1), 'Independent shared controller allocation count'
+    original_capacity = declared(source_world)
+    native_instances = explicit_bindings(native_rows)
+    explicit_instances = (explicit_bindings(templates) + len(bridge.records(output_world, 'cogs'))
+                          + explicit_bindings(bridge.records(output_world, 'things')))
+    expected = max(original_capacity + native_instances + controller_count, explicit_instances)
+    actual = declared(output_world)
+    assert actual == expected, ('Independent COG instance capacity', actual, expected)
+    return {'source_capacity': original_capacity, 'native_template_instances': native_instances,
+            'shared_surge_instances': controller_count, 'explicit_instance_floor': explicit_instances,
+            'output_capacity': actual}
+
+
 def source_resource(archives, name, custom=None, *, is_ctf=False):
     """Find an exact source filename without using the converter's scanner."""
     order = (('jkctf',) if is_ctf else ()) + ('jkmp', 'jkres', 'jksnd', 'jksp')
@@ -40,6 +309,31 @@ def source_resource(archives, name, custom=None, *, is_ctf=False):
 
 def source_cog(archives, name, custom=None, *, is_ctf=False):
     return bridge.text(source_resource(archives, name, custom, is_ctf=is_ctf)[1])
+
+
+def source_graph_references(archives, world, runtime, requested, custom=None, *, is_ctf=False):
+    """Trace one original dependency without consulting produced files/metadata."""
+    def active_refs(value):
+        active = '\n'.join(line.split('#', 1)[0].split('//', 1)[0] for line in value.splitlines())
+        return {match[1].lower() for match in RESOURCE_LITERAL.finditer(active)}
+
+    pending = sorted(active_refs(world))
+    seen = set()
+    for name in pending:
+        if name in runtime or name in seen:
+            continue
+        seen.add(name)
+        try:
+            path, data = source_resource(archives, name, custom, is_ctf=is_ctf)
+        except AssertionError:
+            # Existing omission checks separately verify absent authored edges;
+            # an absent edge cannot establish a copied material binding.
+            continue
+        if name == requested:
+            return True
+        if Path(path).suffix in TEXT_RESOURCES:
+            pending.extend(sorted(active_refs(data.decode('cp1252').replace('\r', '')) - seen))
+    return False
 
 
 def cog_argument_symbols(value):
@@ -221,6 +515,7 @@ def check_community_templates(source_rows, native_rows, output_rows, spec, names
                 field, value = tokens[index].split('=', 1)
                 tokens[index] = field + '=' + templates.get(value.lower(), value)
         expected_rows.append(tokens)
+    expected_rows = shared_force_surge_rows(native_force_pickup_rows(expected_rows))
     assert expected_rows == [row.split() for row in output_rows], 'Independent native and authored template fields, parents and order'
 
 
@@ -257,21 +552,31 @@ def check_community_startup(archives, generated, custom, spec, names, directory)
     assert directory is not None, 'Required community startup directory was not supplied'
     directory = Path(directory)
     filename = 'bridge-' + spec['tag'] + '-startup.goo'
-    assert directory.is_dir() and {path.name for path in directory.iterdir()} == {filename, 'README.txt'}, 'Required startup folder is missing or has extra files'
-    startup = Gob.open(directory / filename)
+    assert directory.is_dir(), 'Required startup folder is missing or has extra files'
+    target = resolve_output(directory, filename, spec.get('key', spec['tag']), role='startup')
+    assert {path.name for path in directory.iterdir()} == {target.name, 'README.txt'}, 'Required startup folder is missing or has extra files'
+    original_startup = Gob.open(target)
+    startup, marker = game_payload(original_startup, spec.get('key', spec['tag']), role='startup')
     assert set(startup.entries) == set(expected), 'Independent startup archive member set'
     for path, data in expected.items():
         assert startup.read(path) == data, 'Independent exact startup source reconstruction: ' + path
     assert startup.data == build_gob(expected), 'Independent deterministic startup archive bytes'
-    return {'sha256': startup.sha256, 'member_count': len(expected),
+    return tracked_result({'sha256': startup.sha256, 'member_count': len(expected),
             'passed': ['complete startup code/model source reconstruction and exact member set',
                        'required isolated startup folder and deterministic archive bytes'],
-            'runtime': 'Startup loading and gameplay are not executed by this verifier'}
+            'runtime': 'Startup loading and gameplay are not executed by this verifier'},
+            original_startup, startup, marker)
 
 
-def check_ctf_startup(archives, directory):
+def check_ctf_startup(archives, directory, *, recipe_id=None):
     """Independently verify the mandatory early-loaded CTF inventory overlay."""
-    generated = Gob.open(Path(directory) / 'bridge-ctf-ui.goo')
+    allowed = {recipe_id} if recipe_id is not None else {'ctf-duel', 'ctf-arena', 'ctf-challenge'}
+    assert allowed <= {'ctf-duel', 'ctf-arena', 'ctf-challenge'}, 'Select a CTF recipe for its startup overlay'
+    directory = Path(directory)
+    target = resolve_output(directory, 'bridge-ctf-ui.goo', allowed, role='startup')
+    assert len([path for path in directory.iterdir() if path.suffix.lower() == '.goo']) == 1, 'Ambiguous extra GOO in CTF startup folder'
+    original = Gob.open(target)
+    generated, marker = game_payload(original, allowed, role='startup')
     assert set(generated.entries) == {'misc/items.dat'}, 'Unexpected startup overlay member'
     lines = bridge.text(archives['motsres'].read('misc/items.dat')).splitlines(keepends=True)
     matches = 0
@@ -283,10 +588,11 @@ def check_ctf_startup(archives, directory):
             matches += 1
     assert matches == 1
     assert generated.read('misc/items.dat') == ''.join(lines).encode('cp1252'), 'Startup overlay changed unrelated native descriptors'
-    return {'sha256': generated.sha256, 'passed': ['only misc/items.dat is present',
+    return tracked_result({'sha256': generated.sha256, 'passed': ['only misc/items.dat is present in the game payload',
             'only descriptor81 name changes; all native flags, ranges, COGs and other descriptors unchanged'],
             'required_launch_arguments': ['-motsCompat', '-path', 'bridge-ctf-ui'],
-            'runtime': 'Packaging verified here; actual startup descriptor loading requires runtime observation'}
+            'runtime': 'Packaging verified here; actual startup descriptor loading requires runtime observation'},
+            original, generated, marker)
 
 
 def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', community=None, community_key=None, community_startup=None):
@@ -294,6 +600,10 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
     assert (community is None) == (community_key is None), 'Supply both community archive and key'
     assert not any(value is not None for value in (dojo, caesars, community)) or stock_map == 'valley', 'Custom and stock selections cannot be combined'
     spec = custom_registry.entries()[custom_registry.select(community_key)] if community is not None else {}
+    selected_recipe = (spec['key'] if community is not None else 'caesars' if caesars is not None
+                       else 'dojo' if dojo is not None else stock_map)
+    original_generated = generated
+    generated, tracking = game_payload(generated, selected_recipe)
     custom = caesars if caesars else dojo if dojo else community
     custom_tag = spec['tag'] if community is not None else 'caesars' if caesars else 'dojo'
     archive_key, stock_source, target_name = STOCK_WORLDS[stock_map]
@@ -313,7 +623,11 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
                                       {'kyle.cog', 'class_sequencer.cog', '00_smoketrail.cog', '00_desttrail.cog'}})
     runtime = set(runtime.split()) if isinstance(runtime, str) else set(runtime)
     native_names = {Path(path).name for key in ('motsmp', 'motsres', 'motssnd') for path in archives[key].entries}
+    pickup_bindings = {name: target for name, target in FORCE_PICKUP_BINDINGS.items() if name in runtime}
     for name in runtime:
+        if name in pickup_bindings:
+            resource_names[name] = pickup_bindings[name]
+            continue
         alternate = name[:-4] + '_m.cog'
         selected = alternate if alternate in native_names else name
         assert selected in native_names, 'Missing native runtime COG: ' + selected
@@ -328,6 +642,10 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
         template_map = {name: template_map.get(name, 'br_' + name) for name in source_templates}
         runtime_names = {name: resource_names[name] for name in runtime}
         resource_names, community_graph = community_source_graph(archives, custom, spec, old, runtime_names)
+    check_force_pickup_resources(archives, generated, runtime)
+    native_force_models = check_native_force_visual_resources(archives, generated, set(pickup_bindings.values()))
+    model_preloads = {row.split()[1].lower() for row in bridge.records(new, 'models')}
+    assert set(native_force_models) <= model_preloads, 'Independent native Force model preloads'
     omitted_cogs = {rule['name'] for rule in spec.get('source_omissions', []) if rule['name'].endswith('.cog')}
     verified = []
     for start, stop, label in (
@@ -400,6 +718,20 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
         assert parent in known, (name, parent)
         known.add(name)
     verified.append('unique template names and ordered inheritance')
+    affected_pickups = check_force_pickup_templates(bridge.records(old, 'templates'),
+        bridge.records(new, 'templates'), pickup_bindings, resource_names, template_map)
+    check_force_pickup_script_indices(bridge.records(old, 'scripts'), bridge.records(new, 'scripts'), pickup_bindings)
+    native_template_count = len(bridge.records(bridge.text(archives['motsmp'].read('jkl/k1.jkl')), 'templates'))
+    cog_capacity = check_cog_instance_capacity(old, new, bridge.records(new, 'templates')[:native_template_count])
+    verified.append('independent COG instance capacity, preserving source budget and covering added template/placed-object allocations')
+    for model in {fields['model3d'] for fields in affected_pickups.values() if 'model3d' in fields}:
+        path, original = source_resource(archives, model, custom, is_ctf=is_ctf)
+        expected = RESOURCE_LITERAL.sub(lambda match: resource_names.get(match[1].lower(), 'br_' + match[1].lower()),
+                                        original.decode('cp1252').replace('\r', '')).encode('cp1252')
+        target = path.rsplit('/', 1)[0] + '/' + resource_names.get(model, 'br_' + model)
+        assert generated.read(target) == expected, 'Independent unchanged Force pickup model: ' + model
+    if pickup_bindings:
+        verified.append('independent complete Force pickup COG reconstruction, native MotS model/material pins, expected visual replacement and all other inherited fields')
     if community is not None:
         check_source_omissions(archives, generated, custom, spec, source_world, output_world, resource_names)
         verified.append('exact original omission edges, referrer hashes and continued namespaced absence')
@@ -420,7 +752,8 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
     first, manifest = bridge.recipe(archives, dojo=dojo, caesars=caesars, stock_map=stock_map, community=community, community_key=community_key)
     second, _ = bridge.recipe(archives, dojo=dojo, caesars=caesars, stock_map=stock_map, community=community, community_key=community_key)
     assert first == second == generated.data
-    verified.append('two repeat builds byte-identical to delivered archive')
+    verified.append('two repeat builds byte-identical to the verified game payload' if tracking is not None
+                    else 'two repeat builds byte-identical to delivered archive')
     for item in manifest['source_resource_graph']:
         path = item['source_path'].rsplit('/', 1)[0] + '/' + item['output_name']
         if not any(path.endswith(ext) for ext in bridge.TEXT_EXTENSIONS):
@@ -429,9 +762,18 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
     result = {'passed': verified, 'sha256': generated.sha256,
             'surface_count': count, 'placed_thing_count': len(bridge.records(new, 'things')),
             'resource_count': len(generated.entries), 'runtime': 'not executed by this verifier'}
+    result['cog_instance_capacity'] = cog_capacity
+    if pickup_bindings:
+        counts = {name: 0 for name in pickup_bindings}
+        for row in bridge.records(old, 'things'):
+            fields = affected_pickups.get(row.split()[1].lower(), {})
+            if fields.get('cog') in counts:
+                counts[fields['cog']] += 1
+        result['force_pickups'] = {'bindings': pickup_bindings, 'original_placements_preserved': counts,
+                                  'native_visual_models': native_force_models}
     if community is not None and startup_result:
         result['community_startup'] = startup_result
-    return result
+    return tracked_result(result, original_generated, generated, tracking)
 
 
 if __name__ == '__main__':
@@ -469,7 +811,8 @@ if __name__ == '__main__':
         result = {}
         for key, (_, _, target_name) in STOCK_WORLDS.items():
             filename = 'bridge-' + target_name.removeprefix('br_') + ('-v2.goo' if key == 'valley' else '-v1.goo')
-            result[key] = check(archives, Gob.open(args.all_stock_dir / filename), stock_map=key)
+            target = resolve_output(args.all_stock_dir, filename, key)
+            result[key] = check(archives, Gob.open(target), stock_map=key)
         result['_ctf_startup'] = check_ctf_startup(archives, args.ctf_startup or args.all_stock_dir / 'bridge-ctf-ui')
     else:
         result = check(archives, Gob.open(args.archive),
@@ -480,5 +823,6 @@ if __name__ == '__main__':
                        community_startup=(args.community_startup or Path(args.archive).parent / ('bridge-' + community_spec['tag'] + '-startup')) if community_key else None,
                        stock_map=args.stock_map)
         if args.stock_map.startswith('ctf-'):
-            result['ctf_startup'] = check_ctf_startup(archives, args.ctf_startup or Path(args.archive).parent / 'bridge-ctf-ui')
+            result['ctf_startup'] = check_ctf_startup(archives, args.ctf_startup or Path(args.archive).parent / 'bridge-ctf-ui',
+                                                    recipe_id=args.stock_map)
     print(json.dumps(result, indent=2))

@@ -9,6 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 56'%3E%3Cpath fill='none' stroke='%23c59da7' stroke-width='3' d='M35 45 12 36 3 10 23 21 35 39 37 45 60 36 69 10 49 21 37 39'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="/ui/styles.css">
   <script type="module" src="/ui/app.js"></script>
+  <script defer src="/ui/coda-wbw.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#library">Skip to the library</a>
@@ -41,30 +42,49 @@
     </aside>
 
     <main id="library" tabindex="-1">
-      <section class="intro" aria-labelledby="intro-title"><div><p class="eyebrow">PRESERVE THE WORLD. EXTEND THE JOURNEY.</p><h1 id="intro-title">A new passage for old worlds.</h1><p class="intro-copy">Bring supported Jedi Knight content into Mysteries of the Sith with reviewed conversion recipes.</p></div><span class="intro-ornament" aria-hidden="true">✧</span></section>
+      <section class="intro" aria-labelledby="intro-title"><div class="intro-text"><p class="eyebrow">OLD WORLDS. NEW PATHWAYS.</p><h1 id="intro-title">World Between Worlds</h1><p class="intro-copy">Bring supported Jedi Knight content into Mysteries of the Sith with reviewed conversion recipes.</p></div><div class="intro-art" id="wbw-art"><span class="portal-ring" aria-hidden="true"></span><img id="coda-art" alt="Original illustration of Coda with a luminous saber beside a World Between Worlds portal."></div></section>
+      <ol class="workflow-steps" aria-label="Conversion steps"><li><span class="step-number">01</span><span>Your originals</span></li><li><span class="step-number">02</span><span>Reviewed recipes</span></li><li><span class="step-number">03</span><span>Local conversion</span></li></ol>
 
       <details class="setup-panel" id="setup-panel" open>
-        <summary><span><span class="section-number">01</span> Your local folders</span><span class="summary-note">Configure the source and destination</span></summary>
+        <summary><span><span class="section-number">01</span> Choose your game folders</span><span class="summary-note">Set these once to get started</span></summary>
         <form id="settings-form">
           <div class="folder-grid">
-            <label>Jedi Knight installation<input id="jk-root" name="jk_root" type="text" spellcheck="false" autocomplete="off" placeholder="C:\Games\Jedi Knight"><span>Folder containing your JK resources.</span></label>
-            <label>Mysteries of the Sith installation<input id="mots-root" name="mots_root" type="text" spellcheck="false" autocomplete="off" placeholder="C:\Games\Mysteries of the Sith"><span>Folder containing your MotS resources.</span></label>
-            <label>Original archive folder<input id="archive-dir" name="archive_dir" type="text" spellcheck="false" autocomplete="off" placeholder="E:\Original level archives"><span>Original downloaded ZIPs for custom content.</span></label>
-            <label>Output folder<input id="output-dir" name="output_dir" type="text" spellcheck="false" autocomplete="off" placeholder="E:\WBW output"><span>Choose where converted files will be created.</span></label>
+            <div class="folder-field"><label for="jk-root">Jedi Knight installation</label><div class="path-control"><input id="jk-root" name="jk_root" type="text" spellcheck="false" autocomplete="off" placeholder="Choose your Jedi Knight folder"><button class="button secondary browse-button" type="button" id="browse-jk-root" aria-label="Browse for the Jedi Knight installation">Browse…</button></div><p>Use your installed, legally owned copy.</p></div>
+            <div class="folder-field"><label for="mots-root">Mysteries of the Sith installation</label><div class="path-control"><input id="mots-root" name="mots_root" type="text" spellcheck="false" autocomplete="off" placeholder="Choose your MotS folder"><button class="button secondary browse-button" type="button" id="browse-mots-root" aria-label="Browse for the Mysteries of the Sith installation">Browse…</button></div><p>The MotS folder you use with OpenJKDF2.</p></div>
           </div>
-          <div class="setup-footer"><p>World Between Worlds supplies conversion instructions. Game and level files come from your own folders.</p><button class="button secondary" type="submit" id="save-settings">Save folders</button></div>
+          <details class="advanced-folders" id="advanced-folders"><summary>Optional folders &amp; advanced settings</summary><div class="folder-grid">
+            <div class="folder-field"><label for="output-dir">Output folder (optional)</label><div class="path-control"><input id="output-dir" name="output_dir" type="text" spellcheck="false" autocomplete="off" placeholder="Documents\World Between Worlds conversions"><button class="button secondary browse-button" type="button" id="browse-output-dir" aria-label="Browse for an output folder">Browse…</button></div><p>Leave blank to use the default folder in Documents.</p></div>
+            <div class="folder-field"><label for="archive-dir">Original archive folder (optional)</label><div class="path-control"><input id="archive-dir" name="archive_dir" type="text" spellcheck="false" autocomplete="off" placeholder="A folder of original downloaded archives"><button class="button secondary browse-button" type="button" id="browse-archive-dir" aria-label="Browse for an original archive folder">Browse…</button></div><p>For several originals in one folder. You can also choose each file in your queue.</p></div>
+          </div></details>
+          <p class="inline-status" id="picker-status" role="status"></p>
+          <div class="setup-footer"><p>Browse to your folders, or paste their paths. Converted files go to Documents unless you choose another output folder.</p><button class="button secondary" type="submit" id="save-settings">Save folders</button></div>
           <p class="inline-status" id="settings-status" role="status"></p>
         </form>
       </details>
 
       <section class="library-panel" aria-labelledby="library-heading">
-        <div class="section-heading"><h2 id="library-heading"><span class="section-number">02</span> Choose your content</h2><span class="result-count" id="result-count" role="status">Loading the catalog…</span></div>
+        <div class="section-heading"><h2 id="library-heading"><span class="section-number">02</span> Choose a level or mod</h2><span class="result-count" id="result-count" role="status">Loading the catalog…</span></div>
         <div class="add-row"><label class="visually-hidden" for="recipe-picker">Add a map or mod to the queue</label><select id="recipe-picker"><option value="">Add a map or mod…</option></select><button type="button" class="button secondary" id="add-recipe" disabled>Add to queue <span aria-hidden="true">+</span></button></div>
-        <div class="search-row"><label class="search-box" for="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input type="search" id="search" placeholder="Search titles, authors, or gameplay" autocomplete="off"><kbd aria-hidden="true">/</kbd></label></div>
-        <div class="list-toolbar"><span id="category-caption">All supported content</span><button type="button" class="text-button" id="select-visible" disabled>Select visible</button></div>
-        <div class="recipe-grid" id="recipe-list" aria-label="Available conversion recipes" aria-busy="true"></div>
-        <div class="empty-state hidden" id="empty-state"><span aria-hidden="true">◇</span><h3 id="empty-title">No content here yet</h3><p id="empty-copy"></p><button type="button" class="button secondary" id="reset-filters">Reset filters</button></div>
+        <p class="selection-help">Add one or several recipes. For a custom level or mod, choose its original file in your queue.</p>
+        <details class="catalog-details" id="catalog-details"><summary>Browse the full recipe library</summary>
+          <div class="search-row"><label class="search-box" for="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input type="search" id="search" placeholder="Search titles, authors, or gameplay" autocomplete="off"><kbd aria-hidden="true">/</kbd></label></div>
+          <div class="list-toolbar"><span id="category-caption">All supported content</span><button type="button" class="text-button" id="select-visible" disabled>Select visible</button></div>
+          <div class="recipe-grid" id="recipe-list" aria-label="Available conversion recipes" aria-busy="true"></div>
+          <div class="empty-state hidden" id="empty-state"><span aria-hidden="true">◇</span><h3 id="empty-title">No content here yet</h3><p id="empty-copy"></p><button type="button" class="button secondary" id="reset-filters">Reset filters</button></div>
+        </details>
         <p class="library-footnote">A supported recipe describes a specific source version. Conversion checks and runtime tests are reported separately.</p>
+      </section>
+
+      <section class="installed-panel" id="installed-panel" aria-labelledby="installed-heading">
+        <div class="section-heading"><h2 id="installed-heading">Installed levels</h2><span class="badge">Read-only scan</span></div>
+        <p class="scan-copy">Compare conversions in your MotS folder with the revisions in this recipe book.</p>
+        <div class="scan-actions"><button type="button" class="button secondary" id="scan-mots" disabled>Scan MotS folder</button><button type="button" class="text-button hidden" id="queue-outdated" disabled>Queue all outdated</button></div>
+        <p class="scan-status" id="scan-status" role="status">Ready when you are. Choose your MotS folder above, then scan it.</p>
+        <p class="result-path" id="scan-root"></p>
+        <ul class="scan-warnings" id="scan-warnings" aria-label="Scan warnings"></ul>
+        <p class="scan-empty hidden" id="scan-empty"></p>
+        <div class="scan-results" id="scan-results" aria-label="Installed file revisions" aria-busy="false"></div>
+        <p class="scan-footnote">Queueing an update selects its recipe for conversion from your originals. Review the output folder before converting; scanning and queueing leave installed files untouched.</p>
       </section>
 
       <section class="job-panel hidden" id="job-panel" aria-labelledby="job-heading">

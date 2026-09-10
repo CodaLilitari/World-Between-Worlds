@@ -243,12 +243,17 @@ def wait_application(process):
 
 
 def main(argv=None):
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv[:1] == ['--pick-path-helper']:
+        from blackwing_picker import helper_main
+        return helper_main(argv[1:])
     if REPOSITORY != updates.REPOSITORY:
         raise SystemExit("Launcher/release repository configuration mismatch")
     parser = argparse.ArgumentParser(description="World Between Worlds launcher")
     parser.add_argument("--version", action="version", version=VERSION)
     parser.add_argument("--no-update", action="store_true", help="Open the installed application without network update checks")
     parser.add_argument("--no-browser", action="store_true", help="Start the workbench without opening a browser")
+    parser.add_argument("--scan-mots", metavar="FOLDER", help="Check installed recipe revisions using this application's catalog; print JSON and exit")
     parser.add_argument("--run-app", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--expect-version", help=argparse.SUPPRESS)
     args, app_args = parser.parse_known_args(argv)
@@ -257,6 +262,9 @@ def main(argv=None):
     if args.expect_version and args.expect_version != VERSION:
         print("Cached launcher version does not match its verified package", file=sys.stderr)
         return 1
+    if args.scan_mots:
+        from blackwing_app import main as app_main
+        return app_main(["--scan-mots", args.scan_mots])
     if args.run_app:
         from blackwing_app import main as app_main
         return app_main(app_args)

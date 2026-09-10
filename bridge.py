@@ -480,6 +480,189 @@ def adapt_ctf_saber_grants(value):
     return result
 
 
+FORCE_PICKUP_BINDINGS = {
+    'pow_mana.cog': 'wbw_forceboost.cog',
+    'pow_lightside.cog': 'wbw_forcesurge.cog',
+    'pow_darkside.cog': 'wbw_forcesurge.cog',
+}
+FORCE_PICKUP_SOURCES = {
+    'wbw_forceboost.cog': {
+        'source_path': 'cog/pow_mana.cog',
+        'source_sha256': '8147b03115c1d9e8ff8c883a547c6ffe689751a46d27b84dc6ac7544bf3ace11',
+        'player_assignments': 2, 'rank_limits': 3,
+    },
+    'wbw_forcesurge.cog': {
+        'source_path': 'cog/pow_darkside.cog',
+        'source_sha256': 'e57ec1e2e0421e303015b97266d4a2c502aeb0f9ed1ca05a8375ba295f650ddf',
+        'player_assignments': 1, 'rank_limits': 1,
+    },
+}
+FORCE_PICKUP_VISUALS = {
+    'wbw_forceboost.cog': {
+        'native_template': 'manaboost', 'native_cog': 'pow_mana.cog',
+        'model': 'dark.3do', 'source_path': '3do/dark.3do',
+        'source_sha256': '83710448bde751d04df8b378c7de5f7ef56cd701054dfb72b405c03358561fc0',
+        'materials': {'mat/00twinkle.mat': '2905c646dd2bf5020e5b0ca666dc43040045aaf7e645be34a6d05bf5a2ca2967'},
+    },
+    'wbw_forcesurge.cog': {
+        'native_template': 'darkside', 'native_cog': 'pow_darkside.cog',
+        'model': 'mana1.3do', 'source_path': '3do/mana1.3do',
+        'source_sha256': 'f62e393d4f391000118a33275071217cea3efb019f14992ecd1d9610fb684ed6',
+        'materials': {'3do/mat/dark.mat': '6ac61efc7e39ca34d1485d528ae06acac556b45db213f8e58cc9dafc3cbbb5c1'},
+    },
+}
+FORCE_PICKUP_NATIVE_WORLD_SHA256 = '6ff496d6aa2434fc392da0bf1a160e3f48b312cd54c3da677bf5669ff6cfb681'
+
+
+def native_force_pickup_visuals(rows):
+    """Use native MotS models for each effective Force binding, including children."""
+    effective = {}; converted_effective = {}; rewritten = []; changed = []
+    for row in rows:
+        words = row.split()
+        fields = dict(effective.get(words[1].lower(), {}))
+        fields.update(word.lower().split('=', 1) for word in words[2:] if '=' in word)
+        effective[words[0].lower()] = fields
+        rule = FORCE_PICKUP_VISUALS.get(fields.get('cog'))
+        if rule:
+            positions = [i for i, word in enumerate(words[2:], 2) if word.lower().startswith('model3d=')]
+            if len(positions) > 1:
+                raise RecipeError('Duplicate Force pickup model assignment')
+            replacement = 'model3d=' + rule['model']
+            if positions:
+                words[positions[0]] = replacement
+            else:
+                words.append(replacement)
+            changed.append(dict(template=words[0], runtime_cog=fields['cog'],
+                                original_model=fields.get('model3d'), native_model=rule['model']))
+        actual = dict(converted_effective.get(words[1].lower(), {}))
+        actual.update(word.lower().split('=', 1) for word in words[2:] if '=' in word)
+        if not rule and actual.get('model3d') != fields.get('model3d'):
+            raise RecipeError('Non-Force template inherits changed Force model; requires explicit recipe review: ' + words[0])
+        converted_effective[words[0].lower()] = actual
+        rewritten.append(' '.join(words))
+    return rewritten, changed
+
+
+def force_pickup_visual_provenance(archives, selected):
+    """Pin native model/material bytes and their actual retail template binding."""
+    if not selected:
+        return []
+    world = archives['motsmp'].read('jkl/k1.jkl')
+    if hashlib.sha256(world).hexdigest() != FORCE_PICKUP_NATIVE_WORLD_SHA256:
+        raise RecipeError('Unreviewed native Force pickup template world')
+    templates = {row.split()[0].lower(): row.split() for row in records(text(world), 'templates')}
+    provenance = []
+    for cog in sorted(selected):
+        rule = FORCE_PICKUP_VISUALS[cog]
+        fields = dict(word.lower().split('=', 1) for word in templates[rule['native_template']][2:] if '=' in word)
+        if fields.get('model3d') != rule['model'] or fields.get('cog') != rule['native_cog']:
+            raise RecipeError('Native Force pickup model binding changed')
+        pins = {rule['source_path']: rule['source_sha256'], **rule['materials']}
+        for path, expected in pins.items():
+            if hashlib.sha256(archives['motsres'].read(path)).hexdigest() != expected:
+                raise RecipeError('Unreviewed native Force pickup visual: ' + path)
+        provenance.append(dict(runtime_cog=cog, source_archive='motsres', **rule,
+                               template_source_archive='motsmp', template_source_path='jkl/k1.jkl',
+                               template_source_sha256=FORCE_PICKUP_NATIVE_WORLD_SHA256))
+    return provenance
+
+
+def adapt_force_pickup(value, rule):
+    """Counted edits of owned native COGs; no complete game script is shipped."""
+    edits = (
+        ('symbols\n', 'symbols\n\nflex wbw_maximum local\n', 1),
+        ('player = GetSourceRef();',
+         'player = GetSourceRef();\n   call wbw_get_maximum;', rule['player_assignments']),
+        ('GetInv(player, 20) * 50', 'wbw_maximum', rule['rank_limits']),
+    )
+    for before, after, expected in edits:
+        if value.count(before) != expected:
+            raise RecipeError('Force pickup source changed at counted anchor: ' + before)
+        value = value.replace(before, after)
+    prefix, separator, suffix = value.rpartition('\nend')
+    if not separator or suffix.strip():
+        raise RecipeError('Force pickup code terminator changed')
+    # Native force_well (and compatible mods) maintain MP maxmana in bin 69.
+    # Both surge colors share one COG so a retake renews the same timer.
+    helper = ('\nwbw_get_maximum:\n'
+              '   wbw_maximum = GetInv(player, 20) * 50;\n'
+              '   if(IsMulti())\n'
+              '      wbw_maximum = GetInv(player, 69);\n'
+              '   Return;\n')
+    return prefix + '\n' + helper + separator + suffix
+
+
+def force_pickup_resources(archives, runtime_cogs):
+    """Extract only selected native pickup dependencies and record exact edits."""
+    bindings = {name: FORCE_PICKUP_BINDINGS[name]
+                for name in sorted(runtime_cogs & FORCE_PICKUP_BINDINGS.keys())}
+    resources = {}; provenance = []
+    for output_name in sorted(set(bindings.values())):
+        rule = FORCE_PICKUP_SOURCES[output_name]
+        original = archives['motsres'].read(rule['source_path'])
+        if hashlib.sha256(original).hexdigest() != rule['source_sha256']:
+            raise RecipeError('Unreviewed native Force pickup hash: ' + rule['source_path'])
+        converted = adapt_force_pickup(text(original), rule).encode('cp1252')
+        output_path = 'cog/' + output_name
+        resources[output_path] = converted
+        provenance.append(dict(source_archive='motsres', **rule,
+                               material_bindings={},
+                               output_path=output_path,
+                               output_sha256=hashlib.sha256(converted).hexdigest()))
+    return resources, dict(revision='mots-force-pickups-v2-native-visuals', bindings=bindings,
+                          resources=provenance,
+                          mana_limit='MP: active maxmana bin69; SP: rank bin20 times50',
+                          boost='Native +100 MP / +50 SP, capped at maximum',
+                          surge='Both source Surge kinds use native MotS Force Surge visuals and share one renewable bin64 timer; source objects and respawn remain',
+                          animation='Force Boost animates native 00twinkle.mat used by native dark.3do',
+                          assets_in_tool=False)
+
+
+def share_force_surge_controller(rows):
+    """Inherit one COG instance; identical filenames alone create separate timers."""
+    controller = 'wbw_surge_base'
+    selected = []
+    for index, row in enumerate(rows):
+        words = row.split()
+        matches = [word for word in words[2:] if word.lower() == 'cog=wbw_forcesurge.cog']
+        if matches:
+            if len(matches) != 1 or sum(word.lower().startswith('cog=') for word in words[2:]) != 1:
+                raise RecipeError('Duplicate surge COG assignment')
+            selected.append((index, words))
+    if not selected:
+        return rows, None
+    parents = {words[1] for _, words in selected}
+    if len(parents) != 1:
+        raise RecipeError('Surge templates have different parents; requires explicit recipe review')
+    if controller in {row.split()[0].lower() for row in rows}:
+        raise RecipeError('Reserved shared surge template collision')
+    parent = next(iter(parents))
+    rewritten = list(rows)
+    for index, words in selected:
+        rewritten[index] = ' '.join([words[0], controller] +
+            [word for word in words[2:] if word.lower() != 'cog=wbw_forcesurge.cog'])
+    rewritten.insert(selected[0][0], controller + ' ' + parent + ' cog=wbw_forcesurge.cog')
+    return rewritten, dict(name=controller, parent=parent,
+                           children=[words[0] for _, words in selected])
+
+
+def resize_cog_instances(original, converted, native_templates, compatibility_templates):
+    """Reserve actual COG instances, separately from compiled script resources."""
+    source_capacity = int(re.search(r'^World cogs\s+(\d+)\s*$', original, re.M | re.I)[1])
+    def bindings(rows):
+        return sum(len(re.findall(r'\bcog\s*=', row, re.I)) for row in rows)
+    native_count = bindings(native_templates)
+    required = (len(records(converted, 'cogs')) + bindings(records(converted, 'templates'))
+                + bindings(records(converted, 'things')))
+    # Retain the original map's spare budget as well as funding every added
+    # native template. Inventory COGs use the static world's separate budget.
+    capacity = max(source_capacity + native_count + compatibility_templates, required)
+    result = replace_block(converted, 'cogs', records(converted, 'cogs'), capacity)
+    return result, dict(source_capacity=source_capacity, added_native_bindings=native_count,
+                        compatibility_templates=compatibility_templates,
+                        required_placed_instances=required, output_capacity=capacity)
+
+
 def adapt_caesars_start(value):
     """Fix the saber grant; fists/Bryar and weapon-selection modes already map."""
     pattern = r'(\bSetInv\(\s*player\s*,\s*)10(\s*,\s*1\s*\))'
@@ -680,15 +863,21 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
     if len(set(template_names.values())) != len(template_names):
         raise RecipeError('Namespaced template aliases collide')
 
+    pickup_bindings = {name: FORCE_PICKUP_BINDINGS[name]
+                       for name in runtime_cogs & FORCE_PICKUP_BINDINGS.keys()}
     substitutions = {}
     for cog in sorted(runtime_cogs):
+        if cog in pickup_bindings:
+            substitutions[cog] = pickup_bindings[cog]
+            continue
         adapted = cog[:-4] + '_m.cog'
         selected = adapted if adapted in target.by_name else cog
         target.get(selected)
         substitutions[cog] = selected
 
     # Resolve the complete literal resource graph of this pinned world and its
-    # reviewed environmental COGs. Player/pickup/effect COGs remain native MotS.
+    # reviewed environmental COGs. Force pickups receive the bounded native
+    # compatibility edits above; other runtime COGs retain MotS bindings.
     pending = deque((source_world, name) for name in sorted(references(original)))
     pending.extend((source_world, Path(rule['source_path']).name) for rule in spec.get('native_resource_overrides', {}).values())
     resources = {}; inventory = []; visited = set(); name_map = dict(substitutions)
@@ -752,6 +941,10 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
                     raise RecipeError(f'Undefined source COG template defaults in {path}: {unknown}')
                 transformed_resource = template_defaults(transformed_resource, template_names)
             resources[path] = transformed_resource.encode('cp1252')
+    pickup_resources, pickup_compatibility = force_pickup_resources(archives, runtime_cogs)
+    if resources.keys() & pickup_resources.keys():
+        raise RecipeError('Force pickup resource alias collision')
+    resources.update(pickup_resources)
     missing_cogs = {name for name in caesars_waiver['name_map'] if name.endswith('.cog')} if caesars_waiver else set()
     missing_cogs.update(item['name'] for item in accepted_omissions if item['name'].endswith('.cog'))
     transformed = rename_refs(rewrite_cog_template_arguments(original, source, template_names,
@@ -772,11 +965,17 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
         if len(words) == 3:
             words[2] = re.sub(r'(?<==)([^\s()]+)', lambda m: template_names.get(m.group(1).lower(), m.group(1)), words[2])
         new_templates.append(' '.join(words))
+    new_templates, pickup_compatibility['visual_templates'] = native_force_pickup_visuals(new_templates)
+    pickup_compatibility['native_visuals'] = force_pickup_visual_provenance(archives,
+        {row['runtime_cog'] for row in pickup_compatibility['visual_templates']})
+    new_templates, pickup_compatibility['shared_surge_template'] = share_force_surge_controller(new_templates)
     transformed, thing_count = convert_things(transformed, template_names)
     native_templates = records(native, 'templates')
     native_templates, native_template_edits = community_runtime.patch_native_templates(
         native_templates, records(original, 'templates'), spec.get('native_template_overrides', {}), name_map)
     transformed = replace_block(transformed, 'templates', native_templates + new_templates)
+    transformed, cog_instance_budget = resize_cog_instances(original, transformed, native_templates,
+        int(pickup_compatibility['shared_surge_template'] is not None))
 
     # Build native runtime dependencies from templates and the active inventory,
     # excluding K1's unrelated map event scripts and unused preload declarations.
@@ -786,7 +985,7 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
     native_seen = set()
     native_imports = []
     native_dependency_source = Catalog([('converted', Gob(build_gob(resources)))] +
-                                       [(key, archives[key]) for key in ('motsmp', 'motsres', 'motssnd')]) if native_template_edits else target
+                                      [(key, archives[key]) for key in ('motsmp', 'motsres', 'motssnd')]) if native_template_edits or pickup_resources else target
     while native_queue:
         name = native_queue.popleft()
         if name in native_seen:
@@ -868,8 +1067,11 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
     manifest = {'recipe': 'community-' + spec['key'] + '-rc1' if community is not None else 'caesars-original-omissions-v3' if caesars else 'jedi-dojo-v1' if dojo else f'retail-{stock_map}-v1', 'status': 'structurally-built-gameplay-unverified',
                 'inputs': {k: {'sha256': a.sha256} for k, a in archives.items()},
                 'scene': {'surfaces': surface_count, 'placed_things': thing_count,
-                          'native_templates': len(native_templates), 'namespaced_jk_templates': len(new_templates)},
+                          'native_templates': len(native_templates), 'namespaced_jk_templates': len(template_names),
+                          'compatibility_templates': int(pickup_compatibility['shared_surge_template'] is not None)},
                 'tables': table_counts, 'runtime_cog_substitutions': substitutions,
+                'force_pickup_compatibility': pickup_compatibility,
+                'cog_instance_budget': cog_instance_budget,
                 'native_runtime_dependency_count': len(native_seen),
                 'native_episode_resource_imports': native_imports,
                 'explicit_behavior_omissions': [],
@@ -890,7 +1092,7 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
                                     'mode': 'TYPE8 and original CTF scripts/strings/callbacks retained; no KFY script loaded'} if is_ctf else None),
                 'limitations': ['OpenMotS gameplay and network behavior require runtime validation.',
                                 'Literal filename scanner cannot certify computed COG or template dependencies.',
-                                'Native MotS player, weapon, pickup and force semantics are intentional.',
+                                'Native MotS runtime semantics apply, with documented Force pickup compatibility edits.',
                                 'Only the selected hash-pinned map and archive revisions are accepted.'],
                 'output': output.inventory()}
     if community is not None:

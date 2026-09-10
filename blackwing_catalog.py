@@ -5,6 +5,7 @@ from pathlib import Path
 
 import bridge
 import custom_registry
+import blackwing_revisions
 from blackwing_version import VERSION, TITLE, REPOSITORY
 
 SOURCE_ROOT = Path(__file__).resolve().parent
@@ -12,12 +13,12 @@ ENGINE_MODULES = ('bridge.py', 'gob.py', 'caesars_audit.py', 'custom_registry.py
                   'community_runtime.py', 'custom_catalog.py', 'author_catalog.py',
                   'jhs_catalog.py', 'verify_retail.py', 'ninja_catalog.py',
                   'ninja_converter.py',
-                  'blackwing_catalog.py', 'blackwing_service.py')
+                  'blackwing_catalog.py', 'blackwing_service.py', 'blackwing_revisions.py')
 MAP_RUNTIME = {
-    'scope': '60-second MotS multiplayer host with advancing simulation',
-    'status': 'host-tested',
+    'scope': 'Historical 60-second MotS multiplayer host with advancing simulation',
+    'status': 'prior-recipe-host-tested',
     'full_gameplay': False,
-    'note': 'Host testing is separate from traversal, authored mechanics and two-peer playtesting.',
+    'note': 'These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting.',
 }
 
 
@@ -92,6 +93,19 @@ def recipes():
     else:
         if hasattr(ninja_converter, 'catalog_entry'):
             rows.append(ninja_converter.catalog_entry())
+    for row in rows:
+        key = row['id']
+        row['revision'] = blackwing_revisions.revision(key)
+        row['revision_label'] = 'wbw_v' + str(row['revision'])
+        if key in bridge.STOCK_MAPS:
+            legacy = bridge.stock_output_name(key)
+        elif key in custom_registry.entries():
+            legacy = custom_registry.output_name(key)
+        else:
+            legacy = {'dojo': 'bridge-dojo-v1.goo', 'caesars': 'bridge-caesars-v3.goo',
+                      'ninja-kage': 'blackwing-ninja-kage.goo'}[key]
+        row['legacy_filenames'] = [legacy]
+        row['output_filename'] = blackwing_revisions.versioned_name(legacy, row['revision'])
     return rows
 
 
@@ -138,9 +152,22 @@ def recipe_details(key):
         import ninja_converter
         spec = ninja_converter.recipe_details()
     result = dict(schema='blackwing.recipe-lock.v1', version=VERSION,
+                  recipe_revision=row['revision'], revision_label=row['revision_label'],
                   entry=row, recipe=jsonable(spec), engine_source_sha256=source_hashes(),
                   retail_archive_sha256=bridge.HASHES,
                   optional_archive_sha256={'jksp': bridge.JKSP_SHA256, 'jkctf': bridge.JKCTF_SHA256},
+                  force_pickup_compatibility=(dict(
+                      revision='mots-force-pickups-v2-native-visuals',
+                      bindings=bridge.FORCE_PICKUP_BINDINGS,
+                      sources=bridge.FORCE_PICKUP_SOURCES,
+                      native_visuals=bridge.FORCE_PICKUP_VISUALS,
+                      native_template_world_sha256=bridge.FORCE_PICKUP_NATIVE_WORLD_SHA256,
+                      scope='Map runtime bindings only; no separate Force-power mod or Ninja selection',
+                      edits='Counted native COG edits use maxmana bin69 in MP; both source surge kinds inherit one renewable native bin64 timer controller and native mana1.3do visual; Force Boost uses native dark.3do with native 00twinkle.mat animation; placements and respawn remain')
+                      if row['kind'] != 'mod' else None),
+                  map_cog_instance_budget=(
+                      'Maximum of original declared capacity plus added native template bindings plus shared-controller allocation, and final world COG rows plus all explicit template/placed-thing COG assignments; inventory uses the static world'
+                      if row['kind'] != 'mod' else None),
                   shared_transformations=[
                       'Hash-gate input archives and the exact source world/script set.',
                       'Resolve the literal dependency graph from the selected map/mod and owned archives.',

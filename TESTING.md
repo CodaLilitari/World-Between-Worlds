@@ -74,6 +74,35 @@ Exercise actual doors, switches, elevators, pickups, traps, respawning and weapo
 selection/firing. For CTF, test teams, flag pickup/drop/return, captures and score
 with two players. A host surviving at its spawn does not establish these behaviors.
 
+## Canyon Force pickup regression
+
+Regenerate Canyon through the RC4 workbench; existing exported archives keep
+the older recipes. RC4 includes the RC3 pickup correction and adds the
+`bridge-canyon_wbw_v1.goo` revision record. Scan the MotS installation to identify
+old unversioned copies, then rebuild only the selected recipes.
+The corrected original map has five Force Boosts (things 60–64), Light Surge
+(thing 48) and Dark Surge (thing 65) source locations. Both Surge locations now
+use native neutral MotS Force Surge, and the five Boost locations use native
+MotS Force Boost. Coordinates and authored respawn values remain unchanged.
+Its `World cogs` capacity is 81 for 79 required
+instances. Check actual item script bindings after load, not just the absence
+of crashes: the earlier capacity of 32 silently left source items without COGs.
+
+In MotS multiplayer, test a player whose active maximum Force energy exceeds
+rank times 50. A Boost must add 100 up to the active maximum, and touching one
+at full energy must leave it available. Each Surge must refill to the same
+maximum and provide the native bin-64 effect for 20 seconds. Take the other
+Surge ten seconds later: the effect must survive the first pickup's expiry and
+end twenty seconds after the second. Check death/reset and the original item
+respawn intervals too. The native Force Boost model's twinkle material must
+animate, and both Surge locations must use the same native neutral model.
+
+A fixture that stages the test player at a pickup can exercise real collision
+and pickup COG handling, but it does not establish navigation, normal human
+reachability, rendered visibility or synchronization with another participant.
+Record those limits alongside its observed results. A clean host-load result
+alone does not meet these checks.
+
 ## Rendering and lighting
 
 The bridge preserves source geometry, surface flags and texture references and

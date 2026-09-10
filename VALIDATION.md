@@ -436,3 +436,99 @@ first preparation used an unsupported diagnostic verb and an incorrect observer
 name comparison; those rejected attempts are retained. The final fixture removes
 the unsupported call, audits every invoked verb against the engine registrations,
 and uses exact qualified COG identity and actual numeric type tags.
+
+## RC3 Canyon Force pickup regression (2026-09-09)
+
+The native-visual Canyon output has SHA-256
+`cd5656b2c60beb50ae4d9a368405661af9d4a16c4d47f15eff0dde228e51be53`.
+All nine stock maps plus Jedi's High School passed independent structural
+verification and repeat-build byte equality with this recipe revision. Their
+original object placements and authored template fields are preserved except
+for the documented native Force pickup model/controller substitutions.
+
+Canyon's map COG budget is now 81 for 79 required instances. The previous
+budget of 32 left all seven source Force pickups without their COG bindings.
+The new mapping uses native MotS Force Boost at all five Boost locations and
+native Force Surge at both original JK Surge locations. The recipe pins the
+owned native model, material, script and template sources.
+
+A private diagnostic COG was added only to a scratch copy of this output. A
+134-second OpenJKDF2 MotS multiplayer host run recorded 266 samples and passed
+all 22 targeted checks. The fixture staged player positions and controlled
+rank/energy preconditions, then exercised the game's actual movement, collision
+and pickup scripts. It did not inject pickup messages. Observations included:
+
+- All seven original pickups loaded with valid COG bindings and native models.
+- Boosts added 100 energy above the old rank-based limit, clamped to the active
+  400 maximum, and stayed available when the player was full or had zero capacity.
+- Both Surge locations refilled energy and used MotS bin 64. Taking the second
+  renewed the same controller's timer; the effect ended 20 seconds later. Bin 65
+  remained inactive.
+- The underwater Boost cases worked, native `00twinkle.mat` advanced through
+  observed cels 0 through 10, and all six consumed pickups naturally respawned.
+  The seventh stayed available after the full-energy rejection.
+
+A separate reset-handler probe passed nine checks: sending the normal
+`NEWPLAYER` message cleared the Surge state and its visual flag. This was a
+message-handler test, not a played death and automatic respawn cycle.
+
+The Windows engine executable used for these observations has SHA-256
+`fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873`.
+It was built from fork commit `9510c4713aec475006d4aac8f2c417c2e66dfef0` plus
+fixes for MotS host null-taker acknowledgment/respawn and first-person render-mode
+selection. Those tested source changes are now published in fork commit
+[`5fa4644`](https://github.com/andreipemberton/OpenJKDF2-MotS-Fixes/commit/5fa4644d03080fef69d7137eaa2c8f295c47bd63).
+The engine remains separate from the WBW application package.
+Extracted production-function regressions also passed, and removing each fix
+reproduced its corresponding failed regression.
+
+These runs establish the targeted pickup behavior in one hosted multiplayer
+process. They do not establish human traversal, rendered appearance, normal
+character-menu setup, a played death cycle or synchronization with a joined
+peer. No rendered screenshot comparison is claimed for this test. Baseline
+resources and the source conversion hashes stayed unchanged. The diagnostic
+script and scratch conversion are private test artifacts and are not shipped
+in WBW or in the normal converted map.
+
+## RC4 recipe tracking and user workflow (2026-09-09)
+
+RC4 adds independent per-recipe revisions, embedded metadata, versioned output
+names, a read-only MotS folder scan, explicit native path selection and the
+illustrated silent workbench. It retains the RC3 native Force-pickup correction.
+
+The final Windows source suite ran **280 tests: 278 passed and two skipped**.
+The skips were a Windows symlink-privilege fixture and a Windows virtual-environment
+ancestry fixture. The UI suite passed **47 tests**. An earlier full run encountered
+a Windows loopback connection abort in one HTTP boundary test; its focused retry
+and the complete final suite passed. That first result remains in private QA records.
+
+Four explicit recipes—Canyon Oasis, The Duel (stock CTF), Jedi's High School,
+and Ninja Kage 7.0—passed real owned-input conversion and structural verification.
+An exact repeat reused all four result directories, with **all 25 generated file
+hashes unchanged**, including receipts and manifests. Their outputs stayed in
+private local testing folders; no original or converted payload is published.
+
+A separate **20-second production MotS multiplayer host** loaded the exact
+`bridge-canyon_wbw_v1.goo` episode. All eight targeted checks passed: host survival,
+MotS multiplayer mode, exact versioned episode, seven bound pickup COGs, absence
+of a diagnostic COG, unchanged source/staged GOO, unchanged owned baseline, and
+no visible window. Game time advanced from 1,956 to 18,507 milliseconds. Both
+Surges shared their expected controller. Its game payload is byte-identical to
+the RC3 Canyon payload whose pickup behavior is documented above; the added
+metadata does not change its game-resource members. This host check used no
+simulated OS input or staged player movement and captured no gameplay screenshot.
+
+Scanning the four final result folders found five current archives (four primary
+outputs and the CTF startup overlay), with no errors or warnings. A separate scan
+of the older Canyon test installation reported one unversioned Canyon archive and
+two unrecognized retail GOOs. Before/after hashes confirmed both scans were read-only.
+
+Actual headless Chrome checks covered the local scanner, rendered original art,
+desktop and 390-pixel mobile layouts, explicit selections, download-page links,
+and native-picker response handling. Picker responses were mocked, so no native
+dialog opened during unattended browser QA. The 20 library chooser tests also
+passed on Windows and Linux using mocked dialogs/processes. Native runtime
+bundling is a separate packaging check.
+
+These checks do not add a claim of complete Ninja Kage gameplay, all-map traversal,
+door/elevator behavior, joined-peer synchronization or a played death cycle.

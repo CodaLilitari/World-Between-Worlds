@@ -34,12 +34,17 @@ conversions. They are illustrative test evidence, not reusable game assets,
 and are not part of the conversion payload or updater packages. Their captions
 identify the source, runtime, mode, camera staging and test limitations.
 
-The World Between Worlds name/theme is an unofficial community-tool presentation. The
-wing emblem and interface artwork are original; no Star Wars logos or game
-artwork are used as application branding. No Lucasfilm or LucasArts affiliation
-or endorsement is claimed.
+The World Between Worlds name/theme is an unofficial community-tool presentation.
+The wing emblem and interface illustration are original. The Light Sith Coda
+illustration was generated for this application from the user's canonical Coda
+reference; it is original fan art, not extracted game art or a film screenshot.
+No game/mod payload is hidden in the illustration. Its native PNG, generation
+prompt and provenance are documented in SCREENSHOTS.md. The private character
+reference sheet is not distributed. No official Star Wars logo, Lucasfilm or
+LucasArts affiliation or endorsement is claimed. This notice does not grant
+rights to third-party characters, settings or trademarks.
 
-Standalone builds include a Python runtime and PyInstaller bootloader, with
+Standalone builds include a Python runtime, Tcl/Tk chooser runtime and PyInstaller bootloader, with
 their license notices beside the executable. Build dependencies are not needed
 to run the standalone packages. The Python source package uses only the Python
 standard library at runtime.
