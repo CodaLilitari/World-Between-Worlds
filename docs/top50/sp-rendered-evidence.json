@@ -1,0 +1,199 @@
+{
+  "schema": "wbw.sp-rendered-comparison.v1",
+  "date": "2026-09-12",
+  "engine_commit": "b1be98bd4f170b5384cb71b15443a274aac6a937",
+  "engine_sha256": "c21e9e97314c7eb884a52c3dfab6256c859f887aef58c8ca771dfc829917e536",
+  "scope": "Two camera-matched SP views in OpenJKDF2 JK and MotS modes; no retail executable or gameplay parity claim.",
+  "images_are_documentation_screenshots": true,
+  "game_asset_files_included": false,
+  "private_launcher_sha256": "bb23d7882e574f557c59488b7954eb6d3c1886c2a6c0767e913e16b51581364c",
+  "prior_failed_attempt": "The launcher initially requested a nonexistent prefixed SP world. Both MotS attempts exited 6 before capture. It was corrected to read the unchanged authored world name; recipe game payloads did not change.",
+  "pairs": [
+    {
+      "title": "The Phantom Menace: Final Battle (Revised)",
+      "source_url": "https://www.massassi.net/levels/files/23.shtml",
+      "recipe_id": "sp-phantom-menace-final-battle",
+      "recipe_revision": 1,
+      "camera": {
+        "position": [
+          -1.1,
+          -1.85,
+          0.6599999999999999
+        ],
+        "pitch_yaw_roll": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sector": 66,
+        "horizontal_fov": 98.0306723659185
+      },
+      "captures": [
+        {
+          "mode": "jk",
+          "image": "../screenshots/top50/phantom-jk.png",
+          "image_sha256": "9fd5d7b0502cfa0792ae90fc7d96296a020a94ec20a63717d3e136c08d7b2147",
+          "ppm_sha256": "9451791b57c93dc23defcb726b7a956ad1d92c51c48a5becea57aa2f612227c6",
+          "archive_sha256": "061db9c426368b5ebb1c9513f8161ca7b2c3f3a7666af4e16a68246a32d09c4d",
+          "original_zip_sha256": "1e9bb4ec7ffef3e122c431a824af772815958788a05818136b1f576bf06a3b0d",
+          "request_sha256": "72d223f582f4d26a74739269af03bd6f9d03fc9bdc89bab55980d8cbeb0f2ae9",
+          "private_receipt_sha256": "b9a9698199d151c3b98ea60c8a2fe3d1a1d8578babfa8ca646b75d7ad9828099",
+          "exit_code": 0,
+          "elapsed_seconds": 1.7610256000043591,
+          "all_inputs_unchanged": true,
+          "visible_window_samples": 0,
+          "foreground_window_samples": 0,
+          "rendered_frame": 3,
+          "width": 960,
+          "height": 640,
+          "source_resources": [
+            {
+              "name": "JK_.CD",
+              "sha256": "3e293a343ef0b2fcf917a6afa525c976ce0df9b457198ce21dafbb8056ae9db9"
+            },
+            {
+              "name": "Res2.gob",
+              "sha256": "c75f7d5211bdd2e07a3af6a987c718037e8f0fd6909018ddb4327137bf3a7ebf"
+            },
+            {
+              "name": "Res1hi.gob",
+              "sha256": "6c6d51eca9c85dffe7dce9b449642a052f055352e3f817abf03b465da861aafd"
+            }
+          ]
+        },
+        {
+          "mode": "mots",
+          "image": "../screenshots/top50/phantom-mots.png",
+          "image_sha256": "b15fb6951be3271e3686b0710a5c3315aaf35c374ce8714b96e749d725144340",
+          "ppm_sha256": "f2a2b3abbc9675d812a13082835864d517af865dde6c74e05e2c317e28fd237a",
+          "archive_sha256": "0fb4a1113a8ba4fef427cd7da56d0cff72a247ed30c702a3899dd38cf7f6dc1f",
+          "original_zip_sha256": "1e9bb4ec7ffef3e122c431a824af772815958788a05818136b1f576bf06a3b0d",
+          "request_sha256": "93711a1e511358c7abd27182a329968a5bc6d14bc2186bc039ff940c3ab27103",
+          "private_receipt_sha256": "6643827480b337c542b0c53282e69d2c55f33f621509b843e98d86945ed1e12a",
+          "exit_code": 0,
+          "elapsed_seconds": 2.0342131000070367,
+          "all_inputs_unchanged": true,
+          "visible_window_samples": 0,
+          "foreground_window_samples": 0,
+          "rendered_frame": 3,
+          "width": 960,
+          "height": 640,
+          "source_resources": [
+            {
+              "name": "JK_.CD",
+              "sha256": "efb79bac576656a08243b250ab333781d1c6f7e87a1572caff15b8db12de1679"
+            },
+            {
+              "name": "JKMRES.GOO",
+              "sha256": "fa615eafa30114afd5e38369d790e721df56ce9a4ef62b66f34fc41b7c048a12"
+            },
+            {
+              "name": "JKMSNDLO.GOO",
+              "sha256": "b80029082c93c7c47fd886ab659f41b5318fed1fa34b173cf5fd1bb7226d3462"
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "equal_pixels": 614397,
+        "total_pixels": 614400,
+        "equal_pixel_fraction": 0.9999951171875,
+        "interpretation": "Snapshot-local numeric comparison only. Timed simulation, animation, RNG and the inspected field of view limit this result.",
+        "visual_review": "Visible structural outlines, materials, UV placement and lighting align in the paired views. No missing texture or major visible geometry regression was observed. Animated scene objects are not certified."
+      }
+    },
+    {
+      "title": "Legends of the Force: Darth Maul vs. Qui-Gon Jinn",
+      "source_url": "https://www.massassi.net/levels/files/26.shtml",
+      "recipe_id": "sp-maul-vs-qui-gon",
+      "recipe_revision": 1,
+      "camera": {
+        "position": [
+          0.0,
+          -3.6,
+          0.26
+        ],
+        "pitch_yaw_roll": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sector": 8,
+        "horizontal_fov": 98.0306723659185
+      },
+      "captures": [
+        {
+          "mode": "jk",
+          "image": "../screenshots/top50/maul-jinn-jk.png",
+          "image_sha256": "44170e1246f0e8345f72204b59a9c2bb11ead7747e100e52c217dac75fb3c2e6",
+          "ppm_sha256": "06f8970b11041554baa3ad59c73f0b970e5cc5748872c893547b2792ab7779ed",
+          "archive_sha256": "868524accb6f1b7e73f46761705da71673520d8989406591b4d5d5e845bc79fc",
+          "original_zip_sha256": "61ed86d2ba4c0ea5bb2fdd7f2eae5e9459618ce4550d7debb8d8f6424559942e",
+          "request_sha256": "ea8685f49269f9f0bf2ec176846914ad7939fbdb6279a90ea4ce90ee3d519750",
+          "private_receipt_sha256": "56abed4b6c1b10f3659fc128fb9d1c9f414f4c1d3761a951b0eb6ba4779989ba",
+          "exit_code": 0,
+          "elapsed_seconds": 1.5632772999961162,
+          "all_inputs_unchanged": true,
+          "visible_window_samples": 0,
+          "foreground_window_samples": 0,
+          "rendered_frame": 3,
+          "width": 960,
+          "height": 640,
+          "source_resources": [
+            {
+              "name": "JK_.CD",
+              "sha256": "3e293a343ef0b2fcf917a6afa525c976ce0df9b457198ce21dafbb8056ae9db9"
+            },
+            {
+              "name": "Res2.gob",
+              "sha256": "c75f7d5211bdd2e07a3af6a987c718037e8f0fd6909018ddb4327137bf3a7ebf"
+            },
+            {
+              "name": "Res1hi.gob",
+              "sha256": "6c6d51eca9c85dffe7dce9b449642a052f055352e3f817abf03b465da861aafd"
+            }
+          ]
+        },
+        {
+          "mode": "mots",
+          "image": "../screenshots/top50/maul-jinn-mots.png",
+          "image_sha256": "3b18c98b13f210f37f3ff70beb03f5ca5472716c0b72f8537095bb470354b281",
+          "ppm_sha256": "c1c624662ffbb7499d734a98a16593679940c4c311441c12ae32d4a85188a109",
+          "archive_sha256": "91d72f38d4ee2a2dc0d01c7381e695cb0e985107977b7c5008e3c421384b20b1",
+          "original_zip_sha256": "61ed86d2ba4c0ea5bb2fdd7f2eae5e9459618ce4550d7debb8d8f6424559942e",
+          "request_sha256": "31e401811035fc4c9afef8aa2a04be36f927c945cabaff5e483702efb951e0ce",
+          "private_receipt_sha256": "4b1c1eea5ae7927ec28fb846dbab4068c5b4d8516dfd7bdc7395c33628e7c547",
+          "exit_code": 0,
+          "elapsed_seconds": 1.7433554000017466,
+          "all_inputs_unchanged": true,
+          "visible_window_samples": 0,
+          "foreground_window_samples": 0,
+          "rendered_frame": 3,
+          "width": 960,
+          "height": 640,
+          "source_resources": [
+            {
+              "name": "JK_.CD",
+              "sha256": "efb79bac576656a08243b250ab333781d1c6f7e87a1572caff15b8db12de1679"
+            },
+            {
+              "name": "JKMRES.GOO",
+              "sha256": "fa615eafa30114afd5e38369d790e721df56ce9a4ef62b66f34fc41b7c048a12"
+            },
+            {
+              "name": "JKMSNDLO.GOO",
+              "sha256": "b80029082c93c7c47fd886ab659f41b5318fed1fa34b173cf5fd1bb7226d3462"
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "equal_pixels": 614365,
+        "total_pixels": 614400,
+        "equal_pixel_fraction": 0.9999430338541667,
+        "interpretation": "Snapshot-local numeric comparison only. Timed simulation, animation, RNG and the inspected field of view limit this result.",
+        "visual_review": "Visible structural outlines, materials, UV placement and lighting align in the paired views. No missing texture or major visible geometry regression was observed. Animated scene objects are not certified."
+      }
+    }
+  ]
+}

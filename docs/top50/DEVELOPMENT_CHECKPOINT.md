@@ -132,8 +132,14 @@ establishes overlay loading, not selected-skin animation or appearance. Its
 native skeleton/KEY checks and remaining baseline anomalies are detailed in
 [the skin review](SKIN_REVIEW.md).
 
+Follow-up [SP camera comparisons](SP_RENDERED_COMPARISONS.md) captured both new
+SP prototypes in OpenJKDF2 JK and MotS modes using the same hidden-rendering
+executable and cameras. The visible geometry, materials and lighting align in
+the two inspected views. Their exact inputs, images and limitations are recorded
+separately; these screenshots do not promote the recipes to full gameplay passes.
+
 The remaining work includes 118 entries without recipes, the Castle engine
-prerequisite, rendered comparisons, authored mechanics, SP objectives and
+prerequisite, broader rendered comparisons, authored mechanics, SP objectives and
 progression/save checks, skin selection and animation, respawn, same-process
 transitions and matched second-peer tests. These dimensions are not implied by
 successful structural verification or a hosted load test. KWP and Matrix's
