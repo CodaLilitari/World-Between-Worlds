@@ -9,7 +9,8 @@ release.
 See the [development checkpoint](DEVELOPMENT_CHECKPOINT.md) for current recipe
 coverage, concrete fixes, test evidence and the work still pending.
 The [remaining-source review](REMAINING_SOURCE_REVIEW.md) records individual
-findings for all 118 entries still lacking recipes; it does not enable them.
+findings for the 118 entries that lacked recipes at that review snapshot. Three
+subsequently gained prototypes; see the checkpoint for current counts.
 
 | Category | Scope and frozen inventory |
 | --- | --- |

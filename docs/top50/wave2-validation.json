@@ -1,0 +1,124 @@
+{
+  "schema": "wbw.wave2-validation.v1",
+  "assets_included": false,
+  "source_hashes": {
+    "bridge.py": "489981a8b9361b472f99134fde777a7695dba81b2faba498aaecd1f309301444",
+    "gob.py": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+    "caesars_audit.py": "44672d03fc35fe87d2cd832ce1cfa7168a106b411159d6a6f6cf1eca6cd96dc2",
+    "custom_registry.py": "16eb46e4bc7f298cc04a6ad20715dadd9242768ee33fc6196edbe4d23aa3b999",
+    "community_runtime.py": "192d3cba7b787c21b9c8412980db7efee8d1527307b43ad4e7bae3b123420e2f",
+    "custom_catalog.py": "6ae67561dd3d3bf4fac4dcae30284ac661fd401b808b99edd677db282aebca89",
+    "author_catalog.py": "8cb3e8d7b464070f120aa4c1ce30bed8f17cf9120eabbd4faaa83d34718b863b",
+    "jhs_catalog.py": "87e6b3e72b0979bf6f4415f905b889edb93a85c1d91d7fe0f5648cb47ff30abc",
+    "massassi_mp_catalog.py": "0375002c3350bb38c82b79d298b91fa1ff10f5a8ae9e15f01554cc26937ee9ab",
+    "verify_retail.py": "6b445227c65205e8497e37276e3845787570af78c3d7adeca910e6c7142d9378",
+    "ninja_catalog.py": "b4483a440f9bf3828cd59136320d1ec4c4852a3618e43c19d743e62cd26eb490",
+    "ninja_converter.py": "3d7337ef9c5e5075b294e69faa74e548061640caab03521c06d4058fdace0200",
+    "recipe_adapters.py": "f042970bd2b45af992a6d292f898613f200f9b581ecf1da804c44457dcf3d1cc",
+    "mods_catalog.py": "ab9f67bdab6825462452def333cec75409eaa3c608682ca83af7829a4313864f",
+    "mods_converter.py": "3d328ccb4993bb95045400f74a9d7009b4ac5cb476082e60db83a66638eca140",
+    "mp_pack_catalog.py": "f5a00a1012f2bb813584c2720fb08699cf3ebcf8aa6e05cd516a6f87b4907a65",
+    "mp_pack_converter.py": "872bdf43eea68afccfc01be2ff793f2dec3a1bd677a3ec26b35357bbed5221c6",
+    "sp_catalog.py": "27de2a3b4c7ea6e62b84ce8021a0992dce078aa8bd5dd689fa00d405034cadb8",
+    "sp_converter.py": "45d058e07191a5fb3897443a9e72f4a59acd7714e22b4dbc73a256002a8b8a2a",
+    "skinmods_catalog.py": "019814d8e1001fa4d4e6fc4d69a33681224e5045131e8cb9768e9e2e75913426",
+    "skinmods_converter.py": "c3a34f35c1cc7761eb586c14efa73c648e657ea5454aecb795a63fa9fbd9379c",
+    "blackwing_catalog.py": "62d5e4a944b3facdeae8537996ae92f59297ea0a1ddcd0ebec0b9320cd740bd6",
+    "blackwing_service.py": "92a5d7f1dfa534477c2cdd1f6e365a01bd7bd544cd052bcfd2d5b97eaefac49e",
+    "blackwing_revisions.py": "360e81ff1b42bf9e8e9ab60cb57f87939ed09f6ff6437ed914af1930ade5388e"
+  },
+  "recipes": [
+    {
+      "id": "mp-dbz-tdir-tournament",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "d918687ee631fdf46a1cdceeef5fd54d61816ef3e9d29057456cf194615064c2",
+        "blackwing-recipe.json": "b14babb085d8d3af2bfbd219e80a7b0d4f401d6ac1db0f9888ea862e57718b38",
+        "bridge-mp1814-pack-v1.manifest.json": "ab2430541a0fe037f075ae0ec25a348e7a71979591215003f6eb2f8142f9dcd4",
+        "bridge-mp1814-pack_wbw_v1.goo": "fad735aecc9c67cad3a29d73ecd04f3ffc2381ae933a86467f2cb6cbdc37d38d",
+        "bridge-mp1814-pack_wbw_v1.manifest.json": "2d58b4f9bd19adeb50d96d05330be1b714acf7b444c0d585ed4adb1b424fc53b",
+        "ORIGINAL-01-readme.txt": "2b6dc26d0befc556c8a5def4a4d0dd3639bd9b214cf97efe772853ce33133f20",
+        "README.txt": "810c3f7dad7d290dc097f4e9c4a413bf77ffcd89b3e68a05fe9846b386d19e25"
+      },
+      "game_payload_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+      "stamped_archive_sha256": "fad735aecc9c67cad3a29d73ecd04f3ffc2381ae933a86467f2cb6cbdc37d38d",
+      "all_artifacts_identical": true,
+      "runtime_tested_payload_unchanged": true,
+      "linux_archive_identical": true
+    },
+    {
+      "id": "sp-imperial-pumping-station",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "15c8529b40b5f2bbf79479a949be17de44fe6a190d357bd2effcf2269441c79a",
+        "blackwing-recipe.json": "c533c8e9378ceac669cdf7a8480e00472c5aff69a29618caa00e52fceec1dc2b",
+        "manifest.json": "fbbb5e1f6fd1f5b07602544923ad837ba980b735c80af0581a2a2aad1ded3ecb",
+        "mk_ips.txt": "b980ce6ba31f4cc71f4e1f20018dc6f365b79ae543ee5d1a803cc8b49f47bc8b",
+        "README.txt": "7b7edb3b382deaa9594cc3a7d2a870b5df83e7e5eace86a3a2acc44f4f942dec",
+        "wbw-sp-pumping-station_wbw_v1.goo": "829ebfced1aac9ddb52a4b327776b2ab4f82270f26fa5e060328ec5c1a6a037e",
+        "wbw-sp-pumping-station_wbw_v1.manifest.json": "3720642fb5d509860004e7985cbb46fb96ac40fd76696e75849022f18886b87e"
+      },
+      "game_payload_sha256": "b25f60de9c1d337a85416100cc61fb8c27e0bca8966f045867f689cc4763e30b",
+      "stamped_archive_sha256": "829ebfced1aac9ddb52a4b327776b2ab4f82270f26fa5e060328ec5c1a6a037e",
+      "all_artifacts_identical": true,
+      "runtime_tested_payload_unchanged": true,
+      "linux_archive_identical": true
+    },
+    {
+      "id": "mod-anime-characters",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "893fffcaee0271cd7f9c2d0b573163a66b163b214dd72debd39333ba995ee452",
+        "blackwing-recipe.json": "32d6cdc124535a030f3af9c2851079a3903e835ae97b5205f0dd199f82d484e4",
+        "wbw-anime-skins/ORIGINAL-README.txt": "932a3844b1670603e716608d82bb8cfae07bf6a3fc7ab2fd98b649245212a49d",
+        "wbw-anime-skins/README.txt": "60de0f9d394221381df2a204e9ee693abb2083c5e95cbe669594f6b84b076584",
+        "wbw-anime-skins/wbw-anime-skins.goo.manifest.json": "580bba921b50f7d3fbc8cdd336cd5258c7be400e6f770efc51596e8c717f99e3",
+        "wbw-anime-skins/wbw-anime-skins_wbw_v1.goo": "d52e0be213fba22203e3f7860b9ebcf2b2c2ccfc63dffcc68ebcecfba7c46a7b",
+        "wbw-anime-skins/wbw-anime-skins_wbw_v1.manifest.json": "95cfdf84fb91db2156ea4e3edd71fe0bef9e07dc520a5943018f57338dab5e73"
+      },
+      "game_payload_sha256": "bf43154f42b504a842747aa82701d95413941743f13f33607c144c3351925359",
+      "stamped_archive_sha256": "d52e0be213fba22203e3f7860b9ebcf2b2c2ccfc63dffcc68ebcecfba7c46a7b",
+      "all_artifacts_identical": true,
+      "runtime_tested_payload_unchanged": true,
+      "linux_archive_identical": true
+    }
+  ],
+  "source_tests": {
+    "windows_total": 355,
+    "windows_initial_skips": 15,
+    "windows_followup_owned_ninja_tests_passed": 13,
+    "linux_total": 355,
+    "linux_skips": 2,
+    "windows_log_sha256": "6aa4cb0513f1c72ec8e40106934335e265cfd2ca8d340eb36ccbac7004bb4c96",
+    "windows_ninja_followup_sha256": "96febfb1a7441676455ceb102fdb880daf942ee1b420fdcfba6557867c331987",
+    "linux_log_sha256": "b25b89f4fdb60d7eef8bf33b7103ae76b5c9c4f8d628737cdb75d4a744278b50"
+  },
+  "profiles": {
+    "count": 3,
+    "unexpected_active_resource_conflicts": 0,
+    "declared_overrides": [
+      {
+        "profile": "mod-anime-characters",
+        "path": "misc/models.dat"
+      },
+      {
+        "profile": "mod-anime-characters",
+        "path": "ui/jkstrings.uni"
+      }
+    ],
+    "native_episode_base_differences": 3,
+    "report_sha256": "07316a085996eaa35bfdcc176a81ce18db02cd9b848498ea0bafb52a92d95374",
+    "scope": "Exact archive profiles; loose files, persistent cache interactions and peer equality remain separate."
+  },
+  "source_package": {
+    "files": 72,
+    "bytes": 2727513,
+    "sha256": "076969df16ee9163fccfaf79b470ca6d9dc2b1f12b96a009f62d40e67310c67a",
+    "old_updater_commit": "5ad34e5",
+    "inspection": "passed",
+    "built_only_in_memory": true
+  }
+}

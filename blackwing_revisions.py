@@ -37,6 +37,9 @@ RECIPE_REVISIONS = {
     'mod-agent-han': 1,
     'mp-heart-of-the-forest': 1, 'mp-jedi-tower-2000': 1,
     'mp-barons-head-at-night': 1,
+    'mp-dbz-tdir-tournament': 1,
+    'sp-imperial-pumping-station': 1,
+    'mod-anime-characters': 1,
 }
 MARKER_NAME = 'wbw/recipe.json'
 MARKER_SCHEMA = 1

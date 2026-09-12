@@ -105,13 +105,55 @@ def episode_rows(data):
     return result
 
 
-def metadata(source, spec):
-    original = source.read('episode.jk')
+def reviewed_episode(original, spec):
+    """Repair only a pinned, unreferenced later duplicate row identifier.
+
+    Episode line identifiers are branch targets, separate from level numbers.
+    Renaming a referenced identifier could change which world a branch reaches;
+    that case requires a different review and is deliberately rejected here.
+    """
     require(digest(original) == spec['episode_sha256'], 'Original episode graph differs')
     expected = [{key: value for key, value in row.items() if key != 'world_spec'}
                 for row in spec['episode_rows']]
     require(episode_rows(original) == expected, 'Reviewed episode rows differ from original')
+    repairs = spec.get('episode_row_repairs', [])
+    require(type(repairs) is list, 'Episode row repairs must be an explicit list')
+    lines = original.decode('cp1252').splitlines(keepends=True)
+    active_indices = [index for index, line in enumerate(lines) if re.match(r'^\s*\d+:', line)]
+    repaired_indices = set()
+    for repair in repairs:
+        require(type(repair) is dict and set(repair) ==
+                {'row_index', 'old_line', 'new_line', 'row_sha256', 'count', 'reason'},
+                'Unreviewed episode row repair operation')
+        index, old, new = repair['row_index'], repair['old_line'], repair['new_line']
+        require(all(type(value) is int for value in (index, old, new, repair['count']))
+                and 0 <= index < len(expected) and new >= 0 and repair['count'] == 1,
+                'Episode row repair requires one valid counted identifier change')
+        require(index not in repaired_indices, 'Episode row cannot be repaired twice')
+        require(expected[index]['line'] == old and any(row['line'] == old for row in expected[:index]),
+                'Only a later duplicate episode identifier may be repaired')
+        require(all(row['line'] != new for row in expected), 'Repaired episode identifier already exists')
+        require(all(row[field] not in {old, new} for row in expected for field in ('goto_a', 'goto_b')),
+                'Referenced episode identifiers require separate branch review')
+        line_index = active_indices[index]
+        require(digest(lines[line_index].encode('cp1252')) == repair['row_sha256'],
+                'Original episode repair row differs')
+        require(isinstance(repair['reason'], str) and repair['reason'].strip(),
+                'Episode row repair requires its review reason')
+        lines[line_index], count = re.subn(r'^([ \t]*)\d+:',
+                                           lambda match: match[1] + str(new) + ':',
+                                           lines[line_index], count=1)
+        require(count == repair['count'], 'Episode row repair count differs')
+        expected[index]['line'] = new
+        repaired_indices.add(index)
+    repaired = ''.join(lines).encode('cp1252')
+    require(episode_rows(repaired) == expected, 'Episode repair changed another row field')
     require(len({row['line'] for row in expected}) == len(expected), 'Duplicate episode row numbers require separate review')
+    return repaired, expected
+
+
+def metadata(source, spec):
+    original, expected = reviewed_episode(source.read('episode.jk'), spec)
     require({row['world_spec'] for row in spec['episode_rows']} == set(spec['world_specs']),
             'Every pack component must have an active reviewed episode row')
     names = {}
@@ -219,6 +261,13 @@ def build_payload(archives, source, spec):
                                               'Shared complete virtual paths require identical bytes.',
                                               'Final archive is the exact component union plus combined source metadata.',
                                               'Final literal resource closure resolves against the exact MotS profile.']))
+    if spec.get('episode_row_repairs'):
+        repaired_episode, _ = reviewed_episode(source.read('episode.jk'), spec)
+        manifest['episode_row_repairs'] = copy.deepcopy(spec['episode_row_repairs'])
+        manifest['repaired_original_episode_sha256'] = digest(repaired_episode)
+        manifest['verification']['checks'][0] = (
+            'Every active original episode row retained; only reviewed world names and '
+            'explicitly pinned unreferenced duplicate identifiers changed.')
     return payload, manifest
 
 

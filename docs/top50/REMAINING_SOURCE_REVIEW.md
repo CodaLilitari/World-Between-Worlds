@@ -2,8 +2,11 @@
 
 September 12, 2026. The remaining 24 MP levels, 48 SP levels and 46 mods now have
 individual passive source reviews. **No additional recipe is enabled by this
-review.** Current conversion coverage remains 32 exact-input matches, of which
-31 are selectable, across the 150-entry queue.
+review.** At that snapshot, conversion coverage was 32 exact-input matches, of
+which 31 were selectable, across the 150-entry queue. The three candidates below
+subsequently gained prototypes, bringing coverage to 35 exact-input matches and
+34 selectable entries. The 118-entry metadata remains the original review
+snapshot; [the development checkpoint](DEVELOPMENT_CHECKPOINT.md) tracks progress.
 
 [The per-entry metadata](remaining-source-review.json) preserves rank, source
 identity, original hash, candidate adapter and concrete review gates. It is a
@@ -41,10 +44,12 @@ pinned, reproducible decompression operation.
 | [Imperial Pumping Station](https://www.massassi.net/levels/files/1366.shtml) | Review and pin its 46 remaining source COGs, retain its non-Jedi protagonist and goals, and investigate the author's opening-camera issue. `stopbrief`/`briefstop` and an undeclared camera variable are source findings, not established fixes. |
 | [Anime Characters Skin Pack](https://www.massassi.net/levels/files/684.shtml) | Add an exact loader for its original loose-ZIP directory instructions, namespace the 266 authored assets, append 15 skins to native MotS registrations, and verify transitive dependencies and actual selected-skin behavior. Existing skin adapters do not currently accept this source. |
 
-These candidates have no observed missing typed literal resource declarations
-in the inspected profiles, but that is only one review dimension. Each still
-requires an implemented recipe, independent verification, repeat builds and
-appropriate engine tests.
+These three now have exact recipes, independent verification and repeat builds.
+DBZ's three worlds passed separate MP host checks, Imperial passed a bounded SP
+simulation check, and all 15 Anime skins passed actual MotS MP model/soundclass
+selection checks. [The second implementation batch](WAVE2_CHECKPOINT.md) records
+the evidence and remaining gameplay/appearance/peer limits. The table preserves
+the implementation requirements identified at the original review.
 
 ## Findings that affect implementation
 

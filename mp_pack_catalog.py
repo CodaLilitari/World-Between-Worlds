@@ -814,3 +814,322 @@ PACKS = {'mp-6000-block': {'tag': 'mp323',
                                             'metadata markers may differ. Rendering, authored '
                                             'mechanics and two-peer synchronization are not '
                                             'established.'}}}
+
+
+# Source-only recipe for the complete three-world standalone tournament pack.
+PACKS['mp-dbz-tdir-tournament'] = {'title': 'DBZ: TDIR Tournament Level Pack',
+ 'author': 'ctsketch and Ubuu aka iostream',
+ 'source_url': 'https://www.massassi.net/levels/files/1814.shtml',
+ 'download_url': 'https://www.massassi.net/media/levels/files/jkmp/dbztdirtm.zip',
+ 'massassi_id': 1814,
+ 'download_rank': 42,
+ 'zip_sha256': '6c4cbb9db2992c2be5945186776072d4e392631260aaeb607597bbdff0ab596a',
+ 'gob_sha256': '89d29eee0adb82b5d8a6a303293cca23bfbc3421178b6ce3b18ad53fc2fe417c',
+ 'gob_member': 'DBZTDIR_TM.gob',
+ 'tag': 'mp1814',
+ 'episode_sha256': 'df9b4e3dd3be1f0bde11bf60991703c86dde644e642fefa299ebc333410fc46e',
+ 'episode_rows': [{'line': 10,
+                   'disc': 1,
+                   'level': 1,
+                   'type': 'LEVEL',
+                   'world': 'jkl/cellarena.jkl',
+                   'lightpow': 0,
+                   'darkpow': 0,
+                   'goto_a': -1,
+                   'goto_b': -1,
+                   'world_spec': 'cell'},
+                  {'line': 11,
+                   'disc': 0,
+                   'level': 2,
+                   'type': 'LEVEL',
+                   'world': 'jkl/budoukai.jkl',
+                   'lightpow': 0,
+                   'darkpow': 0,
+                   'goto_a': -1,
+                   'goto_b': -1,
+                   'world_spec': 'budoukai'},
+                  {'line': 11,
+                   'disc': 0,
+                   'level': 2,
+                   'type': 'LEVEL',
+                   'world': 'jkl/heaventourney.jkl',
+                   'lightpow': 0,
+                   'darkpow': 0,
+                   'goto_a': -1,
+                   'goto_b': -1,
+                   'world_spec': 'heaven'}],
+ 'episode_row_repairs': [{'row_index': 2,
+                          'old_line': 11,
+                          'new_line': 12,
+                          'row_sha256': '3c41e1db2d62419b98a60998fedb166ba0d0df9f916401858f1a68006c248da0',
+                          'count': 1,
+                          'reason': 'The third terminal row repeats row11. No episode branch '
+                                    'refers to row11 or row12 and no authored COG exists; only its '
+                                    'duplicate line identifier becomes12. Keep level2, order, CD, '
+                                    'Force fields, filenames and labels.'}],
+ 'world_specs': {'cell': {'title': 'DBZ: TDIR Tournament Level Pack',
+                          'author': 'ctsketch and Ubuu aka iostream',
+                          'source_url': 'https://www.massassi.net/levels/files/1814.shtml',
+                          'download_url': 'https://www.massassi.net/media/levels/files/jkmp/dbztdirtm.zip',
+                          'massassi_id': 1814,
+                          'download_rank': 42,
+                          'zip_sha256': '6c4cbb9db2992c2be5945186776072d4e392631260aaeb607597bbdff0ab596a',
+                          'gob_sha256': '89d29eee0adb82b5d8a6a303293cca23bfbc3421178b6ce3b18ad53fc2fe417c',
+                          'gob_member': 'DBZTDIR_TM.gob',
+                          'tag': 'mp1814_c',
+                          'world': 'jkl/cellarena.jkl',
+                          'sha256': '460c0481d8e16729562548a964d6667f3c4f69983bd983523c9885488409808f',
+                          'scripts_sha256': '7bc1df0d6594fee753f5cab363ccdfb2d2db479e0e7b67ef4ea15af3d91347d7',
+                          'episode_type': 2,
+                          'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog class_sequencer.cog '
+                                          'kyle.cog pow_backpack.cog pow_bryar.cog '
+                                          'pow_concrifle.cog pow_crossbow.cog pow_railgun.cog '
+                                          'pow_repeater.cog pow_single_sequencer.cog '
+                                          'pow_single_thermal.cog pow_strifle.cog',
+                          'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                    '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                    'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                    'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                    'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                    'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                    'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                    'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                    'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                    'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                    'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                    'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                    'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73'},
+                          'environment': '',
+                          'cog_sha256': {},
+                          'requires_jksp': False,
+                          'source_omissions': [],
+                          'resource_aliases': {},
+                          'cog_edits': {},
+                          'native_cog_edits': {},
+                          'native_template_overrides': {},
+                          'native_resource_overrides': {},
+                          'readme_provenance': [{'path': 'readme.txt',
+                                                 'sha256': '2b6dc26d0befc556c8a5def4a4d0dd3639bd9b214cf97efe772853ce33133f20',
+                                                 'bytes': 4929}],
+                          'notes': ['Original archive has no authored COG files and this world has '
+                                    'no placed COG instances. All13 script-table controllers are '
+                                    'hash-pinned stock JK player, trail, weapon or pickup '
+                                    'controllers; ordinary gameplay uses the reviewed native MotS '
+                                    'bindings.',
+                                    'Preserve authored geometry, things, flags, UVs and world '
+                                    'physics with existing exact MotS format/lighting expansion '
+                                    'and local dependency namespacing. No TDIR mod, skin, Force or '
+                                    'startup overlay is installed.',
+                                    'This world is part of the complete three-world DBZ: TDIR '
+                                    'Tournament pack. Original notice is retained unchanged; '
+                                    'source wording is not a redistribution license.'],
+                          'runtime_test': {'status': 'pack-host-smoke-recorded',
+                                           'full_gameplay': False,
+                                           'note': 'Evidence is attached to the final complete '
+                                                   'pack; component output alone was not hosted.'},
+                          'runtime_gates': ['Open all3 original worlds through their retained '
+                                            'episode order in clean OpenJKDF2 MotS multiplayer.',
+                                            'Check native MotS weapon pickup slots, ammo, player '
+                                            'spawn/respawn, source geometry/lighting appearance '
+                                            'and matched second-peer behavior.']},
+                 'budoukai': {'title': 'DBZ: TDIR Tournament Level Pack',
+                              'author': 'ctsketch and Ubuu aka iostream',
+                              'source_url': 'https://www.massassi.net/levels/files/1814.shtml',
+                              'download_url': 'https://www.massassi.net/media/levels/files/jkmp/dbztdirtm.zip',
+                              'massassi_id': 1814,
+                              'download_rank': 42,
+                              'zip_sha256': '6c4cbb9db2992c2be5945186776072d4e392631260aaeb607597bbdff0ab596a',
+                              'gob_sha256': '89d29eee0adb82b5d8a6a303293cca23bfbc3421178b6ce3b18ad53fc2fe417c',
+                              'gob_member': 'DBZTDIR_TM.gob',
+                              'tag': 'mp1814_b',
+                              'world': 'jkl/budoukai.jkl',
+                              'sha256': '76e766c3bf0747df0eecfad6b2d5892eeef26da50b9c53d516f45ed02335a946',
+                              'scripts_sha256': '7bc1df0d6594fee753f5cab363ccdfb2d2db479e0e7b67ef4ea15af3d91347d7',
+                              'episode_type': 2,
+                              'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                              'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                              'pow_bryar.cog pow_concrifle.cog pow_crossbow.cog '
+                                              'pow_railgun.cog pow_repeater.cog '
+                                              'pow_single_sequencer.cog pow_single_thermal.cog '
+                                              'pow_strifle.cog',
+                              'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                        '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                        'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                        'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                        'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                        'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                        'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                        'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                        'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                        'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                        'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                        'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                        'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73'},
+                              'environment': '',
+                              'cog_sha256': {},
+                              'requires_jksp': False,
+                              'source_omissions': [],
+                              'resource_aliases': {},
+                              'cog_edits': {},
+                              'native_cog_edits': {},
+                              'native_template_overrides': {},
+                              'native_resource_overrides': {},
+                              'readme_provenance': [{'path': 'readme.txt',
+                                                     'sha256': '2b6dc26d0befc556c8a5def4a4d0dd3639bd9b214cf97efe772853ce33133f20',
+                                                     'bytes': 4929}],
+                              'notes': ['Original archive has no authored COG files and this world '
+                                        'has no placed COG instances. All13 script-table '
+                                        'controllers are hash-pinned stock JK player, trail, '
+                                        'weapon or pickup controllers; ordinary gameplay uses the '
+                                        'reviewed native MotS bindings.',
+                                        'Preserve authored geometry, things, flags, UVs and world '
+                                        'physics with existing exact MotS format/lighting '
+                                        'expansion and local dependency namespacing. No TDIR mod, '
+                                        'skin, Force or startup overlay is installed.',
+                                        'This world is part of the complete three-world DBZ: TDIR '
+                                        'Tournament pack. Original notice is retained unchanged; '
+                                        'source wording is not a redistribution license.'],
+                              'runtime_test': {'status': 'pack-host-smoke-recorded',
+                                               'full_gameplay': False,
+                                               'note': 'Evidence is attached to the final complete '
+                                                       'pack; component output alone was not '
+                                                       'hosted.'},
+                              'runtime_gates': ['Open all3 original worlds through their retained '
+                                                'episode order in clean OpenJKDF2 MotS '
+                                                'multiplayer.',
+                                                'Check native MotS weapon pickup slots, ammo, '
+                                                'player spawn/respawn, source geometry/lighting '
+                                                'appearance and matched second-peer behavior.']},
+                 'heaven': {'title': 'DBZ: TDIR Tournament Level Pack',
+                            'author': 'ctsketch and Ubuu aka iostream',
+                            'source_url': 'https://www.massassi.net/levels/files/1814.shtml',
+                            'download_url': 'https://www.massassi.net/media/levels/files/jkmp/dbztdirtm.zip',
+                            'massassi_id': 1814,
+                            'download_rank': 42,
+                            'zip_sha256': '6c4cbb9db2992c2be5945186776072d4e392631260aaeb607597bbdff0ab596a',
+                            'gob_sha256': '89d29eee0adb82b5d8a6a303293cca23bfbc3421178b6ce3b18ad53fc2fe417c',
+                            'gob_member': 'DBZTDIR_TM.gob',
+                            'tag': 'mp1814_h',
+                            'world': 'jkl/heaventourney.jkl',
+                            'sha256': '93cd60422f5d611f5e21d326774ebc94a243d5c7ad8613b3b501adefba815e8e',
+                            'scripts_sha256': '7bc1df0d6594fee753f5cab363ccdfb2d2db479e0e7b67ef4ea15af3d91347d7',
+                            'episode_type': 2,
+                            'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                            'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                            'pow_bryar.cog pow_concrifle.cog pow_crossbow.cog '
+                                            'pow_railgun.cog pow_repeater.cog '
+                                            'pow_single_sequencer.cog pow_single_thermal.cog '
+                                            'pow_strifle.cog',
+                            'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                      '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                      'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                      'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                      'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                      'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                      'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                      'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                      'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                      'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                      'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                      'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                      'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73'},
+                            'environment': '',
+                            'cog_sha256': {},
+                            'requires_jksp': False,
+                            'source_omissions': [],
+                            'resource_aliases': {},
+                            'cog_edits': {},
+                            'native_cog_edits': {},
+                            'native_template_overrides': {},
+                            'native_resource_overrides': {},
+                            'readme_provenance': [{'path': 'readme.txt',
+                                                   'sha256': '2b6dc26d0befc556c8a5def4a4d0dd3639bd9b214cf97efe772853ce33133f20',
+                                                   'bytes': 4929}],
+                            'notes': ['Original archive has no authored COG files and this world '
+                                      'has no placed COG instances. All13 script-table controllers '
+                                      'are hash-pinned stock JK player, trail, weapon or pickup '
+                                      'controllers; ordinary gameplay uses the reviewed native '
+                                      'MotS bindings.',
+                                      'Preserve authored geometry, things, flags, UVs and world '
+                                      'physics with existing exact MotS format/lighting expansion '
+                                      'and local dependency namespacing. No TDIR mod, skin, Force '
+                                      'or startup overlay is installed.',
+                                      'This world is part of the complete three-world DBZ: TDIR '
+                                      'Tournament pack. Original notice is retained unchanged; '
+                                      'source wording is not a redistribution license.'],
+                            'runtime_test': {'status': 'pack-host-smoke-recorded',
+                                             'full_gameplay': False,
+                                             'note': 'Evidence is attached to the final complete '
+                                                     'pack; component output alone was not '
+                                                     'hosted.'},
+                            'runtime_gates': ['Open all3 original worlds through their retained '
+                                              'episode order in clean OpenJKDF2 MotS multiplayer.',
+                                              'Check native MotS weapon pickup slots, ammo, player '
+                                              'spawn/respawn, source geometry/lighting appearance '
+                                              'and matched second-peer behavior.']}},
+ 'catalog_status': 'prototype',
+ 'notes': ["Cell's Game Arena, Budoukai and Heaven's Tournament are all active; no physical source "
+           'world is omitted. No TDIR gameplay mod is required or automatically loaded.',
+           'OpenJKDF2 episode branches resolve lineNum while multiplayer selection identifies '
+           'filenames. All six original goto fields are-1; exactly the later duplicate row '
+           'identifier11 is renamed12. Preserve the separate repeated level2 column and all '
+           'title/loading values.',
+           'Original README credits Ubuu/iostream, ctsketch and the TDIR crew. It contains '
+           'contradictory distribution boilerplate; preserve its exact bytes locally and make no '
+           'asset redistribution claim.'],
+ 'runtime_test': {'status': 'exact-payload-host-smoke-passed',
+                  'scope': '30-second hidden MotS multiplayer host per active world',
+                  'full_gameplay': False,
+                  'worlds': [{'case': 'mp-dbz1814-c-v1',
+                              'world': 'br_mp1814_c.jkl',
+                              'mode': 'mp',
+                              'duration_seconds': 30,
+                              'runtime_sha256': 'fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873',
+                              'tested_archive_sha256': '3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a',
+                              'payload_sha256': '3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a',
+                              'evidence_report_sha256': 'ff2b8a48e973cbb73baa38c0b7f6110e5bacfb69995a03eb781263e0cd00c92b',
+                              'gates': {'survived_requested_window': True,
+                                        'observed_expected_mode': True,
+                                        'expected_episode_world': True,
+                                        'simulation_advanced': True,
+                                        'inputs_and_staged_files_unchanged': True,
+                                        'baseline_unchanged': True,
+                                        'no_visible_window': True,
+                                        'no_harness_error': True},
+                              'resource_diagnostic_count': 0},
+                             {'case': 'mp-dbz1814-b-v1',
+                              'world': 'br_mp1814_b.jkl',
+                              'mode': 'mp',
+                              'duration_seconds': 30,
+                              'runtime_sha256': 'fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873',
+                              'tested_archive_sha256': '3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a',
+                              'payload_sha256': '3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a',
+                              'evidence_report_sha256': 'd0201380d490c7468a3d7d16de3f7afbaeb9ba6607e4a63b17ec3f0dcdcb4f13',
+                              'gates': {'survived_requested_window': True,
+                                        'observed_expected_mode': True,
+                                        'expected_episode_world': True,
+                                        'simulation_advanced': True,
+                                        'inputs_and_staged_files_unchanged': True,
+                                        'baseline_unchanged': True,
+                                        'no_visible_window': True,
+                                        'no_harness_error': True},
+                              'resource_diagnostic_count': 0},
+                             {'case': 'mp-dbz1814-h-v1',
+                              'world': 'br_mp1814_h.jkl',
+                              'mode': 'mp',
+                              'duration_seconds': 30,
+                              'runtime_sha256': 'fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873',
+                              'tested_archive_sha256': '3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a',
+                              'payload_sha256': '3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a',
+                              'evidence_report_sha256': 'b84af04d0a6c8c5dfe0506c4d46ab5abeb0dee1417587915e63bb558d76a4622',
+                              'gates': {'survived_requested_window': True,
+                                        'observed_expected_mode': True,
+                                        'expected_episode_world': True,
+                                        'simulation_advanced': True,
+                                        'inputs_and_staged_files_unchanged': True,
+                                        'baseline_unchanged': True,
+                                        'no_visible_window': True,
+                                        'no_harness_error': True},
+                              'resource_diagnostic_count': 0}],
+                  'note': 'Loading and advancing simulation only; rendering, mechanics, respawn '
+                          'and peers remain open.'}}

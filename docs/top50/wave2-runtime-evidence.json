@@ -1,0 +1,359 @@
+{
+  "schema": "wbw.wave2-runtime-evidence.v1",
+  "assets_included": false,
+  "mp": [
+    {
+      "case": "mp-dbz1814-c-v1",
+      "world": "br_mp1814_c.jkl",
+      "mode": "mp",
+      "duration_seconds": 30,
+      "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+      "tested_archive_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+      "payload_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+      "evidence_report_sha256": "ff2b8a48e973cbb73baa38c0b7f6110e5bacfb69995a03eb781263e0cd00c92b",
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      },
+      "resource_diagnostic_count": 0
+    },
+    {
+      "case": "mp-dbz1814-b-v1",
+      "world": "br_mp1814_b.jkl",
+      "mode": "mp",
+      "duration_seconds": 30,
+      "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+      "tested_archive_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+      "payload_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+      "evidence_report_sha256": "d0201380d490c7468a3d7d16de3f7afbaeb9ba6607e4a63b17ec3f0dcdcb4f13",
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      },
+      "resource_diagnostic_count": 0
+    },
+    {
+      "case": "mp-dbz1814-h-v1",
+      "world": "br_mp1814_h.jkl",
+      "mode": "mp",
+      "duration_seconds": 30,
+      "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+      "tested_archive_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+      "payload_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+      "evidence_report_sha256": "b84af04d0a6c8c5dfe0506c4d46ab5abeb0dee1417587915e63bb558d76a4622",
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      },
+      "resource_diagnostic_count": 0
+    }
+  ],
+  "sp": {
+    "case": "sp-imperial-pumping-station-v1",
+    "world": "mk_ips.jkl",
+    "mode": "sp",
+    "duration_seconds": 90,
+    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+    "tested_archive_sha256": "b25f60de9c1d337a85416100cc61fb8c27e0bca8966f045867f689cc4763e30b",
+    "payload_sha256": "b25f60de9c1d337a85416100cc61fb8c27e0bca8966f045867f689cc4763e30b",
+    "evidence_report_sha256": "6a2bdeb9ae9b040b8a5f82bba723e3fdadbe3556e18a3454f80db3ae7109af8a",
+    "gates": {
+      "survived_requested_window": true,
+      "observed_expected_mode": true,
+      "expected_episode_world": true,
+      "simulation_advanced": true,
+      "inputs_and_staged_files_unchanged": true,
+      "baseline_unchanged": true,
+      "no_visible_window": true,
+      "no_harness_error": true
+    },
+    "resource_diagnostic_count": 0
+  },
+  "skins": [
+    {
+      "model": "an_rei.3do",
+      "soundclass": "an_rei.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "7f63005af20ba78c5b92c5f57a22a8d0806253e15786767d5c4fe1303201bdc2",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_shinji.3do",
+      "soundclass": "an_shinji.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "87a0010aa2144f1ee3be7af7b4cd91136eba316ede69ca00a1f6e6adf574b66b",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_shinji2.3do",
+      "soundclass": "an_shinji.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "3453033d8b6040d8a895493bf15d2d648ce9460755736aaab248cf4406ae3cad",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_kaji.3do",
+      "soundclass": "an_kaji.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "4b66e5f6c17cb288fa33368c24e8f3a6e0ba16e55c78792985379c4b6ef24729",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_asuka.3do",
+      "soundclass": "an_asuka.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "bb96c5a18cd426689172213039ae9c159b7256f7b41cb510f11da21a1492ca6c",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_kaworu.3do",
+      "soundclass": "an_ky.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "a47888ca03068eca950a782faa8a9242395d49f2863513a3f927ddf09513bc9a",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_kamidake.3do",
+      "soundclass": "an_ky.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "167ab2bb5146ac837c833410cfafb569e7ecb7f7ad429b969e6959a68b9e6e44",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_azaka.3do",
+      "soundclass": "an_ky.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "6f45f9b8763b29c7514dbf3a1bbff12540264c0fd0f71873d3738afe785b8bae",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_gendou.3do",
+      "soundclass": "an_ky.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "5e81a63d40f718aa2720b378c6ad40506847cd0d4cb8fd9c61d7ef43ab76c25c",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_misato.3do",
+      "soundclass": "an_kyfemale.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "ccc6f6ca63ae6e567dad1bed1609be5fa2630f2b014f833ccf20abea40e2d1a5",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_ashram.3do",
+      "soundclass": "an_ashram.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "29e8414672039485244a3ba42f48529e7baa39db4c1ea5fe40b00cb10a76fac0",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_ranma.3do",
+      "soundclass": "an_ranma.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "e1f137ffb43fec862cb0c093fd40ab6408d608d9e959ffd207b93465ef9d7909",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_ryoga.3do",
+      "soundclass": "an_ryoga.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "29de05d3f7b61617452fe7349d786ec95a03e3625d67737f513914a416a54f79",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_fuyutsuki.3do",
+      "soundclass": "an_ky.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "818b46310cd3bfd39b5c1fc8d2214bd197dce89d670b1e8b8a47322ad497a5d7",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    },
+    {
+      "model": "an_parn.3do",
+      "soundclass": "an_parn.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "isMultiplayer": true,
+      "motsCompat": true,
+      "evidence_report_sha256": "bc20307be81145f6e7e7c42a8c354f6796dcebc940c7d4ec4c67acfb70dac086",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+      "resource_diagnostic_count": 0
+    }
+  ],
+  "controls": [
+    {
+      "case": "default-kyle-v2",
+      "exit_code": 0,
+      "rank": 0,
+      "actual_model": "ky.3do",
+      "report_sha256": "da334662e036a98c9046e565b9e812e901caf0d2aaed919c76f5a3a0d809f6a4"
+    },
+    {
+      "case": "rank-negative-v2",
+      "exit_code": 6,
+      "rank": -1,
+      "actual_model": null,
+      "report_sha256": "39333f599d58d74fd380976b517c5f75f4cda14aeb3f33c162257fd2c17298e4"
+    },
+    {
+      "case": "rank-high-v2",
+      "exit_code": 6,
+      "rank": 9,
+      "actual_model": null,
+      "report_sha256": "212d49869950af12e51a6e04fd927edafcc6b6e3d9503ee3359427b51201524c"
+    }
+  ],
+  "skin_archive_sha256": "8e4694214c67dd8e9944a1af4ea604e66f178e3e23ffeb93775d1a53f57fe36b",
+  "skin_payload_sha256": "bf43154f42b504a842747aa82701d95413941743f13f33607c144c3351925359",
+  "full_gameplay": false,
+  "appearance_equivalence": false,
+  "peer_synchronization": false,
+  "engine_candidate_source_manifest_sha256": "0cd04c6f5943c31d9ae7eb2c7d687bf8fb2cfc87c7e3488c37251c2c3ac2a268",
+  "committed_source_controls": [
+    {
+      "case": "rei-committed-v3",
+      "passed": true,
+      "engine_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "report_sha256": "20b8579db990e79fb4737b7f9a990aa72c5b21a308cf8a0f1f9ab8c51ff2c092",
+      "resource_diagnostics": 0,
+      "engine_receipt": {
+        "schemaVersion": 1,
+        "mode": "hidden-rendered-inspection",
+        "format": "ppm-rgb8",
+        "width": 960,
+        "height": 640,
+        "renderedFrame": 3,
+        "sector": 0,
+        "position": [
+          -1.10005,
+          1.725,
+          0.155114
+        ],
+        "pitchYawRoll": [
+          0,
+          0,
+          0
+        ],
+        "horizontalFov": 98.0306723659185,
+        "deterministicSimulation": false,
+        "resourceHashesVerifiedByEngine": false,
+        "engineWorldStateAvailable": true,
+        "isMultiplayer": true,
+        "motsCompat": true,
+        "world": "k1.jkl",
+        "localPlayerModel": "an_rei.3do",
+        "localPlayerSoundClass": "an_rei.snd",
+        "hostRequestedModel": "an_rei.3do",
+        "localPlayerHierarchyNodes": 18
+      }
+    },
+    {
+      "case": "castle-current-engine-v3",
+      "passed": true,
+      "engine_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "report_sha256": "a126873d0fc7fc3cc1458edbe6b866120d8874881c1ba25c7de66cea0d75bb61",
+      "resource_diagnostics": 0,
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      }
+    }
+  ]
+}

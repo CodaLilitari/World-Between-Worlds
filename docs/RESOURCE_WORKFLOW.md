@@ -188,8 +188,10 @@ unverified; and can WBW rebuild the correction from the original inputs?**
   startup/new-player ordering, subsequent timers and regeneration cadence. Do
   not repeatedly restart the controller when its cached maximum already matches.
 - A skin overlay mounting successfully does not prove that skin was selected.
-  The inspected engine autostart path hardcodes Kyle. Until a tested character
-  selection path is available, record this as an overlay-load result only.
+  Ordinary autostart defaults to Kyle. The isolated engine branch now has a
+  tested explicit MPC selection path; require its recorded executable and check
+  the actual loaded model/soundclass. Historical tests without that selection
+  remain overlay-load results only; see the second top-50 checkpoint.
   Preserve native registrations and inspect actual skeleton, KEY and resource
   bindings independently; shared directory names do not certify animation.
 - When SED reports geometry problems, compare the untouched original and the

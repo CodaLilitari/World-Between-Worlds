@@ -6,11 +6,22 @@ import tempfile
 import unittest
 
 import bridge
+import blackwing_revisions
 from gob import Gob, build_gob
 import sp_converter
 
 
 class SingleplayerContracts(unittest.TestCase):
+    def test_pumping_station_versioned_name_fits_engine_episode_stem(self):
+        spec = sp_converter.recipe_details('sp-imperial-pumping-station')
+        legacy, = spec['entry']['legacy_filenames']
+        self.assertEqual(legacy, spec['output_filename'])
+        name = blackwing_revisions.versioned_name(legacy, spec['entry']['revision'])
+        self.assertEqual(name, 'wbw-sp-pumping-station_wbw_v1.goo')
+        self.assertLessEqual(len(Path(name).stem.encode('cp1252')), 31)
+        with self.assertRaisesRegex(ValueError, '31-byte episode-name limit'):
+            blackwing_revisions.versioned_name('wbw-sp-imperial-pumping-station.goo', 1)
+
     def typed_closure(self, output_files, native_files=None):
         archives = {'motsres': Gob(build_gob(native_files or {'native.txt': b'synthetic'})),
                     'motssnd': Gob(build_gob({'native.txt': b'synthetic'}))}
@@ -231,6 +242,113 @@ class MaulJinnPayloadControls(unittest.TestCase):
         files['cog/pow_mana.cog'] = self.archives['jkres'].read('cog/pow_mana.cog')
         with self.assertRaisesRegex(sp_converter.SingleplayerError, 'Native copied resource set'):
             sp_converter.verify(self.archives, self.originals, self.recipe_id, build_gob(files))
+
+
+@unittest.skipUnless(os.environ.get('WBW_SP_TEST_BASELINES') and os.environ.get('WBW_SP_TEST_PUMPING_ORIGINAL'),
+                     'Set explicit owned baselines and Pumping Station source ZIP to run private payload controls')
+class PumpingStationPayloadControls(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.recipe_id = 'sp-imperial-pumping-station'
+        cls.archives = bridge.pinned_archives(Path(os.environ['WBW_SP_TEST_BASELINES']),
+                                              include_jksp=True, include_motssp=True)
+        cls.originals, cls.notices = sp_converter.open_original(
+            Path(os.environ['WBW_SP_TEST_PUMPING_ORIGINAL']), cls.recipe_id)
+        cls.payload, cls.manifest = sp_converter.build(cls.archives, cls.originals, cls.recipe_id)
+        cls.output = Gob(cls.payload)
+
+    def files(self):
+        return {path: self.output.read(path) for path in self.output.entries}
+
+    def rejects(self, files, expected):
+        with self.assertRaisesRegex(sp_converter.SingleplayerError, expected):
+            sp_converter.verify(self.archives, self.originals, self.recipe_id, build_gob(files))
+
+    def test_repeat_build_preserves_episode_and_non_jedi_inventory(self):
+        repeat, manifest = sp_converter.build(self.archives, self.originals, self.recipe_id)
+        self.assertEqual((repeat, manifest), (self.payload, self.manifest))
+        self.assertEqual(self.output.read('episode.jk'), self.originals['episode'].read('episode.jk'))
+        report = sp_converter.verify(self.archives, self.originals, self.recipe_id, self.payload)
+        self.assertEqual(report['status'], 'structural-preservation-pass')
+        self.assertFalse(report['runtime_verified'])
+        source = bridge.text(self.originals['episode'].read('cog/installation_start.cog'))
+        converted = bridge.text(self.output.read('cog/bs_installation_start.cog'))
+        self.assertEqual(source, converted)  # No filename/default-template substitutions in this COG.
+        self.assertIn('SetInv(player, 20, 0);', converted)
+        for ordinal, amount in ((1, 1), (2, 1), (3, 1), (4, 12), (8, 3), (11, 300)):
+            self.assertIn(f'SetInv(player, {ordinal}, {amount});', converted)
+        self.assertNotIn('SetInv(player, 131,', converted)
+
+    def test_adding_force_rank_or_rewriting_original_weapon_ordinal_is_rejected(self):
+        path = 'cog/bs_installation_start.cog'
+        for old, new in ((b'SetInv(player, 20, 0);', b'SetInv(player, 20, 8);'),
+                         (b'SetInv(player, 8, 3);', b'SetInv(player, 128, 3);')):
+            with self.subTest(change=new):
+                files = self.files()
+                self.assertIn(old, files[path])
+                files[path] = files[path].replace(old, new)
+                self.rejects(files, 'Source resource transformation')
+
+    def test_corbit_player_model_and_reactor_model_are_retained(self):
+        world = bridge.text(self.output.read('jkl/mk_ips.jkl'))
+        rows = bridge.records(world, 'templates')
+        player = next(row for row in rows if row.startswith('bs_walkplayer2 '))
+        self.assertIn('type=player', player)
+        self.assertIn('model3d=bs_rebcom.3do', player)
+        self.assertIn('cog=kyle_m.cog', player)
+        self.assertNotIn('model3d=ky.3do', player)
+        reactor = next(row for row in rows if row.startswith('bs_reactorbomb '))
+        self.assertIn('model3d=bs_bomb.3do', reactor)
+        self.assertNotIn('cog=pow_', reactor)
+        files = self.files()
+        del files['3do/bs_rebcom.3do']
+        self.rejects(files, 'Source resource transformation')
+
+    def test_native_ordinary_pickups_do_not_ship_jk_controller_replacements(self):
+        world = bridge.text(self.output.read('jkl/mk_ips.jkl'))
+        for name in ('pow_drailgun', 'pow_drepeater', 'pow_dstrifle', 'pow_energy',
+                     'pow_railcharges', 'pow_sequencer', 'pow_smbkpk', 'pow_thermal'):
+            with self.subTest(controller=name):
+                self.assertIn(name + '_m.cog', world)
+                self.assertNotIn('cog/bs_' + name + '.cog', self.output.entries)
+                self.assertNotIn('cog/' + name + '_m.cog', self.output.entries)
+        files = self.files()
+        files['cog/pow_energy_m.cog'] = self.archives['jkres'].read('cog/pow_energy.cog')
+        self.rejects(files, 'Native copied resource set')
+
+    def test_original_wrench_logic_stays_isolated_from_mots_story_dialogue(self):
+        for color, bin_number in (('blue', 49), ('yellow', 50)):
+            path = 'cog/bs_pow_wrench' + color + '.cog'
+            value = bridge.text(self.output.read(path))
+            self.assertRegex(value, rf'\bbin\s*=\s*{bin_number}\b')
+            self.assertNotIn('PlayVoiceLocal', value)
+            self.assertNotIn('Duncansnd', value)
+            self.assertNotIn('cog/pow_wrench' + color + '.cog', self.output.entries)
+            files = self.files()
+            native = 'cog/pow_wrench' + color + '.cog'
+            files[path] = self.archives['motsres'].read(native)
+            self.rejects(files, 'Source resource transformation')
+
+    def test_no_speculative_camera_repair_and_no_removed_goal_sequence(self):
+        start = bridge.text(self.output.read('cog/bs_installation_start.cog'))
+        self.assertEqual(start.count('stopbrief'), 1)
+        self.assertEqual(start.count('briefstop'), 3)
+        files = self.files()
+        path = 'cog/bs_installation_goals.cog'
+        self.assertIn(b'jkEndLevel(1);', files[path])
+        files[path] = files[path].replace(b'jkEndLevel(1);', b'return;')
+        self.rejects(files, 'Source resource transformation')
+
+    def test_key_gate_and_pump_control_changes_are_rejected(self):
+        for path, old, new in (
+                ('cog/bs_watergate.cog', b'GetInv(GetSourceRef(), 49)', b'GetInv(GetSourceRef(), 50)'),
+                ('cog/bs_movepipes.cog', b'GetInv(GetSourceRef(), 50)', b'GetInv(GetSourceRef(), 49)'),
+                ('cog/bs_pumpcontrol.cog', b'pathmovepause', b'pathmoveresume')):
+            with self.subTest(path=path):
+                files = self.files()
+                self.assertIn(old, files[path])
+                files[path] = files[path].replace(old, new)
+                self.rejects(files, 'Source resource transformation')
 
 
 if __name__ == '__main__':

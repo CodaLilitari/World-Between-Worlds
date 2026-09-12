@@ -1,4 +1,5 @@
 """Synthetic failures for multi-world graph preservation and archive unions."""
+import copy
 import unittest
 
 from gob import Gob, build_gob
@@ -90,6 +91,95 @@ class MultiplayerPackTests(unittest.TestCase):
         self.assertNotIn('mp-6000-block-sabers', [row['id'] for row in rows])
         details = converter.recipe_details('mp-6000-block')
         self.assertEqual(details['world_specs']['sabers']['key'], 'mp-6000-block-sabers')
+
+
+class EpisodeIdentifierRepairTests(unittest.TestCase):
+    def setUp(self):
+        self.episode = (b'"Synthetic duplicate"\r\nTYPE 2\r\nSEQ 3\r\n'
+                        b'# 11: is retained documentation\r\n'
+                        b'10: 1 1 LEVEL one.jkl 0 0 -1 -1\r\n'
+                        b'11: 0 2 LEVEL two.jkl 0 0 -1 -1\r\n'
+                        b'11:\t0\t2\tLEVEL\tthree.jkl\t0\t0\t-1\t-1 # keep 11: here\r\nend\r\n')
+        self.row = self.episode.splitlines(keepends=True)[6]
+        self.spec = {
+            'episode_sha256': converter.digest(self.episode),
+            'episode_rows': converter.episode_rows(self.episode),
+            'episode_row_repairs': [{
+                'row_index': 2, 'old_line': 11, 'new_line': 12,
+                'row_sha256': converter.digest(self.row), 'count': 1,
+                'reason': 'Synthetic terminal third row has an unreferenced duplicate ID.',
+            }],
+        }
+
+    def test_exact_repair_keeps_level_column_branches_comments_and_order(self):
+        result, rows = converter.reviewed_episode(self.episode, self.spec)
+        self.assertEqual(result, self.episode.replace(self.row, b'12:' + self.row[3:]))
+        self.assertEqual([row['line'] for row in rows], [10, 11, 12])
+        self.assertEqual([row['level'] for row in rows], [1, 2, 2])
+        self.assertTrue(all(row['goto_a'] == row['goto_b'] == -1 for row in rows))
+        self.assertEqual([row['line'] for row in self.spec['episode_rows']], [10, 11, 11])
+
+    def test_duplicate_without_explicit_repair_remains_rejected(self):
+        del self.spec['episode_row_repairs']
+        with self.assertRaisesRegex(converter.PackError, 'Duplicate episode row'):
+            converter.reviewed_episode(self.episode, self.spec)
+
+    def test_changed_episode_or_row_hash_fails(self):
+        with self.assertRaisesRegex(converter.PackError, 'Original episode graph'):
+            converter.reviewed_episode(self.episode.replace(b'Synthetic', b'Changed'), self.spec)
+        self.spec['episode_row_repairs'][0]['row_sha256'] = '0' * 64
+        with self.assertRaisesRegex(converter.PackError, 'repair row differs'):
+            converter.reviewed_episode(self.episode, self.spec)
+
+    def test_incoming_branch_to_either_identifier_requires_separate_review(self):
+        for target in (11, 12):
+            with self.subTest(target=target):
+                episode = self.episode.replace(b'one.jkl 0 0 -1 -1',
+                                               f'one.jkl 0 0 {target} -1'.encode())
+                spec = copy.deepcopy(self.spec)
+                spec['episode_sha256'] = converter.digest(episode)
+                spec['episode_rows'] = converter.episode_rows(episode)
+                with self.assertRaisesRegex(converter.PackError, 'Referenced episode identifiers'):
+                    converter.reviewed_episode(episode, spec)
+
+    def test_first_occurrence_or_existing_destination_is_not_repaired(self):
+        self.spec['episode_row_repairs'][0]['row_index'] = 1
+        with self.assertRaisesRegex(converter.PackError, 'Only a later duplicate'):
+            converter.reviewed_episode(self.episode, self.spec)
+        self.spec['episode_row_repairs'][0]['row_index'] = 2
+        self.spec['episode_row_repairs'][0]['new_line'] = 10
+        with self.assertRaisesRegex(converter.PackError, 'already exists'):
+            converter.reviewed_episode(self.episode, self.spec)
+
+    def test_unreviewed_repair_field_and_wrong_count_fail(self):
+        self.spec['episode_row_repairs'][0]['new_level'] = 3
+        with self.assertRaisesRegex(converter.PackError, 'Unreviewed episode row repair'):
+            converter.reviewed_episode(self.episode, self.spec)
+        del self.spec['episode_row_repairs'][0]['new_level']
+        self.spec['episode_row_repairs'][0]['count'] = 2
+        with self.assertRaisesRegex(converter.PackError, 'one valid counted'):
+            converter.reviewed_episode(self.episode, self.spec)
+
+    def test_recipe_row_mismatch_cannot_be_used_to_repair_another_field(self):
+        self.spec['episode_rows'][2]['level'] = 3
+        with self.assertRaisesRegex(converter.PackError, 'rows differ from original'):
+            converter.reviewed_episode(self.episode, self.spec)
+
+    def test_metadata_keeps_all_three_world_labels_with_identifier_repair(self):
+        strings = b'MSGS 3\r\n"ONE" 0 "First"\r\n"TWO" 0 "Second"\r\n"THREE" 0 "Third"\r\nEND\r\n'
+        source = Gob(build_gob({'episode.jk': self.episode, 'misc/cogstrings.uni': strings}))
+        spec = copy.deepcopy(self.spec)
+        spec['world_specs'] = {key: {'world': f'jkl/{key}.jkl', 'tag': 'test_' + key}
+                               for key in ('one', 'two', 'three')}
+        for key, row in zip(spec['world_specs'], spec['episode_rows']):
+            row['world_spec'] = key
+        output = converter.metadata(source, spec)
+        rows = converter.episode_rows(output['episode.jk'])
+        self.assertEqual([row['line'] for row in rows], [10, 11, 12])
+        self.assertEqual([row['world'] for row in rows],
+                         ['jkl/br_test_one.jkl', 'jkl/br_test_two.jkl', 'jkl/br_test_three.jkl'])
+        self.assertEqual(output['misc/cogstrings.uni'], strings.replace(b'"ONE"', b'"BR_TEST_ONE"')
+                         .replace(b'"TWO"', b'"BR_TEST_TWO"').replace(b'"THREE"', b'"BR_TEST_THREE"'))
 
 
 if __name__ == '__main__':

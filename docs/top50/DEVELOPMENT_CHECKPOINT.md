@@ -13,16 +13,19 @@ this repository.
 
 | Requested category | Original hashes recorded | Entries with exact-input recipes | Selectable entries | Entries without a recipe |
 | --- | ---: | ---: | ---: | ---: |
-| JK multiplayer levels | 50 | 26 | 25 | 24 |
-| JK singleplayer levels | 50 | 2 | 2 | 48 |
-| JK mods | 50 | 4 | 4 | 46 |
-| Total | 150 | 32 | 31 | 118 |
+| JK multiplayer levels | 50 | 27 | 26 | 23 |
+| JK singleplayer levels | 50 | 3 | 3 | 47 |
+| JK mods | 50 | 5 | 5 | 45 |
+| Total | 150 | 35 | 34 | 115 |
 
 Castle Conflict is the one matched but unavailable entry. A selectable
 prototype still has the limits shown in its recipe; selection is not evidence
 of a complete playthrough. Existing recipes outside these ranked categories
-remain available. The complete WBW catalog has 45 entries: the earlier 27 plus
-18 new entries, of which 17 are prototypes and Castle is unavailable.
+remain available. The complete WBW catalog has 48 entries: the earlier 27 plus
+21 new entries, of which 20 are prototypes and Castle is unavailable. The
+[second implementation batch](WAVE2_CHECKPOINT.md) adds DBZ Tournament,
+Imperial Pumping Station and Anime Characters. Evidence below that predates this
+batch remains identified by its original scope and source hashes.
 
 Maintainers can refresh these counts with `python -B tools/top50_status.py`.
 It matches the exact original hash and source listing, rather than matching a
@@ -138,7 +141,7 @@ executable and cameras. The visible geometry, materials and lighting align in
 the two inspected views. Their exact inputs, images and limitations are recorded
 separately; these screenshots do not promote the recipes to full gameplay passes.
 
-The remaining work includes 118 entries without recipes, the Castle engine
+The remaining work includes 115 entries without recipes, the Castle engine
 prerequisite, broader rendered comparisons, authored mechanics, SP objectives and
 progression/save checks, skin selection and animation, respawn, same-process
 transitions and matched second-peer tests. These dimensions are not implied by
@@ -146,7 +149,7 @@ successful structural verification or a hosted load test. KWP and Matrix's
 specific unresolved dependencies remain documented in their review queues.
 
 The follow-up [remaining-source review](REMAINING_SOURCE_REVIEW.md) now covers
-all 118 unimplemented entries individually. It records source packaging,
+the 118 entries that lacked recipes at that snapshot individually. It records source packaging,
 episode, controller and dependency gates without adding selectable recipes.
 
 The [stock JK campaign plan](../STOCK_JK_CAMPAIGN_PLAN.md) remains separate:
