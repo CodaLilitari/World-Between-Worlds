@@ -4,6 +4,7 @@ import hashlib
 import tempfile
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 from gob import ArchiveError, Gob, build_gob, resource_name, write_gob
 from bridge import (RecipeError, Catalog, convert_things, expand_surface_lighting,
@@ -209,6 +210,28 @@ class SemanticTransforms(unittest.TestCase):
             pinned_archives(jk_root='synthetic')
         with self.assertRaises(RecipeError):
             pinned_archives('synthetic', jk_root='mixed', mots_root='mixed')
+
+    def test_native_singleplayer_archive_is_optional_and_hash_gated(self):
+        import bridge
+        from types import SimpleNamespace
+        paths = dict(bridge.PATHS, motssp=bridge.MOTSSP_PATH)
+        keys = {str(Path('synthetic') / value): key for key, value in paths.items()}
+        observed = []
+        def open_archive(path):
+            key = keys[str(path)]
+            observed.append(key)
+            return SimpleNamespace(sha256=bridge.MOTSSP_SHA256 if key == 'motssp' else HASHES[key])
+        with patch.object(bridge.Gob, 'open', side_effect=open_archive):
+            self.assertNotIn('motssp', pinned_archives('synthetic'))
+            self.assertNotIn('motssp', observed)
+            self.assertEqual(pinned_archives('synthetic', include_motssp=True)['motssp'].sha256,
+                             bridge.MOTSSP_SHA256)
+        def wrong_native(path):
+            key = keys[str(path)]
+            return SimpleNamespace(sha256='0' * 64 if key == 'motssp' else HASHES[key])
+        with patch.object(bridge.Gob, 'open', side_effect=wrong_native):
+            with self.assertRaisesRegex(RecipeError, 'motssp'):
+                pinned_archives('synthetic', include_motssp=True)
 
     def test_battleground_requires_original_stream_archive(self):
         from types import SimpleNamespace

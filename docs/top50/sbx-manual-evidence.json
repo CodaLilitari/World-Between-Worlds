@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "scope": "Private main-body text extraction; no document formatting/embedded graphics rendering; assets and body text excluded.",
+  "method_specification": "https://learn.microsoft.com/en-us/openspecs/office_file_formats/ms-doc/01d5d8c4-cf9c-4ef9-80fd-439e763cfe01",
+  "extractor_sha256": "83967f1b02b43c4efeda302795722c809e0e81b8307de73558d10484d5676a7d",
+  "originals": {
+    "jk31": {
+      "zip_sha256": "50950b0c3a83dda972cb72c1dc85df96ea2248cb2daf88f09fc0ed2dc5272b2e",
+      "documents": [
+        {
+          "source": "JK & MotS Improvement Tips.doc",
+          "source_sha256": "fe8d0870c47fa567cec45df1f0abf82de6a7c5ff25d641be16e87dd6c86e3541",
+          "nFib": 193,
+          "main_body_characters": 8705,
+          "piece_count": 1,
+          "pieces": [
+            {
+              "cp_start": 0,
+              "cp_end": 8705,
+              "offset": 1024,
+              "bytes": 8705,
+              "compressed": true
+            }
+          ],
+          "text_sha256": "00b703b29725b563eb153a1b018c302e380646733bb9926a67510f3a1db65805",
+          "main_body_length_matches": true
+        },
+        {
+          "source": "Lightsaber Color Chart.doc",
+          "source_sha256": "0ff7efc159a3453b1670c49e3ca130839944f91c5c21f51ba7390fc1687f9ddd",
+          "nFib": 193,
+          "main_body_characters": 2366,
+          "piece_count": 1,
+          "pieces": [
+            {
+              "cp_start": 0,
+              "cp_end": 2366,
+              "offset": 1024,
+              "bytes": 2366,
+              "compressed": true
+            }
+          ],
+          "text_sha256": "168446b470bc1200a6580f8de251be97c9f0334f8308fd34e5d976930b6e4ddf",
+          "main_body_length_matches": true
+        },
+        {
+          "source": "Saber Fighting 101.doc",
+          "source_sha256": "3471310fc53edb839639b8121e0368bee8c9bace7eddce89de1108f93d764da0",
+          "nFib": 193,
+          "main_body_characters": 28100,
+          "piece_count": 1,
+          "pieces": [
+            {
+              "cp_start": 0,
+              "cp_end": 28100,
+              "offset": 1024,
+              "bytes": 28100,
+              "compressed": true
+            }
+          ],
+          "text_sha256": "5ff5c78c99c8b13dced49b8a0571eb47fa564df2f34163dcda9181bc1d291322",
+          "main_body_length_matches": true
+        },
+        {
+          "source": "SBX-JK v31.doc",
+          "source_sha256": "c55f3041c46a88a3f32e34724b6256b9b14247e396ff67319f68d5af1da5ff56",
+          "nFib": 193,
+          "main_body_characters": 27818,
+          "piece_count": 1,
+          "pieces": [
+            {
+              "cp_start": 0,
+              "cp_end": 27818,
+              "offset": 1024,
+              "bytes": 27818,
+              "compressed": true
+            }
+          ],
+          "text_sha256": "4fee49a3e0ca408e2ff4959d0cf1888abe78b35dffb45eeca827d290fd8bfb94",
+          "main_body_length_matches": true
+        }
+      ]
+    },
+    "mots30": {
+      "zip_sha256": "909ad10a6bbe3954e0e7c20f5d55094a5fb68708716866102d439d8aac339908",
+      "page_url": "https://www.massassi.net/levels/files/1866.shtml",
+      "download_url": "https://www.massassi.net/media/levels/files/motsmod/sbx-motsv3.zip",
+      "documents": [
+        {
+          "source": "JK & MotS Improvement Tips.doc",
+          "source_sha256": "e75101aef76ea5f1ac1a9671a57e3b16bdbb3aec3f82959af89be97d59c8f8a9",
+          "nFib": 193,
+          "main_body_characters": 8665,
+          "piece_count": 1,
+          "pieces": [
+            {
+              "cp_start": 0,
+              "cp_end": 8665,
+              "offset": 1024,
+              "bytes": 8665,
+              "compressed": true
+            }
+          ],
+          "text_sha256": "7116cd0fbbcf6d6ca6cb85db7d5da7df113ae77767fc02049f2a15c1d0a10b27",
+          "main_body_length_matches": true
+        },
+        {
+          "source": "Lightsaber Color Chart.doc",
+          "source_sha256": "57465d2bf760de2f81474b35612c08915254e47e675ca5dcff8d9226ece8ac3b",
+          "nFib": 193,
+          "main_body_characters": 2439,
+          "piece_count": 1,
+          "pieces": [
+            {
+              "cp_start": 0,
+              "cp_end": 2439,
+              "offset": 1024,
+              "bytes": 2439,
+              "compressed": true
+            }
+          ],
+          "text_sha256": "b0c51a8742b057dcd4e51e9daa63cb3fee39addf2abfa4f82cd8563aca532d98",
+          "main_body_length_matches": true
+        },
+        {
+          "source": "SBX-MotS v3.doc",
+          "source_sha256": "0c88e8301f28dcfffbe95e78803d867afb6f5d7a3658fee23da96b6e1b457169",
+          "nFib": 193,
+          "main_body_characters": 22631,
+          "piece_count": 1,
+          "pieces": [
+            {
+              "cp_start": 0,
+              "cp_end": 22631,
+              "offset": 1024,
+              "bytes": 22631,
+              "compressed": true
+            }
+          ],
+          "text_sha256": "250b4b83b85c51fad26552cff6b10fc40401bceb464d73e8cffd1338b36b6ced",
+          "main_body_length_matches": true
+        }
+      ]
+    }
+  }
+}

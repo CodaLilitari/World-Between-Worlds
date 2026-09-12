@@ -25,6 +25,18 @@ RECIPE_REVISIONS = {
     'area-21': 1, 'stargate': 1, 'drazen-isle': 1, 'purgatory': 1,
     'courtyard': 1, 'shadow-caverns': 1, 'deicide': 1, 'jhs': 1,
     'ninja-kage': 1,
+    'mp-blue-rain': 1, 'mp-goldeneye-facility': 1, 'mp-egypt': 1,
+    'mp-castle-conflict': 1,
+    'mp-4h-gun-yard': 1,
+    'mod-flame-saber': 1, 'mod-16bit-sabers': 1,
+    'mp-6000-block': 1, 'sp-phantom-menace-final-battle': 1,
+    'mp-gladiator': 1, 'mp-the-matrix': 1,
+    'mp-acid-storage-facility': 1,
+    'mp-bar-and-grill': 1,
+    'sp-maul-vs-qui-gon': 1,
+    'mod-agent-han': 1,
+    'mp-heart-of-the-forest': 1, 'mp-jedi-tower-2000': 1,
+    'mp-barons-head-at-night': 1,
 }
 MARKER_NAME = 'wbw/recipe.json'
 MARKER_SCHEMA = 1
@@ -306,6 +318,12 @@ def scan_installation(root, recipes, *, max_depth=6, max_files=2048,
         row.update(id=recipe_id, title=recipe.get('title', recipe_id),
                    kind=recipe.get('kind', 'unknown'), current_revision=recipe['revision'])
 
+    def selectable(recipe_id):
+        # Older scan callers may omit status. An explicit unavailable/unknown
+        # status must never suggest an update that selection() will reject.
+        return catalog[recipe_id].get('status', 'available') in {
+            'verified', 'supported', 'ready', 'available', 'prototype'}
+
     def inspect(file_path, before):
         row = {'path': str(file_path), 'filename': file_path.name, 'id': None,
                'title': file_path.stem, 'kind': 'unknown', 'role': None,
@@ -349,12 +367,14 @@ def scan_installation(root, recipes, *, max_depth=6, max_files=2048,
                     else:
                         installed, current = marker['revision'], catalog[recipe_id]['revision']
                         if installed < current:
-                            row.update(status='update_available', can_update=True,
+                            row.update(status='update_available', can_update=selectable(recipe_id),
                                        message=f'Recipe revision {current} is available; installed revision is {installed}.')
                         elif installed > current:
                             row.update(status='newer', message='Installed recipe is newer than this WBW catalog; do not downgrade.')
                         else:
                             row.update(status='current', message='Installed payload matches the current recipe revision marker.')
+                        if not selectable(recipe_id):
+                            row['message'] += ' This recipe is currently unavailable for conversion in this catalog.'
                 else:
                     matches = set(legacy_names.get(file_path.name.lower(), []))
                     # Explicit pins optionally recover renamed legacy outputs.
@@ -370,9 +390,12 @@ def scan_installation(root, recipes, *, max_depth=6, max_files=2048,
                         if pinned:
                             matches = pinned
                     if len(matches) == 1:
-                        identify(row, next(iter(matches)))
-                        row.update(status='unversioned', can_update=True, role='primary',
-                                   message='Recognized legacy candidate without a revision marker; regenerate to establish its version.')
+                        recipe_id = next(iter(matches))
+                        identify(row, recipe_id)
+                        row.update(status='unversioned', can_update=selectable(recipe_id), role='primary',
+                                   message=('Recognized legacy candidate without a revision marker; regenerate to establish its version.'
+                                            if selectable(recipe_id) else
+                                            'Recognized legacy candidate without a revision marker. This recipe is currently unavailable for conversion in this catalog.'))
                     elif len(matches) > 1:
                         row['message'] = 'Legacy identity is ambiguous; no recipe was assigned.'
                     elif re.search(r'_wbw_v\d+\.goo$', file_path.name, flags=re.IGNORECASE):

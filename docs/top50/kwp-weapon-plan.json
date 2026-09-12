@@ -1,0 +1,334 @@
+{
+  "schema": 1,
+  "status": "incomplete-unselectable-maintainer-review",
+  "original_zip_sha256": "517d742fe9822364a72e6be1da323ad23117c422cb163259e14f9533a3296126",
+  "original_gob_sha256": "18673aea67a633ea890d900049204818646eab5b4fa2b67d7e23ca6b3a7a9adc",
+  "original_readme_sha256": "2175721920d2fc8d5fa41db3742843902e1327cde665c6cb5245f8a016f60e16",
+  "weapon_descriptors": {
+    "1": 121,
+    "2": 122,
+    "3": 123,
+    "4": 124,
+    "5": 135,
+    "6": 126,
+    "7": 127,
+    "8": 128,
+    "9": 129,
+    "10": 131
+  },
+  "proposed_helper_bins": {
+    "116": 141,
+    "117": 142,
+    "118": 143,
+    "119": 144,
+    "120": 145,
+    "121": 146,
+    "122": 147
+  },
+  "scripts": [
+    {
+      "path": "cog/weap_bryar.cog",
+      "source_sha256": "5ac05f6cc84f06a4b01ae1a2fc40f63f19cc5e6fe7facd0727803b495009b3e4",
+      "review_output_sha256": "6f41e2c199d8cfed53d92eba08ba263720666e069a25f91fa7bb136f2da16c86",
+      "edits": [
+        {
+          "old": "SetCurWeapon(player, 2)",
+          "new": "SetCurWeapon(player, 122)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetInv(player, 2)",
+          "new": "GetInv(player, 122)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, AutoSelectWeapon(player, 1))",
+          "new": "SelectWeapon(player, GetWeaponBin(AutoSelectWeapon(player, 1)))",
+          "count": 1,
+          "reason": "AutoSelectWeapon returns a MotS ordinal; SelectWeapon needs its descriptor for ordinals above ten"
+        }
+      ],
+      "operations": 3,
+      "remaining_getcurweapon_lines": [
+        88
+      ]
+    },
+    {
+      "path": "cog/weap_concrifle.cog",
+      "source_sha256": "df716683ae1222e80e9e5f00929bb57af343e07fce76805cd9e2045a067437d1",
+      "review_output_sha256": "a770da4a49a97dbd769af49598186883eaf0b8c6186bd0ff69cb6243a76f2703",
+      "edits": [
+        {
+          "old": "SetCurWeapon(player, 9)",
+          "new": "SetCurWeapon(player, 129)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetInv(player, 9)",
+          "new": "GetInv(player, 129)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, AutoSelectWeapon(player, 1))",
+          "new": "SelectWeapon(player, GetWeaponBin(AutoSelectWeapon(player, 1)))",
+          "count": 3,
+          "reason": "AutoSelectWeapon returns a MotS ordinal; SelectWeapon needs its descriptor for ordinals above ten"
+        }
+      ],
+      "operations": 5,
+      "remaining_getcurweapon_lines": [
+        105,
+        126
+      ]
+    },
+    {
+      "path": "cog/weap_crossbow.cog",
+      "source_sha256": "a521c56e0eb44ddcae3de234ade235a9ad352335464860515de6196cc761da50",
+      "review_output_sha256": "8f7f210111103f1cd6aa40483f9ca1cd3f0a1955698055f8a6afffdcaa7e516c",
+      "edits": [
+        {
+          "old": "SetCurWeapon(player, 5)",
+          "new": "SetCurWeapon(player, 135)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetInv(player, 5)",
+          "new": "GetInv(player, 135)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, AutoSelectWeapon(player, 1))",
+          "new": "SelectWeapon(player, GetWeaponBin(AutoSelectWeapon(player, 1)))",
+          "count": 3,
+          "reason": "AutoSelectWeapon returns a MotS ordinal; SelectWeapon needs its descriptor for ordinals above ten"
+        }
+      ],
+      "operations": 5,
+      "remaining_getcurweapon_lines": []
+    },
+    {
+      "path": "cog/weap_fists.cog",
+      "source_sha256": "93f50b1e0b66f1cc9c51a004dda638a03dbc95bdb7ec10ab0ec4da882878d895",
+      "review_output_sha256": "44c0621f0e070ee55eb6cbb4d28335bff7f3778f8022c682142459463d5d1f26",
+      "edits": [
+        {
+          "old": "SetCurWeapon(player, 1)",
+          "new": "SetCurWeapon(player, 121)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        }
+      ],
+      "operations": 1,
+      "remaining_getcurweapon_lines": []
+    },
+    {
+      "path": "cog/weap_raildet.cog",
+      "source_sha256": "34d1e3cdcd6f3fec36bd605486582d58fa143e82596fd51ce994bcd06e758487",
+      "review_output_sha256": "c05ae1230efa171fcef05adf3f1d0d7d234f8da3ea404a40c9eecba78c1d1005",
+      "edits": [
+        {
+          "old": "SetCurWeapon(player, 7)",
+          "new": "SetCurWeapon(player, 127)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetInv(player, 7)",
+          "new": "GetInv(player, 127)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, AutoSelectWeapon(player, 1))",
+          "new": "SelectWeapon(player, GetWeaponBin(AutoSelectWeapon(player, 1)))",
+          "count": 2,
+          "reason": "AutoSelectWeapon returns a MotS ordinal; SelectWeapon needs its descriptor for ordinals above ten"
+        }
+      ],
+      "operations": 4,
+      "remaining_getcurweapon_lines": [
+        100,
+        121
+      ]
+    },
+    {
+      "path": "cog/weap_repeater.cog",
+      "source_sha256": "78f999e45f7a64c9e9b521acfa5bc2484e61f2bcef5199cdb85d58a9183163c8",
+      "review_output_sha256": "1e6c1e83072728797210bf9ec60e44f62499bbf8861e5e9cb7547ca9bdd6f973",
+      "edits": [
+        {
+          "old": "SetCurWeapon(player, 6)",
+          "new": "SetCurWeapon(player, 126)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetInv(player, 6)",
+          "new": "GetInv(player, 126)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, AutoSelectWeapon(player, 1))",
+          "new": "SelectWeapon(player, GetWeaponBin(AutoSelectWeapon(player, 1)))",
+          "count": 3,
+          "reason": "AutoSelectWeapon returns a MotS ordinal; SelectWeapon needs its descriptor for ordinals above ten"
+        }
+      ],
+      "operations": 5,
+      "remaining_getcurweapon_lines": [
+        103,
+        124
+      ]
+    },
+    {
+      "path": "cog/weap_saber.cog",
+      "source_sha256": "7d7e634d0ec97d334c84be7b7949b181d7544df44452d6599e01771108fddbf2",
+      "review_output_sha256": "94afe0c8ad0bc8c26e0eddbf07d72dac9ff0d02a9ffb797418a2f36d2281eeb3",
+      "edits": [
+        {
+          "old": "SetCurWeapon( player, 10 )",
+          "new": "SetCurWeapon( player, 131 )",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetInv(player, 10)",
+          "new": "GetInv(player, 131)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetCurWeapon(player) == 10",
+          "new": "GetWeaponBin(GetCurWeapon(player)) == 131",
+          "count": 1,
+          "reason": "Saber predicate compares a descriptor without changing other ordinal consumers"
+        }
+      ],
+      "operations": 3,
+      "remaining_getcurweapon_lines": [
+        540
+      ]
+    },
+    {
+      "path": "cog/weap_seqcharge.cog",
+      "source_sha256": "d8a10e5eb5dccc51b11ab268caf5c0322f651a75f5e5bc511a14b380a593c6c2",
+      "review_output_sha256": "93aebb3a211e6b5d0477dc1f01126d489d200c9a201f31171455011567e2d46d",
+      "edits": [
+        {
+          "old": "ChangeInv(player, 8,",
+          "new": "ChangeInv(player, 128,",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetInv(player, 8)",
+          "new": "GetInv(player, 128)",
+          "count": 2,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, 1)",
+          "new": "SelectWeapon(player, 121)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SetCurWeapon(player, 8)",
+          "new": "SetCurWeapon(player, 128)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, AutoSelectWeapon(player, 1))",
+          "new": "SelectWeapon(player, GetWeaponBin(AutoSelectWeapon(player, 1)))",
+          "count": 1,
+          "reason": "AutoSelectWeapon returns a MotS ordinal; SelectWeapon needs its descriptor for ordinals above ten"
+        }
+      ],
+      "operations": 6,
+      "remaining_getcurweapon_lines": []
+    },
+    {
+      "path": "cog/weap_strifle.cog",
+      "source_sha256": "22b4989450614d4887357539ef25fe10378df07ac5595a10d016d87b070a9c9f",
+      "review_output_sha256": "ff422a17e0e46e6d20e1c0049f07c1ebdbd4cfa305fdd0adf51ef3e841fff4e0",
+      "edits": [
+        {
+          "old": "SetCurWeapon(player, 3)",
+          "new": "SetCurWeapon(player, 123)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetInv(player, 3)",
+          "new": "GetInv(player, 123)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, AutoSelectWeapon(player, 1))",
+          "new": "SelectWeapon(player, GetWeaponBin(AutoSelectWeapon(player, 1)))",
+          "count": 1,
+          "reason": "AutoSelectWeapon returns a MotS ordinal; SelectWeapon needs its descriptor for ordinals above ten"
+        }
+      ],
+      "operations": 3,
+      "remaining_getcurweapon_lines": [
+        90
+      ]
+    },
+    {
+      "path": "cog/weap_thermdet.cog",
+      "source_sha256": "a454049485e5fca14e365346da1cec87ebc841e7e154f780e5022398fa4148e7",
+      "review_output_sha256": "c57a8b971983db09e314b0a3f45e8ca428e09672d426af844f1985461b3ede57",
+      "edits": [
+        {
+          "old": "ChangeInv(player, 4,",
+          "new": "ChangeInv(player, 124,",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "GetInv(player, 4)",
+          "new": "GetInv(player, 124)",
+          "count": 2,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, 1)",
+          "new": "SelectWeapon(player, 121)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SetCurWeapon(player, 4)",
+          "new": "SetCurWeapon(player, 124)",
+          "count": 1,
+          "reason": "JK weapon ownership/selection maps to explicit native MotS descriptor"
+        },
+        {
+          "old": "SelectWeapon(player, AutoSelectWeapon(player, 1))",
+          "new": "SelectWeapon(player, GetWeaponBin(AutoSelectWeapon(player, 1)))",
+          "count": 1,
+          "reason": "AutoSelectWeapon returns a MotS ordinal; SelectWeapon needs its descriptor for ordinals above ten"
+        }
+      ],
+      "operations": 6,
+      "remaining_getcurweapon_lines": [
+        140
+      ]
+    }
+  ],
+  "limits": [
+    "Not a runnable mod or accepted recipe.",
+    "Player, inventory, UI, template and dependency assembly remain pending.",
+    "No syntax compiler, native host, rendering or multiplayer peer result."
+  ]
+}

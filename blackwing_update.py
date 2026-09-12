@@ -39,10 +39,14 @@ MAX_FILES = 128
 SOURCE_FILES = frozenset({
     "blackwing_app.py", "blackwing_version.py", "blackwing_launcher.py",
     "blackwing_update.py", "bridge.py", "gob.py", "custom_registry.py",
-    "custom_catalog.py", "author_catalog.py", "jhs_catalog.py",
+    "custom_catalog.py", "author_catalog.py", "jhs_catalog.py", "massassi_mp_catalog.py",
     "community_runtime.py", "blackwing_catalog.py", "blackwing_service.py",
     "blackwing_runtime.py", "LICENSE", "NOTICE.md", "WBW-README.md",
     "caesars_audit.py", "verify_retail.py", "ninja_catalog.py", "ninja_converter.py",
+    "recipe_adapters.py", "mods_catalog.py", "mods_converter.py",
+    "skinmods_catalog.py", "skinmods_converter.py", "test_skinmods_converter.py",
+    "mp_pack_catalog.py", "mp_pack_converter.py", "sp_catalog.py", "sp_converter.py",
+    "test_mods_converter.py", "test_mp_pack_converter.py", "test_sp_converter.py",
     "ui/index.html", "ui/app.js", "ui/styles.css", "ui/coda-wbw.js",
     "blackwing_picker.py", "test_picker.py",
     "ui/test_ui.mjs", "ui/README.md", "README.md", "TESTING.md",
@@ -59,6 +63,9 @@ SOURCE_REQUIRED = frozenset({"blackwing_app.py", "blackwing_version.py",
     "blackwing_launcher.py", "blackwing_update.py", "LICENSE", "bridge.py", "gob.py",
     "community_runtime.py", "custom_registry.py", "custom_catalog.py", "author_catalog.py",
     "jhs_catalog.py", "blackwing_catalog.py", "blackwing_service.py",
+    "recipe_adapters.py", "mods_catalog.py", "mods_converter.py", "massassi_mp_catalog.py",
+    "skinmods_catalog.py", "skinmods_converter.py",
+    "mp_pack_catalog.py", "mp_pack_converter.py", "sp_catalog.py", "sp_converter.py",
     "ui/index.html", "ui/app.js", "ui/styles.css"})
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 

@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "scope": "Scoped host-load observations only; output identity includes payload and tested revision marker archive.",
+  "recipes": [
+    {
+      "recipe_id": "mod-flame-saber",
+      "recipe_revision": 1,
+      "validation_date": "2026-09-12",
+      "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+      "payload_sha256": "df2bec9542ad1c1f06c79795eec358c9a640d95863ea520bff62e9e7e6e9b0d5",
+      "tested_stamped_archive_sha256": "009649fbdfcf72afb9d3fad6df99269db8e7bb48afef861b24840c344e1aef32",
+      "report_sha256": "b6d1d45e69b705862e27f5fbfc971196f1edf74f8c6e6401edc555839d620e97",
+      "mode": "MotS multiplayer host, headless",
+      "episode": "JKM_MP",
+      "map": "k1",
+      "duration_seconds": 30,
+      "startup_profile": "one optional recipe overlay only",
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      },
+      "resource_diagnostics": [],
+      "not_tested": [
+        "selected saber appearance",
+        "rendered material correctness",
+        "remote-player appearance",
+        "second peer synchronization",
+        "weapon gameplay"
+      ]
+    },
+    {
+      "recipe_id": "mod-16bit-sabers",
+      "recipe_revision": 1,
+      "validation_date": "2026-09-12",
+      "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+      "payload_sha256": "edafabc2d0ee3261e784c093c5e0bd1177498e6c64392d6dfc10e06056d8c062",
+      "tested_stamped_archive_sha256": "2c450399708d1141aabaa77c1d8a96877dfc881acfa5fc38a3a645ee026b0e09",
+      "report_sha256": "9ca4c59f9897b5ebad3102cd34095e66986791fcc1f1e3fd94a6d1f32a7be12a",
+      "mode": "MotS multiplayer host, headless",
+      "episode": "JKM_MP",
+      "map": "k1",
+      "duration_seconds": 30,
+      "startup_profile": "one optional recipe overlay only",
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      },
+      "resource_diagnostics": [],
+      "not_tested": [
+        "selected saber appearance",
+        "rendered material correctness",
+        "remote-player appearance",
+        "second peer synchronization",
+        "weapon gameplay"
+      ]
+    }
+  ]
+}

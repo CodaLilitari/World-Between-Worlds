@@ -1,0 +1,6189 @@
+{
+  "schema": 1,
+  "category": "jk_singleplayer",
+  "ranking_url": "https://www.massassi.net/levels/jksp/?sortby=dl_count&num=50",
+  "ranking_fetched_utc": "2026-09-12T20:10:56.481160+00:00",
+  "ranking_sha256": "ed7a1b3132e709e8a2107bf9776e667a80429c024d36b8c4062a1eea020395ce",
+  "entries": [
+    {
+      "rank": 1,
+      "massassi_id": 23,
+      "title": "The Phantom Menace: Final Battle (Revised)",
+      "author": "Darth Maul",
+      "downloads_at_audit": 13336,
+      "source_url": "https://www.massassi.net/levels/files/23.shtml",
+      "status": "prototype_structural_pass_bounded_load_smoke_pass",
+      "source_page_sha256": "41cf5c5e2009b5308c07fcfb69353c5f5db87f42cc32a42838b1c536c089609c",
+      "download_url": "https://www.massassi.net/levels/download/23/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/ep1end.zip",
+      "zip_sha256": "1e9bb4ec7ffef3e122c431a824af772815958788a05818136b1f576bf06a3b0d",
+      "download_bytes": 541096,
+      "readmes": [
+        {
+          "path": "ep1end_auth.txt",
+          "bytes": 4745,
+          "sha256": "d0174f127a2592242e9e462c753d9b3928cb0f741c7bbdd40586a2232536ad71"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/untitled.jkl",
+          "sha256": "b36a150bfec5a2260376d54f401e4701ed3b229c64a3b9e87a5636654d9064b0",
+          "archive_member": "ep1end.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "162",
+            "materials": "280",
+            "Colormaps": "1",
+            "vertices": "587",
+            "adjoins": "276",
+            "surfaces": "716",
+            "sectors": "80",
+            "AIClasses": "3",
+            "models": "60",
+            "sprites": "17",
+            "keyframes": "141",
+            "puppets": "4",
+            "soundclasses": "29",
+            "scripts": "24",
+            "cogs": "48",
+            "templates": "128",
+            "things": "271"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "ep1end.gob",
+          "bytes": 1872095,
+          "sha256": "061db9c426368b5ebb1c9513f8161ca7b2c3f3a7666af4e16a68246a32d09c4d",
+          "episode_sha256": "86f2f0515950f4306022318d76d11a90c9d14844fa57d1cc2e5995419965c8e1"
+        }
+      ],
+      "conversion_supported": false,
+      "recipe_id": "sp-phantom-menace-final-battle",
+      "prototype_conversion_available": true,
+      "structural_verification": {
+        "status": "pass",
+        "tests": 16,
+        "output_sha256": "e046f5546ca20a555da32fa897d12d220fb38a708c47f73f297e5f1083c9509f"
+      },
+      "runtime_test": {
+        "status": "bounded-load-smoke-pass",
+        "duration_seconds": 45,
+        "engine_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+        "mode": "mots-singleplayer",
+        "full_gameplay": false
+      }
+    },
+    {
+      "rank": 2,
+      "massassi_id": 6,
+      "title": "Imperial Siege On Derra IV",
+      "author": "Ryan Bickhart",
+      "downloads_at_audit": 13116,
+      "source_url": "https://www.massassi.net/levels/files/6.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "17c0aaff1e1f1ad8177190b26c0cd63ef5d64268dc719550e22f4594ae997647",
+      "download_url": "https://www.massassi.net/levels/download/6/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/impsiege1.zip",
+      "zip_sha256": "e7faa8fdb059224b006a6a1542d6b6583c638a3d925c5de25ce02ea4ee328932",
+      "download_bytes": 3474545,
+      "readmes": [
+        {
+          "path": "impsiege.txt",
+          "bytes": 8640,
+          "sha256": "ecaf074883be39eb99d96b2d08fa7bc9d4ab271351b73c1172c5d6ff25315d0b"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/impsiege.jkl",
+          "sha256": "a25dd1c8254baf5538a569946479b35cfb3100e4cc4c5786dd7322e04310cb48",
+          "archive_member": "impsiege.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "308",
+            "materials": "618",
+            "Colormaps": "1",
+            "vertices": "17624",
+            "adjoins": "4916",
+            "surfaces": "19024",
+            "sectors": "2006",
+            "AIClasses": "15",
+            "models": "137",
+            "sprites": "19",
+            "keyframes": "219",
+            "puppets": "17",
+            "soundclasses": "50",
+            "scripts": "117",
+            "cogs": "322",
+            "templates": "251",
+            "things": "658"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "impsiege.gob",
+          "bytes": 8910135,
+          "sha256": "e375ccafde6119c4fab4b5c8fb12b90d0e327b2499c4dec0eb2e2fe773d57ea1",
+          "episode_sha256": "aeaef5aac632eca6006319ef5c755abd150c461430ca316db82e837dde5797b7"
+        }
+      ],
+      "conversion_supported": false,
+      "dependency_audit": {
+        "status": "original_missing_resources_need_explicit_review",
+        "literal_names_reached_before_native_substitutions": 1503,
+        "missing_in_authored_and_owned_jk": [
+          "ltsaberhit012.wav",
+          "df_machine2.wav",
+          "00_glass.mat",
+          "00electrexplo02.wav",
+          "14awscrn.mat",
+          "command_alarm.wav",
+          "alarm.wav"
+        ],
+        "native_mots_candidate": "mat/14awscrn.mat",
+        "runtime_tested": false
+      }
+    },
+    {
+      "rank": 3,
+      "massassi_id": 3,
+      "title": "Dark Emperor 2: The Last of the Jedi",
+      "author": "Darth Maul",
+      "downloads_at_audit": 12659,
+      "source_url": "https://www.massassi.net/levels/files/3.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "b9918adf6d319345e568a6ec1b80ad81bc095ef2d1c0c7ea5436e49de3b54f19",
+      "download_url": "https://www.massassi.net/levels/download/3/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/darkemperor2.zip",
+      "zip_sha256": "e751251f7e31e545edebb7cfd67d83996318864f14aa655256c47955d34221e5",
+      "download_bytes": 8772430,
+      "readmes": [
+        {
+          "path": "de2_installation.txt",
+          "bytes": 640,
+          "sha256": "2243a7c615b5453f2595c32e41381b2e7f8ecce9c9fbd03e24dfcd5540661b6f"
+        },
+        {
+          "path": "darkemperor2_auth.txt",
+          "bytes": 9377,
+          "sha256": "27fc45e4dc83a692c804b42a3383be8738d90cb20a2bfe6e430cbb1bb78fc146"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/village.jkl",
+          "sha256": "f3c46ee7731be246ec50e79f8cc5a7c758614ab9c7f412dbfbc87c683d1a9115",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "240",
+            "materials": "432",
+            "Colormaps": "1",
+            "vertices": "923",
+            "adjoins": "454",
+            "surfaces": "1160",
+            "sectors": "124",
+            "AIClasses": "9",
+            "models": "119",
+            "sprites": "18",
+            "keyframes": "192",
+            "puppets": "11",
+            "soundclasses": "39",
+            "scripts": "37",
+            "cogs": "51",
+            "templates": "202",
+            "things": "525"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/villageinvasion.jkl",
+          "sha256": "3097a28333b0497bce2cae1c5bfffc56a2b59442b214346b19b27257ff5166e4",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "212",
+            "materials": "396",
+            "Colormaps": "1",
+            "vertices": "923",
+            "adjoins": "454",
+            "surfaces": "1160",
+            "sectors": "124",
+            "AIClasses": "6",
+            "models": "113",
+            "sprites": "18",
+            "keyframes": "164",
+            "puppets": "8",
+            "soundclasses": "35",
+            "scripts": "33",
+            "cogs": "46",
+            "templates": "193",
+            "things": "499"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/villageintro.jkl",
+          "sha256": "2cfca3f7a3c04653860af634dd9363f3c759d432d9304e8a1714c3e97520c0da",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "175",
+            "materials": "338",
+            "Colormaps": "1",
+            "vertices": "939",
+            "adjoins": "454",
+            "surfaces": "1170",
+            "sectors": "125",
+            "AIClasses": "1",
+            "models": "108",
+            "sprites": "18",
+            "keyframes": "136",
+            "puppets": "5",
+            "soundclasses": "32",
+            "scripts": "24",
+            "cogs": "31",
+            "templates": "180",
+            "things": "494"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/villageintroduction.jkl",
+          "sha256": "6fc1104874c6461efc0e2010798c91abfe83d7a0712c04f7c8084fe770cd47d2",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "223",
+            "materials": "430",
+            "Colormaps": "1",
+            "vertices": "947",
+            "adjoins": "462",
+            "surfaces": "1183",
+            "sectors": "126",
+            "AIClasses": "6",
+            "models": "117",
+            "sprites": "18",
+            "keyframes": "177",
+            "puppets": "9",
+            "soundclasses": "36",
+            "scripts": "38",
+            "cogs": "54",
+            "templates": "196",
+            "things": "537"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/damntitle.jkl",
+          "sha256": "a733b2128ab5a2ef8d8aca3b36f0ca1c5154cdc19ac092cb6768acf53cd24b5f",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "172",
+            "materials": "254",
+            "Colormaps": "1",
+            "vertices": "216",
+            "adjoins": "68",
+            "surfaces": "236",
+            "sectors": "29",
+            "AIClasses": "4",
+            "models": "54",
+            "sprites": "17",
+            "keyframes": "168",
+            "puppets": "6",
+            "soundclasses": "28",
+            "scripts": "19",
+            "cogs": "22",
+            "templates": "124",
+            "things": "227"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/isdhangar.jkl",
+          "sha256": "52ee9eea5a0a9114824f0cf6abc97aeb4922127abd6b99feed48f28f7a2d5711",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "262",
+            "materials": "494",
+            "Colormaps": "1",
+            "vertices": "2072",
+            "adjoins": "666",
+            "surfaces": "2334",
+            "sectors": "261",
+            "AIClasses": "12",
+            "models": "108",
+            "sprites": "18",
+            "keyframes": "196",
+            "puppets": "12",
+            "soundclasses": "43",
+            "scripts": "54",
+            "cogs": "82",
+            "templates": "200",
+            "things": "527"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/rebelbase.jkl",
+          "sha256": "724252c59606a479b4a34407c121f1a0cb9dfa157843cd1e6b529718c699611c",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "245",
+            "materials": "358",
+            "Colormaps": "2",
+            "vertices": "980",
+            "adjoins": "354",
+            "surfaces": "1157",
+            "sectors": "144",
+            "AIClasses": "7",
+            "models": "82",
+            "sprites": "18",
+            "keyframes": "158",
+            "puppets": "8",
+            "soundclasses": "35",
+            "scripts": "37",
+            "cogs": "49",
+            "templates": "163",
+            "things": "282"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/descent2.jkl",
+          "sha256": "77b40a2f19c49413bb003a5bffb0ad3115410ce509e6245bf77dcf8a45f47d00",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "232",
+            "materials": "355",
+            "Colormaps": "2",
+            "vertices": "1156",
+            "adjoins": "334",
+            "surfaces": "1321",
+            "sectors": "139",
+            "AIClasses": "12",
+            "models": "92",
+            "sprites": "19",
+            "keyframes": "184",
+            "puppets": "10",
+            "soundclasses": "39",
+            "scripts": "44",
+            "cogs": "59",
+            "templates": "188",
+            "things": "322"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/testboss1.jkl",
+          "sha256": "993f743d2593e98df4353a1ef13bf1333d554f80f337189756340a91daeb78bd",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "161",
+            "materials": "192",
+            "Colormaps": "1",
+            "vertices": "12",
+            "adjoins": "2",
+            "surfaces": "12",
+            "sectors": "2",
+            "AIClasses": "1",
+            "models": "46",
+            "sprites": "17",
+            "keyframes": "141",
+            "puppets": "4",
+            "soundclasses": "26",
+            "scripts": "14",
+            "cogs": "15",
+            "templates": "110",
+            "things": "202"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/valley.jkl",
+          "sha256": "59028f3cc5d6ea6f7cacb34bbfe9cf88577f9d165a08759e7da5d7f07e741404",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "200",
+            "materials": "375",
+            "Colormaps": "1",
+            "vertices": "619",
+            "adjoins": "158",
+            "surfaces": "649",
+            "sectors": "79",
+            "AIClasses": "10",
+            "models": "72",
+            "sprites": "17",
+            "keyframes": "200",
+            "puppets": "10",
+            "soundclasses": "36",
+            "scripts": "34",
+            "cogs": "51",
+            "templates": "156",
+            "things": "267"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/coruscant.jkl",
+          "sha256": "d9d179826f8332d5be3348a50a28c392793767371bc9ef701285590fb5639456",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "286",
+            "materials": "490",
+            "Colormaps": "1",
+            "vertices": "2816",
+            "adjoins": "1200",
+            "surfaces": "3443",
+            "sectors": "406",
+            "AIClasses": "12",
+            "models": "93",
+            "sprites": "17",
+            "keyframes": "227",
+            "puppets": "14",
+            "soundclasses": "39",
+            "scripts": "44",
+            "cogs": "53",
+            "templates": "178",
+            "things": "465"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/finalbattle.jkl",
+          "sha256": "56da75c71b85b911f55563e4bbcd80a195e2c9f38d7259f061d4b595a5239d48",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "335",
+            "materials": "655",
+            "Colormaps": "1",
+            "vertices": "4306",
+            "adjoins": "2096",
+            "surfaces": "5559",
+            "sectors": "605",
+            "AIClasses": "16",
+            "models": "120",
+            "sprites": "17",
+            "keyframes": "237",
+            "puppets": "16",
+            "soundclasses": "47",
+            "scripts": "66",
+            "cogs": "110",
+            "templates": "220",
+            "things": "558"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/rct.jkl",
+          "sha256": "ec4207021ffe24123b03dbdd4fdfe116270489b6c2b28c554f3b5e52832e18fb",
+          "archive_member": "darkemperor2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "2",
+            "sounds": "309",
+            "materials": "614",
+            "Colormaps": "2",
+            "vertices": "5019",
+            "adjoins": "1472",
+            "surfaces": "6218",
+            "sectors": "600",
+            "AIClasses": "23",
+            "models": "106",
+            "sprites": "18",
+            "keyframes": "323",
+            "puppets": "21",
+            "soundclasses": "50",
+            "scripts": "58",
+            "cogs": "75",
+            "templates": "212",
+            "things": "457"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "darkemperor2xtra.gob",
+          "bytes": 1201767,
+          "sha256": "2bfbdbea80db3c895a19e5b66692ed628bc89046fe70bacf0f27f2892980891a"
+        },
+        {
+          "path": "darkemperor2.gob",
+          "bytes": 19601192,
+          "sha256": "4dac8219e5402956be845af183795f69090353c90ccbf4d6e84259897c4f6304",
+          "episode_sha256": "e718a93161371ae4752fb0d6700a91c4fb93a94ae7971e99a5e10b252fdd3184"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 4,
+      "massassi_id": 1392,
+      "title": "A Jedi's Discovery",
+      "author": "Zippy1000",
+      "downloads_at_audit": 12589,
+      "source_url": "https://www.massassi.net/levels/files/1392.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "cbc6dd52f70a1251365f5ebdbad308c754a561db6df38c6727d73f9425dc154d",
+      "download_url": "https://www.massassi.net/levels/download/1392/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/ajd.zip",
+      "zip_sha256": "a649110abca5380e0d5ca743ebf8404d5dff3f80c3956f9ad8cd8a42f29555f9",
+      "download_bytes": 5143311,
+      "readmes": [
+        {
+          "path": "A Jedi's Discovery.txt",
+          "bytes": 5936,
+          "sha256": "762a432dbce160e60eb7f465d671c89d9d9a4df719de7d8d6b5ca258149c7461"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [
+        {
+          "path": "A Jedi's Discovery.gob",
+          "error": "Duplicate resource: cog/jkedit_goals.cog"
+        }
+      ],
+      "archives": [
+        {
+          "path": "A Jedi's Discovery.gob",
+          "bytes": 13264766,
+          "sha256": "484c75a6ae5e71b835ca9f0537007fc21cc2726888f96636d4cb0b44e6df16f6"
+        },
+        {
+          "path": "Obi Wan1 (this is the patch).gob",
+          "bytes": 526103,
+          "sha256": "1b6d953928e7ef1496fb8ef94f4106624a52137bbd787adccb1da9a75410d1c5"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 5,
+      "massassi_id": 20,
+      "title": "Remnants of the Empire 3: Desert of Tatooine",
+      "author": "SavageX",
+      "downloads_at_audit": 12139,
+      "source_url": "https://www.massassi.net/levels/files/20.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "a1fa826eb02348579d6c31728fb6f0b6a5887d0b41ac8ab07d103d54d3a15eff",
+      "download_url": "https://www.massassi.net/levels/download/20/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/rote3.zip",
+      "zip_sha256": "f1783a34b23f3dd97a7a9b5a1fbcee44962ee3e35af7f4f434ba21f5eb332e02",
+      "download_bytes": 3440490,
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 5235,
+          "sha256": "9a07c0a5c128dfb086eb56168f1de4da7931bbecc3a4c973d306bc07900d376a"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/02hoth.jkl",
+          "sha256": "6e0d142b202e058163695123f3233cc53d922ed406dcef66d2f2c991a790d51c",
+          "archive_member": "rote.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "307",
+            "materials": "578",
+            "Colormaps": "3",
+            "vertices": "9706",
+            "adjoins": "4038",
+            "surfaces": "11403",
+            "sectors": "1264",
+            "AIClasses": "15",
+            "models": "138",
+            "sprites": "16",
+            "keyframes": "204",
+            "puppets": "15",
+            "soundclasses": "42",
+            "scripts": "85",
+            "cogs": "228",
+            "templates": "227",
+            "things": "649"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/03tatoonie.jkl",
+          "sha256": "3e1cc0d9bf5ac57fe421131825e6e100df3c3c45cdc2b59d15e284377f523190",
+          "archive_member": "rote.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "268",
+            "materials": "491",
+            "Colormaps": "1",
+            "vertices": "2751",
+            "adjoins": "1014",
+            "surfaces": "3150",
+            "sectors": "319",
+            "AIClasses": "12",
+            "models": "104",
+            "sprites": "17",
+            "keyframes": "220",
+            "puppets": "18",
+            "soundclasses": "38",
+            "scripts": "61",
+            "cogs": "96",
+            "templates": "202",
+            "things": "487"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/asteroid.jkl",
+          "sha256": "e98f33ebf701be0116309d65524c99df5c8575f67b119956cc7640ec7f6f2c34",
+          "archive_member": "rote.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "289",
+            "materials": "538",
+            "Colormaps": "3",
+            "vertices": "4854",
+            "adjoins": "1456",
+            "surfaces": "5305",
+            "sectors": "577",
+            "AIClasses": "17",
+            "models": "129",
+            "sprites": "20",
+            "keyframes": "210",
+            "puppets": "19",
+            "soundclasses": "49",
+            "scripts": "86",
+            "cogs": "180",
+            "templates": "237",
+            "things": "612"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/cutscene1.jkl",
+          "sha256": "d9e539fe2834e21b6e3792af12468de49bad90010b7506d69f1021e250dfcfa0",
+          "archive_member": "rote.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "160",
+            "materials": "206",
+            "Colormaps": "1",
+            "vertices": "138",
+            "adjoins": "64",
+            "surfaces": "165",
+            "sectors": "18",
+            "AIClasses": "2",
+            "models": "56",
+            "sprites": "16",
+            "keyframes": "132",
+            "puppets": "4",
+            "soundclasses": "27",
+            "scripts": "19",
+            "cogs": "21",
+            "templates": "119",
+            "things": "219"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/opening.jkl",
+          "sha256": "4bacd8fa5c4c01fddf7d34ad3a30d550061f15aec3b3cc73b289703e9448596a",
+          "archive_member": "rote.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "135",
+            "materials": "178",
+            "Colormaps": "1",
+            "vertices": "8",
+            "adjoins": "0",
+            "surfaces": "6",
+            "sectors": "1",
+            "AIClasses": "0",
+            "models": "57",
+            "sprites": "15",
+            "keyframes": "123",
+            "puppets": "3",
+            "soundclasses": "21",
+            "scripts": "14",
+            "cogs": "15",
+            "templates": "107",
+            "things": "210"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/static.jkl",
+          "sha256": "8226d257620a0d609079545aa28276f3cc04bfa9f14a46d2ba1ee8a2b094f391",
+          "archive_member": "rote.gob",
+          "sections": [
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "Soundclass",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "60",
+            "materials": "160",
+            "soundclasses": "100",
+            "models": "32",
+            "sprites": "20",
+            "keyframes": "128",
+            "puppets": "16",
+            "scripts": "80",
+            "cogs": "80",
+            "templates": "100"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "rote.gob",
+          "bytes": 11662481,
+          "sha256": "03c42616ff7baa3c656e95ff11e57a10973991b0423def30f164695d3b9e623c",
+          "episode_sha256": "1b4417ba7e5941a691b5745fe33b6447684eb3a421763ef10a7fdb74d8a8fe51"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 6,
+      "massassi_id": 13,
+      "title": "The Search for Leia",
+      "author": "Anthony Piggott",
+      "downloads_at_audit": 11569,
+      "source_url": "https://www.massassi.net/levels/files/13.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "7feb08e1f0fded94c70fe3bd57b82e9cac5a0de5c7eb3fe53132476dadafdb9a",
+      "download_url": "https://www.massassi.net/levels/download/13/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/leiasearch.zip",
+      "zip_sha256": "bcc50c334c45bb460a1cd23e9cc474dcd1f13ae1506039a9cbbe2cf0ae97bfa7",
+      "download_bytes": 2482054,
+      "readmes": [
+        {
+          "path": "Leiarun.txt",
+          "bytes": 674,
+          "sha256": "6b1016408513e6b4b7f244fe85f7768c9041019dd2ff7219717b952fcadd908d"
+        },
+        {
+          "path": "Leia.txt",
+          "bytes": 17635,
+          "sha256": "35778aa6bbc3e71b24a5baed40d910a839e409d19f16107a3992aa242e267326"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/solo.jkl",
+          "sha256": "7950a1f72119c0da116ca0d717f44748410e346671631df7845acf9ea8a951cf",
+          "archive_member": "Leia.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "220",
+            "materials": "354",
+            "Colormaps": "2",
+            "vertices": "496",
+            "adjoins": "236",
+            "surfaces": "713",
+            "sectors": "116",
+            "AIClasses": "12",
+            "models": "85",
+            "sprites": "17",
+            "keyframes": "175",
+            "puppets": "11",
+            "soundclasses": "35",
+            "scripts": "60",
+            "cogs": "112",
+            "templates": "181",
+            "things": "481"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/solo1.jkl",
+          "sha256": "4d6ad5ce2de839a0589d762289d42a5df7fa57dc628b04a41b51632bae61a7ba",
+          "archive_member": "Leia.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "200",
+            "materials": "313",
+            "Colormaps": "2",
+            "vertices": "597",
+            "adjoins": "312",
+            "surfaces": "884",
+            "sectors": "144",
+            "AIClasses": "8",
+            "models": "81",
+            "sprites": "17",
+            "keyframes": "180",
+            "puppets": "8",
+            "soundclasses": "34",
+            "scripts": "49",
+            "cogs": "90",
+            "templates": "173",
+            "things": "297"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/solo2.jkl",
+          "sha256": "6c47b1e87532f2e0d7b30e3ef999de28d508718bfdd4153d44c68ed823a073d3",
+          "archive_member": "Leia.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "169",
+            "materials": "319",
+            "Colormaps": "2",
+            "vertices": "1447",
+            "adjoins": "834",
+            "surfaces": "2186",
+            "sectors": "339",
+            "AIClasses": "3",
+            "models": "99",
+            "sprites": "17",
+            "keyframes": "157",
+            "puppets": "5",
+            "soundclasses": "32",
+            "scripts": "50",
+            "cogs": "84",
+            "templates": "188",
+            "things": "419"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/solo3.jkl",
+          "sha256": "8ac04a8a73d4ea95dc6b05c38385c838897c03985112c257cf950aa66f9f5172",
+          "archive_member": "Leia.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "173",
+            "materials": "246",
+            "Colormaps": "2",
+            "vertices": "342",
+            "adjoins": "94",
+            "surfaces": "371",
+            "sectors": "49",
+            "AIClasses": "5",
+            "models": "64",
+            "sprites": "17",
+            "keyframes": "156",
+            "puppets": "6",
+            "soundclasses": "29",
+            "scripts": "38",
+            "cogs": "50",
+            "templates": "150",
+            "things": "260"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/solo4.jkl",
+          "sha256": "7033a5605c1791dbaf385eb0548a21fd641f1e627ceb1ef1b7a48826c91c9fec",
+          "archive_member": "Leia.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "216",
+            "materials": "309",
+            "Colormaps": "2",
+            "vertices": "108",
+            "adjoins": "48",
+            "surfaces": "152",
+            "sectors": "25",
+            "AIClasses": "9",
+            "models": "74",
+            "sprites": "17",
+            "keyframes": "186",
+            "puppets": "10",
+            "soundclasses": "36",
+            "scripts": "48",
+            "cogs": "89",
+            "templates": "164",
+            "things": "245"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/solo5.jkl",
+          "sha256": "b9df110ce6e063066ce2ecacd8496fcb7afd2e73045753d8c40cc6a224e0fbed",
+          "archive_member": "Leia.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "285",
+            "materials": "701",
+            "Colormaps": "2",
+            "vertices": "1113",
+            "adjoins": "540",
+            "surfaces": "1546",
+            "sectors": "235",
+            "AIClasses": "14",
+            "models": "114",
+            "sprites": "17",
+            "keyframes": "268",
+            "puppets": "21",
+            "soundclasses": "49",
+            "scripts": "69",
+            "cogs": "112",
+            "templates": "215",
+            "things": "357"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/solo6.jkl",
+          "sha256": "81f6ec5de672b910b3474ded884bf9c34c3aaec73d19bb87cbaf555e1293f395",
+          "archive_member": "Leia.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "260",
+            "materials": "591",
+            "Colormaps": "2",
+            "vertices": "993",
+            "adjoins": "510",
+            "surfaces": "1373",
+            "sectors": "200",
+            "AIClasses": "13",
+            "models": "102",
+            "sprites": "17",
+            "keyframes": "248",
+            "puppets": "17",
+            "soundclasses": "44",
+            "scripts": "59",
+            "cogs": "88",
+            "templates": "194",
+            "things": "327"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/solo7.jkl",
+          "sha256": "f3217a2515fd679a3fd0476f35d4bc5b67ad6768e71459cbfd1e891ff58e9f4e",
+          "archive_member": "Leia.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "278",
+            "materials": "647",
+            "Colormaps": "2",
+            "vertices": "1937",
+            "adjoins": "924",
+            "surfaces": "2513",
+            "sectors": "347",
+            "AIClasses": "16",
+            "models": "126",
+            "sprites": "18",
+            "keyframes": "217",
+            "puppets": "16",
+            "soundclasses": "46",
+            "scripts": "69",
+            "cogs": "105",
+            "templates": "238",
+            "things": "655"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Leia.gob",
+          "bytes": 8375683,
+          "sha256": "d7a1f2dc55ee97679ad0be90a9385917e2f24c98857d8932eefb0ccaa1ee7255",
+          "episode_sha256": "544ff262c559443aaaf04706523bc3fa0b302ceaf634edf8e6c5a12968cc2a78"
+        },
+        {
+          "path": "Leiaxtra.gob",
+          "bytes": 992474,
+          "sha256": "4e8592cd8948b97d6bef24fb61d8c930bd2bb15cdca3a080d9e16df0d568d4b6"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 7,
+      "massassi_id": 27,
+      "title": "Dark Emperor",
+      "author": "Luke Skywalker",
+      "downloads_at_audit": 10792,
+      "source_url": "https://www.massassi.net/levels/files/27.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "3e3e09f7fb87a8d82d71b812d0064b29afcdc6e40df78b8f57bb6060af89fc4a",
+      "download_url": "https://www.massassi.net/levels/download/27/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/darkemperor.zip",
+      "zip_sha256": "626af42501b3011825bbd1e519a4639a3c661266450551d7f1f9158fb2434ec5",
+      "download_bytes": 651348,
+      "readmes": [
+        {
+          "path": "darkemperor_auth.txt",
+          "bytes": 5809,
+          "sha256": "3574845d55728a00700d251ac27bdce9b65589829809d1f4dabc9bdfdf935218"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/untitled.jkl",
+          "sha256": "cbb42d48837c8aa0a0906ed5d420fc2959c971dde39a888239f2da7413619e63",
+          "archive_member": "darkemperor.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "225",
+            "materials": "414",
+            "Colormaps": "1",
+            "vertices": "115",
+            "adjoins": "48",
+            "surfaces": "155",
+            "sectors": "25",
+            "AIClasses": "15",
+            "models": "74",
+            "sprites": "17",
+            "keyframes": "242",
+            "puppets": "14",
+            "soundclasses": "37",
+            "scripts": "40",
+            "cogs": "51",
+            "templates": "169",
+            "things": "221"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/part2.jkl",
+          "sha256": "c706db392f51df0d5c2926e9cc032cd97fdf168bb7c915ecbda9b2632827cbfc",
+          "archive_member": "darkemperor.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "283",
+            "materials": "587",
+            "Colormaps": "1",
+            "vertices": "3445",
+            "adjoins": "1376",
+            "surfaces": "4550",
+            "sectors": "617",
+            "AIClasses": "23",
+            "models": "130",
+            "sprites": "18",
+            "keyframes": "282",
+            "puppets": "19",
+            "soundclasses": "49",
+            "scripts": "63",
+            "cogs": "95",
+            "templates": "242",
+            "things": "547"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/kyleandmax.jkl",
+          "sha256": "67cd9a69586470b15fc840077c183bf27a9e9451eb6e6d56229c355fc2ad68cd",
+          "archive_member": "darkemperor.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "257",
+            "materials": "640",
+            "Colormaps": "1",
+            "vertices": "3509",
+            "adjoins": "1364",
+            "surfaces": "4234",
+            "sectors": "550",
+            "AIClasses": "13",
+            "models": "131",
+            "sprites": "18",
+            "keyframes": "229",
+            "puppets": "15",
+            "soundclasses": "43",
+            "scripts": "69",
+            "cogs": "135",
+            "templates": "233",
+            "things": "620"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/boss1.jkl",
+          "sha256": "c5b1f06f6c7c970002f7b7f4a97ccf76416d19625cc06340552b502e1c8989d0",
+          "archive_member": "darkemperor.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "163",
+            "materials": "250",
+            "Colormaps": "1",
+            "vertices": "170",
+            "adjoins": "70",
+            "surfaces": "210",
+            "sectors": "27",
+            "AIClasses": "4",
+            "models": "55",
+            "sprites": "17",
+            "keyframes": "163",
+            "puppets": "5",
+            "soundclasses": "28",
+            "scripts": "24",
+            "cogs": "48",
+            "templates": "122",
+            "things": "222"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/boss2.jkl",
+          "sha256": "bfa05a920f461e0f06e70809fcc537bec69a57a826dfe47ac62d787ea9c6820b",
+          "archive_member": "darkemperor.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "204",
+            "materials": "314",
+            "Colormaps": "1",
+            "vertices": "184",
+            "adjoins": "58",
+            "surfaces": "208",
+            "sectors": "25",
+            "AIClasses": "7",
+            "models": "61",
+            "sprites": "17",
+            "keyframes": "215",
+            "puppets": "8",
+            "soundclasses": "31",
+            "scripts": "29",
+            "cogs": "39",
+            "templates": "136",
+            "things": "302"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "darkemperor.gob",
+          "bytes": 2653564,
+          "sha256": "357118391cd925d4276755ffe684c496be3179fecd64a14640abc75955aea9c5",
+          "episode_sha256": "f4360988648bc1ef2aa924513ad5679b89456b951ef87981eaf28160a4643074"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 8,
+      "massassi_id": 26,
+      "title": "Legends of the Force: Darth Maul vs. Qui-Gon Jinn",
+      "author": "BoBo Fett",
+      "downloads_at_audit": 10328,
+      "source_url": "https://www.massassi.net/levels/files/26.shtml",
+      "status": "prototype_structural_pass_bounded_load_smoke_pass",
+      "source_page_sha256": "4e449b16789eb0955a3158513516977f8621d39faf6a9392189f879cf04d9065",
+      "download_url": "https://www.massassi.net/levels/download/26/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/MaulJinn.zip",
+      "zip_sha256": "61ed86d2ba4c0ea5bb2fdd7f2eae5e9459618ce4550d7debb8d8f6424559942e",
+      "download_bytes": 277860,
+      "readmes": [
+        {
+          "path": "MaulJinn.txt",
+          "bytes": 5825,
+          "sha256": "970b4d25a17e12a8d3d1ba831551afd64d8aa6ca85375e853ae10df8346ca3bc"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/zela_duel.jkl",
+          "sha256": "4d5909a7ff3e21319b4bd7c6df20778b18b3c58eaa5bc51be22176b90b3519f7",
+          "archive_member": "MaulJinn.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "156",
+            "materials": "229",
+            "Colormaps": "1",
+            "vertices": "406",
+            "adjoins": "36",
+            "surfaces": "366",
+            "sectors": "19",
+            "AIClasses": "2",
+            "models": "56",
+            "sprites": "17",
+            "keyframes": "133",
+            "puppets": "6",
+            "soundclasses": "26",
+            "scripts": "25",
+            "cogs": "29",
+            "templates": "127",
+            "things": "231"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "MaulJinn.gob",
+          "bytes": 736088,
+          "sha256": "868524accb6f1b7e73f46761705da71673520d8989406591b4d5d5e845bc79fc",
+          "episode_sha256": "499695cfb642d900e190a00e54a29a8e929c2bae4f7f258d61256a004e856de8"
+        }
+      ],
+      "conversion_supported": false,
+      "recipe_id": "sp-maul-vs-qui-gon",
+      "prototype_conversion_available": true,
+      "structural_verification": {
+        "status": "pass",
+        "sp_suite_tests": 20,
+        "output_sha256": "4e09aa3b87ba79afdb7dea6b70149eba85813c3e789448ade2f9f83a9f62daae"
+      },
+      "runtime_test": {
+        "status": "bounded-load-smoke-pass",
+        "duration_seconds": 30,
+        "engine_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+        "mode": "mots-singleplayer",
+        "full_gameplay": false
+      }
+    },
+    {
+      "rank": 9,
+      "massassi_id": 25,
+      "title": "Remnants of the Empire 2: Lost Base on Hoth",
+      "author": "SavageX",
+      "downloads_at_audit": 9801,
+      "source_url": "https://www.massassi.net/levels/files/25.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "4f3d882003938c81bfaaaa1b723134f0740fac309b32dc2d5d744bb8e8f42317",
+      "download_url": "https://www.massassi.net/levels/download/25/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/rote.zip",
+      "zip_sha256": "c10caabd5fee1803d5220d959d0b0341485eed8ebf8b42b9609a8ccfa457381e",
+      "download_bytes": 2252433,
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 5236,
+          "sha256": "d875ca840aa11f067514bcb889cb8f462805dba30165d6e5495e127dac6f89e8"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/02hoth.jkl",
+          "sha256": "6e0d142b202e058163695123f3233cc53d922ed406dcef66d2f2c991a790d51c",
+          "archive_member": "rote.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "307",
+            "materials": "578",
+            "Colormaps": "3",
+            "vertices": "9706",
+            "adjoins": "4038",
+            "surfaces": "11403",
+            "sectors": "1264",
+            "AIClasses": "15",
+            "models": "138",
+            "sprites": "16",
+            "keyframes": "204",
+            "puppets": "15",
+            "soundclasses": "42",
+            "scripts": "85",
+            "cogs": "228",
+            "templates": "227",
+            "things": "649"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/asteroid.jkl",
+          "sha256": "e98f33ebf701be0116309d65524c99df5c8575f67b119956cc7640ec7f6f2c34",
+          "archive_member": "rote.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "289",
+            "materials": "538",
+            "Colormaps": "3",
+            "vertices": "4854",
+            "adjoins": "1456",
+            "surfaces": "5305",
+            "sectors": "577",
+            "AIClasses": "17",
+            "models": "129",
+            "sprites": "20",
+            "keyframes": "210",
+            "puppets": "19",
+            "soundclasses": "49",
+            "scripts": "86",
+            "cogs": "180",
+            "templates": "237",
+            "things": "612"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/cutscene1.jkl",
+          "sha256": "d9e539fe2834e21b6e3792af12468de49bad90010b7506d69f1021e250dfcfa0",
+          "archive_member": "rote.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "160",
+            "materials": "206",
+            "Colormaps": "1",
+            "vertices": "138",
+            "adjoins": "64",
+            "surfaces": "165",
+            "sectors": "18",
+            "AIClasses": "2",
+            "models": "56",
+            "sprites": "16",
+            "keyframes": "132",
+            "puppets": "4",
+            "soundclasses": "27",
+            "scripts": "19",
+            "cogs": "21",
+            "templates": "119",
+            "things": "219"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/opening.jkl",
+          "sha256": "985f1921b8f032ef99c3c095eec7d6bdf3555b85d6cfd34a54bbaad1ef09dcd2",
+          "archive_member": "rote.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "136",
+            "materials": "175",
+            "Colormaps": "1",
+            "vertices": "8",
+            "adjoins": "0",
+            "surfaces": "6",
+            "sectors": "1",
+            "AIClasses": "0",
+            "models": "50",
+            "sprites": "17",
+            "keyframes": "124",
+            "puppets": "3",
+            "soundclasses": "23",
+            "scripts": "15",
+            "cogs": "17",
+            "templates": "115",
+            "things": "210"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/static.jkl",
+          "sha256": "8226d257620a0d609079545aa28276f3cc04bfa9f14a46d2ba1ee8a2b094f391",
+          "archive_member": "rote.gob",
+          "sections": [
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "Soundclass",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "60",
+            "materials": "160",
+            "soundclasses": "100",
+            "models": "32",
+            "sprites": "20",
+            "keyframes": "128",
+            "puppets": "16",
+            "scripts": "80",
+            "cogs": "80",
+            "templates": "100"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "rote.gob",
+          "bytes": 8503561,
+          "sha256": "014aee620558cdce17d113e87d61e2537cb4084bf10f04b6f8fe7b5553e07855",
+          "episode_sha256": "f32ec40dc3d2219ec9073b5bd2b25ec91ecb88bf914a2b3dbcc90b98a4ab6007"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 10,
+      "massassi_id": 4,
+      "title": "The New Empire",
+      "author": "Chris Swan",
+      "downloads_at_audit": 8701,
+      "source_url": "https://www.massassi.net/levels/files/4.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "9fe69e5946c07ef74ee427d0a38917a6d52507b086425f56889bb3369d617383",
+      "download_url": "https://www.massassi.net/levels/download/4/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/tne1.zip",
+      "zip_sha256": "a341433bb3a0decaae69d6062eb8be9f957fa08de48e3b6b25116293f1e099cb",
+      "download_bytes": 3140622,
+      "readmes": [
+        {
+          "path": "tnereadme.rtf",
+          "bytes": 182622,
+          "sha256": "51a5c3126f17616f33da0d01629f96aaf39576ac3dd792899f5226ec2d472c05"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [],
+      "archives": [],
+      "conversion_supported": false
+    },
+    {
+      "rank": 11,
+      "massassi_id": 1837,
+      "title": "Life of a Merchant",
+      "author": "Wolfy",
+      "downloads_at_audit": 8005,
+      "source_url": "https://www.massassi.net/levels/files/1837.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "ff87e5691e78fc84e77abaae7b792fee4a1efa9dab6b0f26ebeeff77dd996d6e",
+      "download_url": "https://www.massassi.net/levels/download/1837/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/loam.zip",
+      "zip_sha256": "bdd869bd33f0e20c82d598aa5444c18f3ef06099adb2270f125fd78326c76a7e",
+      "download_bytes": 4873230,
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4561,
+          "sha256": "7171ba0cc0f02c7b69c912906b85531835fe554952015c77a463747a168e9cce"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/life.jkl",
+          "sha256": "edf2786fe344429a6b75c235c2da7da8d0d09388b5239a93aabb34725e9c99bc",
+          "archive_member": "life.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "281",
+            "materials": "986",
+            "Colormaps": "2",
+            "vertices": "20327",
+            "adjoins": "8332",
+            "surfaces": "24632",
+            "sectors": "2890",
+            "AIClasses": "20",
+            "models": "155",
+            "sprites": "18",
+            "keyframes": "243",
+            "puppets": "22",
+            "soundclasses": "54",
+            "scripts": "81",
+            "cogs": "180",
+            "templates": "280",
+            "things": "645"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "life.gob",
+          "bytes": 16700953,
+          "sha256": "4a5217e8b53e1dc1dc04e6735e4648b6e077c9233cce8cc6d9a6a97011e81942",
+          "episode_sha256": "bacc34fbda5c3d895a874e1fe0a41a146334c551c05bd44e1c1c886f2a0b99ef"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 12,
+      "massassi_id": 1302,
+      "title": "Burning Pride: Episode I: The Execution",
+      "author": "Demon_Nightmare",
+      "downloads_at_audit": 7957,
+      "source_url": "https://www.massassi.net/levels/files/1302.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "01584403d4defc932de2b1a93fc61aa472ff619e3fe3ce745adb59d894d9c466",
+      "download_url": "https://www.massassi.net/levels/download/1302/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/bpride1.zip",
+      "zip_sha256": "581f9d008e84983be65d0c9d9a2eb86fa3d3550af7ab032baab10eb95094ae0f",
+      "download_bytes": 976241,
+      "readmes": [
+        {
+          "path": "Readme.txt",
+          "bytes": 6358,
+          "sha256": "f1504f35f2b66890ce0cf771d05e65f0c1e2630dea34e37e91e0147d73f60c2c"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/undercity.jkl",
+          "sha256": "7b3bde5e0a8e1b82a054c13fb453c800e43038cfc88bdeae657e1ad5a2c61d0c",
+          "archive_member": "bpride1.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "275",
+            "materials": "519",
+            "Colormaps": "1",
+            "vertices": "4104",
+            "adjoins": "1460",
+            "surfaces": "4547",
+            "sectors": "554",
+            "AIClasses": "13",
+            "models": "114",
+            "sprites": "17",
+            "keyframes": "201",
+            "puppets": "15",
+            "soundclasses": "46",
+            "scripts": "58",
+            "cogs": "99",
+            "templates": "205",
+            "things": "387"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/underintro.jkl",
+          "sha256": "4d0a12fed93401a64fa7d589883c33a2219c0d197125729659295c84ac37fa56",
+          "archive_member": "bpride1.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "182",
+            "materials": "252",
+            "Colormaps": "1",
+            "vertices": "149",
+            "adjoins": "46",
+            "surfaces": "143",
+            "sectors": "17",
+            "AIClasses": "5",
+            "models": "58",
+            "sprites": "17",
+            "keyframes": "155",
+            "puppets": "6",
+            "soundclasses": "27",
+            "scripts": "21",
+            "cogs": "22",
+            "templates": "129",
+            "things": "222"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "bpride1.gob",
+          "bytes": 2784105,
+          "sha256": "1d36ece753f0b5cabb0cdf79aa085f0d17e61cbf4c3a05c9deeb3862aa5ec211",
+          "episode_sha256": "9777cae3693a6026b5cc18390ccfdd36f97a53d76c947a1e4da257a210cbcc83"
+        },
+        {
+          "path": "bpridepatch.gob",
+          "bytes": 1232976,
+          "sha256": "b5a9abe38c998e4778877f14257347e02ed8434422378256567acbe192b6a41e"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 13,
+      "massassi_id": 21,
+      "title": "Sith training",
+      "author": "Joshua",
+      "downloads_at_audit": 7440,
+      "source_url": "https://www.massassi.net/levels/files/21.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "629545ee738b1e45c2833f6c2b96499e451041e5623825f3bcdd570274318d39",
+      "download_url": "https://www.massassi.net/levels/download/21/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/sithtraining.zip",
+      "zip_sha256": "a3718ee3e0af35a2613a1516930d2e82881657e150b23d74c41a41eb10cda4d1",
+      "download_bytes": 915551,
+      "readmes": [
+        {
+          "path": "SithTraining Readme.txt",
+          "bytes": 4035,
+          "sha256": "739d6ac160c1365a7c5bf8325587f965db1bdfdaf39c6675fa4afdbf9aafb1d3"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/initiation.jkl",
+          "sha256": "08564a7405af0b12370991212b33f5a28af3cbb6165c4260c02d10feadde011b",
+          "archive_member": "SithTraining.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "166",
+            "materials": "210",
+            "Colormaps": "1",
+            "vertices": "1088",
+            "adjoins": "866",
+            "surfaces": "1655",
+            "sectors": "218",
+            "AIClasses": "2",
+            "models": "50",
+            "sprites": "17",
+            "keyframes": "137",
+            "puppets": "3",
+            "soundclasses": "29",
+            "scripts": "18",
+            "cogs": "25",
+            "templates": "118",
+            "things": "208"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/beginning.jkl",
+          "sha256": "de7b795fd3c9550fc4c57d8fb0cf93684dcf25f135401d6b85e50b084100664b",
+          "archive_member": "SithTraining.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "169",
+            "materials": "212",
+            "Colormaps": "1",
+            "vertices": "1348",
+            "adjoins": "998",
+            "surfaces": "1921",
+            "sectors": "202",
+            "AIClasses": "2",
+            "models": "51",
+            "sprites": "17",
+            "keyframes": "137",
+            "puppets": "3",
+            "soundclasses": "29",
+            "scripts": "21",
+            "cogs": "46",
+            "templates": "120",
+            "things": "243"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/mastering.jkl",
+          "sha256": "80ba13b3eac49111e3b249fc75a25c8d0245833b8d2cf37093c8ec76144735d5",
+          "archive_member": "SithTraining.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "174",
+            "materials": "222",
+            "Colormaps": "1",
+            "vertices": "462",
+            "adjoins": "282",
+            "surfaces": "608",
+            "sectors": "57",
+            "AIClasses": "3",
+            "models": "51",
+            "sprites": "17",
+            "keyframes": "152",
+            "puppets": "4",
+            "soundclasses": "29",
+            "scripts": "25",
+            "cogs": "40",
+            "templates": "121",
+            "things": "235"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "SithTraining.gob",
+          "bytes": 2124159,
+          "sha256": "ff5648e624e7c03c5730dddea330a3e63f62321c208f10e2d62ea5c85cbb9b8a",
+          "episode_sha256": "e4cb30dbf0697637ebfe752cd9209c55f17084bdd33279fd86a5bd6652ebf38d"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 14,
+      "massassi_id": 24,
+      "title": "Legends of the Force: Journey to the Zelaskata Mountains",
+      "author": "BoBo Fett",
+      "downloads_at_audit": 7124,
+      "source_url": "https://www.massassi.net/levels/files/24.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "156abcfb727f0ff7d9c667fd8860db4d09c2e96247f888ab79a56eafc2064780",
+      "download_url": "https://www.massassi.net/levels/download/24/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/jk_sp_lev_zela.zip",
+      "zip_sha256": "e074a21f973b531cbb32c7015965a3bce8dd3c71ec06af9d1cd6ccb6bf3571fc",
+      "download_bytes": 1845503,
+      "readmes": [
+        {
+          "path": "Zelaskata.txt",
+          "bytes": 5709,
+          "sha256": "42e1c6db23553cf039926d10a0fc4f90cde06c1efbfb3f2d783353e2e43a338a"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/zela.jkl",
+          "sha256": "2557fb85e575314f5e9f064909478e08ab9c412ffac56848b83759ef88012f04",
+          "archive_member": "zela.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "307",
+            "materials": "689",
+            "Colormaps": "1",
+            "vertices": "9969",
+            "adjoins": "3556",
+            "surfaces": "11173",
+            "sectors": "1067",
+            "AIClasses": "24",
+            "models": "136",
+            "sprites": "19",
+            "keyframes": "239",
+            "puppets": "23",
+            "soundclasses": "54",
+            "scripts": "74",
+            "cogs": "128",
+            "templates": "256",
+            "things": "443"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "zela.gob",
+          "bytes": 5341667,
+          "sha256": "4dca7b44f64ef4e5a5086b4e499831471a98726644b9697dd25c046ddea38643",
+          "episode_sha256": "34e71bc79ce684ce0be281395772ecdd8ea63c202bf0056723eb37f9446afe64"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 15,
+      "massassi_id": 1041,
+      "title": "WarZone 1 & 2",
+      "author": "Mark Jones/Tom Smallwood",
+      "downloads_at_audit": 7109,
+      "source_url": "https://www.massassi.net/levels/files/1041.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "02980916fb5fa6562da933a4913ab23e506e586458f63d4e608ce5f390a69a50",
+      "download_url": "https://www.massassi.net/levels/download/1041/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/warzone.zip",
+      "zip_sha256": "c59d28079cadba9fa43e750301b8f399556a0bd1d1e3505da80eaeb79818995a",
+      "download_bytes": 3478305,
+      "readmes": [
+        {
+          "path": "WarZone Chapter 2.txt",
+          "bytes": 17898,
+          "sha256": "2496b69a529d9dee672539222cce99dfe690567c2b5a92b5bf3cb13e2f47f631"
+        },
+        {
+          "path": "Warzone Chapter 1.txt",
+          "bytes": 7864,
+          "sha256": "53f8dae8810396801c1713ebb9fce87c2b36b2f4bd64b470c3f3323908eed41e"
+        },
+        {
+          "path": "WZInstall.txt",
+          "bytes": 573,
+          "sha256": "e322f72f7d8c3ef008f65be7802ec0f39d53870f4edbd33b9054f1bd6094e2fe"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/intruder.jkl",
+          "sha256": "33069ac51439717fcde2ddb05d701685ae0783c0e7880086e9ab48e57458a7c3",
+          "archive_member": "warzone.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "370",
+            "materials": "822",
+            "Colormaps": "3",
+            "vertices": "11514",
+            "adjoins": "5416",
+            "surfaces": "14706",
+            "sectors": "1709",
+            "AIClasses": "26",
+            "models": "166",
+            "sprites": "22",
+            "keyframes": "257",
+            "puppets": "24",
+            "soundclasses": "59",
+            "scripts": "120",
+            "cogs": "247",
+            "templates": "302",
+            "things": "650"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/warzone.jkl",
+          "sha256": "5e7c2ca71f8f4f616c0ce8eef8db81e97558c40fbccd5ad60bfc8ff53f9bb7fd",
+          "archive_member": "warzone.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "282",
+            "materials": "474",
+            "Colormaps": "2",
+            "vertices": "4461",
+            "adjoins": "2022",
+            "surfaces": "5513",
+            "sectors": "650",
+            "AIClasses": "15",
+            "models": "102",
+            "sprites": "18",
+            "keyframes": "206",
+            "puppets": "16",
+            "soundclasses": "44",
+            "scripts": "67",
+            "cogs": "129",
+            "templates": "205",
+            "things": "432"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/opening.jkl",
+          "sha256": "a665f32d856daa92c1570ce81a9219563be4cd880e8423a147c1873cb1f06843",
+          "archive_member": "warzone.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "138",
+            "materials": "190",
+            "Colormaps": "1",
+            "vertices": "8",
+            "adjoins": "0",
+            "surfaces": "6",
+            "sectors": "1",
+            "AIClasses": "0",
+            "models": "50",
+            "sprites": "18",
+            "keyframes": "124",
+            "puppets": "2",
+            "soundclasses": "24",
+            "scripts": "15",
+            "cogs": "17",
+            "templates": "115",
+            "things": "219"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "warzone.gob",
+          "bytes": 10268622,
+          "sha256": "3e48f9990e632b3423072cf31fc28af834e32823ef0349101faf495cca66d790",
+          "episode_sha256": "3b4b67df3cfc43dd7d632c4cf7b3b3d015ba813c2764309cd9012df5031232eb"
+        },
+        {
+          "path": "WZLoadScrn.gob",
+          "bytes": 308256,
+          "sha256": "c591ee83e53b868abd3cef3b2cb55724527e8f843fae1bd7cd0f2fff31dcc210"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 16,
+      "massassi_id": 1332,
+      "title": "The New Empire Part 2",
+      "author": "Chris Swan",
+      "downloads_at_audit": 6968,
+      "source_url": "https://www.massassi.net/levels/files/1332.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "df7beb0ce810a59dffe2f4b92056ba18b62965d84921471db588b5d9e13ad44c",
+      "download_url": "https://www.massassi.net/levels/download/1332/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/tne2.zip",
+      "zip_sha256": "53e2f9609b8ef3926df3f510b935e4c39a720ccbba647c1e11ff385a7a99a46a",
+      "download_bytes": 8454330,
+      "readmes": [
+        {
+          "path": "Read Before Installing.txt",
+          "bytes": 969,
+          "sha256": "942bed0b4c5890cff7193aeb2241e2587623becc5d33b741ed36fc46f96700e2"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [],
+      "archives": [],
+      "conversion_supported": false
+    },
+    {
+      "rank": 17,
+      "massassi_id": 1687,
+      "title": "A Jedi's Discovery 2: The Dark Mask",
+      "author": "Zippy1000",
+      "downloads_at_audit": 6965,
+      "source_url": "https://www.massassi.net/levels/files/1687.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "5f4ac1ce0fa91b1076f37f1f850ba4ab8956f2ab500eba7553cc35752753fe26",
+      "download_url": "https://www.massassi.net/levels/download/1687/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/ajedisdiscovery2.zip",
+      "zip_sha256": "f2095c994f40c6a6af484d680467fc1f77f1a18a150cd4e9ac2d99c647f773c7",
+      "download_bytes": 6109909,
+      "readmes": [
+        {
+          "path": "AJD2 The dark mask.txt",
+          "bytes": 6591,
+          "sha256": "9bea9c344dff84990938f3b0ba10ebe07c8a2052064470f4b93cff1dfed73cd4"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [
+        {
+          "path": "A Jedi's Discovery2.gob",
+          "error": "Duplicate resource: cog/jkedit_goals.cog"
+        },
+        {
+          "path": "AJD2.gob",
+          "error": "Unsafe resource name: '/patchinfo.txt'"
+        }
+      ],
+      "archives": [
+        {
+          "path": "A Jedi's Discovery2.gob",
+          "bytes": 9566857,
+          "sha256": "bfb4203ab84a700abc5404e0df48f57238f4fc05c1b774c94f4d0ba82a36575c"
+        },
+        {
+          "path": "AJD2.gob",
+          "bytes": 1018761,
+          "sha256": "6242b4bed180ecf5cf69a5386e2a5da45b67b69da05774e0e11fe793648e4bec"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 18,
+      "massassi_id": 1366,
+      "title": "Imperial Pumping Station",
+      "author": "Kiramin",
+      "downloads_at_audit": 6684,
+      "source_url": "https://www.massassi.net/levels/files/1366.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "9f0061d1affb609cde65a6f699b300ed897f781268c98be0f0695ee25c2f8db4",
+      "download_url": "https://www.massassi.net/levels/download/1366/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/mk_ips.zip",
+      "zip_sha256": "bf5a4ba8fff45e6b1efcee887fa5db56571380c730ca791347e03cfd0b5d2e04",
+      "download_bytes": 474997,
+      "readmes": [
+        {
+          "path": "mk_ips.txt",
+          "bytes": 5004,
+          "sha256": "b980ce6ba31f4cc71f4e1f20018dc6f365b79ae543ee5d1a803cc8b49f47bc8b"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/mk_ips.jkl",
+          "sha256": "dce8aeac74eaa1d05df3002ced4af83461266f6e6580db97f68dbc5179fff301",
+          "archive_member": "mk_ips.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "246",
+            "materials": "458",
+            "Colormaps": "1",
+            "vertices": "4759",
+            "adjoins": "1235",
+            "surfaces": "5081",
+            "sectors": "460",
+            "AIClasses": "12",
+            "models": "107",
+            "sprites": "18",
+            "keyframes": "186",
+            "puppets": "12",
+            "soundclasses": "39",
+            "scripts": "64",
+            "cogs": "112",
+            "templates": "204",
+            "things": "424"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "mk_ips.gob",
+          "bytes": 1763043,
+          "sha256": "995137bbeea54f0f79daa542e960355e365dafb24433c930a4bbb110e9e11126",
+          "episode_sha256": "0e025fc1076330d5cc6d95aaef7825a6867ed0e5e075ac4d2237a91f83f5902b"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 19,
+      "massassi_id": 14,
+      "title": "Yun and Kyle vs. the Darkjedi",
+      "author": "SRA_sqmagellan",
+      "downloads_at_audit": 6526,
+      "source_url": "https://www.massassi.net/levels/files/14.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "1c98293ea59065edd3fd6dbfc87072c725a6b281996dd4a3a9ee944651dc9b1f",
+      "download_url": "https://www.massassi.net/levels/download/14/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/yunkyle.zip",
+      "zip_sha256": "138f4294e97c3174777b68820124d675461c9a6a04927f7e94a4c3ac75855135",
+      "download_bytes": 191521,
+      "readmes": [],
+      "worlds": [
+        {
+          "path": "jkl/jerec.jkl",
+          "sha256": "a73a7357f28414539a43e8f6a0671aba039712730f4880fbef31c48c936fc9d9",
+          "archive_member": "yunkyle11.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "166",
+            "materials": "224",
+            "Colormaps": "1",
+            "vertices": "284",
+            "adjoins": "44",
+            "surfaces": "288",
+            "sectors": "19",
+            "AIClasses": "4",
+            "models": "52",
+            "sprites": "17",
+            "keyframes": "160",
+            "puppets": "5",
+            "soundclasses": "27",
+            "scripts": "28",
+            "cogs": "36",
+            "templates": "129",
+            "things": "245"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "yunkyle11.gob",
+          "bytes": 512818,
+          "sha256": "300ecfa0e1a544e300192bb232fa64dfedacf595d61686088e4278d94864b691",
+          "episode_sha256": "6da4fa6a3582887929fa814d3ab45973b8fc5529f748297e9e1644fe914f6a72"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 20,
+      "massassi_id": 2,
+      "title": "Back Home To Sulon",
+      "author": "Jean-Francois Vuagniaux",
+      "downloads_at_audit": 6351,
+      "source_url": "https://www.massassi.net/levels/files/2.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "b9464d96cf81f53c30af93ec462c316f37016b7a298f7b4fa269c25fd60d720e",
+      "download_url": "https://www.massassi.net/levels/download/2/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/Invasion.zip",
+      "zip_sha256": "65809e07af106ce8ceb17860b0a014e355c743ea9a4afebc1c2318998bdea097",
+      "download_bytes": 1843058,
+      "readmes": [
+        {
+          "path": "JK_AUTH.TXT",
+          "bytes": 3995,
+          "sha256": "5dc3ad868323d08fe6f92e4fae541539ea12299e6907d23d3f20be9cc5d83031"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/invasion.jkl",
+          "sha256": "d1c48d33c9aecab10cae7cd834277a2246e7584e76ad6965c64c53f5c8777ca4",
+          "archive_member": "Invasion.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "374",
+            "materials": "828",
+            "Colormaps": "1",
+            "vertices": "8151",
+            "adjoins": "3312",
+            "surfaces": "9876",
+            "sectors": "1053",
+            "AIClasses": "27",
+            "models": "156",
+            "sprites": "19",
+            "keyframes": "309",
+            "puppets": "30",
+            "soundclasses": "63",
+            "scripts": "95",
+            "cogs": "182",
+            "templates": "301",
+            "things": "658"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/space.jkl",
+          "sha256": "6c8dc4620bea59580922754df46482206d13858a01d4f683669c46286b75b3e6",
+          "archive_member": "Invasion.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "135",
+            "materials": "189",
+            "Colormaps": "2",
+            "vertices": "86",
+            "adjoins": "26",
+            "surfaces": "68",
+            "sectors": "2",
+            "AIClasses": "0",
+            "models": "50",
+            "sprites": "17",
+            "keyframes": "128",
+            "puppets": "3",
+            "soundclasses": "23",
+            "scripts": "22",
+            "cogs": "35",
+            "templates": "114",
+            "things": "216"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/valley.jkl",
+          "sha256": "4a354d9e4615463029c86fbc7ae819eb6836f05847040ad684cb8e147be299e7",
+          "archive_member": "Invasion.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "242",
+            "materials": "337",
+            "Colormaps": "2",
+            "vertices": "1717",
+            "adjoins": "834",
+            "surfaces": "1974",
+            "sectors": "183",
+            "AIClasses": "10",
+            "models": "71",
+            "sprites": "18",
+            "keyframes": "193",
+            "puppets": "12",
+            "soundclasses": "36",
+            "scripts": "36",
+            "cogs": "41",
+            "templates": "158",
+            "things": "347"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Invasion.gob",
+          "bytes": 5401085,
+          "sha256": "33a126d23e244c774207832b2ed70dd33f9a72c012007c8d2ccdf05bab589b07",
+          "episode_sha256": "e7cad37a8a0e9d540f00ddc15dfb560c4c80f179a2323260e8ca1d15c989b793"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 21,
+      "massassi_id": 902,
+      "title": "Planet Sith",
+      "author": "Looweegee",
+      "downloads_at_audit": 6147,
+      "source_url": "https://www.massassi.net/levels/files/902.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "08854e60db371aedad56083899da9a58bbc9fde5d962c8ed07cae5305de4ddac",
+      "download_url": "https://www.massassi.net/levels/download/902/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/planetsith.zip",
+      "zip_sha256": "83ba42ddd8026efba7e766b0875b413fcae254ed4811680722754850decc83e4",
+      "download_bytes": 1545695,
+      "readmes": [
+        {
+          "path": "sith.txt",
+          "bytes": 4317,
+          "sha256": "34f122ae0c1c8ca0d6ade23c45f58c6b0ac9717024badf88454d43d22703ff1e"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/intro.jkl",
+          "sha256": "ad62765095f4b41fb383b4d624a72f8ccfe4e0d26ba072293c5991211ad1b7f6",
+          "archive_member": "sith.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "135",
+            "materials": "160",
+            "Colormaps": "1",
+            "vertices": "16",
+            "adjoins": "0",
+            "surfaces": "12",
+            "sectors": "2",
+            "AIClasses": "0",
+            "models": "48",
+            "sprites": "17",
+            "keyframes": "124",
+            "puppets": "2",
+            "soundclasses": "23",
+            "scripts": "15",
+            "cogs": "17",
+            "templates": "111",
+            "things": "216"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/main3.jkl",
+          "sha256": "e28d3c62c2ffb12d1600d5f2a568f6d2e34d27be00e3f140bd82133d2c2f2029",
+          "archive_member": "sith.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "181",
+            "materials": "270",
+            "Colormaps": "1",
+            "vertices": "232",
+            "adjoins": "58",
+            "surfaces": "231",
+            "sectors": "29",
+            "AIClasses": "9",
+            "models": "69",
+            "sprites": "17",
+            "keyframes": "168",
+            "puppets": "9",
+            "soundclasses": "34",
+            "scripts": "33",
+            "cogs": "55",
+            "templates": "149",
+            "things": "632"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/main.jkl",
+          "sha256": "04ebd0b8f502987bd588fa1eb02d3740a5b7e0cbb711b5a25080e6b478e55c82",
+          "archive_member": "sith.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "300",
+            "materials": "507",
+            "Colormaps": "2",
+            "vertices": "747",
+            "adjoins": "200",
+            "surfaces": "757",
+            "sectors": "81",
+            "AIClasses": "23",
+            "models": "119",
+            "sprites": "17",
+            "keyframes": "274",
+            "puppets": "22",
+            "soundclasses": "50",
+            "scripts": "66",
+            "cogs": "91",
+            "templates": "243",
+            "things": "574"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/main2.jkl",
+          "sha256": "c0a93ae72748399907004d52e26baa278cba35727b018d9f0fbac5392d49a29a",
+          "archive_member": "sith.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "224",
+            "materials": "343",
+            "Colormaps": "1",
+            "vertices": "324",
+            "adjoins": "60",
+            "surfaces": "285",
+            "sectors": "31",
+            "AIClasses": "11",
+            "models": "75",
+            "sprites": "19",
+            "keyframes": "173",
+            "puppets": "12",
+            "soundclasses": "38",
+            "scripts": "39",
+            "cogs": "50",
+            "templates": "159",
+            "things": "540"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/main4.jkl",
+          "sha256": "f371d0be681fcf9749de033bc19bff094f1f124af1893bc74c78294222ab6585",
+          "archive_member": "sith.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "284",
+            "materials": "464",
+            "Colormaps": "3",
+            "vertices": "836",
+            "adjoins": "174",
+            "surfaces": "842",
+            "sectors": "82",
+            "AIClasses": "14",
+            "models": "93",
+            "sprites": "17",
+            "keyframes": "269",
+            "puppets": "15",
+            "soundclasses": "40",
+            "scripts": "54",
+            "cogs": "96",
+            "templates": "181",
+            "things": "637"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "sith.gob",
+          "bytes": 3403297,
+          "sha256": "88374d81efe6b6244f42e8bd886d23fe10d6ee983f1abd573495bdb50f001d84",
+          "episode_sha256": "c1c0654c8c5a46c04ada925800a199c5c21c47a6b8ec53dfdad894fc8a219f6c"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 22,
+      "massassi_id": 15,
+      "title": "Escape from Imperial Base",
+      "author": "Rogue Leader",
+      "downloads_at_audit": 5485,
+      "source_url": "https://www.massassi.net/levels/files/15.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "f8b5c4116f64ca606aa8303162023fc936a0099cc72603cd092583684b36feb0",
+      "download_url": "https://www.massassi.net/levels/download/15/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/escape.zip",
+      "zip_sha256": "a4d3b8159a201ee1281e89148544cad6894689225a6f4bfb9c5b019e40ec6337",
+      "download_bytes": 117162,
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 5056,
+          "sha256": "db9998cf1a4fd73293a4510e05ca8055705347cc9d29af5bf23fe61a4bad5f90"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/escape.jkl",
+          "sha256": "bc52a7f6e1716c2f8c27866406196cfffee432100daf53c4812ff44f63c5578f",
+          "archive_member": "Escape.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "258",
+            "materials": "428",
+            "Colormaps": "5",
+            "vertices": "1873",
+            "adjoins": "602",
+            "surfaces": "1966",
+            "sectors": "220",
+            "AIClasses": "14",
+            "models": "101",
+            "sprites": "17",
+            "keyframes": "216",
+            "puppets": "17",
+            "soundclasses": "41",
+            "scripts": "51",
+            "cogs": "91",
+            "templates": "196",
+            "things": "398"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Escape.gob",
+          "bytes": 426046,
+          "sha256": "8671780b96c3d61c97399e6651f6963ef83c0e860471a02979524a08a5a2cb15",
+          "episode_sha256": "4223e6968541605a5aac99fe258a55abada9d8eb05da0729f9e2c92a51d18017"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 23,
+      "massassi_id": 1826,
+      "title": "The New Jedi Order: Inception",
+      "author": "Berlick B'ja and Pac_Man3D",
+      "downloads_at_audit": 5372,
+      "source_url": "https://www.massassi.net/levels/files/1826.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "ce47f85285b23adc38c6f82ef3be5f260fde180c5fa5c9698d4360e3c2729738",
+      "download_url": "https://www.massassi.net/levels/download/1826/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/tnjoinception.zip",
+      "zip_sha256": "dfcc45591f5e07035d628f8754d3a0d4a6ac6711df912930ffa1f8b0d6c6464d",
+      "download_bytes": 660169,
+      "readmes": [
+        {
+          "path": "YuuzhanVong.html",
+          "bytes": 16906,
+          "sha256": "e0c1ba9dc84c2340164200ad7083b927571f36d0afc1925f3ed2f50cb0c0a642"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/yuuzhanvong.jkl",
+          "sha256": "dd4a72e9e6f2beaf848cae72bcfcd9311a7fbf1a3867e548892a6c0d2eff415c",
+          "archive_member": "YuuzhanVong.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "287",
+            "materials": "577",
+            "Colormaps": "1",
+            "vertices": "5803",
+            "adjoins": "1944",
+            "surfaces": "6235",
+            "sectors": "660",
+            "AIClasses": "14",
+            "models": "127",
+            "sprites": "18",
+            "keyframes": "240",
+            "puppets": "16",
+            "soundclasses": "45",
+            "scripts": "79",
+            "cogs": "186",
+            "templates": "230",
+            "things": "446"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "YuuzhanVong.gob",
+          "bytes": 2831962,
+          "sha256": "0d4ccccdd414e2e6cf8ba71f7b07432817a4b7ed8e96f820c1bcd562119fcc20",
+          "episode_sha256": "50e287c557a9602dee119c11a326a04d0df3b7555c5c6eda3f357deca38717c0"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 24,
+      "massassi_id": 1906,
+      "title": "Arrow Thieves: Chapter 1",
+      "author": "frantik",
+      "downloads_at_audit": 5130,
+      "source_url": "https://www.massassi.net/levels/files/1906.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "60e69e0979cc8d77bf791a9b9878986b53a1ffaef0ab200e2aced5aeba23e2e5",
+      "download_url": "https://www.massassi.net/levels/download/1906/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/arrowthieveschp1.zip",
+      "zip_sha256": "b128dbdd4591bb033daf1df73196951a394f92cd58ea267c9283960345952383",
+      "download_bytes": 12473000,
+      "readmes": [
+        {
+          "path": "atc1readme.txt",
+          "bytes": 5164,
+          "sha256": "7e833b645559cbd41ecd8177d084def226f2a1f0b5fadefb6daee46fb4e45bfc"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [],
+      "archives": [],
+      "conversion_supported": false
+    },
+    {
+      "rank": 25,
+      "massassi_id": 19,
+      "title": "Dead Reckoning",
+      "author": "Christian Garris",
+      "downloads_at_audit": 5020,
+      "source_url": "https://www.massassi.net/levels/files/19.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "6d475ddd6fec27db30720e362ece57cf1217d9533a814daa1d9147a16c6bc6b9",
+      "download_url": "https://www.massassi.net/levels/download/19/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/dr.zip",
+      "zip_sha256": "f9c96635730942c98a50bd5fc01ad485d9a01ee877838227257ed76de3b44964",
+      "download_bytes": 624023,
+      "readmes": [
+        {
+          "path": "dr.txt",
+          "bytes": 4076,
+          "sha256": "2c9700f90c23bb52fb0d69003b67186678d54c037ae8a30c6898cdbda95283a8"
+        },
+        {
+          "path": "briefing.htm",
+          "bytes": 1811,
+          "sha256": "7e69f240c9244f1996b3f6bcad87c0b00d3d2442de5caf57119c87abb3301984"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/dr.jkl",
+          "sha256": "3e80289cafdd482cbf21674085fb94c6295e9d48f3e25d63db9aad386ca8f4a9",
+          "archive_member": "dr.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "313",
+            "materials": "782",
+            "Colormaps": "2",
+            "vertices": "7363",
+            "adjoins": "3540",
+            "surfaces": "8983",
+            "sectors": "1012",
+            "AIClasses": "19",
+            "models": "141",
+            "sprites": "18",
+            "keyframes": "263",
+            "puppets": "23",
+            "soundclasses": "53",
+            "scripts": "76",
+            "cogs": "146",
+            "templates": "268",
+            "things": "502"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "dr.gob",
+          "bytes": 2349053,
+          "sha256": "b59ffccde6f7909e674421b3a81afd45b581012499982aed8517adbc417f23a8",
+          "episode_sha256": "9124ad208bb424d17ed4da0764dc881677d536ced0ce5d17f5d384562f71b580"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 26,
+      "massassi_id": 1886,
+      "title": "Best Lum Guide",
+      "author": "Jensyx",
+      "downloads_at_audit": 5019,
+      "source_url": "https://www.massassi.net/levels/files/1886.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "6fb4d0a0ec67d2a6f5d448657dd9ec14cd83394bb0c89cdcf9948b4bcd587fc9",
+      "download_url": "https://www.massassi.net/levels/download/1886/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/lum.zip",
+      "zip_sha256": "0f39fb4459712ef563fadfdd3122f1b3b1dea0f1bca2e3336b6475d7affd673a",
+      "download_bytes": 1345070,
+      "readmes": [
+        {
+          "path": "iwrotethis.txt",
+          "bytes": 5533,
+          "sha256": "88017b86d76f0bcde6acf93ade844f49f10d52ac1d561c08a2428dc6f12fe642"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/outpost.jkl",
+          "sha256": "cec5f8c583e0974874848026516dac7d942288bc18f1699afec47c729ff81a96",
+          "archive_member": "outpost.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "341",
+            "materials": "735",
+            "Colormaps": "1",
+            "vertices": "5561",
+            "adjoins": "1612",
+            "surfaces": "5848",
+            "sectors": "616",
+            "AIClasses": "26",
+            "models": "165",
+            "sprites": "18",
+            "keyframes": "263",
+            "puppets": "26",
+            "soundclasses": "52",
+            "scripts": "100",
+            "cogs": "216",
+            "templates": "297",
+            "things": "500"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "outpost.gob",
+          "bytes": 4553529,
+          "sha256": "a8866cc9f66b05c0c3cbb748f3c4310d6d2bcdea483c0a235fd36196856bcb6c",
+          "episode_sha256": "839033274aa2750111b62ef883416e2d57cc39505bf6dd43d1305db40c8b010f"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 27,
+      "massassi_id": 22,
+      "title": "Mechanics of the Force Level 1",
+      "author": "Matt Chapman",
+      "downloads_at_audit": 4895,
+      "source_url": "https://www.massassi.net/levels/files/22.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "518a016261b6196c744faccd25d1154af253a0c9a82c7ae37e801054e7e09b7a",
+      "download_url": "https://www.massassi.net/levels/download/22/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/motf1.zip",
+      "zip_sha256": "663ddbf77a458dcab5c6081481a42d502e37ccda24dd653e3b79448bf481f916",
+      "download_bytes": 4655850,
+      "readmes": [
+        {
+          "path": "Motf.txt",
+          "bytes": 5841,
+          "sha256": "f79345d81535022e3ce1fd33d760a8201b0029864adcf640a47a91e6fe84dbc5"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/droids.jkl",
+          "sha256": "ff472d00d26c007798f84c3fc9baa24252b993f6f17d1d36b55653fa71736afd",
+          "archive_member": "Droids.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "370",
+            "materials": "627",
+            "Colormaps": "2",
+            "vertices": "5697",
+            "adjoins": "1786",
+            "surfaces": "5797",
+            "sectors": "631",
+            "AIClasses": "22",
+            "models": "144",
+            "sprites": "18",
+            "keyframes": "277",
+            "puppets": "19",
+            "soundclasses": "52",
+            "scripts": "125",
+            "cogs": "315",
+            "templates": "270",
+            "things": "645"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Droids.gob",
+          "bytes": 12602750,
+          "sha256": "503226d79ae060d39f0c477674675588ef72effa747e249492c03dba0202bb65",
+          "episode_sha256": "e4ae4b2b7f85d2c7420f419e070e440a941beb23e4fad8121f71629411b8eff5"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 28,
+      "massassi_id": 1435,
+      "title": "Invasion of the Sol System, Episode 1",
+      "author": "Kyle90",
+      "downloads_at_audit": 4797,
+      "source_url": "https://www.massassi.net/levels/files/1435.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "a49a5c6f36023a513378dd696a0f2ca720316fa264252cb25e219ec201dc1136",
+      "download_url": "https://www.massassi.net/levels/download/1435/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/mars.zip",
+      "zip_sha256": "5747d1e2addc53f04035ddecaf19daee7f5ceed35cec15b653e9dd2a23f8f72b",
+      "download_bytes": 520985,
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4358,
+          "sha256": "75b9142dd8ec6c872cc1eb22ed98235d5bb060fbb790d47149164fc93251e439"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/mars.jkl",
+          "sha256": "ccf00c8e8ac0fd495c7f062e7ccc547944e5347eba87fee2762ccc948299d9a6",
+          "archive_member": "Mars.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "2",
+            "sounds": "256",
+            "materials": "484",
+            "Colormaps": "1",
+            "vertices": "6011",
+            "adjoins": "2894",
+            "surfaces": "8134",
+            "sectors": "947",
+            "AIClasses": "14",
+            "models": "108",
+            "sprites": "18",
+            "keyframes": "185",
+            "puppets": "14",
+            "soundclasses": "46",
+            "scripts": "59",
+            "cogs": "115",
+            "templates": "201",
+            "things": "428"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Mars.gob",
+          "bytes": 1863168,
+          "sha256": "5b8c66c8d91b3e1ddd91032be8acb7a615610b36fa2a37fc4f75199db0bec09c",
+          "episode_sha256": "3998ef8e9ee5ff93864512a9a8a2300d27935cc0709cd2374bc68df44041364d"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 29,
+      "massassi_id": 3130,
+      "title": "DarkSeeker: Enter the Darkness",
+      "author": "Zero Raven, Edward",
+      "downloads_at_audit": 4677,
+      "source_url": "https://www.massassi.net/levels/files/3130.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "b47553ca922ca3adf3d9ed501bb79ea577d6291fc4a91811e2a324eb2bcc9f84",
+      "download_url": "https://www.massassi.net/levels/download/3130/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/DarkSeeker.zip",
+      "zip_sha256": "1d0e819dbecb1b0d824c3f0cd73bcf589f7edcda4fb4d93ddce8e73f7e85df32",
+      "download_bytes": 35288387,
+      "readmes": [
+        {
+          "path": "DSETD-readme.txt",
+          "bytes": 4424,
+          "sha256": "3255de9092d8f2a777e130e0d224d8e4542a02e37c0362ace0588cc695a4352c"
+        },
+        {
+          "path": "Installation.txt",
+          "bytes": 600,
+          "sha256": "f264537712a4d95d9428e588b34eca1589255313f0420ecd10a39146be4ebc10"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/darkseeker.jkl",
+          "sha256": "5676599797d99ee67206885e3fd07b458449869f71ada3de72e80356ab14e05a",
+          "archive_member": "DarkSeeker.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "7",
+            "sounds": "235",
+            "materials": "501",
+            "Colormaps": "2",
+            "vertices": "7903",
+            "adjoins": "3370",
+            "surfaces": "9417",
+            "sectors": "991",
+            "AIClasses": "1",
+            "models": "201",
+            "sprites": "21",
+            "keyframes": "142",
+            "puppets": "5",
+            "soundclasses": "28",
+            "scripts": "55",
+            "cogs": "248",
+            "templates": "275",
+            "things": "16000"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "DarkSeeker.gob",
+          "bytes": 87140941,
+          "sha256": "36f079a60c1793634f9d06bbebd63925ea9da4c81521d4c6850ab07d5829db8d",
+          "episode_sha256": "554a6f79fc599fc47d41b9a16c5e18eaa96163d2e1d224f1d571914bae3c4a1d"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 30,
+      "massassi_id": 29,
+      "title": "Myth of the Kaiburr Crystal",
+      "author": "Kybo Ren",
+      "downloads_at_audit": 4611,
+      "source_url": "https://www.massassi.net/levels/files/29.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "b8dce7e6ac5da2fe36a031cfcdc33b4a10532e8402b5daeeafc20358ef60064c",
+      "download_url": "https://www.massassi.net/levels/download/29/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/kaibur.zip",
+      "zip_sha256": "5043d0472d939d426a8fde59439388929ce33c2c66b2dc15a93a7ff307843b53",
+      "download_bytes": 1088349,
+      "readmes": [
+        {
+          "path": "kaiburr.txt",
+          "bytes": 4205,
+          "sha256": "1f721c2470ecc2c768d31840184bb711148f70f430eb676e4dc415e1740e456c"
+        },
+        {
+          "path": "Story.doc",
+          "bytes": 6144,
+          "sha256": "a7b32549d9f577392b065b1eb9e126549da104ebdb325809f97546f28fb3e09b"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/first.jkl",
+          "sha256": "ef4acaadc50684f2f9e17f67edb7bf1850af3d0f445355b135ad6e3c96d4ee47",
+          "archive_member": "Myth.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "195",
+            "materials": "372",
+            "Colormaps": "1",
+            "vertices": "6056",
+            "adjoins": "3450",
+            "surfaces": "8060",
+            "sectors": "869",
+            "AIClasses": "10",
+            "models": "84",
+            "sprites": "17",
+            "keyframes": "188",
+            "puppets": "9",
+            "soundclasses": "34",
+            "scripts": "53",
+            "cogs": "80",
+            "templates": "180",
+            "things": "422"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Myth.gob",
+          "bytes": 3401408,
+          "sha256": "1bae8d4025a58494015489e607dade1e56677b3eb6b3d3e6bd3342bb82d27dfa",
+          "episode_sha256": "e910d61c86a90649416567f23dfa4625f2e38ecefb872446aa52aae6b22bd577"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 31,
+      "massassi_id": 1294,
+      "title": "Dead Reckoning 2",
+      "author": "Christian Garris",
+      "downloads_at_audit": 4384,
+      "source_url": "https://www.massassi.net/levels/files/1294.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "99bf4cf4d08f098b4de9b3e775fc0a5b86b73c4b8c14c3829c9d7f4f796e835f",
+      "download_url": "https://www.massassi.net/levels/download/1294/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/dr2.zip",
+      "zip_sha256": "b103d6de253a93a81fb1cabdbdf7c0dff28b1dcef9f309c20f138a5c408b7e7c",
+      "download_bytes": 1236026,
+      "readmes": [
+        {
+          "path": "briefing2.htm",
+          "bytes": 1527,
+          "sha256": "f296d9a1d0ccb6f6dc16ffec3c6372f2f0183ce1ad056c8d6830199a626ead81"
+        },
+        {
+          "path": "corvette.txt",
+          "bytes": 2284,
+          "sha256": "eb01047850562ab3dc832101a0395be79d78d730394296306a180444ac8056ce"
+        },
+        {
+          "path": "dr2.txt",
+          "bytes": 4659,
+          "sha256": "b5a4c0b2f2d2c0121a8e7a0cf1d4d5e73577b0a74aa5e630fb661c7e60c38b56"
+        },
+        {
+          "path": "Gonk.txt",
+          "bytes": 7507,
+          "sha256": "48b138e4ea63210e64543766e8cb3464a588ff80b2f24d7720b467eda3c6a381"
+        },
+        {
+          "path": "PingMe.txt",
+          "bytes": 761,
+          "sha256": "28c7c2f492196aaa501450bf73512f92c6f85d25778376dddeca19ccafc487a1"
+        },
+        {
+          "path": "tie.txt",
+          "bytes": 1896,
+          "sha256": "f24275a3aeff7810987e21dc715b07f77a30d7b1f0cb1e864c2a572725087099"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/dr2.jkl",
+          "sha256": "513c42118e4244af0ed3df145e237f9823657e25be7fb9e732dd69753f0f9f1c",
+          "archive_member": "dr2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "313",
+            "materials": "728",
+            "Colormaps": "3",
+            "vertices": "10865",
+            "adjoins": "5690",
+            "surfaces": "13676",
+            "sectors": "1506",
+            "AIClasses": "19",
+            "models": "142",
+            "sprites": "19",
+            "keyframes": "200",
+            "puppets": "17",
+            "soundclasses": "52",
+            "scripts": "85",
+            "cogs": "208",
+            "templates": "255",
+            "things": "535"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "dr2.gob",
+          "bytes": 4624087,
+          "sha256": "eb12b2ecde14fe8c11f46833139699145ebd9e0c835625ed6f4eae22472d9eea",
+          "episode_sha256": "23761a0fcc21387863ce50136ce802d53dd4ad03b0359c27dda4862902d341c0"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 32,
+      "massassi_id": 12,
+      "title": "PotE Level 1",
+      "author": "EvanC",
+      "downloads_at_audit": 4271,
+      "source_url": "https://www.massassi.net/levels/files/12.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "9604db04b6058fa2852d49bfd5eca2491b2a3727d63de183c01b02005d36c97e",
+      "download_url": "https://www.massassi.net/levels/download/12/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/pote1.zip",
+      "zip_sha256": "42262e2281ffae0498bac523fe387767f49922cb8c00de85c6a724c6802df38d",
+      "download_bytes": 3923840,
+      "readmes": [
+        {
+          "path": "pote.txt",
+          "bytes": 7289,
+          "sha256": "b56c9167178accb77aca4ad3d83d0c9163201224c6580815de82ef28cb1d302f"
+        },
+        {
+          "path": "potemain.doc",
+          "bytes": 1503232,
+          "sha256": "c99815ccd667a979f8d76656bee352fef8fb4002b2b474733e16b44612229f53"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/level1.jkl",
+          "sha256": "158f4933b4ef461c1110ff5a6371987f2d9e20b52db3c8cda14c431b61f130d4",
+          "archive_member": "level1.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "226",
+            "materials": "493",
+            "Colormaps": "1",
+            "vertices": "10113",
+            "adjoins": "6646",
+            "surfaces": "14304",
+            "sectors": "1549",
+            "AIClasses": "8",
+            "models": "127",
+            "sprites": "18",
+            "keyframes": "148",
+            "puppets": "10",
+            "soundclasses": "38",
+            "scripts": "69",
+            "cogs": "125",
+            "templates": "233",
+            "things": "521"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "level1.gob",
+          "bytes": 7058892,
+          "sha256": "94c9a2b9f7ed0af787c39cd7424b4b961b18c159d09ab1261c71de30cbd1fc77",
+          "episode_sha256": "d48b8b40db297c3db59e7742d6f1ac8bd114d787936f2801838007a82886864d"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 33,
+      "massassi_id": 1452,
+      "title": "The Fall of JuzSoft",
+      "author": "Wolfy, Hebedee, Jipe, Lt. Greywolf, Aglar",
+      "downloads_at_audit": 4253,
+      "source_url": "https://www.massassi.net/levels/files/1452.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "f26031c3d434568ded392f0de451c9924455b620ef331c1260e9257606286589",
+      "download_url": "https://www.massassi.net/levels/download/1452/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/tfoj.zip",
+      "zip_sha256": "61a2c405b513e7e856851afbcb25f22d343db5628df6ea2d2edef2b27f5ad95a",
+      "download_bytes": 3200678,
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 5320,
+          "sha256": "746004da97b283552c8d35c9f61a8ae4c877ddffe4aec12b2eb2196504bbf160"
+        },
+        {
+          "path": "IMPORTANT - YOU WILL MISS EXTRA FEATURES IF YOU DO NOT READ THIS.txt",
+          "bytes": 176,
+          "sha256": "2577decef4de0a8bc8f9b344479140ccd237db0c64e3ea43ff4a1ff3d55d7bea"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [
+        {
+          "path": "tfoj.gob",
+          "error": "Duplicate resource: mat/dpt4arm.mat"
+        }
+      ],
+      "archives": [
+        {
+          "path": "tfoj.gob",
+          "bytes": 12507475,
+          "sha256": "0c59bf5d444adce2092a66b5af00e59685a7dcfbb5dfc5fa4582e7bcb51d16a3"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 34,
+      "massassi_id": 11,
+      "title": "The Valley Battle",
+      "author": "Gary McEnroe",
+      "downloads_at_audit": 4209,
+      "source_url": "https://www.massassi.net/levels/files/11.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "eca4f07ab0fcbdcbd308fa8510a8440a14b83caabe51788a3a41a7c4ed6eb154",
+      "download_url": "https://www.massassi.net/levels/download/11/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/valleybattle.zip",
+      "zip_sha256": "7438d7cfa00cd7a4a52c09c1af095ab3684494e9d2ac81c240b5a44c264b9250",
+      "download_bytes": 19257,
+      "readmes": [
+        {
+          "path": "Vally Battle.txt",
+          "bytes": 4008,
+          "sha256": "8d7d6c9f5aaabccf7be159bfa3ed8e5a49b4223ba1ed8314488dfee5b50eb5bc"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Valley Battle.gob",
+          "bytes": 80904,
+          "sha256": "fb95da167b7beb8b5a2d2a2925e5840141709424806302a1b11f33fcbbf34723",
+          "episode_sha256": "92a5ce9d53b459423a6a27ebcde1a098681de030dc7a198bf0907b6c65ddf815"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 35,
+      "massassi_id": 1233,
+      "title": "Sith Lord Discotech",
+      "author": "Zippy1000",
+      "downloads_at_audit": 4108,
+      "source_url": "https://www.massassi.net/levels/files/1233.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "7492937ee71394680085fe0d196a8f8a6cbcb21b8a9270cbe45f64d5e4f60d61",
+      "download_url": "https://www.massassi.net/levels/download/1233/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/sld.zip",
+      "zip_sha256": "6956059b187799136fd8750e1987dbac5225ccf11383c4b179e294381aaa4712",
+      "download_bytes": 1679171,
+      "readmes": [
+        {
+          "path": "S.L.D. readme.txt",
+          "bytes": 5649,
+          "sha256": "bf8fb021a6692cbb2405018f5606872f395623a01c8a6783789cd15457cbb92b"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [
+        {
+          "path": "SLD.gob",
+          "error": "Duplicate resource: cog/jkedit_goals.cog"
+        }
+      ],
+      "archives": [
+        {
+          "path": "SLD.gob",
+          "bytes": 1615220,
+          "sha256": "531e114ffddd11d38a8cf2bfda428df2964305fd6cdd7d6f56a85dccd51fe6bb"
+        },
+        {
+          "path": "Lightstaff2JK.gob",
+          "bytes": 3234309,
+          "sha256": "38e3bd2752d659c3b7d693ba5c6b5f8ae7cc67a3a75d54bdfdd1ad27341be5dd"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 36,
+      "massassi_id": 1678,
+      "title": "Freedman Threat",
+      "author": "Julia \\ Michael / Lisa",
+      "downloads_at_audit": 3991,
+      "source_url": "https://www.massassi.net/levels/files/1678.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "aa32893ac8f1cb16d2ae9f5d327a6edf899fa4d5be230d9f7640e21ef3824a2d",
+      "download_url": "https://www.massassi.net/levels/download/1678/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/freedman.zip",
+      "zip_sha256": "103ca6481ab01c37acce7cbb38bc5451d78e52b9ee170b129dfee1824b15eb48",
+      "download_bytes": 4195487,
+      "readmes": [
+        {
+          "path": "bPrincess.txt",
+          "bytes": 5197,
+          "sha256": "408a89af7ed142d8550cdefd879a5cc87db4218b6118b8427e99dfd3f1f13ea2"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [
+        {
+          "path": "bPrincess.gob",
+          "error": "Duplicate resource: cog/jkedit_goals.cog"
+        }
+      ],
+      "archives": [
+        {
+          "path": "bPrincess.gob",
+          "bytes": 6377776,
+          "sha256": "e6efeaca021f6291354319a17924ddc55d24f7e60319f0d422d9d58c52f87c4f"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 37,
+      "massassi_id": 10,
+      "title": "Home",
+      "author": "Rob Smith",
+      "downloads_at_audit": 3952,
+      "source_url": "https://www.massassi.net/levels/files/10.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "8a7799d2a91b1a2827e2a5b087354a6f747a991c692ccf398fd91b07196aa6e6",
+      "download_url": "https://www.massassi.net/levels/download/10/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/robhome.zip",
+      "zip_sha256": "6aca2cddaba47e45974b12d390f673523d0e25af82a712d2a9bbbecbea9aa483",
+      "download_bytes": 788968,
+      "readmes": [
+        {
+          "path": "Home.txt",
+          "bytes": 4191,
+          "sha256": "90b46ce5c5fd3a873d22006a94d3121a60da3038fd94217bdd874783d75d93b3"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/home.jkl",
+          "sha256": "370662c5e29a698781e1650e1eea3fac7b9b10f082fdef8b8fbee1e4221b2240",
+          "archive_member": "home.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "369",
+            "materials": "828",
+            "Colormaps": "1",
+            "vertices": "7931",
+            "adjoins": "4100",
+            "surfaces": "9580",
+            "sectors": "1015",
+            "AIClasses": "36",
+            "models": "160",
+            "sprites": "18",
+            "keyframes": "324",
+            "puppets": "33",
+            "soundclasses": "61",
+            "scripts": "84",
+            "cogs": "135",
+            "templates": "305",
+            "things": "628"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "home.gob",
+          "bytes": 2659170,
+          "sha256": "0a452e63ad5fc64486e3ddbe6504d1848be4121d0f59848ecf42ce096afb4c5f",
+          "episode_sha256": "a3c284733487dbcbbbae441abb25214ec3ae38bc930e9d49e4aabe38d6805411"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 38,
+      "massassi_id": 17,
+      "title": "Imperial Colony",
+      "author": "Jensyx",
+      "downloads_at_audit": 3824,
+      "source_url": "https://www.massassi.net/levels/files/17.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "115bd3fcfad18eb40f446444df65e138a3ca2a6c9918813ee90b29016eeed699",
+      "download_url": "https://www.massassi.net/levels/download/17/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/colony.zip",
+      "zip_sha256": "498358da1fca398587f2c9a668d139a2016c2543f2ef67b46f835c63fc65da7b",
+      "download_bytes": 174108,
+      "readmes": [
+        {
+          "path": "iwrotethis.txt",
+          "bytes": 4777,
+          "sha256": "7130522af993c6e646777190340cc61926044df09eba3587093f6ca4112baccf"
+        },
+        {
+          "path": "questions.txt",
+          "bytes": 2867,
+          "sha256": "e45e93252cb4f8d7642c9d322c3efe1ca45f1a9b46d3b952afb7def800c4a6a9"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/working1.jkl",
+          "sha256": "4a9d83b99328d4d463827e75a601e3d54f85c1fc1e38a5c0f305f20dd07ce52a",
+          "archive_member": "colony.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "236",
+            "materials": "384",
+            "Colormaps": "1",
+            "vertices": "840",
+            "adjoins": "186",
+            "surfaces": "788",
+            "sectors": "84",
+            "AIClasses": "12",
+            "models": "95",
+            "sprites": "19",
+            "keyframes": "184",
+            "puppets": "10",
+            "soundclasses": "38",
+            "scripts": "45",
+            "cogs": "66",
+            "templates": "183",
+            "things": "276"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "colony.gob",
+          "bytes": 508658,
+          "sha256": "9bc34228301eef518d02c093bd8149ef3f1a9965855ba57381973ae85bdf8a69",
+          "episode_sha256": "8f7cdad16949ff8eb50fa1fccab01032d388f9992ae230c577f4cfd32df07b96"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 39,
+      "massassi_id": 1193,
+      "title": "The Bar",
+      "author": "Keith Bengs",
+      "downloads_at_audit": 3743,
+      "source_url": "https://www.massassi.net/levels/files/1193.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "cf44b47a3bc87c08a5813d134e04f57289c5e52cbcfa6b87a211e7588e9e5967",
+      "download_url": "https://www.massassi.net/levels/download/1193/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/bar.zip",
+      "zip_sha256": "ba273ab477311fd017653e21e16aa2f9a1288c6513a16feaee746f5d0fd04877",
+      "download_bytes": 97810,
+      "readmes": [
+        {
+          "path": "bar.txt",
+          "bytes": 4066,
+          "sha256": "43bb4bb408fe0678ac4977461b8e106d52b251dab2e4dd4fff4df93e104930b5"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/bar.jkl",
+          "sha256": "14988fa1e60edaf1e01d66453085fffba27fbdf29ac4d26124b31482345d368d",
+          "archive_member": "bar.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "265",
+            "materials": "435",
+            "Colormaps": "1",
+            "vertices": "1049",
+            "adjoins": "732",
+            "surfaces": "1737",
+            "sectors": "280",
+            "AIClasses": "17",
+            "models": "104",
+            "sprites": "19",
+            "keyframes": "220",
+            "puppets": "19",
+            "soundclasses": "46",
+            "scripts": "58",
+            "cogs": "67",
+            "templates": "211",
+            "things": "392"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "bar.gob",
+          "bytes": 388764,
+          "sha256": "16c21ded348d5cb93c174c91f542a1c2366ac5472a17a424dc6631703d0b9123",
+          "episode_sha256": "3069c869ab181018eb61bfe4ee59f39ed5d1fe9ee0b74066def4a2f657c73349"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 40,
+      "massassi_id": 1046,
+      "title": "Steal the Bottle",
+      "author": "Cave_Demon",
+      "downloads_at_audit": 3706,
+      "source_url": "https://www.massassi.net/levels/files/1046.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "8abc36ae93c560e5846b2440c0122ce0d457e9d3b83932c785dbb8f047fb88eb",
+      "download_url": "https://www.massassi.net/levels/download/1046/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/STB.zip",
+      "zip_sha256": "b90bf34284815bf493206eca685ef62c6a496b5c83cbeb1ab7fed5cc1c7a1307",
+      "download_bytes": 698393,
+      "readmes": [
+        {
+          "path": "Boooooring.txt",
+          "bytes": 4470,
+          "sha256": "a9687e07bff1220d97dfbe61dfbcb6ad37dfae6dede6729aa8dd44491f3dd5e9"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/jksp1.jkl",
+          "sha256": "aa3258a104b86fdeef0c8c57d7020a31e927b4ea8356dce94149e86d86b1e8b3",
+          "archive_member": "STB.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "177",
+            "materials": "272",
+            "Colormaps": "1",
+            "vertices": "633",
+            "adjoins": "196",
+            "surfaces": "690",
+            "sectors": "84",
+            "AIClasses": "6",
+            "models": "64",
+            "sprites": "18",
+            "keyframes": "149",
+            "puppets": "6",
+            "soundclasses": "30",
+            "scripts": "27",
+            "cogs": "34",
+            "templates": "137",
+            "things": "242"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "STB.gob",
+          "bytes": 975032,
+          "sha256": "e542de3dd0dd293253a0735f303e8477a07f99b96027ee10db3a35e59b9855b1",
+          "episode_sha256": "b306eb502be718e7d2cda38e200757cd443558bffd7d5ba1187733e8c62a416e"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 41,
+      "massassi_id": 16,
+      "title": "The Adventures of Jan Ors",
+      "author": "jensyx",
+      "downloads_at_audit": 3656,
+      "source_url": "https://www.massassi.net/levels/files/16.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "16c17e66354619d54d7733c369e334a6d1337001e7f40bd7ec76090e08e23def",
+      "download_url": "https://www.massassi.net/levels/download/16/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/aojo.zip",
+      "zip_sha256": "acb324a2fff4ba0d5473273e492923886e30181e22fef9e482791efcf78adce6",
+      "download_bytes": 2115539,
+      "readmes": [
+        {
+          "path": "Program Files/LucasArts/Jedi Knight/AoJO/iwrotethis.txt",
+          "bytes": 5349,
+          "sha256": "0778724b5b671fac919b9fa9e3798507097bee1cda43e887d1eac009b0ad2d98"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/working1.jkl",
+          "sha256": "a89a574627c78053766199a02f1baeb910641f245c989ffd9d74a2c28a1e4c6d",
+          "archive_member": "Program Files/LucasArts/Jedi Knight/AoJO/JANORS.GOB",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "249",
+            "materials": "506",
+            "Colormaps": "1",
+            "vertices": "1246",
+            "adjoins": "270",
+            "surfaces": "1178",
+            "sectors": "124",
+            "AIClasses": "12",
+            "models": "107",
+            "sprites": "19",
+            "keyframes": "203",
+            "puppets": "14",
+            "soundclasses": "39",
+            "scripts": "53",
+            "cogs": "85",
+            "templates": "198",
+            "things": "300"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/duel.jkl",
+          "sha256": "24e49b56bf66ac1bc0019692d248b105b54419171b1f48bdf686395a899bf600",
+          "archive_member": "Program Files/LucasArts/Jedi Knight/AoJO/JANORS.GOB",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "247",
+            "materials": "576",
+            "Colormaps": "3",
+            "vertices": "3180",
+            "adjoins": "1030",
+            "surfaces": "3387",
+            "sectors": "378",
+            "AIClasses": "15",
+            "models": "113",
+            "sprites": "18",
+            "keyframes": "228",
+            "puppets": "13",
+            "soundclasses": "43",
+            "scripts": "64",
+            "cogs": "109",
+            "templates": "215",
+            "things": "320"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/corvette.jkl",
+          "sha256": "e3173c4a594782e618638def0b6008697e98215737265fc009b6f0b61dea32c3",
+          "archive_member": "Program Files/LucasArts/Jedi Knight/AoJO/JANORS.GOB",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "177",
+            "materials": "302",
+            "Colormaps": "2",
+            "vertices": "581",
+            "adjoins": "106",
+            "surfaces": "539",
+            "sectors": "54",
+            "AIClasses": "7",
+            "models": "63",
+            "sprites": "17",
+            "keyframes": "156",
+            "puppets": "5",
+            "soundclasses": "31",
+            "scripts": "31",
+            "cogs": "39",
+            "templates": "138",
+            "things": "224"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Program Files/LucasArts/Jedi Knight/AoJO/JANORS.GOB",
+          "bytes": 7596236,
+          "sha256": "b5d6f82a892f681a34bf8985efd655d1caaddda6732d848f92bf8dc332e74494",
+          "episode_sha256": "40e50f22ca55811a8e8128a78de5aac5b89ff10e284b1dc0167835425603a21b"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 42,
+      "massassi_id": 2015,
+      "title": "Warzone Chapter 3",
+      "author": "Tom 'Magi' Smallwood",
+      "downloads_at_audit": 3640,
+      "source_url": "https://www.massassi.net/levels/files/2015.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "6660b4e8e520e696f7ca25da425ac2dd8748fcfd2a21d18c18a2159dedbc284a",
+      "download_url": "https://www.massassi.net/levels/download/2015/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/warzone3.zip",
+      "zip_sha256": "e6ddb39b87538fd76b38326ce0a0cf23df2dd0fdc8da5054a01be1b94e1a7a36",
+      "download_bytes": 3878672,
+      "readmes": [
+        {
+          "path": "WZ3 readme.txt",
+          "bytes": 7911,
+          "sha256": "09543962d4f988afaf950fb51257ca3c1e53f0cb7923162cd481b1d894e4a1e5"
+        },
+        {
+          "path": "WZ3 spoiler - swimming pool.txt",
+          "bytes": 1155,
+          "sha256": "6a13399f0471e3803fe6c36aa9940c6f33e61d465d7857c253bcb3abe03d4c4d"
+        },
+        {
+          "path": "WZ3 spoiler - lava chasm.txt",
+          "bytes": 1018,
+          "sha256": "34efbeb723250a036c2b848f40b0f087c3124dac11d73091f4abf578417dfdac"
+        },
+        {
+          "path": "WZ3 spoiler - down the pit.txt",
+          "bytes": 2790,
+          "sha256": "48445499e7ba14be8cc175386ca206585db54f8402e50f616207d388a93cb3fc"
+        },
+        {
+          "path": "WZ3 spoiler - crushing statue.txt",
+          "bytes": 967,
+          "sha256": "1ac8b59c9d1c4010c2770c236e27febd9133cf50d25c516ed876df293307fab7"
+        },
+        {
+          "path": "WZ3 spoiler - cable car.txt",
+          "bytes": 1192,
+          "sha256": "f735b891fd979eda71a30bc4a7be345109a3276dd3da70125bc6396a1bb6582e"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/dartullan.jkl",
+          "sha256": "a53d05594650ad736c24e14887fd3e7deb784d80a40f9b5f2df6f7e201c91ab5",
+          "archive_member": "WZ3.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "363",
+            "materials": "817",
+            "Colormaps": "2",
+            "vertices": "16719",
+            "adjoins": "7286",
+            "surfaces": "20095",
+            "sectors": "2169",
+            "AIClasses": "20",
+            "models": "187",
+            "sprites": "21",
+            "keyframes": "262",
+            "puppets": "24",
+            "soundclasses": "53",
+            "scripts": "112",
+            "cogs": "241",
+            "templates": "317",
+            "things": "645"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "WZ3.gob",
+          "bytes": 14466809,
+          "sha256": "9374b9aa3944989c89ef0485038e80dad3dc2247af84c73e56b73f47cccdb5ef",
+          "episode_sha256": "8a5a923f63a5e7842719590a97c3097605042fdfc0422946c8772c114bd63d4f"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 43,
+      "massassi_id": 5,
+      "title": "Space Station XIII",
+      "author": "Adam McEnroe",
+      "downloads_at_audit": 3603,
+      "source_url": "https://www.massassi.net/levels/files/5.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "713bc9b6833fc6686c8bf5870c15d211bb745cdd32f9381b0ebda2bf1337c033",
+      "download_url": "https://www.massassi.net/levels/download/5/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/space_station_xiii.zip",
+      "zip_sha256": "132394dca35b9135137c214dc464c15c1788d1e9c1f3938170aac2cc5e803797",
+      "download_bytes": 391762,
+      "readmes": [
+        {
+          "path": "Readme File.txt",
+          "bytes": 3790,
+          "sha256": "db82ed29787871deb031c97f295750304a103c7d2048964a625de75513bfd76d"
+        },
+        {
+          "path": "Station Story.doc",
+          "bytes": 20992,
+          "sha256": "3c1c205aebc677ec33c12a88685e516ffafb5de14b932579b6570f6694de1ade"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/jkedit.jkl",
+          "sha256": "f3d43b8473e487edb5ae33900040d2c4f5da45125296b8b7a59ae371e4dec9ca",
+          "archive_member": "Space Station XIII.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "SOUNDCLASS",
+            "COGSCRIPTS",
+            "COGS",
+            "TEMPLATES",
+            "Things"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "228",
+            "materials": "449",
+            "Colormaps": "1",
+            "vertices": "201",
+            "adjoins": "74",
+            "surfaces": "256",
+            "sectors": "37",
+            "AIClasses": "8",
+            "models": "91",
+            "sprites": "18",
+            "keyframes": "269",
+            "puppets": "10",
+            "soundclasses": "146",
+            "scripts": "41",
+            "cogs": "63",
+            "templates": "163",
+            "things": "240"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [
+        {
+          "path": "Jshot095.pcx",
+          "error": "Bad CRC-32 for file 'Jshot095.pcx'"
+        }
+      ],
+      "archives": [
+        {
+          "path": "Space Station XIII.gob",
+          "bytes": 160360,
+          "sha256": "dc83c23ff860028958d4ef99711a0debf8e5b7464e15ce67a3dc39230855ccfb",
+          "episode_sha256": "6d25b79ffc6b559a9955a09969fe356688f4b6cb0098dad9d9bd2ea01193d4df"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 44,
+      "massassi_id": 18,
+      "title": "Narra: A Slave's Tale- Part 1",
+      "author": "Deathstar4",
+      "downloads_at_audit": 3574,
+      "source_url": "https://www.massassi.net/levels/files/18.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "3219908d00ddf7891c53965987c5410715437b67d2808f6a0a83cd7b957ced0f",
+      "download_url": "https://www.massassi.net/levels/download/18/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/slavetalep1.zip",
+      "zip_sha256": "8894bcc42027afba80e7a417e95e009e3b705117a4d6bbdbb8660c067edb04e2",
+      "download_bytes": 210509,
+      "readmes": [
+        {
+          "path": "SlReadme.txt",
+          "bytes": 5655,
+          "sha256": "08433609ee13634cbb1ea9c4d96b9f503bd198d375fff4a85400f6669454ac64"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/1.jkl",
+          "sha256": "0540c96ea3f244b98dced2944a83617007fc504b06ec5d27585393ccd832e1b2",
+          "archive_member": "sl.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "256",
+            "materials": "369",
+            "Colormaps": "1",
+            "vertices": "705",
+            "adjoins": "246",
+            "surfaces": "805",
+            "sectors": "107",
+            "AIClasses": "11",
+            "models": "91",
+            "sprites": "17",
+            "keyframes": "182",
+            "puppets": "10",
+            "soundclasses": "37",
+            "scripts": "58",
+            "cogs": "87",
+            "templates": "183",
+            "things": "365"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "sl.gob",
+          "bytes": 753034,
+          "sha256": "bea3a785684a13bb8c9a2620a89a1ad968fdd722349ad397ce1d952669b308ec",
+          "episode_sha256": "badc68b2fa804ca89491e7a35ca3674f6627a6669ddd09f98ea7fb2c7f2c98e5"
+        },
+        {
+          "path": "slave.gob",
+          "bytes": 121925,
+          "sha256": "bc1dbb40a2273757915d72b80e0021cca72e5bfaae8b1fcd5e447f6a85ab1cd5"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 45,
+      "massassi_id": 1539,
+      "title": "Escape From Mera Himbgie",
+      "author": "Otterbine Barebo",
+      "downloads_at_audit": 3552,
+      "source_url": "https://www.massassi.net/levels/files/1539.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "03b03d271699d2dae747a1796a568804bb50a83271385fd6015a5429f1885264",
+      "download_url": "https://www.massassi.net/levels/download/1539/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/MeraHimbgie.zip",
+      "zip_sha256": "de11b9a68f8e169e8c7f5311dee70be296ece9b088bdc365934d3654bcd06346",
+      "download_bytes": 3075289,
+      "readmes": [
+        {
+          "path": "Readme.txt",
+          "bytes": 5975,
+          "sha256": "f4795588c81edbb4456fa5fd433547a489251db82b78856811fab581a47d5053"
+        }
+      ],
+      "worlds": [],
+      "structure_errors": [],
+      "archives": [],
+      "conversion_supported": false
+    },
+    {
+      "rank": 46,
+      "massassi_id": 1,
+      "title": "The Dreaded Tower",
+      "author": "Luke Skywalker",
+      "downloads_at_audit": 3397,
+      "source_url": "https://www.massassi.net/levels/files/1.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "59f36b2fb2991d9165ed7416a24de00f2bd369e95b395ae3b2b4ea9435ad8c1f",
+      "download_url": "https://www.massassi.net/levels/download/1/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/dreaded_tower.zip",
+      "zip_sha256": "fce5eb1ea7f363bde66fa172d59e99b0f3da673b2e524903c9766d5bebcc1571",
+      "download_bytes": 100979,
+      "readmes": [
+        {
+          "path": "Tower_auth.txt",
+          "bytes": 4437,
+          "sha256": "c80aa806f37457a56e8b3107a8392496751f38f678290aeb1ad3ced0908f2f72"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/tower7.jkl",
+          "sha256": "7dd266ee04247d67b1a1d0cc6434502c662094f3512cf88a8e5f5bcfdbd7a19c",
+          "archive_member": "Tower.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "288",
+            "materials": "560",
+            "Colormaps": "1",
+            "vertices": "1476",
+            "adjoins": "534",
+            "surfaces": "1776",
+            "sectors": "250",
+            "AIClasses": "15",
+            "models": "125",
+            "sprites": "17",
+            "keyframes": "270",
+            "puppets": "17",
+            "soundclasses": "43",
+            "scripts": "66",
+            "cogs": "109",
+            "templates": "222",
+            "things": "569"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Tower.gob",
+          "bytes": 394249,
+          "sha256": "98a6ca469da80e7481386d09685d83c1fba43c72ccd2202059089940958d8168",
+          "episode_sha256": "b4a8d9c6d47d86ea7362aee7b349ec8a82cb9f263c710729a1f430594f1bbc8c"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 47,
+      "massassi_id": 1017,
+      "title": "Rescue from Reidanta's Moon ",
+      "author": "Josh Helm",
+      "downloads_at_audit": 3385,
+      "source_url": "https://www.massassi.net/levels/files/1017.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "923fb5fb911750f551fd90b15177c5ea45af2910ce6666416714b658e42d4ecc",
+      "download_url": "https://www.massassi.net/levels/download/1017/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/rescue.zip",
+      "zip_sha256": "c222fcd839cac996efd63c51ebbf6b5a92f8c61817e0d8302891ecd07493de62",
+      "download_bytes": 1251490,
+      "readmes": [
+        {
+          "path": "Rescue.txt",
+          "bytes": 3715,
+          "sha256": "a990ede8f4ad81ad53166e4c8716c7d7554d162efc4c5caf833808486ec2ff7f"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/real.jkl",
+          "sha256": "2a2c95961fac6842882b694da5cf0d4c2729c3c728af90a0eecc19197c5513a6",
+          "archive_member": "rescue.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "408",
+            "materials": "863",
+            "Colormaps": "3",
+            "vertices": "5697",
+            "adjoins": "2362",
+            "surfaces": "6401",
+            "sectors": "666",
+            "AIClasses": "30",
+            "models": "178",
+            "sprites": "19",
+            "keyframes": "354",
+            "puppets": "38",
+            "soundclasses": "73",
+            "scripts": "140",
+            "cogs": "310",
+            "templates": "336",
+            "things": "647"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "rescue.gob",
+          "bytes": 2993288,
+          "sha256": "f9df3fe2b78d8615f7495d5811cdaaa385f98b00cb5118760f99a9766a443d26",
+          "episode_sha256": "9574a68c89de3e6b5703d66f1df0e5d87ac71bc0a87e8f0e7c4ddc70ef6b5e0a"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 48,
+      "massassi_id": 2566,
+      "title": "A Jedi's Discovery 3: Your Own End",
+      "author": "Zippy1000",
+      "downloads_at_audit": 3336,
+      "source_url": "https://www.massassi.net/levels/files/2566.shtml",
+      "status": "source_downloaded_manual_structure_review_needed",
+      "source_page_sha256": "51c4590badef68eeacfc68aaee7c42a125072ae70424a79755e1d1c1e3bd99ee",
+      "download_url": "https://www.massassi.net/levels/download/2566/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/ajd3.zip",
+      "zip_sha256": "f14070d830d6dc889c58707c3ae2f7375e937de52ae68b9f583c8d9d67018463",
+      "download_bytes": 13962009,
+      "readmes": [
+        {
+          "path": "AJD3 Your Own End.txt",
+          "bytes": 6425,
+          "sha256": "55f77ab39f4566debfb4e880728d4475235c1e116369eabaa21319143e63ba4d"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/intro.jkl",
+          "sha256": "4d80a980e2ee0814fa5ca6fbf87acb5e5f4065a908914e9c7bf6addad9a86ab6",
+          "archive_member": "AJD3intro.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "SOUNDCLASS",
+            "COGSCRIPTS",
+            "COGS",
+            "TEMPLATES",
+            "Things"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "202",
+            "materials": "265",
+            "Colormaps": "1",
+            "vertices": "16",
+            "adjoins": "0",
+            "surfaces": "12",
+            "sectors": "2",
+            "AIClasses": "1",
+            "models": "77",
+            "sprites": "18",
+            "keyframes": "162",
+            "puppets": "2",
+            "soundclasses": "25",
+            "scripts": "24",
+            "cogs": "26",
+            "templates": "135",
+            "things": "216"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [
+        {
+          "path": "AJD3level5.gob",
+          "error": "Duplicate resource: cog/jkedit_goals.cog"
+        },
+        {
+          "path": "AJD3level1.gob",
+          "error": "Duplicate resource: cog/jkedit_goals.cog"
+        },
+        {
+          "path": "AJD3level2.gob",
+          "error": "Duplicate resource: cog/jkedit_goals.cog"
+        },
+        {
+          "path": "AJD3level3.gob",
+          "error": "Duplicate resource: cog/jkedit_goals.cog"
+        },
+        {
+          "path": "AJD3level4.gob",
+          "error": "Duplicate resource: cog/jkedit_goals.cog"
+        },
+        {
+          "path": "AJD3(patch).gob",
+          "error": "Unsafe resource name: '/patchinfo.txt'"
+        }
+      ],
+      "archives": [
+        {
+          "path": "AJD3level5.gob",
+          "bytes": 3792663,
+          "sha256": "adff178512da6667c20e5d11e8aa64ba473f2fd93a0541d096688b040ec7bc87"
+        },
+        {
+          "path": "AJD3level1.gob",
+          "bytes": 7015882,
+          "sha256": "82e3bc84c60debbac8fb5fe9db9ef6cdd98acc15a12b0daabf0c2a043d383b4a"
+        },
+        {
+          "path": "AJD3level2.gob",
+          "bytes": 3442326,
+          "sha256": "7a4ab666461c9e832c6529ad0e8656b7812b0edbe43c237b966ca2235a57f94f"
+        },
+        {
+          "path": "AJD3level3.gob",
+          "bytes": 4352666,
+          "sha256": "cf63749f5067eb7c460ecc6a74d631eae6f9f26debd9aa0f50f91125c9ea2489"
+        },
+        {
+          "path": "AJD3level4.gob",
+          "bytes": 4481507,
+          "sha256": "25739f3726ad1546beb2729a16044bd0580ef6b0b1dbd5efd00db0f30b863199"
+        },
+        {
+          "path": "AJD3intro.gob",
+          "bytes": 2700600,
+          "sha256": "90eb3f4388ce4df27504d0aad005374d0d82d8380bc0da7243ac7169f8c05c6f",
+          "episode_sha256": "52efd84b478dfdc582893aa514ad5cdbf07fed2d5508018faed7bd7fe846bed3"
+        },
+        {
+          "path": "AJD3(patch).gob",
+          "bytes": 8012162,
+          "sha256": "74ffb203c7df088687568efa8071154f9085e84db8bc2a74e2d01bbca550d36a"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 49,
+      "massassi_id": 3028,
+      "title": "Life of a Merchant II: A Time of Trouble ",
+      "author": "Typhon / Wolfy ",
+      "downloads_at_audit": 3300,
+      "source_url": "https://www.massassi.net/levels/files/3028.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "a7418092ea049da98b96d5a2e6def2b80a64d6382cce85330576a7d1d8792791",
+      "download_url": "https://www.massassi.net/levels/download/3028/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/loam2.zip",
+      "zip_sha256": "ee5b612eed5c45303585259cc7a6c7e9543b2f4867c1c0c975c820fde8138c67",
+      "download_bytes": 38237061,
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4397,
+          "sha256": "62a35b4ae003a14ce2b6260abb2b74be09075a382c62878bcb91804c6854c8dc"
+        },
+        {
+          "path": "SetupInstructions.txt",
+          "bytes": 209,
+          "sha256": "ad193e37b5a9b3de707b3d2e74aba5127fd231a889810a0e907a7d295278e357"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/credits.jkl",
+          "sha256": "852b24994c082fce8250d561613742cf7479769f82102ed30837bfab1fe473a6",
+          "archive_member": "loam2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "135",
+            "materials": "166",
+            "Colormaps": "1",
+            "vertices": "16",
+            "adjoins": "0",
+            "surfaces": "12",
+            "sectors": "2",
+            "AIClasses": "0",
+            "models": "53",
+            "sprites": "17",
+            "keyframes": "124",
+            "puppets": "2",
+            "soundclasses": "23",
+            "scripts": "14",
+            "cogs": "15",
+            "templates": "105",
+            "things": "203"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/loam2.jkl",
+          "sha256": "e1e1c13f8b2ee42a3836307a677e5053b9707e213efe66a836b12f20a106b10d",
+          "archive_member": "loam2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "504",
+            "materials": "1054",
+            "Colormaps": "2",
+            "vertices": "23023",
+            "adjoins": "11132",
+            "surfaces": "30594",
+            "sectors": "3484",
+            "AIClasses": "30",
+            "models": "170",
+            "sprites": "18",
+            "keyframes": "308",
+            "puppets": "35",
+            "soundclasses": "63",
+            "scripts": "109",
+            "cogs": "287",
+            "templates": "318",
+            "things": "603"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/loam2_intro.jkl",
+          "sha256": "b436c9fdd0e3820be103a3619c226359b9005e6e23ff745b8cca487e8b0be904",
+          "archive_member": "loam2.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "220",
+            "materials": "324",
+            "Colormaps": "1",
+            "vertices": "908",
+            "adjoins": "408",
+            "surfaces": "1143",
+            "sectors": "134",
+            "AIClasses": "5",
+            "models": "71",
+            "sprites": "19",
+            "keyframes": "145",
+            "puppets": "6",
+            "soundclasses": "31",
+            "scripts": "25",
+            "cogs": "27",
+            "templates": "149",
+            "things": "236"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "loam2.gob",
+          "bytes": 56928773,
+          "sha256": "c89bd5643557914a4e18973b721d8b21448ba531c3b890af266bde3e78022b6e",
+          "episode_sha256": "a777589b3ab78607172e72fcccb10232eae23a7dab266eeef7af93ffc393b516"
+        }
+      ],
+      "conversion_supported": false
+    },
+    {
+      "rank": 50,
+      "massassi_id": 8,
+      "title": "Operation: Fortra",
+      "author": "Jensy",
+      "downloads_at_audit": 3242,
+      "source_url": "https://www.massassi.net/levels/files/8.shtml",
+      "status": "source_downloaded_structure_audited_not_converted",
+      "source_page_sha256": "ace2fe62e85412d08d998c913b5a0a3ad549a1e618363a43d3d4a6043326cbed",
+      "download_url": "https://www.massassi.net/levels/download/8/",
+      "download_final_url": "https://www.massassi.net/media/levels/files/jksp/fo.zip",
+      "zip_sha256": "41dfdb0b918d76136687ee8f34b642f3899859f30ebf731242f735c81ec3135c",
+      "download_bytes": 4161596,
+      "readmes": [
+        {
+          "path": "Program Files/LucasArts/Jedi Knight/fortra/fortra.htm",
+          "bytes": 28538,
+          "sha256": "1704a2d3d5261f12062e1d1af75165b5c5042019096463ee1a0454004cd87fd6"
+        }
+      ],
+      "worlds": [
+        {
+          "path": "jkl/kallport.jkl",
+          "sha256": "bb590add0285a074a06bd20a529c38bff8121d54cd072a2c4035c500cf2c5d24",
+          "archive_member": "Program Files/LucasArts/Jedi Knight/fortra/fortra.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "280",
+            "materials": "576",
+            "Colormaps": "1",
+            "vertices": "2964",
+            "adjoins": "1386",
+            "surfaces": "3564",
+            "sectors": "386",
+            "AIClasses": "16",
+            "models": "126",
+            "sprites": "18",
+            "keyframes": "246",
+            "puppets": "18",
+            "soundclasses": "43",
+            "scripts": "68",
+            "cogs": "108",
+            "templates": "242",
+            "things": "363"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/intro.jkl",
+          "sha256": "5a977b07d24536d3ce0daefa3d137b86a44b94e9341e03773661fb1fbd888c21",
+          "archive_member": "Program Files/LucasArts/Jedi Knight/fortra/fortra.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "185",
+            "materials": "334",
+            "Colormaps": "3",
+            "vertices": "1071",
+            "adjoins": "324",
+            "surfaces": "1165",
+            "sectors": "125",
+            "AIClasses": "2",
+            "models": "67",
+            "sprites": "17",
+            "keyframes": "136",
+            "puppets": "5",
+            "soundclasses": "27",
+            "scripts": "33",
+            "cogs": "46",
+            "templates": "134",
+            "things": "243"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/kall.jkl",
+          "sha256": "2c63fcc4d5824b64111f3f1ec56aea555b7f758ef51ab8cbb68d09ebdd3092db",
+          "archive_member": "Program Files/LucasArts/Jedi Knight/fortra/fortra.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "298",
+            "materials": "577",
+            "Colormaps": "1",
+            "vertices": "4239",
+            "adjoins": "2006",
+            "surfaces": "5055",
+            "sectors": "538",
+            "AIClasses": "17",
+            "models": "116",
+            "sprites": "19",
+            "keyframes": "236",
+            "puppets": "17",
+            "soundclasses": "45",
+            "scripts": "76",
+            "cogs": "124",
+            "templates": "227",
+            "things": "330"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/house.jkl",
+          "sha256": "ed5a1ddcf64364ed92b30e0b879d3aa5605d6a0c2f9e5320b28629fbab8683a1",
+          "archive_member": "Program Files/LucasArts/Jedi Knight/fortra/fortra.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "289",
+            "materials": "679",
+            "Colormaps": "1",
+            "vertices": "4464",
+            "adjoins": "1804",
+            "surfaces": "5095",
+            "sectors": "528",
+            "AIClasses": "17",
+            "models": "134",
+            "sprites": "18",
+            "keyframes": "233",
+            "puppets": "17",
+            "soundclasses": "44",
+            "scripts": "75",
+            "cogs": "112",
+            "templates": "251",
+            "things": "386"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/sigma.jkl",
+          "sha256": "15ed9aed22325408249ba92c7d7d818ac35664b8dfa05939b86e0bbc67bf41fb",
+          "archive_member": "Program Files/LucasArts/Jedi Knight/fortra/fortra.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "204",
+            "materials": "366",
+            "Colormaps": "1",
+            "vertices": "4476",
+            "adjoins": "1608",
+            "surfaces": "5176",
+            "sectors": "555",
+            "AIClasses": "7",
+            "models": "80",
+            "sprites": "17",
+            "keyframes": "164",
+            "puppets": "7",
+            "soundclasses": "30",
+            "scripts": "42",
+            "cogs": "66",
+            "templates": "170",
+            "things": "310"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        },
+        {
+          "path": "jkl/tower.jkl",
+          "sha256": "8c8a8433817af3ab6c462cd3e600767dbd67a1a2b319c08bc76ad2fb7db33b32",
+          "archive_member": "Program Files/LucasArts/Jedi Knight/fortra/fortra.gob",
+          "sections": [
+            "JK",
+            "COPYRIGHT",
+            "HEADER",
+            "SOUNDS",
+            "MATERIALS",
+            "GEORESOURCE",
+            "SECTORS",
+            "AICLASS",
+            "MODELS",
+            "SPRITES",
+            "KEYFRAMES",
+            "ANIMCLASS",
+            "Soundclass",
+            "cogscripts",
+            "cogs",
+            "TEMPLATES",
+            "Things",
+            "Lights"
+          ],
+          "world_counts": {
+            "Gravity": "4",
+            "sounds": "175",
+            "materials": "264",
+            "Colormaps": "1",
+            "vertices": "263",
+            "adjoins": "134",
+            "surfaces": "318",
+            "sectors": "36",
+            "AIClasses": "5",
+            "models": "60",
+            "sprites": "17",
+            "keyframes": "137",
+            "puppets": "4",
+            "soundclasses": "27",
+            "scripts": "26",
+            "cogs": "30",
+            "templates": "131",
+            "things": "243"
+          },
+          "level_flags": [],
+          "cog_calls": {}
+        }
+      ],
+      "structure_errors": [],
+      "archives": [
+        {
+          "path": "Program Files/LucasArts/Jedi Knight/fortra/fortra.gob",
+          "bytes": 13273928,
+          "sha256": "85bd1b899f98758e0bb23eb7ddb3634153017e0b5ca77386f638781e21f52926",
+          "episode_sha256": "8129ad9d8667b2a8d51e857b6a65daf4a07d5120e6371dfc6c20416635c76ae1"
+        }
+      ],
+      "conversion_supported": false
+    }
+  ],
+  "scope": "Frozen top 50 by official category download count; provenance and structural inventory only, not compatibility certification."
+}

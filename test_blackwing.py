@@ -46,6 +46,19 @@ class SelectionTests(unittest.TestCase):
             if row['kind'] != 'mod':
                 self.assertFalse(row['runtime_test']['full_gameplay'])
 
+    def test_new_community_recipe_does_not_inherit_prior_host_test(self):
+        import custom_registry
+        import blackwing_revisions
+        spec = dict(next(iter(custom_registry.entries().values())), key='synthetic-new',
+                    tag='synthetic_new', title='Synthetic new map')
+        with patch.object(custom_registry, 'entries', return_value={'synthetic-new': spec}), \
+                patch.dict(blackwing_revisions.RECIPE_REVISIONS, {'synthetic-new': 1}):
+            row = next(row for row in catalog.recipes() if row['id'] == 'synthetic-new')
+            self.assertEqual(row['runtime_test']['status'], 'not-run')
+            spec['runtime_test'] = dict(status='fixture-specific', scope='synthetic', full_gameplay=False)
+            row = next(row for row in catalog.recipes() if row['id'] == 'synthetic-new')
+            self.assertEqual(row['runtime_test']['status'], 'fixture-specific')
+
     def test_recipe_revisions_are_explicit_and_separate_from_app_version(self):
         import blackwing_revisions as revisions
         rows = catalog.recipes()

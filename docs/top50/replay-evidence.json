@@ -1,0 +1,308 @@
+{
+  "schema": "wbw.development-replay.v1",
+  "assets_included": false,
+  "hash_seeds": [
+    1,
+    999
+  ],
+  "scope": "Two new process/output trees per newly selectable recipe; Castle is held and excluded.",
+  "source_hashes": {
+    "bridge.py": "489981a8b9361b472f99134fde777a7695dba81b2faba498aaecd1f309301444",
+    "gob.py": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+    "caesars_audit.py": "44672d03fc35fe87d2cd832ce1cfa7168a106b411159d6a6f6cf1eca6cd96dc2",
+    "custom_registry.py": "16eb46e4bc7f298cc04a6ad20715dadd9242768ee33fc6196edbe4d23aa3b999",
+    "community_runtime.py": "192d3cba7b787c21b9c8412980db7efee8d1527307b43ad4e7bae3b123420e2f",
+    "custom_catalog.py": "6ae67561dd3d3bf4fac4dcae30284ac661fd401b808b99edd677db282aebca89",
+    "author_catalog.py": "8cb3e8d7b464070f120aa4c1ce30bed8f17cf9120eabbd4faaa83d34718b863b",
+    "jhs_catalog.py": "87e6b3e72b0979bf6f4415f905b889edb93a85c1d91d7fe0f5648cb47ff30abc",
+    "massassi_mp_catalog.py": "0375002c3350bb38c82b79d298b91fa1ff10f5a8ae9e15f01554cc26937ee9ab",
+    "verify_retail.py": "6b445227c65205e8497e37276e3845787570af78c3d7adeca910e6c7142d9378",
+    "ninja_catalog.py": "b4483a440f9bf3828cd59136320d1ec4c4852a3618e43c19d743e62cd26eb490",
+    "ninja_converter.py": "3d7337ef9c5e5075b294e69faa74e548061640caab03521c06d4058fdace0200",
+    "recipe_adapters.py": "f042970bd2b45af992a6d292f898613f200f9b581ecf1da804c44457dcf3d1cc",
+    "mods_catalog.py": "ab9f67bdab6825462452def333cec75409eaa3c608682ca83af7829a4313864f",
+    "mods_converter.py": "3d328ccb4993bb95045400f74a9d7009b4ac5cb476082e60db83a66638eca140",
+    "mp_pack_catalog.py": "bd19f3fd054914b8e0367f887fc1448d4cb2c34394d7650d8863bec473f8f0b7",
+    "mp_pack_converter.py": "65ea57b2e86b183cbdb6eb14fb1844e4115b255a6f01cf56a4e2d143eaa8683a",
+    "sp_catalog.py": "1f5aa2e929075e64ddcb04635006fd73c53878a5023bb585cc764d78f029293f",
+    "sp_converter.py": "45d058e07191a5fb3897443a9e72f4a59acd7714e22b4dbc73a256002a8b8a2a",
+    "skinmods_catalog.py": "8456b04026b65b71bc1ddcdaec6fd41cd2bed53bac3c2e24d228d0e021a83789",
+    "skinmods_converter.py": "b61d2e6a959bebcca4c58ae3c56175596f566a276d6c6c651000e5b338552757",
+    "blackwing_catalog.py": "62d5e4a944b3facdeae8537996ae92f59297ea0a1ddcd0ebec0b9320cd740bd6",
+    "blackwing_service.py": "92a5d7f1dfa534477c2cdd1f6e365a01bd7bd544cd052bcfd2d5b97eaefac49e",
+    "blackwing_revisions.py": "e8d1d4431583b3e91145737329313648c4618da91e41a2b2de9594cf44b471ce"
+  },
+  "recipes": [
+    {
+      "id": "mod-16bit-sabers",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "8fcdfebcc6aa0c37781ba157043bd831d2094aa53c7ba503ee88f36ae5625032",
+        "blackwing-recipe.json": "f6abebbff155b49696e5f95375438bc0264bfa079840a8ffc492f09869229335",
+        "wbw-16bit-sabers/ORIGINAL-01-Readme.txt": "39a82be4134dbfb435e394ff624ad106552662c88dba59710dad5ab6b7ddf3a8",
+        "wbw-16bit-sabers/README.txt": "091b10d90454f9fa529b335c1667c862bea13bb9e89b495fe769ac5374e6a349",
+        "wbw-16bit-sabers/source.manifest.json": "a1155c4c381a796d48471f15afc8e9088902b4cdc82ae653a55de6448eab7228",
+        "wbw-16bit-sabers/wbw-16bit-sabers_wbw_v1.goo": "4e20ee6f9e6b356c3dd34f7b5dee787a51945a13ba83356f0ed4507e383f13fd",
+        "wbw-16bit-sabers/wbw-16bit-sabers_wbw_v1.manifest.json": "533e1ecf8c4336b7343399acae09c4dc967db78bccff546bb9d573f4b0e2f298"
+      },
+      "game_payload_sha256": "edafabc2d0ee3261e784c093c5e0bd1177498e6c64392d6dfc10e06056d8c062",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mod-agent-han",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "9192be90e775495f5773444b4d2da5db4612418cf2616bb6f075c18ee73991e0",
+        "blackwing-recipe.json": "2ea46527351a90818584bb6a11af992ef8216328c1a1280d46d29576a3c278b8",
+        "wbw-agent-han/ORIGINAL-README.txt": "ba5514e14641d73815a8e701c5f86cf7ef4b384c8a4a4d76b6ded9aa048aef61",
+        "wbw-agent-han/README.txt": "c15ad26e6c45f77a0c814f071dffccf04c80a2e8288b2e7d2adc9afc7b368485",
+        "wbw-agent-han/wbw-agent-han.goo.manifest.json": "a1a4ac8dd15f14fbdf31434dc0d48d1a61f3755e6213d9a8bcd3f5ee6ec77187",
+        "wbw-agent-han/wbw-agent-han_wbw_v1.goo": "e3fb4ce12c110a602604ecd352f78f8798e01cabc5f5380fe40d2d5a77aca05f",
+        "wbw-agent-han/wbw-agent-han_wbw_v1.manifest.json": "e2fe1ff916f2b33df61fe27041db8bc9db8a3a4814e322b431bf1f02c28deb30"
+      },
+      "game_payload_sha256": "0f89354506ae1f5cef1aa7eb54c332b819f402ca042d8935e408cf7ab6cc05d2",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mod-flame-saber",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "56d23938e3fb67bee04bcaba4c1703876fec5e98d24ac3246f46ed6234c37aea",
+        "blackwing-recipe.json": "bf74dfcb05c68b14e882c7de02426f99807a1d6d1fcc964f27af6798278d0c1c",
+        "wbw-flame-saber/ORIGINAL-01-readme.txt": "3388f86bda871b0ff1e31534643a7f9bdd7b8bc9ebe1454d44984fdf26f8c9f3",
+        "wbw-flame-saber/README.txt": "1f9ba98a0fe0427881946299bcd98bd7cefad1933bf5d1b5fe697b475ad217f3",
+        "wbw-flame-saber/source.manifest.json": "07d3fe2d8a706ea2405a1552c527e9a35ede2bc4396d964480759455514c39d7",
+        "wbw-flame-saber/wbw-flame-saber_wbw_v1.goo": "408d7d7ae5aec4a9eb26ad4f6396af2ce7824a9b94501e9bf34875bd4b7f25eb",
+        "wbw-flame-saber/wbw-flame-saber_wbw_v1.manifest.json": "bcd20ce4f405afa734c5d06ac7f8ad4fba992c62c444cd217e971da9b2b0e9f0"
+      },
+      "game_payload_sha256": "df2bec9542ad1c1f06c79795eec358c9a640d95863ea520bff62e9e7e6e9b0d5",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-4h-gun-yard",
+      "revision": 1,
+      "artifact_count": 5,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "81c9cdbc698f885b4c39e8a534f847bf8d527607dbf338b29dea8cc527db4637",
+        "blackwing-recipe.json": "9f4b3375a28fdd8d8653e005458e168d45bd60bfb7af711ef1532f67631a5e31",
+        "bridge-mp105-rc1.manifest.json": "89aa10b3f6c10907b7755c27a2636c6507752153554d31330e86c146900885d0",
+        "bridge-mp105_wbw_v1.goo": "2e0086378080156d8af9802a9a90a02bc251e37414d8714ce26956c42c411390",
+        "bridge-mp105_wbw_v1.manifest.json": "61cacf003072b92377e5aa4c1572b21c98025cf3a14f095f9522998aad5ce857"
+      },
+      "game_payload_sha256": "e3c7c7cc5d4ef1f12f8f84f638b78c22f7568d205c34f808502b68ecf57c51d1",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-6000-block",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "63e4b3f5f2354d29064d60fa0e491fa1e6fd52f3c17f06b5d4c30547902eccd2",
+        "blackwing-recipe.json": "833dd523cd0df4637dcc4ca45c26cd9f5996946d927c765c959dc7231c593d22",
+        "bridge-mp323-pack-v1.manifest.json": "5f8f0e5f8f040740f47120a8f43d8e9264a7546a63d5cdcd2e39cb5b150c5aed",
+        "bridge-mp323-pack_wbw_v1.goo": "154a1f65cf1fe1b34e7c11250c1627ead76b6a29d333e70fd5d055b5b77ab1a9",
+        "bridge-mp323-pack_wbw_v1.manifest.json": "396f195e1fbb726b62d282619110fbabe633c29a46c16dc0775eff1251c6ffa8",
+        "ORIGINAL-01-6000_readme.txt": "9eb397b432ce412da39d957e7666d3a5415257267b4c76dac828065f1f15472f",
+        "README.txt": "b2bdcd5f3a735d70b87d9acb254bc58ed551534d38f086bee7dadfdd7458c6c7"
+      },
+      "game_payload_sha256": "602e1dc29cacd01f0306a1334ec147ae944efd7afc897c3cc900897ad7771a40",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-acid-storage-facility",
+      "revision": 1,
+      "artifact_count": 5,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "995c7d7ae3b56b1915c40068d0040a2252121a2d26f86a0c3d49a7581a0083e8",
+        "blackwing-recipe.json": "6ff1c33bfcbb6e3d27d22220c04ac18e8ead5c13c1e60c9516a4ea3c01ca1ca4",
+        "bridge-mp1244-rc1.manifest.json": "d31eeb4f42ca8a3b8a16385389746cb91b3bb16e6427db9ad0aa48d21a2c94a9",
+        "bridge-mp1244_wbw_v1.goo": "5863de13279e69e71e7a17a04db992a10cba7ae29e1f05f2a00704cf301156cd",
+        "bridge-mp1244_wbw_v1.manifest.json": "1706081a7e8ec28e0882e183435f9a5aed25457dc4fda8bbdde82f5a7f3a42ae"
+      },
+      "game_payload_sha256": "398fc843d4005049e4f6ebd457e73b7266e409663592e79057deb7b9a21d5d32",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-bar-and-grill",
+      "revision": 1,
+      "artifact_count": 5,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "663a3899420a02a487cf9f6a381a4999e3c1b588d1230545cd97ab1e72e91f5f",
+        "blackwing-recipe.json": "a587b246708c8f9c1adeeaaa4b1db5bdf7693450c7c5ef9f06cc53fc458ec7de",
+        "bridge-mp418-rc1.manifest.json": "9f8a18149fedd7e2f7cbe7bdcbd3072efb27b196f8efb68438b30da157fcb1b3",
+        "bridge-mp418_wbw_v1.goo": "8dbeea44617496d58cd5a0a7c5e11dc0ef81aa2aefabb2bc40cdd83cb7d749d0",
+        "bridge-mp418_wbw_v1.manifest.json": "35ceaaaf7280b4daa1e998603166a2e59029a8ca7bb6a3b456fa6ad214033cbe"
+      },
+      "game_payload_sha256": "93e4e4df4a530213493ef94f0251eb51a657ca2cb74857b767de50da39c8f15d",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-barons-head-at-night",
+      "revision": 1,
+      "artifact_count": 5,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "56ee0e9d9f00d202d6f7eba6713eae4cab612ec918c0f5e0d64273c8c20747b6",
+        "blackwing-recipe.json": "f347d859613eff689dcff740ff84690da361be6f91fbd4237d563008aa330faa",
+        "bridge-mp929-rc1.manifest.json": "1763fd96232cf7b8d7b8be03971512c8ee36c7d1cb12adfff9136e52873d9ff6",
+        "bridge-mp929_wbw_v1.goo": "56aaf401022acb1b19e171a359571dd0946130f28f23ae9159235e2ebee0257f",
+        "bridge-mp929_wbw_v1.manifest.json": "341d4382355b30637fa689eee5c5dd99b7aec35b55090da5b6a0d90ff41b83e8"
+      },
+      "game_payload_sha256": "69366a692769d1a13771d55fc386e9e0e74080becd9182effda20a36860f5b38",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-blue-rain",
+      "revision": 1,
+      "artifact_count": 5,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "72b1afe649d94c8b054ce893ec866887266c8800d23dcf3d5287dd08503103dc",
+        "blackwing-recipe.json": "7d0a6cdd434e1f558389141a7b1aa2d1430cd720468f277d81a446763b78f47e",
+        "bridge-mp375-rc1.manifest.json": "2553ae47abbc88eb4e83c588b439ef3b2e1763721b4e885b0dfc0540c0fca583",
+        "bridge-mp375_wbw_v1.goo": "d446c0332a06655e79bf865823a4bc8e49bd6d3b7f1d1799ba2cdda60cc49598",
+        "bridge-mp375_wbw_v1.manifest.json": "ea43699e7773fcdc260a7ef77afc09dc16dc2576ed1d1601f49b16cbcfca3b34"
+      },
+      "game_payload_sha256": "3c1617d22c54c7680d799ff234272021662d91072981be5ebba3417e25b06718",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-egypt",
+      "revision": 1,
+      "artifact_count": 5,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "6463d36c7d1bdb36b8898ab7f81d99706043f57dd24806dda7b4b70a48a22cad",
+        "blackwing-recipe.json": "08a4d6631ce407751abc415c72a4c3cb6e1609ee4a02971bb1dc062f14d8f360",
+        "bridge-mp1512-rc1.manifest.json": "e798e8f4c8fded7d7958fbd01fd039576a01063d5cb315b55c3a2e41fe84542e",
+        "bridge-mp1512_wbw_v1.goo": "999d0012c5ecbd04613ccd60aa2addea7833bd2d5660d0aa2d3059e9cde47e72",
+        "bridge-mp1512_wbw_v1.manifest.json": "f110643df05b0f114eda835ec22e6dd87683b7475b61703045b2bc43493a2601"
+      },
+      "game_payload_sha256": "6d0b8f285b8e65ad7d12ca5dec557f897aa3a95647792fd1c5269609499ae35a",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-gladiator",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "081c76b3b8772fb47d86ebce7d4bfbd380c6548c755bc6fbb59abd324d9761a5",
+        "blackwing-recipe.json": "e4ff22c738ace77f7662e3a2857aa8146c889decc4431cd38363c7557c17848d",
+        "bridge-mp168-pack-v1.manifest.json": "51a8699d093293c1302b070aafc4439c38ce9a2f3b93802c4e997a30352d9945",
+        "bridge-mp168-pack_wbw_v1.goo": "b3a8d6afc0d255ec66d39158609cab0fcb80bd3010288dac929686b16a5cb41a",
+        "bridge-mp168-pack_wbw_v1.manifest.json": "b655f71c92a74ed5b30da18ac8a0e27ebbaac6baf797422d77659a352e36b559",
+        "ORIGINAL-01-gladiator.txt": "5cee07bf8ab36d18cbc641cf0896dca60a84162ecdd24b38d63942f99a84e716",
+        "README.txt": "821a16be1cc6e7f8c1e101fb5412f1550de970c9d55543b8c16d083b7dacc929"
+      },
+      "game_payload_sha256": "ee827a4243fcd886803266f9db123f6ecbe09b71360a9c45bbc327ee8904c378",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-goldeneye-facility",
+      "revision": 1,
+      "artifact_count": 5,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "5e11a85a3f6e89fd5b9e8205227d4b2117b0d3ee9ea96c2626327ffde5155a6a",
+        "blackwing-recipe.json": "470ee971f01e3f383e699cbb4f2d41ccf19ee06c8ca461293dbbb5f08d77a98f",
+        "bridge-mp357-rc1.manifest.json": "d9c88e452288155d3a852c0a026dca605cf3b6ba20dd393287f4edf05b91075d",
+        "bridge-mp357_wbw_v1.goo": "a0af5a6e64d5a72397687964c13293c245919a273af18bf2b4c56d2b3eb6b046",
+        "bridge-mp357_wbw_v1.manifest.json": "8a1391fa9c40c7a6e795c6cd76a72b16e555d0a290a75d1efed4d8a4cf885741"
+      },
+      "game_payload_sha256": "4c6189bfffdaa1a8ab354d1c7a58aa8a559390c5dfb8945f99e1f7cad85619a5",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-heart-of-the-forest",
+      "revision": 1,
+      "artifact_count": 5,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "c2b866e27831d820b9c39e390d26a5428fa7951e93b414a0477983348f57eabd",
+        "blackwing-recipe.json": "7311ce327ce625500fdacc94d41a6fc8bcc32255c4a538bcef78172f32cd0d26",
+        "bridge-mp63-rc1.manifest.json": "c6654c21f53c0dc321c08df6ab8b31748dc7c718c9e9897da33cd9d06a3a2f08",
+        "bridge-mp63_wbw_v1.goo": "d14696347405ae8c3f99ceff99e616a98979cdc85b4ddaad750ccea7f70f1a8c",
+        "bridge-mp63_wbw_v1.manifest.json": "e7b261ab15792676c866cb1d7103f731948dd3d713838232db38fbe239b1d7f7"
+      },
+      "game_payload_sha256": "aabbd013c2a1fc7b6feff4ebbcf9b1fbe4d32e6695f8cef738eaca9e4a2ae655",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-jedi-tower-2000",
+      "revision": 1,
+      "artifact_count": 5,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "615181f13df0357aa0bd499bc4839ec8dded16eebb69d2bdbfcb046e7150d767",
+        "blackwing-recipe.json": "14d5deb8fd2d2221567afdff02b8d4b080824e0c0e8ff1a85e0a9271d03c6b80",
+        "bridge-mp360-rc1.manifest.json": "a9264ffec9769d16155f5e4be15360e12fc2e7956bbc8dae5437a45bfffe588f",
+        "bridge-mp360_wbw_v1.goo": "320529a77371d53db6706764c93cfc0e4c45e4f9ebe052eff9b05c699a2c913d",
+        "bridge-mp360_wbw_v1.manifest.json": "b00a7ac5aa5f69fcc2a55773e13bbe246866abc700218ab90da1d6305b85f943"
+      },
+      "game_payload_sha256": "60833a093bd4b97feb80bd664a86409d881a6f256a4f1844e317c5a8595f0b6e",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "mp-the-matrix",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "ee69dddc4de87f2e1e2b54b99b978bd80861bb65507250f578f5e72eb5273af4",
+        "blackwing-recipe.json": "57ba5feedd6bd20cdf2ec469307a4159fd2e86cf93d5bf255b8ffd966f7ac672",
+        "bridge-mp267-pack-v1.manifest.json": "a8e3c2c161b17ef0ff3dc7931abcc9270a6d0b4c92384de3f38bf0fefbd27d87",
+        "bridge-mp267-pack_wbw_v1.goo": "5586d631c3ae774d15402757797c750cff562c166b93b4fa7ba97e9ef0e9ccad",
+        "bridge-mp267-pack_wbw_v1.manifest.json": "20eab9e599bed149437918258400bec0283ae9a76d3916b18b9d642d7277630d",
+        "ORIGINAL-01-matrix.txt": "2a4bcda3a019b485da9fd89e5dc5f943f76ad61e566a6a90f780927c94f6a10a",
+        "README.txt": "5645720ddeabe3df41b2a55a9856a045beccd7da2ee7451dd690bc5450964f0d"
+      },
+      "game_payload_sha256": "c2c5985f3921fa908bfbc9a9475615d70e16ad82bd17b5084c63ae20a2878608",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "sp-maul-vs-qui-gon",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "16d6915c94851b8dd4bbf49fb64883ed3d08352eca32df988dcd3103be323bd5",
+        "blackwing-recipe.json": "379ae86ce69100a1449a7ead320aa35f9491b4fb74dc320ae7af90403f5038a4",
+        "manifest.json": "063090d5b240b63c5c0766544f3d6661b169ef783c01d092bdf1166086621d17",
+        "MaulJinn.txt": "970b4d25a17e12a8d3d1ba831551afd64d8aa6ca85375e853ae10df8346ca3bc",
+        "README.txt": "7b7edb3b382deaa9594cc3a7d2a870b5df83e7e5eace86a3a2acc44f4f942dec",
+        "wbw-sp-mauljinn_wbw_v1.goo": "91d72f38d4ee2a2dc0d01c7381e695cb0e985107977b7c5008e3c421384b20b1",
+        "wbw-sp-mauljinn_wbw_v1.manifest.json": "4e14858e9724b020497aa9c631f980bfd1f8fa41c83991f55b16a402cf439ea2"
+      },
+      "game_payload_sha256": "4e09aa3b87ba79afdb7dea6b70149eba85813c3e789448ade2f9f83a9f62daae",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    },
+    {
+      "id": "sp-phantom-menace-final-battle",
+      "revision": 1,
+      "artifact_count": 7,
+      "artifact_hashes": {
+        "blackwing-receipt.json": "77e19f741de98b069fb45f18b20b32a10195b0aa9b28fb76ae445c929d2a2c4a",
+        "blackwing-recipe.json": "362d8f547a6e2b5463ce48f5015cda0d2f673ac86e359e5e15f342cbe425b84e",
+        "ep1end_auth.txt": "d0174f127a2592242e9e462c753d9b3928cb0f741c7bbdd40586a2232536ad71",
+        "manifest.json": "1aea82b0c0024e890d82dc763efa26c0c6bab366bf8d9010c90a725e6f0c75eb",
+        "README.txt": "7b7edb3b382deaa9594cc3a7d2a870b5df83e7e5eace86a3a2acc44f4f942dec",
+        "wbw-sp-ep1final_wbw_v1.goo": "0fb4a1113a8ba4fef427cd7da56d0cff72a247ed30c702a3899dd38cf7f6dc1f",
+        "wbw-sp-ep1final_wbw_v1.manifest.json": "e931a987237bc57676dd5c2bb7284dcf4198e1ab49abc416b2bdb1a32679e393"
+      },
+      "game_payload_sha256": "e046f5546ca20a555da32fa897d12d220fb38a708c47f73f297e5f1083c9509f",
+      "all_artifacts_identical": true,
+      "previous_game_payload_unchanged": true
+    }
+  ]
+}

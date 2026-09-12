@@ -1,0 +1,4391 @@
+{
+  "schema": 1,
+  "category": "Jedi Knight Mods",
+  "captured_utc": "2026-09-12T20:12:47.583072+00:00",
+  "ranking_url": "https://www.massassi.net/levels/jkmod/?sortby=dl_count&num=50",
+  "ranking_page_sha256": "2d826a8bc28f5282f39ab589534717187634d2d7cb7b946b878ed726df1f2131",
+  "ranking_method": "First 50 entries from official dl_count descending listing; distinct version entries are retained.",
+  "status": "source-inventory-not-support-certification",
+  "private_asset_policy": "No source archives, game/mod assets, original readme bodies or conversions are included.",
+  "entries": [
+    {
+      "rank": 1,
+      "massassi_id": 1887,
+      "title": "Saber Battle X - JK v3.1",
+      "author": "ShadowX",
+      "page_url": "https://www.massassi.net/levels/files/1887.shtml",
+      "downloads": 41350,
+      "download_url": "https://www.massassi.net/levels/download/1887/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/sbxjkv31.zip",
+      "original_filename": "sbxjkv31.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "50950b0c3a83dda972cb72c1dc85df96ea2248cb2daf88f09fc0ed2dc5272b2e",
+      "source_bytes": 7556495,
+      "source_page_sha256": "4d4410ff4506c3987f4c4699cbb40672a09bc4b22a9c0dcf342c6431195a20be",
+      "classification": "saber-force-gameplay-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "SBX-JK v31.gob",
+          "bytes": 25344450,
+          "sha256": "ad3df02e7bb2270ffb7997b57158e3d39f85b0bbabfaec43447cfc5f3f176833",
+          "entry_count": 1844,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "JK & MotS Improvement Tips.doc",
+          "bytes": 37376,
+          "sha256": "fe8d0870c47fa567cec45df1f0abf82de6a7c5ff25d641be16e87dd6c86e3541"
+        },
+        {
+          "path": "Lightsaber Color Chart.doc",
+          "bytes": 25600,
+          "sha256": "0ff7efc159a3453b1670c49e3ca130839944f91c5c21f51ba7390fc1687f9ddd"
+        },
+        {
+          "path": "Saber Fighting 101.doc",
+          "bytes": 61952,
+          "sha256": "3471310fc53edb839639b8121e0368bee8c9bace7eddce89de1108f93d764da0"
+        },
+        {
+          "path": "SBX-JK v31.doc",
+          "bytes": 81920,
+          "sha256": "c55f3041c46a88a3f32e34724b6256b9b14247e396ff67319f68d5af1da5ff56"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 8,
+        "force_scripts": 16,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [
+        {
+          "massassi_id": 1866,
+          "title": "Saber Battle X - MotS 3.0",
+          "author": "ShadowX",
+          "page_url": "https://www.massassi.net/levels/files/1866.shtml",
+          "page_sha256": "31247d2854b984e1e74409ea3fedc13012c65d9691c4521e956c64368519b3c0",
+          "status": "official-native-entry-verified-content-not-compared",
+          "source_archive_sha256": "909ad10a6bbe3954e0e7c20f5d55094a5fb68708716866102d439d8aac339908",
+          "direct_download_url": "https://www.massassi.net/media/levels/files/motsmod/sbx-motsv3.zip",
+          "goo_sha256": "49c2d136cffb6b6108ea29165d1245262713a7ff9ace472654768ee0e3e0c449"
+        }
+      ],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": [
+        "Native MotS SBX versions exist; do not equate the listed JK version with a different MotS version or exclude it from this ranking.",
+        "All four legacy Word main text bodies were extracted by bounded MS-DOC character-piece parsing; source/piece/output hashes and declared character counts are pinned. Main feature/credit/permission sections reviewed; document formatting and embedded graphics were not rendered. The author expressly permits improvements/inclusion of features with due credit, while originals and assets remain private.",
+        "JK 3.1 uses independent bonus Push/Saber Throw hotkeys, restores original JK Throw/Speed, makes several saber/light controls inventory-only, and changes pickups. Verified native MotS 3.0 is related but has distinct Force/weapon behavior; no equivalence or automatic replacement is asserted."
+      ],
+      "manual_extraction": [
+        {
+          "source": "JK & MotS Improvement Tips.doc",
+          "source_sha256": "fe8d0870c47fa567cec45df1f0abf82de6a7c5ff25d641be16e87dd6c86e3541",
+          "nFib": 193,
+          "main_body_characters": 8705,
+          "piece_count": 1,
+          "text_sha256": "00b703b29725b563eb153a1b018c302e380646733bb9926a67510f3a1db65805",
+          "main_body_length_matches": true
+        },
+        {
+          "source": "Lightsaber Color Chart.doc",
+          "source_sha256": "0ff7efc159a3453b1670c49e3ca130839944f91c5c21f51ba7390fc1687f9ddd",
+          "nFib": 193,
+          "main_body_characters": 2366,
+          "piece_count": 1,
+          "text_sha256": "168446b470bc1200a6580f8de251be97c9f0334f8308fd34e5d976930b6e4ddf",
+          "main_body_length_matches": true
+        },
+        {
+          "source": "Saber Fighting 101.doc",
+          "source_sha256": "3471310fc53edb839639b8121e0368bee8c9bace7eddce89de1108f93d764da0",
+          "nFib": 193,
+          "main_body_characters": 28100,
+          "piece_count": 1,
+          "text_sha256": "5ff5c78c99c8b13dced49b8a0571eb47fa564df2f34163dcda9181bc1d291322",
+          "main_body_length_matches": true
+        },
+        {
+          "source": "SBX-JK v31.doc",
+          "source_sha256": "c55f3041c46a88a3f32e34724b6256b9b14247e396ff67319f68d5af1da5ff56",
+          "nFib": 193,
+          "main_body_characters": 27818,
+          "piece_count": 1,
+          "text_sha256": "4fee49a3e0ca408e2ff4959d0cf1888abe78b35dffb45eeca827d290fd8bfb94",
+          "main_body_length_matches": true
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "massassi_id": 1060,
+      "title": "Killer's Weapons Pack (KWP)",
+      "author": "ID_Junkguy",
+      "page_url": "https://www.massassi.net/levels/files/1060.shtml",
+      "downloads": 18923,
+      "download_url": "https://www.massassi.net/levels/download/1060/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/kwp.zip",
+      "original_filename": "kwp.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "517d742fe9822364a72e6be1da323ad23117c422cb163259e14f9533a3296126",
+      "source_bytes": 372161,
+      "source_page_sha256": "ff167f22ff47c2f67eb26fafc1820323b0b208e9d242acb3c6c49a5b2263b6c1",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "KWP.gob",
+          "bytes": 1359011,
+          "sha256": "18673aea67a633ea890d900049204818646eab5b4fa2b67d7e23ca6b3a7a9adc",
+          "entry_count": 70,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4328,
+          "sha256": "2175721920d2fc8d5fa41db3742843902e1327cde665c6cb5245f8a016f60e16"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 10,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": [
+        "Official listing names ID_Junkguy; original readme additionally credits coauthor ID_Matt, plus HOTS_Btrek and Deluxe_Six."
+      ],
+      "readme_authors": [
+        "ID_Junkguy",
+        "ID_Matt"
+      ]
+    },
+    {
+      "rank": 3,
+      "massassi_id": 525,
+      "title": "JKrpg - Barons Hed",
+      "author": "JKrpg staff",
+      "page_url": "https://www.massassi.net/levels/files/525.shtml",
+      "downloads": 16704,
+      "download_url": "https://www.massassi.net/levels/download/525/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/jkrpg.zip",
+      "original_filename": "jkrpg.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "c5e8e57c7ad368cb2d45e4e505c04780e6db7b661b9fbac4e0797e4809f2a6b5",
+      "source_bytes": 2419810,
+      "source_page_sha256": "a7ebebec63fdf385488a92a3056acb2fc8288e33b74a68a89f59147226585a5f",
+      "classification": "roleplaying-mod-with-level",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "baronrpg.gob",
+          "bytes": 8956988,
+          "sha256": "6d2b0ff4a38cf03f8d3e0643b3ba0fec432de3233cc43cb53e20b4dd3df8ac8b",
+          "entry_count": 325,
+          "inspection_error": null
+        },
+        {
+          "path": "rpgcode.gob",
+          "bytes": 417127,
+          "sha256": "925446c7ab5e9e9f487d18fd6e65eca050e0e5a80dfc7dc3022d4f3cfb371166",
+          "entry_count": 51,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "BARONRPG.TXT",
+          "bytes": 14713,
+          "sha256": "eed2c73d284a5d2dfa317813384bc8deb199ef4355b8029c79d2b6e58a21d79b"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 2,
+        "force_scripts": 0,
+        "level_jkls": [
+          "jkl/baronrpg.jkl"
+        ],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": [
+        "Original setup explicitly requires rpgcode.gob at startup and baronrpg.gob as the episode; both are one mod recipe."
+      ],
+      "readme_authors": [
+        "Nebula",
+        "Obsidian",
+        "Jepman",
+        "Juztyn",
+        "NorthChaos",
+        "Mehab4"
+      ]
+    },
+    {
+      "rank": 4,
+      "massassi_id": 1333,
+      "title": "Ninja Kage 7.0",
+      "author": "ShadowX",
+      "page_url": "https://www.massassi.net/levels/files/1333.shtml",
+      "downloads": 16055,
+      "download_url": "https://www.massassi.net/levels/download/1333/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/ninjakage_v7.zip",
+      "original_filename": "ninjakage_v7.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "1d71863e564e75278eecd44244ef3a103692c49b4bf11fdbc2de591ccbf05764",
+      "source_bytes": 999829,
+      "source_page_sha256": "b082ca5677341ac2b64539575e423eefe9b9dde279f5376c40eda3f08425ad88",
+      "classification": "movement-weapons-force-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Ninja Kage.gob",
+          "bytes": 3966542,
+          "sha256": "23bd8e18eae4df637a34ddf4f98ed3602c490de521e0cc147bf8e79bb9fe23af",
+          "entry_count": 311,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Ninja Kage.txt",
+          "bytes": 15326,
+          "sha256": "de4c8f16f3fe3b48f9b25f582f6760091fd9892e8bdf358145b698b2a270735c"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 5,
+        "force_scripts": 11,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "existing-ninja-prototype",
+      "review_notes": []
+    },
+    {
+      "rank": 5,
+      "massassi_id": 887,
+      "title": "GaS (Guns and Such)",
+      "author": "GuNbOy",
+      "page_url": "https://www.massassi.net/levels/files/887.shtml",
+      "downloads": 13631,
+      "download_url": "https://www.massassi.net/levels/download/887/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/gas.zip",
+      "original_filename": "gas.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "ef894b80fb78f35fc5be6e0ee75b1c1b19a313f73c0351ba47f58ce86ff0ea89",
+      "source_bytes": 1960957,
+      "source_page_sha256": "dbafc332e0b1c633ec9fb6d56caa9fd498d9f6b6ef233aeaaed554210ea7fe29",
+      "classification": "weapon-pack-with-skins",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "GaS.gob",
+          "bytes": 4995216,
+          "sha256": "b2d36d58ab754fd904916258aa2a86fcc8387335c1a9cddd28b365624b8680f9",
+          "entry_count": 143,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4970,
+          "sha256": "fb41aff2efba869ede534e8dce1c657d2aa507c4bec473096e30677ecec4a5ee"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 8,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": [
+        "Original readme explicitly says this is not an episode; weapons and six skins require a standalone startup conversion."
+      ]
+    },
+    {
+      "rank": 6,
+      "massassi_id": 1688,
+      "title": "Saber Battle X - JK v2.0",
+      "author": "ShadowX",
+      "page_url": "https://www.massassi.net/levels/files/1688.shtml",
+      "downloads": 13139,
+      "download_url": "https://www.massassi.net/levels/download/1688/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/sbx-jkv2.zip",
+      "original_filename": "sbx-jkv2.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "8e5342cde6e47343e4f4f1e747fb9a268b71279394f01301bd1eca8266097ccb",
+      "source_bytes": 5254729,
+      "source_page_sha256": "746569c6778c619f133d47657be359b16811325e5c2bf1c17879a6aa4c9b0750",
+      "classification": "saber-force-gameplay-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "SBX-JK v2.gob",
+          "bytes": 19231076,
+          "sha256": "d9700df8650f9ebb2fa1e512cd19f3b707139a32d30207dc0f5f2ccf73c9d89a",
+          "entry_count": 1526,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "JK-MotS Improvement Tips.txt",
+          "bytes": 7934,
+          "sha256": "5ffa75e54cbeb01d53077fb38c8050f449dcba0c374d72788f54ea539afa0252"
+        },
+        {
+          "path": "SBX-JK v2.txt",
+          "bytes": 22386,
+          "sha256": "07737a276f913a87420f6cd04ebf96d9b06fcf1258ff75a25d1f2fd7bb6408cb"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 8,
+        "force_scripts": 14,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [
+        {
+          "massassi_id": 1866,
+          "title": "Saber Battle X - MotS 3.0",
+          "author": "ShadowX",
+          "page_url": "https://www.massassi.net/levels/files/1866.shtml",
+          "page_sha256": "31247d2854b984e1e74409ea3fedc13012c65d9691c4521e956c64368519b3c0",
+          "status": "official-native-entry-verified-content-not-compared",
+          "source_archive_sha256": "909ad10a6bbe3954e0e7c20f5d55094a5fb68708716866102d439d8aac339908",
+          "direct_download_url": "https://www.massassi.net/media/levels/files/motsmod/sbx-motsv3.zip",
+          "goo_sha256": "49c2d136cffb6b6108ea29165d1245262713a7ff9ace472654768ee0e3e0c449"
+        },
+        {
+          "massassi_id": 1595,
+          "title": "Saber Battle X - MotS v1.0",
+          "author": "ShadowX",
+          "page_url": "https://www.massassi.net/levels/files/1595.shtml",
+          "page_sha256": "2cc5dd6d6313ddfb3537e08f811d73eb4c3913d25baecff43239424e5569d970",
+          "status": "official-native-entry-verified-content-not-compared"
+        }
+      ],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": [
+        "Native MotS SBX versions exist; do not equate the listed JK version with a different MotS version or exclude it from this ranking."
+      ]
+    },
+    {
+      "rank": 7,
+      "massassi_id": 1438,
+      "title": "Space Soldiers 3: MP MOD Beta 9.0",
+      "author": "SavageX",
+      "page_url": "https://www.massassi.net/levels/files/1438.shtml",
+      "downloads": 12878,
+      "download_url": "https://www.massassi.net/levels/download/1438/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/ss3beta9.zip",
+      "original_filename": "ss3beta9.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "510979aed888b8b327dfc53636a70330015d890aec183fd509b2a89eac406d29",
+      "source_bytes": 3372217,
+      "source_page_sha256": "ff4263e6c221db3a6f0dbcec4901ff09fc4d2f6ec4c876913aa01e9b03529cc1",
+      "classification": "weapon-gameplay-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "ss3beta9.gob",
+          "bytes": 13273644,
+          "sha256": "39a550092775aec00319de5bcb677347d3071a80ae8b2aa8e7807b5ea8193b1c",
+          "entry_count": 652,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4466,
+          "sha256": "1f5583334fd397f523f8be4f60bcea9c14d53887fa80daf810e602817cd59132"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 11,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 8,
+      "massassi_id": 1868,
+      "title": "GoldenEye",
+      "author": "ID_Junkguy and ID_Matt",
+      "page_url": "https://www.massassi.net/levels/files/1868.shtml",
+      "downloads": 11900,
+      "download_url": "https://www.massassi.net/levels/download/1868/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/goldeneye.zip",
+      "original_filename": "goldeneye.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "c067fe796119e8c64d7d78ab710202437cd8fc02107ece5526a541a97ffd1880",
+      "source_bytes": 2462308,
+      "source_page_sha256": "19af40fcaeb57cfecfd1a9107574b9c857ba68a1fbc02310033bee7e647be912",
+      "classification": "weapon-gameplay-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "GoldenEye.gob",
+          "bytes": 8515791,
+          "sha256": "b26f578c202d15f23d55f97a5fec35ba010ce5bfa7d5eefb04a51923d1f32a67",
+          "entry_count": 300,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "instructions.txt",
+          "bytes": 6878,
+          "sha256": "bb83c2581bc75de6d177afccb1ac383ad3866fa6c7c674eef95d655a79823f45"
+        },
+        {
+          "path": "readme.txt",
+          "bytes": 4206,
+          "sha256": "806219604091fc6a0365ce77ab106dace1533de064a0f73b8f44d85c111c6d4d"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 10,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 9,
+      "massassi_id": 1382,
+      "title": "Anti-Terrorist TC",
+      "author": "Chad",
+      "page_url": "https://www.massassi.net/levels/files/1382.shtml",
+      "downloads": 10511,
+      "download_url": "https://www.massassi.net/levels/download/1382/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/attc.zip",
+      "original_filename": "attc.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "5982696cbab9c3a941e77ec64f05e14c821f3a3f600774537215edb2f8b80255",
+      "source_bytes": 2969373,
+      "source_page_sha256": "8feb5c9f35a99ded47e7e9cd8500c06b009fa133edde22ccf0f171459889b7b0",
+      "classification": "total-conversion-with-levels",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "AntiTerrorismTC.gob",
+          "bytes": 7763365,
+          "sha256": "c86686c16227dacebe253084ff8002f835c8a480b44647304cab4c4fd5bffda8",
+          "entry_count": 347,
+          "inspection_error": null
+        },
+        {
+          "path": "AntiTerroristGuns(MP).gob",
+          "bytes": 5391149,
+          "sha256": "7bc8e75395e8c71966d9073c55016b41e657aa869eb9833b2b931419ea049ab5",
+          "entry_count": 135,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "ANTI TERROR TC.txt",
+          "bytes": 4291,
+          "sha256": "d844d13eb710513d7d89b3297a672bec2a156a46d46cedfed9b5f5fb5fafc81e"
+        },
+        {
+          "path": "Bugs and fixes.txt",
+          "bytes": 604,
+          "sha256": "e46bfcd1cf91af064cc4664429737166540d5bb01a0e465bc418bd108ad04c07"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 18,
+        "force_scripts": 6,
+        "level_jkls": [],
+        "static_world_archives": 2,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 10,
+      "massassi_id": 1072,
+      "title": "Imperial Weapons Patch 2",
+      "author": "Darth Haun",
+      "page_url": "https://www.massassi.net/levels/files/1072.shtml",
+      "downloads": 9932,
+      "download_url": "https://www.massassi.net/levels/download/1072/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/Iwp2.zip",
+      "original_filename": "Iwp2.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "2f6ac2a5615cd1114fcf19fd8df9e6580ec140727afb6d67d165056e9b1e97a4",
+      "source_bytes": 6584519,
+      "source_page_sha256": "c1ab1adea6da4ee54954fb27f61f9ee32ee629120b6940299d2ebd2321f10236",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Iwp2.gob",
+          "bytes": 18976347,
+          "sha256": "242b25d2aa7442ab0417d56fa475665a7d0dbd534cd6f961d3320fc8891e5bec",
+          "entry_count": 691,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Readme.txt",
+          "bytes": 8412,
+          "sha256": "97824649463a6dc11c740a22c44d3cb58e66503e6beb2c6a3fdcd894e34213f4"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 13,
+        "force_scripts": 15,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 11,
+      "massassi_id": 965,
+      "title": "Walk on Walls (WoW)",
+      "author": "Mandalorian Editing Alliance",
+      "page_url": "https://www.massassi.net/levels/files/965.shtml",
+      "downloads": 9183,
+      "download_url": "https://www.massassi.net/levels/download/965/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/wow.zip",
+      "original_filename": "wow.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "3139c7fd509a6d7306a2e68c7b5091d07adf12b5f0bd2048c2bf016686507432",
+      "source_bytes": 1917586,
+      "source_page_sha256": "3319dfc36e15fecf22a76a45d4cc9530dd794688364240a580e757b3c8fe808b",
+      "classification": "movement-gameplay-mod",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "wowfinal.gob",
+          "bytes": 5386833,
+          "sha256": "ea52aec142ab2608aab466382240143c472024c31220cec4af78537b30b8baa7",
+          "entry_count": 158,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "installation.txt",
+          "bytes": 406,
+          "sha256": "1305d4e4f91cfb17b4c7284e05f655376c684d638629a645916d37ef144f6005"
+        },
+        {
+          "path": "readme.doc",
+          "bytes": 47104,
+          "sha256": "36fa1bc5236f31b8e918fe505fa644a4a8f9d386abd9bb0f8989ac63ebfa6827"
+        },
+        {
+          "path": "walkingonwalls.doc",
+          "bytes": 546304,
+          "sha256": "305587afc6c82ffde1e3e6931dcc423907d4fa95b8fec776b8d0bb260f5b7419"
+        },
+        {
+          "path": "boring!.txt",
+          "bytes": 4025,
+          "sha256": "f48c35946a50b5487207de805c6cc0fdb64348a04f83b68688d44e96eb96f19f"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 4,
+        "force_scripts": 2,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 12,
+      "massassi_id": 590,
+      "title": "Advanced Grapple Mod",
+      "author": "Hemi Cuda",
+      "page_url": "https://www.massassi.net/levels/files/590.shtml",
+      "downloads": 9079,
+      "download_url": "https://www.massassi.net/levels/download/590/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/adv_grapple.zip",
+      "original_filename": "adv_grapple.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "7a883765ad1283f90da5092ec69b03d57350c41dd41b4ec744689bb5efb002fe",
+      "source_bytes": 111702,
+      "source_page_sha256": "af0a13e7dbbb5bd56579794cad66b8347af2338d419127c0fe9763bf833f5212",
+      "classification": "grapple-movement-mod",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "grapple.gob",
+          "bytes": 181279,
+          "sha256": "b15ed86169e4c4981e4a163ec0ad0a0ed5885867c2201b66f9c5b33019c6476b",
+          "entry_count": 11,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "ReadMe.txt",
+          "bytes": 907,
+          "sha256": "c47109fb03da7c3569baf6eeeb9f1a5ef6478918716d5bb76ad9c2e4b9be1af8"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 13,
+      "massassi_id": 1871,
+      "title": "Saber Battle X - JK v3.0",
+      "author": "ShadowX",
+      "page_url": "https://www.massassi.net/levels/files/1871.shtml",
+      "downloads": 8949,
+      "download_url": "https://www.massassi.net/levels/download/1871/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/sbxjkv3.zip",
+      "original_filename": "sbxjkv3.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "b7ea8a3a3ccfa5a2175d4c9f9f349a41d26c39dc48b36fba34f9ee40d5d68c73",
+      "source_bytes": 7050651,
+      "source_page_sha256": "841be101cc43924bd503a60bbd0ee2ec3da966506e9d3940910a5b57270aa14c",
+      "classification": "saber-force-gameplay-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "SBX-JK v3.gob",
+          "bytes": 23865278,
+          "sha256": "2f858fd1b2a43f656935677db6de49fef94a293e4bde7725d532e719f6a57ecf",
+          "entry_count": 1700,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Lightsaber Color Chart.doc",
+          "bytes": 25088,
+          "sha256": "065a8b2fb0f1e07fbd50f14536e35b5f31146f83d2f8c8b3c73cdc452de32945"
+        },
+        {
+          "path": "JK & MotS Improvement Tips.doc",
+          "bytes": 37376,
+          "sha256": "fe8d0870c47fa567cec45df1f0abf82de6a7c5ff25d641be16e87dd6c86e3541"
+        },
+        {
+          "path": "SBX-JK v3.doc",
+          "bytes": 65024,
+          "sha256": "f5126c3aad6b33bbbeeef8128175427816685f79b76b49db3d9d71d9cb523c2f"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 7,
+        "force_scripts": 14,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [
+        {
+          "massassi_id": 1866,
+          "title": "Saber Battle X - MotS 3.0",
+          "author": "ShadowX",
+          "page_url": "https://www.massassi.net/levels/files/1866.shtml",
+          "page_sha256": "31247d2854b984e1e74409ea3fedc13012c65d9691c4521e956c64368519b3c0",
+          "status": "official-native-entry-verified-content-not-compared",
+          "source_archive_sha256": "909ad10a6bbe3954e0e7c20f5d55094a5fb68708716866102d439d8aac339908",
+          "direct_download_url": "https://www.massassi.net/media/levels/files/motsmod/sbx-motsv3.zip",
+          "goo_sha256": "49c2d136cffb6b6108ea29165d1245262713a7ff9ace472654768ee0e3e0c449"
+        }
+      ],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": [
+        "Native MotS SBX versions exist; do not equate the listed JK version with a different MotS version or exclude it from this ranking."
+      ]
+    },
+    {
+      "rank": 14,
+      "massassi_id": 1397,
+      "title": "Explosive Weapons Pack",
+      "author": "ID_Junkguy",
+      "page_url": "https://www.massassi.net/levels/files/1397.shtml",
+      "downloads": 8260,
+      "download_url": "https://www.massassi.net/levels/download/1397/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/ewp.zip",
+      "original_filename": "ewp.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "38682402b1e8dcfed1d1a1c66fddb5fc2c6d9ce9c8de2682ef1377ba1c630aa3",
+      "source_bytes": 1283861,
+      "source_page_sha256": "5348757454a6aaa3891cdc818dcb0443b0385607738a1b484d4ec207d7000946",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "EWP.gob",
+          "bytes": 3854999,
+          "sha256": "010e8335f1a526ce6357cd48143b2e5291cd0c7c0a7cca63e1ccfd2e4abddce1",
+          "entry_count": 139,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "ewpreadme.txt",
+          "bytes": 4518,
+          "sha256": "c934dcfdc14229bb00afaa396f3bc0715991a48b83f3b88397e1f5eaafb7ae07"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 10,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 15,
+      "massassi_id": 2727,
+      "title": "The DragonBallZ: The Destruction Is Real Total Conversion",
+      "author": "The TDiR Team",
+      "page_url": "https://www.massassi.net/levels/files/2727.shtml",
+      "downloads": 8234,
+      "download_url": "https://www.massassi.net/levels/download/2727/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/TDiR.zip",
+      "original_filename": "TDiR.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "8aea49c26e5e1fb9b39742eb4fd034bef8b9fff99495929959be568c24c47de1",
+      "source_bytes": 34989718,
+      "source_page_sha256": "216283cca1608635a681d1ddc2371e2b2f90ffb1e927a2444688ab38fc7cb4c5",
+      "classification": "total-conversion-installer",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [],
+      "readmes": [
+        {
+          "path": "info_installation.txt",
+          "bytes": 1954,
+          "sha256": "3580ed28e0c65b07f1e8f029dfaf40b41fd3f778395bf0d70297982e3866ebe4"
+        },
+        {
+          "path": "Readme.txt",
+          "bytes": 3779,
+          "sha256": "745c53855c575d043fbc124bbc193f846b4b81e6d46df211bb9b567a7b1be61d"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 16,
+      "massassi_id": 936,
+      "title": "Boba Fett: The Bounty Missions",
+      "author": "Iain",
+      "page_url": "https://www.massassi.net/levels/files/936.shtml",
+      "downloads": 8101,
+      "download_url": "https://www.massassi.net/levels/download/936/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/tbm.zip",
+      "original_filename": "tbm.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "3017cc5b30138a71a82655461f5e7843333651359cc1d3b8ae5ec321546d84b7",
+      "source_bytes": 502431,
+      "source_page_sha256": "133cec0234b10835e87d9efbf2f52aabc3be6e84b8d1f21c56a96ce921c0718d",
+      "classification": "single-player-gameplay-mod",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Massassi/Boba Fett.gob",
+          "bytes": 1804092,
+          "sha256": "20dca4eb6ec60b71108bc53b2b68aa7dab2f41f45f04085f2149087d8d2f2fb0",
+          "entry_count": 105,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Boba Fett README.txt",
+          "bytes": 3482,
+          "sha256": "d6d6daf4c081cf280da8f66960df23087166645d86c578d31dbb5b76c2c1cd99"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 10,
+        "force_scripts": 4,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 17,
+      "massassi_id": 997,
+      "title": "Al's Star Wars Skin Pack",
+      "author": "Al MacDonald",
+      "page_url": "https://www.massassi.net/levels/files/997.shtml",
+      "downloads": 7376,
+      "download_url": "https://www.massassi.net/levels/download/997/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/Alswskin.zip",
+      "original_filename": "Alswskin.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "d125b4804f53b333d47825930288878b8443ec741c1bf5ee60b5706fe9641c6a",
+      "source_bytes": 6942263,
+      "source_page_sha256": "40fc49eca1e635f579db620091678730e5a78791886c559664f15d5e5b86fdbe",
+      "classification": "multiplayer-skin-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Alswskin.gob",
+          "bytes": 25318684,
+          "sha256": "7486c1e5555a4458ee14fc5f6dc1338df787631b346e441cb50f5c1aab02405d",
+          "entry_count": 1936,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "ALreadme.txt",
+          "bytes": 3738,
+          "sha256": "ef993adf96c730a1df73658be821ad1dfc2007e6ce298391796c19847501fff6"
+        },
+        {
+          "path": "readme2.txt",
+          "bytes": 2824,
+          "sha256": "c8aba31daa784bbb191fdca03002b7e1087cd1fe30856958dd570b93cf22e9d6"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": true
+      },
+      "native_alternatives": [
+        {
+          "massassi_id": 1386,
+          "title": "Al's Skins for MotS S .E.",
+          "author": "Al MacDonald (skins), Galen Starfield (.goo)",
+          "page_url": "https://www.massassi.net/levels/files/1386.shtml",
+          "page_sha256": "3bc23216a3383f5e8b36decf7a00d95064aa3f9cb2fd42bb534c20043dc35e8f",
+          "status": "official-native-entry-verified-content-not-compared"
+        }
+      ],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 18,
+      "massassi_id": 610,
+      "title": "Theft on Nar Shaddaa (MP Cooperative)",
+      "author": "Nebula",
+      "page_url": "https://www.massassi.net/levels/files/610.shtml",
+      "downloads": 7126,
+      "download_url": "https://www.massassi.net/levels/download/610/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/thief.zip",
+      "original_filename": "thief.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "4b31992475ac8a92126fe4d2af888292428de7637761a7a6770a94b1bfa2d417",
+      "source_bytes": 1955210,
+      "source_page_sha256": "3ffcc37e44329d2cd6e2151008cf75d93183b5c1d8e4dec7e7fd3861eed0b54d",
+      "classification": "cooperative-level-mod",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "thief.gob",
+          "bytes": 7638430,
+          "sha256": "ee99cc0dd7228b99bd726690f6741dbe93f0e678d01f645ea19050907a349bc8",
+          "entry_count": 213,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "install.txt",
+          "bytes": 273,
+          "sha256": "9efa158f10b611cf8bab81e05379426fe8ceabae6cc774a9bc24301bc6417db0"
+        },
+        {
+          "path": "thief.txt",
+          "bytes": 11028,
+          "sha256": "3d2d07513900aa9f56bf9af23d7d3ab456cc07dc7e56c41dbb95d374c412e787"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [
+          "jkl/thief.jkl"
+        ],
+        "static_world_archives": 0,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 19,
+      "massassi_id": 1239,
+      "title": "Arsenal 3",
+      "author": "Chad",
+      "page_url": "https://www.massassi.net/levels/files/1239.shtml",
+      "downloads": 6499,
+      "download_url": "https://www.massassi.net/levels/download/1239/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/arsenal3.zip",
+      "original_filename": "arsenal3.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "bcd58a26afe72f2db5c333f4ce1fc440e7d2b2055b354bca27ad214b9be752c3",
+      "source_bytes": 1448509,
+      "source_page_sha256": "cd41c37bc9f1ed59de007a99008eeb76509ef7aac6f6860f9245c9adb3b40e62",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Arsenal3.gob",
+          "bytes": 9076576,
+          "sha256": "1673985c5183287f275c4968468d5927baa43a6614781430f3a35aeda2fbef61",
+          "entry_count": 290,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Read.txt",
+          "bytes": 3603,
+          "sha256": "5e924f82c288e5f4d102aa22d897e12438c6f71989c09705f7032a0fea27b488"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 9,
+        "force_scripts": 8,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 20,
+      "massassi_id": 3087,
+      "title": "Jedi Knight Enhanced",
+      "author": "Shred18",
+      "page_url": "https://www.massassi.net/levels/files/3087.shtml",
+      "downloads": 6072,
+      "download_url": "https://www.massassi.net/levels/download/3087/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/JK_Enhanced.zip",
+      "original_filename": "JK_Enhanced.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "6e34e9b25cf2154496add2d809909e4a51e68b8cf5d494ccca803e928f31bd1c",
+      "source_bytes": 40948383,
+      "source_page_sha256": "231a317aa70d67a4e73f340f98519bcee7fd17ab88c9f1ae777f93c67d353c8f",
+      "classification": "visual-model-enhancement",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "JKE/JKE.gob",
+          "bytes": 178637896,
+          "sha256": "e031ccb4814e5928e22ba29ad95872b4e2245c78693a99a5d8bbc810ccf70bbf",
+          "entry_count": 628,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "JKUnofficialPatch_2006-12-04/JKUnofficialPatch_2006-12-04.txt",
+          "bytes": 2904,
+          "sha256": "d1a844488fc6a656a90cd060aca0a2a3ddca90c8975595d970b7b0c2279449eb"
+        },
+        {
+          "path": "JKE_Readme.htm",
+          "bytes": 8929,
+          "sha256": "c36c7a6fd4b58248b1d3de5d2e4ad9c242322490f1be28ffdec1e56e9f12b85c"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": [
+        "Source ZIP also includes an old executable patcher/DLL; neither was executed. The model GOB is 178637896 bytes and was inspected with an explicit 256 MiB bound."
+      ]
+    },
+    {
+      "rank": 21,
+      "massassi_id": 521,
+      "title": "Ninja Kage v6.0",
+      "author": "Shadow",
+      "page_url": "https://www.massassi.net/levels/files/521.shtml",
+      "downloads": 6036,
+      "download_url": "https://www.massassi.net/levels/download/521/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/ninjakage_v6.zip",
+      "original_filename": "ninjakage_v6.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "e291fc02e177c62606be44f7e480ff7db3287f545e6cedfa3c721ac4c74a1c63",
+      "source_bytes": 1086454,
+      "source_page_sha256": "678b202f704d1fa0e22acb6b7a467d97138aecf32077f0bbc15b785c8284bd65",
+      "classification": "movement-weapons-force-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Ninja Kage.gob",
+          "bytes": 3903120,
+          "sha256": "8ed5cfc8743461bd112c491ebbdab4ab0e4c11de402d6097a7fa77fd744fa898",
+          "entry_count": 277,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Ninja Kage.txt",
+          "bytes": 10547,
+          "sha256": "2865bf90c7fff28b0311454c23ffa14b9d90857b0dbd22f0401f0b97b4c25cb1"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 2,
+        "force_scripts": 10,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 22,
+      "massassi_id": 645,
+      "title": "Boba Fett Armor",
+      "author": "Mark Todd",
+      "page_url": "https://www.massassi.net/levels/files/645.shtml",
+      "downloads": 5964,
+      "download_url": "https://www.massassi.net/levels/download/645/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/fett.zip",
+      "original_filename": "fett.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "e288a42f90dff8b9315b26d296835617d0f372924d924279a2d85a3972942320",
+      "source_bytes": 1259712,
+      "source_page_sha256": "ac3eb6651ad6f90d2d56ff7967c9ee4359e2870cd01aa1c0c9ce0f8f42da97d0",
+      "classification": "armor-weapons-movement-mod",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Fett.gob",
+          "bytes": 4745305,
+          "sha256": "877be01bc6adc52835e6108f9150800bb6d424e81005e9da3c97423531d1b8f5",
+          "entry_count": 287,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [],
+      "features": {
+        "weapon_scripts": 10,
+        "force_scripts": 3,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 23,
+      "massassi_id": 1207,
+      "title": "Deluxe Weapons Pack",
+      "author": "Deluxe_Six",
+      "page_url": "https://www.massassi.net/levels/files/1207.shtml",
+      "downloads": 5948,
+      "download_url": "https://www.massassi.net/levels/download/1207/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/dwp.zip",
+      "original_filename": "dwp.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "82111e1fec9cc2d5c095df9fbe0e5420cbbe0f602a654df0947d3cda83038707",
+      "source_bytes": 936455,
+      "source_page_sha256": "49ea98c7a93996c645d451f7dd31a3977dd4db524545f4e89a9f30496abd489b",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "DWP.gob",
+          "bytes": 5554465,
+          "sha256": "c8c8e8aae96828d86e2ca808b1686b20326c67504d4504b1c91ff9136cfae78f",
+          "entry_count": 145,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Dwpreadme.txt",
+          "bytes": 4294,
+          "sha256": "c9438868b710c2e1ca9372c0bd2ee5f0a360cb9c5cf5e88501ad413f6c6b4950"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 8,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 24,
+      "massassi_id": 615,
+      "title": "Yoda and Dagbah saber",
+      "author": "Mark Todd",
+      "page_url": "https://www.massassi.net/levels/files/615.shtml",
+      "downloads": 5626,
+      "download_url": "https://www.massassi.net/levels/download/615/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/yoda.zip",
+      "original_filename": "yoda.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "a21c6bd1b0f8424b99458c833ebd6aa269a0ca46ecda816079b51c32f7a707b3",
+      "source_bytes": 236192,
+      "source_page_sha256": "c1f88928adec7b21a8f3f2ddbd28c1fd34cce6f6b2cfdaf84d56e6db3a994898",
+      "classification": "force-player-mod-and-saber-textures",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "YODA.gob",
+          "bytes": 198845,
+          "sha256": "75715e7990add6c4a1d9d800e2c2054ee636e942bce374174ae07930fc130d46",
+          "entry_count": 31,
+          "inspection_error": null
+        },
+        {
+          "path": "dagobahsaber.gob",
+          "bytes": 10054,
+          "sha256": "387331e8d1b96e12d09ddf2026f09c04dd1a523f00c819d2569d94aa7d1bd30b",
+          "entry_count": 3,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "yoda.txt",
+          "bytes": 801,
+          "sha256": "4721bfa9012eac81dcc4514263eb0604fb642c4183e30c1b824a1b44d23743d9"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 1,
+        "force_scripts": 16,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 25,
+      "massassi_id": 1286,
+      "title": "UWP 4: Perfect Darkness",
+      "author": "ID_Junkguy",
+      "page_url": "https://www.massassi.net/levels/files/1286.shtml",
+      "downloads": 5582,
+      "download_url": "https://www.massassi.net/levels/download/1286/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/uwp4.zip",
+      "original_filename": "uwp4.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "19b5f1def6c4d43d71ae407e6900b99fcfefb59632e4ed76e581356cc11702db",
+      "source_bytes": 1494531,
+      "source_page_sha256": "792190bed99dd496320e3d3b831b820d00ae52ec2b688c5b75ba417f2a934dba",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "UWP4.gob",
+          "bytes": 6182508,
+          "sha256": "011ef6ef1ce180ac352efa4852b10d2cdee49848dc4c83ccfdf4a549eae7ed8b",
+          "entry_count": 199,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4955,
+          "sha256": "84e00b15a7b014996f467bf6d38a185805e84091ce954360a979155f1201b000"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 10,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 26,
+      "massassi_id": 634,
+      "title": "Black and Yellow Flame Saber",
+      "author": "Vindicare",
+      "page_url": "https://www.massassi.net/levels/files/634.shtml",
+      "downloads": 5524,
+      "download_url": "https://www.massassi.net/levels/download/634/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/blackyellow.zip",
+      "original_filename": "blackyellow.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "100ce2adf32d0110a5c05cad85d7fdcdbcc10c724b7407987f070d535bec4592",
+      "source_bytes": 3007,
+      "source_page_sha256": "a1146e8defeb24ae7cbc1cbb092c94a84ac541966e96ac7a6d376b9b6f347a8a",
+      "classification": "saber-textures-only",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Black and Yellow Flame.gob",
+          "bytes": 10059,
+          "sha256": "efaf966fa0c8a65b991a2e35d07db1953b2a685a604c38688e3b8bf5ee782e8f",
+          "entry_count": 3,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4291,
+          "sha256": "3388f86bda871b0ff1e31534643a7f9bdd7b8bc9ebe1454d44984fdf26f8c9f3"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "recipe-implemented-structural-prototype",
+      "review_notes": [
+        "Exact material-only conversion rebuilt twice with identical complete output trees; engine visual/multiplayer validation is separate and not asserted by this inventory."
+      ],
+      "recipe_id": "mod-flame-saber"
+    },
+    {
+      "rank": 27,
+      "massassi_id": 1864,
+      "title": "Guardians of the Galaxy - Master Edition (16-bit)",
+      "author": "TIE",
+      "page_url": "https://www.massassi.net/levels/files/1864.shtml",
+      "downloads": 5512,
+      "download_url": "https://www.massassi.net/levels/download/1864/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/gotg-me-16bit.zip",
+      "original_filename": "gotg-me-16bit.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "fcdde75a57b3d8ac4578559fb85daf0aef3b111467ba6778c1c8f8bca860d288",
+      "source_bytes": 6438907,
+      "source_page_sha256": "13f405065fd8725647b33076f9296e9dff773fa0f1a96ce2ed05025501d27aa8",
+      "classification": "saber-gameplay-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "GoTG-ME.gob",
+          "bytes": 20839162,
+          "sha256": "1e04e5c5c67ff256ff8482255f1b56431cefdb3fc1ee42bbc50e9387c978e91d",
+          "entry_count": 897,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.doc",
+          "bytes": 16896,
+          "sha256": "aa30c64c2c19013157c65b5d3229138ae499290500894169c29547663b79ff39"
+        },
+        {
+          "path": "Master Edition.doc",
+          "bytes": 12288,
+          "sha256": "b8c26a13656ae6451cc3693762bdf80a08ae6c036f1347af6723d20b50bbc1cb"
+        },
+        {
+          "path": "hud.txt",
+          "bytes": 859,
+          "sha256": "82cf6eb2ab5463a7800a95fbc8f7cfb13b316892624180a5caa2627c38da18b7"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 2,
+        "force_scripts": 12,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 28,
+      "massassi_id": 684,
+      "title": "Anime Characters Skin Pack",
+      "author": "Anime_Shinji",
+      "page_url": "https://www.massassi.net/levels/files/684.shtml",
+      "downloads": 5490,
+      "download_url": "https://www.massassi.net/levels/download/684/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/animepack.zip",
+      "original_filename": "animepack.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "ca7f18607a29609cff500855241fb08ff737201d8edb4d0003e78eae40d9c9c9",
+      "source_bytes": 877791,
+      "source_page_sha256": "fd502df9ce7d31811bad287d539a70e15136c899913e47e0bd946ae5b9b3b7c4",
+      "classification": "multiplayer-skin-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [],
+      "readmes": [
+        {
+          "path": "Readme.txt",
+          "bytes": 1634,
+          "sha256": "932a3844b1670603e716608d82bb8cfae07bf6a3fc7ab2fd98b649245212a49d"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 29,
+      "massassi_id": 1643,
+      "title": "Saber Battle X - JK v1.0",
+      "author": "ShadowX",
+      "page_url": "https://www.massassi.net/levels/files/1643.shtml",
+      "downloads": 5435,
+      "download_url": "https://www.massassi.net/levels/download/1643/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/sbx10.zip",
+      "original_filename": "sbx10.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "61ee91ce3b4be666b2508a194d7e42c07f2c06b69e71c585b4fc0275379d90c0",
+      "source_bytes": 3496873,
+      "source_page_sha256": "6b102ed6fbb19ddc926c907bade0e49be585913183c71907792706b43a34fa12",
+      "classification": "saber-force-gameplay-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Saber Battle X - JK.gob",
+          "bytes": 11857911,
+          "sha256": "1257fa344b982b1fd85d8170832442cce3d8d09ec69ea340d6a86083a5d68942",
+          "entry_count": 1220,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "JK-MotS Improvement Tips.txt",
+          "bytes": 7934,
+          "sha256": "5ffa75e54cbeb01d53077fb38c8050f449dcba0c374d72788f54ea539afa0252"
+        },
+        {
+          "path": "Saber Battle X - JK.txt",
+          "bytes": 13171,
+          "sha256": "3969a27d7706f4eb0d6bfb303e1f8d0950b6e8dcaf57abda8a473629838e559b"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 2,
+        "force_scripts": 10,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [
+        {
+          "massassi_id": 1595,
+          "title": "Saber Battle X - MotS v1.0",
+          "author": "ShadowX",
+          "page_url": "https://www.massassi.net/levels/files/1595.shtml",
+          "page_sha256": "2cc5dd6d6313ddfb3537e08f811d73eb4c3913d25baecff43239424e5569d970",
+          "status": "official-native-entry-verified-content-not-compared"
+        },
+        {
+          "massassi_id": 1866,
+          "title": "Saber Battle X - MotS 3.0",
+          "author": "ShadowX",
+          "page_url": "https://www.massassi.net/levels/files/1866.shtml",
+          "page_sha256": "31247d2854b984e1e74409ea3fedc13012c65d9691c4521e956c64368519b3c0",
+          "status": "official-native-entry-verified-content-not-compared",
+          "source_archive_sha256": "909ad10a6bbe3954e0e7c20f5d55094a5fb68708716866102d439d8aac339908",
+          "direct_download_url": "https://www.massassi.net/media/levels/files/motsmod/sbx-motsv3.zip",
+          "goo_sha256": "49c2d136cffb6b6108ea29165d1245262713a7ff9ace472654768ee0e3e0c449"
+        }
+      ],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": [
+        "Native MotS SBX versions exist; do not equate the listed JK version with a different MotS version or exclude it from this ranking."
+      ]
+    },
+    {
+      "rank": 30,
+      "massassi_id": 513,
+      "title": "MiB Weaponz",
+      "author": "WAR_ShadowCAT",
+      "page_url": "https://www.massassi.net/levels/files/513.shtml",
+      "downloads": 5188,
+      "download_url": "https://www.massassi.net/levels/download/513/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/mib_gunzfinal.zip",
+      "original_filename": "mib_gunzfinal.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "670b040abbbb14fa9995c20c9357f11338721ea00145ff4da396765fe1d1db21",
+      "source_bytes": 1172907,
+      "source_page_sha256": "58edcaa9b2a27a2c4838af3823847fe61c224dd03d2ab6469cc4d67a44268b6e",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "MIBweaponz.gob",
+          "bytes": 3839536,
+          "sha256": "4dcee0ef92b542f75ad087d9c7732d5ad3be8bf71377dae322d32c956a048c09",
+          "entry_count": 219,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Readme.txt",
+          "bytes": 3915,
+          "sha256": "cccfb75eefde3be93b862d6e960613eafa74b48bf70afdf95aabb238ce31814b"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 9,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 31,
+      "massassi_id": 1937,
+      "title": "Rbots JK",
+      "author": "Raynar",
+      "page_url": "https://www.massassi.net/levels/files/1937.shtml",
+      "downloads": 5180,
+      "download_url": "https://www.massassi.net/levels/download/1937/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/rbots-jk.zip",
+      "original_filename": "rbots-jk.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "7352cd3a4b069932c42f533a1e380687a4fd90b7093e50f19bf064a04bee2380",
+      "source_bytes": 6806993,
+      "source_page_sha256": "c5afd6a8f9879a3210f79e8c7cf964de3a3649855bcfe2c7b3bd95d25d0cfefb",
+      "classification": "bot-gameplay-mod-with-levels",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "rbots-jk.gob",
+          "bytes": 26314345,
+          "sha256": "9a319c80c709e49cfb9afbe5db70fab85482bc2c60456952751951971aec5aef",
+          "entry_count": 269,
+          "inspection_error": null
+        },
+        {
+          "path": "rbots-patch-nohotkeys.gob",
+          "bytes": 30469,
+          "sha256": "f4324d4a098476238184cf030d5dd23d317b1ce896e3b9c128c108c1abea4f21",
+          "entry_count": 5,
+          "inspection_error": null
+        },
+        {
+          "path": "rbots-patch.gob",
+          "bytes": 87600,
+          "sha256": "6b97fca5b6aaab4309e134161d71923232ba803cbd4901d9ebc0c5754e209e64",
+          "entry_count": 10,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4552,
+          "sha256": "a94dd9a0a5974a1ab870356e6a63b46f7aef47cd96242c0827b92796a55263b4"
+        },
+        {
+          "path": "rbots.txt",
+          "bytes": 4668,
+          "sha256": "73abd3365f7cacd56ca371c131de63d302f96d6618291959ddbef4a5001c6785"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 12,
+        "level_jkls": [
+          "jkl/oasis-1.jkl",
+          "jkl/oasis-2.jkl",
+          "jkl/bgj-1.jkl",
+          "jkl/valley-1.jkl",
+          "jkl/nar-2.jkl",
+          "jkl/nar-1.jkl",
+          "jkl/nar-3.jkl",
+          "jkl/nar-4.jkl",
+          "jkl/oasis-4.jkl",
+          "jkl/valley-2.jkl",
+          "jkl/oasis-3.jkl",
+          "jkl/bes-1.jkl",
+          "jkl/bes-2.jkl",
+          "jkl/bes-3.jkl",
+          "jkl/bes-4.jkl",
+          "jkl/bgj-2.jkl",
+          "jkl/bgj-3.jkl",
+          "jkl/bgj-4.jkl",
+          "jkl/valley-3.jkl",
+          "jkl/valley-4.jkl"
+        ],
+        "static_world_archives": 0,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [
+        {
+          "massassi_id": 1938,
+          "title": "Rbots MotS",
+          "author": "Raynar",
+          "page_url": "https://www.massassi.net/levels/files/1938.shtml",
+          "page_sha256": "3425826e8bb011841b606ef20f7da9f1f01a7d642ce086aa4d1d81269c0b831b",
+          "status": "official-native-entry-verified-content-not-compared"
+        }
+      ],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 32,
+      "massassi_id": 1879,
+      "title": "Saber Blocking Plus Beta v0.1",
+      "author": "Chikyu-Jin",
+      "page_url": "https://www.massassi.net/levels/files/1879.shtml",
+      "downloads": 5123,
+      "download_url": "https://www.massassi.net/levels/download/1879/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/sbpbeta01.zip",
+      "original_filename": "sbpbeta01.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "852670789e28df54e408431210d4008268b00dfdb7cfd937a1cdd50a0acf04c3",
+      "source_bytes": 13365,
+      "source_page_sha256": "6ce967f0c105673da4c36e75faf8d270e3e613aa2d0dd2a945dc3d49615b4857",
+      "classification": "saber-gameplay-mod",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "SBPbeta01.gob",
+          "bytes": 86468,
+          "sha256": "aac65b47f37242a4cc33c76a51124d00d96f33dc4aa36b0ead558178f1327335",
+          "entry_count": 6,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4486,
+          "sha256": "f794e9aa4138d13c4db3f2768991c9804b0e7d2b52bdf0199c81681fdc34c750"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 33,
+      "massassi_id": 672,
+      "title": "Double Saber Skin Pack",
+      "author": "Dean Bedson",
+      "page_url": "https://www.massassi.net/levels/files/672.shtml",
+      "downloads": 5053,
+      "download_url": "https://www.massassi.net/levels/download/672/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/dbsabers.zip",
+      "original_filename": "dbsabers.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "c823a96d23881007576d7206ca1b5095dd4f94009ad0e6339297b7fe8e010f5b",
+      "source_bytes": 2279009,
+      "source_page_sha256": "d12b618e54f211d4c7bfb4098c1f23e7ac71b470545daf5702a28a1dcafdeac0",
+      "classification": "multiplayer-skin-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "dbsabers.gob",
+          "bytes": 9711968,
+          "sha256": "5fd6e3253644b2bc791090a138ba4a071edd98a77ba7354f0a3f0a1dd7c93aba",
+          "entry_count": 971,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "READTHIS!.txt",
+          "bytes": 1720,
+          "sha256": "39596773472ae27847476fe4a94f7066d557895abb3ebf786612971dc49e590d"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 1,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 34,
+      "massassi_id": 519,
+      "title": "Chaos Weapon Pack",
+      "author": "Hebedee",
+      "page_url": "https://www.massassi.net/levels/files/519.shtml",
+      "downloads": 5031,
+      "download_url": "https://www.massassi.net/levels/download/519/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/cwp.zip",
+      "original_filename": "cwp.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "8201c333f5532e6858e151949cb5af7c939b7c5ecf0a0a1598a4b6cc95f914ad",
+      "source_bytes": 528056,
+      "source_page_sha256": "cd56d9afe23058e83de8b5a9a7360d6ee7e824c40ad1b93830056fa89a7aeb50",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "cwp.gob",
+          "bytes": 2089348,
+          "sha256": "8c73c757f5d6714e905651ba86bbb2018f64ad40742ff6e932c35ea675092554",
+          "entry_count": 189,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Readme.txt",
+          "bytes": 4553,
+          "sha256": "6d40acea11f2d999b14523bdc5e8849aae6eb8c140369c1c0252abd872ee4fc9"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 10,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 35,
+      "massassi_id": 996,
+      "title": "Infiltrate!",
+      "author": "The JK Gangstas",
+      "page_url": "https://www.massassi.net/levels/files/996.shtml",
+      "downloads": 4889,
+      "download_url": "https://www.massassi.net/levels/download/996/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/infiltrate.zip",
+      "original_filename": "infiltrate.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "18233693fb2e1af5a82d67f9673c76d3ca263bd4fa96775102998117bbfb5cf7",
+      "source_bytes": 3280631,
+      "source_page_sha256": "d5546cff71997b3beb49c6062cfa80d667e10ddc1676b8d8c0a3eaae77246221",
+      "classification": "objective-gameplay-mod-with-levels",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "infiltrate.gob",
+          "bytes": 2465441,
+          "sha256": "b894d0ae9e594061f0cb5d3c9c8288cfaaf4bbc40b2c13ee6867c20994519187",
+          "entry_count": 121,
+          "inspection_error": null
+        },
+        {
+          "path": "inflev2.gob",
+          "bytes": 8750696,
+          "sha256": "d7259278799042c5d49638d3cf41e3c4c8aead5937394de796cce96e779b89b1",
+          "entry_count": 161,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Install.txt",
+          "bytes": 292,
+          "sha256": "19f4b46f088ad4aa3f4177fc104934adc49d59e2cbf7c6ab1b7d8e194e97f3a6"
+        },
+        {
+          "path": "Infiltrate.txt",
+          "bytes": 7392,
+          "sha256": "de1da1aacd312617a855e5c156ba483d66faa99f3c9585358c278f73b447e6af"
+        },
+        {
+          "path": "Strategy Guide.txt",
+          "bytes": 3289,
+          "sha256": "2d4a1e1b31038b19fc64b8bbbeff9583c9f6ecab419ce5ff8e2f52523f9c10e0"
+        },
+        {
+          "path": "readme.txt",
+          "bytes": 1014,
+          "sha256": "962098091ba788aba7e656ca9c319c54ef486de1b35dbd642c59a089af469d01"
+        },
+        {
+          "path": "LevelPack.txt",
+          "bytes": 3583,
+          "sha256": "64bda72e0767f0e9a4595824c7eac7fce71d6a3a4502c4556b2020a09f862e25"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 1,
+        "force_scripts": 3,
+        "level_jkls": [
+          "jkl/outlands.jkl",
+          "jkl/dark.jkl",
+          "jkl/pumping.jkl",
+          "jkl/blash.jkl",
+          "jkl/chaos.jkl",
+          "jkl/chaossabers.jkl",
+          "jkl/jailbreaksnipe.jkl",
+          "jkl/bagg.jkl"
+        ],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 36,
+      "massassi_id": 571,
+      "title": "Big Star Wars Pack",
+      "author": "Sebulba(HOV)",
+      "page_url": "https://www.massassi.net/levels/files/571.shtml",
+      "downloads": 4849,
+      "download_url": "https://www.massassi.net/levels/download/571/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/BSWP.zip",
+      "original_filename": "BSWP.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "584c21a20aa69c49c6e545b5d2498e55e849f29f460371c56bfb9ab6b95bed43",
+      "source_bytes": 7373609,
+      "source_page_sha256": "8e84ee6455ec0b656790197dea1054897dddbe8de34e308e3fe977e1a8f3431d",
+      "classification": "multiplayer-skin-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "BSWP.gob",
+          "bytes": 28334029,
+          "sha256": "0536ab239fb51617198f677778e5560fdff6ff7c686d876fd89fe76c668f0eab",
+          "entry_count": 2078,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "bswp credits.txt",
+          "bytes": 401,
+          "sha256": "3f389e51d48335874779ab307f663e4988175242787c6ae5b9de766bb39230e0"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 1,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 37,
+      "massassi_id": 913,
+      "title": "Army Guns Pack",
+      "author": "blindsaber",
+      "page_url": "https://www.massassi.net/levels/files/913.shtml",
+      "downloads": 4810,
+      "download_url": "https://www.massassi.net/levels/download/913/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/army.zip",
+      "original_filename": "army.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "6a8e11d58c126f40bd8fee3af6f2703569bf93c6da48ee67dae973ddf34b6f88",
+      "source_bytes": 132955,
+      "source_page_sha256": "50303f007f5a7ccde8a665456d318e8a30aadd389014f2faef9752f36533edc2",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "army.gob",
+          "bytes": 666732,
+          "sha256": "154980943191e49fe9052f316427c2229531125037dfb93d79b1cb9c0f28eba6",
+          "entry_count": 46,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4028,
+          "sha256": "a59db16bbcbbe34a43b09205ec906ac0a45e154e9d627c1bd71ba5abfce9a06d"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 6,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 38,
+      "massassi_id": 692,
+      "title": "Medival Weapons Pack",
+      "author": "TrooperX",
+      "page_url": "https://www.massassi.net/levels/files/692.shtml",
+      "downloads": 4806,
+      "download_url": "https://www.massassi.net/levels/download/692/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/medivalweapons.zip",
+      "original_filename": "medivalweapons.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "7521ac58e5b7db11205b83951e8ed19a6f9a37704d1ff840a617a81bb18ed4c2",
+      "source_bytes": 160815,
+      "source_page_sha256": "2a43b1c1aea989da9205f5c1c0dc7f337adaa25432a7bd432c31092b7d7130d1",
+      "classification": "weapon-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [],
+      "readmes": [
+        {
+          "path": "PleaseRead.txt",
+          "bytes": 576,
+          "sha256": "730932de3cb97b0111ab3dacf9bb7170832d8d86ab8255fec5127aae78fc4aeb"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 39,
+      "massassi_id": 545,
+      "title": "Matrix Skin Pack",
+      "author": "Matrix__Apoc",
+      "page_url": "https://www.massassi.net/levels/files/545.shtml",
+      "downloads": 4673,
+      "download_url": "https://www.massassi.net/levels/download/545/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/matrixskins.zip",
+      "original_filename": "matrixskins.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "93e82e8c5f2112478313acccec9341a59e8d120a3e44365c4c511570bc426566",
+      "source_bytes": 304761,
+      "source_page_sha256": "da1e512a6191e94e4a46b8f781ee4be57e1e532358ecb124d77daea0d07b67c4",
+      "classification": "multiplayer-skin-pack",
+      "classification_status": "model-material-dependencies-reviewed",
+      "archives": [
+        {
+          "path": "matrix.gob",
+          "bytes": 1491339,
+          "sha256": "8847b48cf340e6e02fd5ac394b8cf86eb18955ba8d3df183beb79ebcf375cdfb",
+          "entry_count": 72,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Matrix Skins readme.txt",
+          "bytes": 4178,
+          "sha256": "c9f31bdbeef1143cc4add09453eedc4e92693ffe7a927ee37d3cfa35a8978cb7"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "blocked-source-resource-omissions",
+      "review_notes": [
+        "Original readme additionally credits Elyas Machera; retain both author names.",
+        "Registered agent.3do references bond_hand.mat, bond_handi.mat and bondsole.mat absent from the original and pinned JK/MotS archives. Unregistered Luke model has further missing materials.",
+        "No guessed texture replacement or silent omission waiver: not selectable. All nine supplied models were inspected, including the unregistered model."
+      ],
+      "review_document": "SKIN_REVIEW.md"
+    },
+    {
+      "rank": 40,
+      "massassi_id": 1536,
+      "title": "Guardians of the Galaxy",
+      "author": "TIE",
+      "page_url": "https://www.massassi.net/levels/files/1536.shtml",
+      "downloads": 4644,
+      "download_url": "https://www.massassi.net/levels/download/1536/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/GotG.ZIP",
+      "original_filename": "GotG.ZIP",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "d5791bb5884e5382687534512b15f71fae2491c5e5ad6d3f002a029f9e5d524d",
+      "source_bytes": 5537906,
+      "source_page_sha256": "a1b3f4467e50ab2eb1d0d724cf560d2c76dfda130aacabb6ffedf20fddd2b6d0",
+      "classification": "saber-gameplay-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Guardians of the Galaxy.gob",
+          "bytes": 14037823,
+          "sha256": "8b42919ef43ac4a5301a7741f9a7b1d7c57c044153971d8db47dc825fc299f3a",
+          "entry_count": 524,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Music Instruction.txt",
+          "bytes": 1296,
+          "sha256": "a9ce7d0a8a117cf53bc2d3cd6b5eae3d02629d3750be99ce3e0fde28ae09da72"
+        },
+        {
+          "path": "Lightsaber Chart.txt",
+          "bytes": 626,
+          "sha256": "627a9a1b13dec6ee96206d99b23e48ac4fa4cc564cbe9281f0e0e98e95b86fb8"
+        },
+        {
+          "path": "Readme.txt",
+          "bytes": 6845,
+          "sha256": "ec340a2bba7da788dfaca088244b27a6138247226d53c0e601f35bc0e89c6f19"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 1,
+        "force_scripts": 5,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 41,
+      "massassi_id": 1966,
+      "title": "Stories Untold Mod",
+      "author": "Rod-Wan Deattrod and [L0rD]ArCh0n",
+      "page_url": "https://www.massassi.net/levels/files/1966.shtml",
+      "downloads": 4386,
+      "download_url": "https://www.massassi.net/levels/download/1966/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/storiesuntold.zip",
+      "original_filename": "storiesuntold.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "d72d1392aa7f4447f4764cbaf9e350c39f9e0b997f9c37ea28efb70cd0fc7da2",
+      "source_bytes": 13109100,
+      "source_page_sha256": "398ca8ff544f61dfef585fda0fe48f52b6a09995fb8d35a48688a8136e659665",
+      "classification": "gameplay-total-conversion",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "-=[Stories Untold]=-/-=[Stories Untold]=-.gob",
+          "bytes": 29594619,
+          "sha256": "057737a50209a05ef47b68732aa612bd331cd2fa4ffb6def4b4b797a37e8d598",
+          "entry_count": 1335,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "-=[Stories Untold]=-/-=[Stories Untold]=- Manual.doc",
+          "bytes": 173056,
+          "sha256": "cb397a5627b21aa82bbc75012180b7d494ccaba76c09d0a0438ec4126bd1f7dd"
+        },
+        {
+          "path": "-=[Stories Untold]=-/Mail.txt",
+          "bytes": 5640,
+          "sha256": "31c7e8178fcad2b81db1246c403ba9c51a25166d9510794c3d1cf34c259f5e92"
+        },
+        {
+          "path": "-=[Stories Untold]=-/Read-Me.txt",
+          "bytes": 243,
+          "sha256": "031fd366accc8d67aa521e58fd477538a451d1896c65323f4909ba0c9f8034a1"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 8,
+        "force_scripts": 13,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 42,
+      "massassi_id": 601,
+      "title": "Sith Sabers Skin Pack S.E.",
+      "author": "Dean Bedson",
+      "page_url": "https://www.massassi.net/levels/files/601.shtml",
+      "downloads": 4285,
+      "download_url": "https://www.massassi.net/levels/download/601/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/sithsabers.zip",
+      "original_filename": "sithsabers.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "038c93835d1b4b933800ed88b29c7c8a97b8110e33ee940ac2147dc20bab4ce7",
+      "source_bytes": 2104183,
+      "source_page_sha256": "470ca6171886f35e3f54dbe68da8ace4326a338413548d9ce8ed1fa930ef02ab",
+      "classification": "multiplayer-skin-pack",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "sithsabse.gob",
+          "bytes": 7689610,
+          "sha256": "f5c2b3417a235c84eeb03c6b4466b1ee5bb78009956ce0964126e51647670b81",
+          "entry_count": 741,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "README!!.txt",
+          "bytes": 4367,
+          "sha256": "55b7743e8fc581d585949456517062515cc3385e2ff96c62614745514abd3f57"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 1,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 43,
+      "massassi_id": 1088,
+      "title": "FBJK Ultimate MOD v3.0",
+      "author": "FBJK_Pretender",
+      "page_url": "https://www.massassi.net/levels/files/1088.shtml",
+      "downloads": 4215,
+      "download_url": "https://www.massassi.net/levels/download/1088/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/FBJKMOD3.ZIP",
+      "original_filename": "FBJKMOD3.ZIP",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "dca1ef80d05d48809c2050cea719b7eb64b38c156a6136070e36a0d85eb4de6a",
+      "source_bytes": 12031961,
+      "source_page_sha256": "a83a63cef124dcf92664d4e21d1e1288ba428cfcfa4f9cee03382d89378e3c49",
+      "classification": "weapons-force-gameplay-overhaul",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "fbjkultimate.gob",
+          "bytes": 37965598,
+          "sha256": "b11b149e770068f0568ebe902ad509994616c468ce4377f05906a2f63edb9522",
+          "entry_count": 2783,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "README.TXT",
+          "bytes": 7257,
+          "sha256": "3c54e17d9b64c881e00e17c11214852fbef9b1c531e309f04a661d00c7ac0f45"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [
+        {
+          "massassi_id": 931,
+          "title": "FBJK Ultimate Mod Patch v1.2",
+          "author": "FBJK_Pretender",
+          "page_url": "https://www.massassi.net/levels/files/931.shtml",
+          "page_sha256": "7a0818a801da097e8e9d862f7c82b0d6d2f7a254a7fa2a2c8384f125f088a67c",
+          "status": "official-native-entry-verified-content-not-compared"
+        },
+        {
+          "massassi_id": 889,
+          "title": "The FBJK Ultimate Mod Patch v1.1",
+          "author": "FBJK_Pretender",
+          "page_url": "https://www.massassi.net/levels/files/889.shtml",
+          "page_sha256": "4085e38d6395781a69d80aeadff408bd5b6189ff4a68240b0f153a3336274eb9",
+          "status": "official-native-entry-verified-content-not-compared"
+        }
+      ],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 44,
+      "massassi_id": 1605,
+      "title": "16-bit Saber Pack",
+      "author": "Evilution",
+      "page_url": "https://www.massassi.net/levels/files/1605.shtml",
+      "downloads": 4167,
+      "download_url": "https://www.massassi.net/levels/download/1605/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/16bsp.zip",
+      "original_filename": "16bsp.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "f809acb454472c500bf81102755d8261676ddb68df12dcd2cdcc7128d5911716",
+      "source_bytes": 179201,
+      "source_page_sha256": "2bd668373086bee4ae54003f3fc103968b5d4f9aa7aa318183a3f615e292290b",
+      "classification": "saber-textures-only",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "16BSP.gob",
+          "bytes": 174232,
+          "sha256": "2b0f7fa40d6d74576a8962cd2056376d511eac576982f2be8b071d24c5d0856a",
+          "entry_count": 14,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Readme.txt",
+          "bytes": 4757,
+          "sha256": "39a82be4134dbfb435e394ff624ad106552662c88dba59710dad5ab6b7ddf3a8"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "recipe-implemented-structural-prototype",
+      "review_notes": [
+        "Readme retains mutually inconsistent template permission choices; preserve it unchanged locally and do not imply redistributed asset permission.",
+        "Exact material-only conversion rebuilt twice with identical complete output trees; engine visual/multiplayer validation is separate and not asserted by this inventory."
+      ],
+      "recipe_id": "mod-16bit-sabers"
+    },
+    {
+      "rank": 45,
+      "massassi_id": 1284,
+      "title": "Swoop Beta 3",
+      "author": "Tom Smallwood/Brian Taylor",
+      "page_url": "https://www.massassi.net/levels/files/1284.shtml",
+      "downloads": 4087,
+      "download_url": "https://www.massassi.net/levels/download/1284/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/swoop3.zip",
+      "original_filename": "swoop3.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "bb7b51fbbe71e344ff592db796fa323241b3a1b64762aacb97603158d7e7961a",
+      "source_bytes": 1054414,
+      "source_page_sha256": "1c21e1265a361f5cdc0d7cd1d67144f51c8bc32a8ef9cfa1961a72ff19d9572d",
+      "classification": "vehicle-gameplay-mod-with-levels",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Swoop.gob",
+          "bytes": 3616071,
+          "sha256": "2fce72e79f2d0443854b072aaa068d8c6001e84e77aead4d30575958e59b43bd",
+          "entry_count": 62,
+          "inspection_error": null
+        },
+        {
+          "path": "SwoopPatch.gob",
+          "bytes": 96071,
+          "sha256": "9550c5b8946ae6776101a8672cc8895d0ae5e64bec79546fb362cf959f54126b",
+          "entry_count": 11,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "Swoop Read Me!.txt",
+          "bytes": 2792,
+          "sha256": "0de702e5d8caa8fa04d6bdbfc5c8c1d53705193dbab754215db13aca388abe97"
+        },
+        {
+          "path": "Swoop Info.txt",
+          "bytes": 4392,
+          "sha256": "22dfd544227d92428caa041db412d99b58556a14c343ed86006e40e33710c38e"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 4,
+        "force_scripts": 3,
+        "level_jkls": [
+          "jkl/parkinggarage.jkl",
+          "jkl/portugal.jkl",
+          "jkl/gap.jkl",
+          "jkl/crosstraffic.jkl",
+          "jkl/spoke.jkl"
+        ],
+        "static_world_archives": 0,
+        "has_inventory_table": true,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 46,
+      "massassi_id": 522,
+      "title": "Enhancement Pack 2.1",
+      "author": "Hideki",
+      "page_url": "https://www.massassi.net/levels/files/522.shtml",
+      "downloads": 4044,
+      "download_url": "https://www.massassi.net/levels/download/522/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/enhance21.zip",
+      "original_filename": "enhance21.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "010df14b3d27c432d29390c6a8a95efa7ee799f6075f46e782208155a4c28bf3",
+      "source_bytes": 1266969,
+      "source_page_sha256": "1da93803d190d81b0169ce1120a6ce115a81734f58d2ff952413ddd1a8f36c17",
+      "classification": "weapon-gameplay-enhancement",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "Enhance2.1.gob",
+          "bytes": 2402102,
+          "sha256": "2c417e0f4977f36a15a526dd33940def903b2ae27fc13cae3134f8209b8270b8",
+          "entry_count": 219,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "dmprobe.txt",
+          "bytes": 1943,
+          "sha256": "7d297059d06c5bd02d930af6a3a6a6d887f3370a9f83264b868b8aff285d95f0"
+        },
+        {
+          "path": "readme.html",
+          "bytes": 22534,
+          "sha256": "fcdae1cde97296cca86895d247e5b521d95719b38f85b74306dd085771c0d4f8"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 10,
+        "force_scripts": 6,
+        "level_jkls": [],
+        "static_world_archives": 1,
+        "has_inventory_table": true,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 47,
+      "massassi_id": 1487,
+      "title": "Mandalorian Armored Combat [M.A.C.]",
+      "author": "EAH_CL0wN",
+      "page_url": "https://www.massassi.net/levels/files/1487.shtml",
+      "downloads": 4037,
+      "download_url": "https://www.massassi.net/levels/download/1487/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/mac_mod.exe",
+      "original_filename": "mac_mod.exe",
+      "acquisition_status": "downloaded-opaque-container",
+      "source_sha256": "a7ef7d5260dc6ca352be3a271ad08ac1d64a366370945d85e3eea0b69a81d8e4",
+      "source_bytes": 957440,
+      "source_page_sha256": "e3c3e45f5529bd7d8d6b1652aca143816cc85d979358f96eca781839ae51a315",
+      "classification": "armor-weapons-movement-mod-with-skins",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "mac/gob/M.A.C.gob",
+          "bytes": 6360595,
+          "sha256": "78cb0b4b77b39387f4332ffcc61293f251e2f2bd0b0df6613d0f05f52186123a",
+          "member_count": 350,
+          "entries": [
+            {
+              "path": "3do/blobbullet.3do",
+              "bytes": 3267,
+              "sha256": "7977b30c85439b6e537c4360c2705a14bef650481f51be8b8e074848c96f01dd"
+            },
+            {
+              "path": "3do/bolt.3do",
+              "bytes": 12183,
+              "sha256": "cb903da89df45974aa5b79a9d95903197f94596650a67bf69aac28f22125d218"
+            },
+            {
+              "path": "3do/bow0.3do",
+              "bytes": 15278,
+              "sha256": "ee0b3d2b072d2b497a2ea9d3c35d3c71dc3f5d44c54651cc6a39a927f997c5fc"
+            },
+            {
+              "path": "3do/bow1.3do",
+              "bytes": 15278,
+              "sha256": "ee0b3d2b072d2b497a2ea9d3c35d3c71dc3f5d44c54651cc6a39a927f997c5fc"
+            },
+            {
+              "path": "3do/bowg.3do",
+              "bytes": 25106,
+              "sha256": "b8678226090500e83419306a461f6e18a1ce8db53d48e1a4db5cc23453d1c494"
+            },
+            {
+              "path": "3do/bowp.3do",
+              "bytes": 23908,
+              "sha256": "89811729e079c2f08e01d4516116786a7bb6f6247407733fe5352c8504ddb97b"
+            },
+            {
+              "path": "3do/bowv.3do",
+              "bytes": 53072,
+              "sha256": "fd3e580654981310ab6dc91972e5aa48c4a3924a65a64b063b5a5e754f69322d"
+            },
+            {
+              "path": "3do/bryg.3do",
+              "bytes": 21921,
+              "sha256": "419370642a5cad802e486cfef6ba5d71d367c677d3369654f82eca90526ecd0b"
+            },
+            {
+              "path": "3do/bryp.3do",
+              "bytes": 9410,
+              "sha256": "145529a4e6dcde25fb6afe60c586fd475439f6981b803a85e483b30e975dc8d9"
+            },
+            {
+              "path": "3do/bryv.3do",
+              "bytes": 26259,
+              "sha256": "87916054a38db57d72ee55231b35587ca2df5a79e92e734a6c22d5d037df6615"
+            },
+            {
+              "path": "3do/cheshire.3do",
+              "bytes": 67680,
+              "sha256": "cdcd47f4a08abb6ff8949e368be398b080382eea820bf85bc736ee34a1a8ba63"
+            },
+            {
+              "path": "3do/cheshire2.3do",
+              "bytes": 247442,
+              "sha256": "ff3c179d7fa650ec0200b8e8437c6d220f5486911cfc9b9b8c9c2400afd2634d"
+            },
+            {
+              "path": "3do/cong.3do",
+              "bytes": 58696,
+              "sha256": "c1075136461eea071ac3c2c8df260fec40252dfee4f9530f6920b29cbde5ab32"
+            },
+            {
+              "path": "3do/conp.3do",
+              "bytes": 61631,
+              "sha256": "cea846c1eed577bfc159e01996c4892ca22ff0f412b41bcb01b2cc4728db9da9"
+            },
+            {
+              "path": "3do/conv.3do",
+              "bytes": 72410,
+              "sha256": "9d773cf0d01f640d3182970f8d99e6a5e7006d2f69f835d7fce37c570ada649f"
+            },
+            {
+              "path": "3do/detg.3do",
+              "bytes": 31506,
+              "sha256": "8b16fb70fb876850b7d313a1a580f4a6797c7211fab3048a3af8af9a89f7c276"
+            },
+            {
+              "path": "3do/detp.3do",
+              "bytes": 30185,
+              "sha256": "cf842c55ed09f96fa773279cdde27a5e1209316696d1f684398de37741df19e4"
+            },
+            {
+              "path": "3do/detv.3do",
+              "bytes": 48213,
+              "sha256": "5be187bb443a3e6c89c32f29d45089349f3b941a1ef11a101221cc727b9aeab0"
+            },
+            {
+              "path": "3do/fistg.3do",
+              "bytes": 17187,
+              "sha256": "cda1dd230c4a5952bb93851b20144ba6e98bebc83c4576c2ca85ac919674977b"
+            },
+            {
+              "path": "3do/fistv.3do",
+              "bytes": 64375,
+              "sha256": "d1ad81cfee557dd9572a17383328a080fe8be8f637b2841393417db01217424a"
+            },
+            {
+              "path": "3do/frocket.3do",
+              "bytes": 6903,
+              "sha256": "210fb57705efcfbbc72df2793bdfbef834cd14c2427b92291b57fcfa7ed3e2f9"
+            },
+            {
+              "path": "3do/grappleball.3do",
+              "bytes": 20001,
+              "sha256": "8043504bec49be8caf0cb56c7cca62081352834afb5f012d5000d41aae27e668"
+            },
+            {
+              "path": "3do/heatdisk.3do",
+              "bytes": 3089,
+              "sha256": "b83712289fdf5ae80cfbb5f32fc273bb02aa084e7c8d1521de2459ebfb509eb9"
+            },
+            {
+              "path": "3do/ky.3do",
+              "bytes": 80274,
+              "sha256": "d27721390023c0299d22faca8ebfd719e9c8a05f5c6570ac632793ae8e9e981b"
+            },
+            {
+              "path": "3do/kya11.3do",
+              "bytes": 78476,
+              "sha256": "244f78aa0fd20d3f8eb7c0d0631b2447a30751c2ee2f5349f19a45cc84055aad"
+            },
+            {
+              "path": "3do/kya12.3do",
+              "bytes": 49203,
+              "sha256": "72a45a00b27cbade26631f6b979d5210aeb5d50271e510f53c146d4f92ad2299"
+            },
+            {
+              "path": "3do/kyb3.3do",
+              "bytes": 76382,
+              "sha256": "9a8e80fc8218e6d32000ad7fa8a5399caedbeb1539bf5783b8e2c20df55c49a0"
+            },
+            {
+              "path": "3do/kyc5.3do",
+              "bytes": 78648,
+              "sha256": "df72da386760f39f73afd20624a4338961a0bc1d7c3218dee942eea3f590ec80"
+            },
+            {
+              "path": "3do/kyd0.3do",
+              "bytes": 80958,
+              "sha256": "b158d8d52100a37315a343ccf356dd2b479a81b028ad3d62e40808a16da72bb1"
+            },
+            {
+              "path": "3do/kyf2.3do",
+              "bytes": 79036,
+              "sha256": "c8d49a6fd3afb1a65f91dd00e095802444037a1ea5c64d5c0b4b6565836c29d3"
+            },
+            {
+              "path": "3do/kyg7.3do",
+              "bytes": 39588,
+              "sha256": "0039fdb579dd3b7720f4fcc9c94d976d5b711f387ba7c6f0993c518571d591fb"
+            },
+            {
+              "path": "3do/kyj1.3do",
+              "bytes": 101615,
+              "sha256": "ce86c13c4bef81a69328623523886b136485d90938b6ac36aecd4dc4307731c7"
+            },
+            {
+              "path": "3do/kyk7.3do",
+              "bytes": 247453,
+              "sha256": "8f9d764fc9fbd1df75c7e9578f67ddff41954ec2c42e98d82d75e0c46bfe91f9"
+            },
+            {
+              "path": "3do/kyl8.3do",
+              "bytes": 59656,
+              "sha256": "de384c51a48d79940d04ce85073144230180e42d625127968b48e71a32349f1e"
+            },
+            {
+              "path": "3do/mat/am4arm.mat",
+              "bytes": 2188,
+              "sha256": "fb9b240cd356f05157934e9ecf1370623551459efe8f14a40971d59e18409378"
+            },
+            {
+              "path": "3do/mat/amantena.mat",
+              "bytes": 4236,
+              "sha256": "bff04a2c405412e03ab6142e1d5738e84a22ebed2df2628bee2df99281d56c80"
+            },
+            {
+              "path": "3do/mat/amarm.mat",
+              "bytes": 2188,
+              "sha256": "6c33adb9853ba81de78d6476ab1624c32f7a5670c720da048bb274ea881bef9b"
+            },
+            {
+              "path": "3do/mat/amback.mat",
+              "bytes": 4236,
+              "sha256": "e66b6ba9bf7956a42162f6dfc0a5410d5c3b50ca084e2d7fe025015756fde700"
+            },
+            {
+              "path": "3do/mat/ambhand.mat",
+              "bytes": 2188,
+              "sha256": "fb9b240cd356f05157934e9ecf1370623551459efe8f14a40971d59e18409378"
+            },
+            {
+              "path": "3do/mat/ambutt.mat",
+              "bytes": 2188,
+              "sha256": "31dacf66451cc9c9d41607666f98d481a2d33b652c4fa5c3e8b3c0c88ca9c895"
+            },
+            {
+              "path": "3do/mat/amchest.mat",
+              "bytes": 4236,
+              "sha256": "4b1d154e603e0642aa033b7bb8ecc1d648dc7372aa21a70aa31259c1d4967507"
+            },
+            {
+              "path": "3do/mat/amcollar.mat",
+              "bytes": 4236,
+              "sha256": "cf3f7bb8883349d6715a987dbc3f3b8f783659f78f18dc017f35af4a9e3b7b02"
+            },
+            {
+              "path": "3do/mat/amcollarb.mat",
+              "bytes": 4236,
+              "sha256": "cf3f7bb8883349d6715a987dbc3f3b8f783659f78f18dc017f35af4a9e3b7b02"
+            },
+            {
+              "path": "3do/mat/amfoot.mat",
+              "bytes": 2188,
+              "sha256": "189b246a6406c026167771f597965bd1f64c7034a824929fe56453c04dd7b566"
+            },
+            {
+              "path": "3do/mat/amhdbk.mat",
+              "bytes": 4236,
+              "sha256": "b33f6419a681a96868a0da4bdd1d2412e66551bc12b0ea7589e2cefff7d3fa7e"
+            },
+            {
+              "path": "3do/mat/amhdfr.mat",
+              "bytes": 4236,
+              "sha256": "da6ef2c2a107e722f060022679a8c44236fb74fc9d7acfe89914e04096211eee"
+            },
+            {
+              "path": "3do/mat/amhdfr2.mat",
+              "bytes": 4236,
+              "sha256": "0325358b9b04966b3fce2d39c1ec54bba384b4628f693308064c4499071adcdb"
+            },
+            {
+              "path": "3do/mat/amhdsd.mat",
+              "bytes": 4236,
+              "sha256": "020dda8c4fbf66d840620c7c6e7815fc58a96f3973575574c3894473c5d58f1f"
+            },
+            {
+              "path": "3do/mat/amhdtp.mat",
+              "bytes": 4236,
+              "sha256": "bff04a2c405412e03ab6142e1d5738e84a22ebed2df2628bee2df99281d56c80"
+            },
+            {
+              "path": "3do/mat/amhip.mat",
+              "bytes": 2188,
+              "sha256": "3e809302a1ce43c444412b78d67450343e70c5e4621ca62f1ae29f8771b900c0"
+            },
+            {
+              "path": "3do/mat/amleg.mat",
+              "bytes": 2188,
+              "sha256": "d161e981c4401d21a0fa58d91c7e7bf10e705c896089e56889f46c67bfec841e"
+            },
+            {
+              "path": "3do/mat/amlpad.mat",
+              "bytes": 4236,
+              "sha256": "cf3f7bb8883349d6715a987dbc3f3b8f783659f78f18dc017f35af4a9e3b7b02"
+            },
+            {
+              "path": "3do/mat/amrpad.mat",
+              "bytes": 4236,
+              "sha256": "cf3f7bb8883349d6715a987dbc3f3b8f783659f78f18dc017f35af4a9e3b7b02"
+            },
+            {
+              "path": "3do/mat/amthigh.mat",
+              "bytes": 2188,
+              "sha256": "25b3cd563bd59dee82a8962698f1eeb282b50f7f0c9670945fbd08b3941d9f49"
+            },
+            {
+              "path": "3do/mat/blackadi.mat",
+              "bytes": 16524,
+              "sha256": "5e368af4c8b6a0eb01cb9d2337c1ab9671842d1f054891ffe7e3f858be3402ea"
+            },
+            {
+              "path": "3do/mat/bob4arm1.mat",
+              "bytes": 2188,
+              "sha256": "c7e718ffb12270efba60930edc045957766faa17c41db880bfcf0ffa936babec"
+            },
+            {
+              "path": "3do/mat/bob4arm2.mat",
+              "bytes": 2188,
+              "sha256": "9730f262dd2b0d7323084685766f78dad57b89e5bc675c772418469093e81df9"
+            },
+            {
+              "path": "3do/mat/bobarm.mat",
+              "bytes": 2188,
+              "sha256": "b6c2310b4ba448277510c48a31b9eb1b8c64122a370868107513538e738beefc"
+            },
+            {
+              "path": "3do/mat/bobbot.mat",
+              "bytes": 100,
+              "sha256": "8bfd9d33357a0932c6fe917d9deb464616165ea08205a6e20c0332991c5799a0"
+            },
+            {
+              "path": "3do/mat/bobcape.mat",
+              "bytes": 2188,
+              "sha256": "2e6b1244e8dd7df36988d08f363c4a7186146b75dc205891430420aafbc5a3dc"
+            },
+            {
+              "path": "3do/mat/bobchest.mat",
+              "bytes": 4236,
+              "sha256": "35cd3e0181ebdc14ee24f117e6375ae9a35c71de7a3148a253c5c05dfb9f5aff"
+            },
+            {
+              "path": "3do/mat/bobfoot.mat",
+              "bytes": 2188,
+              "sha256": "16dd4287f5df669d8d46df70b0a7bd74ad7f7029e888bf7cd1091e21b317ce8d"
+            },
+            {
+              "path": "3do/mat/bobhand.mat",
+              "bytes": 1164,
+              "sha256": "398ff85a9fbd07e2aafc287299c39a1a0808507ff43c7b2538a1f44b0bccd1c3"
+            },
+            {
+              "path": "3do/mat/bobhandi.mat",
+              "bytes": 1164,
+              "sha256": "2403ee5c72128860bdeb76ab77688dd4cd27ec51e3b2572decd7c747936369eb"
+            },
+            {
+              "path": "3do/mat/bobhdbk.mat",
+              "bytes": 4236,
+              "sha256": "277ca318ab36c4dd74f3d4ac70c15243af6d402d9f0b62e22936e3dcf5951b70"
+            },
+            {
+              "path": "3do/mat/bobhdfr.mat",
+              "bytes": 4236,
+              "sha256": "b56ec70bcc448923cab48c4f886d07b74d96870ad31f3e4614fd81faa415597d"
+            },
+            {
+              "path": "3do/mat/bobhip.mat",
+              "bytes": 2188,
+              "sha256": "9c98e2d9c2573d420c5b3b3baf511736d6e4a41c9516f12a3c4fab311419180e"
+            },
+            {
+              "path": "3do/mat/bobjet.mat",
+              "bytes": 4236,
+              "sha256": "b3cd144cbdf28656f557f81d7552ca19888a61a58a430ffbbcc77ed8ac62e477"
+            },
+            {
+              "path": "3do/mat/bobleg.mat",
+              "bytes": 2188,
+              "sha256": "78b6b05342560c7f4266c0a62c602e9f7f02d221f321b2289e1f7a70612a68b0"
+            },
+            {
+              "path": "3do/mat/bobneck.mat",
+              "bytes": 2188,
+              "sha256": "cf8f06f08cd6e81b18c546753755d2bacec83d53719611a9aaf3ea3c4d3b07e5"
+            },
+            {
+              "path": "3do/mat/bobrock.mat",
+              "bytes": 1164,
+              "sha256": "c57da9e8005c6a6f5ac7b484547b4d3eb9ff6f2a8e7f889718198db0112d62d6"
+            },
+            {
+              "path": "3do/mat/bobthigh.mat",
+              "bytes": 2188,
+              "sha256": "cef633a4adc33aba8377722875a900ced62727d0b536b6ed557b03735976d1c9"
+            },
+            {
+              "path": "3do/mat/ches4arm.mat",
+              "bytes": 2188,
+              "sha256": "78bb65606dde90dcd6947c17baf6a62ec76bee13174b79d3446c8b77a314bb12"
+            },
+            {
+              "path": "3do/mat/chesantena.mat",
+              "bytes": 1164,
+              "sha256": "4567d50b46f3af3492e22ada39d60a56b6596dc24ecc8dfe76eb9a008fcca7d2"
+            },
+            {
+              "path": "3do/mat/chesarm.mat",
+              "bytes": 2188,
+              "sha256": "6249642b681e3e38bd3381a8a11ee27f7af4c8bfb449f8f8c9a69f2c31e943a8"
+            },
+            {
+              "path": "3do/mat/chesback.mat",
+              "bytes": 4236,
+              "sha256": "39d4bdf3bae411172a932b1eca2cdddbd0751fd16d4ed77dd93e212ea9abcb16"
+            },
+            {
+              "path": "3do/mat/chesbutt.mat",
+              "bytes": 2188,
+              "sha256": "c6e7a3978964b539393d75cd316e06bbc5b30b3b8d7c91ef6a682abacb0bc1a7"
+            },
+            {
+              "path": "3do/mat/cheschest.mat",
+              "bytes": 4236,
+              "sha256": "f30019d085fa4ae9de3a80ad9c925bed22327f6ed3bb6c3f26c50e1e8f63fb2f"
+            },
+            {
+              "path": "3do/mat/chesfoot.mat",
+              "bytes": 1164,
+              "sha256": "4567d50b46f3af3492e22ada39d60a56b6596dc24ecc8dfe76eb9a008fcca7d2"
+            },
+            {
+              "path": "3do/mat/chesfotop.mat",
+              "bytes": 1164,
+              "sha256": "4567d50b46f3af3492e22ada39d60a56b6596dc24ecc8dfe76eb9a008fcca7d2"
+            },
+            {
+              "path": "3do/mat/cheshand.mat",
+              "bytes": 1164,
+              "sha256": "897248c1db6f2d15f9795972c31a011ca082f284540d5689d8e294f0280f837c"
+            },
+            {
+              "path": "3do/mat/cheshandf.mat",
+              "bytes": 1164,
+              "sha256": "897248c1db6f2d15f9795972c31a011ca082f284540d5689d8e294f0280f837c"
+            },
+            {
+              "path": "3do/mat/cheshdbk.mat",
+              "bytes": 4236,
+              "sha256": "51e216f3e1f53aeea3ecdfaf63481464af367748c51036a583a707761dbd4614"
+            },
+            {
+              "path": "3do/mat/cheshdfr.mat",
+              "bytes": 4236,
+              "sha256": "36bf428e891de2da94f31ee85d1d3b727ec0b21c24775c8efd5d63bd79697572"
+            },
+            {
+              "path": "3do/mat/cheship.mat",
+              "bytes": 2188,
+              "sha256": "c6e7a3978964b539393d75cd316e06bbc5b30b3b8d7c91ef6a682abacb0bc1a7"
+            },
+            {
+              "path": "3do/mat/chesjetpak.mat",
+              "bytes": 4236,
+              "sha256": "69dcdcef14af21d62646dcd88b87b3aa9f964d2084063147a6b7a5256ca647ca"
+            },
+            {
+              "path": "3do/mat/chesleg.mat",
+              "bytes": 2188,
+              "sha256": "d00f7b6fa0b8942ea004fc62bc49e299951a3908b09e8d3416defb257acebefb"
+            },
+            {
+              "path": "3do/mat/chesneck.mat",
+              "bytes": 1164,
+              "sha256": "aabbae3d946fff298ac9dc9a2c298b99d937260b100a6d27fdf0b80a0e3e8d66"
+            },
+            {
+              "path": "3do/mat/chespad.mat",
+              "bytes": 1164,
+              "sha256": "4567d50b46f3af3492e22ada39d60a56b6596dc24ecc8dfe76eb9a008fcca7d2"
+            },
+            {
+              "path": "3do/mat/chesrocket.mat",
+              "bytes": 1164,
+              "sha256": "ed4c8c227df3cae427d97f6724aedf759a48bfb3c3ba04a1ce2456e1b40f0d41"
+            },
+            {
+              "path": "3do/mat/chessole.mat",
+              "bytes": 652,
+              "sha256": "1b16e81c94b6d74e3d7e4df6de38b52fe0055cf6aa9017c4971bd639fb499bcc"
+            },
+            {
+              "path": "3do/mat/chesthighl.mat",
+              "bytes": 2188,
+              "sha256": "58df1b950f1e2dbeecb8e799d6b85e1c503154abf7a39dea8b583c8200227f89"
+            },
+            {
+              "path": "3do/mat/chesthighr.mat",
+              "bytes": 2188,
+              "sha256": "b9a0e57abff50163e870ca2b80b2316d195e1ea2ea632482ca42f43d89d14d09"
+            },
+            {
+              "path": "3do/mat/clowna4arm.mat",
+              "bytes": 4236,
+              "sha256": "902913af39a6b003d939d40a0114e63e077d4cae364f3151297cd4f5c163599b"
+            },
+            {
+              "path": "3do/mat/clownaarm.mat",
+              "bytes": 2188,
+              "sha256": "d85f617da2db2eca2318075f174dc6f2500ba524b0cc6dfd0af723c598ba57cc"
+            },
+            {
+              "path": "3do/mat/clownaback.mat",
+              "bytes": 4236,
+              "sha256": "315abb499beb59ebc9025eec4f143c328b0030751fd880f9a59ac4aeca072877"
+            },
+            {
+              "path": "3do/mat/clownabutt.mat",
+              "bytes": 2188,
+              "sha256": "58e4e047541adc1911a0f7010fdb55b7f8745b90bb1a6d036f665c61baa7c342"
+            },
+            {
+              "path": "3do/mat/clownachest.mat",
+              "bytes": 4236,
+              "sha256": "b6c765a5a3b7c6134eecaeb92462f6b48d122ae04efbfc83afb79cc7f817d81d"
+            },
+            {
+              "path": "3do/mat/clownafoot.mat",
+              "bytes": 2188,
+              "sha256": "f4a084deb56f2da381e20319376e4c3ec31802cb1838e45c88b74f989987a474"
+            },
+            {
+              "path": "3do/mat/clownahand.mat",
+              "bytes": 4236,
+              "sha256": "83bab9c67351cc8019b8c1e5cf58d541de6aaf35c34c8af6cccaa65a73a6bb9f"
+            },
+            {
+              "path": "3do/mat/clownahdbk.mat",
+              "bytes": 4236,
+              "sha256": "cd621a77c8504b5c027320988d161cd9ab1e0e15a763f59a0336835ae6e6dda4"
+            },
+            {
+              "path": "3do/mat/clownahdfr.mat",
+              "bytes": 4236,
+              "sha256": "f971583142476121d9850f790a1000a5203717dae166eecffd3a291d457cf198"
+            },
+            {
+              "path": "3do/mat/clownahdsd.mat",
+              "bytes": 4236,
+              "sha256": "fbf1d01f7dd17ff664f434716ea866a5579f560cf0c18b03ba6209635dc82a52"
+            },
+            {
+              "path": "3do/mat/clownahdsdr.mat",
+              "bytes": 4236,
+              "sha256": "654da3c1d6fdda4c37b1a83eef8c091a45643a81301de312a9e43707ba649bbe"
+            },
+            {
+              "path": "3do/mat/clownahdtp.mat",
+              "bytes": 4236,
+              "sha256": "78ab98d402e324de524eee1170d3d80644da4cb56f567753e73e5cc45a4b753e"
+            },
+            {
+              "path": "3do/mat/clownahip.mat",
+              "bytes": 2188,
+              "sha256": "eca65856eb1711701fd8e4797820165b8d7080395326c6f802da5dbe0e8c7364"
+            },
+            {
+              "path": "3do/mat/clownajetpak.mat",
+              "bytes": 4236,
+              "sha256": "1a5ae6987e79fa6080b8ce69806c0091f5e138b3169da41d4b62face56bf8ebe"
+            },
+            {
+              "path": "3do/mat/clownaleg.mat",
+              "bytes": 2188,
+              "sha256": "fd5ac3a3d31ee75d6d86acbf21026dcda224fddb7ac8ecf9c7b31cc08f598b4c"
+            },
+            {
+              "path": "3do/mat/clownalegb.mat",
+              "bytes": 2188,
+              "sha256": "61e096f6d468603e5b8b5fbf1bf8a73b66be3f213a85e38d49524eea8129ecc3"
+            },
+            {
+              "path": "3do/mat/clownaneck.mat",
+              "bytes": 396,
+              "sha256": "035c2eaa5c4efaca83f3a038e824e1b9e8f6f21732238fae96fc02c2e754fc6b"
+            },
+            {
+              "path": "3do/mat/clownapad.mat",
+              "bytes": 1164,
+              "sha256": "927c0ffaea9788ecd61ca6ea5ca6e97e84a6afbbe2089207ff26de2eed08a66d"
+            },
+            {
+              "path": "3do/mat/clownasole.mat",
+              "bytes": 652,
+              "sha256": "1b16e81c94b6d74e3d7e4df6de38b52fe0055cf6aa9017c4971bd639fb499bcc"
+            },
+            {
+              "path": "3do/mat/clownaspike.mat",
+              "bytes": 4236,
+              "sha256": "78ab98d402e324de524eee1170d3d80644da4cb56f567753e73e5cc45a4b753e"
+            },
+            {
+              "path": "3do/mat/clownathigh.mat",
+              "bytes": 2188,
+              "sha256": "901c2ccaa78d9f41971b6f9da0841c99caad268a332311e425d5e84ff372f157"
+            },
+            {
+              "path": "3do/mat/clownhilt.mat",
+              "bytes": 1164,
+              "sha256": "88369f2e97b31d2374586b790ebfb10a3e9848d596e4b5dda16cd0df05c83d37"
+            },
+            {
+              "path": "3do/mat/clownhilt2.mat",
+              "bytes": 1164,
+              "sha256": "a26db5d5c48ce804abf5422cebf5a1ef0bc1172805ee3d3a2611855704aef45b"
+            },
+            {
+              "path": "3do/mat/disk.mat",
+              "bytes": 4236,
+              "sha256": "5c189e58c70d5732cea27c2e5f94b2fff9155386bc1c00bdb29c2d25fe63da71"
+            },
+            {
+              "path": "3do/mat/eah4arm.mat",
+              "bytes": 4236,
+              "sha256": "1bb780579db100174a610eaf39bec333c1f4bb7dcecd5e2ca1ca4908c3415acd"
+            },
+            {
+              "path": "3do/mat/eaharm.mat",
+              "bytes": 4236,
+              "sha256": "1bb780579db100174a610eaf39bec333c1f4bb7dcecd5e2ca1ca4908c3415acd"
+            },
+            {
+              "path": "3do/mat/eahback.mat",
+              "bytes": 4236,
+              "sha256": "1bb780579db100174a610eaf39bec333c1f4bb7dcecd5e2ca1ca4908c3415acd"
+            },
+            {
+              "path": "3do/mat/eahbutt.mat",
+              "bytes": 8332,
+              "sha256": "f7bac9c2f5d19fc07c0d1af2be27e8dce34c9ac3b131f444e8b1c93db805d8fe"
+            },
+            {
+              "path": "3do/mat/eahchest.mat",
+              "bytes": 4236,
+              "sha256": "1437ba0bfa1ac4c266b694fc611f3fe775b375f142569ca42557562c2fc39bc8"
+            },
+            {
+              "path": "3do/mat/eahfoot.mat",
+              "bytes": 2188,
+              "sha256": "c7273c48a4fc97820c27d7aba7f908f67f1c3c055514d7776d1117f15bbadec6"
+            },
+            {
+              "path": "3do/mat/eahhand.mat",
+              "bytes": 1164,
+              "sha256": "7c76ac88199209c299d231f347bc59a9f2c251ac06f5c37e92718cdac6322d05"
+            },
+            {
+              "path": "3do/mat/eahhandf.mat",
+              "bytes": 1164,
+              "sha256": "cb68c6ed6598a22b3f61c35c35b9dbb30d62a92273d3635e60e7b7a1db165a58"
+            },
+            {
+              "path": "3do/mat/eahhdbk.mat",
+              "bytes": 4236,
+              "sha256": "f854f902b20b1448ddc58d4d681475be8027f79e66ef3cf8ebe65c5911edc7fd"
+            },
+            {
+              "path": "3do/mat/eahhdfr.mat",
+              "bytes": 4236,
+              "sha256": "13d705d77cb26af1bd431447bea4efea306d2cedee1d0f406cceaa3a6a806387"
+            },
+            {
+              "path": "3do/mat/eahhdsd.mat",
+              "bytes": 4236,
+              "sha256": "7d686410e2aa2a352c3defcdbf43fcb66b5cc95f5ca42d02a4ccd76787df0635"
+            },
+            {
+              "path": "3do/mat/eahhip.mat",
+              "bytes": 8332,
+              "sha256": "f7bac9c2f5d19fc07c0d1af2be27e8dce34c9ac3b131f444e8b1c93db805d8fe"
+            },
+            {
+              "path": "3do/mat/eahhorn.mat",
+              "bytes": 652,
+              "sha256": "8c69aa02395bd775f75fa6d5496cf5f3f58486d42e0a9e3c724e95baec20eb91"
+            },
+            {
+              "path": "3do/mat/eahjetpak.mat",
+              "bytes": 4236,
+              "sha256": "45f917f527314e6b74d24bc25e0e174176a97e102a8d16a0be880235a78f8613"
+            },
+            {
+              "path": "3do/mat/eahleg.mat",
+              "bytes": 2188,
+              "sha256": "047458a4687de1792b4468ef7fc4badb5bbc84f26a1750fc9d920727753231e7"
+            },
+            {
+              "path": "3do/mat/eahneck.mat",
+              "bytes": 1164,
+              "sha256": "ef0be5730f13bfe0ebcfb46ff063b86d79c4e41fc7def1ca1f590d05fc4dcc63"
+            },
+            {
+              "path": "3do/mat/eahrobe.mat",
+              "bytes": 8332,
+              "sha256": "f7bac9c2f5d19fc07c0d1af2be27e8dce34c9ac3b131f444e8b1c93db805d8fe"
+            },
+            {
+              "path": "3do/mat/eahrocket.mat",
+              "bytes": 1164,
+              "sha256": "9d39d42b6ce8085c2137a93528aafb9a016ee669a142e537d4ea6fa091bb15e4"
+            },
+            {
+              "path": "3do/mat/eahsole.mat",
+              "bytes": 652,
+              "sha256": "1b16e81c94b6d74e3d7e4df6de38b52fe0055cf6aa9017c4971bd639fb499bcc"
+            },
+            {
+              "path": "3do/mat/eahspad.mat",
+              "bytes": 1164,
+              "sha256": "5962b8036efcba00c6c2ecbc554ac8d3410a45c7f0c8fe3661f312a14362be89"
+            },
+            {
+              "path": "3do/mat/eahspadr.mat",
+              "bytes": 1164,
+              "sha256": "84c1642193c5fdb625fab90cd0ac34c1af299353ffe5c13ba163f0426fdba41c"
+            },
+            {
+              "path": "3do/mat/fia4arm.mat",
+              "bytes": 1164,
+              "sha256": "b079e733be69035a72f7f0fe0fc41dc117034efb73e7823ba3dd98a6c84eaf64"
+            },
+            {
+              "path": "3do/mat/fiaantena.mat",
+              "bytes": 1164,
+              "sha256": "4c06db92a530ef6424cf27d7378662beeee01bf9ddc51840ada1db302d68b815"
+            },
+            {
+              "path": "3do/mat/fiaarm.mat",
+              "bytes": 1164,
+              "sha256": "b079e733be69035a72f7f0fe0fc41dc117034efb73e7823ba3dd98a6c84eaf64"
+            },
+            {
+              "path": "3do/mat/fiaback.mat",
+              "bytes": 8332,
+              "sha256": "39ee6603b53da8b9c4ed0d76b92f6c8d9791ca0932e93f0d4fb6086d514beb5d"
+            },
+            {
+              "path": "3do/mat/fiabhand.mat",
+              "bytes": 1164,
+              "sha256": "b079e733be69035a72f7f0fe0fc41dc117034efb73e7823ba3dd98a6c84eaf64"
+            },
+            {
+              "path": "3do/mat/fiabutt.mat",
+              "bytes": 8332,
+              "sha256": "ca35aea6e24e8976d88ae2c81481d489aba576b843e822479d13d59a9194ef6e"
+            },
+            {
+              "path": "3do/mat/fiachest.mat",
+              "bytes": 8332,
+              "sha256": "2db925a146d0a7a99916e4cfd1caf6179c4a1d2d0b629b6e36bd64f027429b30"
+            },
+            {
+              "path": "3do/mat/fiacollar.mat",
+              "bytes": 1164,
+              "sha256": "7872ec161ed240ca6d2714f16d7f2189f8021bc85c2a6e45def54c6aed9997bb"
+            },
+            {
+              "path": "3do/mat/fiacollarb.mat",
+              "bytes": 1164,
+              "sha256": "1fe4c36b39fc71e8e7bef19104eae1e44c98eed8e0b860218cd071fa2180f9b5"
+            },
+            {
+              "path": "3do/mat/fiafoot.mat",
+              "bytes": 2188,
+              "sha256": "8f1d1c70b12b3f453e296fe44b1bd4d7708928f297dcf53a9635a2c947e2cbb9"
+            },
+            {
+              "path": "3do/mat/fiahdbk.mat",
+              "bytes": 2188,
+              "sha256": "5e8307ebe0699ca53c2d427e10f6b6ab504bb07b8b3670e14824eb2861399b8a"
+            },
+            {
+              "path": "3do/mat/fiahdfr.mat",
+              "bytes": 4236,
+              "sha256": "77331562113c5b4d0b3a4ef45fbe6703c7d1a6a1283fbccefa00ab9606828c74"
+            },
+            {
+              "path": "3do/mat/fiahdsd.mat",
+              "bytes": 2188,
+              "sha256": "5e8307ebe0699ca53c2d427e10f6b6ab504bb07b8b3670e14824eb2861399b8a"
+            },
+            {
+              "path": "3do/mat/fiahdtp.mat",
+              "bytes": 1164,
+              "sha256": "1d3ed09ccdec376a749171e15cceab93dfd8c7e30b987c0eb36f3afb942e6302"
+            },
+            {
+              "path": "3do/mat/fiahip.mat",
+              "bytes": 8332,
+              "sha256": "ca35aea6e24e8976d88ae2c81481d489aba576b843e822479d13d59a9194ef6e"
+            },
+            {
+              "path": "3do/mat/fialeg.mat",
+              "bytes": 4236,
+              "sha256": "1114eea60f528fb9d88b6b9a3027f90ac7ef29a4deab08de61a659e427703b93"
+            },
+            {
+              "path": "3do/mat/fialpad.mat",
+              "bytes": 1164,
+              "sha256": "1d3ed09ccdec376a749171e15cceab93dfd8c7e30b987c0eb36f3afb942e6302"
+            },
+            {
+              "path": "3do/mat/fianeck.mat",
+              "bytes": 2188,
+              "sha256": "8f1d1c70b12b3f453e296fe44b1bd4d7708928f297dcf53a9635a2c947e2cbb9"
+            },
+            {
+              "path": "3do/mat/fiarpad.mat",
+              "bytes": 1164,
+              "sha256": "1d3ed09ccdec376a749171e15cceab93dfd8c7e30b987c0eb36f3afb942e6302"
+            },
+            {
+              "path": "3do/mat/fiasole.mat",
+              "bytes": 652,
+              "sha256": "1b16e81c94b6d74e3d7e4df6de38b52fe0055cf6aa9017c4971bd639fb499bcc"
+            },
+            {
+              "path": "3do/mat/fiathigh.mat",
+              "bytes": 4236,
+              "sha256": "1114eea60f528fb9d88b6b9a3027f90ac7ef29a4deab08de61a659e427703b93"
+            },
+            {
+              "path": "3do/mat/flamli.mat",
+              "bytes": 2316,
+              "sha256": "cc781c0660c00cdfa6d1601add7a1fd51e260720ce31237f6eeb9fbd614fba54"
+            },
+            {
+              "path": "3do/mat/fusion.mat",
+              "bytes": 4428,
+              "sha256": "a8c6cd66e4d2b4928399467f9aa69d4e8840a4591384492de0bae71a6e68e6b5"
+            },
+            {
+              "path": "3do/mat/green.mat",
+              "bytes": 1164,
+              "sha256": "5e24b6424eb56f314fa5c98240a487b4735a677fd457cdf7a768745e4a67bbb3"
+            },
+            {
+              "path": "3do/mat/green2.mat",
+              "bytes": 1164,
+              "sha256": "9dda2b14891685fe6ec2290c52acfad14824231383ba5b157f7a9901433583d7"
+            },
+            {
+              "path": "3do/mat/grenbar1.mat",
+              "bytes": 2188,
+              "sha256": "54664a616041f7d3c0ede779a6a5120583e7080ccb91eda2cd4f164ce17cb538"
+            },
+            {
+              "path": "3do/mat/grenbarfront1.mat",
+              "bytes": 4236,
+              "sha256": "83d3973912f67835c6726292d9ffa8fb60c80a03568587ea301c77eb762de6cc"
+            },
+            {
+              "path": "3do/mat/grenmagazin.mat",
+              "bytes": 8332,
+              "sha256": "20c15b5732e2589ec5cc3e06ab72ce948d26cdd78ce289f74a86eaa34714de37"
+            },
+            {
+              "path": "3do/mat/magball.mat",
+              "bytes": 4236,
+              "sha256": "aee8bfeffffc7166a27e8c52ce9a88558fabdf6a352f1c02e860fddec3e2cda8"
+            },
+            {
+              "path": "3do/mat/magkubel.mat",
+              "bytes": 16524,
+              "sha256": "87a12c9ebf0b5a6f238d1db5a0a92162ffcc36d05402f337d73ba150d3c39160"
+            },
+            {
+              "path": "3do/mat/magkubfront.mat",
+              "bytes": 8332,
+              "sha256": "46696cbc5e217bda642ba4b66ce4cf507f0c5ddff5f47da242637ae2a25aaac2"
+            },
+            {
+              "path": "3do/mat/magtrommel.mat",
+              "bytes": 12556,
+              "sha256": "bc32a3a7e662d37e0ab88154d4dfa34888c38d2d55b92065bf5c38e81ff1c153"
+            },
+            {
+              "path": "3do/mat/mgn4arm.mat",
+              "bytes": 2188,
+              "sha256": "1c8afa62f5bec5573ed3195e85d7c30e171d57b162171e283e398f78fc114e47"
+            },
+            {
+              "path": "3do/mat/mgnarm.mat",
+              "bytes": 2188,
+              "sha256": "fcc51ae53872a5fc7980aa42c3f559cb68199bba17a15d650245bf742435dcbf"
+            },
+            {
+              "path": "3do/mat/mgnback.mat",
+              "bytes": 4236,
+              "sha256": "86fad023bb6957e77197f0a520903ac90104e45463883dbe0338b530c75adeb8"
+            },
+            {
+              "path": "3do/mat/mgnbutt.mat",
+              "bytes": 2188,
+              "sha256": "ea5fd162867848edbbff751f0b702e0e5bd6dfff1658b43e49c2683d8030b0e6"
+            },
+            {
+              "path": "3do/mat/mgnchest.mat",
+              "bytes": 4236,
+              "sha256": "a2d34e9b19c3ad3aa208ee82dd076ef1fa55931b5024e70ef26e4e0b7ed31260"
+            },
+            {
+              "path": "3do/mat/mgnfoot.mat",
+              "bytes": 2188,
+              "sha256": "f4a084deb56f2da381e20319376e4c3ec31802cb1838e45c88b74f989987a474"
+            },
+            {
+              "path": "3do/mat/mgnhand.mat",
+              "bytes": 396,
+              "sha256": "1d225079e1a57b40c433739cf5977475ab8a42c541e44ff8953b0777649d57ee"
+            },
+            {
+              "path": "3do/mat/mgnhandf.mat",
+              "bytes": 396,
+              "sha256": "b2d794a855509807548a207a4e4f957966b01efdc722308c529010d82c30512e"
+            },
+            {
+              "path": "3do/mat/mgnhdbk.mat",
+              "bytes": 4236,
+              "sha256": "f19c21544e9326246a3852cea2a125a7873125a7a5cb7daf7b3c52b755714cf2"
+            },
+            {
+              "path": "3do/mat/mgnhdfr.mat",
+              "bytes": 4236,
+              "sha256": "c7fd34068072c99aa4a2b840440a3ff9fc65b14346a656d9212d2f2d04a97991"
+            },
+            {
+              "path": "3do/mat/mgnhdsd.mat",
+              "bytes": 4236,
+              "sha256": "881709859b31b56c2fda6ed45b3040609b726c9e0211054aabc67b9c33611fb4"
+            },
+            {
+              "path": "3do/mat/mgnhdtp.mat",
+              "bytes": 2188,
+              "sha256": "d297121fe50a1177798a3985b60825c22a15d13fc1f007aae5f6e99531f64275"
+            },
+            {
+              "path": "3do/mat/mgnhip.mat",
+              "bytes": 2188,
+              "sha256": "e280d6f42f48e7c402ab2fc5d927a9ced9e6274394beb64986a4cd7aede00c2f"
+            },
+            {
+              "path": "3do/mat/mgnjetpack.mat",
+              "bytes": 4236,
+              "sha256": "8fa0f30f8cc20d20d4d82378363545126f362d6f35a5467d9e48c3fb9872e291"
+            },
+            {
+              "path": "3do/mat/mgnjetpack2.mat",
+              "bytes": 4236,
+              "sha256": "7b29e4d16656f26eac4b9892981757a1c31806d338593e9e134e0934f51f1c35"
+            },
+            {
+              "path": "3do/mat/mgnleg.mat",
+              "bytes": 2188,
+              "sha256": "67d0c1dccc0785ee09109c1cfa100f5a582029909808044d8926203500dff8bb"
+            },
+            {
+              "path": "3do/mat/mgnneck.mat",
+              "bytes": 1164,
+              "sha256": "7f0a09c8a82477d3e3830b7f1593d1fd9250ac3cbcb6244397c410b55fc0a175"
+            },
+            {
+              "path": "3do/mat/mgnsole.mat",
+              "bytes": 652,
+              "sha256": "1b16e81c94b6d74e3d7e4df6de38b52fe0055cf6aa9017c4971bd639fb499bcc"
+            },
+            {
+              "path": "3do/mat/mgnthigh.mat",
+              "bytes": 2188,
+              "sha256": "95e7e3201f4c3ddde58c01c4fa63407458e299fa74501ccd61828864b6062fd7"
+            },
+            {
+              "path": "3do/mat/mgnthighbk.mat",
+              "bytes": 2188,
+              "sha256": "d9b6fc6e7a8b0b07fea24b85d8d3a71ce1f59633e78595a001e16d38e16a9cf9"
+            },
+            {
+              "path": "3do/mat/mm4arm.mat",
+              "bytes": 2188,
+              "sha256": "60ecca75b43c6d389f589d5e5f2cdbbe19148221037612983afec6afb2a6a815"
+            },
+            {
+              "path": "3do/mat/mmarm.mat",
+              "bytes": 2188,
+              "sha256": "fb7f3ab2ea9b8097bcebd337bfccfcd62bfbd3d865285bbec9fc7868c23f401f"
+            },
+            {
+              "path": "3do/mat/mmback.mat",
+              "bytes": 4236,
+              "sha256": "dd4ef4c6877d2036ebeff23eeb8b9fb0ed3ce78841f5805b33a01de9d418fded"
+            },
+            {
+              "path": "3do/mat/mmchest.mat",
+              "bytes": 4236,
+              "sha256": "814e5e41c7b056a5630b99ee56d8272bf021de2eb1716c3200e8ad7405c0d71b"
+            },
+            {
+              "path": "3do/mat/mmcol.mat",
+              "bytes": 2188,
+              "sha256": "062e4f60f78e592d86fd59ac4af46439e447569a98b4773f1c141799c9ba73b9"
+            },
+            {
+              "path": "3do/mat/mmfoot.mat",
+              "bytes": 4236,
+              "sha256": "2a8b8d7050e11c7cd263b49315a46c5ada2476312739e69c24ac8a980b5532fd"
+            },
+            {
+              "path": "3do/mat/mmhand.mat",
+              "bytes": 1164,
+              "sha256": "2f0b72dcef5d4762e5841305818e25aaa80d92dd68416a15a200b1d579336f3c"
+            },
+            {
+              "path": "3do/mat/mmhdbk.mat",
+              "bytes": 2188,
+              "sha256": "5e8307ebe0699ca53c2d427e10f6b6ab504bb07b8b3670e14824eb2861399b8a"
+            },
+            {
+              "path": "3do/mat/mmhdfr.mat",
+              "bytes": 4236,
+              "sha256": "ecbec5674f285cdca07e176dc0b37407a37b51612f8346567c67a861ba00382e"
+            },
+            {
+              "path": "3do/mat/mmhdsd.mat",
+              "bytes": 4236,
+              "sha256": "d0401a0038f42121291343e7c49e50e16b63184e8ea3394d038c7bb60ed84a6c"
+            },
+            {
+              "path": "3do/mat/mmhdtp.mat",
+              "bytes": 2188,
+              "sha256": "5e8307ebe0699ca53c2d427e10f6b6ab504bb07b8b3670e14824eb2861399b8a"
+            },
+            {
+              "path": "3do/mat/mmhip.mat",
+              "bytes": 2188,
+              "sha256": "8509ba59349ff59a7bfeaa801902b55f9b07c59a574b5548965ce4b4279068c8"
+            },
+            {
+              "path": "3do/mat/mmjetpak.mat",
+              "bytes": 4236,
+              "sha256": "9fdd30af7722ed011dbdbd8291c3abf67ff950787d4b6d3176760340fae818e1"
+            },
+            {
+              "path": "3do/mat/mmleg.mat",
+              "bytes": 2188,
+              "sha256": "359aa45d476439cfa0a8f0d79d5a963a6f9d7b6e4cf4bddb74a36efc75451f9b"
+            },
+            {
+              "path": "3do/mat/mmlspad.mat",
+              "bytes": 2188,
+              "sha256": "b5f9466500f2c4bb468a0691990a8e8c8e73fa0ea8018fba8ad20482335f2718"
+            },
+            {
+              "path": "3do/mat/mmneck.mat",
+              "bytes": 1164,
+              "sha256": "d37402b016675e6c9e23482991fe4aedec3c468ee7c93671657894176ee1149c"
+            },
+            {
+              "path": "3do/mat/mmrocket.mat",
+              "bytes": 1164,
+              "sha256": "3c2c85660df245f714d0d85ce597ccf8c725727092bcd583ebe28f10be224492"
+            },
+            {
+              "path": "3do/mat/mmrspad.mat",
+              "bytes": 2188,
+              "sha256": "b5f9466500f2c4bb468a0691990a8e8c8e73fa0ea8018fba8ad20482335f2718"
+            },
+            {
+              "path": "3do/mat/mmskin.mat",
+              "bytes": 4236,
+              "sha256": "dd4ef4c6877d2036ebeff23eeb8b9fb0ed3ce78841f5805b33a01de9d418fded"
+            },
+            {
+              "path": "3do/mat/mmsole.mat",
+              "bytes": 652,
+              "sha256": "1b16e81c94b6d74e3d7e4df6de38b52fe0055cf6aa9017c4971bd639fb499bcc"
+            },
+            {
+              "path": "3do/mat/mmthigh.mat",
+              "bytes": 2188,
+              "sha256": "432594b724f43a08284e0887a8010c1c1871371d006f899c96e9e7a25ddc89a7"
+            },
+            {
+              "path": "3do/mat/red2.mat",
+              "bytes": 4236,
+              "sha256": "8311afc57babcc8a2b782c68b518a99c23ce324a9c937372020ac92ecc98dfba"
+            },
+            {
+              "path": "3do/mat/redblink.mat",
+              "bytes": 2252,
+              "sha256": "e2b8d399114b921f7d04f98f13953641cf5ed7be9cc31467bf1580dbd8924ab3"
+            },
+            {
+              "path": "3do/mat/rocksd.mat",
+              "bytes": 8332,
+              "sha256": "53b1b856afed6cefba66aeba13c04dd69335ac7958c452b8f10080d21341fd20"
+            },
+            {
+              "path": "3do/mat/rocktop.mat",
+              "bytes": 1164,
+              "sha256": "831207aef05224ac4caf79f507eba92c5637e33bab818bd56260a2a42139e635"
+            },
+            {
+              "path": "3do/mat/saberblue1.mat",
+              "bytes": 8332,
+              "sha256": "d13be8a193fa7e2d46955e4123f9874060375d7a4121aea1b40d865972115474"
+            },
+            {
+              "path": "3do/mat/saberrgreen1.mat",
+              "bytes": 8332,
+              "sha256": "1075186b116e0173c3c0b8752d0127f9ce531cdba517f8bdefbcaef1d607c21f"
+            },
+            {
+              "path": "3do/mat/sho4arm.mat",
+              "bytes": 2188,
+              "sha256": "e992db981b9e273d99e258a7174b732e2aa6c7aade8dc146da8078a49decdb75"
+            },
+            {
+              "path": "3do/mat/shoarm.mat",
+              "bytes": 2188,
+              "sha256": "7aa54c0231fe0017d791a7ac7fe48f15ec6476e84453458417b05c638c2248bb"
+            },
+            {
+              "path": "3do/mat/shoback.mat",
+              "bytes": 4236,
+              "sha256": "32032788e02e736d83778ff430428c6756a21bd7a2cfc4fc8d4f2aa76b839a95"
+            },
+            {
+              "path": "3do/mat/shobutt.mat",
+              "bytes": 16524,
+              "sha256": "a336f678ead581b1741334bf05323ab0964039c889b398833abc61ba667cac20"
+            },
+            {
+              "path": "3do/mat/shochest.mat",
+              "bytes": 4236,
+              "sha256": "76a567a91fbd686a8e8ecedbfaf2467c71fb1ec4c6c979b0346564d93a546f9d"
+            },
+            {
+              "path": "3do/mat/shofoot.mat",
+              "bytes": 2188,
+              "sha256": "e731943ca0abd41897fe6a5688dd33ee10690f9bd780356e0815c7471ab78900"
+            },
+            {
+              "path": "3do/mat/shohand.mat",
+              "bytes": 2188,
+              "sha256": "7aa54c0231fe0017d791a7ac7fe48f15ec6476e84453458417b05c638c2248bb"
+            },
+            {
+              "path": "3do/mat/shohandi.mat",
+              "bytes": 2188,
+              "sha256": "7aa54c0231fe0017d791a7ac7fe48f15ec6476e84453458417b05c638c2248bb"
+            },
+            {
+              "path": "3do/mat/shohdbk.mat",
+              "bytes": 2188,
+              "sha256": "89fcd834209d1a71742194a3d9a31eb6e385712cc372920d33dee4789f9b6522"
+            },
+            {
+              "path": "3do/mat/shohdfr.mat",
+              "bytes": 4236,
+              "sha256": "41d621bcee3e54c80304a9ce925cdb7ec61799c5ba308a20ea75a04da92d19bc"
+            },
+            {
+              "path": "3do/mat/shohdsd.mat",
+              "bytes": 2188,
+              "sha256": "af58f617cdede39989cec2fa6c2101b73edf75f4b22911e8580ffeffb521b158"
+            },
+            {
+              "path": "3do/mat/shohip.mat",
+              "bytes": 16524,
+              "sha256": "6a88ebd69e6086cc5867a9d1d54c47fadd25c4803005200e92214ba09b7573ce"
+            },
+            {
+              "path": "3do/mat/sholeg.mat",
+              "bytes": 16524,
+              "sha256": "02faf290b0690c4bf4600fff632007236f978133820859e5914d388b0b63d2fc"
+            },
+            {
+              "path": "3do/mat/shoneck.mat",
+              "bytes": 2188,
+              "sha256": "7aa54c0231fe0017d791a7ac7fe48f15ec6476e84453458417b05c638c2248bb"
+            },
+            {
+              "path": "3do/mat/shopony.mat",
+              "bytes": 2188,
+              "sha256": "248510f8a45f1b92aaa213f1d0775211662ec145e59dad5273e3da5961d5ba87"
+            },
+            {
+              "path": "3do/mat/shothigh.mat",
+              "bytes": 16524,
+              "sha256": "02faf290b0690c4bf4600fff632007236f978133820859e5914d388b0b63d2fc"
+            },
+            {
+              "path": "3do/mat/sniperlaser.mat",
+              "bytes": 8332,
+              "sha256": "a0814b27baee35596f69c3dafeac4b9e370658525e114bc839a449a40b12cc85"
+            },
+            {
+              "path": "3do/mat/sodb4arm.mat",
+              "bytes": 2188,
+              "sha256": "2793593c4ddfb299d8749ad2a97f8a15c6effe33e5c04aad31687d7a26f521ac"
+            },
+            {
+              "path": "3do/mat/sodbantena.mat",
+              "bytes": 4236,
+              "sha256": "c5f240995a0924696396a362a35187af67ad95df5386c1cc946cbb0f6d020971"
+            },
+            {
+              "path": "3do/mat/sodbarm.mat",
+              "bytes": 2188,
+              "sha256": "644296dbafdb1f77247a5961bb74c1103ab199ae84d4d480ccdee70710dcb7fd"
+            },
+            {
+              "path": "3do/mat/sodbback.mat",
+              "bytes": 4236,
+              "sha256": "29b9e51232f1ed4f8f1991ed9448d8f8447807a5e2c7982068e43192196e055c"
+            },
+            {
+              "path": "3do/mat/sodbbutt.mat",
+              "bytes": 2188,
+              "sha256": "72ba371ccc361332dec2f5c29b7c7eb6772659a29f147eaadd0e9412d35489eb"
+            },
+            {
+              "path": "3do/mat/sodbcape.mat",
+              "bytes": 2188,
+              "sha256": "999d3bc0e0fdabb42f37957e237626d1e2f5449eb95bbb498960844715b26fa5"
+            },
+            {
+              "path": "3do/mat/sodbchest.mat",
+              "bytes": 4236,
+              "sha256": "29b9e51232f1ed4f8f1991ed9448d8f8447807a5e2c7982068e43192196e055c"
+            },
+            {
+              "path": "3do/mat/sodbfoot.mat",
+              "bytes": 1164,
+              "sha256": "2cbff64b7f0c6148590c93a5e2a637e5cb8c94841a8de93aca00e070b2716984"
+            },
+            {
+              "path": "3do/mat/sodbfotop.mat",
+              "bytes": 1164,
+              "sha256": "2cbff64b7f0c6148590c93a5e2a637e5cb8c94841a8de93aca00e070b2716984"
+            },
+            {
+              "path": "3do/mat/sodbhand.mat",
+              "bytes": 2188,
+              "sha256": "ec26f7070ba94f6f55c5c33f445d57d7c9192df849742c88023e8603b97ba18f"
+            },
+            {
+              "path": "3do/mat/sodbhandf.mat",
+              "bytes": 2188,
+              "sha256": "ec26f7070ba94f6f55c5c33f445d57d7c9192df849742c88023e8603b97ba18f"
+            },
+            {
+              "path": "3do/mat/sodbhdbk.mat",
+              "bytes": 4236,
+              "sha256": "c5f240995a0924696396a362a35187af67ad95df5386c1cc946cbb0f6d020971"
+            },
+            {
+              "path": "3do/mat/sodbhdfr.mat",
+              "bytes": 4236,
+              "sha256": "be4859a810702572a25f8a21d21f8516a73ae01cd999fa771f772869fbd0a6e5"
+            },
+            {
+              "path": "3do/mat/sodbhip.mat",
+              "bytes": 1164,
+              "sha256": "2cbff64b7f0c6148590c93a5e2a637e5cb8c94841a8de93aca00e070b2716984"
+            },
+            {
+              "path": "3do/mat/sodbjetpak.mat",
+              "bytes": 4236,
+              "sha256": "a0606a69dde87851496749cab7830509ab533d871e10352cfe18b6bfe2133682"
+            },
+            {
+              "path": "3do/mat/sodbjetpak1.mat",
+              "bytes": 4236,
+              "sha256": "d55f11c0b92b94b4657d810d14031925c2effd393c56922d63d43cdde315711d"
+            },
+            {
+              "path": "3do/mat/sodbleg.mat",
+              "bytes": 2188,
+              "sha256": "b3a92675743f217ab5b00ebfe93a7408ccb81f6821044906be304572b079a631"
+            },
+            {
+              "path": "3do/mat/sodbneck.mat",
+              "bytes": 2188,
+              "sha256": "48966cd1cbdd138814d17fbec7c9f78c42d4a99011f122e2760d055d8ff54876"
+            },
+            {
+              "path": "3do/mat/sodbrocket.mat",
+              "bytes": 1164,
+              "sha256": "2c2cac32ffe83814038934a155b8b24677c45af95290e8584e8f3ce9ddb5d83d"
+            },
+            {
+              "path": "3do/mat/sodbsole.mat",
+              "bytes": 652,
+              "sha256": "1b16e81c94b6d74e3d7e4df6de38b52fe0055cf6aa9017c4971bd639fb499bcc"
+            },
+            {
+              "path": "3do/mat/sodbspad.mat",
+              "bytes": 1164,
+              "sha256": "b94f54be4397c28a6cbd9f30ead194c962e5a4cfbfc2eb19f5e1f1aa612beb06"
+            },
+            {
+              "path": "3do/mat/stealth.mat",
+              "bytes": 33356,
+              "sha256": "e62224853935da9b08a24296a057ca825b23795d2c14bfa216a2875ab3833747"
+            },
+            {
+              "path": "3do/mat/thunderscreen.mat",
+              "bytes": 8780,
+              "sha256": "8efc67d4810e535f4e5f2c9e66f404c48e96766ad503fe225c585dc4fb296bdb"
+            },
+            {
+              "path": "3do/mat/tris4arm.mat",
+              "bytes": 2188,
+              "sha256": "448461816e6783fbf9b843bf6ebdc0273b9bf371d5ea76bbf1f34f265c1547c3"
+            },
+            {
+              "path": "3do/mat/trisarm.mat",
+              "bytes": 2188,
+              "sha256": "fc541bd6e7a74deed71ecdbf4150c2cb8a13bc263175e5e77eb2f7967bb71094"
+            },
+            {
+              "path": "3do/mat/trisback.mat",
+              "bytes": 4236,
+              "sha256": "79144e71e1d74b03100b857332a93ad0d18bf5868bc05ced4bbf8d1bb0ec51a8"
+            },
+            {
+              "path": "3do/mat/trisbleg.mat",
+              "bytes": 2188,
+              "sha256": "b009dd07a973c008abf79a7a98b858e273db0af561ab6a8bcabc883e9876e707"
+            },
+            {
+              "path": "3do/mat/trisbutt.mat",
+              "bytes": 2188,
+              "sha256": "f2283124aa9535362716c06b0e9a6c5a8e6f9b8153d72077376ec25257d8ed85"
+            },
+            {
+              "path": "3do/mat/trischest.mat",
+              "bytes": 4236,
+              "sha256": "486d89a92b814d17d84b60c8731e234af174620e1b6bb9488e138853f978db90"
+            },
+            {
+              "path": "3do/mat/triscloak.mat",
+              "bytes": 8332,
+              "sha256": "5a234c45478b9b9f6069f323376c74696f0210e0484afd6c9e7e2f635fcd71ea"
+            },
+            {
+              "path": "3do/mat/trisfoot.mat",
+              "bytes": 2188,
+              "sha256": "8f85b757654e1a20b133dc5cfb7bcb2da2e94149f83056a1d37509d2577dfefd"
+            },
+            {
+              "path": "3do/mat/trisfotop.mat",
+              "bytes": 2188,
+              "sha256": "8f85b757654e1a20b133dc5cfb7bcb2da2e94149f83056a1d37509d2577dfefd"
+            },
+            {
+              "path": "3do/mat/trishand.mat",
+              "bytes": 1164,
+              "sha256": "13401ab9eb1131e71163e78fc509310bbc90b5466f6f1020a555d53b9edd9ab1"
+            },
+            {
+              "path": "3do/mat/trishdbk.mat",
+              "bytes": 4236,
+              "sha256": "c1ed4a81571f63a760bd439529ce292c267e78c91cb4a6471427e2ea37a3e61d"
+            },
+            {
+              "path": "3do/mat/trishdfr.mat",
+              "bytes": 4236,
+              "sha256": "8713da9b06b20b230ee2c83b5cf4041ba631c7b6aef0df22f1b88e8698e6813c"
+            },
+            {
+              "path": "3do/mat/trishdfr2.mat",
+              "bytes": 4236,
+              "sha256": "7ec1bf9e49bf4168cd2c35a73225f4ae570534237255222798fbc44d5e589111"
+            },
+            {
+              "path": "3do/mat/trishdsd.mat",
+              "bytes": 4236,
+              "sha256": "4ea48d3cbd4b1ec6176566f67ba2ff0bab4fca108c72f94fe1246649a898e4f6"
+            },
+            {
+              "path": "3do/mat/trishdtp.mat",
+              "bytes": 4236,
+              "sha256": "c1ed4a81571f63a760bd439529ce292c267e78c91cb4a6471427e2ea37a3e61d"
+            },
+            {
+              "path": "3do/mat/triship.mat",
+              "bytes": 2188,
+              "sha256": "f2283124aa9535362716c06b0e9a6c5a8e6f9b8153d72077376ec25257d8ed85"
+            },
+            {
+              "path": "3do/mat/trisjetpak.mat",
+              "bytes": 4236,
+              "sha256": "82bd7e7c8e912ed28f104fa902a95d1370b110e0609706a82c402ec97ac6e594"
+            },
+            {
+              "path": "3do/mat/trisneck.mat",
+              "bytes": 1164,
+              "sha256": "0e877b6afe48db0ba1cbffeaba50c163b57e597e30f8758a6b6be348fa234a2b"
+            },
+            {
+              "path": "3do/mat/trissole.mat",
+              "bytes": 652,
+              "sha256": "1b16e81c94b6d74e3d7e4df6de38b52fe0055cf6aa9017c4971bd639fb499bcc"
+            },
+            {
+              "path": "3do/mat/trisspad.mat",
+              "bytes": 2188,
+              "sha256": "53e6d15498f21e2058e2bb41d6439f955231446bc148b15a40b1b8b5170e99e4"
+            },
+            {
+              "path": "3do/mat/tristhigh.mat",
+              "bytes": 4236,
+              "sha256": "cb41bf504928db2f898c57089691d0efda17f7ca2d180908eff26325a83a0303"
+            },
+            {
+              "path": "3do/mat/white.mat",
+              "bytes": 4236,
+              "sha256": "9ad34e9f5c59e3c26bc81417771a93d24a342a9be51f1701e81812699438507d"
+            },
+            {
+              "path": "3do/rcrg.3do",
+              "bytes": 24149,
+              "sha256": "610278dc5fbdd96791de360a98ec33bc9b2f4d04904faa0fb68270a3d0448d8f"
+            },
+            {
+              "path": "3do/rld0.3do",
+              "bytes": 9776,
+              "sha256": "2bc5053cff12ab1be7657593df87dc62c6dc23747d9be5049456987f3b615a51"
+            },
+            {
+              "path": "3do/rldg.3do",
+              "bytes": 45188,
+              "sha256": "5ed4c0825038c8885f0cf9e92dd440b724ff81c0fe62fdc7feb7aeb17ff20421"
+            },
+            {
+              "path": "3do/rldp.3do",
+              "bytes": 46866,
+              "sha256": "e5ea1dc1da4febb153b5403cbef8cb6750978fbdcd98a0188c015696ad69202a"
+            },
+            {
+              "path": "3do/rldv.3do",
+              "bytes": 58826,
+              "sha256": "22fa05168ada2829ead3eb15156f1d513c9ed5ea4326e070f58b2cb8ea3bf300"
+            },
+            {
+              "path": "3do/rptg.3do",
+              "bytes": 32654,
+              "sha256": "b8662d6925214324b55b633ac7a9db8f5ebe4000a89335ad01de5468f08e99f3"
+            },
+            {
+              "path": "3do/rptp.3do",
+              "bytes": 22537,
+              "sha256": "5fc092c0ce6bc4b6c26725b31ab8e2c2d21ec99ee5687a38767a6cca417ed311"
+            },
+            {
+              "path": "3do/rptv.3do",
+              "bytes": 52602,
+              "sha256": "2fb8b89c130bb8b726d837080f30ecf747ff08fd98b44019fe6a4525e5766390"
+            },
+            {
+              "path": "3do/sabg.3do",
+              "bytes": 17819,
+              "sha256": "b34fe83f4d782d8efcb6bdf26bd9e7bb50e7c2f5ac421628137ebc435bb402ca"
+            },
+            {
+              "path": "3do/sabp.3do",
+              "bytes": 18157,
+              "sha256": "e1c748a5fcd12b33bc5c6be00fdae0d78e3024689c4f98019d3a7ee44669a415"
+            },
+            {
+              "path": "3do/scplaser.3do",
+              "bytes": 2414,
+              "sha256": "c206e9586e0137ecbcfa7bc9987b917622f1ef1e9a827edcb19de589482c4082"
+            },
+            {
+              "path": "3do/seq0.3do",
+              "bytes": 6651,
+              "sha256": "ebe0c09b09ce516c72a6ac9442f09e892a3edf0a9c8ba0949d4515ee871faca8"
+            },
+            {
+              "path": "3do/seqg.3do",
+              "bytes": 9208,
+              "sha256": "a5b74e71b21e7705377a46f65565250589e10feb9ec108ac73a04e3910f6fce7"
+            },
+            {
+              "path": "3do/seqp.3do",
+              "bytes": 14391,
+              "sha256": "91e7bc8c34e964068718108e61383d251480e6a5d172cd6eb135f9d8bf657614"
+            },
+            {
+              "path": "3do/seqp_1.3do",
+              "bytes": 6732,
+              "sha256": "0c7c1e0e4324a5142e1dda1e52a5f4aea6e678e2473abb6cda33f29066963222"
+            },
+            {
+              "path": "3do/seqv.3do",
+              "bytes": 33712,
+              "sha256": "a72b6a007b90a67da2fe660acd1871f364f36b70bfb60ad795a33cca9ea0a366"
+            },
+            {
+              "path": "3do/sonic.3do",
+              "bytes": 11042,
+              "sha256": "a15d9bff9749c35de939775820fe634c5adb8d78cc9c8157c33ebab09cecb073"
+            },
+            {
+              "path": "3do/strg.3do",
+              "bytes": 19340,
+              "sha256": "4efd7fb8f33829e6834e26ed1d6f7bdf1cf2b9693963b3011dd87153882dbc09"
+            },
+            {
+              "path": "3do/strlaser.3do",
+              "bytes": 1939,
+              "sha256": "1a984b2561053d3a0cd0f2a2876c7145dcf131405168c1386c2950fdab2bf456"
+            },
+            {
+              "path": "3do/strp.3do",
+              "bytes": 15472,
+              "sha256": "8df3d05101ad576715ba319bab789efd2e1284036f37908eb1fa0ae1db90364f"
+            },
+            {
+              "path": "3do/strv.3do",
+              "bytes": 55233,
+              "sha256": "7d2a2eab263d0643238ecbe07f87d031cc56e80f77e71eb9d1ebd0fd9a8120b7"
+            },
+            {
+              "path": "cog/grapple_sphere.cog",
+              "bytes": 3006,
+              "sha256": "7ef5e9da64e4965b3eed87cd125f9832cb76fe69799072a72b09e32d79525ae2"
+            },
+            {
+              "path": "cog/item_datadisk.cog",
+              "bytes": 2493,
+              "sha256": "42ca5edead01c9bde8c2ac4f2e4677c1a1cc535cd3ed1f0008d269de1a5e412d"
+            },
+            {
+              "path": "cog/item_fieldlight.cog",
+              "bytes": 4652,
+              "sha256": "6671053489d316f91e80e9de89cd1023c141fcbaacc1284add93bd6d5dffdabd"
+            },
+            {
+              "path": "cog/item_keyblue.cog",
+              "bytes": 4704,
+              "sha256": "9b619c2416b0152bbd804360306426c4cd25e5dd6cccb677658f40094fd65c68"
+            },
+            {
+              "path": "cog/item_keygreen.cog",
+              "bytes": 3576,
+              "sha256": "3c894fd5ed9f7c55610b7690ac880a30d5ab6622ab732a4a6a3ba56cc54b47f5"
+            },
+            {
+              "path": "cog/item_keyimperial.cog",
+              "bytes": 4663,
+              "sha256": "31476226313b49a3c5947f952f0231bd95446ac8834cce4ced0bc98f5af6a196"
+            },
+            {
+              "path": "cog/item_keyred.cog",
+              "bytes": 6358,
+              "sha256": "55dde8cb288e6a6823cb69758ebf619a0bced29e03bd6b968066f5201423d705"
+            },
+            {
+              "path": "cog/item_keyyellow.cog",
+              "bytes": 4513,
+              "sha256": "7dd9baaf13912c97f97bc4d6455ac93f48955724c5e8364b75603783a475906a"
+            },
+            {
+              "path": "cog/item_wrench.cog",
+              "bytes": 4348,
+              "sha256": "a5d63e4f7e1c51b94adcc76962efb92dd5e772678edda0ad48861e7a9471928a"
+            },
+            {
+              "path": "cog/item_wrenchblue.cog",
+              "bytes": 5424,
+              "sha256": "9bbfe1e5b0c02aab04ad0b60575584ec0d32ff2538b72a127e6bb53ecce58f41"
+            },
+            {
+              "path": "cog/item_wrenchyellow.cog",
+              "bytes": 5784,
+              "sha256": "2427c93e3d7ead2443d6893d03caecf8a332f4548f95a593ca41adecad57789f"
+            },
+            {
+              "path": "cog/jet_pack.cog",
+              "bytes": 5493,
+              "sha256": "e45640cd8921d357bc6a191f240a3d1ca8c93a30122c1df35747c35071569aad"
+            },
+            {
+              "path": "cog/kyle.cog",
+              "bytes": 15519,
+              "sha256": "46256d3fd72e3a500412683bbb11c59224256c881740539e63e29c1394651803"
+            },
+            {
+              "path": "cog/pow_bacta.cog",
+              "bytes": 1891,
+              "sha256": "475add812c6128cbaf4d96385fe5cd25bd5684af4fa1ecd3d3e0033eda4371e4"
+            },
+            {
+              "path": "cog/pow_health.cog",
+              "bytes": 1788,
+              "sha256": "ffe184b479778a61dd3ee18bc4e1387c0f93bc061d203dffd4be603e9916b465"
+            },
+            {
+              "path": "cog/warhead.cog",
+              "bytes": 4960,
+              "sha256": "3f58c0f9182becbfa59fde032674694d4ffcef2116425bf9439618ada2675d25"
+            },
+            {
+              "path": "cog/weap_bryar.cog",
+              "bytes": 10727,
+              "sha256": "26120cee3b581ec5e3dbe797d1676b73d281b6740987bd6f55d0f10116f356f4"
+            },
+            {
+              "path": "cog/weap_concrifle.cog",
+              "bytes": 9879,
+              "sha256": "2dc1770cb8c4aee1e2a0aed297e66cfc165e1919e0398a66fd89915efd127842"
+            },
+            {
+              "path": "cog/weap_fists.cog",
+              "bytes": 5335,
+              "sha256": "b5f9ce3b1aefaa1ee5d9d8ab30c74fb1ceb9b842a78790051e42b42a0304a136"
+            },
+            {
+              "path": "cog/weap_raildet.cog",
+              "bytes": 6237,
+              "sha256": "d2ee943a88475ced539f9dd7e06e5195eba55277a4f39b20954a550574ccf930"
+            },
+            {
+              "path": "cog/weap_repeater.cog",
+              "bytes": 9751,
+              "sha256": "3525ae758357e30c80b65cad8a600298c6bcb1293f7d97e704433ebc45771751"
+            },
+            {
+              "path": "cog/weap_strifle.cog",
+              "bytes": 5571,
+              "sha256": "4883863612a4863ceea32b650c605b0347bd16abca7b9c55cba29376f9883f56"
+            },
+            {
+              "path": "cog/weap_thermdet.cog",
+              "bytes": 7440,
+              "sha256": "07441babe931437f5ea62ff30d4694365d93fe28aeee45b5595f7dfd6f32ee51"
+            },
+            {
+              "path": "misc/items.dat",
+              "bytes": 10391,
+              "sha256": "6da7aa373f6c90ad72c828a65be227c4a7147d0925b24d05c64d415af2bd3465"
+            },
+            {
+              "path": "misc/sithstrings.uni",
+              "bytes": 1730,
+              "sha256": "8a5151cdaaab469b231fce53ef8df516e0d5556834b13b4b2b5bd43d60b0b03e"
+            },
+            {
+              "path": "patchinfo.txt",
+              "bytes": 520,
+              "sha256": "fa844da4163c2c450a8f2013f57ab3206278f98d57380823a6b6d2c8c8975acf"
+            },
+            {
+              "path": "r_e_a_d   m_e.txt",
+              "bytes": 6258,
+              "sha256": "adba4572adbb6e9cf1667184d2b2dd79bf19eaa0f86bf12c57af370a7d7c44b6"
+            },
+            {
+              "path": "sound/alert.wav",
+              "bytes": 11382,
+              "sha256": "3047b373a26ee92a9743b57ce4f008e01eeda382adee9167d1b84577118c8d13"
+            },
+            {
+              "path": "sound/amosphrunit.wav",
+              "bytes": 44098,
+              "sha256": "04ba6845079bc8b06fbbd8d85f0c3f24d9b249887d92d2e13b74cd5213db1c37"
+            },
+            {
+              "path": "ui/bm/bkbuildload.bm",
+              "bytes": 308104,
+              "sha256": "66472d66960d127653f1c235efd17ce31aa641c5a04db607d2e214ff609ef97e"
+            },
+            {
+              "path": "ui/bm/bkesc.bm",
+              "bytes": 308104,
+              "sha256": "66472d66960d127653f1c235efd17ce31aa641c5a04db607d2e214ff609ef97e"
+            },
+            {
+              "path": "ui/bm/bkfieldlog.bm",
+              "bytes": 308104,
+              "sha256": "66472d66960d127653f1c235efd17ce31aa641c5a04db607d2e214ff609ef97e"
+            },
+            {
+              "path": "ui/bm/bkloading.bm",
+              "bytes": 308104,
+              "sha256": "66472d66960d127653f1c235efd17ce31aa641c5a04db607d2e214ff609ef97e"
+            },
+            {
+              "path": "ui/bm/bkmain.bm",
+              "bytes": 308104,
+              "sha256": "95a1b59528c252209d47bccea06f83f028731a03ec4b462e9af1752063447fdd"
+            },
+            {
+              "path": "ui/bm/bkmulti.bm",
+              "bytes": 308104,
+              "sha256": "66472d66960d127653f1c235efd17ce31aa641c5a04db607d2e214ff609ef97e"
+            },
+            {
+              "path": "ui/bm/bksetup.bm",
+              "bytes": 308104,
+              "sha256": "66472d66960d127653f1c235efd17ce31aa641c5a04db607d2e214ff609ef97e"
+            },
+            {
+              "path": "ui/bm/bksingle.bm",
+              "bytes": 308104,
+              "sha256": "66472d66960d127653f1c235efd17ce31aa641c5a04db607d2e214ff609ef97e"
+            },
+            {
+              "path": "ui/bm/bktally.bm",
+              "bytes": 308104,
+              "sha256": "66472d66960d127653f1c235efd17ce31aa641c5a04db607d2e214ff609ef97e"
+            },
+            {
+              "path": "ui/bm/icdatad16.bm",
+              "bytes": 1288,
+              "sha256": "ca5ae0bd0fbd85241069bbb16b1619ab7574d5f2d4114c679550cac5a13c8f14"
+            },
+            {
+              "path": "ui/bm/icfield16.bm",
+              "bytes": 712,
+              "sha256": "aecc5b537b4bf8876d6b0885f6ce76fc38f99e1e4fe01b12634a08cdab0293c3"
+            },
+            {
+              "path": "ui/bm/ickeybl16.bm",
+              "bytes": 712,
+              "sha256": "e6a67721708c3a07061868b0e0464542632d7c168b47a49132429bb1e5741155"
+            },
+            {
+              "path": "ui/bm/ickeygr16.bm",
+              "bytes": 712,
+              "sha256": "84a58005a9cae930d8fdecb35bba113eb71e27dedde9fced35d4a4493b8a315f"
+            },
+            {
+              "path": "ui/bm/ickeyim16.bm",
+              "bytes": 712,
+              "sha256": "bda5c00bca0ee0527b979b1b422bd00da3ecd41d8e091ceeb51623a2484489cb"
+            },
+            {
+              "path": "ui/bm/ickeyre16.bm",
+              "bytes": 712,
+              "sha256": "443b24987caf9f85e7423ec538827898766f6816c563cdc62c148c99d1027586"
+            },
+            {
+              "path": "ui/bm/ickeyye16.bm",
+              "bytes": 712,
+              "sha256": "8e50bc772281387d34f3ea563d45bb8caee01095f3de0d25865e5dc7097c5643"
+            },
+            {
+              "path": "ui/bm/icwrchb16.bm",
+              "bytes": 712,
+              "sha256": "82ff50257908a01c67e1949323fbdbd8058d76891f65dd4ddfe2558204905dff"
+            },
+            {
+              "path": "ui/bm/icwrchy16.bm",
+              "bytes": 712,
+              "sha256": "529497e039df87b650e0c7889b1e19418c9a32c16507dfab2d1221afee8700b5"
+            },
+            {
+              "path": "ui/bm/icwrenc16.bm",
+              "bytes": 712,
+              "sha256": "8726908a88d7173e261ced04e60ae4cbac04583b48a3bdac362e923ba13b24c1"
+            },
+            {
+              "path": "ui/credits.uni",
+              "bytes": 8046,
+              "sha256": "139ba3aea28b46cf43efbd666fe5eb5eebd9585b8477b0d0b42e6a9a40a2bdac"
+            },
+            {
+              "path": "ui/jkstrings.uni",
+              "bytes": 45593,
+              "sha256": "953413f06dabfb16198b97b0373fc178ea03ff5847a7dddb009d0f5e2682c866"
+            }
+          ]
+        }
+      ],
+      "readmes": [
+        {
+          "path": "mac/r_e_a_d   m_e.txt",
+          "bytes": 6258,
+          "sha256": "adba4572adbb6e9cf1667184d2b2dd79bf19eaa0f86bf12c57af370a7d7c44b6",
+          "reviewed": true
+        },
+        {
+          "path": "mac/readme.txt",
+          "bytes": 4284,
+          "sha256": "b4bc5f1b3cd29cc9fb6d21e33b620235b7b7e235ccbe1b0aa03309263917ba1c",
+          "reviewed": true
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": [
+        "Passive 7-Zip extraction recovered the exact GOB and both manuals despite header warnings. Size/CRC32 pins match all three members; strict GOB parsing accepts 350 entries. Source readme names EAH_CL0wN, retains authored credits All McDonald, x_PATCH_M and 3do artists, and reports chaff/jetpack lag. No runnable conversion is accepted."
+      ],
+      "passive_wrapper_extraction": {
+        "method": "7-Zip x -so on three explicit data members; downloaded executable never executed",
+        "extractor_sha256": "83967f1b02b43c4efeda302795722c809e0e81b8307de73558d10484d5676a7d",
+        "source_sha256": "a7ef7d5260dc6ca352be3a271ad08ac1d64a366370945d85e3eea0b69a81d8e4",
+        "warning": "Archive headers report an error and trailing data. All three explicitly extracted members match declared lengths and CRC32; GOB strict parsing accepted 350 entries. The wrapper itself is never executed.",
+        "members": [
+          {
+            "path": "mac\\gob\\M.A.C.gob",
+            "bytes": 6360595,
+            "sha256": "78cb0b4b77b39387f4332ffcc61293f251e2f2bd0b0df6613d0f05f52186123a",
+            "crc32": "3008EC7F",
+            "crc_matches_listing": true,
+            "extractor_exit_code": 2
+          },
+          {
+            "path": "mac\\r_e_a_d   m_e.txt",
+            "bytes": 6258,
+            "sha256": "adba4572adbb6e9cf1667184d2b2dd79bf19eaa0f86bf12c57af370a7d7c44b6",
+            "crc32": "EA501993",
+            "crc_matches_listing": true,
+            "extractor_exit_code": 2
+          },
+          {
+            "path": "mac\\readme.txt",
+            "bytes": 4284,
+            "sha256": "b4bc5f1b3cd29cc9fb6d21e33b620235b7b7e235ccbe1b0aa03309263917ba1c",
+            "crc32": "FFFCDEE0",
+            "crc_matches_listing": true,
+            "extractor_exit_code": 2
+          }
+        ]
+      }
+    },
+    {
+      "rank": 48,
+      "massassi_id": 681,
+      "title": "Agent Han Solo",
+      "author": "Agent Han Solo",
+      "page_url": "https://www.massassi.net/levels/files/681.shtml",
+      "downloads": 4033,
+      "download_url": "https://www.massassi.net/levels/download/681/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/agenthansolo.zip",
+      "original_filename": "agenthansolo.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "3a5b5385d365ede5686c020446d735a2ce157e37771b500900d7d8e170d1aa77",
+      "source_bytes": 236698,
+      "source_page_sha256": "b34ba29f76ce746a0b1967c2c4a71afc980e04c91dde07eac1792b91c5ad6434",
+      "classification": "multiplayer-skin",
+      "classification_status": "source-and-native-binding-reviewed",
+      "archives": [
+        {
+          "path": "Agenthan.gob",
+          "bytes": 514776,
+          "sha256": "81649b94db2c280b402927c0310f66c4e15a2c8b8129cfc0957842a1b435b860",
+          "entry_count": 32,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "readme.txt",
+          "bytes": 4116,
+          "sha256": "ba5514e14641d73815a8e701c5f86cf7ef4b384c8a4a4d76b6ded9aa048aef61"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": true
+      },
+      "native_alternatives": [],
+      "conversion_status": "recipe-implemented-structural-prototype",
+      "review_notes": [
+        "Exact optional MP skin adapter preserves all 55 native MotS model rows and appends one registration plus display label; only models.dat and jkstrings.uni intentionally override native paths.",
+        "Authored model/MAT/WAV/SND resources receive an isolated namespace in their original parent directories. Six missing-native JK WAV dependencies are extracted minimally from owned sources.",
+        "Exact source hierarchy matches native Kyle; existing native KEY node18 discrepancy remains disclosed. Two fresh complete output trees match and eight synthetic tests pass. Appearance, animated poses and peers remain separate checks.",
+        "Embedded legacy readme directory separator and one exact bare tud soundclass token receive hash-pinned counted repairs; original readme credits remain preserved."
+      ],
+      "recipe_id": "mod-agent-han",
+      "review_document": "SKIN_REVIEW.md"
+    },
+    {
+      "rank": 49,
+      "massassi_id": 1289,
+      "title": "Destroyer Droid Mod",
+      "author": "J. Zimmerman",
+      "page_url": "https://www.massassi.net/levels/files/1289.shtml",
+      "downloads": 4023,
+      "download_url": "https://www.massassi.net/levels/download/1289/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/destroyerdroid.zip",
+      "original_filename": "destroyerdroid.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "09c4fdd11446b356b554ee06b2958b3a15e38e9eaaf3db42be711ba9429954b3",
+      "source_bytes": 200258,
+      "source_page_sha256": "06c647f0397fdfd4c13178abb14dc88148294b4a917825f4cae52612f08684e1",
+      "classification": "player-weapon-gameplay-mod",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [
+        {
+          "path": "ddJK.gob",
+          "bytes": 735113,
+          "sha256": "ef809b0e4a9d21098b0adfb2a3f94dd5b119913adcc6a0a16b788f407c71bfa8",
+          "entry_count": 44,
+          "inspection_error": null
+        }
+      ],
+      "readmes": [
+        {
+          "path": "DDReadme.txt",
+          "bytes": 4222,
+          "sha256": "06df0224b381cad2a74361e4d4ae677d2359d9d2617e1309e4cbe822a82972df"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 1,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    },
+    {
+      "rank": 50,
+      "massassi_id": 572,
+      "title": "Ghostbusters Total Conversion Halloween Spook Demo",
+      "author": "Deathstar4, Destructor, Kell Dragon",
+      "page_url": "https://www.massassi.net/levels/files/572.shtml",
+      "downloads": 4015,
+      "download_url": "https://www.massassi.net/levels/download/572/",
+      "direct_download_url": "https://www.massassi.net/media/levels/files/jkmod/spookdemo.zip",
+      "original_filename": "spookdemo.zip",
+      "acquisition_status": "downloaded-and-inventoried",
+      "source_sha256": "ea5978eafc732c50f51f8b274a01a0fac333ed548510522b7af215f7ba80d77e",
+      "source_bytes": 6136487,
+      "source_page_sha256": "e70e4b265ede61379290d9a78816385837c89003a84510bef252fad0c018804f",
+      "classification": "total-conversion-demo-installer",
+      "classification_status": "preliminary-source-inventory",
+      "archives": [],
+      "readmes": [
+        {
+          "path": "READFIRST.txt",
+          "bytes": 99,
+          "sha256": "767ec4e0d07199cfd29601c408584de673815236d1aef2bf4acbf871c7cdd1d5"
+        },
+        {
+          "path": "readmeinfo.txt",
+          "bytes": 4337,
+          "sha256": "22d01e2890ed3d913fad73b74babda4dd62a62310e3a0110aa53172b0d929048"
+        }
+      ],
+      "features": {
+        "weapon_scripts": 0,
+        "force_scripts": 0,
+        "level_jkls": [],
+        "static_world_archives": 0,
+        "has_inventory_table": false,
+        "has_model_list": false
+      },
+      "native_alternatives": [],
+      "conversion_status": "not-supported-by-this-inventory",
+      "review_notes": []
+    }
+  ]
+}

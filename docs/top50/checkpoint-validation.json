@@ -1,0 +1,114 @@
+{
+  "schema": "wbw.checkpoint-validation.v1",
+  "assets_included": false,
+  "tests": {
+    "windows": {
+      "total": 332,
+      "skipped": 2,
+      "passed": 330,
+      "log_sha256": "454a343f3a291cbb2de12a63cab53cbaf4e1e4c489896e44165a35ce05404e3a"
+    },
+    "linux": {
+      "total": 332,
+      "skipped": 2,
+      "passed": 330,
+      "log_sha256": "5e72ebe74fc2bd9204f4ecab7fc0f66593d8de9baf5d1f44008100ac857a90e7"
+    },
+    "maintainer": {
+      "passed": 22
+    },
+    "ui": {
+      "passed": 49,
+      "log_sha256": "d7da6f0b9a9fd008f11d4976d1dfbfb7ed6b618f1b6786856e4558390fe2311e"
+    }
+  },
+  "cross_platform_service": [
+    {
+      "id": "mp-6000-block",
+      "stamped_game_archive_identical": true,
+      "sha256": "154a1f65cf1fe1b34e7c11250c1627ead76b6a29d333e70fd5d055b5b77ab1a9"
+    },
+    {
+      "id": "sp-phantom-menace-final-battle",
+      "stamped_game_archive_identical": true,
+      "sha256": "0fb4a1113a8ba4fef427cd7da56d0cff72a247ed30c702a3899dd38cf7f6dc1f"
+    },
+    {
+      "id": "mod-agent-han",
+      "stamped_game_archive_identical": true,
+      "sha256": "e3fb4ce12c110a602604ecd352f78f8798e01cabc5f5380fe40d2d5a77aca05f"
+    }
+  ],
+  "source_package": {
+    "source_files": 72,
+    "package_bytes": 2619652,
+    "package_sha256": "455d89cfd440e3a088a5622d96f48944f3e9160bad5eb555e4b8cffa55c06d1e",
+    "old_bootstrap_full_inspection": "passed",
+    "new_files": [
+      "massassi_mp_catalog.py",
+      "mods_catalog.py",
+      "mods_converter.py",
+      "mp_pack_catalog.py",
+      "mp_pack_converter.py",
+      "recipe_adapters.py",
+      "skinmods_catalog.py",
+      "skinmods_converter.py",
+      "sp_catalog.py",
+      "sp_converter.py",
+      "test_mods_converter.py",
+      "test_mp_pack_converter.py",
+      "test_skinmods_converter.py",
+      "test_sp_converter.py"
+    ],
+    "build_only_in_memory": true
+  },
+  "profile_audits": [
+    {
+      "profiles": 12,
+      "archives": 16,
+      "findings": {
+        "native_different_byte_override": 22,
+        "isolated_episode_overlap": 132,
+        "isolated_profile_overlap": 2,
+        "wbw_tracking_metadata_difference": 66
+      },
+      "unexpected": [],
+      "declared_material_overrides": 16,
+      "pinned_native_episode_base_differences": 6
+    },
+    {
+      "profiles": 6,
+      "archives": 9,
+      "findings": {
+        "native_different_byte_override": 5,
+        "isolated_episode_overlap": 33,
+        "wbw_tracking_metadata_difference": 15
+      },
+      "unexpected": [],
+      "declared_registration_overrides": 2,
+      "native_episode_base_differences": 3
+    }
+  ],
+  "reuse_checks": [
+    {
+      "id": "mp-6000-block",
+      "reused": true
+    },
+    {
+      "id": "sp-phantom-menace-final-battle",
+      "reused": true
+    },
+    {
+      "id": "mod-agent-han",
+      "reused": true
+    }
+  ],
+  "source_format": {
+    "line_endings": "LF",
+    "python_ast_unchanged": true,
+    "canonical_game_payloads_unchanged": true,
+    "replayed_after_normalization": true,
+    "normalization_receipt_sha256": "84221b2c9dbbf38dd14ca425007c2d87b85b97ba1623dc6d0e0c24134afde44b",
+    "test_suite_note": "Full source suites ran before line-ending normalization; Python AST equivalence was checked and conversion replays reran afterward."
+  }
+}

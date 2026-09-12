@@ -595,11 +595,11 @@ def check_ctf_startup(archives, directory, *, recipe_id=None):
             original, generated, marker)
 
 
-def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', community=None, community_key=None, community_startup=None):
+def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', community=None, community_key=None, community_startup=None, community_spec=None):
     assert sum(value is not None for value in (dojo, caesars, community)) <= 1, 'Select one custom map'
-    assert (community is None) == (community_key is None), 'Supply both community archive and key'
+    assert (community is None) == (community_key is None and community_spec is None), 'Supply the archive and one reviewed world specification'
     assert not any(value is not None for value in (dojo, caesars, community)) or stock_map == 'valley', 'Custom and stock selections cannot be combined'
-    spec = custom_registry.entries()[custom_registry.select(community_key)] if community is not None else {}
+    spec = custom_registry.reviewed_world(community_key, community_spec) if community is not None else {}
     selected_recipe = (spec['key'] if community is not None else 'caesars' if caesars is not None
                        else 'dojo' if dojo is not None else stock_map)
     original_generated = generated
@@ -749,8 +749,8 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
         startup_result = check_community_startup(archives, generated, custom, spec, resource_names, community_startup)
         if startup_result:
             verified.append('required community startup archive independently reconstructed from pinned source bytes')
-    first, manifest = bridge.recipe(archives, dojo=dojo, caesars=caesars, stock_map=stock_map, community=community, community_key=community_key)
-    second, _ = bridge.recipe(archives, dojo=dojo, caesars=caesars, stock_map=stock_map, community=community, community_key=community_key)
+    first, manifest = bridge.recipe(archives, dojo=dojo, caesars=caesars, stock_map=stock_map, community=community, community_key=community_key, community_spec=community_spec)
+    second, _ = bridge.recipe(archives, dojo=dojo, caesars=caesars, stock_map=stock_map, community=community, community_key=community_key, community_spec=community_spec)
     assert first == second == generated.data
     verified.append('two repeat builds byte-identical to the verified game payload' if tracking is not None
                     else 'two repeat builds byte-identical to delivered archive')

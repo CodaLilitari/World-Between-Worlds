@@ -59,11 +59,12 @@ installed levels. [Revision details](RECIPES.md#installed-recipe-revisions).
 
 ## What's supported?
 
-The recipe book includes all **nine stock JK multiplayer maps**, including Canyon
+The published **0.2.0-rc4** recipe book includes all **nine stock JK multiplayer maps**, including Canyon
 Oasis and the three CTF maps; **17 custom maps**, including Jedi's High School,
 Caesar's Palace, and SM Purgatory; and the optional Ninja Kage 7.0 prototype.
-Only the reviewed original versions are accepted. Singleplayer categories are
-reserved for future recipes.
+Only the reviewed original versions are accepted. The current development branch
+adds multiplayer, singleplayer and mod prototypes; see the
+[development checkpoint and test limits](docs/top50/DEVELOPMENT_CHECKPOINT.md).
 
 - [Custom levels, authors and original download URLs](SUPPORTED_CUSTOM_SOURCES.txt)
 - [Per-map details and known differences](COMMUNITY_RC1.md) · [Ninja Kage](NINJA_KAGE.md)
@@ -78,6 +79,9 @@ gameplay or multi-client parity for every map or mod. Use the recorded limitatio
 when deciding what to test.
 
 ## Updates, credits and terms
+
+Development work: [50 Massassi entries per category](docs/top50/README.md), with
+source review and test status tracked separately from released compatibility.
 
 WBW checks this project's GitHub releases on launch, verifies compatible updates,
 and keeps a working fallback. It can run offline; `--no-update` skips the check.

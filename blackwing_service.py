@@ -125,6 +125,10 @@ def validate_request(value):
 
 
 def original_hashes(key):
+    import recipe_adapters
+    adapter = recipe_adapters.for_recipe(key)
+    if adapter:
+        return set(adapter.original_hashes(key))
     if key in custom_registry.entries():
         spec = custom_registry.entries()[key]
         return {spec['gob_sha256'], spec['zip_sha256']}
@@ -132,9 +136,11 @@ def original_hashes(key):
         return {bridge.DOJO_GOB_SHA256, bridge.DOJO_ZIP_SHA256}
     if key == 'caesars':
         return {bridge.CAESARS_GOB_SHA256, bridge.CAESARS_ZIP_SHA256}
-    if key not in bridge.STOCK_MAPS:
+    if key == 'ninja-kage':
         import ninja_converter
         return set(ninja_converter.original_hashes())
+    if key not in bridge.STOCK_MAPS:
+        raise ValueError('Unknown recipe: ' + key)
     return set()
 
 
@@ -294,6 +300,10 @@ def track_outputs(row, stage, result, lock):
 
 def build_one(row, archives, original_path, stage):
     key = row['id']
+    import recipe_adapters
+    adapter = recipe_adapters.for_recipe(key)
+    if adapter:
+        return adapter.build_to_directory(archives, original_path, stage, key)
     kwargs = {}
     if key in bridge.STOCK_MAPS:
         kwargs['stock_map'] = key
@@ -307,9 +317,11 @@ def build_one(row, archives, original_path, stage):
     elif key in custom_registry.entries():
         kwargs.update(community=custom_registry.open_original(original_path, key), community_key=key)
         filename = custom_registry.output_name(key)
-    else:
+    elif key == 'ninja-kage':
         import ninja_converter
         return ninja_converter.build_to_directory(archives, original_path, stage)
+    else:
+        raise ValueError('Unknown recipe: ' + key)
     data, manifest = bridge.recipe(archives, **kwargs)
     target = stage / filename
     bridge.write_candidate(target, data, manifest)
@@ -337,8 +349,9 @@ def convert_selected(value, progress=None):
     log('Verifying owned JK and MotS archives…')
     specs = custom_registry.entries()
     archives = bridge.pinned_archives(jk_root=paths['jk_root'], mots_root=paths['mots_root'],
-        include_jksp=any(bridge.STOCK_MAPS.get(row['id'], {}).get('requires_jksp') or specs.get(row['id'], {}).get('requires_jksp') for row in rows),
-        include_jkctf=any(row['id'].startswith('ctf-') for row in rows))
+        include_jksp=any(bridge.STOCK_MAPS.get(row['id'], {}).get('requires_jksp') or specs.get(row['id'], {}).get('requires_jksp') or 'jksp' in row.get('required_owned_archives', []) for row in rows),
+        include_jkctf=any(row['id'].startswith('ctf-') for row in rows),
+        include_motssp=any('motssp' in row.get('required_owned_archives', []) for row in rows))
     paths['output_dir'].mkdir(parents=True, exist_ok=True)
     results = []
     for index, row in enumerate(rows):

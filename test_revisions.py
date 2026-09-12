@@ -40,8 +40,9 @@ def catalog():
 
 class RevisionMarkerTests(unittest.TestCase):
     def test_explicit_recipe_revision_registry(self):
-        self.assertEqual(len(revisions.RECIPE_REVISIONS), 27)
-        self.assertTrue(all(number == 1 for number in revisions.RECIPE_REVISIONS.values()))
+        from blackwing_catalog import recipes
+        self.assertEqual(set(revisions.RECIPE_REVISIONS), {row['id'] for row in recipes()})
+        self.assertTrue(all(type(number) is int and number > 0 for number in revisions.RECIPE_REVISIONS.values()))
         self.assertEqual(revisions.revision('canyon-oasis'), 1)
         with self.assertRaises(KeyError):
             revisions.revision('not-a-supported-recipe')
@@ -171,6 +172,24 @@ class InstallationScanTests(unittest.TestCase):
         self.put('episode/something-else.GOO', stamped(number=2))
         row = self.scan()['results'][0]
         self.assertEqual((row['id'], row['status']), ('canyon-oasis', 'current'))
+
+    def test_unavailable_recipe_preserves_inventory_without_offering_conversion(self):
+        self.put('old.goo', stamped(number=1))
+        self.put('current.goo', stamped(number=2))
+        self.put('bridge-canyon-v1.goo', archive())
+        for status in ('unavailable', 'future-status'):
+            with self.subTest(status=status):
+                rows = catalog()
+                rows[0]['status'] = status
+                report = revisions.scan_installation(self.root, rows)
+                found = {row['filename']: row for row in report['results']}
+                self.assertEqual(found['old.goo']['installed_revision'], 1)
+                self.assertEqual(found['current.goo']['status'], 'current')
+                self.assertEqual(found['bridge-canyon-v1.goo']['status'], 'unversioned')
+                for row in found.values():
+                    self.assertFalse(row['can_update'])
+                    self.assertIn('unavailable for conversion', row['message'])
+                    self.assertNotIn('regenerate', row['message'])
 
     def test_app_version_and_recipe_hash_do_not_invalidate_revision(self):
         data, _ = revisions.stamp_archive(archive(), 'canyon-oasis', 2,

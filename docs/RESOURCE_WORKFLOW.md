@@ -173,3 +173,26 @@ asset exclusions before updating the public release or the Massassi submission.
 For each review, answer explicitly: **what was changed; why each resource is
 present; what can override it; which checks ran on these exact bytes; what remains
 unverified; and can WBW rebuild the correction from the original inputs?**
+
+## Findings to retain from the top-50 expansion
+
+- Inspect the actual engine verb before rewriting a numeric COG operand. MotS's
+  `SetInv`/`ChangeInv` path translates ordinary weapon ordinals below 11 to
+  inventory descriptors; `GetCurWeapon` still returns an ordinal. A blanket
+  replacement of every matching number can break an already compatible call.
+  The JK saber ordinal 10 needs a specific port because MotS's saber ordinal is
+  11 and its descriptor is 131.
+- Native MotS `force_well` recalculates the rank-based maximum on each SP pulse,
+  but caches it during startup in MP. An authored MP script that changes rank
+  afterward needs its own reviewed initialization handling. Check the original
+  startup/new-player ordering, subsequent timers and regeneration cadence. Do
+  not repeatedly restart the controller when its cached maximum already matches.
+- A skin overlay mounting successfully does not prove that skin was selected.
+  The inspected engine autostart path hardcodes Kyle. Until a tested character
+  selection path is available, record this as an overlay-load result only.
+  Preserve native registrations and inspect actual skeleton, KEY and resource
+  bindings independently; shared directory names do not certify animation.
+- When SED reports geometry problems, compare the untouched original and the
+  converted world with the same pinned SED version. Retained original findings
+  are different from conversion regressions, and neither is a clean geometry
+  validation pass. Any proposed repair must be a separate exact recipe operation.

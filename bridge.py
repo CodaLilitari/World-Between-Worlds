@@ -37,6 +37,8 @@ JKSP_SHA256 = '41591e570d5a2173873465e4c061e61edb5efea9883533ed70d78b3a81a10e46'
 JKSP_PATH = 'jkdf2-steam-clean/Episode/JK1.GOB'
 JKCTF_SHA256 = 'da98fe3fc769168f1bb562cc1f6532560b12d8e920fd6c34586d69b424b5b1fc'
 JKCTF_PATH = 'jkdf2-steam-clean/Episode/JK1CTF.GOB'
+MOTSSP_SHA256 = '08e5717915c8fc37bab80b8ffd5e7e1fb0ff2817fe48cb151884c5bf8639a66a'
+MOTSSP_PATH = 'mots-retail-clean/episode/JKM.GOO'
 EXTENSIONS = 'mat|cmp|3do|key|pup|snd|cog|wav|spr|par|ai'
 FILE_REF = re.compile(r'(?<![\w.~&])([\w+.~&-]+\.(?:' + EXTENSIONS + r'))(?![\w.~&])', re.I)
 TEXT_EXTENSIONS = {'.jkl', '.3do', '.pup', '.snd', '.cog', '.spr', '.par', '.ai'}
@@ -426,7 +428,7 @@ def owned_file(root, relative):
     return current
 
 
-def pinned_archives(baselines=None, *, jk_root=None, mots_root=None, include_jksp=False, include_jkctf=False):
+def pinned_archives(baselines=None, *, jk_root=None, mots_root=None, include_jksp=False, include_jkctf=False, include_motssp=False):
     if baselines is None and (jk_root is None or mots_root is None):
         raise RecipeError('Supply --jk-root and --mots-root, or the legacy --baselines layout')
     if baselines is not None and (jk_root is not None or mots_root is not None):
@@ -437,6 +439,8 @@ def pinned_archives(baselines=None, *, jk_root=None, mots_root=None, include_jks
         requested['jksp'] = JKSP_PATH
     if include_jkctf:
         requested['jkctf'] = JKCTF_PATH
+    if include_motssp:
+        requested['motssp'] = MOTSSP_PATH
     for key, rel in requested.items():
         if baselines is None:
             _, local_rel = rel.split('/', 1)
@@ -444,7 +448,7 @@ def pinned_archives(baselines=None, *, jk_root=None, mots_root=None, include_jks
         else:
             path = Path(baselines) / rel
         archive = Gob.open(path)
-        if archive.sha256 != ({'jksp': JKSP_SHA256, 'jkctf': JKCTF_SHA256}.get(key) or HASHES[key]):
+        if archive.sha256 != ({'jksp': JKSP_SHA256, 'jkctf': JKCTF_SHA256, 'motssp': MOTSSP_SHA256}.get(key) or HASHES[key]):
             raise RecipeError(f'Unsupported source hash for {key}; no output generated')
         found[key] = archive
     return found
@@ -786,19 +790,19 @@ def write_ctf_startup(path, data, manifest):
             'required_launch_arguments': manifest['required_launch_arguments']}
 
 
-def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=None, community_key=None):
+def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=None, community_key=None, community_spec=None):
     """Generate bytes in memory. Asset bytes never become part of tool source."""
     for key, expected in HASHES.items():
         if key not in archives or archives[key].sha256 != expected:
             raise RecipeError(f'Unsupported source hash for {key}')
     stock_map = stock_selector(stock_map)
     spec = STOCK_MAPS[stock_map]
-    if (community is None) != (community_key is None):
+    if (community is None) != (community_key is None and community_spec is None):
         raise RecipeError('Community conversion requires both original archive and recipe key')
     if sum(item is not None for item in (caesars, dojo, community)) > 1:
         raise RecipeError('Select one custom level')
     if community is not None:
-        spec = custom_registry.entries()[custom_registry.select(community_key)]
+        spec = custom_registry.reviewed_world(community_key, community_spec)
         if community.sha256 != spec['gob_sha256']:
             raise RecipeError('Unreviewed community GOB hash')
     is_ctf = spec.get('episode_type') == 8

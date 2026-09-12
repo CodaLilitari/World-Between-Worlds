@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "recipe_id": "mod-agent-han",
+  "recipe": "agent-han-mots-skin-v1",
+  "date": "2026-09-12",
+  "source_zip_sha256": "3a5b5385d365ede5686c020446d735a2ce157e37771b500900d7d8e170d1aa77",
+  "source_gob_sha256": "81649b94db2c280b402927c0310f66c4e15a2c8b8129cfc0957842a1b435b860",
+  "normalized_source_gob_sha256": "d0313d6d80ac9539244a699f3f40c51156ec244d96df48ea7c4569c9bfc5a15d",
+  "owned_archive_sha256": {
+    "jkres": "c75f7d5211bdd2e07a3af6a987c718037e8f0fd6909018ddb4327137bf3a7ebf",
+    "jksnd": "6c6d51eca9c85dffe7dce9b449642a052f055352e3f817abf03b465da861aafd",
+    "motsres": "fa615eafa30114afd5e38369d790e721df56ce9a4ef62b66f34fc41b7c048a12",
+    "motssnd": "b80029082c93c7c47fd886ab659f41b5318fed1fa34b173cf5fd1bb7226d3462"
+  },
+  "two_fresh_complete_output_trees_equal": true,
+  "outputs": {
+    "ORIGINAL-README.txt": {
+      "bytes": 4116,
+      "sha256": "ba5514e14641d73815a8e701c5f86cf7ef4b384c8a4a4d76b6ded9aa048aef61"
+    },
+    "README.txt": {
+      "bytes": 596,
+      "sha256": "c07d50d19119de5331c2e41f9768e26656ad67364f2e3f3a1d492174f0e3bff7"
+    },
+    "wbw-agent-han.goo": {
+      "bytes": 902676,
+      "sha256": "0f89354506ae1f5cef1aa7eb54c332b819f402ca042d8935e408cf7ab6cc05d2"
+    },
+    "wbw-agent-han.goo.manifest.json": {
+      "bytes": 32469,
+      "sha256": "a1a4ac8dd15f14fbdf31434dc0d48d1a61f3755e6213d9a8bcd3f5ee6ec77187"
+    }
+  },
+  "native_overrides": [
+    "misc/models.dat",
+    "ui/jkstrings.uni"
+  ],
+  "native_model_rows_preserved": 55,
+  "models_added": 1,
+  "source_model_hierarchy": "18 nodes match native MotS Kyle node identities and topology; source geometry and rest transforms preserved",
+  "native_keys_pinned": 63,
+  "native_key_limit": "Three native keys refer to node18 beyond the stock 18-node Kyle too; no added mismatch established",
+  "source_files": {
+    "skinmods_catalog.py": "8ed3d92a85d986ee60e48717a3eeac0875e05a541c6e2241b764642d66bee10d",
+    "skinmods_converter.py": "b61d2e6a959bebcca4c58ae3c56175596f566a276d6c6c651000e5b338552757",
+    "test_skinmods_converter.py": "ebc0fdb9c9e397d47f048ab6b3842116c1f07e02398daf5ce5cfe9953f2f8c7b"
+  },
+  "synthetic_test_command": "python -m unittest test_skinmods_converter -v",
+  "synthetic_tests_passed": 8,
+  "verification": [
+    "exact original ZIP/member/GOB/entry hash gates",
+    "exact owned and native dependency hash gates",
+    "complete output paths and only declared native-table overrides",
+    "reverse exact edits recover original authored bytes",
+    "binary MAT/WAV payload equality",
+    "typed material and soundclass reference closure",
+    "no new native loader/cache leafname aliases",
+    "post-write archive verification and original-readme byte readback"
+  ],
+  "not_claimed": [
+    "selected skin rendering",
+    "animated pose and weapon attachment correctness",
+    "remote-player appearance",
+    "second-peer synchronization",
+    "retail parity"
+  ]
+}

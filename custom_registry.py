@@ -13,7 +13,39 @@ import zipfile
 from gob import ArchiveError, Gob, resource_name
 
 
-CATALOG_MODULES = ('custom_catalog', 'author_catalog', 'jhs_catalog')
+CATALOG_MODULES = ('custom_catalog', 'author_catalog', 'jhs_catalog', 'massassi_mp_catalog')
+
+
+def reviewed_world(key=None, spec=None):
+    """Resolve a listed map or an explicit world spec from a reviewed pack.
+
+    Pack components do not become individual selectable recipes. Callers supply
+    the specification from pinned application code, never downloaded metadata.
+    """
+    if spec is None:
+        return entries()[select(key)]
+    if key is not None or not isinstance(spec, dict):
+        raise ValueError('Choose a listed map or one reviewed pack component')
+    result = dict(spec)
+    if not re.fullmatch(r'[a-z0-9][a-z0-9-]*', result.get('key', '')):
+        raise ValueError('Invalid pack component key')
+    if not re.fullmatch(r'[a-z0-9_]{1,22}', result.get('tag', '')):
+        raise ValueError('Invalid pack component tag')
+    for field in ('gob_sha256', 'sha256', 'scripts_sha256'):
+        if not re.fullmatch(r'[0-9a-f]{64}', result.get(field, '')):
+            raise ValueError('Invalid pack component source hash: ' + field)
+    for field in ('title', 'author', 'source_url', 'runtime_cogs', 'environment'):
+        if field not in result:
+            raise ValueError('Missing pack component field: ' + field)
+    result['world'] = resource_name(result['world'])
+    if not result['world'].endswith('.jkl') or result.get('episode_type', 2) not in (2, 16):
+        raise ValueError('Unreviewed multiplayer pack world')
+    for field in ('resource_aliases', 'template_aliases'):
+        for old, new in result.get(field, {}).items():
+            if (old != old.lower() or new != new.lower() or '/' in new or '\\' in new
+                    or not new.startswith('br_') or len(new.encode('cp1252')) > 31):
+                raise ValueError('Invalid namespaced pack alias')
+    return result
 
 
 def entries():

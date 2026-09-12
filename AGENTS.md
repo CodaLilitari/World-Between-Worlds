@@ -36,3 +36,11 @@ Maintainer tools and workflow documents under `tools/` and `docs/` are source
 checkout aids, not automatically part of the self-updating end-user package.
 Review the explicit packaging allowlist and old-bootstrap contract before
 adding them to a release payload.
+
+The active [Massassi expansion queue](docs/top50/README.md) covers exactly 50
+entries in each of the JK multiplayer, singleplayer and mod categories. A
+download or structural inventory is not a supported conversion. Keep its
+ranked input pins, recipe state and test evidence distinct. The
+[stock JK campaign](docs/STOCK_JK_CAMPAIGN_PLAN.md) is a separate future plan:
+preserve both authored story routes with MotS-neutral Force powers on either
+route; do not count it toward the 150 custom entries or enable it prematurely.
