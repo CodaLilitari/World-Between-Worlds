@@ -38,6 +38,8 @@ jobs:
           node-version: '22'
       - name: Public synthetic source regression
         run: python -B -m unittest discover -p 'test_*.py' -v
+      - name: Archive ownership and profile regression
+        run: python -B -m unittest discover -s tools -p 'test_archive_audit.py' -v
       - name: UI source regression
         run: node --test ui/test_ui.mjs
       - name: Check recipe lock and workflow template

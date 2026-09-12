@@ -30,6 +30,10 @@ test('prototype mod is selected only by explicit ID and stays separate from maps
   assert.deepEqual(result.archives,{'ninja-kage':'original.zip'});
 });
 test('category and mode filters intersect',()=>assert.deepEqual(ui.visibleRecipes(recipes,{kind:'custom',gameplay:'ctf'}).map(r=>r.id),['custom-two']));
+test('Levels includes stock and custom maps but excludes gameplay mods',()=>{
+  assert.deepEqual(ui.visibleRecipes(recipes,{kind:'levels'}).map(r=>r.id),['stock-one','custom-two','future-sp']);
+  assert.deepEqual(ui.visibleRecipes(recipes,{kind:'levels',gameplay:'ctf'}).map(r=>r.id),['custom-two']);
+});
 test('multiword search matches title and author case-insensitively',()=>assert.deepEqual(ui.visibleRecipes(recipes,{search:'STONE author'}).map(r=>r.id),['custom-two']));
 test('gameplay names are searchable',()=>assert.deepEqual(ui.visibleRecipes(recipes,{search:'capture flag'}).map(r=>r.id),['custom-two']));
 test('empty mod or SP category remains empty, without fabricated recipes',()=>{
@@ -183,6 +187,23 @@ test('application initialization and path changes never scan or select automatic
   assert.equal(page.nodes.get('scan-mots').disabled,false);
   await page.editMots('D:\\MotS');assert.equal(page.requests.length,3);
   assert.match(page.nodes.get('recipe-list').textContent,/wbw_v2/);
+});
+test('Levels and Mods have separate pickers and visible selection never adds hidden mods',async()=>{
+  const page=await localUI();
+  const options=()=>page.nodes.get('recipe-picker').options.map(option=>option.value).filter(Boolean);
+  assert.deepEqual(options(),['stock-one','custom-two']);
+  await page.click('select-visible');
+  assert.equal(page.nodes.get('queue-count').textContent,'2');
+  await page.nodes.get('kind-navigation').fire('click',{target:{closest:()=>({dataset:{kind:'mod'}})}});
+  assert.deepEqual(options(),['mod-three']);
+  assert.equal(page.nodes.get('library-title').textContent,'Choose a mod');
+  assert.match(page.nodes.get('selection-help').textContent,/never loads it automatically/);
+  await page.click('reset-filters');
+  assert.deepEqual(options(),['mod-three']);
+  assert.equal(page.nodes.get('queue-count').textContent,'2');
+  await page.click('select-visible');
+  assert.equal(page.nodes.get('queue-count').textContent,'3');
+  assert.equal(page.requests.filter(request=>request.path==='/api/convert').length,0);
 });
 test('explicit scan uses the token API and renders every status without selecting content',async()=>{
   const rows=['current','update_available','newer','unversioned','modified','unrecognized','error'].map((status,index)=>installed({status,path:`C:\\MotS\\${index}.goo`,can_update:status==='update_available',duplicate:status==='update_available'}));

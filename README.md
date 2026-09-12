@@ -36,8 +36,9 @@ Its illustrated gothic interface is completely silent.
 2. **Check older conversions.** Click **Scan MotS folder** to see which installed
    WBW levels are current, older, unversioned, changed, or duplicated. Queue only
    the updates you want. The scan changes no files.
-3. **Choose a level or mod.** Use the dropdown and add one or several to your queue.
-   The full library has search and filters for stock/custom content and gameplay.
+3. **Choose Levels or Mods.** Levels contains stock and custom maps; Mods contains
+   optional gameplay conversions such as Ninja Kage. Add entries to your queue
+   using the dropdown. Search and gameplay filters stay within that section.
 4. **Supply the original when needed.** For a custom level or mod, select its
    original ZIP/GOB. **Download original** opens the reviewed author's/archive page;
    download it there, then come back and explicitly choose the file. Stock maps

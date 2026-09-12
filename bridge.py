@@ -1048,9 +1048,11 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
     if resolved_omissions:
         raise RecipeError('Reviewed original omissions unexpectedly resolved: ' + ', '.join(sorted(resolved_omissions)))
     missing = []; unexpected_missing = []
-    for path in resources:
+    # Report order must be stable across Python processes as well as builds:
+    # receipts hash this manifest, including reviewed omission lists.
+    for path in sorted(resources):
         if Path(path).suffix in TEXT_EXTENSIONS:
-            for ref in references(text(resources[path])):
+            for ref in sorted(references(text(resources[path]))):
                 if ref not in available.by_name:
                     omission = next((item for item in accepted_omissions
                                      if item['output_referrer'] == path and item['output_name'] == ref), None)

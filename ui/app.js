@@ -1,5 +1,5 @@
 /* World Between Worlds: local browser UI. No external dependencies or automatic selection. */
-const KINDS = {all:'All supported content',vanilla:'Vanilla JK',custom:'Custom levels',mod:'Gameplay mods'};
+const KINDS = {all:'All supported content',levels:'All levels',vanilla:'Vanilla JK',custom:'Custom levels',mod:'Gameplay mods'};
 const MODES = {mp:'Multiplayer',ctf:'Capture the flag',sp:'Singleplayer'};
 const ELIGIBLE = new Set(['verified','supported','ready','available','prototype']);
 const TERMINAL = new Set(['complete','completed','done','success','succeeded','failed','error','cancelled','canceled','partial']);
@@ -34,7 +34,7 @@ export function scanSummary(scan) {
 export function selectable(recipe) { return ELIGIBLE.has(String(recipe.status || '').toLowerCase()); }
 export function visibleRecipes(recipes, {kind='all',gameplay='all',search=''}={}) {
   const words = search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  return recipes.filter(recipe => (kind==='all' || recipe.kind===kind) &&
+  return recipes.filter(recipe => (kind==='all' || (kind==='levels' ? recipe.kind!=='mod' : recipe.kind===kind)) &&
     (gameplay==='all' || (recipe.gameplay || []).includes(gameplay)) &&
     words.every(word => [recipe.title,recipe.author,recipe.summary,...(recipe.gameplay || []).map(mode=>MODES[mode] || mode)].join(' ').toLocaleLowerCase().includes(word)));
 }
@@ -75,7 +75,7 @@ export function validateCatalog(data) {
 
 function start() {
   const $ = id=>document.getElementById(id);
-  const state = {recipes:[],selected:new Set(),archives:Object.create(null),dirtyPaths:new Set(),kind:'all',gameplay:'all',search:'',job:null,jobId:null,jobRunning:false,pollTimer:null,detailRequest:0,scan:null,scanRunning:false,scanRequest:0,scanError:'',scanStale:false,pathPicking:null,pickerStatus:'',settingsSaving:false};
+  const state = {recipes:[],selected:new Set(),archives:Object.create(null),dirtyPaths:new Set(),kind:'levels',gameplay:'all',search:'',job:null,jobId:null,jobRunning:false,pollTimer:null,detailRequest:0,scan:null,scanRunning:false,scanRequest:0,scanError:'',scanStale:false,pathPicking:null,pickerStatus:'',settingsSaving:false};
   const el = (tag,className='',text='')=>{const node=document.createElement(tag);if(className)node.className=className;node.textContent=text;return node;};
   const announce = text=>{$('announcements').textContent=text;};
   function notice(message) { $('notice-text').textContent=message;$('notice').classList.remove('hidden'); }
@@ -187,7 +187,11 @@ function start() {
   }
   function renderPicker() {
     const previous=$('recipe-picker').value;
-    $('recipe-picker').replaceChildren(new Option('Add a map or mod…',''));
+    const noun=state.kind==='mod'?'mod':'level';
+    $('recipe-picker').replaceChildren(new Option(`Add a ${noun}…`,''));
+    $('recipe-picker-label').textContent=`Add a ${noun} to the queue`;
+    $('library-title').textContent=`Choose a ${noun}`;
+    $('selection-help').textContent=state.kind==='mod'?'Mods create separate gameplay packages. Choose the original archive in your queue; converting a mod never loads it automatically.':'Choose levels here. Ninja Kage and other gameplay conversions have their own Mods section. Each result stays separate.';
     for (const kind of ['vanilla','custom','mod']) {
       const rows=matching().filter(recipe=>recipe.kind===kind && selectable(recipe));
       if (!rows.length) continue;
@@ -213,7 +217,7 @@ function start() {
     $('select-visible').textContent=`Select visible (${eligible.length})`;
     $('select-visible').disabled=!eligible.length || state.jobRunning;
     document.querySelectorAll('[data-kind]').forEach(button=>{const active=button.dataset.kind===state.kind;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
-    document.querySelectorAll('[data-count]').forEach(node=>{node.textContent=String(state.recipes.filter(recipe=>selectable(recipe) && (node.dataset.count==='all' || recipe.kind===node.dataset.count)).length);});
+    document.querySelectorAll('[data-count]').forEach(node=>{node.textContent=String(visibleRecipes(state.recipes,{kind:node.dataset.count}).filter(selectable).length);});
     $('gameplay-note').textContent=state.gameplay==='sp' && !state.recipes.some(recipe=>selectable(recipe) && recipe.gameplay.includes('sp')) ? 'No singleplayer conversion recipes are supported in this catalog.' : 'Availability follows the reviewed recipes in this workbench.';
     for (const recipe of rows) {
       const active=state.selected.has(recipe.id),available=selectable(recipe);
@@ -234,7 +238,7 @@ function start() {
     $('empty-state').classList.toggle('hidden',rows.length>0);
     if (!rows.length) {
       const unavailableMode=state.gameplay!=='all' && !state.recipes.some(recipe=>selectable(recipe) && recipe.gameplay.includes(state.gameplay));
-      const unavailableKind=state.kind!=='all' && !state.recipes.some(recipe=>selectable(recipe) && recipe.kind===state.kind);
+      const unavailableKind=!visibleRecipes(state.recipes,{kind:state.kind}).some(selectable);
       $('empty-title').textContent=unavailableMode?`${MODES[state.gameplay]} is not available yet`:unavailableKind?`No supported ${KINDS[state.kind].toLowerCase()} yet`:'No matching recipes';
       $('empty-copy').textContent=unavailableMode || unavailableKind?'This category has no supported conversion recipes in the current catalog. Nothing can be queued from it.':'Try a different title or author, or reset your category and gameplay filters.';
     }
@@ -353,7 +357,7 @@ function start() {
   $('add-recipe').addEventListener('click',()=>{const id=$('recipe-picker').value;if(id)setSelection(id,true);});
   $('select-visible').addEventListener('click',()=>{if(state.jobRunning)return;matching().filter(selectable).forEach(recipe=>state.selected.add(recipe.id));renderLibrary();renderQueue();announce(`${state.selected.size} recipes selected.`);});
   $('clear-selection').addEventListener('click',()=>{if(state.jobRunning)return;state.selected.clear();renderLibrary();renderQueue();announce('Selection cleared.');});
-  $('reset-filters').addEventListener('click',()=>{state.kind='all';state.gameplay='all';state.search='';$('search').value='';$('gameplay-filter').value='all';renderLibrary();});
+  $('reset-filters').addEventListener('click',()=>{state.kind=state.kind==='mod'?'mod':'levels';state.gameplay='all';state.search='';$('search').value='';$('gameplay-filter').value='all';renderLibrary();});
   $('close-details').addEventListener('click',()=>$('recipe-dialog').close());
   $('recipe-dialog').addEventListener('close',()=>{state.detailRequest++;});
   $('settings-form').addEventListener('submit',async event=>{event.preventDefault();if(state.pathPicking || state.jobRunning)return;state.settingsSaving=true;renderPathControls();$('settings-status').textContent='Saving local folder settings…';try {await api('/api/settings',{method:'POST',body:formPaths()});$('settings-status').textContent='Local folder settings saved.';}catch(error){$('settings-status').textContent='Folders were not saved.';notice(errorText(error));}finally{state.settingsSaving=false;renderPathControls();}});

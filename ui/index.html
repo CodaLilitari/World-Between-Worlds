@@ -25,11 +25,13 @@
   <div class="notice hidden" id="notice" role="alert"><span id="notice-text"></span><button type="button" id="dismiss-notice" aria-label="Dismiss notification">×</button></div>
   <div class="workbench">
     <aside class="navigation" aria-label="Library navigation">
-      <div class="sidebar-caption">COLLECTION</div>
       <nav id="kind-navigation" aria-label="Content categories">
-        <button type="button" class="nav-item active" data-kind="all" aria-pressed="true"><span>All supported content</span><span class="nav-count" data-count="all">—</span></button>
+        <div class="sidebar-caption">LEVELS</div>
+        <button type="button" class="nav-item active" data-kind="levels" aria-pressed="true"><span>All levels</span><span class="nav-count" data-count="levels">—</span></button>
         <button type="button" class="nav-item" data-kind="vanilla" aria-pressed="false"><span>Vanilla JK</span><span class="nav-count" data-count="vanilla">—</span></button>
         <button type="button" class="nav-item" data-kind="custom" aria-pressed="false"><span>Custom levels</span><span class="nav-count" data-count="custom">—</span></button>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-caption">MODS</div>
         <button type="button" class="nav-item" data-kind="mod" aria-pressed="false"><span>Gameplay mods</span><span class="nav-count" data-count="mod">—</span></button>
       </nav>
       <div class="sidebar-divider"></div>
@@ -63,12 +65,12 @@
       </details>
 
       <section class="library-panel" aria-labelledby="library-heading">
-        <div class="section-heading"><h2 id="library-heading"><span class="section-number">02</span> Choose a level or mod</h2><span class="result-count" id="result-count" role="status">Loading the catalog…</span></div>
-        <div class="add-row"><label class="visually-hidden" for="recipe-picker">Add a map or mod to the queue</label><select id="recipe-picker"><option value="">Add a map or mod…</option></select><button type="button" class="button secondary" id="add-recipe" disabled>Add to queue <span aria-hidden="true">+</span></button></div>
-        <p class="selection-help">Add one or several recipes. For a custom level or mod, choose its original file in your queue.</p>
+        <div class="section-heading"><h2 id="library-heading"><span class="section-number">02</span> <span id="library-title">Choose a level</span></h2><span class="result-count" id="result-count" role="status">Loading the catalog…</span></div>
+        <div class="add-row"><label class="visually-hidden" id="recipe-picker-label" for="recipe-picker">Add a level to the queue</label><select id="recipe-picker"><option value="">Add a level…</option></select><button type="button" class="button secondary" id="add-recipe" disabled>Add to queue <span aria-hidden="true">+</span></button></div>
+        <p class="selection-help" id="selection-help">Choose levels here. Ninja Kage and other gameplay conversions have their own Mods section. Each result stays separate.</p>
         <details class="catalog-details" id="catalog-details"><summary>Browse the full recipe library</summary>
           <div class="search-row"><label class="search-box" for="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input type="search" id="search" placeholder="Search titles, authors, or gameplay" autocomplete="off"><kbd aria-hidden="true">/</kbd></label></div>
-          <div class="list-toolbar"><span id="category-caption">All supported content</span><button type="button" class="text-button" id="select-visible" disabled>Select visible</button></div>
+          <div class="list-toolbar"><span id="category-caption">All levels</span><button type="button" class="text-button" id="select-visible" disabled>Select visible</button></div>
           <div class="recipe-grid" id="recipe-list" aria-label="Available conversion recipes" aria-busy="true"></div>
           <div class="empty-state hidden" id="empty-state"><span aria-hidden="true">◇</span><h3 id="empty-title">No content here yet</h3><p id="empty-copy"></p><button type="button" class="button secondary" id="reset-filters">Reset filters</button></div>
         </details>
@@ -76,7 +78,7 @@
       </section>
 
       <section class="installed-panel" id="installed-panel" aria-labelledby="installed-heading">
-        <div class="section-heading"><h2 id="installed-heading">Installed levels</h2><span class="badge">Read-only scan</span></div>
+        <div class="section-heading"><h2 id="installed-heading">Installed conversions</h2><span class="badge">Read-only scan</span></div>
         <p class="scan-copy">Compare conversions in your MotS folder with the revisions in this recipe book.</p>
         <div class="scan-actions"><button type="button" class="button secondary" id="scan-mots" disabled>Scan MotS folder</button><button type="button" class="text-button hidden" id="queue-outdated" disabled>Queue all outdated</button></div>
         <p class="scan-status" id="scan-status" role="status">Ready when you are. Choose your MotS folder above, then scan it.</p>
