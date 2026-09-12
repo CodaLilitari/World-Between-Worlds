@@ -145,6 +145,10 @@ transitions and matched second-peer tests. These dimensions are not implied by
 successful structural verification or a hosted load test. KWP and Matrix's
 specific unresolved dependencies remain documented in their review queues.
 
+The follow-up [remaining-source review](REMAINING_SOURCE_REVIEW.md) now covers
+all 118 unimplemented entries individually. It records source packaging,
+episode, controller and dependency gates without adding selectable recipes.
+
 The [stock JK campaign plan](../STOCK_JK_CAMPAIGN_PLAN.md) remains separate:
 preserve both authored stories with neutral MotS Force powers on either route.
 It is planning only and contributes no enabled recipe or count to this work.
