@@ -18,8 +18,15 @@ and the worlds their players built.
 
 ## Download and start
 
-Get your platform's **standalone ZIP** from the [GitHub releases page](https://github.com/andreipemberton/World-Between-Worlds/releases).
-If GitHub asks you to sign in, sign in to access the project and its downloads.
+Check the [CodaLilitari releases page](https://github.com/CodaLilitari/World-Between-Worlds/releases)
+for your platform's **standalone ZIP** and its release notes. The source has moved
+to the public CodaLilitari repository; this change does not itself publish a new
+binary release. Historical ZIPs retain their original updater destination.
+
+**Moving from an Andrei build:** its updater still points to the now-private
+`andreipemberton/World-Between-Worlds` repository. Install a newly built Coda
+release manually when available, or run this source with Python 3.10+ using
+`python blackwing_launcher.py --no-update`. [Migration details](packaging/USER_GUIDE.md#moving-to-the-codalilitari-repository).
 
 - **Windows 11 x64:** extract the ZIP, then open `WBW.exe`.
 - **Linux x86-64:** extract the ZIP, make `WBW` executable if necessary, then run
@@ -84,8 +91,9 @@ Application updates and individual recipe revisions are separate. Optional sourc
 and command-line use require Python 3.10+; run `python blackwing_launcher.py`.
 
 Original tooling by **Andrei Pemberton**, with **Coda Lilitari in Astra Codex**.
+Current source publication is under the verified **CodaLilitari** GitHub account.
 Original map and mod authors retain their credits. WBW is separate from our
-[OpenJKDF2-MotS-Fixes engine fork](https://github.com/andreipemberton/OpenJKDF2-MotS-Fixes)
+[OpenJKDF2-MotS-Fixes engine fork](https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes)
 and from upstream OpenJKDF2. No Lucasfilm or LucasArts affiliation is claimed.
 
 The [MIT license](LICENSE) covers our original software and documentation.

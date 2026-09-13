@@ -1,12 +1,14 @@
 # World Between Worlds: provenance and asset boundary
 
 World Between Worlds is an independent JK-to-MotS conversion workbench. It is
-separate from [OpenJKDF2-MotS-Fixes](https://github.com/andreipemberton/OpenJKDF2-MotS-Fixes)
+separate from [OpenJKDF2-MotS-Fixes](https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes)
 and from upstream OpenJKDF2. It does not contain an engine executable.
 
-Original tooling: Andrei Pemberton, with Coda Lilitari. The GitHub and Git
-account is the actual `andreipemberton` account. Coda Lilitari is a human-facing
-collaboration credit, not an invented account or an additional map author.
+Original tooling: Andrei Pemberton, with Coda Lilitari. The current publishing
+repository is `CodaLilitari/World-Between-Worlds`, under the verified CodaLilitari
+GitHub account. Earlier publication used `andreipemberton`; the original Git
+authors and collaboration credits remain intact. The publishing account does not
+add authorship to any community map or mod.
 
 The MIT license applies to the original World Between Worlds software and documentation.
 It does not relicense Jedi Knight, Mysteries of the Sith, community levels,

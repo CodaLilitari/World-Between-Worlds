@@ -188,11 +188,12 @@ class Transport(unittest.TestCase):
         self.assertTrue(update.trusted_url(update.API_URL))
         self.assertTrue(update.trusted_url(update.asset_url("1.0.0", "source.zip")))
         self.assertTrue(update.trusted_url("https://release-assets.githubusercontent.com/github-production-release-asset/x?token=x", redirect=True))
-        for url in ("http://github.com/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
+        for url in (f"http://github.com/{update.REPOSITORY}/releases/download/v1.0.0/source.zip",
                     "https://github.com/other/repo/releases/download/v1.0.0/source.zip",
-                    "https://github.com.evil.example/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
-                    "https://user:pass@github.com/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
-                    "https://github.com:444/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
+                    "https://github.com/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
+                    f"https://github.com.evil.example/{update.REPOSITORY}/releases/download/v1.0.0/source.zip",
+                    f"https://user:pass@github.com/{update.REPOSITORY}/releases/download/v1.0.0/source.zip",
+                    f"https://github.com:444/{update.REPOSITORY}/releases/download/v1.0.0/source.zip",
                     "https://objects.githubusercontent.com/arbitrary"):
             with self.subTest(url=url):
                 self.assertFalse(update.trusted_url(url))

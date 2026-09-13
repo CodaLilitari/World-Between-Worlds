@@ -39,7 +39,7 @@ standalone package runs `WBW.exe` or `./WBW` without a
 separate Python installation. If your ZIP extractor drops the Linux executable
 permission, run `chmod +x WBW` once.
 
-The launcher checks published releases from `andreipemberton/World-Between-Worlds`
+The launcher in this source checks published releases from `CodaLilitari/World-Between-Worlds`
 with an eight-second startup wait limit. If a compatible newer package finishes
 verification in that window, it opens in the same invocation. Offline, a rate
 limit, a timeout or a rejected package leaves the installed app available.
@@ -68,6 +68,27 @@ The updater verifies asset sizes, SHA-256 hashes, an exact file manifest, and
 safe ZIP paths. These hashes do not provide an independent publisher signature
 against compromise of that repository. Release metadata cannot name arbitrary
 commands or alternate download hosts.
+
+## Moving to the CodaLilitari repository
+
+Older installed builds still check `andreipemberton/World-Between-Worlds`, which
+is now private. They cannot automatically discover the public Coda repository.
+The source migration does not publish a replacement standalone release, and
+copying a historical release ZIP does not change the updater inside it.
+
+When a new Coda build is published, download it manually from
+[CodaLilitari releases](https://github.com/CodaLilitari/World-Between-Worlds/releases),
+verify its release instructions, and extract it to a separate application
+folder. Launch that copy directly. Until then, this source can run with Python
+3.10+ using `python blackwing_launcher.py --no-update`.
+Keep game installations, original archives and generated conversions in their
+existing locations; they do not need conversion merely because the owner changed.
+
+Historical packages and receipts retain their original owner and hashes. New
+packages must identify CodaLilitari consistently in their release and package
+manifests; a repository mismatch remains a validation failure.
+
+## Recipe revisions
 
 Each recipe now has its own revision, independent of the program version.
 For example, Canyon exports as `bridge-canyon_wbw_v1.goo`. A future Canyon
