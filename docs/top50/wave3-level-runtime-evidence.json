@@ -1,0 +1,265 @@
+{
+  "schema": "wbw.wave3-level-runtime.v1",
+  "date": "2026-09-20",
+  "assets_included": false,
+  "levels": [
+    {
+      "id": "canyon-stream",
+      "recipe_revision": 1,
+      "payload_sha256": "2f35f8be4eae6b476d1e9a5118a11df18fc73bae900e759a88ce989eb5aa928e",
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "engine_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+      "rendered": [
+        {
+          "mode": "jk",
+          "archive_sha256": "b78ffd9e1a4dd7311cdd07dd8c9de71d9e45edc4e4373b8761b3d1e5abfe20a7",
+          "world": "jkl/canyon.jkl",
+          "image_sha256": "2795dcde3c3c2308f0a3e7255a3c145c53c08d064e0f4a3993f6163df251f9ce",
+          "receipt_sha256": "30738e4b0b5a710e30424f020f4826d175fcc322d74898f12e0252da7a1c8cbc",
+          "request_sha256": "762c9aded1c7e01041ff24ce2d86481630c359dfa1c3487273d95cb70bbcffc8",
+          "observed_game": {
+            "schemaVersion": 1,
+            "mode": "hidden-rendered-inspection",
+            "format": "ppm-rgb8",
+            "width": 960,
+            "height": 640,
+            "renderedFrame": 3,
+            "sector": 68,
+            "position": [
+              -0.75,
+              4.35,
+              0.21
+            ],
+            "pitchYawRoll": [
+              0,
+              180,
+              0
+            ],
+            "horizontalFov": 98.0306723659185,
+            "deterministicSimulation": false,
+            "resourceHashesVerifiedByEngine": false,
+            "engineWorldStateAvailable": true,
+            "isMultiplayer": true,
+            "motsCompat": false,
+            "world": "canyon.jkl",
+            "localPlayerModel": "ky.3do",
+            "localPlayerSoundClass": "ky.snd",
+            "hostRequestedModel": "ky.3do",
+            "localPlayerHierarchyNodes": 18
+          },
+          "visible_owned_window_samples": 0
+        },
+        {
+          "mode": "mots",
+          "archive_sha256": "2f35f8be4eae6b476d1e9a5118a11df18fc73bae900e759a88ce989eb5aa928e",
+          "world": "jkl/br_canyonstream.jkl",
+          "image_sha256": "3343af223d1ee781e9d84af097d16b5c56ac39ae32c7b00870970cabc6171db1",
+          "receipt_sha256": "f11749e41cc416d06368504fbcc222a7c5751492592ba8cc76ca2aa54b626b44",
+          "request_sha256": "54a429acbc92a90d45c6b055d6b59cc9e3a1a40fcbb88b8228d0f65c4bc34e59",
+          "observed_game": {
+            "schemaVersion": 1,
+            "mode": "hidden-rendered-inspection",
+            "format": "ppm-rgb8",
+            "width": 960,
+            "height": 640,
+            "renderedFrame": 3,
+            "sector": 68,
+            "position": [
+              -0.75,
+              4.35,
+              0.21
+            ],
+            "pitchYawRoll": [
+              0,
+              180,
+              0
+            ],
+            "horizontalFov": 98.0306723659185,
+            "deterministicSimulation": false,
+            "resourceHashesVerifiedByEngine": false,
+            "engineWorldStateAvailable": true,
+            "isMultiplayer": true,
+            "motsCompat": true,
+            "world": "br_canyonstream.jkl",
+            "localPlayerModel": "ky.3do",
+            "localPlayerSoundClass": "ky.snd",
+            "hostRequestedModel": "ky.3do",
+            "localPlayerHierarchyNodes": 18
+          },
+          "visible_owned_window_samples": 0
+        }
+      ],
+      "camera": {
+        "position": [
+          -0.75,
+          4.35,
+          0.21
+        ],
+        "angles": [
+          0.0,
+          180.0,
+          0.0
+        ],
+        "sector": 68
+      },
+      "pixel_comparison": {
+        "pixels": 614400,
+        "differing": 5,
+        "deterministic_simulation": false
+      },
+      "simulation": {
+        "mode": "mp",
+        "requested_seconds": 45,
+        "gates": {
+          "survived_requested_window": true,
+          "observed_expected_mode": true,
+          "expected_episode_world": true,
+          "simulation_advanced": true,
+          "inputs_and_staged_files_unchanged": true,
+          "baseline_unchanged": true,
+          "no_visible_window": true,
+          "no_harness_error": true
+        },
+        "first_observed_game_ms": 701,
+        "last_observed_game_ms": 42680,
+        "report_sha256": "afc85dc87c8f19657308725d209395af41a7be8b6b284afcbb83c1a5a9c896eb",
+        "resource_diagnostics": []
+      },
+      "full_gameplay": false,
+      "peer_synchronization": false,
+      "retail_parity": false
+    },
+    {
+      "id": "sp-steal-the-bottle",
+      "recipe_revision": 1,
+      "payload_sha256": "3bb3513a06144ccbf0de2384d4a5fe20d52711c39dc90ed5a0a03e3db086ce9b",
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "engine_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+      "rendered": [
+        {
+          "mode": "jk",
+          "archive_sha256": "e542de3dd0dd293253a0735f303e8477a07f99b96027ee10db3a35e59b9855b1",
+          "world": "jkl/jksp1.jkl",
+          "image_sha256": "43eb51449acfe3ca9ef20b532f1d761d486898c2032e2c532f79b6cb25eadf7d",
+          "receipt_sha256": "5a166c50171119cfed97d94e500b677fbe73212017598d34bea899186031a13b",
+          "request_sha256": "c7766a1fa6decbce914d49a68282ff93a7c7015f673d775800a110134d58fbdd",
+          "observed_game": {
+            "schemaVersion": 1,
+            "mode": "hidden-rendered-inspection",
+            "format": "ppm-rgb8",
+            "width": 960,
+            "height": 640,
+            "renderedFrame": 3,
+            "sector": 0,
+            "position": [
+              0,
+              0,
+              0.16
+            ],
+            "pitchYawRoll": [
+              0,
+              0,
+              0
+            ],
+            "horizontalFov": 98.0306723659185,
+            "deterministicSimulation": false,
+            "resourceHashesVerifiedByEngine": false,
+            "engineWorldStateAvailable": true,
+            "isMultiplayer": false,
+            "motsCompat": false,
+            "world": "jksp1.jkl",
+            "localPlayerModel": "ky.3do",
+            "localPlayerSoundClass": "ky.snd",
+            "hostRequestedModel": null,
+            "localPlayerHierarchyNodes": 18
+          },
+          "visible_owned_window_samples": 0
+        },
+        {
+          "mode": "mots",
+          "archive_sha256": "3bb3513a06144ccbf0de2384d4a5fe20d52711c39dc90ed5a0a03e3db086ce9b",
+          "world": "jkl/jksp1.jkl",
+          "image_sha256": "082a096d8847f5d3d1616df6d30ba9bd158939f095e05d4a0d10068cc84c9465",
+          "receipt_sha256": "d3567d2a8efccc3bf4f8102f810f862cf20e3e813bbe2042b7d654195bafbd2a",
+          "request_sha256": "0144d57ee6d7033bc5867c4f29c1fdfacebeb36ace166ab53475f2bb7af4b256",
+          "observed_game": {
+            "schemaVersion": 1,
+            "mode": "hidden-rendered-inspection",
+            "format": "ppm-rgb8",
+            "width": 960,
+            "height": 640,
+            "renderedFrame": 3,
+            "sector": 0,
+            "position": [
+              0,
+              0,
+              0.16
+            ],
+            "pitchYawRoll": [
+              0,
+              0,
+              0
+            ],
+            "horizontalFov": 98.0306723659185,
+            "deterministicSimulation": false,
+            "resourceHashesVerifiedByEngine": false,
+            "engineWorldStateAvailable": true,
+            "isMultiplayer": false,
+            "motsCompat": true,
+            "world": "jksp1.jkl",
+            "localPlayerModel": "bs_ky.3do",
+            "localPlayerSoundClass": "bs_ky.snd",
+            "hostRequestedModel": null,
+            "localPlayerHierarchyNodes": 18
+          },
+          "visible_owned_window_samples": 0
+        }
+      ],
+      "camera": {
+        "position": [
+          0.0,
+          0.0,
+          0.16
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sector": 0
+      },
+      "pixel_comparison": {
+        "pixels": 614400,
+        "differing": 3613,
+        "deterministic_simulation": false
+      },
+      "simulation": {
+        "mode": "sp",
+        "requested_seconds": 90,
+        "gates": {
+          "survived_requested_window": true,
+          "observed_expected_mode": true,
+          "expected_episode_world": true,
+          "simulation_advanced": true,
+          "inputs_and_staged_files_unchanged": true,
+          "baseline_unchanged": true,
+          "no_visible_window": true,
+          "no_harness_error": true
+        },
+        "first_observed_game_ms": 779,
+        "last_observed_game_ms": 87772,
+        "report_sha256": "83ec15e8a7074909222dff160c53e20c003329913adb1ed093a3003db18ed6c7",
+        "resource_diagnostics": []
+      },
+      "full_gameplay": false,
+      "peer_synchronization": false,
+      "retail_parity": false
+    }
+  ],
+  "limitations": [
+    "Initial views and advancing simulation only; no complete gameplay traversal.",
+    "Doors, elevators, objectives, save/load, pickup/respawn and matched second-peer mechanics remain pending.",
+    "Canyon original missing turret sound remains absent; quiet initial logs do not resolve the active cue.",
+    "Engine is private fork candidate, not a published runtime prerequisite."
+  ]
+}

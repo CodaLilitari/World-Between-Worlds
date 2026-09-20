@@ -6,11 +6,15 @@ conversion project with separate intake, recipe and testing stages. A source
 inventory is not a compatibility certification or a promise of an immediate
 release.
 
-See the [development checkpoint](DEVELOPMENT_CHECKPOINT.md) for current recipe
-coverage, concrete fixes, test evidence and the work still pending.
+See the [September 20 checkpoint](WAVE3_CHECKPOINT.md) for current recipe
+coverage, concrete fixes, test evidence and the work still pending. The earlier
+[development checkpoint](DEVELOPMENT_CHECKPOINT.md) retains its historical evidence.
 The [remaining-source review](REMAINING_SOURCE_REVIEW.md) records individual
-findings for the 118 entries that lacked recipes at that review snapshot. Three
-subsequently gained prototypes; see the checkpoint for current counts.
+findings for the 118 entries that lacked recipes at that review snapshot. Some
+subsequently gained prototypes; see the checkpoint for current counts. Intake
+status fields in the frozen inventories below describe their original audit,
+not current recipe eligibility. Use the [current generated status](current-recipe-status.json)
+or the live status command for current exact-input matches and prototype states.
 
 | Category | Scope and frozen inventory |
 | --- | --- |

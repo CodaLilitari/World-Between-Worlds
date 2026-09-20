@@ -178,6 +178,89 @@ class IndependentOmissionTests(unittest.TestCase):
             self.verify(archives={'motsres': native})
 
 
+class CanyonOmissionScopeTests(unittest.TestCase):
+    """Missing turret audio must remain limited to the reviewed source edges."""
+
+    def setUp(self):
+        self.world = b'World sounds 1\n0: df_machine2.wav\nend\nturret.snd\n'
+        self.soundclass = b'moving df_machine2.wav 0x0 1.0\n'
+        self.rules = [
+            {'name': 'df_machine2.wav', 'referrer': path,
+             'referrer_sha256': digest(data), 'reason': 'Synthetic original absent edge'}
+            for path, data in [('jkl/canyon.jkl', self.world),
+                               ('misc/snd/turret.snd', self.soundclass)]
+        ]
+
+    def fixture(self, *, world=None, additions=None):
+        return Gob(build_gob({'jkl/canyon.jkl': self.world if world is None else world,
+                              'misc/snd/turret.snd': self.soundclass, **(additions or {})}))
+
+    def test_reviewed_canyon_has_only_four_exact_original_edges(self):
+        spec = custom_registry.entries()['canyon-stream']
+        self.assertEqual(spec['catalog_status'], 'prototype')
+        self.assertFalse(spec['runtime_test']['full_gameplay'])
+        rules = spec['source_omissions']
+        expected = {
+            ('00_glass.mat', 'jkl/canyon.jkl', 'dda3972d40ac9b1478f6de1e5599f8d27a475931c7bc3dea66da7464610a7cb6'),
+            ('00_glass.mat', '3do/shard0.3do', 'f0b4102b3ba378913b6d16ee585baab2d14f46f9ae4ae293a1c24b9f2369f44d'),
+            ('df_machine2.wav', 'jkl/canyon.jkl', 'dda3972d40ac9b1478f6de1e5599f8d27a475931c7bc3dea66da7464610a7cb6'),
+            ('df_machine2.wav', 'misc/snd/turret.snd', 'dd7a2af6fded0e8fa2500cc67d1316e5817f98081ac3839d038d948b4a91b95b'),
+        }
+        self.assertEqual(len(rules), 4)
+        self.assertEqual({(r['name'], r['referrer'], r['referrer_sha256']) for r in rules}, expected)
+        self.assertTrue(next(r for r in rules if r['referrer'] == '3do/shard0.3do')['untextured_3do'])
+
+    def test_exact_absent_sound_edges_are_accepted(self):
+        original = self.fixture()
+        catalog = bridge.Catalog([('fixture', original)])
+        for rule in self.rules:
+            accepted = bridge.reviewed_source_omission(rule['name'], rule['referrer'], catalog, self.rules)
+            self.assertEqual(accepted['output_name'], 'br_df_machine2.wav')
+        names, graph = verify_retail.community_source_graph({}, original,
+            {'world': 'jkl/canyon.jkl', 'environment': [], 'source_omissions': self.rules},
+            self.world.decode(), {})
+        self.assertEqual(names['df_machine2.wav'], 'br_df_machine2.wav')
+        self.assertEqual(set(graph), {'turret.snd'})
+
+    def test_changed_omission_referrer_path_is_rejected(self):
+        catalog = bridge.Catalog([('fixture', self.fixture())])
+        with self.assertRaisesRegex(bridge.RecipeError, 'Unresolved literal dependency'):
+            bridge.reviewed_source_omission('df_machine2.wav', 'misc/snd/other.snd', catalog, self.rules)
+        with self.assertRaisesRegex(AssertionError, 'Independent unreviewed missing source edge'):
+            verify_retail.community_source_graph({}, self.fixture(),
+                {'world': 'jkl/other.jkl', 'environment': [], 'source_omissions': self.rules},
+                self.world.decode(), {})
+
+    def test_changed_referrer_bytes_are_rejected_by_both_checks(self):
+        original = self.fixture(world=self.world + b'# changed source\n')
+        catalog = bridge.Catalog([('fixture', original)])
+        with self.assertRaisesRegex(bridge.RecipeError, 'referrer hash mismatch'):
+            bridge.reviewed_source_omission('df_machine2.wav', 'jkl/canyon.jkl', catalog, self.rules)
+        output = Gob(build_gob({'jkl/br_canyonstream.jkl': self.world.replace(b'df_machine2', b'br_df_machine2'),
+                               'misc/snd/br_turret.snd': self.soundclass.replace(b'df_machine2', b'br_df_machine2')}))
+        with self.assertRaisesRegex(AssertionError, 'Original omission referrer hash'):
+            verify_retail.check_source_omissions({}, output, original,
+                {'source_omissions': self.rules}, 'jkl/canyon.jkl', 'jkl/br_canyonstream.jkl', {})
+
+    def test_unreviewed_missing_name_is_rejected_by_both_graphs(self):
+        original = self.fixture()
+        catalog = bridge.Catalog([('fixture', original)])
+        with self.assertRaisesRegex(bridge.RecipeError, 'Unresolved literal dependency'):
+            bridge.reviewed_source_omission('unreviewed.wav', 'jkl/canyon.jkl', catalog, self.rules)
+        with self.assertRaisesRegex(AssertionError, 'Independent unreviewed missing source edge'):
+            verify_retail.community_source_graph({}, original,
+                {'world': 'jkl/canyon.jkl', 'environment': [], 'source_omissions': self.rules},
+                self.world.decode() + 'unreviewed.wav\n', {})
+
+    def test_reviewed_missing_name_at_additional_referrer_is_rejected(self):
+        world = self.world + b'other.snd\n'
+        original = self.fixture(world=world, additions={'misc/snd/other.snd': self.soundclass})
+        with self.assertRaisesRegex(AssertionError, 'Independent unreviewed missing source edge'):
+            verify_retail.community_source_graph({}, original,
+                {'world': 'jkl/canyon.jkl', 'environment': [], 'source_omissions': self.rules},
+                world.decode(), {})
+
+
 class IndependentCommunityAdaptationTests(unittest.TestCase):
     def setUp(self):
         self.source = ['+bolt none damage=45 model3d=authored.3do', 'walkplayer none health=100']

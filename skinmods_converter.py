@@ -46,7 +46,7 @@ def catalog_entries():
              'status': 'prototype', 'startup_overlay': spec['startup_overlay'],
              'legacy_filenames': [spec['filename']], 'output_filename': spec['filename'],
              'runtime_test': copy.deepcopy(spec['runtime_test']),
-             'summary': 'Optional additional MP skin; native model list retained, private assets isolated. Appearance and peer checks are separate.'}
+             'summary': spec.get('summary', 'Optional additional MP skin; native model list retained, private assets isolated. Appearance and peer checks are separate.')}
             for key, spec in catalog.SPECS.items()]
 
 
@@ -70,6 +70,8 @@ def read_original(path, spec):
         return original, members[spec['readme_member']]
     payload = bytearray(members[spec['gob_member']])
     require(digest(payload) == spec['gob_sha256'], 'Original GOB hash differs')
+    if spec.get('identical_duplicate_repair'):
+        payload = bytearray(repair_identical_duplicates(payload, spec['identical_duplicate_repair']))
     # A reviewed legacy metadata path normalization, gated by the entire GOB.
     table = struct.unpack_from('<I', payload, 8)[0]
     count = struct.unpack_from('<I', payload, table)[0]
@@ -87,6 +89,50 @@ def read_original(path, spec):
     actual = {p:(e.size, digest(original.read(p))) for p,e in original.entries.items()}
     require(actual == {p:(r['bytes'],r['sha256']) for p,r in spec['resources'].items()}, 'Source resource inventory differs')
     return original, members[spec['readme_member']]
+
+
+def repair_identical_duplicates(payload, plan):
+    """Remove only pinned, byte-identical directory copies; keep strict Gob parsing."""
+    require(len(payload) == plan['archive_bytes'] and digest(payload) == plan['archive_sha256'],
+            'Duplicate repair archive pin differs')
+    require(len(payload) >= 16 and payload[:8] == b'GOB \x14\x00\x00\x00', 'Duplicate repair header differs')
+    table = struct.unpack_from('<I', payload, 8)[0]
+    require(table == plan['table_offset'] and 12 <= table <= len(payload)-4, 'Duplicate repair table differs')
+    count = struct.unpack_from('<I', payload, table)[0]
+    end = table + 4 + count * 136
+    require(count == plan['entry_count'] and end <= len(payload), 'Duplicate repair entry count differs')
+    entries, grouped = [], {}
+    for index in range(count):
+        off, size, raw = struct.unpack_from('<II128s', payload, table+4+index*136)
+        require(b'\0' in raw, 'Duplicate repair filename is unterminated')
+        name = resource_name(raw.split(b'\0', 1)[0].decode('cp1252'))
+        require(off >= 12 and off+size <= len(payload) and not (size and off < end and off+size > table),
+                'Duplicate repair resource bounds differ')
+        row = {'index':index, 'offset':off, 'bytes':size, 'sha256':digest(payload[off:off+size])}
+        entries.append(row)
+        grouped.setdefault(name, []).append(row)
+    extents = sorted((row['offset'],row['offset']+row['bytes']) for row in entries if row['bytes'])
+    require(all(left[1] <= right[0] for left,right in zip(extents,extents[1:])),
+            'Duplicate repair source payloads overlap')
+    actual = {name:rows for name,rows in grouped.items() if len(rows)>1}
+    expected = {row['path']:row['entries'] for row in plan['duplicates']}
+    require(len(expected) == len(plan['duplicates']) and actual == expected, 'Pinned duplicate membership differs')
+    removed = set()
+    for name, rows in actual.items():
+        require(len(rows) == 2, 'Duplicate repair requires exactly two copies')
+        first, second = rows
+        left = payload[first['offset']:first['offset']+first['bytes']]
+        right = payload[second['offset']:second['offset']+second['bytes']]
+        require(left == right, 'Duplicate resources have different bytes: '+name)
+        removed.add(second['index'])
+    require(len(removed) == plan['removed_count'] and bool(removed), 'Duplicate repair removal count differs')
+    # Preserve offsets and every payload byte. Vacated directory slots become padding.
+    result = bytearray(payload)
+    kept = b''.join(payload[table+4+i*136:table+4+(i+1)*136] for i in range(count) if i not in removed)
+    struct.pack_into('<I', result, table, count-len(removed))
+    result[table+4:end] = kept + b'\0'*(136*len(removed))
+    Gob(result)  # Still rejects unsafe paths, unreviewed duplicates and overlapping payloads.
+    return bytes(result)
 
 
 def map_loose_source(members, spec):
@@ -131,6 +177,19 @@ def validate_native(archives, spec, original):
         require(key in archives and archives[key].sha256 == expected, 'Owned archive changed: '+key)
     for row in spec['native_dependencies']:
         require(digest(archives[row['archive']].read(row['path'])) == row['sha256'], 'Native dependency changed: '+row['path'])
+    for row in spec.get('source_omissions', []):
+        source = row['source_path']
+        require(source in spec['resources'] and source.endswith('.snd')
+                and spec['resources'][source]['output_path'] == row['output_path'], 'Omission referrer differs')
+        data = original.read(source)
+        require(digest(data) == row['source_sha256'] == spec['resources'][source]['sha256'], 'Omission source hash differs')
+        require(row['source_gob_sha256'] == spec['gob_sha256'], 'Omission source archive pin differs')
+        require(row['count'] == 1 and row['candidate_paths'] == ['sound/'+row['token'],'voice/'+row['token']],
+                'Omission path/count contract differs')
+        pairs = [line.split()[:2] for line in bridge.active_lines(bridge.text(data)).splitlines() if line.split()]
+        require(pairs.count([row['event'],row['token']]) == row['count'], 'Omission event/token count differs')
+        require(all(p not in original.entries and all(p not in g.entries for g in archives.values())
+                    for p in row['candidate_paths']), 'Previously missing sound now has a provider')
     native = hierarchy(archives['motsres'].read('3do/ky.3do'))
     for row in spec['models_added']:
         require(hierarchy(original.read('3do/'+row['model'])) == native, 'Skin node identities/topology differ from native Kyle')
@@ -139,7 +198,7 @@ def validate_native(archives, spec, original):
         require(digest(data) == row['sha256'], 'Native animation source changed')
         nodes = [int(x) for x in re.findall(r'(?im)^node\s+(\d+)', bridge.text(data))]
         require(nodes == row['nodes'], 'Native animation node list changed')
-    if spec.get('source_format') == 'loose-zip':
+    if spec.get('source_registration_review'):
         review = spec['source_registration_review']
         rows = model_rows(original.read('misc/models.dat'))
         require(rows == review['source_rows'], 'Original skin registrations differ')
@@ -211,6 +270,15 @@ def ui_table(native, spec):
 
 def verify_references(files, spec):
     native={row['path'] for row in spec['native_dependencies']}
+    omissions = {}
+    for row in spec.get('source_omissions', []):
+        key = (row['output_path'],row['event'],row['token'])
+        require(key not in omissions and row['output_path'] in files and row['count'] == 1,
+                'Omission declaration is duplicated or incomplete')
+        require(digest(files[row['output_path']]) == row['output_sha256'], 'Omission output referrer hash differs')
+        require(row['candidate_paths'] == ['sound/'+row['token'],'voice/'+row['token']], 'Omission resolver paths differ')
+        omissions[key] = row['count']
+    observed = {}
     for row in spec['models_added']:
         require('3do/'+row['output_model'] in files and 'misc/snd/'+row['output_soundclass'] in files,
                 'Added model or authored soundclass is absent')
@@ -220,15 +288,20 @@ def verify_references(files, spec):
                     'Qualified model material requires an explicitly reviewed resolver context')
             refs=bridge.references(bridge.text(data))
             require(all(name.endswith('.mat') for name in refs),'Unexpected model resource type')
-            groups=[('mat/'+name,'3do/mat/'+name) for name in refs]
+            groups=[(None,name,('mat/'+name,'3do/mat/'+name)) for name in refs]
         elif path.endswith('.snd'):
             rows=[line.split() for line in bridge.active_lines(bridge.text(data)).splitlines() if line.split()]
             require(all(len(row)>=2 and row[1].lower().endswith('.wav') and '/' not in row[1] and '\\' not in row[1] for row in rows),'Soundclass contains an unresolved/unsupported sound token')
-            groups=[('sound/'+row[1].lower(),'voice/'+row[1].lower()) for row in rows]
+            groups=[(row[0],row[1].lower(),('sound/'+row[1].lower(),'voice/'+row[1].lower())) for row in rows]
         else:
             continue
-        for candidates in groups:
-            require(any(name in files or name in native for name in candidates),'Unresolved typed resource: '+path+' -> '+str(candidates))
+        for event,token,candidates in groups:
+            if any(name in files or name in native for name in candidates):
+                continue
+            key = (path,event,token)
+            require(key in omissions,'Unresolved typed resource: '+path+' -> '+str(candidates))
+            observed[key] = observed.get(key,0)+1
+    require(observed == omissions, 'Declared original omission was changed, duplicated or filled')
 
 
 def build(archives, original, spec):
@@ -278,7 +351,14 @@ def build(archives, original, spec):
     if spec.get('source_format') == 'loose-zip':
         manifest['source_format'] = 'loose-zip'
         manifest['source_layout'] = copy.deepcopy(spec['source_layout'])
+    if spec.get('source_registration_review'):
         manifest['source_registration_review'] = copy.deepcopy(spec['source_registration_review'])
+    if spec.get('identical_duplicate_repair'):
+        manifest['identical_duplicate_repair'] = copy.deepcopy(spec['identical_duplicate_repair'])
+    if spec.get('source_omissions'):
+        manifest['source_omissions'] = copy.deepcopy(spec['source_omissions'])
+    if spec.get('native_reference_differences'):
+        manifest['native_reference_differences'] = copy.deepcopy(spec['native_reference_differences'])
     return payload,manifest
 
 
@@ -319,17 +399,35 @@ def build_to_directory(archives, original_path, stage, recipe_id):
     root=stage/spec['startup_overlay'];require(not root.exists(),'Output directory already exists')
     original,readme=read_original(original_path,spec)
     payload,manifest=build(archives,original,spec);verification=verify(archives,original,payload,spec)
+    notices = {}
+    if spec.get('additional_notice_members'):
+        raw = Path(original_path).read_bytes()
+        require(digest(raw) == spec['zip_sha256'], 'Original ZIP changed before notice preservation')
+        with zipfile.ZipFile(io.BytesIO(raw)) as z:
+            for row in spec['additional_notice_members']:
+                target = row['output_filename']
+                require(resource_name(target) == target.lower() and '/' not in target and '\\' not in target
+                        and target.lower() not in {'readme.txt','original-readme.txt',spec['filename'].lower(),
+                                                  (spec['filename']+'.manifest.json').lower()}, 'Unsafe notice target')
+                require(target.lower() not in {n.lower() for n in notices}, 'Duplicate notice target')
+                data = z.read(row['member'])
+                require(len(data) == row['bytes'] and digest(data) == row['sha256'], 'Original notice differs')
+                notices[target] = data
     root.mkdir(parents=True);(root/spec['filename']).write_bytes(payload)
     manifest_name=spec['filename']+'.manifest.json';(root/manifest_name).write_text(json.dumps(manifest,indent=2)+'\n')
     (root/'ORIGINAL-README.txt').write_bytes(readme)
+    for target,data in notices.items():
+        (root/target).write_bytes(data)
     (root/'README.txt').write_text(spec['title']+' for MotS - optional skin prototype\n\n'+
         'Author: '+spec['author']+'\nKeep the original readme and credits with this local conversion.\n'+
         'Launch OpenJKDF2 in MotS multiplayer with one startup overlay only: -motsCompat -path '+spec['startup_overlay']+'\n'+
         'Choose '+', '.join(x['display_name'] for x in spec['models_added'])+' in multiplayer character setup. Native characters remain.\n'+
         'All peers need the exact same recipe/output. Restart when changing overlays.\n'+
-        'Do not upload this conversion or its game/mod assets. Animated poses, appearance and peer synchronization require separate tests.\n')
+        'Do not upload this conversion or its game/mod assets. Animated poses, appearance and peer synchronization require separate tests.\n'+
+        ''.join('\nOpen finding: '+finding+'\n' for finding in spec.get('review_findings', [])))
     verification=verify(archives,original,(root/spec['filename']).read_bytes(),spec)
     require((root/'ORIGINAL-README.txt').read_bytes()==readme,'Written original readme differs')
+    require(all((root/target).read_bytes()==data for target,data in notices.items()), 'Written original notice differs')
     return {'filename':(root/spec['filename']).relative_to(stage).as_posix(),
             'manifest_filename':(root/manifest_name).relative_to(stage).as_posix(),
             'verification':verification,'startup_overlay':spec['startup_overlay']}

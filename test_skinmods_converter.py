@@ -4,6 +4,7 @@ import copy
 import json
 from pathlib import Path
 import tempfile
+import struct
 import unittest
 from unittest.mock import patch
 import zipfile
@@ -56,13 +57,16 @@ class SkinConverterTests(unittest.TestCase):
     def test_written_output_contract_and_exact_original_readme(self):
         native,original,spec=self.fixture()
         readme=b'Synthetic original contributor notice.\r\nPreserve exactly.\r\n'
-        members={'fixture.gob':original.data,'readme.txt':readme}
+        notice=b'Second exact original installation notice.\r\n'
+        members={'fixture.gob':original.data,'readme.txt':readme,'notice.txt':notice}
         stream=io.BytesIO()
         with zipfile.ZipFile(stream,'w',zipfile.ZIP_DEFLATED) as z:
             for name,data in members.items():z.writestr(name,data)
         spec.update(title='Synthetic Skin',author='Synthetic Author',filename='skin.goo',
                     zip_bytes=len(stream.getvalue()),zip_sha256=c.digest(stream.getvalue()),
                     gob_member='fixture.gob',readme_member='readme.txt',
+                    additional_notice_members=[{'member':'notice.txt','output_filename':'ORIGINAL-NOTICE.txt',
+                        'bytes':len(notice),'sha256':c.digest(notice)}],
                     zip_members=[{'path':p,'bytes':len(data),'sha256':c.digest(data)} for p,data in members.items()])
         with tempfile.TemporaryDirectory() as folder,patch.dict(c.catalog.SPECS,{'fixture':spec},clear=True):
             base=Path(folder);source=base/'original.zip';source.write_bytes(stream.getvalue())
@@ -76,12 +80,19 @@ class SkinConverterTests(unittest.TestCase):
                 payload=(stage/result['filename']).read_bytes()
                 self.assertTrue(c.verify(native,original,payload,spec)['ok'])
                 self.assertEqual((stage/'synthetic/ORIGINAL-README.txt').read_bytes(),readme)
+                self.assertEqual((stage/'synthetic/ORIGINAL-NOTICE.txt').read_bytes(),notice)
                 manifest=json.loads((stage/result['manifest_filename']).read_text())
                 self.assertEqual(manifest['output_sha256'],c.digest(payload))
                 trees.append({p.relative_to(stage).as_posix():p.read_bytes() for p in stage.rglob('*') if p.is_file()})
             self.assertEqual(trees[0],trees[1])
             with self.assertRaises(c.SkinError):c.build_to_directory(native,source,base/'first','fixture')
             self.assertEqual((base/'first/synthetic/skin.goo').read_bytes(),payload)
+            for i,(key,value) in enumerate([('output_filename','../escaped.txt'),('output_filename','README.txt'),
+                                            ('bytes',len(notice)+1),('sha256','0'*64)]):
+                bad=copy.deepcopy(spec);bad['additional_notice_members'][0][key]=value
+                with self.subTest(notice_pin=key,value=value),patch.dict(c.catalog.SPECS,{'fixture':bad},clear=True):
+                    with self.assertRaises(ValueError):c.build_to_directory(native,source,base/f'bad-{i}','fixture')
+                self.assertFalse((base/f'bad-{i}').exists())
 
     def test_descriptor_or_authored_payload_tamper_is_rejected(self):
         native,original,spec=self.fixture();payload,_=c.build(native,original,spec);out=Gob(payload)
@@ -227,6 +238,117 @@ class LooseSkinSourceTests(unittest.TestCase):
         self.assertEqual(changed,b'walk ls_Ping.wav\nrun ls_ping.wav\n')
         self.assertEqual(c.reverse_edits(changed,edits,'synthetic.snd'),data)
         with self.assertRaises(c.SkinError):c.reverse_edits(changed.replace(b'ls_Ping',b'ls_ping'),edits,'synthetic.snd')
+
+
+class IdenticalDuplicateSkinTests(unittest.TestCase):
+    def fixture(self, duplicate=b'first'):
+        entries=[('mat/panel.mat',b'first'),('readme.txt',b'notice'),('mat/panel.mat',duplicate)]
+        offset=16+len(entries)*136;directory=[];payload=[];pins=[]
+        for index,(name,data) in enumerate(entries):
+            directory.append(struct.pack('<II128s',offset,len(data),name.encode()))
+            if name=='mat/panel.mat':
+                pins.append({'index':index,'offset':offset,'bytes':len(data),'sha256':c.digest(data)})
+            payload.append(data);offset+=len(data)
+        raw=struct.pack('<4sIII',b'GOB ',20,12,len(entries))+b''.join(directory)+b''.join(payload)
+        plan={'archive_bytes':len(raw),'archive_sha256':c.digest(raw),'table_offset':12,
+              'entry_count':3,'removed_count':1,'duplicates':[{'path':'mat/panel.mat','entries':pins}]}
+        return raw,plan
+
+    def test_exact_duplicate_repair_preserves_payloads_and_strict_general_reader(self):
+        raw,plan=self.fixture()
+        with self.assertRaisesRegex(ValueError,'Duplicate resource'):Gob(raw)
+        repaired=c.repair_identical_duplicates(raw,plan);out=Gob(repaired)
+        self.assertEqual(set(out.entries),{'mat/panel.mat','readme.txt'})
+        self.assertEqual(out.read('mat/panel.mat'),b'first')
+        self.assertEqual(out.read('readme.txt'),b'notice')
+        self.assertEqual(raw[16+3*136:],repaired[16+3*136:])
+        self.assertEqual(repaired,c.repair_identical_duplicates(raw,plan))
+        with self.assertRaises(ValueError):Gob(raw)
+
+    def test_different_duplicate_payloads_fail_even_with_matching_archive_pins(self):
+        raw,plan=self.fixture(b'other')
+        with self.assertRaisesRegex(c.SkinError,'different bytes'):c.repair_identical_duplicates(raw,plan)
+
+    def test_every_repair_pin_and_full_duplicate_membership_are_required(self):
+        raw,plan=self.fixture()
+        changes=[('archive_bytes',len(raw)+1),('archive_sha256','0'*64),('table_offset',13),
+                 ('entry_count',4),('removed_count',0),('duplicates',[])]
+        for key,value in changes:
+            changed=copy.deepcopy(plan);changed[key]=value
+            with self.subTest(key=key),self.assertRaises(c.SkinError):c.repair_identical_duplicates(raw,changed)
+        for key,value in [('index',1),('offset',0),('bytes',4),('sha256','0'*64)]:
+            changed=copy.deepcopy(plan);changed['duplicates'][0]['entries'][1][key]=value
+            with self.subTest(pin=key),self.assertRaises(c.SkinError):c.repair_identical_duplicates(raw,changed)
+        changed=copy.deepcopy(plan);changed['duplicates'][0]['path']='mat/other.mat'
+        with self.assertRaises(c.SkinError):c.repair_identical_duplicates(raw,changed)
+        changed=copy.deepcopy(plan);changed['duplicates'].append(copy.deepcopy(changed['duplicates'][0]))
+        with self.assertRaises(c.SkinError):c.repair_identical_duplicates(raw,changed)
+
+    def test_duplicate_repair_rejects_changed_source_and_undeclared_third_member(self):
+        raw,plan=self.fixture()
+        with self.assertRaises(c.SkinError):c.repair_identical_duplicates(raw[:-1]+b'x',plan)
+        changed=bytearray(raw);changed[16+136+8:16+136+136]=b'mat/panel.mat'.ljust(128,b'\0')
+        repinned=copy.deepcopy(plan);repinned['archive_sha256']=c.digest(changed)
+        with self.assertRaisesRegex(c.SkinError,'membership'):c.repair_identical_duplicates(changed,repinned)
+
+    def test_gob_registration_review_preserves_all_authored_rows(self):
+        native,original,spec,_,_=LooseSkinSourceTests().loose_fixture()
+        spec.pop('source_format');spec['normalized_gob_sha256']=original.sha256
+        spec['gob_sha256']=original.sha256
+        c.validate_native(native,spec,original)
+        for operation in ('drop','label','order'):
+            changed=copy.deepcopy(spec)
+            if operation=='drop':changed['models_added'].pop()
+            elif operation=='label':changed['models_added'][0]['display_name']='Wrong'
+            else:changed['models_added'].reverse()
+            with self.subTest(operation=operation),self.assertRaises(c.SkinError):c.validate_native(native,changed,original)
+
+
+class OriginalSoundOmissionTests(unittest.TestCase):
+    def fixture(self):
+        native,original,spec=SkinConverterTests().fixture()
+        files={p:original.read(p) for p in original.entries}
+        files['misc/snd/skin.snd']+=b'falling absent.wav\n'
+        original=Gob(build_gob(files));spec['normalized_gob_sha256']=original.sha256
+        spec['gob_sha256']=original.sha256
+        row=spec['resources']['misc/snd/skin.snd']
+        row['bytes']=len(files['misc/snd/skin.snd']);row['sha256']=c.digest(files['misc/snd/skin.snd'])
+        spec['source_omissions']=[{'source_path':'misc/snd/skin.snd','source_sha256':row['sha256'],
+            'source_gob_sha256':original.sha256,
+            'output_path':row['output_path'],'output_sha256':c.digest(c.transform(files['misc/snd/skin.snd'],row['edits'])),
+            'event':'falling','token':'absent.wav','count':1,'candidate_paths':['sound/absent.wav','voice/absent.wav']}]
+        return native,original,spec
+
+    def test_exact_original_omission_preserves_event_and_other_sound_events(self):
+        native,original,spec=self.fixture();payload,manifest=c.build(native,original,spec)
+        self.assertTrue(c.verify(native,original,payload,spec)['ok'])
+        self.assertEqual(Gob(payload).read('misc/snd/sk_skin.snd'),b'walk sk_ping.wav\nfalling absent.wav\n')
+        self.assertEqual(manifest['source_omissions'],spec['source_omissions'])
+
+    def test_mutated_referrer_source_hash_event_token_count_or_candidates_fail(self):
+        native,original,spec=self.fixture()
+        for key,value in [('source_path','misc/models.dat'),('source_sha256','0'*64),('source_gob_sha256','0'*64),
+                          ('output_path','misc/snd/other.snd'),('output_sha256','0'*64),
+                          ('event','death'),('token','other.wav'),('count',2),
+                          ('candidate_paths',['sound/other.wav','voice/other.wav'])]:
+            changed=copy.deepcopy(spec);changed['source_omissions'][0][key]=value
+            with self.subTest(key=key),self.assertRaises(c.SkinError):c.build(native,original,changed)
+
+    def test_new_missing_sound_cannot_reuse_the_original_omission(self):
+        native,original,spec=self.fixture();payload,_=c.build(native,original,spec);out=Gob(payload)
+        files={p:out.read(p) for p in out.entries};del files['sound/sk_ping.wav']
+        with self.assertRaisesRegex(c.SkinError,'Unresolved typed resource'):c.verify_references(files,spec)
+        files['sound/sk_ping.wav']=b'synthetic';files['misc/snd/other.snd']=b'falling absent.wav\n'
+        with self.assertRaisesRegex(c.SkinError,'Unresolved typed resource'):c.verify_references(files,spec)
+
+    def test_omission_cannot_be_silently_filled_or_removed(self):
+        native,original,spec=self.fixture();payload,_=c.build(native,original,spec);out=Gob(payload)
+        files={p:out.read(p) for p in out.entries};files['sound/absent.wav']=b'wrong invented voice'
+        with self.assertRaisesRegex(c.SkinError,'changed, duplicated or filled'):c.verify_references(files,spec)
+        changed=copy.deepcopy(spec);changed['source_omissions']*=2
+        with self.assertRaises(c.SkinError):c.verify_references({p:out.read(p) for p in out.entries},changed)
+        changed=copy.deepcopy(spec);changed.pop('source_omissions')
+        with self.assertRaisesRegex(c.SkinError,'Unresolved typed resource'):c.build(native,original,changed)
 
 
 if __name__=='__main__':unittest.main()

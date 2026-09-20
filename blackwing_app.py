@@ -8,6 +8,7 @@ from pathlib import Path
 import secrets
 import sys
 import threading
+import time
 from urllib.parse import urlsplit
 import webbrowser
 
@@ -17,6 +18,7 @@ from blackwing_version import TITLE, VERSION
 
 ROOT = Path(__file__).resolve().parent
 MAX_REQUEST = 128 * 1024
+REJECT_BODY_TIMEOUT = 0.5
 STATIC = {'/ui/app.js': ('ui/app.js', 'text/javascript; charset=utf-8'),
           '/ui/styles.css': ('ui/styles.css', 'text/css; charset=utf-8'),
           '/ui/coda-wbw.js': ('ui/coda-wbw.js', 'text/javascript; charset=utf-8')}
@@ -49,11 +51,20 @@ class Handler(BaseHTTPRequestHandler):
         pass
 
     def reply(self, code, body=b'', content_type='application/json; charset=utf-8'):
+        if code >= 400:
+            # A client can send headers and a small POST body separately.
+            # Closing with that body unread can reset the connection on Windows
+            # before the client receives the rejection. Discard only a bounded,
+            # unambiguously framed body; never parse or dispatch it here.
+            self.discard_rejected_post()
+            self.close_connection = True
         if not isinstance(body, bytes):
             body = json.dumps(body, ensure_ascii=False).encode('utf-8')
         self.send_response(code)
         self.send_header('Content-Type', content_type)
         self.send_header('Content-Length', str(len(body)))
+        if code >= 400:
+            self.send_header('Connection', 'close')
         self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Referrer-Policy', 'no-referrer')
@@ -119,18 +130,58 @@ class Handler(BaseHTTPRequestHandler):
         except (ValueError, OSError, KeyError) as exc:
             self.reply(400, {'error': str(exc)})
 
+    def request_length(self):
+        if self.headers.get_all('Transfer-Encoding') is not None:
+            raise ValueError('Chunked requests are not supported.')
+        lengths = self.headers.get_all('Content-Length', [])
+        if len(lengths) != 1:
+            raise ValueError('Expected one content length.')
+        raw = lengths[0].strip()
+        if not raw or any(char not in '0123456789' for char in raw):
+            raise ValueError('Invalid content length.')
+        try:
+            length = int(raw)
+        except ValueError:
+            raise ValueError('Invalid content length.') from None
+        if length > MAX_REQUEST:
+            raise ValueError('Request is too large.')
+        return length
+
+    def discard_rejected_post(self):
+        if self.command != 'POST' or getattr(self, '_post_body_consumed', False):
+            return
+        self._post_body_consumed = True
+        try:
+            remaining = self.request_length()
+        except ValueError:
+            return
+        previous_timeout = self.connection.gettimeout()
+        deadline = time.monotonic() + REJECT_BODY_TIMEOUT
+        try:
+            while remaining:
+                wait = deadline - time.monotonic()
+                if wait <= 0:
+                    break
+                self.connection.settimeout(wait)
+                # read1 performs at most one underlying receive. read(n) can
+                # keep waiting on a trickling sender and exceed the deadline.
+                chunk = self.rfile.read1(min(remaining, 16 * 1024))
+                if not chunk:
+                    break
+                remaining -= len(chunk)
+        except OSError:
+            # EOF/timeout/reset during rejected input never authorizes a call.
+            pass
+        finally:
+            self.connection.settimeout(previous_timeout)
+
     def read_json(self):
         if self.headers.get('Content-Type', '').split(';', 1)[0].strip() != 'application/json':
             raise ValueError('Expected application/json.')
-        if self.headers.get('Transfer-Encoding'):
-            raise ValueError('Chunked requests are not supported.')
-        try:
-            length = int(self.headers.get('Content-Length', '-1'))
-        except ValueError:
-            raise ValueError('Invalid content length.') from None
-        if length < 0 or length > MAX_REQUEST:
-            raise ValueError('Request is too large or has no content length.')
-        return json.loads(self.rfile.read(length))
+        length = self.request_length()
+        data = self.rfile.read(length)
+        self._post_body_consumed = True
+        return json.loads(data)
 
     def do_POST(self):
         if not self.origin_allowed() or not self.authenticated():

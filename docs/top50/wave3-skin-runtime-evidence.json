@@ -1,0 +1,54 @@
+{
+  "schema": "wbw.wave3-skin-runtime.v1",
+  "recipe_id": "mod-als-star-wars",
+  "revision": 1,
+  "date": "2026-09-20",
+  "assets_included": false,
+  "payload_sha256": "88211772487cd958f60629878568cdda9afdeb33c716f5854f02fd49b2fb48af",
+  "selections": [
+    {
+      "model": "al_3po.3do",
+      "soundclass": "al_ky3po.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "motsCompat": true,
+      "isMultiplayer": true,
+      "report_sha256": "40249bd14c83ff1dbcd691f59a21e610dc0b628ed7bc6bd96493627d40adf9b3",
+      "image_sha256": "42a023e6edbbcb27519af9a4e310c30d9e53bdabc4f699779bd4a6b82dc6711b",
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "resource_diagnostics": []
+    },
+    {
+      "model": "al_jarjar.3do",
+      "soundclass": "al_jarjar.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "motsCompat": true,
+      "isMultiplayer": true,
+      "report_sha256": "2148dda26970c989eb8c6bab8fe010019df659799d83b4754472c7e2b2dd81b0",
+      "image_sha256": "42a023e6edbbcb27519af9a4e310c30d9e53bdabc4f699779bd4a6b82dc6711b",
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "resource_diagnostics": []
+    },
+    {
+      "model": "al_zuckuss.3do",
+      "soundclass": "al_kybossk.snd",
+      "nodes": 18,
+      "world": "k1.jkl",
+      "motsCompat": true,
+      "isMultiplayer": true,
+      "report_sha256": "c1727d847f14f73e92a878c9a8bd19b11c19bee4ebb05b2d63fd770a18d5e776",
+      "image_sha256": "42a023e6edbbcb27519af9a4e310c30d9e53bdabc4f699779bd4a6b82dc6711b",
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "resource_diagnostics": []
+    }
+  ],
+  "full_gameplay": false,
+  "limits": [
+    "Three direct MPC selections, not all 135 or GUI browsing.",
+    "Fixed first-person inspection camera does not show the full local player body.",
+    "No audible-event, animation, combat, respawn, peer or aggregate resource-capacity proof.",
+    "Original Jar Jar falling cue remains absent; ten other tokens newly resolve to MotS sounds with unresolved voice equivalence.",
+    "Fresh processes avoid cumulative cache occupancy; this does not qualify 32 simultaneous skins."
+  ]
+}

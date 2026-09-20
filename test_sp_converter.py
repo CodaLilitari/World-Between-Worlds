@@ -12,6 +12,14 @@ import sp_converter
 
 
 class SingleplayerContracts(unittest.TestCase):
+    def test_steal_bottle_versioned_name_fits_engine_episode_stem(self):
+        spec = sp_converter.recipe_details('sp-steal-the-bottle')
+        legacy, = spec['entry']['legacy_filenames']
+        self.assertEqual(legacy, spec['output_filename'])
+        name = blackwing_revisions.versioned_name(legacy, spec['entry']['revision'])
+        self.assertEqual(name, 'wbw-sp-steal-bottle_wbw_v1.goo')
+        self.assertLessEqual(len(Path(name).stem.encode('cp1252')), 31)
+
     def test_pumping_station_versioned_name_fits_engine_episode_stem(self):
         spec = sp_converter.recipe_details('sp-imperial-pumping-station')
         legacy, = spec['entry']['legacy_filenames']
@@ -196,7 +204,7 @@ class SingleplayerPayloadControls(unittest.TestCase):
             with self.assertRaisesRegex(sp_converter.SingleplayerError, 'empty staging'):
                 sp_converter.build_to_directory(self.archives, original, directory, self.recipe_id)
         with self.assertRaisesRegex(sp_converter.SingleplayerError, 'outside the source'):
-            sp_converter.build_to_directory(self.archives, original, Path(__file__).parent, self.recipe_id)
+            sp_converter.build_to_directory(self.archives, original, Path(sp_converter.__file__).parent, self.recipe_id)
 
 
 @unittest.skipUnless(os.environ.get('WBW_SP_TEST_BASELINES') and os.environ.get('WBW_SP_TEST_MAUL_ORIGINAL'),
@@ -349,6 +357,152 @@ class PumpingStationPayloadControls(unittest.TestCase):
                 self.assertIn(old, files[path])
                 files[path] = files[path].replace(old, new)
                 self.rejects(files, 'Source resource transformation')
+
+
+@unittest.skipUnless(os.environ.get('WBW_SP_TEST_BASELINES') and os.environ.get('WBW_SP_TEST_STB_ORIGINAL'),
+                     'Set explicit owned baselines and Steal the Bottle source ZIP to run private payload controls')
+class StealBottlePayloadControls(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.recipe_id = 'sp-steal-the-bottle'
+        cls.archives = bridge.pinned_archives(Path(os.environ['WBW_SP_TEST_BASELINES']),
+                                              include_jksp=True, include_motssp=True)
+        cls.originals, cls.notices = sp_converter.open_original(
+            Path(os.environ['WBW_SP_TEST_STB_ORIGINAL']), cls.recipe_id)
+        cls.payload, cls.manifest = sp_converter.build(cls.archives, cls.originals, cls.recipe_id)
+        cls.output = Gob(cls.payload)
+        cls.world_path = 'jkl/jksp1.jkl'
+
+    def files(self):
+        return {path: self.output.read(path) for path in self.output.entries}
+
+    def rejects(self, files, expected):
+        with self.assertRaisesRegex(sp_converter.SingleplayerError, expected):
+            sp_converter.verify(self.archives, self.originals, self.recipe_id, build_gob(files))
+
+    def test_exact_saber_port_preserves_rank_and_startup_timer_fallthrough(self):
+        source = bridge.text(self.originals['episode'].read('cog/jksp1_start.cog'))
+        converted = bridge.text(self.output.read('cog/bs_jksp1_start.cog'))
+        self.assertEqual(source.count('SetInv(player, 10, 1);'), 1)
+        self.assertEqual(converted, source.replace('SetInv(player, 10, 1);', 'SetInv(player, 131, 1);'))
+        for statement in ('SetInv(player, 1, 1);', 'SetInv(player, 2, 1);',
+                          'SetInv(player, 11, 100);', 'SetInv(player, 20, 0);',
+                          'SetInv(player, 14, 4*50);', 'SetInv(player, 99, 1000);'):
+            self.assertIn(statement, converted)
+        self.assertRegex(converted, r'SetTimer\(15\);\s*timer:')
+        for old, new in ((b'SetInv(player, 131, 1);', b'SetInv(player, 10, 1);'),
+                         (b'SetTimer(15);', b'SetTimer(15); Return;'),
+                         (b'SetInv(player, 20, 0);', b'SetInv(player, 20, 8);')):
+            with self.subTest(change=new):
+                files = self.files()
+                files['cog/bs_jksp1_start.cog'] = files['cog/bs_jksp1_start.cog'].replace(old, new)
+                self.rejects(files, 'Source resource transformation')
+
+    def test_authored_officer_ai_is_preserved_instead_of_native_namesake(self):
+        original = self.originals['episode'].read('misc/ai/iodefault.ai')
+        # Text normalization and the existing filename-comment rewrite are exact;
+        # all authored AI parameters and instincts must remain unchanged.
+        expected = bridge.text(original).replace('IODEFAULT.AI', 'bs_iodefault.ai')
+        self.assertEqual(bridge.text(self.output.read('misc/ai/bs_iodefault.ai')), expected)
+        native = self.archives['motsres'].read('misc/ai/iodefault.ai')
+        self.assertNotEqual(original, native)
+        world = bridge.text(self.output.read(self.world_path))
+        officer = next(row for row in bridge.records(world, 'templates') if row.startswith('bs_iofficeri '))
+        self.assertIn('aiclass=bs_iodefault.ai', officer)
+        self.assertIn('soundclass=bs_drunkguard.snd', officer)
+        files = self.files(); files['misc/ai/bs_iodefault.ai'] = native
+        self.rejects(files, 'Source resource transformation')
+
+    def test_drunk_guard_behavior_and_custom_speech_remain_authored(self):
+        original = self.originals['episode']
+        ai = original.read('misc/ai/drunkguard.ai')
+        self.assertEqual(bridge.text(self.output.read('misc/ai/bs_drunkguard.ai')), bridge.text(ai))
+        self.assertNotRegex(bridge.text(ai), r'(?im)^\s*(PrimaryFire|BlindFire)\b')
+        self.assertRegex(bridge.text(ai), r'(?im)^\s*Talk\s+3\.0,\s*0\.90')
+        sound = bridge.text(self.output.read('misc/snd/bs_drunkguard.snd'))
+        for name in ('pampadim', 'hik', 'royh', 'mmmm'):
+            self.assertIn('bs_' + name + '.wav', sound)
+            self.assertEqual(self.output.read('sound/bs_' + name + '.wav'),
+                             original.read('sound/' + name + '.wav'))
+        files = self.files(); files['misc/ai/bs_drunkguard.ai'] += b'\nPrimaryFire 800.0\n'
+        self.rejects(files, 'Source resource transformation')
+
+    def test_door_patrol_thrust_and_surface_motion_arguments_are_unchanged(self):
+        source = bridge.text(self.originals['episode'].read(self.world_path))
+        world = bridge.text(self.output.read(self.world_path))
+        old_rows, new_rows = bridge.records(source, 'cogs'), bridge.records(world, 'cogs')
+        self.assertEqual(len(new_rows), 7)
+        for left, right in zip(old_rows, new_rows):
+            self.assertEqual(left.split()[2:], right.split()[2:])
+        self.assertEqual(new_rows[1].split()[2:], ['7', '6', '0.75', '1', '0.25'])
+        self.assertEqual(new_rows[4].split()[2:], ['32', '-1', '-1', '-1', '8', '2', '0.5'])
+        for index in (0, 1, 2, 3, 4):
+            with self.subTest(cog_index=index):
+                rows = new_rows.copy(); parts = rows[index].split(); parts[-1] = '12345'
+                rows[index] = ' '.join(parts)
+                files = self.files()
+                files[self.world_path] = bridge.replace_block(world, 'cogs', rows,
+                    int(bridge.block(world, 'cogs')[2])).encode('cp1252')
+                self.rejects(files, 'Authored COG argument changed')
+
+    def test_original_bottle_room_crossing_remains_victory_condition(self):
+        world = bridge.text(self.output.read(self.world_path))
+        rows = bridge.records(world, 'cogs')
+        self.assertEqual(rows[5], '5: bs_00_endlevel.cog 682')
+        ending = bridge.text(self.output.read('cog/bs_00_endlevel.cog'))
+        self.assertRegex(ending, r'(?im)^crossed:')
+        self.assertIn('jkEndLevel();', ending)
+        bottle = next(row for row in bridge.records(world, 'templates') if row.startswith('bs_bottle05 '))
+        self.assertEqual(bottle.split()[1], 'bs__structure')
+        self.assertNotIn('cog=', bottle)
+        rows[5] = '5: bs_00_endlevel.cog 684'
+        files = self.files()
+        files[self.world_path] = bridge.replace_block(world, 'cogs', rows,
+            int(bridge.block(world, 'cogs')[2])).encode('cp1252')
+        self.rejects(files, 'Authored COG argument changed')
+
+    def test_unused_bundled_scripts_stay_unused_and_disabled_tanks_are_preserved(self):
+        world = bridge.text(self.output.read(self.world_path))
+        for name in ('00_aiframepatrol.cog', '00_simple_elev.cog'):
+            self.assertIn('cog/' + name, self.originals['episode'].entries)
+            self.assertNotIn('cog/bs_' + name, self.output.entries)
+            self.assertNotIn(name, world)
+        things = bridge.records(world, 'things')
+        self.assertEqual(len(things), 42)
+        self.assertEqual(int(bridge.block(world, 'things')[2]), 242)
+        for index in (3, 4, 5):
+            self.assertEqual(things[index].split()[9], '-1')
+        self.assertIn('numframes=2', things[32])
+        self.assertIn('frame=(20.3/-9.45/-2.2:0/90/0)', things[32])
+        files = self.files(); rows = things.copy(); parts = rows[3].split(); parts[9] = '0'
+        rows[3] = ' '.join(parts)
+        files[self.world_path] = bridge.replace_block(world, 'things', rows, 242).encode('cp1252')
+        self.rejects(files, 'Placed thing parameters changed')
+
+    def test_native_inventory_bindings_do_not_ship_controller_replacements(self):
+        spec = sp_converter.recipe_details(self.recipe_id)
+        world = bridge.text(self.output.read(self.world_path))
+        for source, native in spec['native_cog_bindings'].items():
+            self.assertIn(native, world)
+            self.assertNotIn('cog/bs_' + source, self.output.entries)
+            self.assertNotIn('cog/' + native, self.output.entries)
+        files = self.files()
+        files['cog/pow_concrifle_m.cog'] = self.archives['jkres'].read('cog/pow_concrifle.cog')
+        self.rejects(files, 'Native copied resource set')
+
+    def test_exact_episode_notice_and_goal_strings_are_retained(self):
+        source = self.originals['episode']
+        self.assertEqual(self.output.read('episode.jk'), source.read('episode.jk'))
+        self.assertEqual(self.output.read('misc/cogstrings.uni'), source.read('misc/cogstrings.uni'))
+        with tempfile.TemporaryDirectory() as directory:
+            result = sp_converter.build_to_directory(self.archives,
+                Path(os.environ['WBW_SP_TEST_STB_ORIGINAL']), directory, self.recipe_id)
+            self.assertEqual((Path(directory) / result['filename']).read_bytes(), self.payload)
+            self.assertIsNone(result['startup_overlay'])
+            for path, data in self.notices.items():
+                self.assertEqual((Path(directory) / path).read_bytes(), data)
+            self.assertFalse(result['verification']['runtime_verified'])
+            self.assertEqual(result['verification']['status'], 'structural-preservation-pass')
 
 
 if __name__ == '__main__':

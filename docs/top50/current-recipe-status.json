@@ -1,0 +1,2415 @@
+{
+  "schema": "wbw.top50-status.v1",
+  "scope": "Validate the frozen 150-entry queue; input/catalog matches are not gameplay passes.",
+  "requested_entries": 150,
+  "categories": {
+    "mp": {
+      "entries": [
+        {
+          "rank": 1,
+          "massassi_id": 428,
+          "title": "Drazen Isle",
+          "author": "Jeff Walters",
+          "downloads": 27710,
+          "source_url": "https://www.massassi.net/levels/files/428.shtml",
+          "original_sha256": "d80d8386a91fe9f2b508010fee4f6358e0743454a476f71285b428501cc8c6f1",
+          "matching_catalog_recipes": [
+            {
+              "id": "drazen-isle",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 2,
+          "massassi_id": 1400,
+          "title": "Caesar's Palace",
+          "author": "WAR_Shockwave",
+          "downloads": 20162,
+          "source_url": "https://www.massassi.net/levels/files/1400.shtml",
+          "original_sha256": "b7a9f16b9141a4ef56c97784ef5a49914655a87ad6db59a2014429ee6ffe5fbd",
+          "matching_catalog_recipes": [
+            {
+              "id": "caesars",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "massassi_id": 423,
+          "title": "Duel Of The Fates S.E.",
+          "author": "Hoth Rebel",
+          "downloads": 18530,
+          "source_url": "https://www.massassi.net/levels/files/423.shtml",
+          "original_sha256": "25641359e15ce03e6911efa11f7fba1778200d7a358da512de3b00322b2a8270",
+          "matching_catalog_recipes": [
+            {
+              "id": "duel-of-the-fates-se",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 4,
+          "massassi_id": 216,
+          "title": "Morpheus",
+          "author": "bug",
+          "downloads": 16186,
+          "source_url": "https://www.massassi.net/levels/files/216.shtml",
+          "original_sha256": "4352dac36a873de9e9db109df36945497750045b2f981305af5362f6325a0c34",
+          "matching_catalog_recipes": [
+            {
+              "id": "morpheus",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "massassi_id": 454,
+          "title": "Jawa Dwelling SE",
+          "author": "Red_0005",
+          "downloads": 13927,
+          "source_url": "https://www.massassi.net/levels/files/454.shtml",
+          "original_sha256": "ab387c944e559268f3528411bf58af4f6107ba806a62e9be51b11146e7e6db5b",
+          "matching_catalog_recipes": [
+            {
+              "id": "jawa-dwelling-se",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 6,
+          "massassi_id": 1087,
+          "title": "The Mos Espa RPG",
+          "author": "Justin (Saber_Scorpion) Stebbins",
+          "downloads": 13830,
+          "source_url": "https://www.massassi.net/levels/files/1087.shtml",
+          "original_sha256": "c338460ae0908b9d13fd381069261ab189f6aa77e0c3fa5af7fd9f28e0fceab3",
+          "matching_catalog_recipes": [
+            {
+              "id": "mos-espa-rpg",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 7,
+          "massassi_id": 1270,
+          "title": "The Massassi Temple Level Pack 3",
+          "author": "Various",
+          "downloads": 11739,
+          "source_url": "https://www.massassi.net/levels/files/1270.shtml",
+          "original_sha256": "48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 8,
+          "massassi_id": 135,
+          "title": "Atlantis",
+          "author": "bug",
+          "downloads": 11416,
+          "source_url": "https://www.massassi.net/levels/files/135.shtml",
+          "original_sha256": "1e313254fd84115c33e587419798359151ebd35184e2383a7219fe0663bdf6ce",
+          "matching_catalog_recipes": [
+            {
+              "id": "atlantis",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 9,
+          "massassi_id": 1202,
+          "title": "Purgatory",
+          "author": "SM Sith Lord",
+          "downloads": 11014,
+          "source_url": "https://www.massassi.net/levels/files/1202.shtml",
+          "original_sha256": "d58c89afcb75820da23cd3844890f8fca589d12ea2ee4cc341f1597d84db6a2d",
+          "matching_catalog_recipes": [
+            {
+              "id": "purgatory",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 10,
+          "massassi_id": 328,
+          "title": "Chaos Eternal",
+          "author": "freddub",
+          "downloads": 10467,
+          "source_url": "https://www.massassi.net/levels/files/328.shtml",
+          "original_sha256": "c4134bb218c0f34089598f255a97adf94b7a6c9f71d38a9cbe3612980c87cbe3",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 11,
+          "massassi_id": 1839,
+          "title": "Area 21",
+          "author": "JeDak",
+          "downloads": 10393,
+          "source_url": "https://www.massassi.net/levels/files/1839.shtml",
+          "original_sha256": "a938f336cb08391db5f8caf4b9a46f5c7af47d0c8b127faae0ce1d3ceb36bf97",
+          "matching_catalog_recipes": [
+            {
+              "id": "area-21",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 12,
+          "massassi_id": 1251,
+          "title": "Death Star Arena",
+          "author": "Craig Urquhart",
+          "downloads": 9968,
+          "source_url": "https://www.massassi.net/levels/files/1251.shtml",
+          "original_sha256": "efc78030cd521845b43b263ac818486072b8e86050cc53af9add3168d3552472",
+          "matching_catalog_recipes": [
+            {
+              "id": "death-star-arena",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 13,
+          "massassi_id": 1787,
+          "title": "Naboo",
+          "author": "Ortheza",
+          "downloads": 9149,
+          "source_url": "https://www.massassi.net/levels/files/1787.shtml",
+          "original_sha256": "655a7e159d65d0a2b859cd2c052ccde3a35411c98d1a9ed863aafbe0d7a7a23a",
+          "matching_catalog_recipes": [
+            {
+              "id": "naboo",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 14,
+          "massassi_id": 418,
+          "title": "Bar and Grill",
+          "author": "TTR_Lord",
+          "downloads": 9114,
+          "source_url": "https://www.massassi.net/levels/files/418.shtml",
+          "original_sha256": "a642dd7a6d28bed9df60b71234b5fe665ef4d5cb33a64267836c25fc298533a9",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-bar-and-grill",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "Hidden MotS multiplayer host per active world; exact duration is recorded below.",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-bar-v1",
+                    "world": "br_mp418.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "af505320043a4f4f880d92c6f70c82fe2036bd3332608fc3378f92897cc9ca8c",
+                    "payload_sha256": "93e4e4df4a530213493ef94f0251eb51a657ca2cb74857b767de50da39c8f15d",
+                    "evidence_report_sha256": "0024336210fe919d8aab1aae55c1be9e416c2e86650e8d62ddd3c952044e09bd"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 15,
+          "massassi_id": 429,
+          "title": "Jedi Dojo",
+          "author": "Tee",
+          "downloads": 7664,
+          "source_url": "https://www.massassi.net/levels/files/429.shtml",
+          "original_sha256": "27f6a44f209cdc8fcebfe0fffd3230b2e7cbc1cf5982ef07133b10bdc70bc4da",
+          "matching_catalog_recipes": [
+            {
+              "id": "dojo",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 16,
+          "massassi_id": 375,
+          "title": "Blue Rain",
+          "author": "pyrot3chnic",
+          "downloads": 7574,
+          "source_url": "https://www.massassi.net/levels/files/375.shtml",
+          "original_sha256": "154ad402bb2f7f0ae39679baee570e65fa2f04923833841443b1b34b002775a0",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-blue-rain",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "30-second hidden MotS multiplayer host per active world",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-blue-rain-v1",
+                    "world": "br_mp375.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "ccef3eedcda4afa15146a5ce828308c9602cdb64c06a5b3b7223d1a0143ae1ea",
+                    "payload_sha256": "3c1617d22c54c7680d799ff234272021662d91072981be5ebba3417e25b06718",
+                    "evidence_report_sha256": "f9e5b20810b89e89354fb8a89479a09298d18251f98b69877e1e74c720462a1d"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 17,
+          "massassi_id": 964,
+          "title": "Canyon Stream",
+          "author": "Juztyn",
+          "downloads": 7421,
+          "source_url": "https://www.massassi.net/levels/files/964.shtml",
+          "original_sha256": "0073e4132c4388a0105094e97a0197c8c64aa007e731da4d8f1fb3d8e3f7e9cf",
+          "matching_catalog_recipes": [
+            {
+              "id": "canyon-stream",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "bounded-load-and-initial-render-pass",
+                "full_gameplay": false,
+                "scope": "Paired original-JK/converted-MotS initial hidden view plus MotS advancing simulation",
+                "gameplay": "mp",
+                "seconds": 45,
+                "engine_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+                "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+                "payload_sha256": "2f35f8be4eae6b476d1e9a5118a11df18fc73bae900e759a88ce989eb5aa928e",
+                "evidence": "docs/top50/wave3-level-runtime-evidence.json",
+                "note": "Initial rendering and loading only. Authored interactions, traversal, saves, respawn and matched peers remain open; original missing resource caveats remain."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 18,
+          "massassi_id": 1086,
+          "title": "Bar and Grill 2",
+          "author": "TSS_CapricusLDR",
+          "downloads": 7361,
+          "source_url": "https://www.massassi.net/levels/files/1086.shtml",
+          "original_sha256": "163c97bd9e0b716f3fa721fe268170b070b60d7930c02809936ebe95bd0a9181",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 19,
+          "massassi_id": 1766,
+          "title": "The Massassi Temple Level Pack 4",
+          "author": "Various",
+          "downloads": 7302,
+          "source_url": "https://www.massassi.net/levels/files/1766.shtml",
+          "original_sha256": "daa449330b9efad7f7ff95feb7737a33efe57ed636b20963c26823128971648b",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 20,
+          "massassi_id": 1349,
+          "title": "Jedi Middle School",
+          "author": "FTP_neo",
+          "downloads": 7104,
+          "source_url": "https://www.massassi.net/levels/files/1349.shtml",
+          "original_sha256": "f788692547f1980c5e20c8bc496f189605710c7e6e2626eedd316da60506b32d",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 21,
+          "massassi_id": 359,
+          "title": "Theed Palace",
+          "author": "HothRebel",
+          "downloads": 7072,
+          "source_url": "https://www.massassi.net/levels/files/359.shtml",
+          "original_sha256": "01947e41fdea9a82305415d3ce3f3047aa27adf3dfbd82fe3cbdd90f12d25033",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 22,
+          "massassi_id": 1242,
+          "title": "Stargate",
+          "author": "JK_addict",
+          "downloads": 6971,
+          "source_url": "https://www.massassi.net/levels/files/1242.shtml",
+          "original_sha256": "c8480328ab432611b462c597770523a9158b670b0c8664e71953b63d353bc4c3",
+          "matching_catalog_recipes": [
+            {
+              "id": "stargate",
+              "status": "verified",
+              "revision": 1,
+              "runtime_test": {
+                "scope": "Historical 60-second MotS multiplayer host with advancing simulation",
+                "status": "prior-recipe-host-tested",
+                "full_gameplay": false,
+                "note": "These host runs predate RC3 script-capacity/pickup changes. Test each new output; host survival is separate from authored mechanics and two-peer playtesting."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 23,
+          "massassi_id": 1899,
+          "title": "Manticeville RPG",
+          "author": "Radice",
+          "downloads": 6323,
+          "source_url": "https://www.massassi.net/levels/files/1899.shtml",
+          "original_sha256": "ddf5cdef2da2d3178f304b262cb7fd2c0420cc7ade136ecce844d1a4f10ce3e0",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 24,
+          "massassi_id": 445,
+          "title": "Hoth Wars",
+          "author": "HothRebel",
+          "downloads": 6060,
+          "source_url": "https://www.massassi.net/levels/files/445.shtml",
+          "original_sha256": "0b9667e34f92fc570a702d2232e846084b9dc0a31f8a1ff6fbcf5377b0e4623c",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 25,
+          "massassi_id": 1135,
+          "title": "AIWARS",
+          "author": "Jeremiah23",
+          "downloads": 5479,
+          "source_url": "https://www.massassi.net/levels/files/1135.shtml",
+          "original_sha256": "d490a0bd4011ff22185d1715146cf578959ad289331b47c2c43e6e861c5b1134",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 26,
+          "massassi_id": 357,
+          "title": "GoldenEye 007 - Facility",
+          "author": "YAGI",
+          "downloads": 5363,
+          "source_url": "https://www.massassi.net/levels/files/357.shtml",
+          "original_sha256": "70703e590ce2042ac8c5787905b2a1c004b0ff1d14c93cbab34a35596a439637",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-goldeneye-facility",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "30-second hidden MotS multiplayer host per active world",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-goldeneye-facility-v1",
+                    "world": "br_mp357.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "9db43df49f91ac2f5f7abba20b6408c134764e82dec2ee832c20bb6496316f15",
+                    "payload_sha256": "4c6189bfffdaa1a8ab354d1c7a58aa8a559390c5dfb8945f99e1f7cad85619a5",
+                    "evidence_report_sha256": "2e6a2d642a805bccf176a5fac8a8112402422b04ee76c34cadb0b79a97397932"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 27,
+          "massassi_id": 323,
+          "title": "6000 Block",
+          "author": "Brian Lozier",
+          "downloads": 5197,
+          "source_url": "https://www.massassi.net/levels/files/323.shtml",
+          "original_sha256": "87c8073de0a5bd3176d6147959967f95b3dbd32ace06fd226d17cc0be87567b8",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-6000-block",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "30-second hidden MotS multiplayer host per active world",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-6000-block-sabers-v1",
+                    "world": "br_mp323_s.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "ea5c0aeb975086a5b38ba9f41d7f0d042f6979b2943e55eeef7e67bcc324e103",
+                    "payload_sha256": "602e1dc29cacd01f0306a1334ec147ae944efd7afc897c3cc900897ad7771a40",
+                    "evidence_report_sha256": "213b918046259194ea6e53414e265499c6fba37593179b979dc16e6719bd497d"
+                  },
+                  {
+                    "case": "mp-6000-block-guns-v1",
+                    "world": "br_mp323_g.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "ea5c0aeb975086a5b38ba9f41d7f0d042f6979b2943e55eeef7e67bcc324e103",
+                    "payload_sha256": "602e1dc29cacd01f0306a1334ec147ae944efd7afc897c3cc900897ad7771a40",
+                    "evidence_report_sha256": "cd80af68e1e9a1094437fca508b9b1d2771d22e646448b2508c50ae7ffa176ea"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 28,
+          "massassi_id": 1905,
+          "title": "Space Station -- SaniStat",
+          "author": "Brian Brecht",
+          "downloads": 5070,
+          "source_url": "https://www.massassi.net/levels/files/1905.shtml",
+          "original_sha256": "2a037467176be66102f3f4bdcaec820762fb8f2c28dbee8a52e97b3cb71c6b2e",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 29,
+          "massassi_id": 31,
+          "title": "IRG Palace",
+          "author": "IRG GhostBear_74",
+          "downloads": 4975,
+          "source_url": "https://www.massassi.net/levels/files/31.shtml",
+          "original_sha256": "4c6e8aaca4e5e4c0edb9e5ecfc057b837f8e5abc80240515348a01632d2f491e",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 30,
+          "massassi_id": 1027,
+          "title": "Final Namek",
+          "author": "D_B_Z_Dragon",
+          "downloads": 4840,
+          "source_url": "https://www.massassi.net/levels/files/1027.shtml",
+          "original_sha256": "d5ebee5669d900eabebbbe3c3994dc27834b9e3d824b60b48956166767dd44f8",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 31,
+          "massassi_id": 360,
+          "title": "Jedi Tower 2000",
+          "author": "CWE_Darth_Opie",
+          "downloads": 4820,
+          "source_url": "https://www.massassi.net/levels/files/360.shtml",
+          "original_sha256": "21e58f40cb0d5528b852fe9a303ff4407253d52726aa829e80e4268f5112038c",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-jedi-tower-2000",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "Hidden MotS multiplayer host per active world; exact duration is recorded below.",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-tower-inventory-guard",
+                    "world": "br_mp360.jkl",
+                    "duration_seconds": 35,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "60833a093bd4b97feb80bd664a86409d881a6f256a4f1844e317c5a8595f0b6e",
+                    "payload_sha256": "60833a093bd4b97feb80bd664a86409d881a6f256a4f1844e317c5a8595f0b6e",
+                    "evidence_report_sha256": "6100932c9fda1cdf707177804d7094c0733c965ec0ef413442c77b23bc51e247"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established.",
+                "inventory_observation": {
+                  "rank": 8,
+                  "maximum": 400,
+                  "initial_mana": 400.0,
+                  "after_timer_first": {
+                    "game_msec": 15074,
+                    "14": 200.0,
+                    "20": 8.0,
+                    "69": 400.0
+                  },
+                  "last": {
+                    "game_msec": 33828,
+                    "14": 276.0,
+                    "20": 8.0,
+                    "69": 400.0
+                  },
+                  "scope": "Read-only observation of the local player in the tested default class; no input or inventory writes."
+                },
+                "negative_control": {
+                  "status": "expected-rank-cache-regression-observed",
+                  "scope": "Heart control with the same saber port and only rank-controller reinitialization omitted; 30-second hidden host.",
+                  "full_gameplay": false,
+                  "worlds": [
+                    {
+                      "case": "mp-heart-negative-inventory",
+                      "world": "br_mp63.jkl",
+                      "duration_seconds": 30,
+                      "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                      "tested_archive_sha256": "05e7ec381fe87c2135f3394275ed11a3c6ad79d4a48a1c7116f548fedc5b6df3",
+                      "payload_sha256": "05e7ec381fe87c2135f3394275ed11a3c6ad79d4a48a1c7116f548fedc5b6df3",
+                      "evidence_report_sha256": "4fd95ba95a859899921f956a546a2fed22c341c5df20fc96950d9d32525987e8"
+                    }
+                  ],
+                  "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established.",
+                  "observed_inventory": {
+                    "rank": 8,
+                    "maximum": 0,
+                    "mana_after_first_pulse": 0
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "rank": 32,
+          "massassi_id": 301,
+          "title": "Time Travel: Nar Shaddaa",
+          "author": "Outatime and sqmagellan",
+          "downloads": 4762,
+          "source_url": "https://www.massassi.net/levels/files/301.shtml",
+          "original_sha256": "a229292470417b897ac029ac3bc62e78a245aaa2d113a5d195a59d5567527f9e",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 33,
+          "massassi_id": 358,
+          "title": "Airwar",
+          "author": "Gelynx",
+          "downloads": 4472,
+          "source_url": "https://www.massassi.net/levels/files/358.shtml",
+          "original_sha256": "fa5351f9e2490a022126732ebd0cf0e3fd3112b7ed1b3fcd0525baab2f8f4c5e",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 34,
+          "massassi_id": 929,
+          "title": "Baron's Head at Night",
+          "author": "Micheal \"BlackPanther\" Mallet",
+          "downloads": 4464,
+          "source_url": "https://www.massassi.net/levels/files/929.shtml",
+          "original_sha256": "eb39139036310525c367b4e57ac72c54444db253b22be07acc5599c0ba015569",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-barons-head-at-night",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "Hidden MotS multiplayer host per active world; exact duration is recorded below.",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-barons-pilot-v1",
+                    "world": "br_mp929.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "69366a692769d1a13771d55fc386e9e0e74080becd9182effda20a36860f5b38",
+                    "payload_sha256": "69366a692769d1a13771d55fc386e9e0e74080becd9182effda20a36860f5b38",
+                    "evidence_report_sha256": "9a6063aebb8ce92c918f0ccd59beb25d16e814a440bc8042673f3373714f0ed7"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 35,
+          "massassi_id": 1244,
+          "title": "Acid Storage Facility ",
+          "author": "MaDaVentor",
+          "downloads": 4429,
+          "source_url": "https://www.massassi.net/levels/files/1244.shtml",
+          "original_sha256": "1f7cefb5966a8716d077398934513a952e3b8407c270b0d60df787a863558450",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-acid-storage-facility",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "30-second hidden MotS multiplayer host per active world",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-acid-v1",
+                    "world": "br_mp1244.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "52fbd4b3ea0d1b694fb08fc216a46cd965cf753e3e7fed9f7e162d1cdb969462",
+                    "payload_sha256": "398fc843d4005049e4f6ebd457e73b7266e409663592e79057deb7b9a21d5d32",
+                    "evidence_report_sha256": "8cc96591cd14acce73fa30a77c11c996a75704f7b0adc35acc3a2d8d130253d8"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 36,
+          "massassi_id": 1992,
+          "title": "Galactic Locations (16Bit)",
+          "author": "Goofz",
+          "downloads": 4373,
+          "source_url": "https://www.massassi.net/levels/files/1992.shtml",
+          "original_sha256": "811d3f5f4f32f8b076ad7631aa65be99916176fb0454127775fb4c2ff34ae27f",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 37,
+          "massassi_id": 1137,
+          "title": "AI Trench Wars",
+          "author": "Jeremiah23",
+          "downloads": 4360,
+          "source_url": "https://www.massassi.net/levels/files/1137.shtml",
+          "original_sha256": "ebb6379860e6dae3d664970e10e42b20c2db68648f274e68735730aff1c7a783",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 38,
+          "massassi_id": 1934,
+          "title": "The Death Star",
+          "author": "Eike Legien",
+          "downloads": 4301,
+          "source_url": "https://www.massassi.net/levels/files/1934.shtml",
+          "original_sha256": "ae5431b04d00236d4074bdd2730a56b1638f2ef7020a4b9356d4fb4ec31deca6",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 39,
+          "massassi_id": 1014,
+          "title": "Coruscant Arena 1",
+          "author": "Alan Cook (Vergo_MoeJoe)",
+          "downloads": 3938,
+          "source_url": "https://www.massassi.net/levels/files/1014.shtml",
+          "original_sha256": "b2926d2fee94c7996eb8debc6fa2e6078137baf4c356dcd74290ae1eb51d0ee2",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 40,
+          "massassi_id": 1512,
+          "title": "Egypt",
+          "author": "NorthChaos",
+          "downloads": 3909,
+          "source_url": "https://www.massassi.net/levels/files/1512.shtml",
+          "original_sha256": "3d4a8314aa9f9d431394cdf680b5690e4071cd84a2ece636a060e871805245b8",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-egypt",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "30-second hidden MotS multiplayer host per active world",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-egypt-v1",
+                    "world": "br_mp1512.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "a3ea70cd0e09157236196204fb03a19e7b0fa8bab0a6ce092a3ef5f048409c5d",
+                    "payload_sha256": "6d0b8f285b8e65ad7d12ca5dec557f897aa3a95647792fd1c5269609499ae35a",
+                    "evidence_report_sha256": "728b9b81f0c17ddfb3059fbded23250be7e37d6a01dde5d09dc57c9e974b5744"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 41,
+          "massassi_id": 957,
+          "title": "Star Wars: Locations",
+          "author": "Jensyx",
+          "downloads": 3875,
+          "source_url": "https://www.massassi.net/levels/files/957.shtml",
+          "original_sha256": "24829696c543762bfd4764fd7fdf78ffe0d4df809ac3ad06efa9803cc26221af",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 42,
+          "massassi_id": 1814,
+          "title": "DBZ: TDIR Tournament Level Pack",
+          "author": "ctsketch and Ubuu aka iostream",
+          "downloads": 3825,
+          "source_url": "https://www.massassi.net/levels/files/1814.shtml",
+          "original_sha256": "6c4cbb9db2992c2be5945186776072d4e392631260aaeb607597bbdff0ab596a",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-dbz-tdir-tournament",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "30-second hidden MotS multiplayer host per active world",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-dbz1814-c-v1",
+                    "world": "br_mp1814_c.jkl",
+                    "mode": "mp",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+                    "payload_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+                    "evidence_report_sha256": "ff2b8a48e973cbb73baa38c0b7f6110e5bacfb69995a03eb781263e0cd00c92b",
+                    "gates": {
+                      "survived_requested_window": true,
+                      "observed_expected_mode": true,
+                      "expected_episode_world": true,
+                      "simulation_advanced": true,
+                      "inputs_and_staged_files_unchanged": true,
+                      "baseline_unchanged": true,
+                      "no_visible_window": true,
+                      "no_harness_error": true
+                    },
+                    "resource_diagnostic_count": 0
+                  },
+                  {
+                    "case": "mp-dbz1814-b-v1",
+                    "world": "br_mp1814_b.jkl",
+                    "mode": "mp",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+                    "payload_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+                    "evidence_report_sha256": "d0201380d490c7468a3d7d16de3f7afbaeb9ba6607e4a63b17ec3f0dcdcb4f13",
+                    "gates": {
+                      "survived_requested_window": true,
+                      "observed_expected_mode": true,
+                      "expected_episode_world": true,
+                      "simulation_advanced": true,
+                      "inputs_and_staged_files_unchanged": true,
+                      "baseline_unchanged": true,
+                      "no_visible_window": true,
+                      "no_harness_error": true
+                    },
+                    "resource_diagnostic_count": 0
+                  },
+                  {
+                    "case": "mp-dbz1814-h-v1",
+                    "world": "br_mp1814_h.jkl",
+                    "mode": "mp",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+                    "payload_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+                    "evidence_report_sha256": "b84af04d0a6c8c5dfe0506c4d46ab5abeb0dee1417587915e63bb558d76a4622",
+                    "gates": {
+                      "survived_requested_window": true,
+                      "observed_expected_mode": true,
+                      "expected_episode_world": true,
+                      "simulation_advanced": true,
+                      "inputs_and_staged_files_unchanged": true,
+                      "baseline_unchanged": true,
+                      "no_visible_window": true,
+                      "no_harness_error": true
+                    },
+                    "resource_diagnostic_count": 0
+                  }
+                ],
+                "note": "Loading and advancing simulation only; rendering, mechanics, respawn and peers remain open."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 43,
+          "massassi_id": 105,
+          "title": "4H Gun Yard",
+          "author": "_4H__MaT (Matthew Zacharias)",
+          "downloads": 3801,
+          "source_url": "https://www.massassi.net/levels/files/105.shtml",
+          "original_sha256": "213be055bb5987638591712e323862ea5208652aaa4db6465c1b275c5ace9666",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-4h-gun-yard",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "30-second hidden MotS multiplayer host per active world",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-4h-gun-yard-v1",
+                    "world": "br_mp105.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "d78f6fdda732a4120dc001a9c44f75ae4e4f95e8156e722218f3728a3adb596a",
+                    "payload_sha256": "e3c7c7cc5d4ef1f12f8f84f638b78c22f7568d205c34f808502b68ecf57c51d1",
+                    "evidence_report_sha256": "8f8e66930d7e4276d12ddfe0cc0e0b8d54bd9d2a0ee94c4da3b8929ae3f652fa"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 44,
+          "massassi_id": 267,
+          "title": "The Matrix",
+          "author": "Daniel Yost",
+          "downloads": 3790,
+          "source_url": "https://www.massassi.net/levels/files/267.shtml",
+          "original_sha256": "c0fad067971d87345be02562614dde1e8bf0df45cb6d82ddf3b900bcdeaa7626",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-the-matrix",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "30-second hidden MotS multiplayer host per active world",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-the-matrix-v1",
+                    "world": "br_mp267.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "99c555ac7d475a4dc05114c35441378847a050011ef965ca8829260022a14c1a",
+                    "payload_sha256": "c2c5985f3921fa908bfbc9a9475615d70e16ad82bd17b5084c63ae20a2878608",
+                    "evidence_report_sha256": "02f1c4f2879a1496d49ab5f03a240c0fb7be6f9fee8b3e80a4bfdbefd825a62b"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 45,
+          "massassi_id": 1437,
+          "title": "Space Soldiers 3: Death Match Levels",
+          "author": "SavageX",
+          "downloads": 3777,
+          "source_url": "https://www.massassi.net/levels/files/1437.shtml",
+          "original_sha256": "83c22afb9df6647018c0ccaa60a6a845b854a24fb98be1019c96f4a9e30522a2",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 46,
+          "massassi_id": 1877,
+          "title": "Reclusion",
+          "author": "Spiral",
+          "downloads": 3690,
+          "source_url": "https://www.massassi.net/levels/files/1877.shtml",
+          "original_sha256": "7dfa9bc7a1881d3ef7d98e18ef604052e5fac13b91d9033988289764ff5d0d3f",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 47,
+          "massassi_id": 1365,
+          "title": "The Dralloc Arena",
+          "author": "BeefCaike",
+          "downloads": 3683,
+          "source_url": "https://www.massassi.net/levels/files/1365.shtml",
+          "original_sha256": "e89d46e2ce5ab04788a56e85fa1f200676ffd9c45da8215d004c54f101fbe028",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 48,
+          "massassi_id": 63,
+          "title": "Heart of the Forest",
+          "author": "Lukasz Matuszek \"Ortheza\"",
+          "downloads": 3582,
+          "source_url": "https://www.massassi.net/levels/files/63.shtml",
+          "original_sha256": "4467c89219f3a85a322a77bf496d6d819a96962e97c12a18856282a16082fd77",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-heart-of-the-forest",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "Hidden MotS multiplayer host per active world; exact duration is recorded below.",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-heart-inventory-guard",
+                    "world": "br_mp63.jkl",
+                    "duration_seconds": 35,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "aabbd013c2a1fc7b6feff4ebbcf9b1fbe4d32e6695f8cef738eaca9e4a2ae655",
+                    "payload_sha256": "aabbd013c2a1fc7b6feff4ebbcf9b1fbe4d32e6695f8cef738eaca9e4a2ae655",
+                    "evidence_report_sha256": "8d74b7e859c67f060260abfa7ef5b5d41bb145152fe767a3e2dcb9de3371e3bd"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established.",
+                "inventory_observation": {
+                  "rank": 8,
+                  "maximum": 400,
+                  "initial_mana": 400.0,
+                  "after_timer_first": {
+                    "game_msec": 15122,
+                    "14": 200.0,
+                    "20": 8.0,
+                    "69": 400.0
+                  },
+                  "last": {
+                    "game_msec": 33860,
+                    "14": 276.0,
+                    "20": 8.0,
+                    "69": 400.0
+                  },
+                  "scope": "Read-only observation of the local player in the tested default class; no input or inventory writes."
+                },
+                "negative_control": {
+                  "status": "expected-rank-cache-regression-observed",
+                  "scope": "Heart control with the same saber port and only rank-controller reinitialization omitted; 30-second hidden host.",
+                  "full_gameplay": false,
+                  "worlds": [
+                    {
+                      "case": "mp-heart-negative-inventory",
+                      "world": "br_mp63.jkl",
+                      "duration_seconds": 30,
+                      "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                      "tested_archive_sha256": "05e7ec381fe87c2135f3394275ed11a3c6ad79d4a48a1c7116f548fedc5b6df3",
+                      "payload_sha256": "05e7ec381fe87c2135f3394275ed11a3c6ad79d4a48a1c7116f548fedc5b6df3",
+                      "evidence_report_sha256": "4fd95ba95a859899921f956a546a2fed22c341c5df20fc96950d9d32525987e8"
+                    }
+                  ],
+                  "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established.",
+                  "observed_inventory": {
+                    "rank": 8,
+                    "maximum": 0,
+                    "mana_after_first_pulse": 0
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "rank": 49,
+          "massassi_id": 168,
+          "title": "Gladiator",
+          "author": "Daniel Yost",
+          "downloads": 3526,
+          "source_url": "https://www.massassi.net/levels/files/168.shtml",
+          "original_sha256": "b99fa725513c81834b3708719ee9a7335c677ecfe3fd28be866921c9e2cfe725",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-gladiator",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "exact-payload-host-smoke-passed",
+                "scope": "30-second hidden MotS multiplayer host per active world",
+                "full_gameplay": false,
+                "worlds": [
+                  {
+                    "case": "mp-gladiator-arena-v1",
+                    "world": "br_mp168_a.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "ecb6a00a444b4bfaf04af6b2624b3d2241eb640e5c93a853429e58effedbe4c9",
+                    "payload_sha256": "ee827a4243fcd886803266f9db123f6ecbe09b71360a9c45bbc327ee8904c378",
+                    "evidence_report_sha256": "1f879c97bbdce6ce9733e03ac5570fe0dbbb4069c1e32ca798399875cb855e05"
+                  },
+                  {
+                    "case": "mp-gladiator-ree-v1",
+                    "world": "br_mp168_r.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "ecb6a00a444b4bfaf04af6b2624b3d2241eb640e5c93a853429e58effedbe4c9",
+                    "payload_sha256": "ee827a4243fcd886803266f9db123f6ecbe09b71360a9c45bbc327ee8904c378",
+                    "evidence_report_sha256": "61be67e2ffd5e601ac4fb79d65cf6c1cdb9e3eb9ffb42715284bc1a101add4b5"
+                  },
+                  {
+                    "case": "mp-gladiator-gam-v1",
+                    "world": "br_mp168_g.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "ecb6a00a444b4bfaf04af6b2624b3d2241eb640e5c93a853429e58effedbe4c9",
+                    "payload_sha256": "ee827a4243fcd886803266f9db123f6ecbe09b71360a9c45bbc327ee8904c378",
+                    "evidence_report_sha256": "15e9355e1796920bd759ef921f1a1b10878ca3c48072588a8bfac7d147abeb0e"
+                  },
+                  {
+                    "case": "mp-gladiator-kell-v1",
+                    "world": "br_mp168_k.jkl",
+                    "duration_seconds": 30,
+                    "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                    "tested_archive_sha256": "ecb6a00a444b4bfaf04af6b2624b3d2241eb640e5c93a853429e58effedbe4c9",
+                    "payload_sha256": "ee827a4243fcd886803266f9db123f6ecbe09b71360a9c45bbc327ee8904c378",
+                    "evidence_report_sha256": "b08794c719d2d96db5cf679b0316897924d01afd66243a9f6b0255bc60d35b42"
+                  }
+                ],
+                "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 50,
+          "massassi_id": 1258,
+          "title": "Castle Conflict",
+          "author": "Naythn",
+          "downloads": 3523,
+          "source_url": "https://www.massassi.net/levels/files/1258.shtml",
+          "original_sha256": "c4aaec857322cd181ceb6b20450055a93133b2f544b7c0cec9f44f5b877ef85a",
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-castle-conflict",
+              "status": "unavailable",
+              "revision": 1,
+              "runtime_test": {
+                "status": "load-crash",
+                "scope": "Exact converted episode in fixed MotS multiplayer runtime",
+                "full_gameplay": false,
+                "runtime_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                "evidence_report_sha256": "b925809777f1e20e4c687d16a15590fbf388d7e8f17e76af8650eed530c05500",
+                "note": "Structural conversion passes but the tested runtime exits with access violation during map loading, after sounds and before material parsing completes. This recipe is unavailable pending investigation. No gameplay support is claimed.",
+                "candidate_engine_fix": {
+                  "status": "exact-payload-host-smoke-passed",
+                  "scope": "30-second hidden MotS multiplayer host per active world",
+                  "full_gameplay": false,
+                  "worlds": [
+                    {
+                      "case": "mp-castle-fixed-independent",
+                      "world": "br_mp1258.jkl",
+                      "duration_seconds": 30,
+                      "runtime_sha256": "9f67624b74ff8763eb66ef3df249717edc121c98a4e2640f70b5b1df7ab5c36b",
+                      "tested_archive_sha256": "f036f41e0d1a6238f7e844c3610caeeb1a4ab30255c622b3357dae7bed0834c6",
+                      "payload_sha256": "dc6a0fe85770820f67fe774526807bb9e98b19b38aff0b9e1dd16fee6d67cd1b",
+                      "evidence_report_sha256": "61c43f71353d39e03bbb8de48216a97aaa97a696173cab8b12f3f44ef2d943a6"
+                    }
+                  ],
+                  "note": "Correct MotS multiplayer mode and selected world, advancing simulation, and zero resource diagnostics. This evidence is bound to the canonical game payload; metadata markers may differ. Rendering, authored mechanics and two-peer synchronization are not established.",
+                  "engine_commit": "f573653e34c6c862ec5c1cbf33c7cd9d4508646f",
+                  "build_scope": "Limited corrected material-reader object replacement and relink against the prior tested runtime; not a full current engine build or release."
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "original_hashes_recorded": 50,
+      "entries_with_exact_input_recipe": 28,
+      "entries_with_selectable_recipe": 27,
+      "entries_without_recipe": 22
+    },
+    "sp": {
+      "entries": [
+        {
+          "rank": 1,
+          "massassi_id": 23,
+          "title": "The Phantom Menace: Final Battle (Revised)",
+          "author": "Darth Maul",
+          "downloads": 13336,
+          "source_url": "https://www.massassi.net/levels/files/23.shtml",
+          "original_sha256": "1e9bb4ec7ffef3e122c431a824af772815958788a05818136b1f576bf06a3b0d",
+          "matching_catalog_recipes": [
+            {
+              "id": "sp-phantom-menace-final-battle",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "bounded-load-smoke-pass",
+                "seconds": 45,
+                "mode": "MotS singleplayer",
+                "full_gameplay": false
+              }
+            }
+          ]
+        },
+        {
+          "rank": 2,
+          "massassi_id": 6,
+          "title": "Imperial Siege On Derra IV",
+          "author": "Ryan Bickhart",
+          "downloads": 13116,
+          "source_url": "https://www.massassi.net/levels/files/6.shtml",
+          "original_sha256": "e7faa8fdb059224b006a6a1542d6b6583c638a3d925c5de25ce02ea4ee328932",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 3,
+          "massassi_id": 3,
+          "title": "Dark Emperor 2: The Last of the Jedi",
+          "author": "Darth Maul",
+          "downloads": 12659,
+          "source_url": "https://www.massassi.net/levels/files/3.shtml",
+          "original_sha256": "e751251f7e31e545edebb7cfd67d83996318864f14aa655256c47955d34221e5",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 4,
+          "massassi_id": 1392,
+          "title": "A Jedi's Discovery",
+          "author": "Zippy1000",
+          "downloads": 12589,
+          "source_url": "https://www.massassi.net/levels/files/1392.shtml",
+          "original_sha256": "a649110abca5380e0d5ca743ebf8404d5dff3f80c3956f9ad8cd8a42f29555f9",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 5,
+          "massassi_id": 20,
+          "title": "Remnants of the Empire 3: Desert of Tatooine",
+          "author": "SavageX",
+          "downloads": 12139,
+          "source_url": "https://www.massassi.net/levels/files/20.shtml",
+          "original_sha256": "f1783a34b23f3dd97a7a9b5a1fbcee44962ee3e35af7f4f434ba21f5eb332e02",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 6,
+          "massassi_id": 13,
+          "title": "The Search for Leia",
+          "author": "Anthony Piggott",
+          "downloads": 11569,
+          "source_url": "https://www.massassi.net/levels/files/13.shtml",
+          "original_sha256": "bcc50c334c45bb460a1cd23e9cc474dcd1f13ae1506039a9cbbe2cf0ae97bfa7",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 7,
+          "massassi_id": 27,
+          "title": "Dark Emperor",
+          "author": "Luke Skywalker",
+          "downloads": 10792,
+          "source_url": "https://www.massassi.net/levels/files/27.shtml",
+          "original_sha256": "626af42501b3011825bbd1e519a4639a3c661266450551d7f1f9158fb2434ec5",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 8,
+          "massassi_id": 26,
+          "title": "Legends of the Force: Darth Maul vs. Qui-Gon Jinn",
+          "author": "BoBo Fett",
+          "downloads": 10328,
+          "source_url": "https://www.massassi.net/levels/files/26.shtml",
+          "original_sha256": "61ed86d2ba4c0ea5bb2fdd7f2eae5e9459618ce4550d7debb8d8f6424559942e",
+          "matching_catalog_recipes": [
+            {
+              "id": "sp-maul-vs-qui-gon",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "bounded-load-smoke-pass",
+                "seconds": 30,
+                "mode": "MotS singleplayer",
+                "full_gameplay": false
+              }
+            }
+          ]
+        },
+        {
+          "rank": 9,
+          "massassi_id": 25,
+          "title": "Remnants of the Empire 2: Lost Base on Hoth",
+          "author": "SavageX",
+          "downloads": 9801,
+          "source_url": "https://www.massassi.net/levels/files/25.shtml",
+          "original_sha256": "c10caabd5fee1803d5220d959d0b0341485eed8ebf8b42b9609a8ccfa457381e",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 10,
+          "massassi_id": 4,
+          "title": "The New Empire",
+          "author": "Chris Swan",
+          "downloads": 8701,
+          "source_url": "https://www.massassi.net/levels/files/4.shtml",
+          "original_sha256": "a341433bb3a0decaae69d6062eb8be9f957fa08de48e3b6b25116293f1e099cb",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 11,
+          "massassi_id": 1837,
+          "title": "Life of a Merchant",
+          "author": "Wolfy",
+          "downloads": 8005,
+          "source_url": "https://www.massassi.net/levels/files/1837.shtml",
+          "original_sha256": "bdd869bd33f0e20c82d598aa5444c18f3ef06099adb2270f125fd78326c76a7e",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 12,
+          "massassi_id": 1302,
+          "title": "Burning Pride: Episode I: The Execution",
+          "author": "Demon_Nightmare",
+          "downloads": 7957,
+          "source_url": "https://www.massassi.net/levels/files/1302.shtml",
+          "original_sha256": "581f9d008e84983be65d0c9d9a2eb86fa3d3550af7ab032baab10eb95094ae0f",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 13,
+          "massassi_id": 21,
+          "title": "Sith training",
+          "author": "Joshua",
+          "downloads": 7440,
+          "source_url": "https://www.massassi.net/levels/files/21.shtml",
+          "original_sha256": "a3718ee3e0af35a2613a1516930d2e82881657e150b23d74c41a41eb10cda4d1",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 14,
+          "massassi_id": 24,
+          "title": "Legends of the Force: Journey to the Zelaskata Mountains",
+          "author": "BoBo Fett",
+          "downloads": 7124,
+          "source_url": "https://www.massassi.net/levels/files/24.shtml",
+          "original_sha256": "e074a21f973b531cbb32c7015965a3bce8dd3c71ec06af9d1cd6ccb6bf3571fc",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 15,
+          "massassi_id": 1041,
+          "title": "WarZone 1 & 2",
+          "author": "Mark Jones/Tom Smallwood",
+          "downloads": 7109,
+          "source_url": "https://www.massassi.net/levels/files/1041.shtml",
+          "original_sha256": "c59d28079cadba9fa43e750301b8f399556a0bd1d1e3505da80eaeb79818995a",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 16,
+          "massassi_id": 1332,
+          "title": "The New Empire Part 2",
+          "author": "Chris Swan",
+          "downloads": 6968,
+          "source_url": "https://www.massassi.net/levels/files/1332.shtml",
+          "original_sha256": "53e2f9609b8ef3926df3f510b935e4c39a720ccbba647c1e11ff385a7a99a46a",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 17,
+          "massassi_id": 1687,
+          "title": "A Jedi's Discovery 2: The Dark Mask",
+          "author": "Zippy1000",
+          "downloads": 6965,
+          "source_url": "https://www.massassi.net/levels/files/1687.shtml",
+          "original_sha256": "f2095c994f40c6a6af484d680467fc1f77f1a18a150cd4e9ac2d99c647f773c7",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 18,
+          "massassi_id": 1366,
+          "title": "Imperial Pumping Station",
+          "author": "Kiramin",
+          "downloads": 6684,
+          "source_url": "https://www.massassi.net/levels/files/1366.shtml",
+          "original_sha256": "bf5a4ba8fff45e6b1efcee887fa5db56571380c730ca791347e03cfd0b5d2e04",
+          "matching_catalog_recipes": [
+            {
+              "id": "sp-imperial-pumping-station",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "bounded-load-smoke-pass",
+                "mode": "MotS singleplayer",
+                "seconds": 90,
+                "full_gameplay": false,
+                "world": "mk_ips.jkl",
+                "engine_sha256": "fd8ddfc23f09540068318bedcc3f08e5ce6b12ea5ee04ed3cf45fd8ed46b7873",
+                "payload_sha256": "b25f60de9c1d337a85416100cc61fb8c27e0bca8966f045867f689cc4763e30b",
+                "evidence_report_sha256": "6a2bdeb9ae9b040b8a5f82bba723e3fdadbe3556e18a3454f80db3ae7109af8a",
+                "note": "Loading and advancing simulation; authored camera, pumps, goals and escape require gameplay testing."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 19,
+          "massassi_id": 14,
+          "title": "Yun and Kyle vs. the Darkjedi",
+          "author": "SRA_sqmagellan",
+          "downloads": 6526,
+          "source_url": "https://www.massassi.net/levels/files/14.shtml",
+          "original_sha256": "138f4294e97c3174777b68820124d675461c9a6a04927f7e94a4c3ac75855135",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 20,
+          "massassi_id": 2,
+          "title": "Back Home To Sulon",
+          "author": "Jean-Francois Vuagniaux",
+          "downloads": 6351,
+          "source_url": "https://www.massassi.net/levels/files/2.shtml",
+          "original_sha256": "65809e07af106ce8ceb17860b0a014e355c743ea9a4afebc1c2318998bdea097",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 21,
+          "massassi_id": 902,
+          "title": "Planet Sith",
+          "author": "Looweegee",
+          "downloads": 6147,
+          "source_url": "https://www.massassi.net/levels/files/902.shtml",
+          "original_sha256": "83ba42ddd8026efba7e766b0875b413fcae254ed4811680722754850decc83e4",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 22,
+          "massassi_id": 15,
+          "title": "Escape from Imperial Base",
+          "author": "Rogue Leader",
+          "downloads": 5485,
+          "source_url": "https://www.massassi.net/levels/files/15.shtml",
+          "original_sha256": "a4d3b8159a201ee1281e89148544cad6894689225a6f4bfb9c5b019e40ec6337",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 23,
+          "massassi_id": 1826,
+          "title": "The New Jedi Order: Inception",
+          "author": "Berlick B'ja and Pac_Man3D",
+          "downloads": 5372,
+          "source_url": "https://www.massassi.net/levels/files/1826.shtml",
+          "original_sha256": "dfcc45591f5e07035d628f8754d3a0d4a6ac6711df912930ffa1f8b0d6c6464d",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 24,
+          "massassi_id": 1906,
+          "title": "Arrow Thieves: Chapter 1",
+          "author": "frantik",
+          "downloads": 5130,
+          "source_url": "https://www.massassi.net/levels/files/1906.shtml",
+          "original_sha256": "b128dbdd4591bb033daf1df73196951a394f92cd58ea267c9283960345952383",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 25,
+          "massassi_id": 19,
+          "title": "Dead Reckoning",
+          "author": "Christian Garris",
+          "downloads": 5020,
+          "source_url": "https://www.massassi.net/levels/files/19.shtml",
+          "original_sha256": "f9c96635730942c98a50bd5fc01ad485d9a01ee877838227257ed76de3b44964",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 26,
+          "massassi_id": 1886,
+          "title": "Best Lum Guide",
+          "author": "Jensyx",
+          "downloads": 5019,
+          "source_url": "https://www.massassi.net/levels/files/1886.shtml",
+          "original_sha256": "0f39fb4459712ef563fadfdd3122f1b3b1dea0f1bca2e3336b6475d7affd673a",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 27,
+          "massassi_id": 22,
+          "title": "Mechanics of the Force Level 1",
+          "author": "Matt Chapman",
+          "downloads": 4895,
+          "source_url": "https://www.massassi.net/levels/files/22.shtml",
+          "original_sha256": "663ddbf77a458dcab5c6081481a42d502e37ccda24dd653e3b79448bf481f916",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 28,
+          "massassi_id": 1435,
+          "title": "Invasion of the Sol System, Episode 1",
+          "author": "Kyle90",
+          "downloads": 4797,
+          "source_url": "https://www.massassi.net/levels/files/1435.shtml",
+          "original_sha256": "5747d1e2addc53f04035ddecaf19daee7f5ceed35cec15b653e9dd2a23f8f72b",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 29,
+          "massassi_id": 3130,
+          "title": "DarkSeeker: Enter the Darkness",
+          "author": "Zero Raven, Edward",
+          "downloads": 4677,
+          "source_url": "https://www.massassi.net/levels/files/3130.shtml",
+          "original_sha256": "1d0e819dbecb1b0d824c3f0cd73bcf589f7edcda4fb4d93ddce8e73f7e85df32",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 30,
+          "massassi_id": 29,
+          "title": "Myth of the Kaiburr Crystal",
+          "author": "Kybo Ren",
+          "downloads": 4611,
+          "source_url": "https://www.massassi.net/levels/files/29.shtml",
+          "original_sha256": "5043d0472d939d426a8fde59439388929ce33c2c66b2dc15a93a7ff307843b53",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 31,
+          "massassi_id": 1294,
+          "title": "Dead Reckoning 2",
+          "author": "Christian Garris",
+          "downloads": 4384,
+          "source_url": "https://www.massassi.net/levels/files/1294.shtml",
+          "original_sha256": "b103d6de253a93a81fb1cabdbdf7c0dff28b1dcef9f309c20f138a5c408b7e7c",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 32,
+          "massassi_id": 12,
+          "title": "PotE Level 1",
+          "author": "EvanC",
+          "downloads": 4271,
+          "source_url": "https://www.massassi.net/levels/files/12.shtml",
+          "original_sha256": "42262e2281ffae0498bac523fe387767f49922cb8c00de85c6a724c6802df38d",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 33,
+          "massassi_id": 1452,
+          "title": "The Fall of JuzSoft",
+          "author": "Wolfy, Hebedee, Jipe, Lt. Greywolf, Aglar",
+          "downloads": 4253,
+          "source_url": "https://www.massassi.net/levels/files/1452.shtml",
+          "original_sha256": "61a2c405b513e7e856851afbcb25f22d343db5628df6ea2d2edef2b27f5ad95a",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 34,
+          "massassi_id": 11,
+          "title": "The Valley Battle",
+          "author": "Gary McEnroe",
+          "downloads": 4209,
+          "source_url": "https://www.massassi.net/levels/files/11.shtml",
+          "original_sha256": "7438d7cfa00cd7a4a52c09c1af095ab3684494e9d2ac81c240b5a44c264b9250",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 35,
+          "massassi_id": 1233,
+          "title": "Sith Lord Discotech",
+          "author": "Zippy1000",
+          "downloads": 4108,
+          "source_url": "https://www.massassi.net/levels/files/1233.shtml",
+          "original_sha256": "6956059b187799136fd8750e1987dbac5225ccf11383c4b179e294381aaa4712",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 36,
+          "massassi_id": 1678,
+          "title": "Freedman Threat",
+          "author": "Julia \\ Michael / Lisa",
+          "downloads": 3991,
+          "source_url": "https://www.massassi.net/levels/files/1678.shtml",
+          "original_sha256": "103ca6481ab01c37acce7cbb38bc5451d78e52b9ee170b129dfee1824b15eb48",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 37,
+          "massassi_id": 10,
+          "title": "Home",
+          "author": "Rob Smith",
+          "downloads": 3952,
+          "source_url": "https://www.massassi.net/levels/files/10.shtml",
+          "original_sha256": "6aca2cddaba47e45974b12d390f673523d0e25af82a712d2a9bbbecbea9aa483",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 38,
+          "massassi_id": 17,
+          "title": "Imperial Colony",
+          "author": "Jensyx",
+          "downloads": 3824,
+          "source_url": "https://www.massassi.net/levels/files/17.shtml",
+          "original_sha256": "498358da1fca398587f2c9a668d139a2016c2543f2ef67b46f835c63fc65da7b",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 39,
+          "massassi_id": 1193,
+          "title": "The Bar",
+          "author": "Keith Bengs",
+          "downloads": 3743,
+          "source_url": "https://www.massassi.net/levels/files/1193.shtml",
+          "original_sha256": "ba273ab477311fd017653e21e16aa2f9a1288c6513a16feaee746f5d0fd04877",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 40,
+          "massassi_id": 1046,
+          "title": "Steal the Bottle",
+          "author": "Cave_Demon",
+          "downloads": 3706,
+          "source_url": "https://www.massassi.net/levels/files/1046.shtml",
+          "original_sha256": "b90bf34284815bf493206eca685ef62c6a496b5c83cbeb1ab7fed5cc1c7a1307",
+          "matching_catalog_recipes": [
+            {
+              "id": "sp-steal-the-bottle",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "bounded-load-and-initial-render-pass",
+                "full_gameplay": false,
+                "scope": "Paired original-JK/converted-MotS initial hidden view plus MotS advancing simulation",
+                "gameplay": "sp",
+                "seconds": 90,
+                "engine_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+                "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+                "payload_sha256": "3bb3513a06144ccbf0de2384d4a5fe20d52711c39dc90ed5a0a03e3db086ce9b",
+                "evidence": "docs/top50/wave3-level-runtime-evidence.json",
+                "note": "Initial rendering and loading only. Authored interactions, traversal, saves, respawn and matched peers remain open; original missing resource caveats remain."
+              }
+            }
+          ]
+        },
+        {
+          "rank": 41,
+          "massassi_id": 16,
+          "title": "The Adventures of Jan Ors",
+          "author": "jensyx",
+          "downloads": 3656,
+          "source_url": "https://www.massassi.net/levels/files/16.shtml",
+          "original_sha256": "acb324a2fff4ba0d5473273e492923886e30181e22fef9e482791efcf78adce6",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 42,
+          "massassi_id": 2015,
+          "title": "Warzone Chapter 3",
+          "author": "Tom 'Magi' Smallwood",
+          "downloads": 3640,
+          "source_url": "https://www.massassi.net/levels/files/2015.shtml",
+          "original_sha256": "e6ddb39b87538fd76b38326ce0a0cf23df2dd0fdc8da5054a01be1b94e1a7a36",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 43,
+          "massassi_id": 5,
+          "title": "Space Station XIII",
+          "author": "Adam McEnroe",
+          "downloads": 3603,
+          "source_url": "https://www.massassi.net/levels/files/5.shtml",
+          "original_sha256": "132394dca35b9135137c214dc464c15c1788d1e9c1f3938170aac2cc5e803797",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 44,
+          "massassi_id": 18,
+          "title": "Narra: A Slave's Tale- Part 1",
+          "author": "Deathstar4",
+          "downloads": 3574,
+          "source_url": "https://www.massassi.net/levels/files/18.shtml",
+          "original_sha256": "8894bcc42027afba80e7a417e95e009e3b705117a4d6bbdbb8660c067edb04e2",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 45,
+          "massassi_id": 1539,
+          "title": "Escape From Mera Himbgie",
+          "author": "Otterbine Barebo",
+          "downloads": 3552,
+          "source_url": "https://www.massassi.net/levels/files/1539.shtml",
+          "original_sha256": "de11b9a68f8e169e8c7f5311dee70be296ece9b088bdc365934d3654bcd06346",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 46,
+          "massassi_id": 1,
+          "title": "The Dreaded Tower",
+          "author": "Luke Skywalker",
+          "downloads": 3397,
+          "source_url": "https://www.massassi.net/levels/files/1.shtml",
+          "original_sha256": "fce5eb1ea7f363bde66fa172d59e99b0f3da673b2e524903c9766d5bebcc1571",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 47,
+          "massassi_id": 1017,
+          "title": "Rescue from Reidanta's Moon ",
+          "author": "Josh Helm",
+          "downloads": 3385,
+          "source_url": "https://www.massassi.net/levels/files/1017.shtml",
+          "original_sha256": "c222fcd839cac996efd63c51ebbf6b5a92f8c61817e0d8302891ecd07493de62",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 48,
+          "massassi_id": 2566,
+          "title": "A Jedi's Discovery 3: Your Own End",
+          "author": "Zippy1000",
+          "downloads": 3336,
+          "source_url": "https://www.massassi.net/levels/files/2566.shtml",
+          "original_sha256": "f14070d830d6dc889c58707c3ae2f7375e937de52ae68b9f583c8d9d67018463",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 49,
+          "massassi_id": 3028,
+          "title": "Life of a Merchant II: A Time of Trouble ",
+          "author": "Typhon / Wolfy ",
+          "downloads": 3300,
+          "source_url": "https://www.massassi.net/levels/files/3028.shtml",
+          "original_sha256": "ee5b612eed5c45303585259cc7a6c7e9543b2f4867c1c0c975c820fde8138c67",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 50,
+          "massassi_id": 8,
+          "title": "Operation: Fortra",
+          "author": "Jensy",
+          "downloads": 3242,
+          "source_url": "https://www.massassi.net/levels/files/8.shtml",
+          "original_sha256": "41dfdb0b918d76136687ee8f34b642f3899859f30ebf731242f735c81ec3135c",
+          "matching_catalog_recipes": []
+        }
+      ],
+      "original_hashes_recorded": 50,
+      "entries_with_exact_input_recipe": 4,
+      "entries_with_selectable_recipe": 4,
+      "entries_without_recipe": 46
+    },
+    "mods": {
+      "entries": [
+        {
+          "rank": 1,
+          "massassi_id": 1887,
+          "title": "Saber Battle X - JK v3.1",
+          "author": "ShadowX",
+          "downloads": 41350,
+          "source_url": "https://www.massassi.net/levels/files/1887.shtml",
+          "original_sha256": "50950b0c3a83dda972cb72c1dc85df96ea2248cb2daf88f09fc0ed2dc5272b2e",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 2,
+          "massassi_id": 1060,
+          "title": "Killer's Weapons Pack (KWP)",
+          "author": "ID_Junkguy",
+          "downloads": 18923,
+          "source_url": "https://www.massassi.net/levels/files/1060.shtml",
+          "original_sha256": "517d742fe9822364a72e6be1da323ad23117c422cb163259e14f9533a3296126",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 3,
+          "massassi_id": 525,
+          "title": "JKrpg - Barons Hed",
+          "author": "JKrpg staff",
+          "downloads": 16704,
+          "source_url": "https://www.massassi.net/levels/files/525.shtml",
+          "original_sha256": "c5e8e57c7ad368cb2d45e4e505c04780e6db7b661b9fbac4e0797e4809f2a6b5",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 4,
+          "massassi_id": 1333,
+          "title": "Ninja Kage 7.0",
+          "author": "ShadowX",
+          "downloads": 16055,
+          "source_url": "https://www.massassi.net/levels/files/1333.shtml",
+          "original_sha256": "1d71863e564e75278eecd44244ef3a103692c49b4bf11fdbc2de591ccbf05764",
+          "matching_catalog_recipes": [
+            {
+              "id": "ninja-kage",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "bounded-native-initialization-pass",
+                "recipe": "ninja-kage-7.0-mots-mp-prototype-4-maxmana",
+                "artifact_sha256": "f65bded1d3db64602e8cc25a7c96a6e7c2328b2de33bedc7808f27295488806d",
+                "game": "MotS",
+                "mode": "multiplayer",
+                "personality": "Jedi",
+                "map": "k1.jkl",
+                "peers": 2,
+                "idle_seconds": 75.025,
+                "initialized_samples": {
+                  "host": 37,
+                  "client": 34
+                },
+                "observed_amounts": {
+                  "rank_bin20": 4,
+                  "current_mana_bin14": 200,
+                  "maximum_mana_bin69": 200
+                },
+                "engine": {
+                  "kind": "older-private-diagnostic",
+                  "base_commit": null,
+                  "exe_sha256": "78c4ac380c55da5c8bf0e36f82c147bdcfef16576a192eb775f2cf4f81006ad0",
+                  "current_production_positive_rank_validated": false
+                },
+                "full_gameplay": false,
+                "evidence": {
+                  "url": "https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ninja-maxmana-20260908.json",
+                  "bundled": false,
+                  "sha256": "4fef964e4fc08b71264d88fe10b6023d6efcc6a85aab4d8446c78c1e800453cc"
+                },
+                "limits": [
+                  "Initialization only, with input disabled and zero allocated powers.",
+                  "Current e9 production positive-rank initialization remains unverified.",
+                  "Underfunded casts, regeneration recovery, other ranks and personalities remain unverified.",
+                  "Throw/Lightning allocation and activation remain separate conversion gates."
+                ],
+                "predecessor": {
+                  "status": "bounded-mp-pass",
+                  "artifact_sha256": "50de33501041102606b5a6f879d61195d55c11898014e22e4d3148fbb133c6df",
+                  "game": "MotS",
+                  "mode": "multiplayer",
+                  "personality": "Jedi",
+                  "map": "k1.jkl",
+                  "peers": 2,
+                  "idle_seconds": 75.094,
+                  "basic_action_seconds": 75.064,
+                  "grapple_seconds": 75.056,
+                  "descriptor_cog_bindings_checked": 66,
+                  "effects": [
+                    "weapon selection and ammunition/projectile response",
+                    "authored weapon helper network triggers",
+                    "standing Ninja To attack state",
+                    "stationary handspring impulse",
+                    "kick activation and punch projectile",
+                    "live wall-stopped grapple, pull and normal detach"
+                  ],
+                  "limits": [
+                    "No complete combat, rendering, sound or remote visual equivalence claim.",
+                    "Single-player and other personalities unreviewed.",
+                    "Authored Throw/Lightning allocation and activation remain separate conversion gates."
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "massassi_id": 887,
+          "title": "GaS (Guns and Such)",
+          "author": "GuNbOy",
+          "downloads": 13631,
+          "source_url": "https://www.massassi.net/levels/files/887.shtml",
+          "original_sha256": "ef894b80fb78f35fc5be6e0ee75b1c1b19a313f73c0351ba47f58ce86ff0ea89",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 6,
+          "massassi_id": 1688,
+          "title": "Saber Battle X - JK v2.0",
+          "author": "ShadowX",
+          "downloads": 13139,
+          "source_url": "https://www.massassi.net/levels/files/1688.shtml",
+          "original_sha256": "8e5342cde6e47343e4f4f1e747fb9a268b71279394f01301bd1eca8266097ccb",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 7,
+          "massassi_id": 1438,
+          "title": "Space Soldiers 3: MP MOD Beta 9.0",
+          "author": "SavageX",
+          "downloads": 12878,
+          "source_url": "https://www.massassi.net/levels/files/1438.shtml",
+          "original_sha256": "510979aed888b8b327dfc53636a70330015d890aec183fd509b2a89eac406d29",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 8,
+          "massassi_id": 1868,
+          "title": "GoldenEye",
+          "author": "ID_Junkguy and ID_Matt",
+          "downloads": 11900,
+          "source_url": "https://www.massassi.net/levels/files/1868.shtml",
+          "original_sha256": "c067fe796119e8c64d7d78ab710202437cd8fc02107ece5526a541a97ffd1880",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 9,
+          "massassi_id": 1382,
+          "title": "Anti-Terrorist TC",
+          "author": "Chad",
+          "downloads": 10511,
+          "source_url": "https://www.massassi.net/levels/files/1382.shtml",
+          "original_sha256": "5982696cbab9c3a941e77ec64f05e14c821f3a3f600774537215edb2f8b80255",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 10,
+          "massassi_id": 1072,
+          "title": "Imperial Weapons Patch 2",
+          "author": "Darth Haun",
+          "downloads": 9932,
+          "source_url": "https://www.massassi.net/levels/files/1072.shtml",
+          "original_sha256": "2f6ac2a5615cd1114fcf19fd8df9e6580ec140727afb6d67d165056e9b1e97a4",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 11,
+          "massassi_id": 965,
+          "title": "Walk on Walls (WoW)",
+          "author": "Mandalorian Editing Alliance",
+          "downloads": 9183,
+          "source_url": "https://www.massassi.net/levels/files/965.shtml",
+          "original_sha256": "3139c7fd509a6d7306a2e68c7b5091d07adf12b5f0bd2048c2bf016686507432",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 12,
+          "massassi_id": 590,
+          "title": "Advanced Grapple Mod",
+          "author": "Hemi Cuda",
+          "downloads": 9079,
+          "source_url": "https://www.massassi.net/levels/files/590.shtml",
+          "original_sha256": "7a883765ad1283f90da5092ec69b03d57350c41dd41b4ec744689bb5efb002fe",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 13,
+          "massassi_id": 1871,
+          "title": "Saber Battle X - JK v3.0",
+          "author": "ShadowX",
+          "downloads": 8949,
+          "source_url": "https://www.massassi.net/levels/files/1871.shtml",
+          "original_sha256": "b7ea8a3a3ccfa5a2175d4c9f9f349a41d26c39dc48b36fba34f9ee40d5d68c73",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 14,
+          "massassi_id": 1397,
+          "title": "Explosive Weapons Pack",
+          "author": "ID_Junkguy",
+          "downloads": 8260,
+          "source_url": "https://www.massassi.net/levels/files/1397.shtml",
+          "original_sha256": "38682402b1e8dcfed1d1a1c66fddb5fc2c6d9ce9c8de2682ef1377ba1c630aa3",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 15,
+          "massassi_id": 2727,
+          "title": "The DragonBallZ: The Destruction Is Real Total Conversion",
+          "author": "The TDiR Team",
+          "downloads": 8234,
+          "source_url": "https://www.massassi.net/levels/files/2727.shtml",
+          "original_sha256": "8aea49c26e5e1fb9b39742eb4fd034bef8b9fff99495929959be568c24c47de1",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 16,
+          "massassi_id": 936,
+          "title": "Boba Fett: The Bounty Missions",
+          "author": "Iain",
+          "downloads": 8101,
+          "source_url": "https://www.massassi.net/levels/files/936.shtml",
+          "original_sha256": "3017cc5b30138a71a82655461f5e7843333651359cc1d3b8ae5ec321546d84b7",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 17,
+          "massassi_id": 997,
+          "title": "Al's Star Wars Skin Pack",
+          "author": "Al MacDonald",
+          "downloads": 7376,
+          "source_url": "https://www.massassi.net/levels/files/997.shtml",
+          "original_sha256": "d125b4804f53b333d47825930288878b8443ec741c1bf5ee60b5706fe9641c6a",
+          "matching_catalog_recipes": [
+            {
+              "id": "mod-als-star-wars",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "three-direct-mpc-selections-pass",
+                "scope": "Three requested models/soundclasses and initial hidden rendering on native MotS MP k1, each in a fresh process",
+                "full_gameplay": false,
+                "tested_selections": 3,
+                "total_authored_selections": 135,
+                "evidence": "docs/top50/wave3-skin-runtime-evidence.json",
+                "payload_sha256": "88211772487cd958f60629878568cdda9afdeb33c716f5854f02fd49b2fb48af",
+                "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+                "engine_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+                "limits": [
+                  "Three direct MPC selections, not all 135 or GUI browsing.",
+                  "Fixed first-person inspection camera does not show the full local player body.",
+                  "No audible-event, animation, combat, respawn, peer or aggregate resource-capacity proof.",
+                  "Original Jar Jar falling cue remains absent; ten other tokens newly resolve to MotS sounds with unresolved voice equivalence.",
+                  "Fresh processes avoid cumulative cache occupancy; this does not qualify 32 simultaneous skins."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "rank": 18,
+          "massassi_id": 610,
+          "title": "Theft on Nar Shaddaa (MP Cooperative)",
+          "author": "Nebula",
+          "downloads": 7126,
+          "source_url": "https://www.massassi.net/levels/files/610.shtml",
+          "original_sha256": "4b31992475ac8a92126fe4d2af888292428de7637761a7a6770a94b1bfa2d417",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 19,
+          "massassi_id": 1239,
+          "title": "Arsenal 3",
+          "author": "Chad",
+          "downloads": 6499,
+          "source_url": "https://www.massassi.net/levels/files/1239.shtml",
+          "original_sha256": "bcd58a26afe72f2db5c333f4ce1fc440e7d2b2055b354bca27ad214b9be752c3",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 20,
+          "massassi_id": 3087,
+          "title": "Jedi Knight Enhanced",
+          "author": "Shred18",
+          "downloads": 6072,
+          "source_url": "https://www.massassi.net/levels/files/3087.shtml",
+          "original_sha256": "6e34e9b25cf2154496add2d809909e4a51e68b8cf5d494ccca803e928f31bd1c",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 21,
+          "massassi_id": 521,
+          "title": "Ninja Kage v6.0",
+          "author": "Shadow",
+          "downloads": 6036,
+          "source_url": "https://www.massassi.net/levels/files/521.shtml",
+          "original_sha256": "e291fc02e177c62606be44f7e480ff7db3287f545e6cedfa3c721ac4c74a1c63",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 22,
+          "massassi_id": 645,
+          "title": "Boba Fett Armor",
+          "author": "Mark Todd",
+          "downloads": 5964,
+          "source_url": "https://www.massassi.net/levels/files/645.shtml",
+          "original_sha256": "e288a42f90dff8b9315b26d296835617d0f372924d924279a2d85a3972942320",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 23,
+          "massassi_id": 1207,
+          "title": "Deluxe Weapons Pack",
+          "author": "Deluxe_Six",
+          "downloads": 5948,
+          "source_url": "https://www.massassi.net/levels/files/1207.shtml",
+          "original_sha256": "82111e1fec9cc2d5c095df9fbe0e5420cbbe0f602a654df0947d3cda83038707",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 24,
+          "massassi_id": 615,
+          "title": "Yoda and Dagbah saber",
+          "author": "Mark Todd",
+          "downloads": 5626,
+          "source_url": "https://www.massassi.net/levels/files/615.shtml",
+          "original_sha256": "a21c6bd1b0f8424b99458c833ebd6aa269a0ca46ecda816079b51c32f7a707b3",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 25,
+          "massassi_id": 1286,
+          "title": "UWP 4: Perfect Darkness",
+          "author": "ID_Junkguy",
+          "downloads": 5582,
+          "source_url": "https://www.massassi.net/levels/files/1286.shtml",
+          "original_sha256": "19b5f1def6c4d43d71ae407e6900b99fcfefb59632e4ed76e581356cc11702db",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 26,
+          "massassi_id": 634,
+          "title": "Black and Yellow Flame Saber",
+          "author": "Vindicare",
+          "downloads": 5524,
+          "source_url": "https://www.massassi.net/levels/files/634.shtml",
+          "original_sha256": "100ce2adf32d0110a5c05cad85d7fdcdbcc10c724b7407987f070d535bec4592",
+          "matching_catalog_recipes": [
+            {
+              "id": "mod-flame-saber",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "not-run",
+                "full_gameplay": false
+              }
+            }
+          ]
+        },
+        {
+          "rank": 27,
+          "massassi_id": 1864,
+          "title": "Guardians of the Galaxy - Master Edition (16-bit)",
+          "author": "TIE",
+          "downloads": 5512,
+          "source_url": "https://www.massassi.net/levels/files/1864.shtml",
+          "original_sha256": "fcdde75a57b3d8ac4578559fb85daf0aef3b111467ba6778c1c8f8bca860d288",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 28,
+          "massassi_id": 684,
+          "title": "Anime Characters Skin Pack",
+          "author": "Anime_Shinji",
+          "downloads": 5490,
+          "source_url": "https://www.massassi.net/levels/files/684.shtml",
+          "original_sha256": "ca7f18607a29609cff500855241fb08ff737201d8edb4d0003e78eae40d9c9c9",
+          "matching_catalog_recipes": [
+            {
+              "id": "mod-anime-characters",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "actual-mp-selection-pass",
+                "full_gameplay": false,
+                "game": "MotS",
+                "mode": "multiplayer",
+                "scope": "15 actual MPC selections and initial hidden rendering on native k1; active model/soundclass and hierarchy reported by engine.",
+                "engine_sha256": "0247daaac30347f7b85552de615d9db499faa0fb5ea2a9fd9b92157f557e5e60",
+                "tested_archive_sha256": "8e4694214c67dd8e9944a1af4ea604e66f178e3e23ffeb93775d1a53f57fe36b",
+                "payload_sha256": "bf43154f42b504a842747aa82701d95413941743f13f33607c144c3351925359",
+                "selected_models": 15,
+                "evidence": "docs/top50/wave2-runtime-evidence.json",
+                "limits": [
+                  "Fixed inspection camera does not show the full player body; no appearance equivalence claim.",
+                  "Animation, audible sounds, weapon attachment, respawn and peer synchronization remain unverified.",
+                  "Engine candidate is local and not a released prerequisite."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "rank": 29,
+          "massassi_id": 1643,
+          "title": "Saber Battle X - JK v1.0",
+          "author": "ShadowX",
+          "downloads": 5435,
+          "source_url": "https://www.massassi.net/levels/files/1643.shtml",
+          "original_sha256": "61ee91ce3b4be666b2508a194d7e42c07f2c06b69e71c585b4fc0275379d90c0",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 30,
+          "massassi_id": 513,
+          "title": "MiB Weaponz",
+          "author": "WAR_ShadowCAT",
+          "downloads": 5188,
+          "source_url": "https://www.massassi.net/levels/files/513.shtml",
+          "original_sha256": "670b040abbbb14fa9995c20c9357f11338721ea00145ff4da396765fe1d1db21",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 31,
+          "massassi_id": 1937,
+          "title": "Rbots JK",
+          "author": "Raynar",
+          "downloads": 5180,
+          "source_url": "https://www.massassi.net/levels/files/1937.shtml",
+          "original_sha256": "7352cd3a4b069932c42f533a1e380687a4fd90b7093e50f19bf064a04bee2380",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 32,
+          "massassi_id": 1879,
+          "title": "Saber Blocking Plus Beta v0.1",
+          "author": "Chikyu-Jin",
+          "downloads": 5123,
+          "source_url": "https://www.massassi.net/levels/files/1879.shtml",
+          "original_sha256": "852670789e28df54e408431210d4008268b00dfdb7cfd937a1cdd50a0acf04c3",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 33,
+          "massassi_id": 672,
+          "title": "Double Saber Skin Pack",
+          "author": "Dean Bedson",
+          "downloads": 5053,
+          "source_url": "https://www.massassi.net/levels/files/672.shtml",
+          "original_sha256": "c823a96d23881007576d7206ca1b5095dd4f94009ad0e6339297b7fe8e010f5b",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 34,
+          "massassi_id": 519,
+          "title": "Chaos Weapon Pack",
+          "author": "Hebedee",
+          "downloads": 5031,
+          "source_url": "https://www.massassi.net/levels/files/519.shtml",
+          "original_sha256": "8201c333f5532e6858e151949cb5af7c939b7c5ecf0a0a1598a4b6cc95f914ad",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 35,
+          "massassi_id": 996,
+          "title": "Infiltrate!",
+          "author": "The JK Gangstas",
+          "downloads": 4889,
+          "source_url": "https://www.massassi.net/levels/files/996.shtml",
+          "original_sha256": "18233693fb2e1af5a82d67f9673c76d3ca263bd4fa96775102998117bbfb5cf7",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 36,
+          "massassi_id": 571,
+          "title": "Big Star Wars Pack",
+          "author": "Sebulba(HOV)",
+          "downloads": 4849,
+          "source_url": "https://www.massassi.net/levels/files/571.shtml",
+          "original_sha256": "584c21a20aa69c49c6e545b5d2498e55e849f29f460371c56bfb9ab6b95bed43",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 37,
+          "massassi_id": 913,
+          "title": "Army Guns Pack",
+          "author": "blindsaber",
+          "downloads": 4810,
+          "source_url": "https://www.massassi.net/levels/files/913.shtml",
+          "original_sha256": "6a8e11d58c126f40bd8fee3af6f2703569bf93c6da48ee67dae973ddf34b6f88",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 38,
+          "massassi_id": 692,
+          "title": "Medival Weapons Pack",
+          "author": "TrooperX",
+          "downloads": 4806,
+          "source_url": "https://www.massassi.net/levels/files/692.shtml",
+          "original_sha256": "7521ac58e5b7db11205b83951e8ed19a6f9a37704d1ff840a617a81bb18ed4c2",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 39,
+          "massassi_id": 545,
+          "title": "Matrix Skin Pack",
+          "author": "Matrix__Apoc",
+          "downloads": 4673,
+          "source_url": "https://www.massassi.net/levels/files/545.shtml",
+          "original_sha256": "93e82e8c5f2112478313acccec9341a59e8d120a3e44365c4c511570bc426566",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 40,
+          "massassi_id": 1536,
+          "title": "Guardians of the Galaxy",
+          "author": "TIE",
+          "downloads": 4644,
+          "source_url": "https://www.massassi.net/levels/files/1536.shtml",
+          "original_sha256": "d5791bb5884e5382687534512b15f71fae2491c5e5ad6d3f002a029f9e5d524d",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 41,
+          "massassi_id": 1966,
+          "title": "Stories Untold Mod",
+          "author": "Rod-Wan Deattrod and [L0rD]ArCh0n",
+          "downloads": 4386,
+          "source_url": "https://www.massassi.net/levels/files/1966.shtml",
+          "original_sha256": "d72d1392aa7f4447f4764cbaf9e350c39f9e0b997f9c37ea28efb70cd0fc7da2",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 42,
+          "massassi_id": 601,
+          "title": "Sith Sabers Skin Pack S.E.",
+          "author": "Dean Bedson",
+          "downloads": 4285,
+          "source_url": "https://www.massassi.net/levels/files/601.shtml",
+          "original_sha256": "038c93835d1b4b933800ed88b29c7c8a97b8110e33ee940ac2147dc20bab4ce7",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 43,
+          "massassi_id": 1088,
+          "title": "FBJK Ultimate MOD v3.0",
+          "author": "FBJK_Pretender",
+          "downloads": 4215,
+          "source_url": "https://www.massassi.net/levels/files/1088.shtml",
+          "original_sha256": "dca1ef80d05d48809c2050cea719b7eb64b38c156a6136070e36a0d85eb4de6a",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 44,
+          "massassi_id": 1605,
+          "title": "16-bit Saber Pack",
+          "author": "Evilution",
+          "downloads": 4167,
+          "source_url": "https://www.massassi.net/levels/files/1605.shtml",
+          "original_sha256": "f809acb454472c500bf81102755d8261676ddb68df12dcd2cdcc7128d5911716",
+          "matching_catalog_recipes": [
+            {
+              "id": "mod-16bit-sabers",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "not-run",
+                "full_gameplay": false
+              }
+            }
+          ]
+        },
+        {
+          "rank": 45,
+          "massassi_id": 1284,
+          "title": "Swoop Beta 3",
+          "author": "Tom Smallwood/Brian Taylor",
+          "downloads": 4087,
+          "source_url": "https://www.massassi.net/levels/files/1284.shtml",
+          "original_sha256": "bb7b51fbbe71e344ff592db796fa323241b3a1b64762aacb97603158d7e7961a",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 46,
+          "massassi_id": 522,
+          "title": "Enhancement Pack 2.1",
+          "author": "Hideki",
+          "downloads": 4044,
+          "source_url": "https://www.massassi.net/levels/files/522.shtml",
+          "original_sha256": "010df14b3d27c432d29390c6a8a95efa7ee799f6075f46e782208155a4c28bf3",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 47,
+          "massassi_id": 1487,
+          "title": "Mandalorian Armored Combat [M.A.C.]",
+          "author": "EAH_CL0wN",
+          "downloads": 4037,
+          "source_url": "https://www.massassi.net/levels/files/1487.shtml",
+          "original_sha256": "a7ef7d5260dc6ca352be3a271ad08ac1d64a366370945d85e3eea0b69a81d8e4",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 48,
+          "massassi_id": 681,
+          "title": "Agent Han Solo",
+          "author": "Agent Han Solo",
+          "downloads": 4033,
+          "source_url": "https://www.massassi.net/levels/files/681.shtml",
+          "original_sha256": "3a5b5385d365ede5686c020446d735a2ce157e37771b500900d7d8e170d1aa77",
+          "matching_catalog_recipes": [
+            {
+              "id": "mod-agent-han",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "not-run",
+                "scope": "Static source/skeleton/resource validation only; appearance/animated poses, weapon attachments and multiplayer peers unverified"
+              }
+            }
+          ]
+        },
+        {
+          "rank": 49,
+          "massassi_id": 1289,
+          "title": "Destroyer Droid Mod",
+          "author": "J. Zimmerman",
+          "downloads": 4023,
+          "source_url": "https://www.massassi.net/levels/files/1289.shtml",
+          "original_sha256": "09c4fdd11446b356b554ee06b2958b3a15e38e9eaaf3db42be711ba9429954b3",
+          "matching_catalog_recipes": []
+        },
+        {
+          "rank": 50,
+          "massassi_id": 572,
+          "title": "Ghostbusters Total Conversion Halloween Spook Demo",
+          "author": "Deathstar4, Destructor, Kell Dragon",
+          "downloads": 4015,
+          "source_url": "https://www.massassi.net/levels/files/572.shtml",
+          "original_sha256": "ea5978eafc732c50f51f8b274a01a0fac333ed548510522b7af215f7ba80d77e",
+          "matching_catalog_recipes": []
+        }
+      ],
+      "original_hashes_recorded": 50,
+      "entries_with_exact_input_recipe": 6,
+      "entries_with_selectable_recipe": 6,
+      "entries_without_recipe": 44
+    }
+  },
+  "original_hashes_recorded": 150,
+  "entries_with_exact_input_recipe": 38
+}

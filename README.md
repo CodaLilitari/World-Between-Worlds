@@ -64,7 +64,7 @@ Oasis and the three CTF maps; **17 custom maps**, including Jedi's High School,
 Caesar's Palace, and SM Purgatory; and the optional Ninja Kage 7.0 prototype.
 Only the reviewed original versions are accepted. The current development branch
 adds multiplayer, singleplayer and mod prototypes; see the
-[development checkpoint and test limits](docs/top50/DEVELOPMENT_CHECKPOINT.md).
+[development checkpoint and test limits](docs/top50/WAVE3_CHECKPOINT.md).
 
 - [Custom levels, authors and original download URLs](SUPPORTED_CUSTOM_SOURCES.txt)
 - [Per-map details and known differences](COMMUNITY_RC1.md) · [Ninja Kage](NINJA_KAGE.md)

@@ -97,7 +97,7 @@ def recipes():
         rows.append(dict(id=key, title=spec['title'], author=spec['author'],
                          source_url=spec['source_url'], kind='custom',
                          gameplay=['mp', 'saber'] if spec.get('episode_type') == 16 else ['mp'],
-                         archive_hint=spec.get('gob_member', key + '.zip'),
+                         archive_hint=spec.get('archive_hint', spec.get('gob_member', key + '.zip')),
                          requires_archive=True, status=spec.get('catalog_status', 'verified'), summary=summary,
                          startup_overlay='bridge-' + spec['tag'] + '-startup' if overlay else None,
                          runtime_test=dict(spec.get('runtime_test', MAP_RUNTIME if key in HISTORICAL_COMMUNITY_IDS else UNTESTED_RUNTIME))))

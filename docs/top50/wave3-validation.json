@@ -1,0 +1,105 @@
+{
+  "schema": "wbw.wave3-final-validation.v1",
+  "date": "2026-09-20",
+  "assets_included": false,
+  "recipes": [
+    {
+      "id": "canyon-stream",
+      "revision": 1,
+      "filename": "bridge-canyonstream_wbw_v1.goo",
+      "archive_sha256": "6a0faf2a6dddd427bcef60022e97de3948ef6ab71e036790223e2269254dc98c",
+      "payload_sha256": "2f35f8be4eae6b476d1e9a5118a11df18fc73bae900e759a88ce989eb5aa928e",
+      "recipe_sha256": "6b259e6488ed91f40fd685fdcd07d1d2b6c7e753079815bdf877b3d3fb53c240",
+      "identical_windows_files": 7,
+      "linux_archive_identical": true
+    },
+    {
+      "id": "sp-steal-the-bottle",
+      "revision": 1,
+      "filename": "wbw-sp-steal-bottle_wbw_v1.goo",
+      "archive_sha256": "db604dccb80d5cfcfb6367ef421d725ffb470153fb7ba5389b44eebcb5e8c7fd",
+      "payload_sha256": "3bb3513a06144ccbf0de2384d4a5fe20d52711c39dc90ed5a0a03e3db086ce9b",
+      "recipe_sha256": "23f6ab6497efaa7d61b812e75cd1e92f043ae5a9178e0631709fcc5bf10614c5",
+      "identical_windows_files": 7,
+      "linux_archive_identical": true
+    },
+    {
+      "id": "mod-als-star-wars",
+      "revision": 1,
+      "filename": "wbw-als-skins_wbw_v1.goo",
+      "archive_sha256": "effa136ecb94aaf4c514888b30b1640963c1a86aa93934b0e9cca6ceb1752b20",
+      "payload_sha256": "88211772487cd958f60629878568cdda9afdeb33c716f5854f02fd49b2fb48af",
+      "recipe_sha256": "5e1b818790c666220f80b770a663b6e617bbd7464f78201bc2d12bf8bdeaccd1",
+      "identical_windows_files": 8,
+      "linux_archive_identical": true
+    }
+  ],
+  "exported_recipe_count": 51,
+  "source_package": {
+    "source_files": 72,
+    "package_bytes": 3032344,
+    "package_sha256": "81910cbb6a21c475e1468492e149c5f72088afe1a424de1793ff105203f209d4",
+    "previous_updater_full_inspection": "passed",
+    "in_memory_only": true,
+    "published": false
+  },
+  "source_suite": {
+    "windows": {
+      "status": "passed",
+      "tests": 392,
+      "skipped": 2,
+      "skipped_checks": [
+        "test_link_to_outside_file_or_directory_is_never_followed (test_revisions.InstallationScanTests.test_link_to_outside_file_or_directory_is_never_followed)",
+        "test_fallback_ready_survives_slow_ancestry_lookup (test_update.LauncherIntegration.test_fallback_ready_survives_slow_ancestry_lookup)"
+      ],
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "log_sha256": "5f52179c0fb326dd89ca2738c8793a46fb94bb534acfc66bbc1a09f685a14cec",
+      "receipt_sha256": "92aa7c2c9f4b7420cfbac071bb8ac8246ce0c7656e47447ecf949303f78b3851",
+      "source_unchanged": true
+    },
+    "linux": {
+      "status": "passed",
+      "tests": 392,
+      "skipped": 2,
+      "skipped_checks": [
+        "test_fallback_ready_survives_slow_ancestry_lookup (test_update.LauncherIntegration.test_fallback_ready_survives_slow_ancestry_lookup)",
+        "test_windows_venv_source_accepts_owned_interpreter_child (test_update.LauncherIntegration.test_windows_venv_source_accepts_owned_interpreter_child)"
+      ],
+      "python": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+      "log_sha256": "68dd55144de355db82cbfcb602945d23e33fcca6d8f88d986b90c8899eaf96ea",
+      "receipt_sha256": "d45b4fdefdbe51571b206f0235a823ede3428e0afc5de852e6797e90030cf146",
+      "source_unchanged": true
+    }
+  },
+  "tested_source_count": 55,
+  "tested_sources_sha256": "9ec3b514cbb6faaf88c71e275807547eb7aba8664af1d7d2ceabb555bac10191",
+  "installation_scan": {
+    "current": 3,
+    "update_available": 0,
+    "errors": 0,
+    "read_only_tree_unchanged": true,
+    "files_unchanged": 22,
+    "receipt_sha256": "9d522eec074efb7dd81e63ce304f1e960ae5eb49c4ac8477dbba52270c914ef8",
+    "scope": "Three fresh versioned outputs in an explicitly selected private staging tree; not a scan of a user installation."
+  },
+  "prior_windows_failure": {
+    "log_sha256": "9068a8ee6c39693c9dc5ff74f15f67f31ccdab9327f9bbbbdde4826255dcf2f5",
+    "error": "WinError 10053 while receiving an unauthorized POST response",
+    "resolution": "Reproduced with split header/body delivery; bounded rejected-body discard before closing, with unchanged authorization and regression controls. Earlier failed receipt retained."
+  },
+  "http_split_body_replay": {
+    "old_transport_failures": 80,
+    "fixed_complete_403": 120,
+    "retries": 0,
+    "service_callbacks": 0,
+    "fixed_delays_seconds": [
+      0,
+      0.005,
+      0.05
+    ],
+    "requests_per_delay": 40,
+    "receipt_sha256": "135adf80de311b1dda3ce204ab5b57dfd1413d4288e9661fbe407f3dd113f233",
+    "script_sha256": "9e07d3d89b99eb1d8d17f8de3c844332f3580254c2836903f3585611b56797f4",
+    "log_sha256": "b323709972579d88d4577a3c796a7986e7baf8ea4022b760dd42c1426d493c17"
+  }
+}

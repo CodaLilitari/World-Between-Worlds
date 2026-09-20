@@ -1,5 +1,6 @@
 """Local conversion orchestration and explicitly requested installation checks."""
 import hashlib
+import io
 import json
 import os
 import re
@@ -8,13 +9,14 @@ import tempfile
 import threading
 import uuid
 import sys
+import zipfile
 
 import bridge
 import custom_registry
 import verify_retail
 import blackwing_revisions
 import blackwing_picker
-from gob import Gob
+from gob import Gob, resource_name
 from blackwing_catalog import canonical, recipe_details, selection, source_hashes, require_consistent_sources
 from blackwing_version import VERSION
 
@@ -131,6 +133,10 @@ def original_hashes(key):
         return set(adapter.original_hashes(key))
     if key in custom_registry.entries():
         spec = custom_registry.entries()[key]
+        if spec.get('original_notices'):
+            # These source notices are outside the GOB. A bare GOB cannot
+            # produce the complete reviewed local delivery.
+            return {spec['zip_sha256']}
         return {spec['gob_sha256'], spec['zip_sha256']}
     if key == 'dojo':
         return {bridge.DOJO_GOB_SHA256, bridge.DOJO_ZIP_SHA256}
@@ -298,6 +304,41 @@ def track_outputs(row, stage, result, lock):
             'tracked_archives': artifacts}
 
 
+def community_notices(original_path, spec, filename, revision):
+    """Read only the pinned ZIP's exact declared notices, before any output."""
+    rules = spec.get('original_notices', [])
+    if not rules:
+        return {}
+    source = Path(original_path)
+    if source.stat().st_size > MAX_ARCHIVE_BYTES:
+        raise ValueError('Original archive exceeds the reviewed size limit.')
+    raw = source.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != spec['zip_sha256']:
+        raise ValueError('Choose the reviewed original ZIP for ' + spec['title'] + '; its original notices are required.')
+    tracked_filename = blackwing_revisions.versioned_name(filename, revision)
+    reserved = {'readme.txt', 'blackwing-receipt.json', 'blackwing-recipe.json',
+                filename.lower(), Path(filename).with_suffix('.manifest.json').name.lower(),
+                tracked_filename.lower(), Path(tracked_filename).with_suffix('.manifest.json').name.lower()}
+    notices = {}
+    with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+        names = archive.namelist()
+        for rule in rules:
+            name = rule['path']
+            normalized = resource_name(name)
+            if '/' in normalized or normalized in reserved or normalized in {p.lower() for p in notices}:
+                raise ValueError('Unsafe, reserved or duplicate original notice filename: ' + name)
+            if names.count(name) != 1:
+                raise ValueError('Required original notice is missing or duplicated: ' + name)
+            info = archive.getinfo(name)
+            if info.is_dir() or info.file_size != rule['bytes'] or info.file_size > MAX_ARCHIVE_BYTES:
+                raise ValueError('Original notice length differs: ' + name)
+            data = archive.read(info)
+            if len(data) != rule['bytes'] or hashlib.sha256(data).hexdigest() != rule['sha256']:
+                raise ValueError('Original notice hash differs: ' + name)
+            notices[name] = data
+    return notices
+
+
 def build_one(row, archives, original_path, stage):
     key = row['id']
     import recipe_adapters
@@ -305,6 +346,7 @@ def build_one(row, archives, original_path, stage):
     if adapter:
         return adapter.build_to_directory(archives, original_path, stage, key)
     kwargs = {}
+    notices = {}
     if key in bridge.STOCK_MAPS:
         kwargs['stock_map'] = key
         filename = bridge.stock_output_name(key)
@@ -315,8 +357,14 @@ def build_one(row, archives, original_path, stage):
         kwargs['caesars'] = bridge.open_caesars(original_path)
         filename = 'bridge-caesars-v3.goo'
     elif key in custom_registry.entries():
-        kwargs.update(community=custom_registry.open_original(original_path, key), community_key=key)
+        spec = custom_registry.entries()[key]
         filename = custom_registry.output_name(key)
+        notices = community_notices(original_path, spec, filename, row['revision'])
+        for name in notices:
+            target = stage / name
+            if target.exists() or target.is_symlink():
+                raise ValueError('Original notice output already exists: ' + name)
+        kwargs.update(community=custom_registry.open_original(original_path, key), community_key=key)
     elif key == 'ninja-kage':
         import ninja_converter
         return ninja_converter.build_to_directory(archives, original_path, stage)
@@ -334,6 +382,12 @@ def build_one(row, archives, original_path, stage):
     verified = verify_retail.check(archives, Gob.open(target), **verification_kwargs)
     if key.startswith('ctf-'):
         verified['ctf_startup'] = verify_retail.check_ctf_startup(archives, stage / bridge.CTF_STARTUP_FOLDER)
+    for name, content in notices.items():
+        notice_target = stage / name
+        with notice_target.open('xb') as stream:
+            stream.write(content)
+        if notice_target.read_bytes() != content:
+            raise ValueError('Written original notice differs: ' + name)
     return dict(filename=filename, manifest_filename=target.with_suffix('.manifest.json').name,
                 verification=verified, startup_overlay=row.get('startup_overlay'))
 

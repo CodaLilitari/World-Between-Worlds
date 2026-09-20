@@ -40,6 +40,9 @@ RECIPE_REVISIONS = {
     'mp-dbz-tdir-tournament': 1,
     'sp-imperial-pumping-station': 1,
     'mod-anime-characters': 1,
+    'sp-steal-the-bottle': 1,
+    'canyon-stream': 1,
+    'mod-als-star-wars': 1,
 }
 MARKER_NAME = 'wbw/recipe.json'
 MARKER_SCHEMA = 1

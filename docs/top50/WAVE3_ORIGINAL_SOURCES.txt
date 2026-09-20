@@ -1,0 +1,27 @@
+WORLD BETWEEN WORLDS - SEPTEMBER 20 DEVELOPMENT PROTOTYPES
+These are original download listings, not permission to reupload their assets.
+Recipes and bounded evidence do not establish full gameplay support.
+
+Canyon Stream
+  Author: Justin (Juz) Stocks / Juztyn
+  Massassi entry: 964
+  Original listing: https://www.massassi.net/levels/files/964.shtml
+  Original ZIP: canyonstream.zip (keep both original text notices)
+  Recipe: canyon-stream, wbw_v1, optional multiplayer level prototype
+
+Steal the Bottle
+  Author: Cave_Demon
+  Massassi entry: 1046
+  Original listing: https://www.massassi.net/levels/files/1046.shtml
+  Original ZIP: STB.zip
+  Recipe: sp-steal-the-bottle, wbw_v1, optional singleplayer level prototype
+
+Al's Star Wars Skin Pack
+  Author: Al MacDonald
+  Massassi entry: 997
+  Original listing: https://www.massassi.net/levels/files/997.shtml
+  Original ZIP: Alswskin.zip
+  Recipe: mod-als-star-wars, wbw_v1, separately selected multiplayer skin prototype
+
+All input and resource pins are in the exact recipe export. Read the per-entry
+reviews for remaining mechanics, sound, appearance and multiplayer gates.

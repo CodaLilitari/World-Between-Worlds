@@ -444,3 +444,124 @@ RECIPES['sp-imperial-pumping-station'] = {'entry': {'id': 'sp-imperial-pumping-s
                     'Keep isolated JK blue/yellow wrench controllers: native MotS namesakes add '
                     'Duncan dialogue and subtitle side effects belonging to another mission. '
                     'Preserve original key bins49/50 and authored gate checks.']}
+
+# Exact source-locked Steal the Bottle prototype; no game assets.
+RECIPES['sp-steal-the-bottle'] = {'entry': {'id': 'sp-steal-the-bottle',
+           'title': 'Steal the Bottle',
+           'author': 'Cave_Demon',
+           'kind': 'custom',
+           'gameplay': ['sp'],
+           'status': 'prototype',
+           'source_url': 'https://www.massassi.net/levels/files/1046.shtml',
+           'revision': 1,
+           'requires_archive': True,
+           'archive_hint': 'STB.zip',
+           'summary': 'Experimental short infiltration mission with authored guard AI, patrol, door and '
+                      'bottle-room ending retained; full gameplay validation pending.',
+           'startup_overlay': None,
+           'runtime_test': {'status': 'not-run', 'mode': 'MotS singleplayer', 'full_gameplay': False},
+           'legacy_filenames': ['wbw-sp-steal-bottle.goo'],
+           'required_owned_archives': ['jksp', 'motssp'],
+           'massassi_id': 1046},
+ 'zip_sha256': 'b90bf34284815bf493206eca685ef62c6a496b5c83cbeb1ab7fed5cc1c7a1307',
+ 'archives': [{'member': 'STB.gob',
+               'sha256': 'e542de3dd0dd293253a0735f303e8477a07f99b96027ee10db3a35e59b9855b1',
+               'role': 'episode'}],
+ 'readmes': [{'path': 'Boooooring.txt',
+              'bytes': 4470,
+              'sha256': 'a9687e07bff1220d97dfbe61dfbcb6ad37dfae6dede6729aa8dd44491f3dd5e9'}],
+ 'worlds': {'jkl/jksp1.jkl': 'aa3258a104b86fdeef0c8c57d7020a31e927b4ea8356dce94149e86d86b1e8b3'},
+ 'episode_rows': [['10:', '1', '1', 'LEVEL', 'jksp1.jkl', '0', '0', '-1', '-1']],
+ 'native_world': 'jkl/s1l1_rebelbase.jkl',
+ 'owned_hashes': {'jkres': 'c75f7d5211bdd2e07a3af6a987c718037e8f0fd6909018ddb4327137bf3a7ebf',
+                  'jksnd': '6c6d51eca9c85dffe7dce9b449642a052f055352e3f817abf03b465da861aafd',
+                  'jksp': '41591e570d5a2173873465e4c061e61edb5efea9883533ed70d78b3a81a10e46',
+                  'motsres': 'fa615eafa30114afd5e38369d790e721df56ce9a4ef62b66f34fc41b7c048a12',
+                  'motssnd': 'b80029082c93c7c47fd886ab659f41b5318fed1fa34b173cf5fd1bb7226d3462',
+                  'motssp': '08e5717915c8fc37bab80b8ffd5e7e1fb0ff2817fe48cb151884c5bf8639a66a'},
+ 'native_cog_bindings': {'00_desttrail.cog': '00_desttrail.cog',
+                         '00_smoketrail.cog': '00_smoketrail.cog',
+                         'class_sequencer.cog': 'class_sequencer.cog',
+                         'kyle.cog': 'kyle_m.cog',
+                         'pow_backpack.cog': 'pow_backpack_m.cog',
+                         'pow_battery.cog': 'pow_battery_m.cog',
+                         'pow_bryar.cog': 'pow_bryar_m.cog',
+                         'pow_concrifle.cog': 'pow_concrifle_m.cog',
+                         'pow_crossbow.cog': 'pow_crossbow_m.cog',
+                         'pow_health.cog': 'pow_health.cog',
+                         'pow_railgun.cog': 'pow_railgun_m.cog',
+                         'pow_repeater.cog': 'pow_repeater_m.cog',
+                         'pow_shields.cog': 'pow_shields.cog',
+                         'pow_single_sequencer.cog': 'pow_single_sequencer_m.cog',
+                         'pow_single_thermal.cog': 'pow_single_thermal_m.cog',
+                         'pow_strifle.cog': 'pow_strifle_m.cog'},
+ 'native_binding_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                  '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                  'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                  'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                  'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                  'pow_battery.cog': 'd5580c827623ee20f6ef0e235c4b9f1dccff38a0ed4a50bb77392d59fbd4e9eb',
+                                  'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                  'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                  'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                  'pow_health.cog': '764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011',
+                                  'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                  'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                  'pow_shields.cog': '8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad',
+                                  'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                  'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                  'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73'},
+ 'source_cog_sha256': {'00_aipatrol.cog': 'e70d0e561dd001d7669baa9a31667177fbcce278339fbbda07eedaa725a2e446',
+                       '00_conveyor.cog': '3abb561d6e05c98340993d7c299e6b680ac9785c032d6af4c405f1c2200fad0b',
+                       '00_door.cog': 'a07fb10fadbc81bf4a970cd4ced495240ccfa86f35e3f9de954729d65cbfba5a',
+                       '00_endlevel.cog': '97c47cb4412e70501b8ca50a0327415f31d4bf89be8705f92121314dccfb4b15',
+                       '00_sectorthrust.cog': '6d63da50cef46ca9279d1acd957d464ebfceda257b995bdaa4b009c13efa7b47',
+                       'actor_fn.cog': '51437fb5d84c05d077fb64c32726f5823ac04d89de7a9a8f609dfeb92c5c76ea',
+                       'actor_io.cog': '7766f0e5756ecd78d1e1921b73b35dae0912ad6a7005e03209e076b986a28a69',
+                       'actor_pf.cog': 'ffd2d95f752a88626fe59ac8409a36174834581c38ce16610ba34b02a1d34692',
+                       'actor_ug.cog': 'f25482a492accb4eba11a372309b2a4294777dbf18cae883625509c7c52e908c',
+                       'jksp1_start.cog': '6e5d3029c1a787085d163cc3554efb66a702db7e468678551e36bf45dbe313c5',
+                       'xtank4.cog': '8c4e0711fe15256c93a709f55192eddbc070d5999e8fc48d19595a86e54958ca'},
+ 'verbatim_paths': ['misc/cogstrings.uni'],
+ 'output_filename': 'wbw-sp-steal-bottle.goo',
+ 'cog_edits': {'jksp1_start.cog': [{'old': 'SetInv(player, 10, 1);',
+                                    'new': 'SetInv(player, 131, 1);',
+                                    'count': 1,
+                                    'reason': 'Grant the native MotS saber descriptor 131; JK ordinal 10 '
+                                              'otherwise grants EWEB. Preserve other inventory numbers and '
+                                              'startup/timer order.'}]},
+ 'readme_source_defects': ['Author reports some guards look strange; original model/puppet/AI behavior is '
+                           'retained and visual comparison remains pending.'],
+ 'native_template_omissions': {'cog/item_heavy_explosive.cog': {'sha256': 'bd79f7ddbfb7adbd564c4c6538709471fec8f89b7ea0fb87dc459c220acd8aeb',
+                                                                'name': 'ec.3do',
+                                                                'reason': 'Native original declares an '
+                                                                          'unused explosive_tpl template '
+                                                                          'whose value is a model filename; '
+                                                                          'symbol never read by code. '
+                                                                          'Preserve exact native script.'}},
+ 'semantic_notes': ['Preserve the authored fists/Bryar, energy 100 and rank 0; no extra Force powers. Only '
+                    'the single saber grant changes to native MotS descriptor 131.',
+                    'Preserve the original startup fall-through into its timer label and the separately '
+                    'scheduled 15-second timer; no added Return or timing repair.',
+                    'Keep exact authored drunkguard.ai, iodefault.ai, drunkguard.snd and four custom sounds '
+                    'under isolated resource names; original iodefault.ai differs from retail and must not '
+                    'bind its native namesake.',
+                    'Victory remains the crossed event on surface 682 leading from sector 82 to 83. Bottle '
+                    'thing 37 is scenery, not a new inventory item or pickup.',
+                    'The source has 42 placed things and 242 thing capacity. Its bundled frame-patrol and '
+                    'four-stop elevator COGs are unreferenced and are not added to the minimal output '
+                    'closure.',
+                    'The original notice retains unresolved permission-template alternatives; preserve it '
+                    'byte-for-byte with local output and infer no blanket asset redistribution permission.']}
+
+RECIPES['sp-steal-the-bottle']['entry']['runtime_test'] = {'status': 'bounded-load-and-initial-render-pass',
+ 'full_gameplay': False,
+ 'scope': 'Paired original-JK/converted-MotS initial hidden view plus MotS advancing simulation',
+ 'gameplay': 'sp',
+ 'seconds': 90,
+ 'engine_commit': '28ec799f1dab3f3954b4d395d19711c2204c43b1',
+ 'engine_sha256': '4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94',
+ 'payload_sha256': '3bb3513a06144ccbf0de2384d4a5fe20d52711c39dc90ed5a0a03e3db086ce9b',
+ 'evidence': 'docs/top50/wave3-level-runtime-evidence.json',
+ 'note': 'Initial rendering and loading only. Authored interactions, traversal, saves, respawn and '
+         'matched peers remain open; original missing resource caveats remain.'}

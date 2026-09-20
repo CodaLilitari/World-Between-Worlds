@@ -1,14 +1,18 @@
 """Asset-free tests of selection, local API boundaries and safe publication paths."""
 import hashlib
+import io
 import http.client
+from email.message import Message
 import json
 import os
 from pathlib import Path
 import tempfile
 import threading
+import time
 import unittest
 import sys
-from unittest.mock import patch
+import zipfile
+from unittest.mock import Mock, patch
 
 import blackwing_app
 import blackwing_catalog as catalog
@@ -85,6 +89,123 @@ class SelectionTests(unittest.TestCase):
         with patch.object(catalog, 'source_hashes', return_value=changed):
             with self.assertRaisesRegex(ValueError, 'Restart World Between Worlds'):
                 catalog.recipe_details('jhs')
+
+
+class CommunityNoticeDeliveryTests(unittest.TestCase):
+    def setUp(self):
+        from gob import build_gob
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.gob = build_gob({'jkl/fixture.jkl': b'Synthetic source world\n'})
+        self.notices = {'canyonstream.txt': b'Synthetic author notice\r\nExact bytes: \xff\r\n',
+                        'walkthrough.txt': b'Synthetic walkthrough\r\nKeep this second file.\r\n'}
+        self.spec = {'key': 'notice-fixture', 'tag': 'notice_fixture', 'title': 'Synthetic notice fixture',
+                     'gob_member': 'fixture.gob', 'gob_sha256': hashlib.sha256(self.gob).hexdigest(),
+                     'original_notices': [{'path': name, 'bytes': len(data),
+                         'sha256': hashlib.sha256(data).hexdigest()} for name, data in self.notices.items()]}
+        self.source = self.package(self.notices)
+        self.row = dict(id='notice-fixture', title=self.spec['title'], revision=1, revision_label='wbw_v1',
+                        startup_overlay=None, legacy_filenames=['bridge-notice_fixture-rc1.goo'],
+                        output_filename='bridge-notice_fixture_wbw_v1.goo')
+        self.entries = patch.object(service.custom_registry, 'entries', return_value={'notice-fixture': self.spec})
+        self.entries.start()
+        self.addCleanup(self.entries.stop)
+
+    def package(self, notices):
+        stream = io.BytesIO()
+        with zipfile.ZipFile(stream, 'w', zipfile.ZIP_STORED) as archive:
+            archive.writestr('fixture.gob', self.gob)
+            for name, data in notices.items():
+                archive.writestr(name, data)
+        data = stream.getvalue()
+        self.spec['zip_sha256'] = hashlib.sha256(data).hexdigest()
+        source = self.root / 'original.zip'
+        source.write_bytes(data)
+        return source
+
+    def build(self, stage, source=None):
+        # Exercise the real service, source loader, candidate writer and notices;
+        # conversion semantics have their own source-preservation test suites.
+        with patch.object(bridge, 'recipe', return_value=(self.gob, {'scene': 'synthetic', 'status': 'fixture'})), \
+                patch.object(service.verify_retail, 'check', return_value={'passed': ['synthetic payload']}):
+            return service.build_one(self.row, {}, source or self.source, stage)
+
+    def test_service_and_tracking_deliver_both_exact_original_notices(self):
+        stage = self.root / 'stage'
+        result = self.build(stage)
+        self.assertEqual(result['manifest_filename'], 'bridge-notice_fixture-rc1.manifest.json')
+        with patch.object(catalog, 'recipes', return_value=[self.row]), \
+                patch.dict(service.blackwing_revisions.RECIPE_REVISIONS, {'notice-fixture': 1}):
+            tracked = service.track_outputs(self.row, stage, result, {'recipe_sha256': 'a' * 64})
+        self.assertEqual(tracked['filename'], self.row['output_filename'])
+        for name, content in self.notices.items():
+            self.assertEqual((stage / name).read_bytes(), content)
+            self.assertEqual(service.tree_hashes(stage)[name], hashlib.sha256(content).hexdigest())
+
+    def test_external_notices_require_zip_without_changing_legacy_gob_support(self):
+        self.assertEqual(service.original_hashes('notice-fixture'), {self.spec['zip_sha256']})
+        raw = self.root / 'original.gob'
+        raw.write_bytes(self.gob)
+        with self.assertRaisesRegex(ValueError, 'original ZIP'):
+            self.build(self.root / 'rejected-gob', raw)
+        self.assertFalse((self.root / 'rejected-gob').exists())
+        self.spec.pop('original_notices')
+        self.assertEqual(service.original_hashes('notice-fixture'),
+                         {self.spec['zip_sha256'], self.spec['gob_sha256']})
+        result = self.build(self.root / 'legacy-gob', raw)
+        self.assertTrue((self.root / 'legacy-gob' / result['filename']).is_file())
+
+    def test_missing_or_tampered_notice_fails_even_with_repinned_zip(self):
+        for kind in ('missing', 'hash', 'length'):
+            notices = dict(self.notices)
+            if kind == 'missing':
+                notices.pop('walkthrough.txt')
+            elif kind == 'hash':
+                notices['walkthrough.txt'] = b'X' + notices['walkthrough.txt'][1:]
+            else:
+                notices['walkthrough.txt'] += b'extra'
+            self.package(notices)
+            stage = self.root / kind
+            with self.subTest(kind=kind), patch.object(bridge, 'recipe') as builder:
+                with self.assertRaisesRegex(ValueError, 'notice.*(missing|hash|length)'):
+                    service.build_one(self.row, {}, self.source, stage)
+                builder.assert_not_called()
+                self.assertFalse(stage.exists())
+
+    def test_changed_zip_pin_is_rejected_before_output(self):
+        self.source.write_bytes(self.source.read_bytes() + b'changed ZIP')
+        with self.assertRaisesRegex(ValueError, 'original ZIP'):
+            self.build(self.root / 'bad-zip')
+        self.assertFalse((self.root / 'bad-zip').exists())
+
+    def test_existing_notice_is_never_overwritten(self):
+        stage = self.root / 'existing'
+        stage.mkdir()
+        existing = stage / 'walkthrough.txt'
+        existing.write_bytes(b'Existing user data')
+        with patch.object(bridge, 'recipe') as builder:
+            with self.assertRaisesRegex(ValueError, 'notice output already exists'):
+                service.build_one(self.row, {}, self.source, stage)
+            builder.assert_not_called()
+        self.assertEqual(existing.read_bytes(), b'Existing user data')
+        self.assertEqual({p.name for p in stage.iterdir()}, {'walkthrough.txt'})
+
+    def test_unsafe_reserved_and_duplicate_notice_targets_fail_before_output(self):
+        original_rules = self.spec['original_notices']
+        for index, name in enumerate(('../outside.txt', 'nested/notice.txt', 'README.txt',
+                                      'blackwing-receipt.json', 'bridge-notice_fixture-rc1.goo',
+                                      'bridge-notice_fixture_wbw_v1.goo',
+                                      'bridge-notice_fixture_wbw_v1.manifest.json')):
+            self.spec['original_notices'] = [{**original_rules[0], 'path': name}]
+            stage = self.root / ('unsafe-' + str(index))
+            with self.subTest(name=name), self.assertRaises(ValueError):
+                self.build(stage)
+            self.assertFalse(stage.exists())
+        self.spec['original_notices'] = [original_rules[0], original_rules[0]]
+        with self.assertRaisesRegex(ValueError, 'duplicate original notice'):
+            self.build(self.root / 'duplicate')
+        self.assertFalse((self.root / 'duplicate').exists())
 
 
 class PathTests(unittest.TestCase):
@@ -238,6 +359,87 @@ class PathTests(unittest.TestCase):
                 service.scan_installed(value)
 
 
+class RejectedPostBodyTests(unittest.TestCase):
+    def handler(self, headers):
+        handler = blackwing_app.Handler.__new__(blackwing_app.Handler)
+        handler.command = 'POST'
+        handler.headers = Message()
+        for name, value in headers:
+            handler.headers[name] = value
+        handler.connection = Mock()
+        handler.connection.gettimeout.return_value = 7.0
+        handler.rfile = Mock()
+        return handler
+
+    def test_ambiguous_invalid_and_oversized_framing_reads_nothing(self):
+        frames = [[], [('Content-Length', '')], [('Content-Length', '-1')],
+                  [('Content-Length', '+2')], [('Content-Length', '1.0')],
+                  [('Content-Length', '2, 2')], [('Content-Length', '\u0662')],
+                  [('Content-Length', str(blackwing_app.MAX_REQUEST + 1))],
+                  [('Content-Length', '2'), ('Content-Length', '2')],
+                  [('Content-Length', '2'), ('Content-Length', '3')],
+                  [('Content-Length', '2'), ('Transfer-Encoding', 'chunked')],
+                  [('Content-Length', '2'), ('Transfer-Encoding', '')]]
+        for headers in frames:
+            with self.subTest(headers=headers):
+                handler = self.handler(headers)
+                handler.send_response = Mock()
+                handler.send_header = Mock()
+                handler.end_headers = Mock()
+                handler.wfile = io.BytesIO()
+                handler.reply(403, {'error': 'Rejected'})
+                handler.rfile.read1.assert_not_called()
+                handler.rfile.read.assert_not_called()
+                handler.connection.gettimeout.assert_not_called()
+                self.assertTrue(handler.close_connection)
+                handler.send_header.assert_any_call('Connection', 'close')
+                self.assertEqual(json.loads(handler.wfile.getvalue()), {'error': 'Rejected'})
+
+    def test_trickling_body_cannot_extend_total_deadline(self):
+        handler = self.handler([('Content-Length', '20')])
+        handler.rfile.read1.return_value = b'x'
+        with patch.object(blackwing_app, 'REJECT_BODY_TIMEOUT', 0.5), \
+                patch.object(blackwing_app.time, 'monotonic', side_effect=[0, 0, .2, .4, .6]):
+            handler.discard_rejected_post()
+        self.assertEqual(handler.rfile.read1.call_count, 3)
+        actual = [call.args[0] for call in handler.connection.settimeout.call_args_list]
+        for value, expected in zip(actual, [.5, .3, .1, 7.0], strict=True):
+            self.assertAlmostEqual(value, expected)
+        handler.rfile.read.assert_not_called()
+
+    def test_discard_is_size_bounded_and_not_repeated(self):
+        handler = self.handler([('Content-Length', str(blackwing_app.MAX_REQUEST))])
+        handler.rfile.read1.side_effect = lambda count: b'x' * count
+        with patch.object(blackwing_app.time, 'monotonic', return_value=0):
+            handler.discard_rejected_post()
+            handler.discard_rejected_post()
+        counts = [call.args[0] for call in handler.rfile.read1.call_args_list]
+        self.assertEqual(sum(counts), blackwing_app.MAX_REQUEST)
+        self.assertLessEqual(max(counts), 16 * 1024)
+        handler.connection.settimeout.assert_called_with(7.0)
+        empty = self.handler([('Content-Length', '0')])
+        empty.discard_rejected_post()
+        empty.rfile.read1.assert_not_called()
+
+    def test_eof_and_timeout_restore_socket_timeout(self):
+        for end in (b'', TimeoutError('slow body'), ConnectionResetError('closed peer')):
+            with self.subTest(end=end):
+                handler = self.handler([('Content-Length', '2')])
+                handler.rfile.read1.side_effect = [end]
+                handler.discard_rejected_post()
+                handler.rfile.read1.assert_called_once_with(2)
+                handler.connection.settimeout.assert_called_with(7.0)
+
+    def test_malformed_json_is_not_drained_twice(self):
+        handler = self.handler([('Content-Type', 'application/json'), ('Content-Length', '3')])
+        handler.rfile.read.return_value = b'bad'
+        with self.assertRaises(json.JSONDecodeError):
+            handler.read_json()
+        handler.discard_rejected_post()
+        handler.rfile.read.assert_called_once_with(3)
+        handler.rfile.read1.assert_not_called()
+
+
 class ApiTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -281,6 +483,60 @@ class ApiTests(unittest.TestCase):
         for headers in ({'Origin': 'https://example.com'}, {'Host': 'evil.example'},
                         {'Sec-Fetch-Site': 'cross-site'}):
             self.assertEqual(self.request('/api/settings', headers=headers)[0], 403)
+
+    def test_delayed_rejected_post_bodies_receive_complete_403_without_callbacks(self):
+        # Headers and body are distinct writes in http.client. A small delay
+        # reproduces the early-close WinError 10053 without a retry loop.
+        body = b'not valid JSON'
+        variants = ({}, {'X-Blackwing-Token': 'wrong'},
+                    {'X-Blackwing-Token': self.server.token, 'Host': 'evil.example'},
+                    {'X-Blackwing-Token': self.server.token, 'Origin': 'https://example.com'},
+                    {'X-Blackwing-Token': self.server.token, 'Sec-Fetch-Site': 'cross-site'})
+        with patch.object(blackwing_app.Handler, 'read_json', side_effect=AssertionError('must not parse')) as parser, \
+                patch.object(service, 'scan_installed') as scan, \
+                patch.object(service, 'save_settings') as save, \
+                patch.object(service, 'pick_local_path') as picker, \
+                patch.object(self.server.jobs, 'start') as job:
+            for repeat in range(3):
+                for path in ('/api/scan', '/api/settings', '/api/pick-path', '/api/convert'):
+                    for variant in variants:
+                        with self.subTest(repeat=repeat, path=path, headers=variant):
+                            connection = http.client.HTTPConnection('127.0.0.1', self.server.server_port, timeout=3)
+                            try:
+                                fields = {'Host': '127.0.0.1:' + str(self.server.server_port),
+                                          'Content-Type': 'application/json', 'Content-Length': str(len(body)),
+                                          **variant}
+                                connection.putrequest('POST', path, skip_host=True)
+                                for name, value in fields.items():
+                                    connection.putheader(name, value)
+                                connection.endheaders()
+                                time.sleep(.01)
+                                connection.send(body)
+                                response = connection.getresponse()
+                                self.assertEqual(response.status, 403)
+                                self.assertEqual(response.getheader('Connection'), 'close')
+                                self.assertTrue(json.loads(response.read())['error'])
+                            finally:
+                                connection.close()
+            for callback in (parser, scan, save, picker, job):
+                callback.assert_not_called()
+
+    def test_rejected_incomplete_body_has_bounded_wait_and_no_scan(self):
+        connection = http.client.HTTPConnection('127.0.0.1', self.server.server_port, timeout=3)
+        try:
+            with patch.object(service, 'scan_installed') as scan:
+                connection.putrequest('POST', '/api/scan')
+                connection.putheader('Content-Length', '2')
+                connection.putheader('Content-Type', 'application/json')
+                connection.endheaders()
+                # No body is sent. The rejection must finish on its receive
+                # deadline rather than waiting indefinitely for two bytes.
+                response = connection.getresponse()
+                self.assertEqual(response.status, 403)
+                self.assertTrue(json.loads(response.read())['error'])
+                scan.assert_not_called()
+        finally:
+            connection.close()
 
     def test_cannot_retrieve_source_or_absolute_files(self):
         for path in ('/bridge.py', '/../bridge.py', '/docs/../bridge.py', '/docs/settings.json'):
