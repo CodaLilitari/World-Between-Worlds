@@ -88,6 +88,10 @@ canonical game payload separately from generated metadata.
 
 ## Next required work
 
+The [next highest-ranked missing-entry review](NEXT_ENTRY_REVIEW.md) records
+new original-engine comparisons and concrete source issues for the next MP,
+SP and mod entries. These intake results do not add selectable recipes.
+
 1. Progress the remaining 112 entries through exact conversion and appropriate
    MotS tests, including multiworld packs and all authored mod selections.
 2. Add the missing gameplay proof for existing prototypes: ordinary control-driven
