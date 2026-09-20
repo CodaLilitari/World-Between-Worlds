@@ -188,6 +188,18 @@ The Massassi Temple Level Pack 3
   gob_sha256: 0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b
   Known source omissions and behavior limits: docs/top50/MLP3_REVIEW.md
 
+Imperial Siege On Derra IV
+  Recipe: sp-imperial-siege; revision: wbw_v1
+  Kind: custom; gameplay: sp
+  Original author: Ryan Bickhart
+  Original source: https://www.massassi.net/levels/files/6.shtml
+  Recipe availability: prototype; partial resource closure, initial renders and
+    45-second passive observations only. Mission, combat, saves and ending open.
+  zip_sha256: e7faa8fdb059224b006a6a1542d6b6583c638a3d925c5de25ce02ea4ee328932
+  gob_sha256: e375ccafde6119c4fab4b5c8fb12b90d0e327b2499c4dec0eb2e2fe773d57ea1
+  Original notice: impsiege.txt, retained exactly in each generated result
+  Known source omissions and behavior limits: docs/top50/IMPERIAL_SIEGE_REVIEW.md
+
 RESEARCH PROVENANCE
 Massassi JK multiplayer downloads ranking:
 https://www.massassi.net/levels/jkmp/?sortby=dl_count&num=50

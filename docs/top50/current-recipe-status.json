@@ -1294,7 +1294,21 @@
           "downloads": 13116,
           "source_url": "https://www.massassi.net/levels/files/6.shtml",
           "original_sha256": "e7faa8fdb059224b006a6a1542d6b6583c638a3d925c5de25ce02ea4ee328932",
-          "matching_catalog_recipes": []
+          "matching_catalog_recipes": [
+            {
+              "id": "sp-imperial-siege",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "initial-render-and-passive-observation-pass",
+                "seconds": 45,
+                "mode": "OpenJKDF2 MotS singleplayer",
+                "full_gameplay": false,
+                "engine_sha256": "658ff65ebb6ddfc8feab5bc2721ee02fcbda5a97bd38cd62f43e7d3b630a28e6",
+                "canonical_payload_sha256": "76deef65de73582d1673cb8de5725e8c4fce59de79f972882be2fa9607887b11"
+              }
+            }
+          ]
         },
         {
           "rank": 3,
@@ -1825,9 +1839,9 @@
         }
       ],
       "original_hashes_recorded": 50,
-      "entries_with_exact_input_recipe": 4,
-      "entries_with_selectable_recipe": 4,
-      "entries_without_recipe": 46
+      "entries_with_exact_input_recipe": 5,
+      "entries_with_selectable_recipe": 5,
+      "entries_without_recipe": 45
     },
     "mods": {
       "entries": [
@@ -2486,5 +2500,5 @@
     }
   },
   "original_hashes_recorded": 150,
-  "entries_with_exact_input_recipe": 39
+  "entries_with_exact_input_recipe": 40
 }

@@ -1,7 +1,7 @@
 # World Between Worlds
 
 **Bring reviewed Jedi Knight maps into Mysteries of the Sith.**
-Local recipe-book converter · Windows 11 / Linux · **0.2.0-rc4 — experimental**
+Local recipe-book converter · Windows 11 / Linux · **0.2.0-rc5 — experimental**
 
 World Between Worlds (WBW) rebuilds selected **Jedi Knight: Dark Forces II** maps
 and mods for **Mysteries of the Sith**, using your own game installations and
@@ -18,8 +18,13 @@ and the worlds their players built.
 
 ## Download and start
 
-Get your platform's **standalone ZIP** from the [GitHub releases page](https://github.com/andreipemberton/World-Between-Worlds/releases).
-If GitHub asks you to sign in, sign in to access the project and its downloads.
+The [public repository](https://github.com/CodaLilitari/World-Between-Worlds) has
+moved to **CodaLilitari**. As of September 20, 2026, its
+[releases page](https://github.com/CodaLilitari/World-Between-Worlds/releases)
+has no packaged downloads. Current development recipes are available on
+[`codex/massassi-top50`](https://github.com/CodaLilitari/World-Between-Worlds/tree/codex/massassi-top50):
+check out that branch, install Python 3.10 or newer, and run `python blackwing_launcher.py`.
+The steps below apply to a standalone ZIP when one is available:
 
 - **Windows 11 x64:** extract the ZIP, then open `WBW.exe`.
 - **Linux x86-64:** extract the ZIP, make `WBW` executable if necessary, then run
@@ -59,12 +64,15 @@ installed levels. [Revision details](RECIPES.md#installed-recipe-revisions).
 
 ## What's supported?
 
-The published **0.2.0-rc4** recipe book includes all **nine stock JK multiplayer maps**, including Canyon
-Oasis and the three CTF maps; **17 custom maps**, including Jedi's High School,
-Caesar's Palace, and SM Purgatory; and the optional Ninja Kage 7.0 prototype.
-Only the reviewed original versions are accepted. The current development branch
-adds multiplayer, singleplayer and mod prototypes; see the
-[development checkpoint and test limits](docs/top50/WAVE3_CHECKPOINT.md).
+The **0.2.0-rc5** candidate contains **53 recipe records, 52 selectable**:
+nine stock JK multiplayer maps, 32 custom multiplayer entries (including packs),
+five custom singleplayer entries, and six optional mod prototypes. Canyon Oasis,
+the three stock CTF maps, Jedi's High School, Caesar's Palace, SM Purgatory, MLP3
+and Imperial Siege are included. Castle Conflict remains unavailable pending its
+engine prerequisite. Only the reviewed original versions are accepted.
+Recipe availability is separate from gameplay qualification; see the
+[release scope and remaining checks](docs/releases/0.2.0-rc5.md) and
+[development checkpoint](docs/top50/WAVE3_CHECKPOINT.md).
 
 - [Custom levels, authors and original download URLs](SUPPORTED_CUSTOM_SOURCES.txt)
 - [Per-map details and known differences](COMMUNITY_RC1.md) · [Ninja Kage](NINJA_KAGE.md)
@@ -83,14 +91,20 @@ when deciding what to test.
 Development work: [50 Massassi entries per category](docs/top50/README.md), with
 source review and test status tracked separately from released compatibility.
 
-WBW checks this project's GitHub releases on launch, verifies compatible updates,
+This source version checks `CodaLilitari/World-Between-Worlds` releases on launch, verifies compatible updates,
 and keeps a working fallback. It can run offline; `--no-update` skips the check.
+**The CodaLilitari account is currently restricted. Automatic update availability
+is unconfirmed; use your local copy or an accessible source checkout for now.**
+Local updater tests do not establish live GitHub delivery or release publishing.
 Application updates and individual recipe revisions are separate. Optional source
 and command-line use require Python 3.10+; run `python blackwing_launcher.py`.
+Older packages still name the former publisher and cannot automatically switch
+repositories. Use this source checkout, or a new package from the public
+repository when released, to change the update source.
 
 Original tooling by **Andrei Pemberton**, with **Coda Lilitari in Astra Codex**.
 Original map and mod authors retain their credits. WBW is separate from our
-[OpenJKDF2-MotS-Fixes engine fork](https://github.com/andreipemberton/OpenJKDF2-MotS-Fixes)
+[OpenJKDF2-MotS-Fixes engine fork](https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes)
 and from upstream OpenJKDF2. No Lucasfilm or LucasArts affiliation is claimed.
 
 The [MIT license](LICENSE) covers our original software and documentation.

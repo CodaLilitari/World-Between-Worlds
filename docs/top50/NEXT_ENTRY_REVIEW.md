@@ -1,9 +1,9 @@
 # Next highest-ranked missing entries
 
 September 20, 2026. These source reviews began as original-engine comparisons.
-MLP3 has since become a selectable prototype; Chaos Eternal and the SP and mod
-entries below remain intake work. Recipe coverage is now 39 of the frozen 150 entries, with 111 still
-lacking recipes. The separate stock campaign plan is
+MLP3 and Imperial Siege have since become selectable prototypes; Chaos Eternal
+and the mod entry below remain intake work. Recipe coverage is now 40 of the
+frozen 150 entries, with 110 still lacking recipes. The separate stock campaign plan is
 unchanged. Original downloads, source-bearing audits and all game assets stay
 private; this document contains only findings and evidence hashes.
 
@@ -98,6 +98,26 @@ actor targeting, death/reset/respawn, Force behavior, end-sector activation,
 the authored 20/3/10-second transition delays, or cooperative synchronization.
 These remain explicit implementation and runtime checks.
 
+Subsequent private work implemented and reviewed the bounded Force startup
+profile, but it remains outside the release. Six Force-only reconstructions
+match, and five existing pack outputs remain unchanged. That does not establish
+a complete Chaos conversion: the full build stops at original AI template
+references, and no campaign output has been delivered.
+
+The later exact AI review separates two cases. Every one of the 120 placements
+overrides the missing actor-template default. The missing projectile default is
+overridden in 119 placements; Club's single explicit missing argument belongs
+to a fist actor with minimum and maximum ranged distances both zero. The pinned
+script requires a distance strictly between those bounds and does not alter
+them, so its ranged call is guarded off in that instance. A duplicate local
+integer does not explain the omission on the inspected desktop engine build.
+An invented laser would change the source configuration. The remaining adapter
+work must prove every override and that exact guard, preserve only these pinned
+absences, and reject changed arguments, new instances, modified uses or providers.
+No general omission waiver, repair, combat test or retail-parity result is
+established. The private semantic-review receipt is SHA-256
+`bac681ca5eb95e760e5120c5a042ce6de1c2f40007fb5a1b9cea195e4b4c52f0`.
+
 ## Singleplayer: Imperial Siege On Derra IV
 
 [Massassi entry 6](https://www.massassi.net/levels/files/6.shtml), rank 2, by
@@ -125,10 +145,10 @@ Its source and native colormaps differ on four used palette indices. It is not a
 proven appearance-equivalent replacement and must not inherit the separate glass
 exception, which concerns an unused world slot and an untextured shard.
 
-The planned candidate preserves these seven absences under isolated names and
+The prototype preserves these seven absences under isolated names and
 reports partial resource closure, with exact per-edge hash/count/context gates.
-It must reject added referrers and unexpected providers through either legal
-loader path. No silent native material substitution is planned. The private
+It rejects added referrers and unexpected providers through either legal
+loader path. No native material substitution is made. The private
 exact-ownership receipt is pinned by SHA-256
 `f0182500399ef3d856c483314370af607fe7d50ef9d8dde4003a4367dde4a977`,
 and the material-context receipt by
@@ -136,19 +156,25 @@ and the material-context receipt by
 Preserved absence does not prove identical default-material fallback or indirect
 COG behavior in the two engines.
 
-Private SP adapter work now enforces those exact MAT/WAV omission edges, with
-source-derived output checks and unchanged output from the four existing SP
-recipes. The candidate build then stopped on a separate original template
-reference: the authored AT-ST controller names absent `atstdriver2T` in an active
-pilot-spawn branch. That finding needs its own source and engine review; the
-MAT/WAV exception does not permit it. No candidate archive was emitted.
+The SP adapter enforces these exact MAT/WAV omission edges, with source-derived
+output checks and unchanged payloads from the four earlier SP recipes. The first
+candidate build stopped on a separate original template reference: the authored
+AT-ST controller names absent `atstdriver2T` in an active pilot-spawn branch.
+Subsequent source review established a separate, exact template rule. It keeps
+that declaration missing under `bs_atstdriver2t`, with the branch predicate and
+spawn logic unchanged. Engine source predicts no pilot spawn for the missing
+default in both modes; the actual branch has not been executed. The MAT/WAV rule
+does not authorize template omissions.
 
 Native-provider review also found that MotS's blue/yellow wrench scripts add
-mission dialogue. The planned recipe retains the original scripts for those
-items. Preserve the entire authored objective, actor, inventory, rank/timer,
-camera and ending behavior. The initial original-JK capture does not prove every
-missing reference resolves, and no converted or retail-engine result has been
-produced.
+mission dialogue. The recipe retains the original scripts for those items and
+the green key. Authored objectives, actors, rank/timer, camera and ending code
+remain preserved apart from explicit resource names and the saber grant mapping.
+The resulting candidate passed independent structural verification, paired
+original JK SP / converted MotS SP opening renders, and 45-second passive runs
+in each mode. These are OpenJKDF2 observations, not retail-engine parity or a
+mission playthrough. The [Imperial Siege review](IMPERIAL_SIEGE_REVIEW.md)
+records the prototype's exact payload and remaining checks.
 
 ## Mods: Saber Battle X — JK v3.1
 

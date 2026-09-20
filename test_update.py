@@ -118,6 +118,26 @@ class Versions(unittest.TestCase):
 
 
 class Discovery(unittest.TestCase):
+    def test_publisher_migration_keeps_release_and_package_identity_explicit(self):
+        self.assertEqual(update.REPOSITORY, 'CodaLilitari/World-Between-Worlds')
+        release, values, package, data = release_wire()
+        values[update.API_URL] = update.json_bytes([release])
+        selected = update.discover('0.2.0-rc1', FakeTransport(values))
+        manifest, _ = update.inspect_archive(data, selected)
+        self.assertEqual(manifest['repository'], update.REPOSITORY)
+
+        manifest_url = update.asset_url('0.2.0-rc2', update.RELEASE_MANIFEST)
+        former_release = json.loads(values[manifest_url])
+        former_release['repository'] = 'andreipemberton/World-Between-Worlds'
+        values[manifest_url] = update.json_bytes(former_release)
+        release['assets'][0].pop('digest')
+        values[update.API_URL] = update.json_bytes([release])
+        with self.assertRaisesRegex(update.UpdateError, 'Release manifest identity mismatch'):
+            update.discover('0.2.0-rc1', FakeTransport(values))
+        manifest['repository'] = 'andreipemberton/World-Between-Worlds'
+        with self.assertRaisesRegex(update.UpdateError, 'Invalid package identity'):
+            update.package_manifest(update.json_bytes(manifest), package)
+
     def transport(self, releases):
         listed, values = [], {}
         for version in releases:
@@ -188,11 +208,13 @@ class Transport(unittest.TestCase):
         self.assertTrue(update.trusted_url(update.API_URL))
         self.assertTrue(update.trusted_url(update.asset_url("1.0.0", "source.zip")))
         self.assertTrue(update.trusted_url("https://release-assets.githubusercontent.com/github-production-release-asset/x?token=x", redirect=True))
-        for url in ("http://github.com/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
+        for url in (f"http://github.com/{update.REPOSITORY}/releases/download/v1.0.0/source.zip",
                     "https://github.com/other/repo/releases/download/v1.0.0/source.zip",
-                    "https://github.com.evil.example/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
-                    "https://user:pass@github.com/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
-                    "https://github.com:444/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
+                    f"https://github.com.evil.example/{update.REPOSITORY}/releases/download/v1.0.0/source.zip",
+                    f"https://user:pass@github.com/{update.REPOSITORY}/releases/download/v1.0.0/source.zip",
+                    f"https://github.com:444/{update.REPOSITORY}/releases/download/v1.0.0/source.zip",
+                    "https://github.com/andreipemberton/World-Between-Worlds/releases/download/v1.0.0/source.zip",
+                    "https://api.github.com/repos/andreipemberton/World-Between-Worlds/releases?per_page=30",
                     "https://objects.githubusercontent.com/arbitrary"):
             with self.subTest(url=url):
                 self.assertFalse(update.trusted_url(url))

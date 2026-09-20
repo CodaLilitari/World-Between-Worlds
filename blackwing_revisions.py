@@ -44,6 +44,7 @@ RECIPE_REVISIONS = {
     'canyon-stream': 1,
     'mod-als-star-wars': 1,
     'mp-mlp3': 1,
+    'sp-imperial-siege': 1,
 }
 MARKER_NAME = 'wbw/recipe.json'
 MARKER_SCHEMA = 1

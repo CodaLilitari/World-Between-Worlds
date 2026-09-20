@@ -1,9 +1,11 @@
 """Asset-free SP episode and original-source contract checks."""
 from pathlib import Path
+import copy
 import os
 import re
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import bridge
 import blackwing_revisions
@@ -12,6 +14,38 @@ import sp_converter
 
 
 class SingleplayerContracts(unittest.TestCase):
+    def test_existing_recipe_readmes_keep_exact_prior_text(self):
+        prior = ('Experimental whole-episode SP conversion. Full gameplay remains unverified.\n'
+            'Use OpenJKDF2 in MotS single-player mode (-motsCompat -sp), with only the declared startup profile.\n'
+            'Copy the generated GOO to a private test installation episode folder; retain all original notices.\n'
+            'No retail/custom assets or this converted output may be committed to the WBW repository.\n')
+        for recipe in ('sp-phantom-menace-final-battle', 'sp-maul-vs-qui-gon',
+                       'sp-imperial-pumping-station', 'sp-steal-the-bottle'):
+            with self.subTest(recipe=recipe):
+                self.assertEqual(sp_converter.readme_text(sp_converter.recipe_details(recipe)), prior)
+        self.assertEqual(sp_converter.readme_text({'readme_source_defects': ['not approved prose'],
+                                                   'semantic_notes': ['not approved prose']}), prior)
+
+    def test_explicit_behavior_caveats_append_only_reviewed_lines(self):
+        caveats = ['Original missing resource remains absent.', 'Initial render checked; mission untested.']
+        base = sp_converter.readme_text({})
+        self.assertEqual(sp_converter.readme_text({'source_behavior_caveats': caveats}),
+                         base + '\nSource behavior caveats:\n- ' + '\n- '.join(caveats) + '\n')
+        self.assertEqual(caveats, ['Original missing resource remains absent.',
+                                  'Initial render checked; mission untested.'])
+
+    def test_invalid_behavior_caveat_fields_fail_before_source_open(self):
+        for invalid in (None, '', 'one line', {}, (), [], [None], [1], [''], ['  '],
+                        [' trailing '], ['two\nlines'], ['two\rlines']):
+            with self.subTest(invalid=invalid), self.assertRaisesRegex(sp_converter.SingleplayerError, 'behavior caveats'):
+                sp_converter.readme_text({'source_behavior_caveats': invalid})
+        spec = {**sp_converter.recipe_details('sp-steal-the-bottle'), 'source_behavior_caveats': []}
+        with tempfile.TemporaryDirectory() as directory, patch.object(sp_converter, 'recipe_details', return_value=spec), \
+                patch.object(sp_converter, 'open_original', side_effect=AssertionError('source opened')):
+            with self.assertRaisesRegex(sp_converter.SingleplayerError, 'behavior caveats'):
+                sp_converter.build_to_directory({}, 'unused.zip', directory, 'sp-steal-the-bottle')
+            self.assertEqual(list(Path(directory).iterdir()), [])
+
     def test_steal_bottle_versioned_name_fits_engine_episode_stem(self):
         spec = sp_converter.recipe_details('sp-steal-the-bottle')
         legacy, = spec['entry']['legacy_filenames']
@@ -97,6 +131,353 @@ class SingleplayerContracts(unittest.TestCase):
             with self.assertRaisesRegex(sp_converter.SingleplayerError, 'reviewed original ZIP'):
                 sp_converter.open_original(path, entry['id'])
             self.assertEqual(path.read_bytes(), before)
+
+
+class SourceOmissionControls(unittest.TestCase):
+    """Synthetic complete graph; no authored or retail assets in fixtures."""
+    def setUp(self):
+        tables = {'sounds': ['alarm.wav', 'command_alarm.wav'],
+                  'materials': ['0: panel.mat 1 1'],
+                  'scripts': ['0: first.cog', '1: second.cog']}
+        self.world = ('# synthetic omission contract\n' + ''.join(
+            f'World {label} {len(tables.get(label, []))}\n' +
+            '\n'.join(tables.get(label, [])) + '\n' for label in bridge.TABLES) +
+            'World templates 1\nwalkplayer none type=player\n'
+            'World cogs 2\n0: first.cog\n1: second.cog\n'
+            'World things 1\n0: walkplayer player 0 0 0 0 0 0 0\n'
+            'World vertices 0\nWorld adjoins 0\n'
+            'World surfaces 1\n0: 0 0x0 0x0 0 3 1 -1 0 1 0,0 0.5\n'
+            'World sectors 1\n0:\nSOUND alarm.wav 1\nend\n').encode()
+        self.source_files = {
+            'episode.jk': b'TYPE 1\n10: 1 1 LEVEL test.jkl 0 0 -1 -1\n',
+            'jkl/test.jkl': self.world,
+            'cog/first.cog': b'symbols\nsound beep=alarm.wav local\nmaterial screen=panel.mat local\nend\ncode\nend\n',
+            'cog/second.cog': b'symbols\nmaterial screen=panel.mat local\nend\ncode\nend\n',
+        }
+        self.originals = {'episode': Gob(build_gob(self.source_files))}
+        self.archives = {key: Gob(build_gob({'placeholder.txt': key.encode()}))
+                         for key in ('jkres', 'jksnd', 'jksp', 'motssnd')}
+        self.archives.update(motsres=Gob(build_gob({'jkl/static.jkl': b'World templates 0\n',
+                                                   'misc/items.dat': b'# no synthetic native inventory\n'})),
+                             motssp=Gob(build_gob({'jkl/native.jkl': b'World templates 0\n'})))
+        self.spec = {'owned_hashes': {key: value.sha256 for key, value in self.archives.items()},
+                     'archives': [{'sha256': self.originals['episode'].sha256}],
+                     'episode_rows': sp_converter.episode_rows(self.source_files['episode.jk']),
+                     'worlds': {'jkl/test.jkl': sp_converter.sha(self.world)},
+                     'native_world': 'jkl/native.jkl', 'native_cog_bindings': {},
+                     'native_binding_source_sha256': {},
+                     'source_cog_sha256': {Path(path).name: sp_converter.sha(raw)
+                         for path, raw in self.source_files.items() if path.endswith('.cog')},
+                     'source_omissions': []}
+        for path in ('jkl/test.jkl', 'cog/first.cog', 'cog/second.cog'):
+            for name in sorted(sp_converter.literal_counts(self.source_files[path])):
+                if name.endswith(('.wav', '.mat')):
+                    self.spec['source_omissions'].append(self.rule(path, name))
+        self.recipe = 'synthetic-source-omissions'
+        self.catalog_patch = patch.dict(sp_converter.sp_catalog.RECIPES, {self.recipe: self.spec})
+        self.catalog_patch.start()
+        self.addCleanup(self.catalog_patch.stop)
+
+    def rule(self, path, name, owner='authored', raw=None):
+        raw = self.source_files[path] if raw is None else raw
+        return {'name': name, 'owner': owner, 'referrer': path,
+                'referrer_sha256': sp_converter.sha(raw),
+                'occurrences': sp_converter.literal_counts(raw)[name],
+                'output_name': 'bs_' + name,
+                'output_referrer': path if path.endswith('.jkl') else
+                                   path.rsplit('/', 1)[0] + '/bs_' + Path(path).name,
+                'active_lines': sp_converter.omission_lines(raw, name),
+                'usage': 'literal', 'reason': 'Exact synthetic original omission; behavior unverified.'}
+
+    def build(self):
+        return sp_converter.build(self.archives, self.originals, self.recipe)
+
+    def verify(self, payload):
+        return sp_converter.verify(self.archives, self.originals, self.recipe, payload)
+
+    def test_complete_graph_retains_each_edge_and_reports_partial_closure(self):
+        payload, manifest = self.build()
+        report = self.verify(payload)
+        self.assertEqual(report['status'], 'structural-preservation-with-reviewed-source-omissions')
+        self.assertFalse(report['literal_resource_closure'])
+        self.assertFalse(report['runtime_verified'])
+        self.assertEqual(report['typed_resource_closure']['retained_omission_edges'], 6)
+        self.assertEqual(report['typed_resource_closure']['retained_omission_occurrences'], 7)
+        self.assertEqual(manifest['source_omissions'], report['typed_resource_closure']['retained_omissions'])
+        output = Gob(payload)
+        self.assertFalse(any(path.endswith(('.wav', '.mat')) for path in output.entries))
+        # The independent verifier cannot use a manifest or call the builder.
+        with patch.object(sp_converter, 'build', side_effect=AssertionError('builder called')):
+            self.assertEqual(self.verify(payload), report)
+
+    def test_rule_authority_mutations_fail_in_builder_and_verifier(self):
+        payload, _ = self.build()
+        mutations = {'owner': 'jkres', 'referrer': 'cog/unreached.cog',
+                     'referrer_sha256': '0' * 64, 'occurrences': 99,
+                     'output_name': 'bs_other.wav', 'output_referrer': 'jkl/other.jkl',
+                     'active_lines': [{'sha256': '0' * 64, 'occurrences': 1, 'repetitions': 1}]}
+        for key, value in mutations.items():
+            with self.subTest(field=key):
+                old = self.spec['source_omissions'][0][key]
+                self.spec['source_omissions'][0][key] = value
+                try:
+                    for operation in (self.build, lambda: self.verify(payload)):
+                        with self.assertRaises((sp_converter.SingleplayerError, bridge.RecipeError)):
+                            operation()
+                finally:
+                    self.spec['source_omissions'][0][key] = old
+
+    def test_removed_late_duplicate_and_unused_edges_are_not_name_waivers(self):
+        payload, _ = self.build()
+        rules = copy.deepcopy(self.spec['source_omissions'])
+        variants = [rules[:-1], rules + [rules[0]], rules + [self.rule('cog/first.cog', 'alarm.wav')]]
+        variants[-1][-1]['referrer'] = 'cog/unreached.cog'
+        for variant in variants:
+            self.spec['source_omissions'] = variant
+            for operation in (self.build, lambda: self.verify(payload)):
+                with self.subTest(variant=len(variant)), self.assertRaises(sp_converter.SingleplayerError):
+                    operation()
+        self.spec['source_omissions'] = rules
+
+    def test_whole_token_count_case_comments_and_qualified_paths(self):
+        raw = b'ALARM.WAV command_alarm.wav alarm.wav # alarm.wav\n// alarm.wav\n'
+        self.assertEqual(sp_converter.literal_counts(raw), {'alarm.wav': 2, 'command_alarm.wav': 1})
+        for token in (b'sound/alarm.wav', b'sound\\alarm.wav', b'../alarm.wav'):
+            audit = sp_converter.SourceOmissions(self.spec)
+            with self.subTest(token=token), self.assertRaisesRegex(sp_converter.SingleplayerError, 'Qualified'):
+                audit.inspect('authored', 'jkl/test.jkl', token, 'jkl/test.jkl',
+                              bridge.Catalog([('authored', self.originals['episode'])]), {})
+
+    def test_added_occurrence_or_referrer_requires_its_own_source_authority(self):
+        catalog = bridge.Catalog([('authored', self.originals['episode'])])
+        for path, raw in [('jkl/test.jkl', self.world + b'\nalarm.wav\n'),
+                          ('cog/third.cog', b'alarm.wav')]:
+            audit = sp_converter.SourceOmissions(self.spec)
+            with self.subTest(path=path), self.assertRaises(sp_converter.SingleplayerError):
+                audit.inspect('authored', path, raw, path, catalog, {})
+
+    def test_present_wrong_directory_and_ambiguous_sources_cannot_be_omissions(self):
+        for files, error in [({'misc/alarm.wav': b'not a sound provider'}, 'unexpectedly resolves'),
+                             ({'sound/alarm.wav': b'one', 'voice/alarm.wav': b'two'}, 'Ambiguous')]:
+            self.archives['jkres'] = Gob(build_gob(files))
+            self.spec['owned_hashes']['jkres'] = self.archives['jkres'].sha256
+            with self.subTest(files=list(files)), self.assertRaisesRegex(ValueError, error):
+                self.build()
+
+    def test_missing_cog_model_and_unreviewed_name_are_never_accepted(self):
+        catalog = bridge.Catalog([('authored', self.originals['episode'])])
+        for name in ('lost.cog', 'lost.3do', 'lost.wav'):
+            with self.subTest(name=name), self.assertRaisesRegex(sp_converter.SingleplayerError, 'Unreviewed source'):
+                sp_converter.SourceOmissions(self.spec).inspect('authored', 'jkl/test.jkl',
+                    name.encode(), 'jkl/test.jkl', catalog, {})
+        self.spec['source_omissions'][0]['name'] = 'lost.cog'
+        with self.assertRaisesRegex(sp_converter.SingleplayerError, 'MAT/WAV'):
+            sp_converter.SourceOmissions(self.spec)
+
+    def test_typed_candidates_reject_output_native_and_fallback_providers(self):
+        payload, manifest = self.build()
+        output = Gob(payload)
+        files = {path: output.read(path) for path in output.entries}
+        for path in ('sound/bs_alarm.wav', 'voice/bs_alarm.wav', 'mat/bs_panel.mat', '3do/mat/bs_panel.mat'):
+            for provider in ('output', 'motsres', 'motssnd'):
+                with self.subTest(path=path, provider=provider):
+                    archives, candidate = self.archives.copy(), files.copy()
+                    if provider == 'output':
+                        candidate[path] = b'unexpected provider'
+                    else:
+                        old = archives[provider]
+                        archives[provider] = Gob(build_gob({**{p: old.read(p) for p in old.entries}, path: b'unexpected'}))
+                    with self.assertRaisesRegex(sp_converter.SingleplayerError, 'unexpectedly resolves'):
+                        sp_converter.verify_typed_literal_closure(Gob(build_gob(candidate)), archives,
+                                                                 manifest['source_omissions'])
+        # A wrong-directory basename is not a loader provider. The full verifier
+        # still rejects this unrelated extra file through exact ownership.
+        files['misc/bs_alarm.wav'] = b'not a provider'
+        sp_converter.verify_typed_literal_closure(Gob(build_gob(files)), self.archives, manifest['source_omissions'])
+        with self.assertRaisesRegex(sp_converter.SingleplayerError, 'Native copied resource set'):
+            self.verify(build_gob(files))
+
+    def test_output_mutations_cannot_authorize_their_own_hash_or_count(self):
+        payload, manifest = self.build()
+        output = Gob(payload)
+        changes = [('jkl/test.jkl', b'bs_alarm.wav', b'bs_other.wav'),
+                   ('jkl/test.jkl', b'SOUND bs_alarm.wav 1', b'SOUND bs_alarm.wav 2'),
+                   ('jkl/test.jkl', b'0:\t0\t0x0\t0x0\t0', b'0:\t0\t0x0\t0x0\t4'),
+                   ('cog/bs_first.cog', b'bs_alarm.wav', b'bs_alarm.wav bs_alarm.wav')]
+        for path, old, new in changes:
+            files = {p: output.read(p) for p in output.entries}
+            self.assertIn(old, files[path]); files[path] = files[path].replace(old, new)
+            with self.subTest(path=path, old=old), self.assertRaises(sp_converter.SingleplayerError):
+                self.verify(build_gob(files))
+        rules = copy.deepcopy(manifest['source_omissions'])
+        rules[0]['occurrences'] += 1
+        with self.assertRaisesRegex(sp_converter.SingleplayerError, 'hash or count'):
+            sp_converter.verify_typed_literal_closure(output, self.archives, rules)
+
+    def test_untextured_guard_checks_semantics_even_with_rehashed_source(self):
+        raw = (b'MATERIALS 1\n0: panel.mat\nGEOSETS 1\nGEOSET 0\nMESHES 1\nMESH 0\n'
+               b'TEXTURE VERTICES 0\nFACES 1\n0: 0 0 3 0 0 0 0\nFACE NORMALS\n')
+        for changed, should_pass in [(raw, True), (raw.replace(b'VERTICES 0', b'VERTICES 1'), False),
+                                     (raw.replace(b'0: 0 0 3', b'0: 0 0 4'), False),
+                                     (raw + b'MESH 1\nTEXTURE VERTICES 3\nFACES 1\n0: 0 0 4 0 0 0 0\nFACE NORMALS\n', False)]:
+            rule = self.rule('3do/shard.3do', 'panel.mat', raw=changed)
+            rule['usage'] = 'untextured-one-face-material'
+            spec = {**self.spec, 'source_omissions': [rule]}
+            audit = sp_converter.SourceOmissions(spec)
+            catalog = bridge.Catalog([('authored', Gob(build_gob({'3do/shard.3do': changed})))])
+            if should_pass:
+                audit.inspect('authored', '3do/shard.3do', changed, '3do/bs_shard.3do', catalog, {})
+                self.assertEqual(len(audit.used), 1)
+            else:
+                with self.assertRaisesRegex(sp_converter.SingleplayerError, 'untextured'):
+                    audit.inspect('authored', '3do/shard.3do', changed, '3do/bs_shard.3do', catalog, {})
+
+
+class SourceTemplateOmissionControls(unittest.TestCase):
+    rule = SourceOmissionControls.rule
+    build = SourceOmissionControls.build
+    verify = SourceOmissionControls.verify
+
+    def setUp(self):
+        SourceOmissionControls.setUp(self)
+        raw = self.source_files['cog/first.cog'].replace(
+            b'end\ncode\nend\n', b'template pilot2=LostPilotT local\nend\ncode\nkilled:\n'
+            b'if (Rand() < 0.60) { newThing = CreateThing(pilot2, GetSenderRef()); }\nreturn;\nend\n')
+        self.source_files['cog/first.cog'] = raw
+        declaration = next(line for line in bridge.active_lines(bridge.text(raw)).splitlines()
+                           if line.startswith('template pilot2='))
+        self.spec['source_template_omissions'] = [{
+            'world': 'jkl/test.jkl', 'world_sha256': sp_converter.sha(self.world),
+            'owner': 'authored', 'referrer': 'cog/first.cog', 'referrer_sha256': sp_converter.sha(raw),
+            'symbol': 'pilot2', 'default': 'LostPilotT', 'output_name': 'bs_lostpilott',
+            'output_referrer': 'cog/bs_first.cog', 'declaration_sha256': sp_converter.sha(declaration.encode()),
+            'declaration_count': 1, 'symbol_use_count': 1,
+            'reason': 'Synthetic active missing local template; source control flow retained.'}]
+        self.repin()
+
+    def repin(self):
+        self.world = self.source_files['jkl/test.jkl']
+        self.originals['episode'] = Gob(build_gob(self.source_files))
+        self.spec['archives'][0]['sha256'] = self.originals['episode'].sha256
+        self.spec['worlds']['jkl/test.jkl'] = sp_converter.sha(self.world)
+        for path, raw in self.source_files.items():
+            if path.endswith('.cog'):
+                self.spec['source_cog_sha256'][Path(path).name] = sp_converter.sha(raw)
+        for index, rule in enumerate(self.spec['source_omissions']):
+            self.spec['source_omissions'][index] = self.rule(rule['referrer'], rule['name'])
+        for rule in self.spec['source_template_omissions']:
+            rule['world_sha256'] = sp_converter.sha(self.world)
+            rule['referrer_sha256'] = sp_converter.sha(self.source_files['cog/first.cog'])
+
+    def test_exact_local_default_is_isolated_without_changing_branch(self):
+        payload, manifest = self.build()
+        report = self.verify(payload)
+        self.assertFalse(report['literal_resource_closure'])
+        self.assertFalse(report['template_resource_closure'])
+        self.assertEqual(report['source_template_omissions'], manifest['source_template_omissions'])
+        omission, = report['source_template_omissions']
+        self.assertEqual(omission['status'], 'active-original-missing-template-preserved')
+        self.assertFalse(omission['runtime_verified'])
+        raw = Gob(payload).read('cog/bs_first.cog')
+        self.assertIn(b'template pilot2=bs_lostpilott local', raw)
+        source_code = self.source_files['cog/first.cog'].split(b'code\n', 1)[1]
+        self.assertEqual(raw.split(b'code\n', 1)[1], source_code)
+        self.assertEqual(omission['output_referrer_sha256'], sp_converter.sha(raw))
+        with patch.object(sp_converter, 'build', side_effect=AssertionError('builder called')):
+            self.assertEqual(self.verify(payload), report)
+
+    def test_template_rule_authority_cannot_be_replaced_by_output(self):
+        payload, _ = self.build()
+        changes = {'world': 'jkl/other.jkl', 'world_sha256': '0' * 64, 'owner': 'jkres',
+                   'referrer': 'cog/second.cog', 'referrer_sha256': '0' * 64,
+                   'symbol': 'another', 'default': 'OtherPilot', 'output_name': 'bs_otherpilot',
+                   'output_referrer': 'cog/bs_second.cog', 'declaration_sha256': '0' * 64,
+                   'declaration_count': 2, 'symbol_use_count': 2}
+        rule = self.spec['source_template_omissions'][0]
+        for field, value in changes.items():
+            old = rule[field]; rule[field] = value
+            try:
+                for operation in (self.build, lambda: self.verify(payload)):
+                    with self.subTest(field=field), self.assertRaises(sp_converter.SingleplayerError):
+                        operation()
+            finally:
+                rule[field] = old
+
+    def test_absent_duplicate_and_unused_template_rules_fail(self):
+        payload, _ = self.build()
+        original = copy.deepcopy(self.spec['source_template_omissions'])
+        stale = copy.deepcopy(original[0]); stale.update(default='NeverDeclared', output_name='bs_neverdeclared', symbol='unused')
+        for rules in ([], original + original, original + [stale]):
+            self.spec['source_template_omissions'] = rules
+            for operation in (self.build, lambda: self.verify(payload)):
+                with self.subTest(rules=len(rules)), self.assertRaises(sp_converter.SingleplayerError):
+                    operation()
+        self.spec['source_template_omissions'] = original
+
+    def test_exposed_duplicate_new_symbol_and_extra_referrer_are_rejected_even_after_repinning(self):
+        files = copy.deepcopy(self.source_files)
+        variants = [
+            ('cog/first.cog', files['cog/first.cog'].replace(b'LostPilotT local', b'LostPilotT')),
+            ('cog/first.cog', files['cog/first.cog'].replace(b'end\ncode', b'int pilot2=0 local\nend\ncode')),
+            ('cog/first.cog', files['cog/first.cog'].replace(b'end\ncode', b'template pilot3=LostPilotT local\nend\ncode')),
+            ('cog/second.cog', files['cog/second.cog'].replace(b'end\ncode', b'template pilot2=LostPilotT local\nend\ncode')),
+            ('jkl/test.jkl', files['jkl/test.jkl'].replace(b'0: first.cog', b'0: first.cog LostPilotT')),
+        ]
+        for path, raw in variants:
+            self.source_files = {**files, path: raw}; self.repin()
+            with self.subTest(path=path, raw=raw[:30]), self.assertRaises(sp_converter.SingleplayerError):
+                self.build()
+
+    def test_new_source_or_native_template_provider_fails_for_both_names(self):
+        payload, _ = self.build()
+        files = copy.deepcopy(self.source_files)
+        base_archives = self.archives.copy()
+        for name in ('lostpilott', 'bs_lostpilott'):
+            for provider in ('world', 'jkres', 'motsres', 'motssp'):
+                self.source_files = files.copy(); self.archives = base_archives.copy()
+                if provider == 'world':
+                    value = bridge.text(files['jkl/test.jkl'])
+                    self.source_files['jkl/test.jkl'] = bridge.replace_block(value, 'templates',
+                        bridge.records(value, 'templates') + [name + ' none type=actor']).encode()
+                else:
+                    archive = self.archives[provider]
+                    path = 'jkl/native.jkl' if provider == 'motssp' else 'jkl/static.jkl'
+                    entries = {p: archive.read(p) for p in archive.entries}
+                    entries[path] = ('World templates 1\n' + name + ' none type=actor\n').encode()
+                    self.archives[provider] = Gob(build_gob(entries))
+                self.repin()
+                self.spec['owned_hashes'] = {k:v.sha256 for k,v in self.archives.items()}
+                for operation in (self.build, lambda: self.verify(payload)):
+                    with self.subTest(name=name, provider=provider), self.assertRaisesRegex(
+                            sp_converter.SingleplayerError, 'unexpectedly resolves'):
+                        operation()
+
+    def test_changed_output_default_predicate_spawn_or_damage_fails(self):
+        payload, _ = self.build(); output = Gob(payload)
+        for old, new in [(b'bs_lostpilott', b'bs_walkplayer'), (b'0.60', b'0.90'),
+                         (b'CreateThing(pilot2', b'CreateThing(-1'),
+                         (b'return;', b'DamageThing(newThing, 100, 0x2, -1); return;')]:
+            files = {p:output.read(p) for p in output.entries}
+            self.assertIn(old, files['cog/bs_first.cog'])
+            files['cog/bs_first.cog'] = files['cog/bs_first.cog'].replace(old,new)
+            with self.subTest(old=old), self.assertRaisesRegex(sp_converter.SingleplayerError, 'Source resource transformation'):
+                self.verify(build_gob(files))
+        files = {p:output.read(p) for p in output.entries}
+        world = bridge.text(files['jkl/test.jkl'])
+        files['jkl/test.jkl'] = bridge.replace_block(world, 'templates',
+            bridge.records(world,'templates') + ['bs_lostpilott none type=actor']).encode()
+        with self.assertRaises(sp_converter.SingleplayerError):
+            self.verify(build_gob(files))
+
+    def test_rule_forbids_behavior_edits_and_oversized_isolated_default(self):
+        self.spec['cog_edits'] = {'first.cog': [{'old':'0.60','new':'0.90','count':1}]}
+        with self.assertRaisesRegex(sp_converter.SingleplayerError, 'behavior edits'):
+            self.build()
+        del self.spec['cog_edits']
+        rule = self.spec['source_template_omissions'][0]
+        rule['default'] = 'a' * 29; rule['output_name'] = 'bs_' + rule['default']
+        with self.assertRaisesRegex(sp_converter.SingleplayerError, 'authority'):
+            self.build()
 
 
 @unittest.skipUnless(os.environ.get('WBW_SP_TEST_BASELINES') and os.environ.get('WBW_SP_TEST_ORIGINAL'),

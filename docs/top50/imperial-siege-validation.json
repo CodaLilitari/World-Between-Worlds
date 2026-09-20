@@ -1,0 +1,222 @@
+{
+  "schema": "wbw.imperial-siege-validation.v1",
+  "date": "2026-09-20",
+  "assets_included": false,
+  "recipe_id": "sp-imperial-siege",
+  "recipe_status": "prototype",
+  "app_version": "0.2.0-rc5",
+  "source_suites": {
+    "windows": {
+      "tests": 435,
+      "passed": 433,
+      "skipped": 2,
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "receipt_sha256": "3f726fa45f4a57d2e139786a775a8e334fa259f1e1efbd0dd47a4f1ef8620efd",
+      "log_sha256": "d65f0a7f64877c1ac370a5803144c0721395fb2885cd5fcaaf87866fbe9c23a7",
+      "source_unchanged": true
+    },
+    "linux": {
+      "tests": 435,
+      "passed": 433,
+      "skipped": 2,
+      "python": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+      "receipt_sha256": "ca31f29bd1a39447a50ce6341d5cb7b42185eacc959d3b6bc92f393056c2b23a",
+      "log_sha256": "0afb8664cf2fa48e980db08e36282f8782e7d1f3110f2a2f63c1cb0880de5127",
+      "source_unchanged": true
+    }
+  },
+  "tested_source_count": 55,
+  "exported_recipes": 53,
+  "recipes_json_sha256": "a642b187cf50feed9d2b6e1b1ebca220e4773d7f38d81fc0b36f09c6583bd140",
+  "maintainer_tests_passed": 22,
+  "ui_tests_passed": 49,
+  "maintainer_and_ui_evidence": "Root-observed successful command outputs after Imperial integration and before the RC5 identity bump. Their source files are unchanged; no separate stdout log was retained.",
+  "pre_release_identity_service_replays": [
+    {
+      "label": "win-seed1-v1",
+      "platform": "win32",
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "hash_seed": "1",
+      "output_sha256": "62dfb236dd92c15c49cf311ef8422aada2de301640e624897c920ad8b847222a",
+      "canonical_payload_sha256": "76deef65de73582d1673cb8de5725e8c4fce59de79f972882be2fa9607887b11",
+      "source_files_unchanged": true,
+      "inputs_unchanged": true
+    },
+    {
+      "label": "win-seed999-v2",
+      "platform": "win32",
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "hash_seed": "999",
+      "output_sha256": "62dfb236dd92c15c49cf311ef8422aada2de301640e624897c920ad8b847222a",
+      "canonical_payload_sha256": "76deef65de73582d1673cb8de5725e8c4fce59de79f972882be2fa9607887b11",
+      "source_files_unchanged": true,
+      "inputs_unchanged": true
+    },
+    {
+      "label": "linux-seed314-v2",
+      "platform": "linux",
+      "python": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+      "hash_seed": "314",
+      "output_sha256": "62dfb236dd92c15c49cf311ef8422aada2de301640e624897c920ad8b847222a",
+      "canonical_payload_sha256": "76deef65de73582d1673cb8de5725e8c4fce59de79f972882be2fa9607887b11",
+      "source_files_unchanged": true,
+      "inputs_unchanged": true
+    }
+  ],
+  "pre_release_identity_comparison_receipt_sha256": "60186ba75637364fa13d4ab4581337f7c33ce23b49e26a1187a690628e277e2d",
+  "pre_release_identity_marker": {
+    "appversion": "0.2.0-rc4",
+    "id": "sp-imperial-siege",
+    "payload_sha256": "76deef65de73582d1673cb8de5725e8c4fce59de79f972882be2fa9607887b11",
+    "recipe_sha256": "be78918db1cd63a56a77251afd6b842ed86a345e554214c4dc7dc2d589774168",
+    "revision": 1,
+    "role": "primary",
+    "schema": 1
+  },
+  "windows_result_folders_identical": true,
+  "cross_platform_game_archive_identical": true,
+  "cross_platform_metadata_differences": {
+    "README.txt": "Windows CRLF versus Linux LF only; normalized text is identical.",
+    "manifest.json": "Windows CRLF versus Linux LF only; normalized bytes and parsed JSON are identical.",
+    "blackwing-receipt.json": "Only generated_files/README.txt and generated_files/manifest.json hashes differ, binding actual emitted newline bytes."
+  },
+  "release_identity_changes": [
+    "blackwing_version.py",
+    "recipes.json"
+  ],
+  "rc5_service": {
+    "platform": "win32",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "hash_seed": "1",
+    "marker": {
+      "appversion": "0.2.0-rc5",
+      "id": "sp-imperial-siege",
+      "payload_sha256": "76deef65de73582d1673cb8de5725e8c4fce59de79f972882be2fa9607887b11",
+      "recipe_sha256": "caed5ad0fd33e6fad6e01aa44ec2391d1e8f95edcdfdc97288f2bf6d2099e535",
+      "revision": 1,
+      "role": "primary",
+      "schema": 1
+    },
+    "output_filename": "wbw-sp-imperial-siege_wbw_v1.goo",
+    "output_sha256": "d10e8f391cf3efbda1ee13bcd89803d387a9cd4d8d3cf5c0a0ec5b5c8f3fb9d0",
+    "canonical_payload_sha256": "76deef65de73582d1673cb8de5725e8c4fce59de79f972882be2fa9607887b11",
+    "canonical_payload_bytes": 42840839,
+    "inputs_unchanged": true,
+    "source_files_unchanged": true,
+    "scan_changed_files": false,
+    "original_notices_exact": true,
+    "notice_files": {
+      "impsiege.txt": "ecaf074883be39eb99d96b2d08fa7bc9d4ab271351b73c1172c5d6ff25315d0b"
+    },
+    "all_six_caveats_delivered_once": true,
+    "no_startup_overlay": true,
+    "receipt_sha256": "c1e382910483ead69243a89f844d4ad77437a6957cfdd758e2585171b3d822e9",
+    "result_files": {
+      "sp-imperial-siege-d10e8f391cf3-caed5ad0/blackwing-receipt.json": {
+        "sha256": "582fc32670c8bb6d59964d091de68bb7b34a7be91b7b89cf26ee30f4a3a52a94",
+        "bytes": 43475
+      },
+      "sp-imperial-siege-d10e8f391cf3-caed5ad0/blackwing-recipe.json": {
+        "sha256": "4ffc9122293200e4bc5b317d2d645db1bcad5b7af88627afcae183f65b2ca2d2",
+        "bytes": 29809
+      },
+      "sp-imperial-siege-d10e8f391cf3-caed5ad0/impsiege.txt": {
+        "sha256": "ecaf074883be39eb99d96b2d08fa7bc9d4ab271351b73c1172c5d6ff25315d0b",
+        "bytes": 8640
+      },
+      "sp-imperial-siege-d10e8f391cf3-caed5ad0/manifest.json": {
+        "sha256": "f092da466cb2f72ef7b62396bcf86975651680fbab79bf6161cd2ee2d351f7b5",
+        "bytes": 981743
+      },
+      "sp-imperial-siege-d10e8f391cf3-caed5ad0/README.txt": {
+        "sha256": "1590ab473b1a201a73396a0444ad69a2789c840633ae78990736fc9a53f6244b",
+        "bytes": 1869
+      },
+      "sp-imperial-siege-d10e8f391cf3-caed5ad0/wbw-sp-imperial-siege_wbw_v1.goo": {
+        "sha256": "d10e8f391cf3efbda1ee13bcd89803d387a9cd4d8d3cf5c0a0ec5b5c8f3fb9d0",
+        "bytes": 42841234
+      },
+      "sp-imperial-siege-d10e8f391cf3-caed5ad0/wbw-sp-imperial-siege_wbw_v1.manifest.json": {
+        "sha256": "6480c6882a35bee8f2b00ae373664bd16085775db2ae64ea4fd8d01b8a7b2827",
+        "bytes": 192881
+      }
+    },
+    "scan_current": 1,
+    "scan_errors": 0,
+    "runtime_test_status": "not-run-on-this-output"
+  },
+  "source_package": {
+    "arch": "any",
+    "filename": "World-Between-Worlds-0.2.0-rc5-source.zip",
+    "kind": "source",
+    "platform": "any",
+    "python_min": [
+      3,
+      10
+    ],
+    "sha256": "68330f6949e6eda6741eb464ce20a6c3b747d080a342f5195038518d9515a7be",
+    "size": 3076889,
+    "members": 73,
+    "repeat_build_identical": true,
+    "allowlist_pass": true,
+    "game_assets_included": false,
+    "native_binaries_tested_here": false
+  },
+  "publisher_migration": {
+    "receipt_sha256": "94d730bcdbba11421df40966c65e5f54a2e9d102840e1309d4b78af66ad951eb",
+    "current_repository": "CodaLilitari/World-Between-Worlds",
+    "current_local_discovery_pass": true,
+    "historical_repository": "andreipemberton/World-Between-Worlds",
+    "historical_commit": "cd160362a85cf289dd2de646b8634a7361194cf8",
+    "historical_paired_modules_isolated": true,
+    "historical_version": "0.2.0-rc4",
+    "target_version": "0.2.0-rc5",
+    "expected_rejections": [
+      {
+        "error": "Untrusted release URL",
+        "name": "New publisher API",
+        "status": "expected-rejection"
+      },
+      {
+        "error": "Untrusted release URL",
+        "name": "Exact new release manifest URL",
+        "status": "expected-rejection"
+      },
+      {
+        "error": "Untrusted release URL",
+        "name": "Exact new package URL",
+        "status": "expected-rejection"
+      },
+      {
+        "error": "Manifest asset URL does not belong to the expected release",
+        "name": "Old discovery rejects exact new release URLs",
+        "status": "expected-rejection"
+      },
+      {
+        "error": "Release manifest identity mismatch",
+        "name": "Old release identity rejects unchanged Coda manifest bytes at synthetic old URL",
+        "status": "expected-rejection"
+      },
+      {
+        "error": "Invalid package identity",
+        "name": "Old package manifest rejects exact new package identity",
+        "status": "expected-rejection"
+      },
+      {
+        "error": "Invalid package identity",
+        "name": "Old archive inspector rejects exact new source ZIP despite valid hash",
+        "status": "expected-rejection"
+      }
+    ],
+    "live_github_delivery_tested": false,
+    "account_restricted": true,
+    "limitation": "Local package/discovery validation does not establish live GitHub availability. Old publisher clients require an explicit fresh installation."
+  },
+  "game_payload_revision_changed": false,
+  "limits": [
+    "Recorded service results prove reconstruction and scanner state, not new gameplay.",
+    "The canonical game payload matches the separately runtime-tested archive; RC5 changes application-version tracking only.",
+    "No missing-pilot branch, mission completion, sound, saves, ending or retail parity is established.",
+    "Native standalone builds and publication status are separate release-artifact checks."
+  ]
+}

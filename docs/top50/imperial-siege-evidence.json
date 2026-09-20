@@ -1,0 +1,218 @@
+{
+  "schema": "wbw.imperial-siege-evidence.v1",
+  "date": "2026-09-20",
+  "assets_included": false,
+  "recipe_id": "sp-imperial-siege",
+  "revision": 1,
+  "recipe_status": "prototype",
+  "source": {
+    "author": "Ryan Bickhart",
+    "massassi_id": 6,
+    "rank": 2,
+    "source_url": "https://www.massassi.net/levels/files/6.shtml",
+    "zip_sha256": "e7faa8fdb059224b006a6a1542d6b6583c638a3d925c5de25ce02ea4ee328932",
+    "gob_sha256": "e375ccafde6119c4fab4b5c8fb12b90d0e327b2499c4dec0eb2e2fe773d57ea1",
+    "world_sha256": "a25dd1c8254baf5538a569946479b35cfb3100e4cc4c5786dd7322e04310cb48",
+    "original_notice_sha256": "ecaf074883be39eb99d96b2d08fa7bc9d4ab271351b73c1172c5d6ff25315d0b"
+  },
+  "canonical_payload": {
+    "bytes": 42840839,
+    "sha256": "76deef65de73582d1673cb8de5725e8c4fce59de79f972882be2fa9607887b11"
+  },
+  "source_preservation": {
+    "missing_file_names": 7,
+    "missing_file_edges": 14,
+    "missing_file_exact_tokens": 19,
+    "missing_template_declarations": 1,
+    "literal_resource_closure": false,
+    "resolved_typed_literals": 3720,
+    "distinct_resolved_names": 2212,
+    "preserved_source_cogs": 88,
+    "reviewed_native_cog_bindings": 29,
+    "missing_pilot_runtime_branch_executed": false,
+    "builder_disabled_independent_verification": true,
+    "verification_receipt_sha256": "2e1241c71ffaba093fdc0f6f3e494f4d7c0d8cc964b0f186ab06c9a7b39d149d",
+    "negative_controls_rejected": 18,
+    "negative_control_receipt_sha256": "3b0cb10ca38bc5443cf0427887dda98eb97d1393236a5017f380f764facddc8e",
+    "prior_four_regression": [
+      {
+        "recipe": "sp-phantom-menace-final-battle",
+        "payload_sha256": "e046f5546ca20a555da32fa897d12d220fb38a708c47f73f297e5f1083c9509f",
+        "manifest_sha256": "43cf52c7236b72f33446c98df5bd3eb22cf6595791e1c7b621bfe2c8e0a709a3",
+        "payload_bytes_equal": true,
+        "manifest_equal": true,
+        "verification_equal": true,
+        "no_omission_fields": true
+      },
+      {
+        "recipe": "sp-maul-vs-qui-gon",
+        "payload_sha256": "4e09aa3b87ba79afdb7dea6b70149eba85813c3e789448ade2f9f83a9f62daae",
+        "manifest_sha256": "9a5efaac7de09483b5bd044e3689462ead9ee3e63198f2d693f92bc45305f8fa",
+        "payload_bytes_equal": true,
+        "manifest_equal": true,
+        "verification_equal": true,
+        "no_omission_fields": true
+      },
+      {
+        "recipe": "sp-imperial-pumping-station",
+        "payload_sha256": "b25f60de9c1d337a85416100cc61fb8c27e0bca8966f045867f689cc4763e30b",
+        "manifest_sha256": "bfce641b5dbfb9ecf632c28e1ffdf948159f0183869e7a35fffcc6f0467e1238",
+        "payload_bytes_equal": true,
+        "manifest_equal": true,
+        "verification_equal": true,
+        "no_omission_fields": true
+      },
+      {
+        "recipe": "sp-steal-the-bottle",
+        "payload_sha256": "3bb3513a06144ccbf0de2384d4a5fe20d52711c39dc90ed5a0a03e3db086ce9b",
+        "manifest_sha256": "b7308ecd19004f5ef418560f1d7872efe37e8659a486f397c525da345d7531bc",
+        "payload_bytes_equal": true,
+        "manifest_equal": true,
+        "verification_equal": true,
+        "no_omission_fields": true
+      }
+    ],
+    "prior_four_receipt_sha256": "7f90656cd9637a10f1c22e324df824e4bd55579969b4633423e3163921e57fd8"
+  },
+  "engine": {
+    "executable_sha256": "658ff65ebb6ddfc8feab5bc2721ee02fcbda5a97bd38cd62f43e7d3b630a28e6",
+    "base_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+    "combined_fork_commit": "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8",
+    "private_combined_patch_sha256": "dd75def9e6307fd6b5f4077ff40e69ee6e61e6cdc0b744324d9215e4889be705",
+    "fork_url": "https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes/commit/69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8"
+  },
+  "initial_renders": [
+    {
+      "mode": "jk",
+      "gameplay": "sp",
+      "passed": true,
+      "request_sha256": "a31de537fc4340d81ff8036f18a993e09d9b4d0d44646bcda71c320f0a8b9f1f",
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "resource_diagnostics": [],
+      "ppm_sha256": "120e5d5aad64b646e1e294e6ee11623349e61da41d01b3f90dec7f61a00f15f8",
+      "png_sha256": "1aecba38280610b898ba37297e6712a7f250f0507573d101f0d208f4227e8f10",
+      "capacity_probe_disabled": true,
+      "scene": {
+        "width": 960,
+        "height": 640,
+        "sector": 1297,
+        "position": [
+          -14.95,
+          -13.85,
+          -1.6
+        ],
+        "pitchYawRoll": [
+          0,
+          0,
+          0
+        ],
+        "horizontalFov": 98.0306723659185,
+        "world": "impsiege.jkl",
+        "isMultiplayer": false,
+        "motsCompat": false
+      }
+    },
+    {
+      "mode": "mots",
+      "gameplay": "sp",
+      "passed": true,
+      "request_sha256": "d452386ed5ff920f8c4a51594ad52ccb8fc83ec768892e556f0e90056135c996",
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "resource_diagnostics": [],
+      "ppm_sha256": "9fc9a691b865e1a8071f5d011235be607ccc8c96ac4081c4788f179b17e6f7f8",
+      "png_sha256": "6ae34a9c216bdbc1911a395e4e6b4e1467add32233b19db08a684d67e48524cd",
+      "capacity_probe_disabled": true,
+      "scene": {
+        "width": 960,
+        "height": 640,
+        "sector": 1297,
+        "position": [
+          -14.95,
+          -13.85,
+          -1.6
+        ],
+        "pitchYawRoll": [
+          0,
+          0,
+          0
+        ],
+        "horizontalFov": 98.0306723659185,
+        "world": "impsiege.jkl",
+        "isMultiplayer": false,
+        "motsCompat": true
+      }
+    }
+  ],
+  "paired_receipt_sha256": "5ef935e29e79363d00a75ab49161d377c86c2fbe653306a0b9dbfbd1500cc7ba",
+  "visual_inspection": {
+    "schema": "wbw.imperial-siege-root-visual.v1",
+    "original_png_sha256": "1aecba38280610b898ba37297e6712a7f250f0507573d101f0d208f4227e8f10",
+    "converted_png_sha256": "6ae34a9c216bdbc1911a395e4e6b4e1467add32233b19db08a684d67e48524cd",
+    "same_size": true,
+    "pixels_identical": false,
+    "mean_absolute_channel_difference": [
+      0.066181640625,
+      0.06393880208333333,
+      0.05201334635416666
+    ],
+    "root_inspected": true,
+    "observation": "Same dark stone water corridor, arch geometry and textures visible. Initial view only; no missing-resource locations, mission mechanics, full traversal or AT-ST branch inspected."
+  },
+  "visual_receipt_sha256": "28bd2ce74a2f4f7b144d9a750b3034cb79f418c8810ef96f3c5b3da1e746ab1d",
+  "passive_observations": [
+    {
+      "mode": "jk",
+      "passed": true,
+      "report_sha256": "21024e401be54f67ef502e01921388829df95f60de4777db6ee24a26493d9725",
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      },
+      "resource_diagnostics": [],
+      "seconds_requested": 45,
+      "samples": 44,
+      "first_game_ms": 0,
+      "last_game_ms": 42745,
+      "null_audio": true,
+      "input_actions": false
+    },
+    {
+      "mode": "mots",
+      "passed": true,
+      "report_sha256": "6f9e998537d70a08790f734cbb0861b1b506026dc73ed97e10a74bffa3541618",
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      },
+      "resource_diagnostics": [],
+      "seconds_requested": 45,
+      "samples": 44,
+      "first_game_ms": 0,
+      "last_game_ms": 42601,
+      "null_audio": true,
+      "input_actions": false
+    }
+  ],
+  "passive_receipt_sha256": "d8d07b8774e301ecbe1cd040b7f08304519365ca3964ba0d9186ace8e45fb617",
+  "limits": [
+    "Initial scenes and passive advancing simulation only; no complete mission or retail-engine parity.",
+    "No controls, traversal, doors, lifts, items, Force use, combat, missing-pilot branch, saves or ending exercised.",
+    "Null audio observations do not establish audible effects or equivalent missing-resource fallback.",
+    "Typed closure excludes computed or extensionless references, cache/loose-file state and external startup overlays.",
+    "Generated outputs and original game/mod sources remain private."
+  ]
+}

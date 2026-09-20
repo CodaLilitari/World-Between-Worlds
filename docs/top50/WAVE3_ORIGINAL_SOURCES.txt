@@ -23,5 +23,12 @@ Al's Star Wars Skin Pack
   Original ZIP: Alswskin.zip
   Recipe: mod-als-star-wars, wbw_v1, separately selected multiplayer skin prototype
 
+Imperial Siege On Derra IV
+  Author: Ryan Bickhart
+  Massassi entry: 6
+  Original listing: https://www.massassi.net/levels/files/6.shtml
+  Original ZIP: impsiege1.zip (keep original impsiege.txt notice)
+  Recipe: sp-imperial-siege, wbw_v1, optional singleplayer level prototype
+
 All input and resource pins are in the exact recipe export. Read the per-entry
 reviews for remaining mechanics, sound, appearance and multiplayer gates.

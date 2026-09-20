@@ -4,15 +4,15 @@ Development work resumed from the September 12 checkpoint. This is not a
 release or completion of the requested 150-entry expansion.
 
 The frozen queue remains **50 JK multiplayer levels, 50 singleplayer levels and
-50 mods**. The current catalog has 52 entries overall. Within the frozen queue,
-39 entries now have exact-input recipes, 38 are selectable prototypes or prior
-entries, and 111 still lack recipes. Castle Conflict remains unavailable pending
+50 mods**. The current catalog has 53 entries overall. Within the frozen queue,
+40 entries now have exact-input recipes, 39 are selectable prototypes or prior
+entries, and 110 still lack recipes. Castle Conflict remains unavailable pending
 delivery and qualification of its engine prerequisite.
 
 | Category | Exact-input recipe | Selectable | No recipe yet |
 | --- | ---: | ---: | ---: |
 | Multiplayer | 29 | 28 | 21 |
-| Singleplayer | 4 | 4 | 46 |
+| Singleplayer | 5 | 5 | 45 |
 | Mods | 6 | 6 | 44 |
 
 These counts are recipe coverage, not completed gameplay qualifications. The
@@ -22,6 +22,13 @@ historical acquisition/review fields; they are not live support reports.
 
 ## New concrete work
 
+- **Imperial Siege On Derra IV:** exact original source and notice, bounded
+  preservation of seven missing files and one missing AT-ST pilot template,
+  and native MotS bindings that retain the authored key and wrench behavior.
+  Original JK and converted MotS opening views were inspected with the same
+  engine build; each also passed 45 seconds of passive simulation. The missing
+  pilot branch, mission, doors/lifts, combat, saves, ending and audible effects
+  remain untested. See the [source and runtime review](IMPERIAL_SIEGE_REVIEW.md).
 - **The Massassi Temple Level Pack 3:** all eight worlds in the original cycle,
   exact author credits and notice, independently checked component union and
   resource ownership, and inspected initial JK/MotS views. Subway and Hoodwink
@@ -114,11 +121,27 @@ output as current. All 52 source locks match the catalog. The
 [MLP3 validation record](mlp3-validation.json) records package inspection and exact
 hashes; no binary release or converted assets were published.
 
+The RC5 checkpoint adds Imperial Siege, with 53 exact source locks. Final
+Windows/Python 3.13.15 and Linux/Python 3.14.4 source runs each passed 433 tests
+with two platform-specific skips (435 total). The 22 maintainer checks and 49
+UI checks also passed. Two Windows seeds and a Linux replay produced identical
+Imperial Siege game archives before the release identity bump; a fresh RC5
+service replay preserves the same canonical game payload and revision 1, with
+updated application-version metadata. All original notices and six source
+caveats are delivered. The [integrated validation](imperial-siege-validation.json)
+records exact hashes and the distinction between these checks and game tests.
+
+The source updater now targets CodaLilitari. The GitHub account is restricted;
+local package validation does not prove live delivery or publishing. Actual
+historical RC4 modules remain pinned to the former publisher and correctly
+reject the RC5 package from the new publisher. A fresh installation is required
+to change publisher. See the [RC5 preparation and remaining work](../releases/0.2.0-rc5.md).
+
 The [next highest-ranked missing-entry review](NEXT_ENTRY_REVIEW.md) records
 original-engine comparisons and concrete source issues for MP, SP and mod
 entries, with MLP3's subsequent promotion distinguished from the other intake work.
 
-1. Progress the remaining 111 entries through exact conversion and appropriate
+1. Progress the remaining 110 entries through exact conversion and appropriate
    MotS tests, including multiworld packs and all authored mod selections.
 2. Add the missing gameplay proof for existing prototypes: ordinary control-driven
    doors/lifts, pickups and respawn, authored traps, SP goals and saves, full skin

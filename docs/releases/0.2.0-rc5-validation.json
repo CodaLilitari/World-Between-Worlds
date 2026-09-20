@@ -1,0 +1,119 @@
+{
+  "schema": "wbw.rc5-release-validation.v1",
+  "date": "2026-09-20",
+  "version": "0.2.0-rc5",
+  "repository": "CodaLilitari/World-Between-Worlds",
+  "status": "local-artifacts-ready-for-github-draft",
+  "assets": {
+    "World-Between-Worlds-0.2.0-rc5-source.zip": {
+      "sha256": "68330f6949e6eda6741eb464ce20a6c3b747d080a342f5195038518d9515a7be",
+      "bytes": 3076889
+    },
+    "World-Between-Worlds-0.2.0-rc5-linux-x86_64.zip": {
+      "sha256": "2108052f3c59d153fda11f5e7becef9dbebc518cc826797c2e296a37fb127bf8",
+      "bytes": 14867646
+    },
+    "World-Between-Worlds-0.2.0-rc5-windows-x86_64.zip": {
+      "sha256": "32c23a243c77aa3095020ad4b9123f45b0fea5fac15aa413afe3bef4eb2c54c0",
+      "bytes": 15701025
+    },
+    "wbw-release.json": {
+      "sha256": "f7e837f6d0ff4f5e657f0ad06cf7983badb7eb17261be340d111484845cae8dd",
+      "bytes": 1119
+    },
+    "SHA256SUMS.txt": {
+      "sha256": "8b563fe5cc044ddc479bfa3d29f33586b40f60a5b0740701d5fe29e7e9096b90",
+      "bytes": 421
+    }
+  },
+  "allowlisted_source_inputs": 72,
+  "same_frozen_inputs_on_both_native_builders": true,
+  "source_tests": {
+    "windows": {
+      "tests": 435,
+      "passed": 433,
+      "skipped": 2,
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "receipt_sha256": "3f726fa45f4a57d2e139786a775a8e334fa259f1e1efbd0dd47a4f1ef8620efd",
+      "log_sha256": "d65f0a7f64877c1ac370a5803144c0721395fb2885cd5fcaaf87866fbe9c23a7",
+      "source_unchanged": true
+    },
+    "linux": {
+      "tests": 435,
+      "passed": 433,
+      "skipped": 2,
+      "python": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+      "receipt_sha256": "ca31f29bd1a39447a50ce6341d5cb7b42185eacc959d3b6bc92f393056c2b23a",
+      "log_sha256": "0afb8664cf2fa48e980db08e36282f8782e7d1f3110f2a2f63c1cb0880de5127",
+      "source_unchanged": true
+    }
+  },
+  "maintainer_tests_passed": 22,
+  "ui_tests_passed": 49,
+  "maintainer_and_ui_evidence": "Root-observed successful command outputs after Imperial integration and before the RC5 identity bump. Their source files are unchanged; no separate stdout log was retained.",
+  "source_package_repeated_build_identical": true,
+  "native_executable_bit_reproducibility_claimed": false,
+  "native": {
+    "windows": {
+      "python": "3.13.15",
+      "pyinstaller": "6.22.2",
+      "tcl_tk": "8.6",
+      "arch": "x86_64",
+      "executable_sha256": "53a875b5adeddbd87cebbc0695447b70bae70809843917eef8345b7aeb68b154",
+      "build_exit_code": 0,
+      "version_smoke_pass": true,
+      "launcher_localhost_smoke_pass": true,
+      "catalog_records": 53,
+      "source_catalog_equal": true,
+      "embedded_source_and_data_files_verified": 49,
+      "runtime_notices_match_interpreter": true,
+      "no_visible_owned_windows": true,
+      "owned_processes_terminal": true,
+      "smoke_receipt_sha256": "b8ca2ac5f5c6c2b8b8378877ad4520c8968136a90fa9791eb53916ad7fcea7c3",
+      "build_receipt_sha256": "7e9a615ea3da0c85ede6fc6ce11acabfc861ddf3bf9ae6fe3b9342c42b8c6cef",
+      "inspection_receipt_sha256": "0078fbf98ded6bbf5c7218c732364e822623b6dba117226da628deb922105d21"
+    },
+    "linux": {
+      "distribution": "Ubuntu 22.04.5",
+      "python": "3.10.12",
+      "pyinstaller": "6.22.2",
+      "tcl_tk": "8.6",
+      "arch": "x86_64",
+      "libc_min": [
+        2,
+        35
+      ],
+      "executable_sha256": "92530a9ba37b9e852bd8af34b6c74d9e9c37a6ccf921f392b9e1ca85c02e311d",
+      "native_builder_returned_successfully": true,
+      "build_and_first_smoke_exit_code": 1,
+      "corrected_smoke_exit_code": 0,
+      "version_smoke_pass": true,
+      "launcher_localhost_smoke_pass": true,
+      "catalog_records": 53,
+      "imperial_siege_revision": 1,
+      "owned_processes_terminal": true,
+      "temporary_mounts_removed": true,
+      "smoke_receipt_sha256": "f0903b9e160c7c71eb64ce40cabc81fa1d0eebee32d54330fe97ed3259385bc8",
+      "build_receipt_sha256": "4e4317eda6da23ae34d8b6b18c733105534a39b6d35c54ec1a78697bebb260d3",
+      "cleanup_receipt_sha256": "94ebc2f3a3abd713b9c030bb537ae2e571d81bc3bf9516911e6ff535664535d8"
+    }
+  },
+  "smoke_scope": "Exact packaged executables: version, normal launcher readiness and localhost HTTP interface/catalog checks with updates and browser opening disabled.",
+  "preserved_helper_corrections": [
+    "Windows first private smoke requested /app.js instead of the declared /ui/app.js; corrected same-binary run passed.",
+    "Linux first private smoke watched the child readiness variable instead of the launcher handoff; corrected same-binary run passed."
+  ],
+  "distribution": {
+    "retail_or_mod_assets": false,
+    "completed_conversions": false,
+    "engine_binary": false,
+    "live_github_delivery_tested": false,
+    "account_restricted": true,
+    "public_release_published": false
+  },
+  "limits": [
+    "Native launch checks do not execute conversions, game engines, gameplay, file choosers or update downloads.",
+    "Actual service conversion/runtime evidence is separately recorded by recipe and exact game payload.",
+    "The GitHub draft attempt and remote attachment verification occur after this local artifact gate."
+  ]
+}

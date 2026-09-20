@@ -3,7 +3,7 @@
 This module emits local candidates, never ships game bytes or claims gameplay
 parity. Its explicit catalog is separate from multiplayer recipes and mods.
 """
-from collections import deque
+from collections import Counter, deque
 from pathlib import Path
 import hashlib
 import io
@@ -101,7 +101,258 @@ def template_refs(text):
                                          bridge.active_lines(text), re.I | re.M) if x != '-1'}
 
 
-def verify_typed_literal_closure(output, archives):
+LOADER_DIRECTORIES = {
+    '.mat': ('mat', '3do/mat'), '.wav': ('sound', 'voice'),
+    '.3do': ('3do',), '.key': ('3do/key',), '.cog': ('cog',),
+    '.pup': ('misc/pup',), '.snd': ('misc/snd',), '.ai': ('misc/ai',),
+    '.cmp': ('misc/cmp',), '.spr': ('misc/spr',), '.par': ('misc/par',),
+}
+TYPED_TOKEN = re.compile(r'(?<![\w.~&/\\])([\w+.~&/\\-]+\.(?:' +
+                         bridge.EXTENSIONS + r'))(?![\w.~&/\\])', re.I)
+
+
+def literal_counts(data):
+    """Count active, whole typed tokens, retaining qualification for rejection."""
+    return Counter(match[1].lower() for match in TYPED_TOKEN.finditer(
+        bridge.active_lines(bridge.text(data))))
+
+
+def omission_lines(data, name):
+    """Asset-free multiset of the exact active lines containing one token."""
+    lines = Counter()
+    for line in bridge.active_lines(bridge.text(data)).splitlines():
+        count = sum(match[1].lower() == name for match in TYPED_TOKEN.finditer(line))
+        if count:
+            lines[(sha(line.encode('cp1252')), count)] += 1
+    return [{'sha256': digest, 'occurrences': count, 'repetitions': repetitions}
+            for (digest, count), repetitions in sorted(lines.items())]
+
+
+class SourceOmissions:
+    """Recipe-local missing MAT/WAV edges, never a global name exemption.
+
+    Both graph traversals call this with their own original referrer bytes.
+    The verifier supplies independently reconstructed bytes to contracts();
+    neither rules nor output hashes are read from the builder manifest.
+    """
+    def __init__(self, spec):
+        self.spec, self.rules, self.used = spec, {}, set()
+        aliases = {}
+        for rule in spec.get('source_omissions', []):
+            required = {'name', 'owner', 'referrer', 'referrer_sha256', 'occurrences',
+                        'output_name', 'output_referrer', 'active_lines', 'usage', 'reason'}
+            if not isinstance(rule, dict) or set(rule) != required:
+                raise SingleplayerError('Source omission rule shape differs')
+            name, alias = rule['name'], rule['output_name']
+            if (not isinstance(name, str) or not re.fullmatch(r'[a-z0-9_+.-]+\.(mat|wav)', name)
+                    or not isinstance(alias, str) or not re.fullmatch(r'bs_[a-z0-9_+.-]+', alias)
+                    or len(alias.encode('ascii')) > 31 or Path(alias).suffix != Path(name).suffix
+                    or alias != spec.get('resource_aliases', {}).get(name, 'bs_' + name)):
+                raise SingleplayerError('Source omission needs an exact isolated MAT/WAV alias')
+            if (rule['owner'] not in {'authored', 'jkres', 'jksnd', 'jksp'}
+                    or not re.fullmatch(r'[0-9a-f]{64}', rule['referrer_sha256'])
+                    or type(rule['occurrences']) is not int or rule['occurrences'] < 1
+                    or rule['usage'] not in {'literal', 'untextured-one-face-material'}
+                    or not isinstance(rule['reason'], str) or not rule['reason'].strip()):
+                raise SingleplayerError('Source omission authority is incomplete')
+            for key in ('referrer', 'output_referrer'):
+                path = rule[key]
+                if (not isinstance(path, str) or resource_name(path) != path or '/' not in path
+                        or Path(path).suffix not in bridge.TEXT_EXTENSIONS):
+                    raise SingleplayerError('Source omission needs a canonical full referrer path')
+            anchors = rule['active_lines']
+            if (not isinstance(anchors, list) or not anchors or any(
+                    not isinstance(a, dict) or set(a) != {'sha256', 'occurrences', 'repetitions'}
+                    or not re.fullmatch(r'[0-9a-f]{64}', a['sha256'])
+                    or type(a['occurrences']) is not int or a['occurrences'] < 1
+                    or type(a['repetitions']) is not int or a['repetitions'] < 1 for a in anchors)):
+                raise SingleplayerError('Source omission active-line anchors differ')
+            edge = (rule['owner'], rule['referrer'], name)
+            if edge in self.rules or (alias in aliases and aliases[alias] != name):
+                raise SingleplayerError('Duplicate source omission edge or alias')
+            if alias in spec['native_cog_bindings'].values():
+                raise SingleplayerError('Source omission namespace collision')
+            self.rules[edge], aliases[alias] = rule, name
+
+    def inspect(self, owner, path, raw, target, catalog, names):
+        if not self.rules:
+            return
+        for name, count in literal_counts(raw).items():
+            if '/' in name or '\\' in name:
+                raise SingleplayerError('Qualified resource token needs contextual review: ' + name)
+            edge = (owner, path, name)
+            rule = self.rules.get(edge)
+            # Never turn an ambiguous lookup failure into a missing-resource waiver.
+            if name in catalog.ambiguous:
+                catalog.get(name)
+            if name in catalog.by_name:
+                if rule:
+                    raise SingleplayerError('Reviewed source omission unexpectedly resolves: ' + name)
+                continue
+            if rule is None:
+                raise SingleplayerError('Unreviewed source omission edge: ' + path + ' -> ' + name)
+            if (sha(raw) != rule['referrer_sha256'] or count != rule['occurrences']
+                    or omission_lines(raw, name) != rule['active_lines']
+                    or target != rule['output_referrer']):
+                raise SingleplayerError('Source omission referrer hash, count, lines or target differs: ' + path)
+            if rule['usage'] == 'untextured-one-face-material':
+                value = bridge.active_lines(bridge.text(raw))
+                face = re.search(r'^\s*FACES\s+1\s*$(.*?)^\s*FACE NORMALS', value, re.M | re.I | re.S)
+                row = face[1].split() if face else []
+                single_blocks = {'MATERIALS': '1', 'GEOSETS': '1', 'GEOSET': '0',
+                                 'MESHES': '1', 'MESH': '0', 'TEXTURE VERTICES': '0', 'FACES': '1'}
+                if (not path.endswith('.3do') or not name.endswith('.mat')
+                        or face is None
+                        or any(re.findall(r'^\s*' + label + r'\s+(\d+)\s*$', value, re.M | re.I)
+                               != [expected] for label, expected in single_blocks.items())
+                        or len(re.findall(r'^\s*\d+:', face[1], re.M)) != 1
+                        or len(row) < 8 or row[1] != '0' or row[3] != '3'):
+                    raise SingleplayerError('Reviewed untextured material usage changed')
+            alias = rule['output_name']
+            if ((name in names and names[name] != alias)
+                    or any(other != name and value == alias for other, value in names.items())):
+                raise SingleplayerError('Source omission namespace collision')
+            names[name] = alias
+            self.used.add(edge)
+
+    def contracts(self, expected_files):
+        if self.used != self.rules.keys():
+            raise SingleplayerError('Unused source omission rule')
+        records = []
+        for edge in sorted(self.rules):
+            rule = self.rules[edge]
+            raw = expected_files[rule['output_referrer']]
+            if literal_counts(raw)[rule['output_name']] != rule['occurrences']:
+                raise SingleplayerError('Source-derived omission output count differs')
+            records.append({**rule, 'output_referrer_sha256': sha(raw)})
+        return records
+
+
+class SourceTemplateOmissions:
+    """Exact local COG defaults that must remain absent in one pinned world.
+
+    This is separate from file omissions: the engine resolves template symbols
+    from the loaded template tables, not resource paths. No template is added,
+    no statement is removed, and no exposed COG argument is waived.
+    """
+    def __init__(self, spec):
+        self.spec, self.rules, self.used, self.aliases = spec, {}, set(), {}
+        required = {'world', 'world_sha256', 'owner', 'referrer', 'referrer_sha256',
+                    'symbol', 'default', 'output_name', 'output_referrer',
+                    'declaration_sha256', 'declaration_count', 'symbol_use_count', 'reason'}
+        for rule in spec.get('source_template_omissions', []):
+            if not isinstance(rule, dict) or set(rule) != required:
+                raise SingleplayerError('Source template omission rule shape differs')
+            if (rule['world'] not in spec['worlds'] or rule['world_sha256'] != spec['worlds'][rule['world']]
+                    or rule['owner'] not in {'authored', 'jkres', 'jksnd', 'jksp'}
+                    or not re.fullmatch(r'[a-z_][a-z0-9_]*', rule['symbol'])
+                    or not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', rule['default'])
+                    or rule['output_name'] != 'bs_' + rule['default'].lower()
+                    or len(rule['output_name']) > 31
+                    or type(rule['declaration_count']) is not int or rule['declaration_count'] != 1
+                    or type(rule['symbol_use_count']) is not int or rule['symbol_use_count'] < 1
+                    or not isinstance(rule['reason'], str) or not rule['reason'].strip()):
+                raise SingleplayerError('Source template omission authority differs')
+            for field in ('world_sha256', 'referrer_sha256', 'declaration_sha256'):
+                if not re.fullmatch(r'[0-9a-f]{64}', rule[field]):
+                    raise SingleplayerError('Source template omission hash differs')
+            for field in ('referrer', 'output_referrer'):
+                path = rule[field]
+                if resource_name(path) != path or not re.fullmatch(r'cog/[^/]+\.cog', path):
+                    raise SingleplayerError('Source template omission needs an exact COG path')
+            if spec.get('cog_edits', {}).get(Path(rule['referrer']).name):
+                raise SingleplayerError('Source template omission COG cannot have behavior edits')
+            edge = (rule['world'], rule['owner'], rule['referrer'], rule['symbol'])
+            if edge in self.rules:
+                raise SingleplayerError('Duplicate source template omission edge')
+            self.rules[edge] = rule
+
+    @staticmethod
+    def occurrences(value, token):
+        return len(re.findall(r'(?<![\w+.-])' + re.escape(token) + r'(?![\w+.-])', value, re.I))
+
+    @staticmethod
+    def definitions(raw):
+        value = bridge.text(raw)
+        return ({row.split()[0].lower() for row in bridge.records(value, 'templates')}
+                if re.search(r'^World templates\b', value, re.M | re.I) else set())
+
+    def check_world(self, world_path, raw, archives, native_definitions):
+        rules = [r for r in self.rules.values() if r['world'] == world_path]
+        if not rules:
+            return
+        definitions = self.definitions(raw) | set(native_definitions)
+        for owner in ('jkres', 'motsres'):
+            if 'jkl/static.jkl' in archives[owner].entries:
+                definitions |= self.definitions(archives[owner].read('jkl/static.jkl'))
+        for rule in rules:
+            if sha(raw) != rule['world_sha256']:
+                raise SingleplayerError('Source template omission world hash differs')
+            names = {rule['default'].lower(), rule['output_name']}
+            if definitions & names:
+                raise SingleplayerError('Reviewed source/native template unexpectedly resolves')
+            if any(self.occurrences(bridge.active_lines(bridge.text(raw)), name) for name in names):
+                raise SingleplayerError('Missing template has an unreviewed world or placed reference')
+
+    def inspect(self, world, owner, path, raw, target):
+        if not self.rules:
+            return
+        value = bridge.active_lines(bridge.text(raw))
+        for rule in self.rules.values():
+            name = rule['default'].lower()
+            if self.occurrences(value, rule['output_name']):
+                raise SingleplayerError('Missing template alias already occurs in source')
+            if not self.occurrences(value, name):
+                continue
+            edge = (world, owner, path, rule['symbol'])
+            if self.rules.get(edge) != rule:
+                raise SingleplayerError('Unreviewed missing template referrer or world scope')
+            blocks = re.findall(r'^\s*symbols\s*$(.*?)^\s*end\s*$', value, re.I | re.M | re.S)
+            if len(blocks) != 1:
+                raise SingleplayerError('Source template omission symbols block differs')
+            declarations = [line for line in blocks[0].splitlines()
+                            if re.search(r'^\s*\w+\s+' + re.escape(rule['symbol']) + r'(?=\s|=|$)', line, re.I)]
+            declaration = declarations[0] if len(declarations) == 1 else ''
+            match = re.fullmatch(r'\s*template\s+' + re.escape(rule['symbol']) +
+                                 r'\s*=\s*(\S+)\s+local\s*', declaration, re.I)
+            if (not match or match[1] != rule['default']
+                    or sha(raw) != rule['referrer_sha256'] or target != rule['output_referrer']
+                    or sha(declaration.encode('cp1252')) != rule['declaration_sha256']
+                    or self.occurrences(value, name) != rule['declaration_count']
+                    or self.occurrences(value, rule['symbol']) != rule['symbol_use_count'] + 1):
+                raise SingleplayerError('Source template omission declaration, local flag, hash or use count differs')
+            self.aliases.setdefault((world, owner, path), {})[name] = rule['output_name']
+            self.used.add(edge)
+
+    def names(self, world, owner, path):
+        return self.aliases.get((world, owner, path), {})
+
+    def contracts(self, expected_files):
+        if self.used != self.rules.keys():
+            raise SingleplayerError('Unused source template omission rule')
+        records = []
+        for edge, rule in sorted(self.rules.items()):
+            path = rule['output_referrer']
+            expected = expected_files[path]
+            value = bridge.active_lines(bridge.text(expected))
+            if (self.occurrences(value, rule['output_name']) != 1
+                    or self.occurrences(value, rule['default'])
+                    or self.occurrences(value, rule['symbol']) != rule['symbol_use_count'] + 1):
+                raise SingleplayerError('Source-derived missing template output contract differs')
+            for referrer, raw in expected_files.items():
+                if referrer.endswith('.jkl') and self.definitions(raw) & {rule['default'].lower(), rule['output_name']}:
+                    raise SingleplayerError('Reviewed omitted output template unexpectedly resolves')
+                if (referrer != path and Path(referrer).suffix in bridge.TEXT_EXTENSIONS
+                        and any(self.occurrences(bridge.active_lines(bridge.text(raw)), token)
+                                for token in (rule['default'], rule['output_name']))):
+                    raise SingleplayerError('Unreviewed missing template output referrer')
+            records.append({**rule, 'output_referrer_sha256': sha(expected),
+                            'status': 'active-original-missing-template-preserved',
+                            'runtime_verified': False})
+        return records
+
+
+def verify_typed_literal_closure(output, archives, omissions=()):
     """Check exact loader paths; a matching basename elsewhere is insufficient.
 
     These directories come from the audited OpenJKDF2 loaders. Material and
@@ -109,27 +360,33 @@ def verify_typed_literal_closure(output, archives):
     regardless of which archive supplies the candidate. Qualified tokens need
     contextual review before this bounded SP adapter accepts them.
     """
-    directories = {
-        '.mat': ('mat', '3do/mat'), '.wav': ('sound', 'voice'),
-        '.3do': ('3do',), '.key': ('3do/key',), '.cog': ('cog',),
-        '.pup': ('misc/pup',), '.snd': ('misc/snd',), '.ai': ('misc/ai',),
-        '.cmp': ('misc/cmp',), '.spr': ('misc/spr',), '.par': ('misc/par',),
-    }
-    token_pattern = re.compile(r'(?<![\w.~&/\\])([\w+.~&/\\-]+\.(?:' +
-                               bridge.EXTENSIONS + r'))(?![\w.~&/\\])', re.I)
+    approved = {(rule['output_referrer'], rule['output_name']): rule for rule in omissions}
+    if len(approved) != len(omissions):
+        raise SingleplayerError('Duplicate typed omission edge')
+    used = set()
     sources = [('output', output)] + [(key, archives[key]) for key in ('motsres', 'motssnd')]
     checked, distinct, provider_counts, directory_counts = 0, set(), {}, {}
     for source_path in sorted(output.entries):
         if Path(source_path).suffix not in bridge.TEXT_EXTENSIONS:
             continue
-        active = bridge.active_lines(bridge.text(output.read(source_path)))
-        for token in sorted({match[1].lower() for match in token_pattern.finditer(active)}):
+        raw = output.read(source_path)
+        counts = literal_counts(raw)
+        for token in sorted(counts):
             if '/' in token or '\\' in token:
                 raise SingleplayerError('Qualified resource token needs contextual review: ' +
                                         source_path + ' -> ' + token)
-            candidates = [directory + '/' + token for directory in directories[Path(token).suffix]]
+            candidates = [directory + '/' + token for directory in LOADER_DIRECTORIES[Path(token).suffix]]
             selected = next(((owner, candidate) for candidate in candidates
                              for owner, archive in sources if candidate in archive.entries), None)
+            edge = (source_path, token)
+            if edge in approved:
+                rule = approved[edge]
+                if selected is not None:
+                    raise SingleplayerError('Reviewed omitted output unexpectedly resolves: ' + str(selected))
+                if counts[token] != rule['occurrences'] or sha(raw) != rule['output_referrer_sha256']:
+                    raise SingleplayerError('Typed omission output referrer hash or count differs')
+                used.add(edge)
+                continue
             if selected is None:
                 raise SingleplayerError('Unresolved typed resource path: ' + source_path + ' -> ' +
                                         token + '; tried ' + ', '.join(candidates))
@@ -139,17 +396,28 @@ def verify_typed_literal_closure(output, archives):
             provider_counts[owner] = provider_counts.get(owner, 0) + 1
             directory = path.rsplit('/', 1)[0]
             directory_counts[directory] = directory_counts.get(directory, 0) + 1
-    return {'schema': 'wbw.sp-typed-literal-closure.v1', 'checked_literals': checked,
+    if used != approved.keys():
+        raise SingleplayerError('Unused typed omission edge')
+    report = {'schema': 'wbw.sp-typed-literal-closure.v1', 'checked_literals': checked,
             'distinct_literals': len(distinct), 'provider_counts': dict(sorted(provider_counts.items())),
             'loader_directory_counts': dict(sorted(directory_counts.items())),
             'scope': 'Recognized literal extensions in output text resolve through exact ordered loader paths in the selected episode and pinned native resource archives.',
             'qualified_tokens': 'rejected-until-contextually-reviewed',
             'limitations': 'Does not validate computed/extensionless references, cache state, loose files, external startup overlays or runtime behavior.'}
+    if omissions:
+        report.update(schema='wbw.sp-typed-literal-closure.v2', status='partial-reviewed-source-omissions',
+                      retained_omission_edges=len(omissions),
+                      retained_omission_occurrences=sum(r['occurrences'] for r in omissions),
+                      retained_omissions=list(omissions),
+                      scope='Resolved literals use exact ordered loader paths; only source-derived hash/count-pinned edges remain absent. This is partial resource closure.')
+    return report
 
 
 def build(archives, originals, recipe_id):
     """Build every hash-pinned episode world; keep progression table unchanged."""
     spec = recipe_details(recipe_id)
+    omissions = SourceOmissions(spec)
+    template_omissions = SourceTemplateOmissions(spec)
     for key, expected in spec['owned_hashes'].items():
         if key not in archives or archives[key].sha256 != expected:
             raise SingleplayerError('Unreviewed owned source: ' + key)
@@ -195,6 +463,8 @@ def build(archives, originals, recipe_id):
         if sha(raw) != expected_world:
             raise SingleplayerError('Source world hash differs')
         world = bridge.text(raw)
+        template_omissions.check_world(world_path, raw, archives, native_templates)
+        template_omissions.inspect(world_path, 'authored', world_path, raw, world_path)
         template_map = {r.split()[0].lower(): ('walkplayer' if r.split()[0].lower() == 'walkplayer' else 'bs_' + r.split()[0].lower())
                         for r in bridge.records(world, 'templates')}
         if any(len(n.encode('cp1252')) > 31 for n in template_map.values()):
@@ -205,6 +475,7 @@ def build(archives, originals, recipe_id):
             if sha(source_archive.read(source_path)) != expected:
                 raise SingleplayerError('Native substitution source identity differs: ' + name)
         name_map = dict(substitutions)
+        omissions.inspect('authored', world_path, raw, world_path, source, name_map)
         source_files, source_records = {}, []
         root_references = bridge.references(world)
         dependency_parents = {name: {world_path} for name in root_references}
@@ -215,6 +486,8 @@ def build(archives, originals, recipe_id):
             if name in seen or name in substitutions:
                 continue
             seen.add(name)
+            if name not in source.by_name and name in name_map:
+                continue  # Each missing edge was checked at its original referrer.
             label, path, archive = source.get(name)
             data = archive.read(path)
             if name.endswith('.cog') and name not in spec['source_cog_sha256']:
@@ -231,6 +504,8 @@ def build(archives, originals, recipe_id):
             source_files[output_path] = data
             source_records.append({'owner': label, 'path': path, 'sha256': sha(data), 'output_path': output_path})
             if Path(path).suffix in bridge.TEXT_EXTENSIONS:
+                omissions.inspect(label, path, data, output_path, source, name_map)
+                template_omissions.inspect(world_path, label, path, data, output_path)
                 references = bridge.references(bridge.text(data))
                 for reference in references:
                     dependency_parents.setdefault(reference, set()).add(path)
@@ -238,13 +513,15 @@ def build(archives, originals, recipe_id):
         def rename(value):
             return bridge.FILE_REF.sub(lambda m: name_map.get(m[1].lower(), m[1]), value)
         for path, data in source_files.items():
-            original_name = next(Path(r['path']).name for r in source_records if r['output_path'] == path)
+            source_record = next(r for r in source_records if r['output_path'] == path)
+            original_name = Path(source_record['path']).name
             if Path(path).suffix in bridge.TEXT_EXTENSIONS:
                 value = custom_registry.apply_cog_edits(bridge.text(data), spec.get('cog_edits', {}).get(original_name, []))
-                unknown = template_refs(value) - template_map.keys()
+                missing_defaults = template_omissions.names(world_path, source_record['owner'], source_record['path'])
+                unknown = template_refs(value) - template_map.keys() - missing_defaults.keys()
                 if unknown:
                     raise SingleplayerError('Unreviewed source template defaults: ' + str(sorted(unknown)))
-                value = bridge.template_defaults(rename(value), template_map)
+                value = bridge.template_defaults(rename(value), {**template_map, **missing_defaults})
                 data = value.encode('cp1252')
             if path in files and files[path] != data:
                 raise SingleplayerError('Cross-world resource differs under shared episode path')
@@ -337,6 +614,17 @@ def build(archives, originals, recipe_id):
                                    'native_resource_names': sorted(native_resources)})
         manifest['sources'].extend(source_records)
     data = build_gob(files)
+    omission_records = omissions.contracts(files)
+    template_omission_records = template_omissions.contracts(files)
+    if omission_records:
+        # The builder checks mount collisions too; the verifier re-derives its
+        # own contracts from original bytes without consuming this manifest.
+        verify_typed_literal_closure(Gob(data), archives, omission_records)
+        manifest['source_omissions'] = omission_records
+        manifest['status'] = 'structural-candidate-reviewed-source-omissions-gameplay-unverified'
+    if template_omission_records:
+        manifest['source_template_omissions'] = template_omission_records
+        manifest['status'] = 'structural-candidate-reviewed-source-omissions-gameplay-unverified'
     manifest['output_sha256'] = sha(data)
     manifest['output'] = Gob(data).inventory()
     return data, manifest
@@ -348,6 +636,9 @@ def verify(archives, originals, recipe_id, data):
     if output.read('episode.jk') != source.read('episode.jk'):
         raise SingleplayerError('Episode progression was changed')
     spec = recipe_details(recipe_id)
+    omissions = SourceOmissions(spec)
+    template_omissions = SourceTemplateOmissions(spec)
+    expected_files = {}
     for key, expected in spec['owned_hashes'].items():
         if archives[key].sha256 != expected:
             raise SingleplayerError('Verifier owned source hash differs')
@@ -402,9 +693,12 @@ def verify(archives, originals, recipe_id, data):
         raise SingleplayerError('World set differs')
     for path in spec['worlds']:
         before, after = bridge.text(source.read(path)), bridge.text(output.read(path))
+        template_omissions.check_world(path, source.read(path), archives, definitions)
+        template_omissions.inspect(path, 'authored', path, source.read(path), path)
         template_map = {r.split()[0].lower(): ('walkplayer' if r.split()[0].lower() == 'walkplayer' else 'bs_' + r.split()[0].lower())
                         for r in bridge.records(before, 'templates')}
         names = dict(spec['native_cog_bindings'])
+        omissions.inspect('authored', path, source.read(path), path, original_catalog, names)
         queue = list(bridge.references(before))
         dependencies = {}
         while queue:
@@ -416,25 +710,34 @@ def verify(archives, originals, recipe_id, data):
             alias = spec.get('resource_aliases', {}).get(name, 'bs_' + name)
             names[name] = alias
             target_path = original_path.rsplit('/', 1)[0] + '/' + alias
-            dependencies[target_path] = (name, raw)
+            dependencies[target_path] = (name, raw, owner, original_path)
             if Path(name).suffix in bridge.TEXT_EXTENSIONS:
+                omissions.inspect(owner, original_path, raw, target_path, original_catalog, names)
+                template_omissions.inspect(path, owner, original_path, raw, target_path)
                 queue.extend(bridge.references(bridge.text(raw)))
-        for target_path, (name, raw) in dependencies.items():
+        for target_path, (name, raw, owner, original_path) in dependencies.items():
             expected = raw
             if Path(name).suffix in bridge.TEXT_EXTENSIONS:
                 value = bridge.text(raw)
+                missing_defaults = template_omissions.names(path, owner, original_path)
+                unknown = template_refs(value) - template_map.keys() - missing_defaults.keys()
+                if unknown:
+                    raise SingleplayerError('Verifier unreviewed source template defaults: ' + str(sorted(unknown)))
                 for edit in spec.get('cog_edits', {}).get(name, []):
                     if value.count(edit['old']) != edit['count']:
                         raise SingleplayerError('Verifier edit anchor mismatch')
                     value = value.replace(edit['old'], edit['new'])
                 value = bridge.FILE_REF.sub(lambda m: names.get(m[1].lower(), m[1]), value)
                 value = re.sub(r'(^\s*template\s+\w+\s*=\s*)([^\s]+)',
-                               lambda m: m[1] + template_map.get(m[2].lower(), m[2]), value, flags=re.I | re.M)
+                               lambda m: m[1] + {**template_map, **missing_defaults}.get(m[2].lower(), m[2]),
+                               value, flags=re.I | re.M)
                 expected = value.encode('cp1252')
             if target_path not in output.entries or output.read(target_path) != expected:
                 raise SingleplayerError('Source resource transformation differs: ' + target_path)
             accounted.add(target_path)
+            expected_files[target_path] = expected
         extensions = dict(zip(bridge.TABLES, ('.wav', '.mat', '.cmp', '.ai', '.3do', '.spr', '.key', '.pup', '.snd', '.cog')))
+        expected_tables = {}
         for label in bridge.TABLES:
             expected_rows = [bridge.FILE_REF.sub(lambda m: names.get(m[1].lower(), m[1]), row)
                              for row in bridge.records(before, label)]
@@ -450,6 +753,7 @@ def verify(archives, originals, recipe_id, data):
                 raise SingleplayerError('Resource table differs from exact reviewed closure: ' + label)
             if int(bridge.block(after, label)[2]) != next_index + len(added_names):
                 raise SingleplayerError('Resource table capacity differs: ' + label)
+            expected_tables[label] = (expected_rows, next_index + len(added_names))
         expected_templates = []
         for row in bridge.records(before, 'templates'):
             row = bridge.FILE_REF.sub(lambda m: names.get(m[1].lower(), m[1]), row)
@@ -486,6 +790,7 @@ def verify(archives, originals, recipe_id, data):
                 raise SingleplayerError('Placed thing parameters changed')
         if len(bridge.records(before, 'cogs')) != len(bridge.records(after, 'cogs')):
             raise SingleplayerError('Authored COG placement lost')
+        expected_cog_rows = []
         for before_row, after_row in zip(bridge.records(before, 'cogs'), bridge.records(after, 'cogs')):
             original_tokens, converted_tokens = before_row.split(), after_row.split()
             if original_tokens[0] != converted_tokens[0] or names.get(original_tokens[1].lower(), original_tokens[1]) != converted_tokens[1]:
@@ -498,6 +803,8 @@ def verify(archives, originals, recipe_id, data):
                                      else bridge.FILE_REF.sub(lambda m: names.get(m[1].lower(), m[1]), token))
             if converted_tokens[2:] != expected_args:
                 raise SingleplayerError('Authored COG argument changed')
+            expected_cog_rows.append(' '.join([original_tokens[0], names.get(original_tokens[1].lower(),
+                                            original_tokens[1]), *expected_args]))
         def surfaces(value):
             found = re.search(r'^World surfaces\s+(\d+)\s*$', value, re.I | re.M)
             return [row.split() for row in value[found.end():].splitlines()
@@ -516,6 +823,28 @@ def verify(archives, originals, recipe_id, data):
         archlighting = '\nSection: ARCHLIGHTING\nNum ArchObjects 0\nend\n'
         if not after.endswith(archlighting) or skeleton(after[:-len(archlighting)]) != skeleton(expected_skeleton):
             raise SingleplayerError('Unapproved world header, normals, physics or opaque section change')
+        if omissions.rules or template_omissions.rules:
+            # Reconstruct the complete referrer from source-derived rows; an
+            # output hash must not grant authority to the output it checks.
+            expected_world = expected_skeleton
+            for label, (expected_rows, capacity) in expected_tables.items():
+                expected_world = bridge.replace_block(expected_world, label, expected_rows, capacity)
+            expected_world = bridge.replace_block(expected_world, 'templates',
+                                                   expected_native_templates + expected_templates)
+            expected_things = []
+            for row in bthings:
+                row = bridge.FILE_REF.sub(lambda m: names.get(m[1].lower(), m[1]), row)
+                parts = row.split()
+                parts[1] = template_map.get(parts[1].lower(), parts[1])
+                parts.insert(10, '-1')
+                expected_things.append(' '.join(parts))
+            expected_world = bridge.replace_block(expected_world, 'things', expected_things,
+                                                   int(bridge.block(before, 'things')[2]))
+            expected_world = bridge.replace_block(expected_world, 'cogs', expected_cog_rows,
+                                                   expected_cog_capacity) + archlighting
+            expected_files[path] = expected_world.encode('cp1252')
+            if output.read(path) != expected_files[path]:
+                raise SingleplayerError('Source-derived omission world transformation differs')
     for path in spec.get('verbatim_paths', []):
         if output.read(path) != source.read(path):
             raise SingleplayerError('Authored strings changed')
@@ -526,12 +855,36 @@ def verify(archives, originals, recipe_id, data):
             raise SingleplayerError('Native resource override or missing required copy: ' + path)
     # Only resources actually available in the installed MotS base are allowed
     # to fill a dependency. JKM.GOO is not the selected converted episode.
-    typed_closure = verify_typed_literal_closure(output, archives)
-    return {'status': 'structural-preservation-pass', 'world_count': len(spec['worlds']),
+    omission_records = omissions.contracts(expected_files)
+    template_omission_records = template_omissions.contracts(expected_files)
+    typed_closure = verify_typed_literal_closure(output, archives, omission_records)
+    report = {'status': ('structural-preservation-with-reviewed-source-omissions' if omission_records or template_omission_records
+                       else 'structural-preservation-pass'), 'world_count': len(spec['worlds']),
             'episode_rows': len(episode_rows(source.read('episode.jk'))),
-            'source_resource_exact_transforms': True, 'literal_resource_closure': True,
+            'source_resource_exact_transforms': True, 'literal_resource_closure': not (omission_records or template_omission_records),
             'typed_resource_closure': typed_closure,
             'native_copy_identity': True, 'runtime_verified': False}
+    if template_omission_records:
+        report['template_resource_closure'] = False
+        report['source_template_omissions'] = template_omission_records
+        report['template_omission_limitations'] = 'Exact active missing local defaults retained under isolated names. Predicted missing-template behavior only; branch execution and retail parity untested.'
+    return report
+
+
+def readme_text(spec):
+    """Append only explicitly reviewed behavior caveats to the existing text."""
+    value = ('Experimental whole-episode SP conversion. Full gameplay remains unverified.\n'
+        'Use OpenJKDF2 in MotS single-player mode (-motsCompat -sp), with only the declared startup profile.\n'
+        'Copy the generated GOO to a private test installation episode folder; retain all original notices.\n'
+        'No retail/custom assets or this converted output may be committed to the WBW repository.\n')
+    if 'source_behavior_caveats' not in spec:
+        return value
+    caveats = spec['source_behavior_caveats']
+    if (not isinstance(caveats, list) or not caveats or any(
+            not isinstance(item, str) or not item.strip() or item != item.strip()
+            or '\n' in item or '\r' in item for item in caveats)):
+        raise SingleplayerError('Source behavior caveats must be a nonempty list of nonempty single-line strings')
+    return value + '\nSource behavior caveats:\n' + ''.join('- ' + item + '\n' for item in caveats)
 
 
 def build_to_directory(archives, original_path, stage, recipe_id):
@@ -541,6 +894,7 @@ def build_to_directory(archives, original_path, stage, recipe_id):
         raise SingleplayerError('Generated SP assets must remain outside the source repository')
     if not stage.is_dir() or any(stage.iterdir()):
         raise SingleplayerError('Use an existing empty staging directory')
+    readme = readme_text(recipe_details(recipe_id))
     originals, notices = open_original(original_path, recipe_id)
     data, manifest = build(archives, originals, recipe_id)
     verification = verify(archives, originals, recipe_id, data)
@@ -553,10 +907,7 @@ def build_to_directory(archives, original_path, stage, recipe_id):
             handle.write(content)
     manifest_filename = 'manifest.json'
     (stage / manifest_filename).write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf8')
-    (stage / 'README.txt').write_text('Experimental whole-episode SP conversion. Full gameplay remains unverified.\n'
-        'Use OpenJKDF2 in MotS single-player mode (-motsCompat -sp), with only the declared startup profile.\n'
-        'Copy the generated GOO to a private test installation episode folder; retain all original notices.\n'
-        'No retail/custom assets or this converted output may be committed to the WBW repository.\n', encoding='utf8')
+    (stage / 'README.txt').write_text(readme, encoding='utf8')
     if output.read_bytes() != data:
         raise SingleplayerError('Post-write artifact verification failed')
     return {'filename': output.name, 'manifest_filename': manifest_filename,

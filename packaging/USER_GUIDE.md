@@ -39,7 +39,7 @@ standalone package runs `WBW.exe` or `./WBW` without a
 separate Python installation. If your ZIP extractor drops the Linux executable
 permission, run `chmod +x WBW` once.
 
-The launcher checks published releases from `andreipemberton/World-Between-Worlds`
+The current launcher checks published releases from `CodaLilitari/World-Between-Worlds`
 with an eight-second startup wait limit. If a compatible newer package finishes
 verification in that window, it opens in the same invocation. Offline, a rate
 limit, a timeout or a rejected package leaves the installed app available.
@@ -49,6 +49,16 @@ launch can use that verified stage without downloading it again.
 Release-candidate installations include later RCs and stable releases; stable
 installations ignore prereleases. Use `--no-update` to skip the network check,
 and `--no-browser` to start the local server without opening a browser.
+
+The public repository has no packaged releases as of September 20, 2026.
+The CodaLilitari account is currently restricted, so automatic update delivery
+is unconfirmed. Continue using your local copy or an accessible source checkout;
+`--no-update` skips the network check. Passing local package tests does not
+establish that GitHub can currently publish or serve an update.
+Older packages retain their original `andreipemberton/World-Between-Worlds`
+update source. Install the current source checkout or a new public package when
+released to switch publisher; release metadata cannot redirect an old launcher
+to a different repository. An empty releases list leaves the installed app usable.
 
 Updates are staged in a versioned user-data cache. They do not overwrite this
 downloaded folder, source checkouts, selected game installations or generated
