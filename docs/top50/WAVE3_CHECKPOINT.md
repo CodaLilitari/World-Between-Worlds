@@ -93,10 +93,13 @@ canonical game payload separately from generated metadata.
 2. Add the missing gameplay proof for existing prototypes: ordinary control-driven
    doors/lifts, pickups and respawn, authored traps, SP goals and saves, full skin
    appearance/animation, map transitions and matched second peers.
-3. Reproduce the Al aggregate resource-capacity risk before any engine allocation
-   fix. A source analysis identifies a legitimate 32-skin material combination
-   that may exceed native k1's world capacity. Fresh processes per selected skin
-   do not exercise that aggregate case. Do not present the prediction as a crash.
+3. Fix the now-reproduced Al model-capacity failure in the separate engine fork.
+   Forward/reversed same-world appearance sequences fall back to Kyle on the
+   eighteenth distinct request at 109/109 models; fresh individual and repeated
+   cached-selection controls pass. The earlier material estimate was incorrect:
+   live capacity is 1,288, not 644. See the
+   [capacity evidence and limits](als-capacity-runtime-evidence.json). The sound
+   pool also reaches its limit and needs a separate load/behavior investigation.
 4. Integrate and deliver the separate engine prerequisite for Castle, preserving
    the main engine checkout and unrelated worktrees. Converter changes stay here.
 

@@ -1,0 +1,319 @@
+{
+  "schema": "wbw.als-capacity-runtime.v1",
+  "date": "2026-09-20",
+  "assets_included": false,
+  "recipe_id": "mod-als-star-wars",
+  "payload_sha256": "88211772487cd958f60629878568cdda9afdeb33c716f5854f02fd49b2fb48af",
+  "engine_base_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+  "instrumentation_patch_sha256": "409158853d01ba81bfe0600f09b296d538fffddb5fc8b95d95c22494f3540d0b",
+  "engine_sha256": "ad17099295ba90957692bb50bdca1f99a62b815d7e0062ab07ee44ae0c385ebd",
+  "native_episode_sha256": "92e3895aa5ae179861f8174dd23c03506acad270916c7f58b7b8f260d7a36bcd",
+  "world": "k1.jkl",
+  "mode": "MotS multiplayer server",
+  "scope": "Instrumented production appearance requests on one real local player in one unchanged world; resources accumulate across normal appearance replacements.",
+  "runs": [
+    {
+      "name": "forward-01",
+      "outcome": "capacity-limit-and-selection-failure",
+      "requested_selection_count": 32,
+      "unique_requested_models": 32,
+      "baseline_current": {
+        "world": "k1.jkl",
+        "materials": [
+          254,
+          1288
+        ],
+        "models": [
+          93,
+          109
+        ],
+        "soundclasses": [
+          26,
+          58
+        ],
+        "sounds": [
+          152,
+          153
+        ]
+      },
+      "final_current": {
+        "world": "k1.jkl",
+        "materials": [
+          527,
+          1288
+        ],
+        "models": [
+          109,
+          109
+        ],
+        "soundclasses": [
+          34,
+          58
+        ],
+        "sounds": [
+          153,
+          153
+        ]
+      },
+      "final_requested_model": "al_muftak.3do",
+      "final_actual_model": "kk.3do",
+      "final_requested_sound": "al_ky.snd",
+      "final_actual_sound": "ky.snd",
+      "appearance_handler_result": 1,
+      "exit_code": 7,
+      "controls_valid": true,
+      "inputs_unchanged": true,
+      "visible_or_foreground_owned_window_samples": 0,
+      "receipt_sha256": "ac34a7a50a6518f4bc6ce02c2e9b334f9167f9426430608b957b098371d9b4ab",
+      "event_log_sha256": "0687484793a4b82d42b9f870635fbb40677b547c5f53b25cc9f29dfd072218b1",
+      "request_sha256": "b10df7f3a14c6f2a482fa2c3915c3170cb78186cf44a5ebcd4539896f75f9b41",
+      "plan_sha256": "5d27d389e16148bef598d2bb15c606aa6f4d9e4345e71cbc1b85e8fffadd0f63",
+      "observed_requests": 18
+    },
+    {
+      "name": "reverse-01",
+      "outcome": "capacity-limit-and-selection-failure",
+      "requested_selection_count": 32,
+      "unique_requested_models": 32,
+      "baseline_current": {
+        "world": "k1.jkl",
+        "materials": [
+          251,
+          1288
+        ],
+        "models": [
+          93,
+          109
+        ],
+        "soundclasses": [
+          26,
+          58
+        ],
+        "sounds": [
+          153,
+          153
+        ]
+      },
+      "final_current": {
+        "world": "k1.jkl",
+        "materials": [
+          495,
+          1288
+        ],
+        "models": [
+          109,
+          109
+        ],
+        "soundclasses": [
+          35,
+          58
+        ],
+        "sounds": [
+          153,
+          153
+        ]
+      },
+      "final_requested_model": "al_duros.3do",
+      "final_actual_model": "kk.3do",
+      "final_requested_sound": "al_kymp2.snd",
+      "final_actual_sound": "ky.snd",
+      "appearance_handler_result": 1,
+      "exit_code": 7,
+      "controls_valid": true,
+      "inputs_unchanged": true,
+      "visible_or_foreground_owned_window_samples": 0,
+      "receipt_sha256": "2ae3d2f0f7008f10cbb2c250c50de4416bab43866234f438b9749eaa2143bec2",
+      "event_log_sha256": "b88a083ef19bd79918f55898fe80d0c73a6406588e133f39e4aa0275f8d3194a",
+      "request_sha256": "f984939f60b4de5e1ae1ac4e26983b0992aa3d7c71128d6ef7199cec0cd0bd1c",
+      "plan_sha256": "15e6b440a268ce01fe12782bc2d5e894ce77f42d15878111638cee67b934c4e5",
+      "observed_requests": 18
+    },
+    {
+      "name": "cache-01",
+      "outcome": "all-requested-selections-loaded",
+      "requested_selection_count": 32,
+      "unique_requested_models": 1,
+      "baseline_current": {
+        "world": "k1.jkl",
+        "materials": [
+          254,
+          1288
+        ],
+        "models": [
+          93,
+          109
+        ],
+        "soundclasses": [
+          26,
+          58
+        ],
+        "sounds": [
+          152,
+          153
+        ]
+      },
+      "final_current": {
+        "world": "k1.jkl",
+        "materials": [
+          254,
+          1288
+        ],
+        "models": [
+          93,
+          109
+        ],
+        "soundclasses": [
+          26,
+          58
+        ],
+        "sounds": [
+          152,
+          153
+        ]
+      },
+      "final_requested_model": "al_vallo.3do",
+      "final_actual_model": "al_vallo.3do",
+      "final_requested_sound": "al_kybobafett.snd",
+      "final_actual_sound": "al_kybobafett.snd",
+      "appearance_handler_result": 1,
+      "exit_code": 0,
+      "controls_valid": true,
+      "inputs_unchanged": true,
+      "visible_or_foreground_owned_window_samples": 0,
+      "receipt_sha256": "68ac0b73107293ffc96ce7ec30d0fd46d55d77fd17cf5de50ecc25c7ce03e336",
+      "event_log_sha256": "e10784c8088b86900b2d4529858d07c93fe2c1eba54fa4487bc1030c226edf3b",
+      "request_sha256": "f8ee57aaede55312618d313f78d201fc94886e56737bf7b2ef7c290c2356d960",
+      "plan_sha256": "109ffc87fa528a07e06b54f66b4a265e3e2acdb61897c6bd7bbfc201f50c930a",
+      "observed_requests": 32
+    },
+    {
+      "name": "fresh-muftak-01",
+      "outcome": "all-requested-selections-loaded",
+      "requested_selection_count": 1,
+      "unique_requested_models": 1,
+      "baseline_current": {
+        "world": "k1.jkl",
+        "materials": [
+          250,
+          1288
+        ],
+        "models": [
+          93,
+          109
+        ],
+        "soundclasses": [
+          26,
+          58
+        ],
+        "sounds": [
+          153,
+          153
+        ]
+      },
+      "final_current": {
+        "world": "k1.jkl",
+        "materials": [
+          250,
+          1288
+        ],
+        "models": [
+          93,
+          109
+        ],
+        "soundclasses": [
+          26,
+          58
+        ],
+        "sounds": [
+          153,
+          153
+        ]
+      },
+      "final_requested_model": "al_muftak.3do",
+      "final_actual_model": "al_muftak.3do",
+      "final_requested_sound": "al_ky.snd",
+      "final_actual_sound": "al_ky.snd",
+      "appearance_handler_result": 1,
+      "exit_code": 0,
+      "controls_valid": true,
+      "inputs_unchanged": true,
+      "visible_or_foreground_owned_window_samples": 0,
+      "receipt_sha256": "7e38087aeef3fd26129e0ef548c90ff3274e774e22ecad11e36e491c953f3db7",
+      "event_log_sha256": "6eecb655514dbd1519e3bb3618d0c9107696a77ec423b6118d0c14cc4eac9434",
+      "request_sha256": "ff821a8d3f1fc378b4c98cb49bd17f8b7367c8effd00bb4777b1407fdb3b448e",
+      "plan_sha256": "410bda58ca15d32387665e1954dd814630029c1cbcf032d3be14a7903036bac7",
+      "observed_requests": 1
+    },
+    {
+      "name": "fresh-duros-01",
+      "outcome": "all-requested-selections-loaded",
+      "requested_selection_count": 1,
+      "unique_requested_models": 1,
+      "baseline_current": {
+        "world": "k1.jkl",
+        "materials": [
+          250,
+          1288
+        ],
+        "models": [
+          93,
+          109
+        ],
+        "soundclasses": [
+          26,
+          58
+        ],
+        "sounds": [
+          153,
+          153
+        ]
+      },
+      "final_current": {
+        "world": "k1.jkl",
+        "materials": [
+          250,
+          1288
+        ],
+        "models": [
+          93,
+          109
+        ],
+        "soundclasses": [
+          26,
+          58
+        ],
+        "sounds": [
+          153,
+          153
+        ]
+      },
+      "final_requested_model": "al_duros.3do",
+      "final_actual_model": "al_duros.3do",
+      "final_requested_sound": "al_kymp2.snd",
+      "final_actual_sound": "al_kymp2.snd",
+      "appearance_handler_result": 1,
+      "exit_code": 0,
+      "controls_valid": true,
+      "inputs_unchanged": true,
+      "visible_or_foreground_owned_window_samples": 0,
+      "receipt_sha256": "0a626ed0e84818c216faeb7b82dfb55a04204b8882491430f06c7fd4e736a24e",
+      "event_log_sha256": "2ebe683db8870e40d38a67ae557622d013c2bd5257a2f1b89afb4f16655cb2f0",
+      "request_sha256": "088f99ce695793d94911fd76ba4d809f629d70e52642e5e99f72d7e1f374fe63",
+      "plan_sha256": "cdb7cc8acdc63af9ad140b1a9287fabb0b6da4992257da6c1de242c9e0b773fc",
+      "observed_requests": 1
+    }
+  ],
+  "material_capacity_correction": {
+    "previous_estimate": 644,
+    "observed_capacity": 1288,
+    "explanation": "The earlier source estimate counted one doubling. Material reader and allocation each double the declared 322 capacity. No material-capacity failure was reproduced."
+  },
+  "limits": [
+    "Probe exit 7 deliberately reports an observed selection mismatch; this is not a process crash.",
+    "Forward and reversed sequences stop at the first mismatch; this is not all 32 loaded simultaneously or a connected-peer test.",
+    "The sound pool also reached 153/153. Individual sound-load results and audible behavior were not instrumented; audio capacity remains open.",
+    "Shader uniform/attribute warnings occurred in these instrumented builds; no clean-diagnostics claim is made.",
+    "No engine allocation fix was applied in these runs; no engine release was published.",
+    "Full-body appearance, animation, GUI selection, all 135 authored skins, map changes and retail parity remain separate checks."
+  ]
+}

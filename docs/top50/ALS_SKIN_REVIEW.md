@@ -77,12 +77,28 @@ The engine's model-selection table is dynamically allocated and can represent
 direct `-character` autostart bypasses that enumeration and table membership, so
 it cannot certify the GUI. GUI previews allocate and release their own resources.
 
-Running-world caches are a separate issue. Source analysis of native `k1` finds
-109 declared model slots, 77 listed model rows and a 644-material allocation.
-A legitimate 32-skin combination in this pack has 520 distinct prefixed materials,
-which may exceed the remaining material budget when combined with the map.
-This is a concrete source-derived capacity concern, **not a reproduced crash**.
-Fresh processes per selection do not test cumulative or simultaneous occupancy.
+Running-world caches have now produced a specific selection failure. An opt-in
+private engine probe used the production MotS appearance function on the real
+local player, requesting a reviewed set of 32 skins in the same native `k1`
+world. It changed no game assets or allocation limits. Both forward and reversed
+orders filled the **109-slot model pool** and failed on the eighteenth distinct
+request. The function returned success, but substituted `kk.3do` / `ky.snd` for
+the requested character. Each failing skin loaded correctly in its own fresh
+process, and 32 repeated requests for one cached skin caused zero pool growth.
+The [five-run capacity evidence](als-capacity-runtime-evidence.json) pins the
+instrumented build, exact payload, requested/actual identities and counters.
+
+**Correction to the earlier material estimate:** the live material allocation is
+1,288, not 644. The earlier source review counted only one of two doublings of
+the declared 322 slots. The failed forward run used 527 of those 1,288 slots;
+it demonstrates model exhaustion, not material exhaustion. The probe deliberately
+exited with status 7 after observing fallback; this was not a process crash.
+
+The sound pool also reached 153/153, but individual sound-load results and audible
+behavior were not measured. That remains an additional gate, not a confirmed
+audio failure. These same-world appearance sequences are not simultaneous
+32-player networking, GUI qualification, or a fix. An engine correction and
+the corresponding regression runs remain required.
 
 Required follow-ups include all authored selections, visible appearance and
 animation, weapon attachment, affected sound events, death/respawn, normal GUI
