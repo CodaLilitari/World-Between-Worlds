@@ -1,5 +1,7 @@
 WORLD BETWEEN WORLDS — ORIGINAL CUSTOM CONTENT SOURCES
-Catalog reviewed 2026-09-08; tool version 0.2.0-rc1
+Original catalog reviewed 2026-09-08; MLP3 entry and project links updated 2026-09-20.
+See docs/top50/current-recipe-status.json and the three frozen category inventories
+for the full expansion source list, exact input pins and current recipe coverage.
 
 This is a source/provenance list, not a mirror or an asset package.
 Download originals from their authors/archives, then convert locally with owned JK and MotS data.
@@ -174,6 +176,18 @@ Ninja Kage 7.0
   gob_sha256: 23bd8e18eae4df637a34ddf4f98ed3602c490de521e0cc147bf8e79bb9fe23af
   Required startup overlay: blackwing-ninja-kage
 
+The Massassi Temple Level Pack 3
+  Recipe: mp-mlp3; revision: wbw_v1
+  Kind: custom; gameplay: mp; all eight original worlds
+  Original authors: Stress; NorthChaos; Posse and Naythn of AE; Justin "Juz" Stocks;
+    Home_Sliced; Freelancer; Jepman; bug. Exact original notice retained.
+  Original source: https://www.massassi.net/levels/files/1270.shtml
+  Recipe availability: prototype; structural and initial-render checks only,
+    plus passive Subway/Hoodwink simulation. Full gameplay and peer tests open.
+  zip_sha256: 48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1
+  gob_sha256: 0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b
+  Known source omissions and behavior limits: docs/top50/MLP3_REVIEW.md
+
 RESEARCH PROVENANCE
 Massassi JK multiplayer downloads ranking:
 https://www.massassi.net/levels/jkmp/?sortby=dl_count&num=50
@@ -182,8 +196,8 @@ NOFpuXnk attribution includes the verified Adam (NOFpuXnk) Freeman alias for Cou
 The nine stock JK multiplayer maps are extracted from owned retail archives and require no community download.
 
 ENGINE PROJECTS
-https://github.com/andreipemberton/OpenJKDF2-MotS-Fixes
+https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes
 https://github.com/shinyquagsire23/OpenJKDF2
 
 WORLD BETWEEN WORLDS TOOL (SEPARATE REPOSITORY)
-https://github.com/andreipemberton/World-Between-Worlds
+https://github.com/CodaLilitari/World-Between-Worlds

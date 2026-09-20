@@ -145,7 +145,82 @@
           "downloads": 11739,
           "source_url": "https://www.massassi.net/levels/files/1270.shtml",
           "original_sha256": "48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1",
-          "matching_catalog_recipes": []
+          "matching_catalog_recipes": [
+            {
+              "id": "mp-mlp3",
+              "status": "prototype",
+              "revision": 1,
+              "runtime_test": {
+                "status": "eight-world-initial-render-passed",
+                "scope": "Hidden initial rendered capture at the authored camera in all eight MotS multiplayer worlds",
+                "full_gameplay": false,
+                "payload_sha256": "a84cf40c7400c5b17ac1a840dccb15b174756338fc42f8a51c59a82bcdbae190",
+                "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+                "engine_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+                "evidence_report_sha256": "0ffd031146ae891cfba5af933118627a2e0363bf4d020aa0752313e174dcc6d0",
+                "image_comparison_sha256": "b9f744eec148506cd0b54761902dde228091f5a02ed6e94c78ff80c5ae2e5ca4",
+                "worlds": [
+                  {
+                    "world": "br_mp1270_h.jkl",
+                    "mode": "mots-multiplayer",
+                    "initial_render_passed": true,
+                    "evidence_report_sha256": "0f9b959f0020c642c0ee8a0512b379b478e787c9c0c64425d34862bca604b75e",
+                    "resource_diagnostic_count": 0
+                  },
+                  {
+                    "world": "br_mp1270_d.jkl",
+                    "mode": "mots-multiplayer",
+                    "initial_render_passed": true,
+                    "evidence_report_sha256": "9e56a99156b940a2b2608707a99fde7f04d70151632db67306b2d30941123312",
+                    "resource_diagnostic_count": 0
+                  },
+                  {
+                    "world": "br_mp1270_v.jkl",
+                    "mode": "mots-multiplayer",
+                    "initial_render_passed": true,
+                    "evidence_report_sha256": "de9a61e88cf85828e998910feec8e57b94cee28e03266721a658a5946cb780a6",
+                    "resource_diagnostic_count": 0
+                  },
+                  {
+                    "world": "br_mp1270_x.jkl",
+                    "mode": "mots-multiplayer",
+                    "initial_render_passed": true,
+                    "evidence_report_sha256": "23645d0cbf32e239240df0589a2f5c62e772bec831665dd649909bda79bb7a27",
+                    "resource_diagnostic_count": 0
+                  },
+                  {
+                    "world": "br_mp1270_w.jkl",
+                    "mode": "mots-multiplayer",
+                    "initial_render_passed": true,
+                    "evidence_report_sha256": "4ee14867fd87b8b5f4600867dda8fa6d25973241f3e760a329cdca2531aa1681",
+                    "resource_diagnostic_count": 0
+                  },
+                  {
+                    "world": "br_mp1270_o.jkl",
+                    "mode": "mots-multiplayer",
+                    "initial_render_passed": true,
+                    "evidence_report_sha256": "2c0b0bca445e3d9c89f4175fdee84fb3df72e7f2c2a9c01e04b4b3eab09fe171",
+                    "resource_diagnostic_count": 0
+                  },
+                  {
+                    "world": "br_mp1270_s.jkl",
+                    "mode": "mots-multiplayer",
+                    "initial_render_passed": true,
+                    "evidence_report_sha256": "3431bddfa17b9d748c8a3608ad5fcdf92918efce33c6ab651aad0754db07db59",
+                    "resource_diagnostic_count": 0
+                  },
+                  {
+                    "world": "br_mp1270_c.jkl",
+                    "mode": "mots-multiplayer",
+                    "initial_render_passed": true,
+                    "evidence_report_sha256": "71d152be782d96836bf50c9c9a93161d89a1f351c2b3b4e4c4a4ae07b6380e66",
+                    "resource_diagnostic_count": 0
+                  }
+                ],
+                "note": "All eight initial captures passed exact world/mode and input-preservation checks with zero resource diagnostics; images were visually inspected. Warehouse has a warmer color balance than original JK; exact pixel or retail parity is not claimed. Original missing resources and parser anomalies remain. Authored interactions, audible behavior, episode transitions and connected peers remain unverified."
+              }
+            }
+          ]
         },
         {
           "rank": 8,
@@ -1183,9 +1258,9 @@
         }
       ],
       "original_hashes_recorded": 50,
-      "entries_with_exact_input_recipe": 28,
-      "entries_with_selectable_recipe": 27,
-      "entries_without_recipe": 22
+      "entries_with_exact_input_recipe": 29,
+      "entries_with_selectable_recipe": 28,
+      "entries_without_recipe": 21
     },
     "sp": {
       "entries": [
@@ -2411,5 +2486,5 @@
     }
   },
   "original_hashes_recorded": 150,
-  "entries_with_exact_input_recipe": 38
+  "entries_with_exact_input_recipe": 39
 }

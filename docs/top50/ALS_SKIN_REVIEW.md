@@ -111,11 +111,29 @@ verified in the exact overlay: five authored originals and 25 owned-JK
 dependencies. These are distinct from Jar Jar's genuinely absent original WAV.
 
 No audible playback was tested. These same-world appearance sequences are not
-simultaneous 32-player networking, GUI qualification, or a fix. Model and sound
-storage corrections and corresponding regression runs remain required.
+simultaneous 32-player networking, GUI qualification, or a fix. The model-storage
+correction is recorded below; sound correction and combined regression runs
+remain required.
 
 Required follow-ups include all authored selections, visible appearance and
 animation, weapon attachment, affected sound events, death/respawn, normal GUI
 selection, measured aggregate resource occupancy, matched peers and map changes.
 Any demonstrated engine defect belongs in the separate engine fork. Do not
 discard characters, stack unrelated overlays or rewrite native maps to conceal it.
+
+## Model-storage correction in the engine fork
+
+The separately reviewed [model fix](https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes/commit/bf7a46f8dc30ddc6fd4734326935a6ea07081ef7)
+is now pushed on the engine fork's `codex/model-cache-growth` branch. It grows
+the standalone engine's model store without moving loaded model headers or
+their borrowed cache keys; the original-executable injection build retains its
+contiguous layout. The [bounded runtime evidence](als-model-growth-evidence.json)
+records both 32-selection sequences completing correctly, growing from 93/109
+to 124/218 models. The cached and three fresh-selection controls also pass.
+Native MotS Kyle/Mara and native JK initial-render controls passed separately.
+
+This fixes the demonstrated model fallback, not the separate sound pool. The
+longer successful sequences still report sound-load rejections. No updated
+binary release, complete skin compatibility, audible playback, peer or save/load
+qualification is claimed. Detailed source tests and remaining parser/cache
+boundaries are documented in the engine commit.

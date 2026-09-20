@@ -1,0 +1,275 @@
+{
+  "schema": "wbw.public-model-growth-evidence.v1",
+  "fork_commit": "bf7a46f8dc30ddc6fd4734326935a6ea07081ef7",
+  "fork_branch": "codex/model-cache-growth",
+  "fork_commit_url": "https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes/commit/bf7a46f8dc30ddc6fd4734326935a6ea07081ef7",
+  "base_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+  "engine_sha256": "caebc2ac8ba28f3c34ecdfeb702c99aa758ecefe60f84bc2d5e1703ea160c945",
+  "combined_patch_sha256": "eddfe7914c8ae82cf9f1110b010814a7105e6df9092e9ce92ed138a2f90776a1",
+  "growth_patch_sha256": "b1877ff575216aa1b28a7f457c189ca306903ed0568eedecb99a2460c640fdf6",
+  "private_summary_sha256": "0229d548e7bbe7f915da047c4dc201176588e1ff8fc5f152cbc9a288538583bb",
+  "runs": [
+    {
+      "name": "growth-cache-01",
+      "kind": "cache",
+      "exit_code": 0,
+      "requested": 32,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        93,
+        109
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 254,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 0,
+      "distinct_rejected_sounds": 0,
+      "actual_sound_pool": [
+        152,
+        153
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "2b48bce44e8fafcf190dd5f810c9933ab4ca0b1a5a6ba289a1a1a77f72d08113",
+      "events_sha256": "e10784c8088b86900b2d4529858d07c93fe2c1eba54fa4487bc1030c226edf3b"
+    },
+    {
+      "name": "growth-forward-01",
+      "kind": "forward",
+      "exit_code": 0,
+      "requested": 32,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        124,
+        218
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 753,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 212,
+      "distinct_rejected_sounds": 38,
+      "actual_sound_pool": [
+        153,
+        153
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "a7d466191777d4045eda0bb791a8e019c1daf3cd607362524711f536cfb75ff2",
+      "events_sha256": "559959698ab908b2a553c69f39d81c1b98b3c0f64410f1cf390cbc435067f74e"
+    },
+    {
+      "name": "growth-fresh-bespchew-01",
+      "kind": "fresh",
+      "exit_code": 0,
+      "requested": 1,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        93,
+        109
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 251,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 0,
+      "distinct_rejected_sounds": 0,
+      "actual_sound_pool": [
+        147,
+        153
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "15dd9af931d9020c29704a31aec9e06f265793b8a1b43dcc163a1a304a6619dd",
+      "events_sha256": "798e98e34871fe5c279a9005cb00cf9b38c202b7da13fcfb0637e4054de10f06"
+    },
+    {
+      "name": "growth-fresh-duros-01",
+      "kind": "fresh",
+      "exit_code": 0,
+      "requested": 1,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        93,
+        109
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 250,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 6,
+      "distinct_rejected_sounds": 5,
+      "actual_sound_pool": [
+        153,
+        153
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "58f699874b1c0ce89a787e31b284d7c41ffa611f7aaedbc2a960562baf77014c",
+      "events_sha256": "2ebe683db8870e40d38a67ae557622d013c2bd5257a2f1b89afb4f16655cb2f0"
+    },
+    {
+      "name": "growth-fresh-muftak-01",
+      "kind": "fresh",
+      "exit_code": 0,
+      "requested": 1,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        93,
+        109
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 250,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 6,
+      "distinct_rejected_sounds": 5,
+      "actual_sound_pool": [
+        153,
+        153
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "9a0397131cae088fd2abd789b360c718d32059823766d4232110957a2d6d877c",
+      "events_sha256": "6eecb655514dbd1519e3bb3618d0c9107696a77ec423b6118d0c14cc4eac9434"
+    },
+    {
+      "name": "growth-reverse-01",
+      "kind": "reverse",
+      "exit_code": 0,
+      "requested": 32,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        124,
+        218
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 753,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 179,
+      "distinct_rejected_sounds": 38,
+      "actual_sound_pool": [
+        153,
+        153
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "a5959f4aab187406ac467b66697723daa0277fc86d1bea08a6392c49e040e280",
+      "events_sha256": "b0a2a52355da5d7307863ac97cf0fb5d800f0deb2bf08a4aafbd9614f463134e"
+    }
+  ],
+  "native_initial_render_controls": [
+    {
+      "name": "native-mots-kyle-01-mots",
+      "receipt_sha256": "66c72bc890d7b5c89f6724b4e57cb2bdd6ee4cc728c1423aa53522d134e25bde",
+      "mode": "mots",
+      "passed": true,
+      "engine_sha256": "caebc2ac8ba28f3c34ecdfeb702c99aa758ecefe60f84bc2d5e1703ea160c945",
+      "resource_diagnostics": [],
+      "png_sha256": "c33b4969fe1ab6288d89bf5778cd3036c6d93275d883a424274a884c6a3f5fa4",
+      "inputs_unchanged": true
+    },
+    {
+      "name": "native-mots-mara-02-mots",
+      "receipt_sha256": "d2fd19d3bce8901406006478ea0b002cf6079dbde0239443fd104e4f002d58a2",
+      "mode": "mots",
+      "passed": true,
+      "engine_sha256": "caebc2ac8ba28f3c34ecdfeb702c99aa758ecefe60f84bc2d5e1703ea160c945",
+      "resource_diagnostics": [],
+      "png_sha256": "c33b4969fe1ab6288d89bf5778cd3036c6d93275d883a424274a884c6a3f5fa4",
+      "inputs_unchanged": true
+    },
+    {
+      "name": "native-jk-m2-01-jk",
+      "receipt_sha256": "71d5c1d8bf65da153494e2b9e61a560e4ba19050b59f699a793d3e8f77ad2ce4",
+      "mode": "jk",
+      "passed": true,
+      "engine_sha256": "caebc2ac8ba28f3c34ecdfeb702c99aa758ecefe60f84bc2d5e1703ea160c945",
+      "resource_diagnostics": [],
+      "png_sha256": "daea3ed43d78f6dab545f806c0e9514a83443ee799fc487fd8530398c02d0687",
+      "inputs_unchanged": true
+    }
+  ],
+  "limits": [
+    "The model storage fix is pushed on a fork branch; no binary release is claimed.",
+    "Same-world local-player appearance calls, not simultaneous 32-player networking, GUI browsing, full-body animation, or save/load proof.",
+    "Sound storage was not changed in this build and still rejects existing WAVs at capacity.",
+    "Preexisting malformed-model parser cleanup and path-alias/cache failure behavior remain outside this fix.",
+    "Native initial rendering does not establish full gameplay or retail parity.",
+    "First native Mara checker expected mixed-case kyMJ.3do; the engine returned canonical kymj.3do. Failed receipt retained; a fresh explicit canonical-name control passed."
+  ]
+}

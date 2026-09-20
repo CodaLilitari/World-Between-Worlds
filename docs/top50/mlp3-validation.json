@@ -1,0 +1,130 @@
+{
+  "schema": "wbw.mlp3-validation.v1",
+  "date": "2026-09-20",
+  "assets_included": false,
+  "recipe_id": "mp-mlp3",
+  "recipe_status": "prototype",
+  "source_suites": {
+    "windows": {
+      "tests": 414,
+      "skipped": 2,
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "log_sha256": "7ed7c9871b41b6fde1b222f03c243e006554161605719062cb14f11c6fe91d8f",
+      "receipt_sha256": "30e3f8adee4779229fdb41ac4899dee4f624276cd42d9300eb053fd1c79f4a82",
+      "source_unchanged": true
+    },
+    "linux": {
+      "tests": 414,
+      "skipped": 2,
+      "python": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+      "log_sha256": "d13f0c74b2f396059c33786f15a7863fd7625d9af50ed75ebe95d82d1e53a87e",
+      "receipt_sha256": "c5db9fccd8e7ca0e0a4ecb3a374e5197f79ea32ed650516331d07c8b718d90e4",
+      "source_unchanged": true
+    }
+  },
+  "tested_source_count": 55,
+  "exported_recipes": 52,
+  "recipes_json_sha256": "17ad380ccae7d3fe5078add66387279c17e8a442b2ddaa38b8b51c532bb46245",
+  "focused_pack_tests": 40,
+  "maintainer_tests": 22,
+  "service_replays": [
+    {
+      "platform": "win32",
+      "hash_seed": "1",
+      "receipt_sha256": "875b239adbe3720abf4443710adc2d861fba4d68ce2eb18f569667b2068fef3c",
+      "marker": {
+        "appversion": "0.2.0-rc4",
+        "id": "mp-mlp3",
+        "payload_sha256": "a84cf40c7400c5b17ac1a840dccb15b174756338fc42f8a51c59a82bcdbae190",
+        "recipe_sha256": "8c23cc4b74febe85f99d29d97c58ec2e4181b990950ca58e4061d6089c2fedd6",
+        "revision": 1,
+        "role": "primary",
+        "schema": 1
+      },
+      "result_files": {
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/blackwing-receipt.json": "39af83dd56d02521f33a5f7e43063be0cab226f2668b9a0793c4c89952d48192",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/blackwing-recipe.json": "d8d5a164c66acf5148bb70388d378dc053de80436673d25593300835abd563c3",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/bridge-mp1270-pack-v1.manifest.json": "397f54093e053e3cff9a3dfa04a993dc9fee49e009b21be09e2508ddc09a3162",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/bridge-mp1270-pack_wbw_v1.goo": "78aa7ef4ea3f430244a139649ccc33cb37b9cc19b7b189e481b92752df5b63aa",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/bridge-mp1270-pack_wbw_v1.manifest.json": "05b7642999973f76d2187d018c64bf7298a113e8cf6c1adecabfdcdb40a2d9cc",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/ORIGINAL-01-mlp3.txt": "8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/README.txt": "4c224603ee2d53f52f3d6d0a46861c0ce9065da63c85d077804f1af96262f24e"
+      },
+      "scan_current": 1,
+      "scan_errors": 0,
+      "scan_changed_files": false,
+      "original_notices_exact": true,
+      "all_caveats_delivered": true
+    },
+    {
+      "platform": "win32",
+      "hash_seed": "999",
+      "receipt_sha256": "a6758b281b0d4342d79fb52b48b9fce3efe778d783bfbae1624204fe26cfc6d2",
+      "marker": {
+        "appversion": "0.2.0-rc4",
+        "id": "mp-mlp3",
+        "payload_sha256": "a84cf40c7400c5b17ac1a840dccb15b174756338fc42f8a51c59a82bcdbae190",
+        "recipe_sha256": "8c23cc4b74febe85f99d29d97c58ec2e4181b990950ca58e4061d6089c2fedd6",
+        "revision": 1,
+        "role": "primary",
+        "schema": 1
+      },
+      "result_files": {
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/blackwing-receipt.json": "39af83dd56d02521f33a5f7e43063be0cab226f2668b9a0793c4c89952d48192",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/blackwing-recipe.json": "d8d5a164c66acf5148bb70388d378dc053de80436673d25593300835abd563c3",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/bridge-mp1270-pack-v1.manifest.json": "397f54093e053e3cff9a3dfa04a993dc9fee49e009b21be09e2508ddc09a3162",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/bridge-mp1270-pack_wbw_v1.goo": "78aa7ef4ea3f430244a139649ccc33cb37b9cc19b7b189e481b92752df5b63aa",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/bridge-mp1270-pack_wbw_v1.manifest.json": "05b7642999973f76d2187d018c64bf7298a113e8cf6c1adecabfdcdb40a2d9cc",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/ORIGINAL-01-mlp3.txt": "8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/README.txt": "4c224603ee2d53f52f3d6d0a46861c0ce9065da63c85d077804f1af96262f24e"
+      },
+      "scan_current": 1,
+      "scan_errors": 0,
+      "scan_changed_files": false,
+      "original_notices_exact": true,
+      "all_caveats_delivered": true
+    },
+    {
+      "platform": "linux",
+      "hash_seed": "7",
+      "receipt_sha256": "22009740487a932257a057e8e09a4c9e62e2ae7a16c214132d7c7ba484860484",
+      "marker": {
+        "appversion": "0.2.0-rc4",
+        "id": "mp-mlp3",
+        "payload_sha256": "a84cf40c7400c5b17ac1a840dccb15b174756338fc42f8a51c59a82bcdbae190",
+        "recipe_sha256": "8c23cc4b74febe85f99d29d97c58ec2e4181b990950ca58e4061d6089c2fedd6",
+        "revision": 1,
+        "role": "primary",
+        "schema": 1
+      },
+      "result_files": {
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/ORIGINAL-01-mlp3.txt": "8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/README.txt": "26bd59c230707bae8181b9a8466cb5072003766eebe18f715bc1a68a2c3126db",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/blackwing-receipt.json": "7f303db4e95a72791bf6f7a47fc279e8748d279e2013e4e899481b86804f4086",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/blackwing-recipe.json": "d8d5a164c66acf5148bb70388d378dc053de80436673d25593300835abd563c3",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/bridge-mp1270-pack-v1.manifest.json": "0d81808974a513ade8731388e19aaf16220764451b9ad647ba36274788474c87",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/bridge-mp1270-pack_wbw_v1.goo": "78aa7ef4ea3f430244a139649ccc33cb37b9cc19b7b189e481b92752df5b63aa",
+        "mp-mlp3-78aa7ef4ea3f-8c23cc4b/bridge-mp1270-pack_wbw_v1.manifest.json": "05b7642999973f76d2187d018c64bf7298a113e8cf6c1adecabfdcdb40a2d9cc"
+      },
+      "scan_current": 1,
+      "scan_errors": 0,
+      "scan_changed_files": false,
+      "original_notices_exact": true,
+      "all_caveats_delivered": true
+    }
+  ],
+  "windows_result_folders_identical": true,
+  "cross_platform_archive_identical": true,
+  "cross_platform_metadata_difference": "Generated README and payload manifest use platform line endings; receipt hashes reflect those two files. All parsed metadata and normalized text are equal.",
+  "source_package": {
+    "files": 72,
+    "bytes": 3051687,
+    "sha256": "13848512707e3c3c11ad013bc1388b93589282700a6417ca652c5a531d42f996",
+    "repeat_build_identical": true,
+    "previous_updater_inspection": "passed",
+    "previous_updater_commit": "c90570ba1b217828c6bf64de165db059521c703c",
+    "in_memory_only": true,
+    "published": false
+  },
+  "existing_game_payload_revisions_changed": false
+}

@@ -1,8 +1,9 @@
 # Next highest-ranked missing entries
 
-September 20, 2026. These are source reviews and original-engine comparisons,
-not new selectable conversions. Recipe coverage remains 38 of the frozen 150
-entries, with 112 still lacking recipes. The separate stock campaign plan is
+September 20, 2026. These source reviews began as original-engine comparisons.
+MLP3 has since become a selectable prototype; the SP and mod entries below remain
+intake work. Recipe coverage is now 39 of the frozen 150 entries, with 111 still
+lacking recipes. The separate stock campaign plan is
 unchanged. Original downloads, source-bearing audits and all game assets stay
 private; this document contains only findings and evidence hashes.
 
@@ -59,8 +60,10 @@ simulation in the expected world/mode without resource diagnostics; source and
 staged inputs remained unchanged and no visible owned window was sampled.
 This does not establish the absent script's intended behavior or audible events.
 Preserve the original vector-token and undeclared-symbol findings for comparison.
-No selectable MLP3 recipe, converted runtime, complete playthrough, connected-peer
-or retail-engine result is claimed by this checkpoint.
+MLP3 is now selectable as revision 1. Its [conversion review](MLP3_REVIEW.md)
+records all eight converted initial renders, two further passive MotS runs, exact
+service reproduction and explicit remaining limits. No complete playthrough,
+connected-peer or retail-engine result is claimed.
 
 ## Singleplayer: Imperial Siege On Derra IV
 

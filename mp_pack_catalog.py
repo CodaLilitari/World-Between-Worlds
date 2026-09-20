@@ -1133,3 +1133,790 @@ PACKS['mp-dbz-tdir-tournament'] = {'title': 'DBZ: TDIR Tournament Level Pack',
                               'resource_diagnostic_count': 0}],
                   'note': 'Loading and advancing simulation only; rendering, mechanics, respawn '
                           'and peers remain open.'}}
+
+
+PACKS['mp-mlp3'] = {'author': 'Various',
+ 'catalog_status': 'prototype',
+ 'download_rank': 7,
+ 'download_url': 'https://www.massassi.net/media/levels/files/jkmp/mlp3.zip',
+ 'episode_rows': [{'darkpow': 0,
+                   'disc': 0,
+                   'goto_a': 20,
+                   'goto_b': -1,
+                   'level': 1,
+                   'lightpow': 0,
+                   'line': 10,
+                   'type': 'LEVEL',
+                   'world': 'jkl/hoodwink.jkl',
+                   'world_spec': 'hoodwink'},
+                  {'darkpow': 0,
+                   'disc': 0,
+                   'goto_a': 30,
+                   'goto_b': -1,
+                   'level': 2,
+                   'lightpow': 0,
+                   'line': 20,
+                   'type': 'LEVEL',
+                   'world': 'jkl/dryheatnc.jkl',
+                   'world_spec': 'dryheat'},
+                  {'darkpow': 0,
+                   'disc': 0,
+                   'goto_a': 40,
+                   'goto_b': -1,
+                   'level': 3,
+                   'lightpow': 0,
+                   'line': 30,
+                   'type': 'LEVEL',
+                   'world': 'jkl/wartriangle2.jkl',
+                   'world_spec': 'hard-vacuum'},
+                  {'darkpow': 0,
+                   'disc': 0,
+                   'goto_a': 50,
+                   'goto_b': -1,
+                   'level': 4,
+                   'lightpow': 0,
+                   'line': 40,
+                   'type': 'LEVEL',
+                   'world': 'jkl/contest.jkl',
+                   'world_spec': 'deaths-dome'},
+                  {'darkpow': 0,
+                   'disc': 0,
+                   'goto_a': 60,
+                   'goto_b': -1,
+                   'level': 5,
+                   'lightpow': 0,
+                   'line': 50,
+                   'type': 'LEVEL',
+                   'world': 'jkl/warehouse.jkl',
+                   'world_spec': 'warehouse'},
+                  {'darkpow': 0,
+                   'disc': 0,
+                   'goto_a': 70,
+                   'goto_b': -1,
+                   'level': 6,
+                   'lightpow': 0,
+                   'line': 60,
+                   'type': 'LEVEL',
+                   'world': "jkl/oy'glah'th.jkl",
+                   'world_spec': 'oyglahth'},
+                  {'darkpow': 0,
+                   'disc': 0,
+                   'goto_a': 80,
+                   'goto_b': -1,
+                   'level': 7,
+                   'lightpow': 0,
+                   'line': 70,
+                   'type': 'LEVEL',
+                   'world': 'jkl/subway.jkl',
+                   'world_spec': 'subway'},
+                  {'darkpow': 0,
+                   'disc': 0,
+                   'goto_a': 10,
+                   'goto_b': -1,
+                   'level': 8,
+                   'lightpow': 0,
+                   'line': 80,
+                   'type': 'LEVEL',
+                   'world': 'jkl/castle.jkl',
+                   'world_spec': 'castle'}],
+ 'episode_sha256': 'e54e2f027cab8840b08640dce1c78d15f337b015f307e18961cefe5bc2ac4d9f',
+ 'gob_member': 'mlp3.gob',
+ 'gob_sha256': '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b',
+ 'massassi_id': 1270,
+ 'runtime_test': {'status': 'eight-world-initial-render-passed',
+                  'scope': 'Hidden initial rendered capture at the authored camera in all eight '
+                           'MotS multiplayer worlds',
+                  'full_gameplay': False,
+                  'payload_sha256': 'a84cf40c7400c5b17ac1a840dccb15b174756338fc42f8a51c59a82bcdbae190',
+                  'engine_sha256': '4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94',
+                  'engine_commit': '28ec799f1dab3f3954b4d395d19711c2204c43b1',
+                  'evidence_report_sha256': '0ffd031146ae891cfba5af933118627a2e0363bf4d020aa0752313e174dcc6d0',
+                  'image_comparison_sha256': 'b9f744eec148506cd0b54761902dde228091f5a02ed6e94c78ff80c5ae2e5ca4',
+                  'worlds': [{'world': 'br_mp1270_h.jkl',
+                              'mode': 'mots-multiplayer',
+                              'initial_render_passed': True,
+                              'evidence_report_sha256': '0f9b959f0020c642c0ee8a0512b379b478e787c9c0c64425d34862bca604b75e',
+                              'resource_diagnostic_count': 0},
+                             {'world': 'br_mp1270_d.jkl',
+                              'mode': 'mots-multiplayer',
+                              'initial_render_passed': True,
+                              'evidence_report_sha256': '9e56a99156b940a2b2608707a99fde7f04d70151632db67306b2d30941123312',
+                              'resource_diagnostic_count': 0},
+                             {'world': 'br_mp1270_v.jkl',
+                              'mode': 'mots-multiplayer',
+                              'initial_render_passed': True,
+                              'evidence_report_sha256': 'de9a61e88cf85828e998910feec8e57b94cee28e03266721a658a5946cb780a6',
+                              'resource_diagnostic_count': 0},
+                             {'world': 'br_mp1270_x.jkl',
+                              'mode': 'mots-multiplayer',
+                              'initial_render_passed': True,
+                              'evidence_report_sha256': '23645d0cbf32e239240df0589a2f5c62e772bec831665dd649909bda79bb7a27',
+                              'resource_diagnostic_count': 0},
+                             {'world': 'br_mp1270_w.jkl',
+                              'mode': 'mots-multiplayer',
+                              'initial_render_passed': True,
+                              'evidence_report_sha256': '4ee14867fd87b8b5f4600867dda8fa6d25973241f3e760a329cdca2531aa1681',
+                              'resource_diagnostic_count': 0},
+                             {'world': 'br_mp1270_o.jkl',
+                              'mode': 'mots-multiplayer',
+                              'initial_render_passed': True,
+                              'evidence_report_sha256': '2c0b0bca445e3d9c89f4175fdee84fb3df72e7f2c2a9c01e04b4b3eab09fe171',
+                              'resource_diagnostic_count': 0},
+                             {'world': 'br_mp1270_s.jkl',
+                              'mode': 'mots-multiplayer',
+                              'initial_render_passed': True,
+                              'evidence_report_sha256': '3431bddfa17b9d748c8a3608ad5fcdf92918efce33c6ab651aad0754db07db59',
+                              'resource_diagnostic_count': 0},
+                             {'world': 'br_mp1270_c.jkl',
+                              'mode': 'mots-multiplayer',
+                              'initial_render_passed': True,
+                              'evidence_report_sha256': '71d152be782d96836bf50c9c9a93161d89a1f351c2b3b4e4c4a4ae07b6380e66',
+                              'resource_diagnostic_count': 0}],
+                  'note': 'All eight initial captures passed exact world/mode and '
+                          'input-preservation checks with zero resource diagnostics; images were '
+                          'visually inspected. Warehouse has a warmer color balance than original '
+                          'JK; exact pixel or retail parity is not claimed. Original missing '
+                          'resources and parser anomalies remain. Authored interactions, audible '
+                          'behavior, episode transitions and connected peers remain unverified.'},
+ 'source_url': 'https://www.massassi.net/levels/files/1270.shtml',
+ 'tag': 'mp1270',
+ 'title': 'The Massassi Temple Level Pack 3',
+ 'world_specs': {'hoodwink': {'author': 'Stress',
+                              'cog_edits': {},
+                              'cog_sha256': {'00_sectorthrust.cog': '6d63da50cef46ca9279d1acd957d464ebfceda257b995bdaa4b009c13efa7b47',
+                                             'mpsimplesparks.cog': '5c7aef2e4a356a17f19e180dd3a3de6b567779912e7b99d745ff47b5524cb077'},
+                              'download_rank': 7,
+                              'download_url': 'https://www.massassi.net/media/levels/files/jkmp/mlp3.zip',
+                              'environment': '00_sectorthrust.cog mpsimplesparks.cog',
+                              'episode_type': 2,
+                              'gob_member': 'mlp3.gob',
+                              'gob_sha256': '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b',
+                              'massassi_id': 1270,
+                              'native_cog_edits': {},
+                              'native_resource_overrides': {},
+                              'native_template_overrides': {},
+                              'notes': ['Source review: preserve original geometry, authored '
+                                        'environmental behavior, COG arguments, episode graph and '
+                                        'original notice. All selected runtime COG providers are '
+                                        'byte-identical to owned JK sources.',
+                                        'Preserve original missing resources; preserve Dry Heat '
+                                        'comma-decimal vector and Castle undeclared dummy. No '
+                                        'scripts, sounds or source repairs are fabricated.'],
+                              'readme_provenance': [{'bytes': 6876,
+                                                     'path': 'mlp3.txt',
+                                                     'sha256': '8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b'}],
+                              'requires_jksp': False,
+                              'resource_aliases': {},
+                              'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                              'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                              'pow_bacta.cog pow_bryar.cog pow_concrifle.cog '
+                                              'pow_crossbow.cog pow_energy.cog pow_health.cog '
+                                              'pow_mana.cog pow_power.cog pow_railcharges.cog '
+                                              'pow_railgun.cog pow_repeater.cog pow_sequencer.cog '
+                                              'pow_shields.cog pow_single_sequencer.cog '
+                                              'pow_single_thermal.cog pow_strifle.cog '
+                                              'pow_thermal.cog',
+                              'runtime_gates': ['Compare exact original and converted world, mode '
+                                                'and mounts; authored interactions and matched '
+                                                'peers remain separate gates.'],
+                              'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                        '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                        'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                        'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                        'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                        'pow_bacta.cog': '8b420d7556d92a9f2bcfbb99aeac690e85d7beb54baa7f7e7321f4121b090d56',
+                                                        'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                        'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                        'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                        'pow_energy.cog': '1bcd549121e3e9afd5ebe2bbe4b509d6d022265eee3239a164f3a7816bf10d8f',
+                                                        'pow_health.cog': '764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011',
+                                                        'pow_mana.cog': 'f7253958c01e90bfc99d162ec0af0c2cc819e561c817165bcf434dadb776a30a',
+                                                        'pow_power.cog': '073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061',
+                                                        'pow_railcharges.cog': '18e5b0cf2ee4cc133582ba8879577f060b06c8eeda22d63bbc401deb998f57e3',
+                                                        'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                        'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                        'pow_sequencer.cog': '0f5b9acde5776625fd32f7d7582c4676dfc3b64cf784614fcd69733bcd324392',
+                                                        'pow_shields.cog': '8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad',
+                                                        'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                        'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                        'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73',
+                                                        'pow_thermal.cog': '962d2fb78f1e818439056039b76573f69ec50b0ffcea442cecedb05783290f3b'},
+                              'runtime_test': {'status': 'pack-initial-render-recorded',
+                                               'full_gameplay': False,
+                                               'note': 'This world was initially rendered within '
+                                                       'the exact complete eight-world pack; '
+                                                       'evidence is attached to the pack. '
+                                                       'Component output alone was not hosted. '
+                                                       'Authored interactions, audible behavior '
+                                                       'and peers remain unverified.'},
+                              'scripts_sha256': '980330fc34d5e7d403c7611439cba9c7d80a6ddd422717ba7c2acb5944b174a2',
+                              'sha256': '039bd934c7dd175f5448518f5ed0fa184025aabc758d39c57197c189322ecfc5',
+                              'source_omissions': [{'name': '00electrexplo3.wav',
+                                                    'reason': 'Original sound absent from exact '
+                                                              'original and all nine pinned owned '
+                                                              'archives. Preserve sound '
+                                                              'table/default edge. The sole '
+                                                              'Hoodwink mpsimplesparks instance '
+                                                              'supplies existing 00rumbleamb01.wav '
+                                                              'as its fifth exposed argument; this '
+                                                              'does not establish audible runtime '
+                                                              'behavior.',
+                                                    'referrer': 'jkl/hoodwink.jkl',
+                                                    'referrer_sha256': '039bd934c7dd175f5448518f5ed0fa184025aabc758d39c57197c189322ecfc5'},
+                                                   {'name': '00electrexplo3.wav',
+                                                    'reason': 'Original sound absent from exact '
+                                                              'original and all nine pinned owned '
+                                                              'archives. Preserve sound '
+                                                              'table/default edge. The sole '
+                                                              'Hoodwink mpsimplesparks instance '
+                                                              'supplies existing 00rumbleamb01.wav '
+                                                              'as its fifth exposed argument; this '
+                                                              'does not establish audible runtime '
+                                                              'behavior.',
+                                                    'referrer': 'cog/mpsimplesparks.cog',
+                                                    'referrer_sha256': '5c7aef2e4a356a17f19e180dd3a3de6b567779912e7b99d745ff47b5524cb077'}],
+                              'source_url': 'https://www.massassi.net/levels/files/1270.shtml',
+                              'tag': 'mp1270_h',
+                              'title': 'Hoodwink',
+                              'world': 'jkl/hoodwink.jkl',
+                              'zip_sha256': '48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1'},
+                 'dryheat': {'author': 'NorthChaos',
+                             'cog_edits': {},
+                             'cog_sha256': {'00_sectorthrust.cog': '6d63da50cef46ca9279d1acd957d464ebfceda257b995bdaa4b009c13efa7b47'},
+                             'download_rank': 7,
+                             'download_url': 'https://www.massassi.net/media/levels/files/jkmp/mlp3.zip',
+                             'environment': '00_sectorthrust.cog',
+                             'episode_type': 2,
+                             'gob_member': 'mlp3.gob',
+                             'gob_sha256': '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b',
+                             'massassi_id': 1270,
+                             'native_cog_edits': {},
+                             'native_resource_overrides': {},
+                             'native_template_overrides': {},
+                             'notes': ['Source review: preserve original geometry, authored '
+                                       'environmental behavior, COG arguments, episode graph and '
+                                       'original notice. All selected runtime COG providers are '
+                                       'byte-identical to owned JK sources.',
+                                       'Preserve original missing resources; preserve Dry Heat '
+                                       'comma-decimal vector and Castle undeclared dummy. No '
+                                       'scripts, sounds or source repairs are fabricated.'],
+                             'readme_provenance': [{'bytes': 6876,
+                                                    'path': 'mlp3.txt',
+                                                    'sha256': '8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b'}],
+                             'requires_jksp': False,
+                             'resource_aliases': {},
+                             'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                             'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                             'pow_bacta.cog pow_bryar.cog pow_concrifle.cog '
+                                             'pow_crossbow.cog pow_energy.cog pow_health.cog '
+                                             'pow_power.cog pow_railgun.cog pow_repeater.cog '
+                                             'pow_sequencer.cog pow_shields.cog '
+                                             'pow_single_sequencer.cog pow_single_thermal.cog '
+                                             'pow_strifle.cog pow_thermal.cog',
+                             'runtime_gates': ['Compare exact original and converted world, mode '
+                                               'and mounts; authored interactions and matched '
+                                               'peers remain separate gates.'],
+                             'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                       '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                       'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                       'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                       'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                       'pow_bacta.cog': '8b420d7556d92a9f2bcfbb99aeac690e85d7beb54baa7f7e7321f4121b090d56',
+                                                       'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                       'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                       'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                       'pow_energy.cog': '1bcd549121e3e9afd5ebe2bbe4b509d6d022265eee3239a164f3a7816bf10d8f',
+                                                       'pow_health.cog': '764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011',
+                                                       'pow_power.cog': '073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061',
+                                                       'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                       'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                       'pow_sequencer.cog': '0f5b9acde5776625fd32f7d7582c4676dfc3b64cf784614fcd69733bcd324392',
+                                                       'pow_shields.cog': '8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad',
+                                                       'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                       'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                       'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73',
+                                                       'pow_thermal.cog': '962d2fb78f1e818439056039b76573f69ec50b0ffcea442cecedb05783290f3b'},
+                             'runtime_test': {'status': 'pack-initial-render-recorded',
+                                              'full_gameplay': False,
+                                              'note': 'This world was initially rendered within '
+                                                      'the exact complete eight-world pack; '
+                                                      'evidence is attached to the pack. Component '
+                                                      'output alone was not hosted. Authored '
+                                                      'interactions, audible behavior and peers '
+                                                      'remain unverified.'},
+                             'scripts_sha256': 'aedac0c5e799157c526530044385a85c488b09e94e79c8e41eb1ac0e7c58fc9c',
+                             'sha256': 'bb179da0330894e45918651de258f54f21adceb9a5c3334df39896b26f6831ef',
+                             'source_omissions': [],
+                             'source_url': 'https://www.massassi.net/levels/files/1270.shtml',
+                             'tag': 'mp1270_d',
+                             'title': 'Dry Heat',
+                             'world': 'jkl/dryheatnc.jkl',
+                             'zip_sha256': '48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1'},
+                 'hard-vacuum': {'author': 'Posse and Naythn of AE',
+                                 'cog_edits': {},
+                                 'cog_sha256': {'00_sectorthrust.cog': '6d63da50cef46ca9279d1acd957d464ebfceda257b995bdaa4b009c13efa7b47'},
+                                 'download_rank': 7,
+                                 'download_url': 'https://www.massassi.net/media/levels/files/jkmp/mlp3.zip',
+                                 'environment': '00_sectorthrust.cog',
+                                 'episode_type': 2,
+                                 'gob_member': 'mlp3.gob',
+                                 'gob_sha256': '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b',
+                                 'massassi_id': 1270,
+                                 'native_cog_edits': {},
+                                 'native_resource_overrides': {},
+                                 'native_template_overrides': {},
+                                 'notes': ['Source review: preserve original geometry, authored '
+                                           'environmental behavior, COG arguments, episode graph '
+                                           'and original notice. All selected runtime COG '
+                                           'providers are byte-identical to owned JK sources.',
+                                           'Preserve original missing resources; preserve Dry Heat '
+                                           'comma-decimal vector and Castle undeclared dummy. No '
+                                           'scripts, sounds or source repairs are fabricated.'],
+                                 'readme_provenance': [{'bytes': 6876,
+                                                        'path': 'mlp3.txt',
+                                                        'sha256': '8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b'}],
+                                 'requires_jksp': False,
+                                 'resource_aliases': {},
+                                 'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                                 'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                                 'pow_bacta.cog pow_bryar.cog pow_concrifle.cog '
+                                                 'pow_crossbow.cog pow_darkside.cog '
+                                                 'pow_lightside.cog pow_mana.cog pow_railgun.cog '
+                                                 'pow_repeater.cog pow_single_sequencer.cog '
+                                                 'pow_single_thermal.cog pow_strifle.cog',
+                                 'runtime_gates': ['Compare exact original and converted world, '
+                                                   'mode and mounts; authored interactions and '
+                                                   'matched peers remain separate gates.'],
+                                 'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                           '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                           'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                           'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                           'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                           'pow_bacta.cog': '8b420d7556d92a9f2bcfbb99aeac690e85d7beb54baa7f7e7321f4121b090d56',
+                                                           'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                           'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                           'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                           'pow_darkside.cog': '739d2bd52cd1ad550178805a780db8095a1a34bb5d366c41d5871995b069c504',
+                                                           'pow_lightside.cog': 'a5f632793d2366554dd40d6cefeadba3e111a7f52b3b626c3a53c698cb84abf3',
+                                                           'pow_mana.cog': 'f7253958c01e90bfc99d162ec0af0c2cc819e561c817165bcf434dadb776a30a',
+                                                           'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                           'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                           'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                           'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                           'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73'},
+                                 'runtime_test': {'status': 'pack-initial-render-recorded',
+                                                  'full_gameplay': False,
+                                                  'note': 'This world was initially rendered '
+                                                          'within the exact complete eight-world '
+                                                          'pack; evidence is attached to the pack. '
+                                                          'Component output alone was not hosted. '
+                                                          'Authored interactions, audible behavior '
+                                                          'and peers remain unverified.'},
+                                 'scripts_sha256': '653c39486fc724c7ef4ec9a06ccab9ad7c75cf12d41155bcf65511dce612ee82',
+                                 'sha256': '9510f015e826e38ba50949552cc8fa583e1a4dd03e6c240c07adb6539add9e29',
+                                 'source_omissions': [],
+                                 'source_url': 'https://www.massassi.net/levels/files/1270.shtml',
+                                 'tag': 'mp1270_v',
+                                 'title': 'Hard Vacuum',
+                                 'world': 'jkl/wartriangle2.jkl',
+                                 'zip_sha256': '48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1'},
+                 'deaths-dome': {'author': 'Justin "Juz" Stocks',
+                                 'cog_edits': {},
+                                 'cog_sha256': {'00_sectorthrust.cog': '6d63da50cef46ca9279d1acd957d464ebfceda257b995bdaa4b009c13efa7b47',
+                                                '00_thinglight.cog': '9d29a7f6e7e8589d008bfb2b2b100433c80490bfef3eca5d7d7f56a64de498b8',
+                                                'flow.cog': '64be06d47dc1a9a70383e68f3a27f44c145940c866565ddab9bc5de4dd3e8a13',
+                                                'flow2.cog': 'ece414df5818a45d29c050864e7999791cf14b8683d7cc8d1e3d60b6e5d67127'},
+                                 'download_rank': 7,
+                                 'download_url': 'https://www.massassi.net/media/levels/files/jkmp/mlp3.zip',
+                                 'environment': '00_sectorthrust.cog 00_thinglight.cog flow.cog '
+                                                'flow2.cog',
+                                 'episode_type': 2,
+                                 'gob_member': 'mlp3.gob',
+                                 'gob_sha256': '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b',
+                                 'massassi_id': 1270,
+                                 'native_cog_edits': {},
+                                 'native_resource_overrides': {},
+                                 'native_template_overrides': {},
+                                 'notes': ['Source review: preserve original geometry, authored '
+                                           'environmental behavior, COG arguments, episode graph '
+                                           'and original notice. All selected runtime COG '
+                                           'providers are byte-identical to owned JK sources.',
+                                           'Preserve original missing resources; preserve Dry Heat '
+                                           'comma-decimal vector and Castle undeclared dummy. No '
+                                           'scripts, sounds or source repairs are fabricated.'],
+                                 'readme_provenance': [{'bytes': 6876,
+                                                        'path': 'mlp3.txt',
+                                                        'sha256': '8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b'}],
+                                 'requires_jksp': False,
+                                 'resource_aliases': {},
+                                 'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                                 'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                                 'pow_bryar.cog pow_concrifle.cog pow_crossbow.cog '
+                                                 'pow_health.cog pow_power.cog pow_railcharges.cog '
+                                                 'pow_railgun.cog pow_repeater.cog pow_shields.cog '
+                                                 'pow_single_sequencer.cog pow_single_thermal.cog '
+                                                 'pow_strifle.cog',
+                                 'runtime_gates': ['Compare exact original and converted world, '
+                                                   'mode and mounts; authored interactions and '
+                                                   'matched peers remain separate gates.'],
+                                 'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                           '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                           'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                           'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                           'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                           'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                           'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                           'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                           'pow_health.cog': '764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011',
+                                                           'pow_power.cog': '073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061',
+                                                           'pow_railcharges.cog': '18e5b0cf2ee4cc133582ba8879577f060b06c8eeda22d63bbc401deb998f57e3',
+                                                           'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                           'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                           'pow_shields.cog': '8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad',
+                                                           'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                           'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                           'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73'},
+                                 'runtime_test': {'status': 'pack-initial-render-recorded',
+                                                  'full_gameplay': False,
+                                                  'note': 'This world was initially rendered '
+                                                          'within the exact complete eight-world '
+                                                          'pack; evidence is attached to the pack. '
+                                                          'Component output alone was not hosted. '
+                                                          'Authored interactions, audible behavior '
+                                                          'and peers remain unverified.'},
+                                 'scripts_sha256': '1e950e0aa212b948f18c794cfa182cc79d0cf715d234419c4849a8a1774738bf',
+                                 'sha256': '4e5120a1ee2c40069ec551427e2dd2e7a0ffddc5f0161470640c6dc34e5d8cb8',
+                                 'source_omissions': [],
+                                 'source_url': 'https://www.massassi.net/levels/files/1270.shtml',
+                                 'tag': 'mp1270_x',
+                                 'title': "Death's Dome",
+                                 'world': 'jkl/contest.jkl',
+                                 'zip_sha256': '48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1'},
+                 'warehouse': {'author': 'Home_Sliced',
+                               'cog_edits': {},
+                               'cog_sha256': {},
+                               'download_rank': 7,
+                               'download_url': 'https://www.massassi.net/media/levels/files/jkmp/mlp3.zip',
+                               'environment': '',
+                               'episode_type': 2,
+                               'gob_member': 'mlp3.gob',
+                               'gob_sha256': '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b',
+                               'massassi_id': 1270,
+                               'native_cog_edits': {},
+                               'native_resource_overrides': {},
+                               'native_template_overrides': {},
+                               'notes': ['Source review: preserve original geometry, authored '
+                                         'environmental behavior, COG arguments, episode graph and '
+                                         'original notice. All selected runtime COG providers are '
+                                         'byte-identical to owned JK sources.',
+                                         'Preserve original missing resources; preserve Dry Heat '
+                                         'comma-decimal vector and Castle undeclared dummy. No '
+                                         'scripts, sounds or source repairs are fabricated.'],
+                               'readme_provenance': [{'bytes': 6876,
+                                                      'path': 'mlp3.txt',
+                                                      'sha256': '8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b'}],
+                               'requires_jksp': False,
+                               'resource_aliases': {},
+                               'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                               'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                               'pow_bacta.cog pow_battery.cog pow_bryar.cog '
+                                               'pow_concrifle.cog pow_crossbow.cog '
+                                               'pow_darkside.cog pow_energy.cog pow_goggles.cog '
+                                               'pow_health.cog pow_lightside.cog pow_mana.cog '
+                                               'pow_power.cog pow_railcharges.cog pow_railgun.cog '
+                                               'pow_repeater.cog pow_sequencer.cog pow_shields.cog '
+                                               'pow_single_sequencer.cog pow_single_thermal.cog '
+                                               'pow_stbkpk.cog pow_strifle.cog pow_thermal.cog '
+                                               'pow_vest.cog',
+                               'runtime_gates': ['Compare exact original and converted world, mode '
+                                                 'and mounts; authored interactions and matched '
+                                                 'peers remain separate gates.'],
+                               'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                         '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                         'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                         'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                         'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                         'pow_bacta.cog': '8b420d7556d92a9f2bcfbb99aeac690e85d7beb54baa7f7e7321f4121b090d56',
+                                                         'pow_battery.cog': 'd5580c827623ee20f6ef0e235c4b9f1dccff38a0ed4a50bb77392d59fbd4e9eb',
+                                                         'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                         'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                         'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                         'pow_darkside.cog': '739d2bd52cd1ad550178805a780db8095a1a34bb5d366c41d5871995b069c504',
+                                                         'pow_energy.cog': '1bcd549121e3e9afd5ebe2bbe4b509d6d022265eee3239a164f3a7816bf10d8f',
+                                                         'pow_goggles.cog': '635aecdf794ebbed3a1e845a6b9064eb534c18b1b288f042b87ca886f0c96e82',
+                                                         'pow_health.cog': '764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011',
+                                                         'pow_lightside.cog': 'a5f632793d2366554dd40d6cefeadba3e111a7f52b3b626c3a53c698cb84abf3',
+                                                         'pow_mana.cog': 'f7253958c01e90bfc99d162ec0af0c2cc819e561c817165bcf434dadb776a30a',
+                                                         'pow_power.cog': '073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061',
+                                                         'pow_railcharges.cog': '18e5b0cf2ee4cc133582ba8879577f060b06c8eeda22d63bbc401deb998f57e3',
+                                                         'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                         'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                         'pow_sequencer.cog': '0f5b9acde5776625fd32f7d7582c4676dfc3b64cf784614fcd69733bcd324392',
+                                                         'pow_shields.cog': '8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad',
+                                                         'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                         'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                         'pow_stbkpk.cog': '8093f45d41451564c816c2085289ad1c394a265da48f136467dbde5cd42b081e',
+                                                         'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73',
+                                                         'pow_thermal.cog': '962d2fb78f1e818439056039b76573f69ec50b0ffcea442cecedb05783290f3b',
+                                                         'pow_vest.cog': 'd3550f626554565280f3fa30bbc4c0c5b9032caad6f6d5fed47e16732efe2d5f'},
+                               'runtime_test': {'status': 'pack-initial-render-recorded',
+                                                'full_gameplay': False,
+                                                'note': 'This world was initially rendered within '
+                                                        'the exact complete eight-world pack; '
+                                                        'evidence is attached to the pack. '
+                                                        'Component output alone was not hosted. '
+                                                        'Authored interactions, audible behavior '
+                                                        'and peers remain unverified.'},
+                               'scripts_sha256': '530835807267414f5dbe2b3b477abbb939f754079fbea14361954b44ce4d3822',
+                               'sha256': 'dec517ec83b7497b19a97b0c287944c313b05958a96d78d39b8227390c369423',
+                               'source_omissions': [],
+                               'source_url': 'https://www.massassi.net/levels/files/1270.shtml',
+                               'tag': 'mp1270_w',
+                               'title': 'Warehouse',
+                               'world': 'jkl/warehouse.jkl',
+                               'zip_sha256': '48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1'},
+                 'oyglahth': {'author': 'Freelancer',
+                              'cog_edits': {},
+                              'cog_sha256': {'00_randomambient.cog': '49593d95f33ee856a2cfd9b66d4fe06d2eeca3c6eca56c2f6f59894045421474'},
+                              'download_rank': 7,
+                              'download_url': 'https://www.massassi.net/media/levels/files/jkmp/mlp3.zip',
+                              'environment': '00_randomambient.cog',
+                              'episode_type': 2,
+                              'gob_member': 'mlp3.gob',
+                              'gob_sha256': '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b',
+                              'massassi_id': 1270,
+                              'native_cog_edits': {},
+                              'native_resource_overrides': {},
+                              'native_template_overrides': {},
+                              'notes': ['Source review: preserve original geometry, authored '
+                                        'environmental behavior, COG arguments, episode graph and '
+                                        'original notice. All selected runtime COG providers are '
+                                        'byte-identical to owned JK sources.',
+                                        'Preserve original missing resources; preserve Dry Heat '
+                                        'comma-decimal vector and Castle undeclared dummy. No '
+                                        'scripts, sounds or source repairs are fabricated.'],
+                              'readme_provenance': [{'bytes': 6876,
+                                                     'path': 'mlp3.txt',
+                                                     'sha256': '8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b'}],
+                              'requires_jksp': False,
+                              'resource_aliases': {},
+                              'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                              'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                              'pow_bacta.cog pow_bryar.cog pow_concrifle.cog '
+                                              'pow_crossbow.cog pow_energy.cog pow_mana.cog '
+                                              'pow_power.cog pow_railcharges.cog pow_railgun.cog '
+                                              'pow_repeater.cog pow_shields.cog '
+                                              'pow_single_sequencer.cog pow_single_thermal.cog '
+                                              'pow_strifle.cog',
+                              'runtime_gates': ['Compare exact original and converted world, mode '
+                                                'and mounts; authored interactions and matched '
+                                                'peers remain separate gates.'],
+                              'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                        '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                        'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                        'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                        'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                        'pow_bacta.cog': '8b420d7556d92a9f2bcfbb99aeac690e85d7beb54baa7f7e7321f4121b090d56',
+                                                        'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                        'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                        'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                        'pow_energy.cog': '1bcd549121e3e9afd5ebe2bbe4b509d6d022265eee3239a164f3a7816bf10d8f',
+                                                        'pow_mana.cog': 'f7253958c01e90bfc99d162ec0af0c2cc819e561c817165bcf434dadb776a30a',
+                                                        'pow_power.cog': '073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061',
+                                                        'pow_railcharges.cog': '18e5b0cf2ee4cc133582ba8879577f060b06c8eeda22d63bbc401deb998f57e3',
+                                                        'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                        'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                        'pow_shields.cog': '8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad',
+                                                        'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                        'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                        'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73'},
+                              'runtime_test': {'status': 'pack-initial-render-recorded',
+                                               'full_gameplay': False,
+                                               'note': 'This world was initially rendered within '
+                                                       'the exact complete eight-world pack; '
+                                                       'evidence is attached to the pack. '
+                                                       'Component output alone was not hosted. '
+                                                       'Authored interactions, audible behavior '
+                                                       'and peers remain unverified.'},
+                              'scripts_sha256': 'f90d21d724c11708ce59b14b5d30e01123c46c0ff7ac35b5cf82a9b286a4b727',
+                              'sha256': 'ee3d2ce8ff2cdf1e27cc4ac7f084569dfe672d7588e09b8007b7d5059cd9855d',
+                              'source_omissions': [],
+                              'source_url': 'https://www.massassi.net/levels/files/1270.shtml',
+                              'tag': 'mp1270_o',
+                              'title': "Oy'glah'th",
+                              'world': "jkl/oy'glah'th.jkl",
+                              'zip_sha256': '48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1'},
+                 'subway': {'author': 'Jepman',
+                            'cog_edits': {},
+                            'cog_sha256': {},
+                            'download_rank': 7,
+                            'download_url': 'https://www.massassi.net/media/levels/files/jkmp/mlp3.zip',
+                            'environment': 'subway_start.cog',
+                            'episode_type': 2,
+                            'gob_member': 'mlp3.gob',
+                            'gob_sha256': '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b',
+                            'massassi_id': 1270,
+                            'native_cog_edits': {},
+                            'native_resource_overrides': {},
+                            'native_template_overrides': {},
+                            'notes': ['Source review: preserve original geometry, authored '
+                                      'environmental behavior, COG arguments, episode graph and '
+                                      'original notice. All selected runtime COG providers are '
+                                      'byte-identical to owned JK sources.',
+                                      'Preserve original missing resources; preserve Dry Heat '
+                                      'comma-decimal vector and Castle undeclared dummy. No '
+                                      'scripts, sounds or source repairs are fabricated.'],
+                            'readme_provenance': [{'bytes': 6876,
+                                                   'path': 'mlp3.txt',
+                                                   'sha256': '8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b'}],
+                            'requires_jksp': False,
+                            'resource_aliases': {},
+                            'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                            'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                            'pow_bryar.cog pow_concrifle.cog pow_crossbow.cog '
+                                            'pow_energy.cog pow_health.cog pow_power.cog '
+                                            'pow_railcharges.cog pow_railgun.cog pow_repeater.cog '
+                                            'pow_single_sequencer.cog pow_single_thermal.cog '
+                                            'pow_strifle.cog pow_thermal.cog',
+                            'runtime_gates': ['Compare exact original and converted world, mode '
+                                              'and mounts; authored interactions and matched peers '
+                                              'remain separate gates.'],
+                            'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                      '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                      'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                      'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                      'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                      'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                      'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                      'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                      'pow_energy.cog': '1bcd549121e3e9afd5ebe2bbe4b509d6d022265eee3239a164f3a7816bf10d8f',
+                                                      'pow_health.cog': '764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011',
+                                                      'pow_power.cog': '073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061',
+                                                      'pow_railcharges.cog': '18e5b0cf2ee4cc133582ba8879577f060b06c8eeda22d63bbc401deb998f57e3',
+                                                      'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                      'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                      'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                      'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                      'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73',
+                                                      'pow_thermal.cog': '962d2fb78f1e818439056039b76573f69ec50b0ffcea442cecedb05783290f3b'},
+                            'runtime_test': {'status': 'pack-initial-render-recorded',
+                                             'full_gameplay': False,
+                                             'note': 'This world was initially rendered within the '
+                                                     'exact complete eight-world pack; evidence is '
+                                                     'attached to the pack. Component output alone '
+                                                     'was not hosted. Authored interactions, '
+                                                     'audible behavior and peers remain '
+                                                     'unverified.'},
+                            'scripts_sha256': 'c43468adf5f768b42ae08b91e1440304c2cc6eb0afd4c865e7db6a1ce5658cf2',
+                            'sha256': '6fa80f14e23532c7a99a3fba96a69eede38f448988b81c0b2d0bcef40e3b5fea',
+                            'source_omissions': [{'name': 'subway_start.cog',
+                                                  'reason': 'Original active startup controller '
+                                                            'absent from exact original and all '
+                                                            'nine pinned owned archives. Script '
+                                                            'row 18 and sole argument-free COG '
+                                                            'instance 0 remain absent; authored '
+                                                            'startup intent is unknown and is not '
+                                                            'repaired.',
+                                                  'referrer': 'jkl/subway.jkl',
+                                                  'referrer_sha256': '6fa80f14e23532c7a99a3fba96a69eede38f448988b81c0b2d0bcef40e3b5fea'}],
+                            'source_url': 'https://www.massassi.net/levels/files/1270.shtml',
+                            'tag': 'mp1270_s',
+                            'title': 'Subway Station',
+                            'world': 'jkl/subway.jkl',
+                            'zip_sha256': '48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1'},
+                 'castle': {'author': 'bug',
+                            'cog_edits': {},
+                            'cog_sha256': {'jumppad1.cog': 'e48a17d815644b2dd7f876fb97130c13c76ba26ecacc0d0813fcebf1418e9407'},
+                            'download_rank': 7,
+                            'download_url': 'https://www.massassi.net/media/levels/files/jkmp/mlp3.zip',
+                            'environment': 'jumppad1.cog',
+                            'episode_type': 2,
+                            'gob_member': 'mlp3.gob',
+                            'gob_sha256': '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b',
+                            'massassi_id': 1270,
+                            'native_cog_edits': {},
+                            'native_resource_overrides': {},
+                            'native_template_overrides': {},
+                            'notes': ['Source review: preserve original geometry, authored '
+                                      'environmental behavior, COG arguments, episode graph and '
+                                      'original notice. All selected runtime COG providers are '
+                                      'byte-identical to owned JK sources.',
+                                      'Preserve original missing resources; preserve Dry Heat '
+                                      'comma-decimal vector and Castle undeclared dummy. No '
+                                      'scripts, sounds or source repairs are fabricated.'],
+                            'readme_provenance': [{'bytes': 6876,
+                                                   'path': 'mlp3.txt',
+                                                   'sha256': '8b1523c48331f6572ab921d457a79dd903e5cbdd1fcc1a619c29c3ec947ff64b'}],
+                            'requires_jksp': False,
+                            'resource_aliases': {},
+                            'runtime_cogs': '00_desttrail.cog 00_smoketrail.cog '
+                                            'class_sequencer.cog kyle.cog pow_backpack.cog '
+                                            'pow_bacta.cog pow_bryar.cog pow_concrifle.cog '
+                                            'pow_crossbow.cog pow_darkside.cog pow_energy.cog '
+                                            'pow_health.cog pow_lightside.cog pow_power.cog '
+                                            'pow_railcharges.cog pow_railgun.cog pow_repeater.cog '
+                                            'pow_sequencer.cog pow_shields.cog '
+                                            'pow_single_sequencer.cog pow_single_thermal.cog '
+                                            'pow_strifle.cog pow_thermal.cog',
+                            'runtime_gates': ['Compare exact original and converted world, mode '
+                                              'and mounts; authored interactions and matched peers '
+                                              'remain separate gates.'],
+                            'runtime_source_sha256': {'00_desttrail.cog': '6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48',
+                                                      '00_smoketrail.cog': '2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf',
+                                                      'class_sequencer.cog': '7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5',
+                                                      'kyle.cog': 'cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955',
+                                                      'pow_backpack.cog': '7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed',
+                                                      'pow_bacta.cog': '8b420d7556d92a9f2bcfbb99aeac690e85d7beb54baa7f7e7321f4121b090d56',
+                                                      'pow_bryar.cog': 'd533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169',
+                                                      'pow_concrifle.cog': 'a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011',
+                                                      'pow_crossbow.cog': 'e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85',
+                                                      'pow_darkside.cog': '739d2bd52cd1ad550178805a780db8095a1a34bb5d366c41d5871995b069c504',
+                                                      'pow_energy.cog': '1bcd549121e3e9afd5ebe2bbe4b509d6d022265eee3239a164f3a7816bf10d8f',
+                                                      'pow_health.cog': '764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011',
+                                                      'pow_lightside.cog': 'a5f632793d2366554dd40d6cefeadba3e111a7f52b3b626c3a53c698cb84abf3',
+                                                      'pow_power.cog': '073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061',
+                                                      'pow_railcharges.cog': '18e5b0cf2ee4cc133582ba8879577f060b06c8eeda22d63bbc401deb998f57e3',
+                                                      'pow_railgun.cog': '4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc',
+                                                      'pow_repeater.cog': '83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6',
+                                                      'pow_sequencer.cog': '0f5b9acde5776625fd32f7d7582c4676dfc3b64cf784614fcd69733bcd324392',
+                                                      'pow_shields.cog': '8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad',
+                                                      'pow_single_sequencer.cog': '2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e',
+                                                      'pow_single_thermal.cog': 'fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf',
+                                                      'pow_strifle.cog': 'edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73',
+                                                      'pow_thermal.cog': '962d2fb78f1e818439056039b76573f69ec50b0ffcea442cecedb05783290f3b'},
+                            'runtime_test': {'status': 'pack-initial-render-recorded',
+                                             'full_gameplay': False,
+                                             'note': 'This world was initially rendered within the '
+                                                     'exact complete eight-world pack; evidence is '
+                                                     'attached to the pack. Component output alone '
+                                                     'was not hosted. Authored interactions, '
+                                                     'audible behavior and peers remain '
+                                                     'unverified.'},
+                            'scripts_sha256': 'f5dfa7a0597abd16aa957178bc1697657793f55726ab19bd0ddf7207ab07a368',
+                            'sha256': '323aef6552172d30b75c9f0090af638b24c7da89007c7bf0b4687df5f2018807',
+                            'source_omissions': [],
+                            'source_url': 'https://www.massassi.net/levels/files/1270.shtml',
+                            'tag': 'mp1270_c',
+                            'title': 'Castle of Ice and Wind',
+                            'world': 'jkl/castle.jkl',
+                            'zip_sha256': '48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1'}},
+ 'zip_sha256': '48a4e32e77be5d5e656eb1d222a937dd34ddbc9b8a9945da855fdfc5a2561bc1',
+ 'summary': 'All eight original MLP3 worlds and their episode cycle preserved. Prototype retains '
+            "original missing resources, including Subway's active startup script; authored "
+            'interactions and multiplayer synchronization remain unverified.',
+ 'source_behavior_caveats': ['Subway: the original active subway_start.cog is missing from the '
+                             'original package and all reviewed owned archives. Its script-table '
+                             'row and sole placed instance are preserved as missing; intended '
+                             'startup behavior remains unknown, not repaired.',
+                             'Hoodwink: 00electrexplo3.wav is absent from the original sound table '
+                             'dependency and mpsimplesparks.cog default. The sole placed emitter '
+                             'explicitly selects existing 00rumbleamb01.wav instead of that '
+                             'default. Both original missing references remain; audible emitter '
+                             'behavior is not established by this source binding.',
+                             'Dry Heat: the original sector-thrust vector (0,00/0,00/1,00) is '
+                             'retained exactly. Its comma-decimal parser and thrust behavior '
+                             'require comparison; no normalization is applied.',
+                             'Castle of Ice and Wind: the original jump controller assigns to '
+                             'undeclared dummy. The script is preserved without repair; compile '
+                             'behavior, jump interaction and sound remain separate runtime '
+                             'checks.']}

@@ -56,7 +56,7 @@ def catalog_entries():
                  output_filename='bridge-' + spec['tag'] + '-pack-v1.goo',
                  legacy_filenames=['bridge-' + spec['tag'] + '-pack-v1.goo'],
                  runtime_test=copy.deepcopy(spec['runtime_test']),
-                 summary=f"Complete reviewed {len(spec['world_specs'])}-world pack; original episode order and locally extracted dependencies preserved.")
+                 summary=spec.get('summary', f"Complete reviewed {len(spec['world_specs'])}-world pack; original episode order and locally extracted dependencies preserved."))
             for key, spec in mp_pack_catalog.PACKS.items()]
 
 
@@ -349,8 +349,34 @@ def build_payload(archives, source, spec):
     return payload, manifest
 
 
+def readme_text(spec):
+    """Keep existing pack instructions exact; append only declared source caveats."""
+    result = (
+        f"{spec['title']} - local MotS multiplayer pack conversion\n"
+        f"Original level author: {spec['author']}. Source: {spec['source_url']}\n"
+        "Converter: World Between Worlds / Andrei Pemberton with Coda Lilitari.\n"
+        "Original readme retained unchanged beside this file. No redistribution rights are granted.\n\n"
+        "Place the generated GOO in your MotS episode folder and launch OpenJKDF2 with -motsCompat.\n"
+        "Select this multiplayer episode; all its reviewed original maps are included in their original order.\n"
+        "No startup overlay is required. Use matching generated files on all peers.\n"
+        "Structural verification does not establish rendering, authored mechanics or multiplayer synchronization.\n")
+    if 'summary' in spec:
+        require(isinstance(spec['summary'], str) and spec['summary'].strip(),
+                'Pack summary must be nonempty text')
+        result += '\n' + spec['summary'] + '\n'
+    if 'source_behavior_caveats' in spec:
+        caveats = spec['source_behavior_caveats']
+        require(isinstance(caveats, list) and all(isinstance(item, str) and item.strip() for item in caveats),
+                'Source behavior caveats must be a list of nonempty text')
+        if caveats:
+            result += '\nPreserved source behavior and open checks:\n'
+            result += ''.join('- ' + item + '\n' for item in caveats)
+    return result
+
+
 def build_to_directory(archives, original_path, stage, recipe_id):
     spec = recipe_details(recipe_id)
+    readme = readme_text(spec)
     stage = Path(stage).resolve()
     project = Path(__file__).resolve().parent
     require(stage != project and project not in stage.parents, 'Generated assets must remain outside the source repository')
@@ -369,16 +395,7 @@ def build_to_directory(archives, original_path, stage, recipe_id):
     for index, (name, data) in enumerate(readmes.items(), 1):
         with (stage / f'ORIGINAL-{index:02d}-{Path(name).name}').open('xb') as handle:
             handle.write(data)
-    (stage / 'README.txt').write_text(
-        f"{spec['title']} - local MotS multiplayer pack conversion\n"
-        f"Original level author: {spec['author']}. Source: {spec['source_url']}\n"
-        "Converter: World Between Worlds / Andrei Pemberton with Coda Lilitari.\n"
-        "Original readme retained unchanged beside this file. No redistribution rights are granted.\n\n"
-        "Place the generated GOO in your MotS episode folder and launch OpenJKDF2 with -motsCompat.\n"
-        "Select this multiplayer episode; all its reviewed original maps are included in their original order.\n"
-        "No startup overlay is required. Use matching generated files on all peers.\n"
-        "Structural verification does not establish rendering, authored mechanics or multiplayer synchronization.\n",
-        encoding='utf-8')
+    (stage / 'README.txt').write_text(readme, encoding='utf-8')
     require(target.read_bytes() == payload, 'Post-write pack verification failed')
     return dict(filename=filename, manifest_filename=manifest_path.name,
                 verification=manifest['verification'], startup_overlay=None)

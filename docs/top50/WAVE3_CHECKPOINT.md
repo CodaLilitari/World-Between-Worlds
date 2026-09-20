@@ -4,14 +4,14 @@ Development work resumed from the September 12 checkpoint. This is not a
 release or completion of the requested 150-entry expansion.
 
 The frozen queue remains **50 JK multiplayer levels, 50 singleplayer levels and
-50 mods**. The current catalog has 51 entries overall. Within the frozen queue,
-38 entries now have exact-input recipes, 37 are selectable prototypes or prior
-entries, and 112 still lack recipes. Castle Conflict remains unavailable pending
+50 mods**. The current catalog has 52 entries overall. Within the frozen queue,
+39 entries now have exact-input recipes, 38 are selectable prototypes or prior
+entries, and 111 still lack recipes. Castle Conflict remains unavailable pending
 delivery and qualification of its engine prerequisite.
 
 | Category | Exact-input recipe | Selectable | No recipe yet |
 | --- | ---: | ---: | ---: |
-| Multiplayer | 28 | 27 | 22 |
+| Multiplayer | 29 | 28 | 21 |
 | Singleplayer | 4 | 4 | 46 |
 | Mods | 6 | 6 | 44 |
 
@@ -22,6 +22,14 @@ historical acquisition/review fields; they are not live support reports.
 
 ## New concrete work
 
+- **The Massassi Temple Level Pack 3:** all eight worlds in the original cycle,
+  exact author credits and notice, independently checked component union and
+  resource ownership, and inspected initial JK/MotS views. Subway and Hoodwink
+  also passed 45-second passive observations in each mode. Three original missing
+  dependency edges remain explicitly scoped; source script quirks are preserved.
+  Warehouse's converted initial view is warmer; the cause is not isolated.
+  Gameplay, audible effects, map transitions and connected peers remain open.
+  See the [pack review](MLP3_REVIEW.md) and [evidence](mlp3-evidence.json).
 - **Canyon Stream:** exact recipe, two fresh identical builds, original omission
   scope controls, independent geometry/resource verification, paired initial JK
   and MotS views, and 45 seconds of advancing MotS MP host simulation. The
@@ -50,7 +58,7 @@ playthrough.
 
 ## Integration and validation state
 
-The final source suite passed on Windows/Python 3.13.15 and Ubuntu/Python 3.14.4:
+The earlier three-recipe source suite passed on Windows/Python 3.13.15 and Ubuntu/Python 3.14.4:
 392 checks per platform, with 390 passing and two environment-specific skips.
 Windows skipped a symlink-creation check because this process lacked the required
 privilege and a virtual-environment ancestry check; Linux skipped two Windows-only
@@ -74,7 +82,7 @@ The read-only installation scanner recognizes all three staged archives as
 current revision 1, with zero errors or changes to any of those 22 files. This
 was an explicit private staging-tree scan, not a scan of a user's installation.
 
-All 51 exported recipes and source locks match the live catalog. An in-memory
+At that checkpoint, all 51 exported recipes and source locks matched the live catalog. An in-memory
 source package passed full inspection with the previous checkpoint's updater,
 including its explicit file allowlist and game-asset exclusions. It was not
 published as a release. Exact output, package, test-log and receipt hashes are
@@ -97,21 +105,32 @@ game-payload revision changed. The source package rebuilt identically in memory
 and passed the preceding updater's inspection. This infrastructure change adds
 no selectable recipe by itself.
 
-The [next highest-ranked missing-entry review](NEXT_ENTRY_REVIEW.md) records
-new original-engine comparisons and concrete source issues for the next MP,
-SP and mod entries. These intake results do not add selectable recipes.
+The subsequent MLP3 catalog integration adds one prototype, revision `wbw_v1`.
+Windows/Python 3.13.15 and Linux/Python 3.14.4 each ran 414 source tests: 412 passed
+and two environment-specific checks were skipped. The actual service produced
+the same versioned archive on both platforms; two fresh Windows hash seeds also
+produced identical complete result folders. The read-only scanner recognizes the
+output as current. All 52 source locks match the catalog. The
+[MLP3 validation record](mlp3-validation.json) records package inspection and exact
+hashes; no binary release or converted assets were published.
 
-1. Progress the remaining 112 entries through exact conversion and appropriate
+The [next highest-ranked missing-entry review](NEXT_ENTRY_REVIEW.md) records
+original-engine comparisons and concrete source issues for MP, SP and mod
+entries, with MLP3's subsequent promotion distinguished from the other intake work.
+
+1. Progress the remaining 111 entries through exact conversion and appropriate
    MotS tests, including multiworld packs and all authored mod selections.
 2. Add the missing gameplay proof for existing prototypes: ordinary control-driven
    doors/lifts, pickups and respawn, authored traps, SP goals and saves, full skin
    appearance/animation, map transitions and matched second peers.
-3. Fix the now-reproduced Al model-capacity failure in the separate engine fork.
-   Forward/reversed same-world appearance sequences fall back to Kyle on the
-   eighteenth distinct request at 109/109 models; fresh individual and repeated
-   cached-selection controls pass. The earlier material estimate was incorrect:
-   live capacity is 1,288, not 644. See the
-   [capacity evidence and limits](als-capacity-runtime-evidence.json). A separate
+3. Complete the sound-capacity correction and combined engine qualification for
+   Al's skin pack. The model correction is pushed to the separate engine fork:
+   [bf7a46f8](https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes/commit/bf7a46f8dc30ddc6fd4734326935a6ea07081ef7).
+   Both unchanged 32-appearance sequences now select the correct models and
+   soundclasses, beyond the old eighteenth-selection failure. This is not a full
+   135-appearance, animation, save or peer qualification. See the
+   [model-growth evidence](als-model-growth-evidence.json). The earlier material
+   estimate was incorrect: live capacity is 1,288, not 644. A separate
    [sound-loader probe](als-sound-capacity-evidence.json) now confirms existing
    WAVs are rejected at 153/153 slots, sometimes while model and soundclass
    selection still succeeds. This needs its own correction; audible events

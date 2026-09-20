@@ -1,7 +1,12 @@
 """Synthetic failures for multi-world graph preservation and archive unions."""
 import copy
+import os
+from pathlib import Path
+import tempfile
 import unittest
+from unittest.mock import patch
 
+import blackwing_revisions
 from gob import Gob, build_gob
 import mp_pack_converter as converter
 
@@ -295,6 +300,124 @@ class PackOmissionTests(unittest.TestCase):
         conflict = dict(omissions[0], reason='A different review')
         with self.assertRaisesRegex(converter.PackError, 'Conflicting component omission'):
             self.validate([('one', self.output)], omissions + [conflict])
+
+
+class PackCatalogAndReadmeTests(unittest.TestCase):
+    PRIOR_README_SHA256 = {
+        'mp-6000-block': '32059ddd198a3deadb547fe42a3f5c9d0d9d0af353bdb979f51a8135e47cd032',
+        'mp-gladiator': 'f73c21f35d2e70353003edbd1ec567c6c68dbb88b7c0dc7d5dd87d70b98d7047',
+        'mp-the-matrix': '24bcb3893c4e86df6794316bd7ebf926e93699865434a28dd5472c82b3d88edd',
+        'mp-dbz-tdir-tournament': '0e0a0ff1287603a05633801d643120d5d744e20e7ca2963f9a75d2de0baaadf4',
+    }
+
+    def synthetic_delivery(self, recipe_id, spec=None):
+        payload = build_gob({'episode.jk': b'"Synthetic writer fixture"\nend\n'})
+        notice = b'Original synthetic notice\r\nRetain exact bytes.\r\n'
+        original = Gob(build_gob({}))
+        with tempfile.TemporaryDirectory() as root:
+            stage = Path(root) / 'output'
+            with patch.object(converter, 'read_original', return_value=(original, {'notice.txt': notice})), \
+                    patch.object(converter, 'build_payload', return_value=(payload, {'verification': {'status': 'fixture'}})):
+                if spec is None:
+                    converter.build_to_directory({}, 'unused-original.zip', stage, recipe_id)
+                else:
+                    with patch.object(converter, 'recipe_details', return_value=spec):
+                        converter.build_to_directory({}, 'unused-original.zip', stage, recipe_id)
+            self.assertEqual(next(stage.glob('*.goo')).read_bytes(), payload)
+            self.assertEqual((stage / 'ORIGINAL-01-notice.txt').read_bytes(), notice)
+            return (stage / 'README.txt').read_bytes()
+
+    def test_prior_four_pack_readmes_retain_exact_text_and_platform_bytes(self):
+        for recipe_id, expected in self.PRIOR_README_SHA256.items():
+            with self.subTest(recipe_id=recipe_id):
+                spec = converter.recipe_details(recipe_id)
+                self.assertNotIn('summary', spec)
+                self.assertNotIn('source_behavior_caveats', spec)
+                text = converter.readme_text(spec)
+                self.assertEqual(converter.digest(text.encode('utf-8')), expected)
+                self.assertEqual(self.synthetic_delivery(recipe_id),
+                                 text.replace('\n', os.linesep).encode('utf-8'))
+
+    def test_optional_summary_replaces_only_that_catalog_description(self):
+        rows = {row['id']: row for row in converter.catalog_entries()}
+        for recipe_id in self.PRIOR_README_SHA256:
+            count = len(converter.recipe_details(recipe_id)['world_specs'])
+            self.assertEqual(rows[recipe_id]['summary'],
+                             f'Complete reviewed {count}-world pack; original episode order and locally extracted dependencies preserved.')
+        spec = converter.recipe_details('mp-mlp3')
+        self.assertEqual(rows['mp-mlp3']['summary'], spec['summary'])
+        self.assertIn('active startup script', rows['mp-mlp3']['summary'])
+
+    def test_mlp3_is_one_revision_one_prototype_with_all_authored_worlds(self):
+        spec = converter.recipe_details('mp-mlp3')
+        expected = [
+            ('jkl/hoodwink.jkl', 'Stress'), ('jkl/dryheatnc.jkl', 'NorthChaos'),
+            ('jkl/wartriangle2.jkl', 'Posse and Naythn of AE'),
+            ('jkl/contest.jkl', 'Justin "Juz" Stocks'), ('jkl/warehouse.jkl', 'Home_Sliced'),
+            ("jkl/oy'glah'th.jkl", 'Freelancer'), ('jkl/subway.jkl', 'Jepman'),
+            ('jkl/castle.jkl', 'bug')]
+        self.assertEqual([(row['world'], spec['world_specs'][row['world_spec']]['author'])
+                          for row in spec['episode_rows']], expected)
+        self.assertEqual([r['line'] for r in spec['episode_rows']], list(range(10, 81, 10)))
+        self.assertEqual([r['goto_a'] for r in spec['episode_rows']], [20, 30, 40, 50, 60, 70, 80, 10])
+        self.assertTrue(all(r['goto_b'] == -1 for r in spec['episode_rows']))
+        self.assertEqual(len(spec['world_specs']), 8)
+        self.assertEqual(blackwing_revisions.revision('mp-mlp3'), 1)
+        self.assertEqual(spec['catalog_status'], 'prototype')
+        self.assertIs(spec['runtime_test']['full_gameplay'], False)
+        self.assertEqual([row['id'] for row in converter.catalog_entries() if row['id'].startswith('mp-mlp3')], ['mp-mlp3'])
+
+    def test_mlp3_keeps_exact_source_omissions_without_repairs_or_overrides(self):
+        spec = converter.recipe_details('mp-mlp3')
+        self.assertEqual(spec['gob_sha256'], '0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b')
+        rules = [rule for world in spec['world_specs'].values() for rule in world['source_omissions']]
+        self.assertEqual({(r['referrer'], r['name'], r['referrer_sha256']) for r in rules}, {
+            ('jkl/hoodwink.jkl', '00electrexplo3.wav', '039bd934c7dd175f5448518f5ed0fa184025aabc758d39c57197c189322ecfc5'),
+            ('cog/mpsimplesparks.cog', '00electrexplo3.wav', '5c7aef2e4a356a17f19e180dd3a3de6b567779912e7b99d745ff47b5524cb077'),
+            ('jkl/subway.jkl', 'subway_start.cog', '6fa80f14e23532c7a99a3fba96a69eede38f448988b81c0b2d0bcef40e3b5fea')})
+        self.assertEqual(len(rules), 3)
+        for world in spec['world_specs'].values():
+            for field in ('cog_edits', 'native_cog_edits', 'native_template_overrides', 'native_resource_overrides'):
+                self.assertFalse(world[field])
+
+    def test_mlp3_delivery_includes_each_declared_caveat_and_summary(self):
+        spec = converter.recipe_details('mp-mlp3')
+        readme = self.synthetic_delivery('mp-mlp3').decode('utf-8')
+        self.assertIn(spec['summary'], readme)
+        self.assertEqual(len(spec['source_behavior_caveats']), 4)
+        for caveat in spec['source_behavior_caveats']:
+            self.assertIn('- ' + caveat, readme)
+        for token in ('active subway_start.cog', 'intended startup behavior remains unknown',
+                      '00electrexplo3.wav', '00rumbleamb01.wav', '(0,00/0,00/1,00)',
+                      'undeclared dummy', 'audible emitter behavior is not established'):
+            self.assertIn(token, readme)
+
+    def test_summary_and_caveats_are_independently_optional(self):
+        spec = converter.recipe_details('mp-6000-block')
+        original = converter.readme_text(spec)
+        spec['summary'] = 'Synthetic reviewed summary.'
+        self.assertEqual(converter.readme_text(spec), original + '\nSynthetic reviewed summary.\n')
+        del spec['summary']
+        spec['source_behavior_caveats'] = []
+        self.assertEqual(converter.readme_text(spec), original)
+        spec['source_behavior_caveats'] = ['Synthetic unresolved source behavior.']
+        self.assertTrue(converter.readme_text(spec).startswith(original))
+        self.assertIn('- Synthetic unresolved source behavior.', converter.readme_text(spec))
+
+    def test_malformed_delivery_metadata_fails_before_writing(self):
+        for field, values in (('summary', ('', 7, None)),
+                              ('source_behavior_caveats', ('not a list', [''], [None]))):
+            for value in values:
+                with self.subTest(field=field, value=value), tempfile.TemporaryDirectory() as root:
+                    spec = converter.recipe_details('mp-6000-block')
+                    spec[field] = value
+                    stage = Path(root) / 'output'
+                    with patch.object(converter, 'recipe_details', return_value=spec), \
+                            patch.object(converter, 'read_original') as read_original:
+                        with self.assertRaises(converter.PackError):
+                            converter.build_to_directory({}, 'unused-original.zip', stage, 'mp-6000-block')
+                    self.assertFalse(stage.exists())
+                    read_original.assert_not_called()
 
 
 if __name__ == '__main__':
