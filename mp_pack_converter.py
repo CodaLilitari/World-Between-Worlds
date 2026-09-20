@@ -208,7 +208,58 @@ def resource_union(components):
     return resources, providers
 
 
-def validate_union(archives, output, components, expected_metadata):
+def reference_count(data, name):
+    active = '\n'.join(line.split('#', 1)[0].split('//', 1)[0]
+                       for line in data.decode('cp1252').splitlines())
+    return sum(match[1].lower() == name for match in verify_retail.RESOURCE_LITERAL.finditer(active))
+
+
+def component_omissions(archives, source, world, output, manifest):
+    """Bind absence to original and output edges, never to a filename alone.
+
+    The independent world verifier has already reconstructed the component.
+    Recheck omission sources here and compare its report to those sources so a
+    generated manifest cannot grant an exception to the final pack resolver.
+    """
+    rules = world.get('source_omissions', [])
+    names = world.get('resource_aliases', {})
+    output_world = 'jkl/br_' + world['tag'] + '.jkl'
+    verify_retail.check_source_omissions(archives, output, source, world,
+                                       world['world'], output_world, names)
+    edges = {}
+    for rule in rules:
+        original_path, original = verify_retail.source_resource(
+            archives, Path(rule['referrer']).name, source)
+        name = names.get(rule['name'], 'br_' + rule['name'])
+        path = (output_world if original_path == world['world'] else
+                original_path.rsplit('/', 1)[0] + '/' +
+                names.get(Path(original_path).name, 'br_' + Path(original_path).name))
+        require(path not in METADATA and path in output.entries,
+                'Omission must belong to a component resource')
+        edge = (path, name)
+        require(edge not in edges, 'Duplicate reviewed component omission edge')
+        count = reference_count(original, rule['name'])
+        require(count > 0 and reference_count(output.read(path), name) == count,
+                'Reviewed omission reference count changed: ' + path)
+        require(isinstance(rule.get('reason'), str) and rule['reason'].strip(),
+                'Reviewed omission requires its source-impact explanation')
+        edges[edge] = dict(source_referrer=original_path,
+                           source_referrer_sha256=digest(original),
+                           source_name=rule['name'], output_referrer=path,
+                           output_referrer_sha256=digest(output.read(path)),
+                           output_name=name, reference_count=count, reason=rule['reason'])
+    expected = [dict(source=path, reference=name, reviewed_original_omission=True)
+                for path, name in sorted(edges)]
+    reported = manifest.get('literal_dependencies_unresolved')
+    require(isinstance(reported, list) and all(type(item) is dict for item in reported),
+            'Missing component dependency report')
+    require(sorted(reported, key=lambda item: (item.get('source', ''), item.get('reference', ''))) == expected
+            and all(item.get('reviewed_original_omission') is True for item in reported),
+            'Component unresolved dependencies differ from exact reviewed omissions')
+    return [edges[edge] for edge in sorted(edges)]
+
+
+def validate_union(archives, output, components, expected_metadata, *, omissions=()):
     expected, providers = resource_union(components)
     expected.update(expected_metadata)
     require(set(output.entries) == set(expected), 'Final pack member set differs from complete world union')
@@ -217,10 +268,29 @@ def validate_union(archives, output, components, expected_metadata):
     # JKM_MP is a separate episode, not a provider mounted beside this pack.
     # Per-world conversion must have copied any native episode-only resources.
     available = bridge.Catalog([('pack', output)] + [(key, archives[key]) for key in ('motsres', 'motssnd')])
+    allowed = {}
+    for item in omissions:
+        edge = (item['output_referrer'], item['output_name'])
+        path, name = edge
+        require(path in output.entries and path not in METADATA,
+                'Reviewed omission referrer missing from final pack')
+        require(name not in available.by_name,
+                'Pack union unexpectedly fills reviewed original omission: ' + name)
+        require(digest(output.read(path)) == item['output_referrer_sha256']
+                and reference_count(output.read(path), name) == item['reference_count'] > 0,
+                'Pack omission referrer bytes or count differ: ' + path)
+        if edge in allowed:
+            require(allowed[edge] == item, 'Conflicting component omission reviews')
+        allowed[edge] = item
+    seen = set()
     for path in sorted(output.entries):
         if Path(path).suffix in bridge.TEXT_EXTENSIONS:
             for name in sorted(bridge.references(bridge.text(output.read(path)))):
+                if (path, name) in allowed:
+                    seen.add((path, name))
+                    continue
                 available.get(name)
+    require(seen == set(allowed), 'Final pack did not retain every reviewed omission edge')
     for row in episode_rows(output.read('episode.jk')):
         require(row['world'] in output.entries, 'An active episode world is absent')
     return providers
@@ -229,7 +299,7 @@ def validate_union(archives, output, components, expected_metadata):
 def build_payload(archives, source, spec):
     require(source.sha256 == spec['gob_sha256'], 'Original pack GOB differs')
     expected_metadata = metadata(source, spec)
-    components, manifests, checks = [], {}, {}
+    components, manifests, checks, omissions = [], {}, {}, []
     for key, world in spec['world_specs'].items():
         require(not any(world.get(field) for field in
                         ('native_cog_edits', 'native_resource_overrides', 'native_text_edits', 'native_template_overrides')),
@@ -237,16 +307,16 @@ def build_payload(archives, source, spec):
         data, manifest = bridge.recipe(archives, community=source, community_spec=world)
         require('_startup_data' not in manifest and not manifest.get('required_startup_overlay'),
                 'Pack requires a separately reviewed startup profile')
-        require(not manifest['literal_dependencies_unresolved'], 'Pack has unresolved source dependencies')
         output = Gob(data, key)
         checks[key] = verify_retail.check(archives, output, community=source, community_spec=world)
+        omissions.extend(component_omissions(archives, source, world, output, manifest))
         components.append((key, output))
         manifests[key] = manifest
     resources, _ = resource_union(components)
     resources.update(expected_metadata)
     payload = build_gob(resources)
     output = Gob(payload)
-    providers = validate_union(archives, output, components, expected_metadata)
+    providers = validate_union(archives, output, components, expected_metadata, omissions=omissions)
     manifest = dict(schema=1, recipe_id=spec['key'], recipe='reviewed-multiplayer-pack-v1',
                     title=spec['title'], author=spec['author'], source_url=spec['source_url'],
                     original_zip_sha256=spec['zip_sha256'], original_gob_sha256=source.sha256,
@@ -268,6 +338,14 @@ def build_payload(archives, source, spec):
         manifest['verification']['checks'][0] = (
             'Every active original episode row retained; only reviewed world names and '
             'explicitly pinned unreferenced duplicate identifiers changed.')
+    if omissions:
+        # Shared referrers may occur in multiple independently verified worlds.
+        # Record each edge once, without turning it into a pack-wide name waiver.
+        manifest['reviewed_source_omissions'] = list({
+            (item['output_referrer'], item['output_name']): item for item in omissions}.values())
+        manifest['verification']['checks'][-1] = (
+            'Final literal closure resolves against the exact MotS profile except '
+            'listed, hash- and count-bound original omissions; their absence is preserved.')
     return payload, manifest
 
 

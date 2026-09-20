@@ -1,0 +1,102 @@
+{
+  "status": "sound-capacity-rejection-reproduced",
+  "engine_base_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+  "engine_sha256": "ac19db1b7bd9651168d409d664c938c8aa44a9170fd3ed408b1a22413747579f",
+  "patch_sha256": "e84edd5b001d94ada705dc14418beb02a801f492ab9b1eb1ef8f704826d3e089",
+  "overlay_sha256": "88211772487cd958f60629878568cdda9afdeb33c716f5854f02fd49b2fb48af",
+  "manifest_sha256": "e3cea1add6fd8be687f83efa3ccf82ed3da5e0a336f471d4ea177a93b4445211",
+  "interpretation": "Existing files rejected only after cache miss, successful file-open, and full world pool. SoundClass_LoadEntry skips each NULL sound and can still register/select the class.",
+  "allocation_changed": false,
+  "behavior_fix_applied": false,
+  "audible_playback_tested": false,
+  "simultaneous_peers_tested": false,
+  "schema": "wbw.public-sound-capacity-evidence.v1",
+  "private_evidence_sha256": "6b900010d193462ee0681e19abc408a3302e8e25db2e6917337b2ab99f524280",
+  "native_archives": [
+    {
+      "filename": "JKMRES.GOO",
+      "sha256": "fa615eafa30114afd5e38369d790e721df56ce9a4ef62b66f34fc41b7c048a12"
+    },
+    {
+      "filename": "JKMSNDLO.GOO",
+      "sha256": "b80029082c93c7c47fd886ab659f41b5318fed1fa34b173cf5fd1bb7226d3462"
+    },
+    {
+      "filename": "JKM_MP.GOO",
+      "sha256": "92e3895aa5ae179861f8174dd23c03506acad270916c7f58b7b8f260d7a36bcd"
+    }
+  ],
+  "runs": [
+    {
+      "name": "sound-forward-01",
+      "receipt_sha256": "2c8fdead879d81c28eca94e381ad018b7e8080437b3a35760f5c0cbba14d81db",
+      "events_sha256": "2f4682dbc192f3eb411f3fa61a50f4f992031014aa8dde492aa777fdc58426ad",
+      "stderr_sha256": "6d67ca0428318eacd4a59e6426d9979f6888f256982a9b188c2a88fda3e41586",
+      "model_selection_outcome": "capacity-limit-and-selection-failure",
+      "exit_code": 7,
+      "sound_capacity_rejections": 117,
+      "distinct_rejected_sounds": 25,
+      "inputs_unchanged": true,
+      "maximum_visible_owned_windows": 0,
+      "maximum_foreground_owned_windows": 0
+    },
+    {
+      "name": "sound-cache-01",
+      "receipt_sha256": "36e666e4202a86cf828d21982412013a92655bc30819015f9ab58d8eea88f02d",
+      "events_sha256": "e10784c8088b86900b2d4529858d07c93fe2c1eba54fa4487bc1030c226edf3b",
+      "stderr_sha256": "6d67ca0428318eacd4a59e6426d9979f6888f256982a9b188c2a88fda3e41586",
+      "model_selection_outcome": "all-requested-selections-loaded",
+      "exit_code": 0,
+      "sound_capacity_rejections": 0,
+      "distinct_rejected_sounds": 0,
+      "inputs_unchanged": true,
+      "maximum_visible_owned_windows": 0,
+      "maximum_foreground_owned_windows": 0
+    },
+    {
+      "name": "sound-fresh-muftak-01",
+      "receipt_sha256": "16b7c2f801fd660ca583e76c09b257fe1840057b697e22e9523fe99cc93da651",
+      "events_sha256": "6eecb655514dbd1519e3bb3618d0c9107696a77ec423b6118d0c14cc4eac9434",
+      "stderr_sha256": "0c254c84d0603eb6368216edb43b1360371000644b5a3431a33345be92d4c981",
+      "model_selection_outcome": "all-requested-selections-loaded",
+      "exit_code": 0,
+      "sound_capacity_rejections": 6,
+      "distinct_rejected_sounds": 5,
+      "inputs_unchanged": true,
+      "maximum_visible_owned_windows": 0,
+      "maximum_foreground_owned_windows": 0
+    },
+    {
+      "name": "sound-fresh-bespchew-01",
+      "receipt_sha256": "02b5aedad9765c4244822276cf5e9353b660179f229fd419810c019121f09725",
+      "events_sha256": "798e98e34871fe5c279a9005cb00cf9b38c202b7da13fcfb0637e4054de10f06",
+      "stderr_sha256": "6d67ca0428318eacd4a59e6426d9979f6888f256982a9b188c2a88fda3e41586",
+      "model_selection_outcome": "all-requested-selections-loaded",
+      "exit_code": 0,
+      "sound_capacity_rejections": 0,
+      "distinct_rejected_sounds": 0,
+      "inputs_unchanged": true,
+      "maximum_visible_owned_windows": 0,
+      "maximum_foreground_owned_windows": 0
+    }
+  ],
+  "distinct_existing_wavs_rejected": 30,
+  "origin_counts": {
+    "jksnd": 25,
+    "original": 5
+  },
+  "first_failure": {
+    "appearance_number": 2,
+    "requested_and_actual_model": "al_bespchew.3do",
+    "requested_and_actual_soundclass": "al_chewbacca.snd",
+    "sound_load_rejections": 5,
+    "used": 153,
+    "capacity": 153
+  },
+  "limitations": [
+    "No audible playback test. Matching model/soundclass and successful process exit do not prove every event sound loaded.",
+    "Same-world local-player appearance calls, not simultaneous peers, GUI browsing, or full gameplay.",
+    "The original missing kennydead.wav is a separate finding; Jar Jar was not selected in these four runs.",
+    "Window sampling cannot rule out transients wholly between samples. No sound allocation fix was applied."
+  ]
+}

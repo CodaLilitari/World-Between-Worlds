@@ -44,11 +44,23 @@ Three source dependency edges remain unresolved:
   but the sole placed instance explicitly supplies existing `00rumbleamb01.wav`.
   That is a source argument finding, not an audible-event test.
 
-The pack adapter currently rejects these omissions in both its per-world and
-merged-output checks. Any extension needs exact referrer/hash/argument gates
-and negative controls at both stages. Preserve the original vector-token and
-undeclared-symbol findings for behavior comparison. No MotS conversion, complete
-playthrough, connected-peer or retail-engine result is claimed.
+The pack adapter now supports exact reviewed original omissions through both
+its component and merged-output checks. Each exception is derived from the
+reviewed source and output bytes, with its full referring path, hashes and
+reference count. Generated manifests cannot grant exceptions. Another component
+or mounted native resource filling a missing name is rejected, as is a new
+referrer using that name. Fifteen added tests cover these failure boundaries.
+All four existing packs rebuild to byte-identical archives and manifests versus
+the previous converter; their game-payload revisions remain unchanged.
+
+[Two further original-JK observations](mlp3-original-observations.json) ran Subway
+and Hoodwink for 45 seconds each in isolated multiplayer profiles. Both advanced
+simulation in the expected world/mode without resource diagnostics; source and
+staged inputs remained unchanged and no visible owned window was sampled.
+This does not establish the absent script's intended behavior or audible events.
+Preserve the original vector-token and undeclared-symbol findings for comparison.
+No selectable MLP3 recipe, converted runtime, complete playthrough, connected-peer
+or retail-engine result is claimed by this checkpoint.
 
 ## Singleplayer: Imperial Siege On Derra IV
 

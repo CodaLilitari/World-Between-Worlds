@@ -88,6 +88,15 @@ canonical game payload separately from generated metadata.
 
 ## Next required work
 
+The subsequent pack-omission extension is covered by a separate
+[validation record](mp-pack-omission-validation.json). Windows and Linux each
+ran 407 source tests: 405 passed and two environment-specific checks were
+skipped. All four existing MP pack archives and manifests remain byte-identical
+to the previous converter. The 51 source locks were regenerated; no existing
+game-payload revision changed. The source package rebuilt identically in memory
+and passed the preceding updater's inspection. This infrastructure change adds
+no selectable recipe by itself.
+
 The [next highest-ranked missing-entry review](NEXT_ENTRY_REVIEW.md) records
 new original-engine comparisons and concrete source issues for the next MP,
 SP and mod entries. These intake results do not add selectable recipes.
@@ -102,8 +111,11 @@ SP and mod entries. These intake results do not add selectable recipes.
    eighteenth distinct request at 109/109 models; fresh individual and repeated
    cached-selection controls pass. The earlier material estimate was incorrect:
    live capacity is 1,288, not 644. See the
-   [capacity evidence and limits](als-capacity-runtime-evidence.json). The sound
-   pool also reaches its limit and needs a separate load/behavior investigation.
+   [capacity evidence and limits](als-capacity-runtime-evidence.json). A separate
+   [sound-loader probe](als-sound-capacity-evidence.json) now confirms existing
+   WAVs are rejected at 153/153 slots, sometimes while model and soundclass
+   selection still succeeds. This needs its own correction; audible events
+   remain untested.
 4. Integrate and deliver the separate engine prerequisite for Castle, preserving
    the main engine checkout and unrelated worktrees. Converter changes stay here.
 

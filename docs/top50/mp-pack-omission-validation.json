@@ -1,0 +1,73 @@
+{
+  "schema": "wbw.mp-pack-omission-validation.v1",
+  "date": "2026-09-20",
+  "assets_included": false,
+  "converter_sha256": "d05c47628413afd3bbf8b7ae12c464759b696194106ab59d798a3dabca215919",
+  "tests_sha256": "b1b651855e517b294e5e13a6bb254de87239339dd006168fe070823869b12ed0",
+  "focused_pack_tests": 33,
+  "new_omission_tests": 15,
+  "source_suites": {
+    "windows": {
+      "tests": 407,
+      "skipped": 2,
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "log_sha256": "b7ed40389b1c14ddb2beaed9a1c76a024b6e691ff85eef8b16af54e1fc54a37f",
+      "receipt_sha256": "2de4030eeb91b8364e68d0d624c145b2e586e1777f643aebdabf691978a5f192",
+      "source_unchanged": true
+    },
+    "linux": {
+      "tests": 407,
+      "skipped": 2,
+      "python": "3.14.4 (main, Jun 18 2026, 14:25:02) [GCC 15.2.0]",
+      "log_sha256": "a0fc2f12716d0b58aa5ca1983cd3d76f1143ef66ec62b5107cb64d48f28d0fb0",
+      "receipt_sha256": "9cd591ba0f0ce10ef13b5f8068021880bbbf45b3e6ed22ed42fd4907713e4417",
+      "source_unchanged": true
+    }
+  },
+  "tested_source_count": 55,
+  "existing_packs": [
+    {
+      "recipe_id": "mp-6000-block",
+      "game_payload_sha256": "602e1dc29cacd01f0306a1334ec147ae944efd7afc897c3cc900897ad7771a40",
+      "game_payload_bytes": 14281947,
+      "complete_payload_identical": true,
+      "complete_manifest_identical": true
+    },
+    {
+      "recipe_id": "mp-gladiator",
+      "game_payload_sha256": "ee827a4243fcd886803266f9db123f6ecbe09b71360a9c45bbc327ee8904c378",
+      "game_payload_bytes": 17258828,
+      "complete_payload_identical": true,
+      "complete_manifest_identical": true
+    },
+    {
+      "recipe_id": "mp-the-matrix",
+      "game_payload_sha256": "c2c5985f3921fa908bfbc9a9475615d70e16ad82bd17b5084c63ae20a2878608",
+      "game_payload_bytes": 12523464,
+      "complete_payload_identical": true,
+      "complete_manifest_identical": true
+    },
+    {
+      "recipe_id": "mp-dbz-tdir-tournament",
+      "game_payload_sha256": "3d75d6bb748ec02d0a082332c8366388712997218de99a8bed4088303584521a",
+      "game_payload_bytes": 23841091,
+      "complete_payload_identical": true,
+      "complete_manifest_identical": true
+    }
+  ],
+  "prior_pack_replay_receipt_sha256": "a8c3d683af9afa8e4466f9d7bbe0758b8be7bdbd0dacd18e4224726b4260df39",
+  "exported_recipes": 51,
+  "recipes_json_sha256": "5fc53f70ff06640afbd4d9d1d4ebbb1790f5dfcc6eabe2161af181ea6b6c2e0f",
+  "source_package": {
+    "files": 72,
+    "bytes": 3034783,
+    "sha256": "ee2e4fd7c5b47af6d88a2fd1cdd2a0ae40dc161c64afd5797a3294ceb64a5c8f",
+    "repeat_build_identical": true,
+    "previous_updater_inspection": "passed",
+    "previous_updater_commit": "77720be36ddd2fbd44378547c5e789005d7dd651",
+    "in_memory_only": true,
+    "published": false
+  },
+  "new_selectable_recipes": 0,
+  "existing_game_payload_revisions_changed": false
+}

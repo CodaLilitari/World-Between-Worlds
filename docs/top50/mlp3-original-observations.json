@@ -1,0 +1,49 @@
+{
+  "schema": "wbw.mlp3-original-passive-observations.v1",
+  "original_gob_sha256": "0f2110813ec56f0bc6a6c3816930ae0f4097efacc861d88481af9131a4fefe7b",
+  "observations": [
+    {
+      "world": "subway.jkl",
+      "receipt_sha256": "26b51b4855bcd546ea7daa0dc5dbb058346d92043b5cffe44a78b7476bbd6bb4",
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "symbols_sha256": "eec9ef8e74c29eb5631f066ae47e23ce926221cc6087f76d2ae443d9126c383b",
+      "harness_sha256": "348b57c7b12c1c870e58c6b13f86704ecb3f56c370b86d2e3e49513de4a96ae9",
+      "requested_seconds": 45,
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      },
+      "resource_diagnostics": [],
+      "first_tick": 770,
+      "last_tick": 42805
+    },
+    {
+      "world": "hoodwink.jkl",
+      "receipt_sha256": "ae73114b94c43d1bb8a38603ef839cf80238b7cb8519b66f80bb43fe236920b5",
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "symbols_sha256": "eec9ef8e74c29eb5631f066ae47e23ce926221cc6087f76d2ae443d9126c383b",
+      "harness_sha256": "348b57c7b12c1c870e58c6b13f86704ecb3f56c370b86d2e3e49513de4a96ae9",
+      "requested_seconds": 45,
+      "gates": {
+        "survived_requested_window": true,
+        "observed_expected_mode": true,
+        "expected_episode_world": true,
+        "simulation_advanced": true,
+        "inputs_and_staged_files_unchanged": true,
+        "baseline_unchanged": true,
+        "no_visible_window": true,
+        "no_harness_error": true
+      },
+      "resource_diagnostics": [],
+      "first_tick": 35,
+      "last_tick": 43048
+    }
+  ],
+  "scope": "Unchanged original in OpenJKDF2 JK multiplayer; passive simulation only. No audible events, authored controller interactions, retail parity, complete gameplay or peer claim."
+}

@@ -182,5 +182,120 @@ class EpisodeIdentifierRepairTests(unittest.TestCase):
                          .replace(b'"TWO"', b'"BR_TEST_TWO"').replace(b'"THREE"', b'"BR_TEST_THREE"'))
 
 
+class PackOmissionTests(unittest.TestCase):
+    def setUp(self):
+        self.original = b'World scripts 1\n0: lost_start.cog\nWorld cogs 1\n0: lost_start.cog\n'
+        self.converted = self.original.replace(b'lost_start.cog', b'br_lost_start.cog')
+        self.source = Gob(build_gob({'jkl/one.jkl': self.original}))
+        self.metadata = {'episode.jk': b'', 'misc/cogstrings.uni': b''}
+        self.output = Gob(build_gob({'jkl/br_first.jkl': self.converted, **self.metadata}))
+        self.archives = {key: Gob(build_gob({})) for key in ('motsres', 'motssnd')}
+        self.rule = dict(name='lost_start.cog', referrer='jkl/one.jkl',
+                         referrer_sha256=converter.digest(self.original),
+                         reason='Synthetic original active startup controller is absent; behavior unknown.')
+        self.world = dict(world='jkl/one.jkl', tag='first', source_omissions=[self.rule])
+        self.manifest = dict(literal_dependencies_unresolved=[
+            dict(source='jkl/br_first.jkl', reference='br_lost_start.cog', reviewed_original_omission=True)])
+
+    def review(self, output=None):
+        return converter.component_omissions(self.archives, self.source, self.world,
+                                              output or self.output, self.manifest)
+
+    def validate(self, components, omissions):
+        resources, _ = converter.resource_union(components)
+        result = Gob(build_gob({**resources, **self.metadata}))
+        return converter.validate_union(self.archives, result, components, self.metadata,
+                                        omissions=omissions)
+
+    def test_retains_two_original_references_and_records_exact_output_bytes(self):
+        omissions = self.review()
+        self.assertEqual(omissions[0]['reference_count'], 2)
+        self.assertEqual(omissions[0]['output_referrer_sha256'], converter.digest(self.converted))
+        self.validate([('one', self.output)], omissions)
+
+    def test_original_referrer_hash_mismatch_rejects_review(self):
+        self.rule['referrer_sha256'] = '0' * 64
+        with self.assertRaisesRegex(AssertionError, 'Original omission referrer hash'):
+            self.review()
+
+    def test_reference_occurrence_change_fails_even_when_edge_still_exists(self):
+        output = Gob(build_gob({'jkl/br_first.jkl': self.converted + b'2: br_lost_start.cog\n'}))
+        with self.assertRaisesRegex(converter.PackError, 'reference count changed'):
+            self.review(output)
+
+    def test_comment_reference_does_not_inflate_count(self):
+        output = Gob(build_gob({'jkl/br_first.jkl': self.converted + b'# br_lost_start.cog\n'}))
+        self.assertEqual(self.review(output)[0]['reference_count'], 2)
+
+    def test_missing_or_forged_manifest_approval_cannot_waive_other_edges(self):
+        for report in ([], [dict(self.manifest['literal_dependencies_unresolved'][0],
+                                 reviewed_original_omission=False)],
+                       [dict(self.manifest['literal_dependencies_unresolved'][0],
+                             reviewed_original_omission=1)],
+                       self.manifest['literal_dependencies_unresolved'] * 2,
+                       [dict(source='jkl/other.jkl', reference='br_lost_start.cog',
+                             reviewed_original_omission=True)]):
+            with self.subTest(report=report):
+                manifest = dict(literal_dependencies_unresolved=report)
+                with self.assertRaisesRegex(converter.PackError, 'differ from exact reviewed'):
+                    converter.component_omissions(self.archives, self.source, self.world,
+                                                   self.output, manifest)
+
+    def test_duplicate_source_review_rejected(self):
+        self.world['source_omissions'].append(dict(self.rule))
+        with self.assertRaisesRegex(converter.PackError, 'Duplicate reviewed'):
+            self.review()
+
+    def test_review_requires_impact_explanation(self):
+        self.rule['reason'] = ''
+        with self.assertRaisesRegex(converter.PackError, 'source-impact explanation'):
+            self.review()
+
+    def test_resolved_original_cannot_be_marked_missing(self):
+        self.source = Gob(build_gob({'jkl/one.jkl': self.original, 'cog/lost_start.cog': b'original'}))
+        with self.assertRaisesRegex(AssertionError, 'original omission unexpectedly exists'):
+            self.review()
+
+    def test_other_component_cannot_fill_the_missing_name(self):
+        omissions = self.review()
+        for path in ('cog/br_lost_start.cog', 'different/br_lost_start.cog'):
+            with self.subTest(path=path):
+                other = Gob(build_gob({path: b'made-up replacement'}))
+                with self.assertRaisesRegex(converter.PackError, 'union unexpectedly fills'):
+                    self.validate([('one', self.output), ('two', other)], omissions)
+
+    def test_native_provider_cannot_fill_the_missing_name(self):
+        omissions = self.review()
+        self.archives['motsres'] = Gob(build_gob({'cog/br_lost_start.cog': b'native'}))
+        with self.assertRaisesRegex(converter.PackError, 'union unexpectedly fills'):
+            self.validate([('one', self.output)], omissions)
+
+    def test_review_does_not_waive_same_name_from_another_world(self):
+        other = Gob(build_gob({'jkl/other.jkl': b'0: br_lost_start.cog\n'}))
+        with self.assertRaises(converter.bridge.RecipeError):
+            self.validate([('one', self.output), ('two', other)], self.review())
+
+    def test_unrelated_absent_name_still_fails(self):
+        other = Gob(build_gob({'cog/other.cog': b'sound snd=another.wav\n'}))
+        with self.assertRaises(converter.bridge.RecipeError):
+            self.validate([('one', self.output), ('two', other)], self.review())
+
+    def test_final_referrer_bytes_must_match_reviewed_component(self):
+        changed = Gob(build_gob({'jkl/br_first.jkl': self.converted + b'# unrelated edit\n'}))
+        with self.assertRaisesRegex(converter.PackError, 'referrer bytes or count differ'):
+            self.validate([('one', changed)], self.review())
+
+    def test_final_union_rejects_deleted_omission_referrer(self):
+        with self.assertRaisesRegex(converter.PackError, 'referrer missing'):
+            self.validate([('empty', Gob(build_gob({})))], self.review())
+
+    def test_identical_shared_omission_remains_valid_in_multiple_components(self):
+        omissions = self.review()
+        self.validate([('one', self.output), ('two', self.output)], omissions * 2)
+        conflict = dict(omissions[0], reason='A different review')
+        with self.assertRaisesRegex(converter.PackError, 'Conflicting component omission'):
+            self.validate([('one', self.output)], omissions + [conflict])
+
+
 if __name__ == '__main__':
     unittest.main()

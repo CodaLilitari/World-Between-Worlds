@@ -94,11 +94,25 @@ the declared 322 slots. The failed forward run used 527 of those 1,288 slots;
 it demonstrates model exhaustion, not material exhaustion. The probe deliberately
 exited with status 7 after observing fallback; this was not a process crash.
 
-The sound pool also reached 153/153, but individual sound-load results and audible
-behavior were not measured. That remains an additional gate, not a confirmed
-audio failure. These same-world appearance sequences are not simultaneous
-32-player networking, GUI qualification, or a fix. An engine correction and
-the corresponding regression runs remain required.
+Follow-up instrumentation now confirms a separate sound-loading failure at
+**153/153 sound slots**. The diagnostic runs only after a cache miss and a
+successful file-open, in the existing full-pool rejection branch. It does not
+change allocation or playback. The second appearance in the forward sequence,
+Bespin Chewbacca, already produces five failed sound loads while its requested
+model and soundclass both match. The soundclass loader can skip failed sounds
+and still report success for the class.
+
+The [four-run sound evidence](als-sound-capacity-evidence.json) records 117
+rejections across 25 existing WAVs in the forward sequence; 32 cached repeats
+produce none. Bespin Chewbacca loads fresh without capacity rejection. Fresh
+Muftak still has six initial sound rejections despite matching model/class and
+exit status zero. Across both failing runs, 30 distinct rejected files were
+verified in the exact overlay: five authored originals and 25 owned-JK
+dependencies. These are distinct from Jar Jar's genuinely absent original WAV.
+
+No audible playback was tested. These same-world appearance sequences are not
+simultaneous 32-player networking, GUI qualification, or a fix. Model and sound
+storage corrections and corresponding regression runs remain required.
 
 Required follow-ups include all authored selections, visible appearance and
 animation, weapon attachment, affected sound events, death/respawn, normal GUI
