@@ -1,8 +1,8 @@
 # Next highest-ranked missing entries
 
 September 20, 2026. These source reviews began as original-engine comparisons.
-MLP3 has since become a selectable prototype; the SP and mod entries below remain
-intake work. Recipe coverage is now 39 of the frozen 150 entries, with 111 still
+MLP3 has since become a selectable prototype; Chaos Eternal and the SP and mod
+entries below remain intake work. Recipe coverage is now 39 of the frozen 150 entries, with 111 still
 lacking recipes. The separate stock campaign plan is
 unchanged. Original downloads, source-bearing audits and all game assets stay
 private; this document contains only findings and evidence hashes.
@@ -65,6 +65,39 @@ records all eight converted initial renders, two further passive MotS runs, exac
 service reproduction and explicit remaining limits. No complete playthrough,
 connected-peer or retail-engine result is claimed.
 
+## Multiplayer next: Chaos Eternal
+
+[Massassi entry 328](https://www.massassi.net/levels/files/328.shtml), rank 10,
+by freddub. This is a three-world cooperative campaign: Academy, Club, then
+Catacombs and a terminal end. Preserve that graph, all 34 authored COGs and both
+original notices, including the credits for Nightmare's cooperative AI, FlyDuDe,
+Kebo Ren and the other contributors. The
+[intake evidence](chaos-intake-evidence.json) pins the originals, worlds and
+review records. All three unchanged worlds passed inspected initial renders in
+OpenJKDF2 JK multiplayer mode with isolated inputs, hidden windows and null audio.
+
+The principal conversion issue is Force behavior. Each authored startup script
+sets its world rank (1, 2 or 4) immediately by falling through into its timer
+handler, then repeats it at 15 seconds. Native MotS multiplayer caches its initial
+rank-based Force maximum before those world scripts and applies a persona-defined
+minimum. Merely assigning
+the new rank or restarting that controller does not preserve the low ranks.
+A separately reviewed startup profile is needed; the current pack converter
+deliberately rejects such overrides. The authored mana pickup also differs from
+both retail versions and must remain authored behavior.
+
+All 120 source cooperative actor placements have 41 exposed arguments. Five
+calls to a MotS-only thing-lookup verb warrant an execution comparison, but the
+engine accepts certain local indices too: this is not a proven actor failure.
+The missing original glass material is unused by Club and Catacombs surfaces;
+its shard is untextured. A native MotS namesake exists, so the converter must
+preserve the exact omission without accidentally filling it.
+
+No conversion or selectable recipe exists yet. Initial rendering does not prove
+actor targeting, death/reset/respawn, Force behavior, end-sector activation,
+the authored 20/3/10-second transition delays, or cooperative synchronization.
+These remain explicit implementation and runtime checks.
+
 ## Singleplayer: Imperial Siege On Derra IV
 
 [Massassi entry 6](https://www.massassi.net/levels/files/6.shtml), rank 2, by
@@ -77,17 +110,45 @@ observed. The private original-runtime summary is pinned by
 `ce68c91fa75a26a48f8b65c637dd791cd74155313adfde2529c367ffd1e9f00d`.
 
 A fresh 1,503-name source walk confirmed seven missing names, with exact hashes
-for every discovered referring resource. Some are active sound defaults or
-explicit sector/COG arguments. The missing `14awscrn.mat` is used by world surface
-10162; its native MotS namesake is a candidate for an explicit reviewed binding.
-It must not inherit an unused-material exception. The separate original glass
-material finding concerns an unused world slot and an untextured shard.
+for every discovered referring resource. The subsequent exact-token audit found
+14 referring-resource edges and 19 occurrences. Earlier substring matching
+overcounted `alarm.wav` by including `command_alarm.wav`; their exact counts are
+two and five respectively. Some omissions are potentially active sound defaults
+or explicit sector/COG arguments.
 
-The SP adapter needs narrowly reviewed missing-edge and native-provider handling
-before this episode can become a recipe. Preserve the entire authored objective,
-actor, inventory, rank/timer, camera and ending behavior. The initial original-JK
-capture does not prove every missing reference resolves, and no converted or
-retail-engine result has been produced.
+The missing `14awscrn.mat` is referenced by world surface 10162, but that surface
+has geometry mode 0 (`NONE`). A material reference alone does not establish a
+visible broken screen. The exact native MotS provider is `mat/14awscrn.mat` in
+JKMRES, resource SHA-256
+`9c4e409f7e1a5954a123f5636d639b922d5f768dadafa24d22044495dff44a9b`.
+Its source and native colormaps differ on four used palette indices. It is not a
+proven appearance-equivalent replacement and must not inherit the separate glass
+exception, which concerns an unused world slot and an untextured shard.
+
+The planned candidate preserves these seven absences under isolated names and
+reports partial resource closure, with exact per-edge hash/count/context gates.
+It must reject added referrers and unexpected providers through either legal
+loader path. No silent native material substitution is planned. The private
+exact-ownership receipt is pinned by SHA-256
+`f0182500399ef3d856c483314370af607fe7d50ef9d8dde4003a4367dde4a977`,
+and the material-context receipt by
+`eec11337cfe8db45ff6f3669cd7370a72e017d279ccda3ed7073caeff712ef19`.
+Preserved absence does not prove identical default-material fallback or indirect
+COG behavior in the two engines.
+
+Private SP adapter work now enforces those exact MAT/WAV omission edges, with
+source-derived output checks and unchanged output from the four existing SP
+recipes. The candidate build then stopped on a separate original template
+reference: the authored AT-ST controller names absent `atstdriver2T` in an active
+pilot-spawn branch. That finding needs its own source and engine review; the
+MAT/WAV exception does not permit it. No candidate archive was emitted.
+
+Native-provider review also found that MotS's blue/yellow wrench scripts add
+mission dialogue. The planned recipe retains the original scripts for those
+items. Preserve the entire authored objective, actor, inventory, rank/timer,
+camera and ending behavior. The initial original-JK capture does not prove every
+missing reference resolves, and no converted or retail-engine result has been
+produced.
 
 ## Mods: Saber Battle X — JK v3.1
 

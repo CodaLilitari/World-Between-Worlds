@@ -1,0 +1,483 @@
+{
+  "schema": "wbw.public-model-sound-growth-evidence.v1",
+  "fork_commit": "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8",
+  "fork_branch": "codex/model-sound-cache-growth",
+  "fork_commit_url": "https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes/commit/69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8",
+  "parent_model_fix": "bf7a46f8dc30ddc6fd4734326935a6ea07081ef7",
+  "base_commit": "28ec799f1dab3f3954b4d395d19711c2204c43b1",
+  "engine_sha256": "658ff65ebb6ddfc8feab5bc2721ee02fcbda5a97bd38cd62f43e7d3b630a28e6",
+  "combined_private_patch_sha256": "dd75def9e6307fd6b5f4077ff40e69ee6e61e6cdc0b744324d9215e4889be705",
+  "private_runtime_summary_sha256": "10c7e445427910331449bbcc0fb7bcc93fb6ea54b714585400a96c1eab3d0ded",
+  "runs": [
+    {
+      "sound_binding_dump_count": 32,
+      "sound_binding_dump_complete": true,
+      "linked_sound_event_count": 1920,
+      "baseline_sounds": [
+        152,
+        153
+      ],
+      "final_sounds": [
+        152,
+        153
+      ],
+      "name": "combined-cache-01",
+      "kind": "cache",
+      "exit_code": 0,
+      "requested": 32,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        93,
+        109
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 254,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 0,
+      "distinct_rejected_sounds": 0,
+      "actual_sound_pool": [
+        152,
+        153
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "305d58413e8d5543cec823861df69bcc5a5fca1d85b3559fb45db0299331a0a2",
+      "events_sha256": "0f2253a72ebb2161a45f11281dd6b2ee316cd1cb94460def9ee0478669783460",
+      "ppm_sha256": "ce9c3b72250b518ef1e822773a639c017e2807cf36a5088d0999c11f21773777",
+      "png_sha256": "4838f248876dc724d1580d741c6f6c599b5873d16b46aa280788f6d7cb91fcd6"
+    },
+    {
+      "sound_binding_dump_count": 32,
+      "sound_binding_dump_complete": true,
+      "linked_sound_event_count": 2119,
+      "baseline_sounds": [
+        152,
+        153
+      ],
+      "final_sounds": [
+        191,
+        409
+      ],
+      "name": "combined-forward-01",
+      "kind": "forward",
+      "exit_code": 0,
+      "requested": 32,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        124,
+        218
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 753,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 0,
+      "distinct_rejected_sounds": 0,
+      "actual_sound_pool": [
+        191,
+        409
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "4539485422a4571d55b755370bbe7920ed77448a27ffd24be11f537aea58d088",
+      "events_sha256": "5d22bab7f56c227b95e4678957b407aa32a804f9cec0dc27f50adf0d2ba8c6bc",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "png_sha256": "42a023e6edbbcb27519af9a4e310c30d9e53bdabc4f699779bd4a6b82dc6711b"
+    },
+    {
+      "sound_binding_dump_count": 1,
+      "sound_binding_dump_complete": true,
+      "linked_sound_event_count": 68,
+      "baseline_sounds": [
+        147,
+        153
+      ],
+      "final_sounds": [
+        147,
+        153
+      ],
+      "name": "combined-fresh-bespchew-01",
+      "kind": "fresh",
+      "exit_code": 0,
+      "requested": 1,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        93,
+        109
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 251,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 0,
+      "distinct_rejected_sounds": 0,
+      "actual_sound_pool": [
+        147,
+        153
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "f4fb785d5c0ef69faf0fd970668df219e9e5872f815a4da7fcecc0bf1a78c5ef",
+      "events_sha256": "3493aa889c46388fa821fbf31c588c6b4f3e90eaf3a8944be8a4d2379ecb973f",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "png_sha256": "42a023e6edbbcb27519af9a4e310c30d9e53bdabc4f699779bd4a6b82dc6711b"
+    },
+    {
+      "sound_binding_dump_count": 1,
+      "sound_binding_dump_complete": true,
+      "linked_sound_event_count": 70,
+      "baseline_sounds": [
+        158,
+        409
+      ],
+      "final_sounds": [
+        158,
+        409
+      ],
+      "name": "combined-fresh-duros-01",
+      "kind": "fresh",
+      "exit_code": 0,
+      "requested": 1,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        93,
+        109
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 250,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 0,
+      "distinct_rejected_sounds": 0,
+      "actual_sound_pool": [
+        158,
+        409
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "94aa777abe427da1899d4f4f72dd98fcc8e7227e25eff9fcd04ae33a576d2438",
+      "events_sha256": "3aa6e2b04fe4bf481808f9654b78562eb79769bd0dbd667073971b609280b53d",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "png_sha256": "42a023e6edbbcb27519af9a4e310c30d9e53bdabc4f699779bd4a6b82dc6711b"
+    },
+    {
+      "sound_binding_dump_count": 1,
+      "sound_binding_dump_complete": true,
+      "linked_sound_event_count": 70,
+      "baseline_sounds": [
+        158,
+        409
+      ],
+      "final_sounds": [
+        158,
+        409
+      ],
+      "name": "combined-fresh-muftak-01",
+      "kind": "fresh",
+      "exit_code": 0,
+      "requested": 1,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        93,
+        109
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 250,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 0,
+      "distinct_rejected_sounds": 0,
+      "actual_sound_pool": [
+        158,
+        409
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "0ff0c91c364255e5d368e05ebd318ab68174742cfac431f743396700702f98eb",
+      "events_sha256": "810cbb96c08007a781fcf78c067351fbe6727bcd154db6206efe67ed874402d0",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "png_sha256": "42a023e6edbbcb27519af9a4e310c30d9e53bdabc4f699779bd4a6b82dc6711b"
+    },
+    {
+      "sound_binding_dump_count": 32,
+      "sound_binding_dump_complete": true,
+      "linked_sound_event_count": 2119,
+      "baseline_sounds": [
+        158,
+        409
+      ],
+      "final_sounds": [
+        191,
+        409
+      ],
+      "name": "combined-reverse-01",
+      "kind": "reverse",
+      "exit_code": 0,
+      "requested": 32,
+      "model_and_soundclass_identity_pass": true,
+      "baseline_models": [
+        93,
+        109
+      ],
+      "final_models": [
+        124,
+        218
+      ],
+      "baseline_static_models": [
+        27,
+        32
+      ],
+      "final_static_models": [
+        27,
+        32
+      ],
+      "max_materials": 753,
+      "max_material_capacity": 1288,
+      "sound_capacity_rejection_count": 0,
+      "distinct_rejected_sounds": 0,
+      "actual_sound_pool": [
+        191,
+        409
+      ],
+      "no_model_or_material_limit": true,
+      "inputs_unchanged": true,
+      "visible_window_samples": 0,
+      "foreground_window_samples": 0,
+      "receipt_sha256": "a14f4c0c1c3dd60a43756a4ff91e86e26944613a74eb38e26cbe279bcb42b784",
+      "events_sha256": "c765f21669eab9d6451e6f50c1f91947468e115590385b5cabc2f173e922bc44",
+      "ppm_sha256": "ca29edac2510557aa774a00f3cca3e7b5b08969bf9e24d3201ddb5b303585c21",
+      "png_sha256": "42a023e6edbbcb27519af9a4e310c30d9e53bdabc4f699779bd4a6b82dc6711b"
+    }
+  ],
+  "independent_sound_bindings": [
+    {
+      "status": "all-requested-linked-events-and-headers-match",
+      "requested_classes": 32,
+      "unique_classes": 13,
+      "checked_events": 2119,
+      "distinct_sound_ids": 80,
+      "run_receipt_sha256": "4539485422a4571d55b755370bbe7920ed77448a27ffd24be11f537aea58d088",
+      "event_log_sha256": "5d22bab7f56c227b95e4678957b407aa32a804f9cec0dc27f50adf0d2ba8c6bc",
+      "engine_sha256": "658ff65ebb6ddfc8feab5bc2721ee02fcbda5a97bd38cd62f43e7d3b630a28e6",
+      "source_patch_sha256": "dd75def9e6307fd6b5f4077ff40e69ee6e61e6cdc0b744324d9215e4889be705",
+      "mode_source_sha256": "7ffd7d50fef74a6e0802971beac42ac233bc8a1073825043f400b506e19d8649",
+      "archive_reader_sha256": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+      "helper_sha256": "75e5fe435a6cd985fe4fd7e44bbffb8696eeefcdbea769643b6e69bb55ee9e4f",
+      "omissions_allowed": [],
+      "audible_playback_tested": false,
+      "run": "combined-forward-01",
+      "receipt_sha256": "1f81b3eca974ac44778e7f7bf8612746566331ff151a85d468e13f70cfdba79a"
+    },
+    {
+      "status": "all-requested-linked-events-and-headers-match",
+      "requested_classes": 32,
+      "unique_classes": 13,
+      "checked_events": 2119,
+      "distinct_sound_ids": 80,
+      "run_receipt_sha256": "a14f4c0c1c3dd60a43756a4ff91e86e26944613a74eb38e26cbe279bcb42b784",
+      "event_log_sha256": "c765f21669eab9d6451e6f50c1f91947468e115590385b5cabc2f173e922bc44",
+      "engine_sha256": "658ff65ebb6ddfc8feab5bc2721ee02fcbda5a97bd38cd62f43e7d3b630a28e6",
+      "source_patch_sha256": "dd75def9e6307fd6b5f4077ff40e69ee6e61e6cdc0b744324d9215e4889be705",
+      "mode_source_sha256": "7ffd7d50fef74a6e0802971beac42ac233bc8a1073825043f400b506e19d8649",
+      "archive_reader_sha256": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+      "helper_sha256": "75e5fe435a6cd985fe4fd7e44bbffb8696eeefcdbea769643b6e69bb55ee9e4f",
+      "omissions_allowed": [],
+      "audible_playback_tested": false,
+      "run": "combined-reverse-01",
+      "receipt_sha256": "4ead692e65c34e4536e9a8c04fb984966b4066ca499f3bbf965da242eb901381"
+    },
+    {
+      "status": "all-requested-linked-events-and-headers-match",
+      "requested_classes": 32,
+      "unique_classes": 1,
+      "checked_events": 1920,
+      "distinct_sound_ids": 37,
+      "run_receipt_sha256": "305d58413e8d5543cec823861df69bcc5a5fca1d85b3559fb45db0299331a0a2",
+      "event_log_sha256": "0f2253a72ebb2161a45f11281dd6b2ee316cd1cb94460def9ee0478669783460",
+      "engine_sha256": "658ff65ebb6ddfc8feab5bc2721ee02fcbda5a97bd38cd62f43e7d3b630a28e6",
+      "source_patch_sha256": "dd75def9e6307fd6b5f4077ff40e69ee6e61e6cdc0b744324d9215e4889be705",
+      "mode_source_sha256": "7ffd7d50fef74a6e0802971beac42ac233bc8a1073825043f400b506e19d8649",
+      "archive_reader_sha256": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+      "helper_sha256": "75e5fe435a6cd985fe4fd7e44bbffb8696eeefcdbea769643b6e69bb55ee9e4f",
+      "omissions_allowed": [],
+      "audible_playback_tested": false,
+      "run": "combined-cache-01",
+      "receipt_sha256": "7f91278085b0b2ec04e58e1dfd667cde3fca815ef173e576b84f5ec9c706c354"
+    },
+    {
+      "status": "all-requested-linked-events-and-headers-match",
+      "requested_classes": 1,
+      "unique_classes": 1,
+      "checked_events": 70,
+      "distinct_sound_ids": 43,
+      "run_receipt_sha256": "0ff0c91c364255e5d368e05ebd318ab68174742cfac431f743396700702f98eb",
+      "event_log_sha256": "810cbb96c08007a781fcf78c067351fbe6727bcd154db6206efe67ed874402d0",
+      "engine_sha256": "658ff65ebb6ddfc8feab5bc2721ee02fcbda5a97bd38cd62f43e7d3b630a28e6",
+      "source_patch_sha256": "dd75def9e6307fd6b5f4077ff40e69ee6e61e6cdc0b744324d9215e4889be705",
+      "mode_source_sha256": "7ffd7d50fef74a6e0802971beac42ac233bc8a1073825043f400b506e19d8649",
+      "archive_reader_sha256": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+      "helper_sha256": "75e5fe435a6cd985fe4fd7e44bbffb8696eeefcdbea769643b6e69bb55ee9e4f",
+      "omissions_allowed": [],
+      "audible_playback_tested": false,
+      "run": "combined-fresh-muftak-01",
+      "receipt_sha256": "4edf7c55bbd368a07ffe77c9683937cc729bd4c4db60ea2240d96f4336c0d4e5"
+    },
+    {
+      "status": "all-requested-linked-events-and-headers-match",
+      "requested_classes": 1,
+      "unique_classes": 1,
+      "checked_events": 70,
+      "distinct_sound_ids": 43,
+      "run_receipt_sha256": "94aa777abe427da1899d4f4f72dd98fcc8e7227e25eff9fcd04ae33a576d2438",
+      "event_log_sha256": "3aa6e2b04fe4bf481808f9654b78562eb79769bd0dbd667073971b609280b53d",
+      "engine_sha256": "658ff65ebb6ddfc8feab5bc2721ee02fcbda5a97bd38cd62f43e7d3b630a28e6",
+      "source_patch_sha256": "dd75def9e6307fd6b5f4077ff40e69ee6e61e6cdc0b744324d9215e4889be705",
+      "mode_source_sha256": "7ffd7d50fef74a6e0802971beac42ac233bc8a1073825043f400b506e19d8649",
+      "archive_reader_sha256": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+      "helper_sha256": "75e5fe435a6cd985fe4fd7e44bbffb8696eeefcdbea769643b6e69bb55ee9e4f",
+      "omissions_allowed": [],
+      "audible_playback_tested": false,
+      "run": "combined-fresh-duros-01",
+      "receipt_sha256": "145fdf6d438481ea02fce8cd75c616cd1818b7b1158725781debd993ed122292"
+    },
+    {
+      "status": "all-requested-linked-events-and-headers-match",
+      "requested_classes": 1,
+      "unique_classes": 1,
+      "checked_events": 68,
+      "distinct_sound_ids": 36,
+      "run_receipt_sha256": "f4fb785d5c0ef69faf0fd970668df219e9e5872f815a4da7fcecc0bf1a78c5ef",
+      "event_log_sha256": "3493aa889c46388fa821fbf31c588c6b4f3e90eaf3a8944be8a4d2379ecb973f",
+      "engine_sha256": "658ff65ebb6ddfc8feab5bc2721ee02fcbda5a97bd38cd62f43e7d3b630a28e6",
+      "source_patch_sha256": "dd75def9e6307fd6b5f4077ff40e69ee6e61e6cdc0b744324d9215e4889be705",
+      "mode_source_sha256": "7ffd7d50fef74a6e0802971beac42ac233bc8a1073825043f400b506e19d8649",
+      "archive_reader_sha256": "246aa45f5b846ecdb7075d50400f62be872c33c6804dbe4c99a7b811a20938e0",
+      "helper_sha256": "75e5fe435a6cd985fe4fd7e44bbffb8696eeefcdbea769643b6e69bb55ee9e4f",
+      "omissions_allowed": [],
+      "audible_playback_tested": false,
+      "run": "combined-fresh-bespchew-01",
+      "receipt_sha256": "0ae37dd82f7198a61f19a8e66c163f665cb8fe4cff3629ff093c61f86a8ba259"
+    }
+  ],
+  "native_controls": [
+    {
+      "name": "native-mots-kyle-01",
+      "mode": "mots",
+      "world": "k1.jkl",
+      "model": "ky.3do",
+      "soundclass": "ky.snd",
+      "passed": true,
+      "inputs_unchanged": true,
+      "resource_diagnostic_count": 0,
+      "receipt_sha256": "44334849d2b0ac30469a2762ea7374dacb1bd51b5f4ee1dbff7dee2efe4cc8fc",
+      "png_sha256": "c33b4969fe1ab6288d89bf5778cd3036c6d93275d883a424274a884c6a3f5fa4",
+      "scope": "Initial first-person hidden render only; appearance probe disabled."
+    },
+    {
+      "name": "native-mots-mara-01",
+      "mode": "mots",
+      "world": "k1.jkl",
+      "model": "kymj.3do",
+      "soundclass": "mj.snd",
+      "passed": true,
+      "inputs_unchanged": true,
+      "resource_diagnostic_count": 0,
+      "receipt_sha256": "0822abed4269176c0fa47ce46ac0df11cde72107de0f7bbd241912693fb014e9",
+      "png_sha256": "c33b4969fe1ab6288d89bf5778cd3036c6d93275d883a424274a884c6a3f5fa4",
+      "scope": "Initial first-person hidden render only; appearance probe disabled."
+    },
+    {
+      "name": "native-jk-m2-01",
+      "mode": "jk",
+      "world": "m2.jkl",
+      "model": "ky.3do",
+      "soundclass": "ky.snd",
+      "passed": true,
+      "inputs_unchanged": true,
+      "resource_diagnostic_count": 0,
+      "receipt_sha256": "bba44b8a146c82db808b280d4d0591293aa16b69a3b3056344b517ff47cabb3a",
+      "png_sha256": "daea3ed43d78f6dab545f806c0e9514a83443ee799fc487fd8530398c02d0687",
+      "scope": "Initial first-person hidden render only; appearance probe disabled."
+    }
+  ],
+  "root_native_visual_review_sha256": "a8eb64c041c1cbc87fd1917ade6b2e3b8cb32d079f14d9f69b109fdcad187240",
+  "analyzer_negative_controls": {
+    "count": 15,
+    "receipt_sha256": "641fb70ed2fc01d30491d8e3e01e7fb9acd3e013971beb783d4d849ea32ac6be"
+  },
+  "rejected_private_build": {
+    "receipt_sha256": "21c5823122d6f8f54a9bc98deee21b965728698eea4ec3737e7a11c07fee3b7c",
+    "launched": false,
+    "reason": "Missing header in diagnostic snapshot; rejected before launch, corrected runtime-v2 used for all recorded controls."
+  },
+  "assets_included": false,
+  "scope": "Stable model/sound storage and complete requested soundclass event/header loading for the pinned Al appearance controls, plus native initial-render regressions.",
+  "limits": [
+    "No PCM decode/backend playback or audible gameplay result.",
+    "Sequences exercise 32 requested appearances and 13 unique soundclasses, not all 135 authored appearances or simultaneous 32-player networking.",
+    "No full-body/animation, GUI selection, weapon attachment, death/respawn, same-process map transition, save/load or connected-peer qualification.",
+    "Canonical flat resource names of at most 31 bytes; legacy layouts and fixed-storage policy retained. Existing signed static-wire decoding is not reinterpreted.",
+    "Malformed WAV/model parser behavior, cache-name truncation/aliasing and wider runtime semantics remain separate concerns."
+  ]
+}

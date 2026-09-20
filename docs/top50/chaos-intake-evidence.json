@@ -1,0 +1,158 @@
+{
+  "schema": "wbw.public-chaos-intake.v1",
+  "status": "intake-only-not-selectable-no-conversion-built",
+  "massassi_url": "https://www.massassi.net/levels/files/328.shtml",
+  "frozen_mp_rank": 10,
+  "author": "freddub",
+  "source_zip": {
+    "bytes": 1911687,
+    "sha256": "c4134bb218c0f34089598f255a97adf94b7a6c9f71d38a9cbe3612980c87cbe3"
+  },
+  "source_gob": {
+    "bytes": 6182317,
+    "sha256": "2ef0acee7c1368fbeeed808ff8550ecfe743f57e00bbf340a3cb75e7da516235"
+  },
+  "original_notices": {
+    "Chaos.txt": {
+      "bytes": 4503,
+      "sha256": "cf4b98b53d93a25416df7eac21ca97e21ce9aa1a87224499921e109652a20e6b"
+    },
+    "coopreadme.txt": {
+      "bytes": 613,
+      "sha256": "d00a8d42aa98c057dbc4754da30dd31e85cca5191a4093fb9c96d1b6ddecc94e"
+    }
+  },
+  "source_entries": 229,
+  "episode_sha256": "c2b9de4f58d1f11e8b15b8fd155d646a057c4d459c814141c43a9442a9a0bde1",
+  "episode_rows": [
+    {
+      "line": 10,
+      "disc": 0,
+      "level": 1,
+      "type": "LEVEL",
+      "world": "jkl/academy.jkl",
+      "lightpow": 0,
+      "darkpow": 0,
+      "goto_a": 11,
+      "goto_b": -1
+    },
+    {
+      "line": 11,
+      "disc": 0,
+      "level": 2,
+      "type": "LEVEL",
+      "world": "jkl/club.jkl",
+      "lightpow": 0,
+      "darkpow": 0,
+      "goto_a": 12,
+      "goto_b": -1
+    },
+    {
+      "line": 12,
+      "disc": 0,
+      "level": 3,
+      "type": "LEVEL",
+      "world": "jkl/catacombs.jkl",
+      "lightpow": 0,
+      "darkpow": 0,
+      "goto_a": -1,
+      "goto_b": -1
+    }
+  ],
+  "authored_cog_count": 34,
+  "worlds": [
+    {
+      "path": "jkl/academy.jkl",
+      "sha256": "fdf918b8cd5d9637dddeef9a85c11037aff9e1e9893c92e377e99e809bec8178",
+      "script_count": 73,
+      "cog_count": 83,
+      "cog_declared_capacity": 156,
+      "surface_count": 2799,
+      "ai_instances": 36,
+      "ai_argument_counts": [
+        41
+      ],
+      "ai_trigger_values": {
+        "0": 36
+      },
+      "start_rank": 1
+    },
+    {
+      "path": "jkl/club.jkl",
+      "sha256": "4e7493b19a1ebecea2d65706a24fb74caf8efbdcbc4de24e302f3891631000fe",
+      "script_count": 71,
+      "cog_count": 104,
+      "cog_declared_capacity": 175,
+      "surface_count": 1887,
+      "ai_instances": 52,
+      "ai_argument_counts": [
+        41
+      ],
+      "ai_trigger_values": {
+        "0": 52
+      },
+      "start_rank": 2
+    },
+    {
+      "path": "jkl/catacombs.jkl",
+      "sha256": "f2dc898ea7a0ece3d2f78db3f9e92ca4f7467ad9117ccf5741b76dc6b21c168e",
+      "script_count": 49,
+      "cog_count": 56,
+      "cog_declared_capacity": 105,
+      "surface_count": 8233,
+      "ai_instances": 32,
+      "ai_argument_counts": [
+        41
+      ],
+      "ai_trigger_values": {
+        "0": 32
+      },
+      "start_rank": 4
+    }
+  ],
+  "original_captures": [
+    {
+      "bytes": 3405,
+      "sha256": "b4cdcd693a1e96cddfabdb15e62187abcae83d9277f944d7499828b6d0b77dce",
+      "world": "academy.jkl",
+      "passed": true,
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "image_sha256": "7ba2f382941722ccbf4863d2ccae3ebc763727f3319f27de445508b1cb5d4e67",
+      "scope": "Original JK multiplayer initial rendering only; hidden window and null audio."
+    },
+    {
+      "bytes": 3392,
+      "sha256": "f723076924886bafb16a95e8fbfc583452c7880cb396ecf374f7cf6179386c9a",
+      "world": "club.jkl",
+      "passed": true,
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "image_sha256": "de3f75e473ee3f06140855f78e995805eae1f1209d4dd242bde51736285d1b1c",
+      "scope": "Original JK multiplayer initial rendering only; hidden window and null audio."
+    },
+    {
+      "bytes": 3371,
+      "sha256": "c973148f978ff9f00776118a754634544d22feaa46d3ebd971d130b5656cdfcb",
+      "world": "catacombs.jkl",
+      "passed": true,
+      "engine_sha256": "4b208d7455223e1d6dd059938cb9c128b2dc4d97ff76ca1f00c891cc24ffdf94",
+      "image_sha256": "25639d60cb7a440faaf543723e333adcd220a6f3fcbf69a999cbfef27087b599",
+      "scope": "Original JK multiplayer initial rendering only; hidden window and null audio."
+    }
+  ],
+  "private_source_review_sha256": "df4c6b82bbf13cb2d1e8aff1e5f62d8ad8a198ecfeeb720fd099c50abe8f514c",
+  "private_plan_sha256": "ed89f4a7925bf035114167b8c0f2213b2335a151c17fbc846a6908a6a706d2a9",
+  "private_review_receipt_sha256": "4c7349615bfad0214cec0ef712bcbe23ebfa234976ac83ca52e4eab6d456a396",
+  "findings": [
+    "Preserve the three-world cooperative campaign and its terminal end, all 34 authored COGs, and both original notices.",
+    "The authored startup scripts set ranks 1, 2 and 4 immediately by label fall-through, then again at 15 seconds. Native MotS MP Force maximum caching requires a separately reviewed adaptation.",
+    "The authored mana pickup differs from both owned retail providers and must remain an authored controller.",
+    "All 120 source cooperative actor placements have 41 exposed arguments and trigger value 0. MotS-only GetGuidThing calls require behavior comparison; a name or index difference alone does not establish a failure.",
+    "The missing original glass material has no world-surface uses in Club or Catacombs; the shared shard is untextured. A native MotS namesake exists and must not silently fill the omission.",
+    "The placed end-controller delays are 20, 3 and 10 seconds. Preserve the source graph and verify actual transitions separately."
+  ],
+  "limits": [
+    "No converted archive, selectable recipe or release is established by this intake.",
+    "Original initial renders do not qualify Force changes, cooperative actor behavior, end-sector interactions or campaign transitions.",
+    "No retail-executable, audible-playback or connected-peer result is claimed."
+  ]
+}

@@ -111,9 +111,9 @@ verified in the exact overlay: five authored originals and 25 owned-JK
 dependencies. These are distinct from Jar Jar's genuinely absent original WAV.
 
 No audible playback was tested. These same-world appearance sequences are not
-simultaneous 32-player networking, GUI qualification, or a fix. The model-storage
-correction is recorded below; sound correction and combined regression runs
-remain required.
+simultaneous 32-player networking, GUI qualification, or a fix. The separately
+implemented model and sound corrections are recorded below; wider mod and
+gameplay qualification remains required.
 
 Required follow-ups include all authored selections, visible appearance and
 animation, weapon attachment, affected sound events, death/respawn, normal GUI
@@ -132,8 +132,37 @@ records both 32-selection sequences completing correctly, growing from 93/109
 to 124/218 models. The cached and three fresh-selection controls also pass.
 Native MotS Kyle/Mara and native JK initial-render controls passed separately.
 
-This fixes the demonstrated model fallback, not the separate sound pool. The
-longer successful sequences still report sound-load rejections. No updated
+That model-only checkpoint fixed the demonstrated model fallback while its
+longer successful sequences still reported sound-load rejections. No updated
 binary release, complete skin compatibility, audible playback, peer or save/load
 qualification is claimed. Detailed source tests and remaining parser/cache
 boundaries are documented in the engine commit.
+
+## Combined model and sound correction
+
+The [sound-storage correction](https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes/commit/69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8)
+is pushed on the engine fork's `codex/model-sound-cache-growth` branch, directly
+on the model fix. It adds nonmoving sound-header pages, preserving pointers held
+by soundclasses, the mixer, sectors and the cache. The engine's original layouts
+remain unchanged; bounded IDs leave the signed `-1` sentinel unallocated.
+
+The same forward and reverse sequences each select all 32 requested appearances
+and finish at 124/218 models and 191/409 sounds, with no model, sound or material
+capacity rejection. Cached repeats, three fresh selections and three separate
+native JK/MotS initial-render controls also pass. Both storage fixtures pass
+ASan/UBSan, including legacy behavior and deliberate mutation controls.
+
+An independent comparator checked all 6,366 linked sound-event entries across
+the six appearance runs against exact source SND rows, resolved WAV providers
+and WAV headers. It checks ordering, flags, parameters, IDs and header fields;
+every comparison passes with zero omission allowance. The forward and reverse
+runs each cover 13 distinct soundclasses and 80 distinct sound IDs. Fifteen
+deliberately invalid comparator inputs are rejected. The
+[combined evidence receipt](als-model-sound-growth-evidence.json) binds these
+results to the executable, source patch and exact per-run records.
+
+This establishes sound-event/header loading for those controls, with null audio.
+Audible output, PCM/backend execution, all 135 appearances, full-body animation,
+GUI use, saves, map transitions and connected peers remain unqualified. Original
+missing resources and native voice-content differences are separate findings.
+No new game assets or binary release were published with this source checkpoint.

@@ -123,18 +123,17 @@ entries, with MLP3's subsequent promotion distinguished from the other intake wo
 2. Add the missing gameplay proof for existing prototypes: ordinary control-driven
    doors/lifts, pickups and respawn, authored traps, SP goals and saves, full skin
    appearance/animation, map transitions and matched second peers.
-3. Complete the sound-capacity correction and combined engine qualification for
-   Al's skin pack. The model correction is pushed to the separate engine fork:
-   [bf7a46f8](https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes/commit/bf7a46f8dc30ddc6fd4734326935a6ea07081ef7).
-   Both unchanged 32-appearance sequences now select the correct models and
-   soundclasses, beyond the old eighteenth-selection failure. This is not a full
-   135-appearance, animation, save or peer qualification. See the
-   [model-growth evidence](als-model-growth-evidence.json). The earlier material
-   estimate was incorrect: live capacity is 1,288, not 644. A separate
-   [sound-loader probe](als-sound-capacity-evidence.json) now confirms existing
-   WAVs are rejected at 153/153 slots, sometimes while model and soundclass
-   selection still succeeds. This needs its own correction; audible events
-   remain untested.
+3. Extend qualification of the separate engine's model and sound corrections.
+   Both fixes are now pushed together at
+   [69028bf3](https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes/commit/69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8).
+   The unchanged forward/reverse 32-appearance sequences select the correct
+   models and soundclasses, with sound storage growing beyond the old 153-slot
+   limit and no capacity rejection. All 6,366 linked event entries across six
+   controls match their exact source definitions and WAV headers. See the
+   [combined evidence](als-model-sound-growth-evidence.json). Audible effects,
+   all 135 appearances, GUI, animation, saves, map transitions and peers remain
+   open. The earlier material estimate was incorrect: live capacity is 1,288,
+   not 644. Prior model-only and sound-failure receipts remain as baseline evidence.
 4. Integrate and deliver the separate engine prerequisite for Castle, preserving
    the main engine checkout and unrelated worktrees. Converter changes stay here.
 
