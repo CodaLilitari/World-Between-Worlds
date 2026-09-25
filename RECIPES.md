@@ -293,7 +293,7 @@ CTF button to add. A native-menu test selected all three episodes and checked
 their actual returned map names. It also created, saved and reloaded all four
 MotS personalities using the native character menus. The production host and
 character menus needed no CTF-specific patch. See the
-[native menu evidence](https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ctf-native-menu-20260908.json)
+[native menu evidence](https://github.com/CodaLilitari/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ctf-native-menu-20260908.json)
 and [screenshots](SCREENSHOTS.md). This establishes menu selection, not flag
 pickup, capture, scoring or multiplayer personality behavior.
 

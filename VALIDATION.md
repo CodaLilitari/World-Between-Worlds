@@ -28,7 +28,7 @@ Ninja Kage remains a prototype. Its v4 maximum-mana correction passed a
 diagnostic executable: all **37 initialized host and 34 client samples** showed
 rank 4, current mana 200 and maximum mana 200, with no input-provider activity.
 All 66 descriptor bindings matched; clocks advanced and both peers connected.
-The [sanitized record](https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ninja-maxmana-20260908.json) pins the exact
+The [sanitized record](https://github.com/CodaLilitari/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ninja-maxmana-20260908.json) pins the exact
 archive, executable, source and parser fixture. It is repository-only, not bundled
 in the application ZIPs; the plain-text app document retains the full external
 release-tagged URL. Separate e9 production hosts
@@ -64,7 +64,7 @@ maps** through the same backend. The verification includes two repeat builds
 with identical archive bytes, original binary-resource hashes, exact geometry,
 lighting replication and typed COG argument checks. All **112 baseline game
 files** retained their pre-run hashes. The
-[public result record](https://github.com/andreipemberton/World-Between-Worlds/blob/main/docs/validation/map-regression-20260908.json)
+[public result record](https://github.com/CodaLilitari/World-Between-Worlds/blob/main/docs/validation/map-regression-20260908.json)
 pins every output and the source snapshot used. Structural verification did not
 launch these newly generated copies; the earlier multiplayer host evidence
 below remains a separate test.
@@ -323,7 +323,7 @@ Jedi, then incorrectly treated the native nested-menu return value as failure.
 The successful retry corrected those provider assumptions while retaining fresh
 paint, native-result, backing-surface and menu-reference checks.
 
-The [sanitized native-menu record](https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ctf-native-menu-20260908.json)
+The [sanitized native-menu record](https://github.com/CodaLilitari/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ctf-native-menu-20260908.json)
 pins the source, build, canonical episodes/overlay, raw observations, native MPC
 files and images. It and the [representative screenshots](SCREENSHOTS.md) are
 repository documentation, excluded from application packages. This was a GUI
