@@ -18,8 +18,8 @@ from gob import ArchiveError, Gob, build_gob, resource_name
 
 RECIPE_REVISIONS = {
     'nar-shaddaa': 1, 'bespin': 1, 'blades-of-death': 1, 'canyon-oasis': 1,
-    'valley': 1, 'battleground': 1, 'ctf-duel': 1, 'ctf-arena': 1,
-    'ctf-challenge': 1, 'dojo': 1, 'caesars': 1, 'atlantis': 1,
+    'valley': 1, 'battleground': 1, 'ctf-duel': 2, 'ctf-arena': 2,
+    'ctf-challenge': 2, 'dojo': 1, 'caesars': 1, 'atlantis': 1,
     'death-star-arena': 1, 'naboo': 1, 'morpheus': 1,
     'duel-of-the-fates-se': 1, 'jawa-dwelling-se': 1, 'mos-espa-rpg': 1,
     'area-21': 1, 'stargate': 1, 'drazen-isle': 1, 'purgatory': 1,

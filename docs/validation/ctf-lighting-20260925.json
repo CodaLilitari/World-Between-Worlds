@@ -1,0 +1,31 @@
+{
+  "kind": "independent-parent-lighting-check",
+  "original_sha256": "da98fe3fc769168f1bb562cc1f6532560b12d8e920fd6c34586d69b424b5b1fc",
+  "results": [
+    {
+      "id": "ctf-duel",
+      "surfaces": 3081,
+      "historical_zeroed_extra_light": 0,
+      "wbw_nonzero_extra_light_preserved": 0,
+      "wbw_all_corner_lights_exact": true,
+      "output_sha256": "5ad72f9225e1421d42916364a5f17fe00f5f72f8878d13e4f589e73d5eafe8cd"
+    },
+    {
+      "id": "ctf-arena",
+      "surfaces": 4778,
+      "historical_zeroed_extra_light": 99,
+      "wbw_nonzero_extra_light_preserved": 99,
+      "wbw_all_corner_lights_exact": true,
+      "output_sha256": "f691e4aad93e2f1520dcd9e3ddafacb4074dcdd7bf60ca3e8c568eb8bc074e64"
+    },
+    {
+      "id": "ctf-challenge",
+      "surfaces": 9548,
+      "historical_zeroed_extra_light": 474,
+      "wbw_nonzero_extra_light_preserved": 474,
+      "wbw_all_corner_lights_exact": true,
+      "output_sha256": "094e01738d2e7b9a49f3c168f0f4df3b2c173c2a1c2caf3596837ad4b1287292"
+    }
+  ],
+  "runtime_visual_comparison": false
+}

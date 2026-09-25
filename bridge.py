@@ -689,6 +689,13 @@ CTF_STARTUP_FOLDER = 'bridge-ctf-ui'
 CTF_STARTUP_ARCHIVE = 'bridge-ctf-ui.goo'
 
 
+def single_level_episode(title, world, episode_type):
+    """Label CTF before native menu clipping without changing its mode or route."""
+    display_title = ('CTF - ' if episode_type == 8 else 'JK ') + title + ' - MotS bridge prototype'
+    return (f'"{display_title}"\nTYPE {episode_type}\nSEQ 1\n'
+            f'10: 1 1 LEVEL {world}.jkl 0 0 10 10\nend\n').encode('cp1252')
+
+
 def ctf_startup_candidate(archives):
     """Startup resource directory zero must supply items before episode selection."""
     for key in ('motsres', 'motssnd'):
@@ -1024,7 +1031,7 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
     resources['jkl/' + output_world + '.jkl'] = transformed.encode('cp1252')
     episode_title = "Caesar's Palace" if caesars else 'Jedi Dojo by Tee' if dojo else spec.get('episode_title', spec['title'])
     episode_type = spec.get('episode_type', 2) if custom is None or community is not None else 2
-    resources['episode.jk'] = (f'"JK {episode_title} - MotS bridge prototype"\nTYPE {episode_type}\nSEQ 1\n10: 1 1 LEVEL {output_world}.jkl 0 0 10 10\nend\n').encode('cp1252')
+    resources['episode.jk'] = single_level_episode(episode_title, output_world, episode_type)
     stock_title = spec['title']
     if community is not None:
         strings = text(custom.read('misc/cogstrings.uni')) if 'misc/cogstrings.uni' in custom.entries else f'MSGS 1\n"{Path(source_world).stem.upper()}" 0 "{stock_title}"\nEND\n'

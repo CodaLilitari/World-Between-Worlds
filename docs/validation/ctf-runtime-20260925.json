@@ -1,0 +1,505 @@
+{
+  "schema": "wbw.ctf-runtime-validation.v1",
+  "date": "2026-09-25",
+  "status": "passed_native_menu_and_bounded_multiplayer_host_checks",
+  "tested_converter_sources": {
+    "bridge.py": "2b19ea12385497274d7e960d658ce11c03f511d915b9fedb6d91697c9c255d3e",
+    "blackwing_revisions.py": "128df48e3d255bc79c11f93ae2b3bd8d112a0c15e9cc469f39d74bfd8b48ed32",
+    "test_bridge.py": "2c357dd49c97dabfa98b08b77893c3b361eeda27a76449c89bd24a089545e7c7"
+  },
+  "recipes": [
+    {
+      "id": "ctf-duel",
+      "revision": 2,
+      "filename": "bridge-ctf_duel_wbw_v2.goo",
+      "episode_title": "CTF - The Duel - MotS bridge prototype",
+      "tracked_archive_sha256": "5ad72f9225e1421d42916364a5f17fe00f5f72f8878d13e4f589e73d5eafe8cd",
+      "canonical_game_archive_sha256": "36671d497dab16cf90205b92d990362a7b3b78f48834cb2a90281e61168e9f1f",
+      "startup_filename": "bridge-ctf-ui_wbw_v2.goo",
+      "startup_tracked_sha256": "ba8a6714965808d3924d2b6d70358182944403d0446c6be9c49c0c2b7c93d32c",
+      "startup_game_sha256": "3b16ae3206e2158b113116109d5ef7c05ff2a75e5a8d8c31ab964ea07199d45d",
+      "changed_game_members": [
+        "episode.jk"
+      ],
+      "two_service_builds_identical": true
+    },
+    {
+      "id": "ctf-arena",
+      "revision": 2,
+      "filename": "bridge-ctf_arena_wbw_v2.goo",
+      "episode_title": "CTF - The Arena of Dark and Light - MotS bridge prototype",
+      "tracked_archive_sha256": "f691e4aad93e2f1520dcd9e3ddafacb4074dcdd7bf60ca3e8c568eb8bc074e64",
+      "canonical_game_archive_sha256": "8bb08266845607c59a77a3fd8c52a9176da38306245a6c92877bb1afe1b5fb00",
+      "startup_filename": "bridge-ctf-ui_wbw_v2.goo",
+      "startup_tracked_sha256": "044994b2785d084b89f79b80ce41b71e001fa64ad315e9d7a44d6e57ad9210c4",
+      "startup_game_sha256": "3b16ae3206e2158b113116109d5ef7c05ff2a75e5a8d8c31ab964ea07199d45d",
+      "changed_game_members": [
+        "episode.jk"
+      ],
+      "two_service_builds_identical": true
+    },
+    {
+      "id": "ctf-challenge",
+      "revision": 2,
+      "filename": "bridge-ctf_challenge_wbw_v2.goo",
+      "episode_title": "CTF - The Challenge at Nar Shaddaa - MotS bridge prototype",
+      "tracked_archive_sha256": "094e01738d2e7b9a49f3c168f0f4df3b2c173c2a1c2caf3596837ad4b1287292",
+      "canonical_game_archive_sha256": "0eb9abc7c07a92d3d86c02e0b5685820681f3c405c4568056eca702aec223bb8",
+      "startup_filename": "bridge-ctf-ui_wbw_v2.goo",
+      "startup_tracked_sha256": "aecec2f23d2bc0131de1b8bd0a94cc684e0718c49c6de31bd9f32c1dfa16d6a5",
+      "startup_game_sha256": "3b16ae3206e2158b113116109d5ef7c05ff2a75e5a8d8c31ab964ea07199d45d",
+      "changed_game_members": [
+        "episode.jk"
+      ],
+      "two_service_builds_identical": true
+    }
+  ],
+  "change": "Only episode.jk display title changed from JK prefix to CTF - relative to RC5; TYPE8, map paths, progression, lighting, scripts and startup gameplay bytes are unchanged. Recipe revisions incremented to2.",
+  "menu": {
+    "engine_base_commit": "e9e293a7a98c9a665509af96f9a87a9ca2470996",
+    "engine_exe_sha256": "02ebed76650cf64ce90352a73c301dc1c0319921aab2464a9cf05b5daec2ab9f",
+    "binary_kind": "Pinned older private diagnostic, not latest engine HEAD",
+    "seconds": 5.896,
+    "native_captures": 15,
+    "native_selected_results": [
+      {
+        "event": "host_selected",
+        "case": 0,
+        "return": 1,
+        "episode": "bridge-ctf_duel-v1",
+        "map": "br_ctf_duel.jkl",
+        "type": 8,
+        "max_rank": 8,
+        "mode_flags": 144,
+        "game_format_argument": 0
+      },
+      {
+        "event": "host_selected",
+        "case": 1,
+        "return": 1,
+        "episode": "bridge-ctf_arena-v1",
+        "map": "br_ctf_arena.jkl",
+        "type": 8,
+        "max_rank": 8,
+        "mode_flags": 144,
+        "game_format_argument": 0
+      },
+      {
+        "event": "host_selected",
+        "case": 2,
+        "return": 1,
+        "episode": "bridge-ctf_challenge-v1",
+        "map": "br_ctf_challenge.jkl",
+        "type": 8,
+        "max_rank": 8,
+        "mode_flags": 144,
+        "game_format_argument": 0
+      }
+    ],
+    "screenshots": [
+      {
+        "path": "docs/screenshots/ctf-host-duel-20260925.png",
+        "sha256": "c34abd014407164c3fc98da10d9a9127515083ad1596592ecea33ff2cc4be8ff",
+        "width": 1280,
+        "height": 960,
+        "original_pixels": true,
+        "visually_inspected": true,
+        "finding": "Visible CTF prefix and complete selected level name; longer episode suffix clipped at native list edge. Team play / Friendly mode unchecked. Separate stock KFY episode unselected."
+      },
+      {
+        "path": "docs/screenshots/ctf-host-arena-20260925.png",
+        "sha256": "3c7efa0cdee554698334d93367653af3b14fb2a7daf083ff3fdbef52c4ffc0e3",
+        "width": 1280,
+        "height": 960,
+        "original_pixels": true,
+        "visually_inspected": true,
+        "finding": "Visible CTF prefix and complete selected level name; longer episode suffix clipped at native list edge. Team play / Friendly mode unchecked. Separate stock KFY episode unselected."
+      },
+      {
+        "path": "docs/screenshots/ctf-host-challenge-20260925.png",
+        "sha256": "e42869493379d27e79ad2020972766ca3e03a4b027e92bc65c1579350ff8d72c",
+        "width": 1280,
+        "height": 960,
+        "original_pixels": true,
+        "visually_inspected": true,
+        "finding": "Visible CTF prefix and complete selected level name; longer episode suffix clipped at native list edge. Team play / Friendly mode unchecked. Separate stock KFY episode unselected."
+      }
+    ],
+    "network_game_started": false,
+    "baseline_unchanged": true,
+    "runtime_unchanged": true,
+    "visible_owned_window": false,
+    "foreground_owned_window": false,
+    "route": "Native host/character dialog bodies and native OK/Save handlers; finite in-process event provider, hidden framebuffer, no physical PC input.",
+    "filename_scope": "Exact service-emitted revision2 archive bytes copied without modification to diagnostic-required legacy filename aliases; actual revisioned filenames tested by separate production hosts.",
+    "fresh_visual_review_scope": "All three host episode frames; remaining twelve character frames machine-checked only."
+  },
+  "multiplayer_hosts": {
+    "engine_source_commit": "f40e965bbe4133aef9e9b9eccabb2fbf0a34a9fb",
+    "engine_exe_sha256": "46082078c608a956e1012af3803fd89777e231fa6754efb078dacd0eb0c23165",
+    "binary_kind": "Pinned older production build, no private gameplay/startup adapter; not latest engine HEAD",
+    "samples_total": 18,
+    "results": [
+      {
+        "id": "ctf-duel",
+        "passed": true,
+        "gates": {
+          "survived": true,
+          "simulation_advanced": true,
+          "actual_revisioned_episode": true,
+          "correct_mots_mp_world": true,
+          "active_flag_descriptors": true,
+          "ctf_script_team_flags": true,
+          "startup_overlay_mounted": true,
+          "no_foreground_or_visible_owned_window": true,
+          "unchanged_inputs": true,
+          "no_crash_files": true,
+          "no_parser_or_load_diagnostics": true
+        },
+        "seconds": 30.0,
+        "samples": 6,
+        "final_flags": 167,
+        "host_settings_flags": 144,
+        "descriptors": {
+          "68": {
+            "name": "ysalamiri",
+            "flags": 67,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": false
+          },
+          "81": {
+            "name": "redflag",
+            "flags": 73,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": false
+          },
+          "82": {
+            "name": "goldflag",
+            "flags": 73,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": false
+          },
+          "83": {
+            "name": "redkey",
+            "flags": 67,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": true
+          },
+          "84": {
+            "name": "goldkey",
+            "flags": 67,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": true
+          },
+          "131": {
+            "name": "lightsaber",
+            "flags": 165,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": true
+          }
+        },
+        "episode_sha256": "5ad72f9225e1421d42916364a5f17fe00f5f72f8878d13e4f589e73d5eafe8cd",
+        "overlay_sha256": "ba8a6714965808d3924d2b6d70358182944403d0446c6be9c49c0c2b7c93d32c",
+        "owned_window_samples": 149,
+        "no_kfy_archive_mounted": true,
+        "raw_receipt_sha256": "9dcf1788a33fdf441b9ddf1dfbf9f7220954768162e3b73eb6fbc205beb75646",
+        "last_sample_clock_ms": 26013,
+        "headless_observed": true
+      },
+      {
+        "id": "ctf-arena",
+        "passed": true,
+        "gates": {
+          "survived": true,
+          "simulation_advanced": true,
+          "actual_revisioned_episode": true,
+          "correct_mots_mp_world": true,
+          "active_flag_descriptors": true,
+          "ctf_script_team_flags": true,
+          "startup_overlay_mounted": true,
+          "no_foreground_or_visible_owned_window": true,
+          "unchanged_inputs": true,
+          "no_crash_files": true,
+          "no_parser_or_load_diagnostics": true
+        },
+        "seconds": 30.15,
+        "samples": 6,
+        "final_flags": 167,
+        "host_settings_flags": 144,
+        "descriptors": {
+          "68": {
+            "name": "ysalamiri",
+            "flags": 67,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": false
+          },
+          "81": {
+            "name": "redflag",
+            "flags": 73,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": false
+          },
+          "82": {
+            "name": "goldflag",
+            "flags": 73,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": false
+          },
+          "83": {
+            "name": "redkey",
+            "flags": 67,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": true
+          },
+          "84": {
+            "name": "goldkey",
+            "flags": 67,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": true
+          },
+          "131": {
+            "name": "lightsaber",
+            "flags": 165,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": true
+          }
+        },
+        "episode_sha256": "f691e4aad93e2f1520dcd9e3ddafacb4074dcdd7bf60ca3e8c568eb8bc074e64",
+        "overlay_sha256": "044994b2785d084b89f79b80ce41b71e001fa64ad315e9d7a44d6e57ad9210c4",
+        "owned_window_samples": 150,
+        "no_kfy_archive_mounted": true,
+        "raw_receipt_sha256": "3cda55586c62eb6fd13ab8809cb69356f8300332bccfb81e17ecafd6f62c4c75",
+        "last_sample_clock_ms": 26765,
+        "headless_observed": true
+      },
+      {
+        "id": "ctf-challenge",
+        "passed": true,
+        "gates": {
+          "survived": true,
+          "simulation_advanced": true,
+          "actual_revisioned_episode": true,
+          "correct_mots_mp_world": true,
+          "active_flag_descriptors": true,
+          "ctf_script_team_flags": true,
+          "startup_overlay_mounted": true,
+          "no_foreground_or_visible_owned_window": true,
+          "unchanged_inputs": true,
+          "no_crash_files": true,
+          "no_parser_or_load_diagnostics": true
+        },
+        "seconds": 30.17,
+        "samples": 6,
+        "final_flags": 167,
+        "host_settings_flags": 144,
+        "descriptors": {
+          "68": {
+            "name": "ysalamiri",
+            "flags": 67,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": false
+          },
+          "81": {
+            "name": "redflag",
+            "flags": 73,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": false
+          },
+          "82": {
+            "name": "goldflag",
+            "flags": 73,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": false
+          },
+          "83": {
+            "name": "redkey",
+            "flags": 67,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": true
+          },
+          "84": {
+            "name": "goldkey",
+            "flags": 67,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": true
+          },
+          "131": {
+            "name": "lightsaber",
+            "flags": 165,
+            "min": 0.0,
+            "max": 1.0,
+            "cog_present": true
+          }
+        },
+        "episode_sha256": "094e01738d2e7b9a49f3c168f0f4df3b2c173c2a1c2caf3596837ad4b1287292",
+        "overlay_sha256": "aecec2f23d2bc0131de1b8bd0a94cc684e0718c49c6de31bd9f32c1dfa16d6a5",
+        "owned_window_samples": 150,
+        "no_kfy_archive_mounted": true,
+        "raw_receipt_sha256": "3541089f8273cc7140ae1b4ba7dc80ea7a2bde8c07062a39a3fa80a60f0973ed",
+        "last_sample_clock_ms": 26718,
+        "headless_observed": true
+      }
+    ],
+    "baseline_unchanged": true,
+    "runtime_unchanged": true,
+    "audio": "disabled",
+    "scope": "Each exact service-emitted versioned episode and its corresponding versioned startup overlay; local host and idle simulation only."
+  },
+  "relevant_engine_source_comparison": {
+    "base": "f40e965bbe4133aef9e9b9eccabb2fbf0a34a9fb",
+    "targets": [
+      "b1be98bd4f170b5384cb71b15443a274aac6a937",
+      "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8"
+    ],
+    "unchanged_files": [
+      {
+        "path": "src/Gui/jkGUINetHost.c",
+        "git_blob_sha256": "e8b60437e6a454d159c6e38d5af02ab424ccc727a30934299a6e4cece92f8912",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/Gui/jkGUISingleplayer.c",
+        "git_blob_sha256": "f80071f7404122b15cb2dd87ce9330e087c6af8490dad4729ec6141fad88885a",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/Gui/jkGUIMultiplayer.c",
+        "git_blob_sha256": "3524aaf693c3d2aae939227c6c902ea08c77dc12bf698ce23e41a2f5f2997992",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/Gui/jkGUIBuildMulti.c",
+        "git_blob_sha256": "c15882d30a2f7135245469413405d8dd97df845dc993250e5f43fcf1867bb972",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/Main/jkHudInv.c",
+        "git_blob_sha256": "54360124492a62c0da3c4586850de060ba047ccddd08aede3b70d5e015bd925f",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/Main/jkRes.c",
+        "git_blob_sha256": "c2f5838778b055fc089d23fb288bcd595aed7c8e5270f81443e4b7b37c4d079e",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/Dss/sithMulti.c",
+        "git_blob_sha256": "971511d3167ca2ddca113a2d3e84018feba7c967991654dda99d344718b18b26",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/types_enums.h",
+        "git_blob_sha256": "a546b85816c58d9aede433728997353a94528a8c083b9dcfee189dad81c08a1e",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/Main/jkEpisode.c",
+        "git_blob_sha256": "0312199ac11ca01d29e970b86e4056230235f9422e17d5bffd40b5428efea51b",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/Cog/sithCogFunction.c",
+        "git_blob_sha256": "5e4c59dbcfe224aa3881747f2608ff8e07ff6d9347663d010fc3daa01be8d76f",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      },
+      {
+        "path": "src/Main/jkMain.c",
+        "git_blob_sha256": "5ad2f07005f0e9372575dc651d6f10f52ff3962a90b3f23fcc60178e2e11fda6",
+        "unchanged_in": {
+          "b1be98bd4f170b5384cb71b15443a274aac6a937": true,
+          "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": true
+        }
+      }
+    ],
+    "inventory": {
+      "path": "src/Gameplay/sithInventory.c",
+      "sha256": {
+        "f40e965bbe4133aef9e9b9eccabb2fbf0a34a9fb": "b65e9629a3abdb0cb1774eb082de026505d51aa7af05bb106acaa8598cb0b1d1",
+        "b1be98bd4f170b5384cb71b15443a274aac6a937": "13df52993ff024324a6a27729c3be2686abd6a17f5eebbd3436b513d4acc5810",
+        "69028bf3088c9e3e3a83bc0cbb96cfb816c5acd8": "13df52993ff024324a6a27729c3be2686abd6a17f5eebbd3436b513d4acc5810"
+      },
+      "descriptor_setup_and_pre_backpack_functions_unchanged": true,
+      "changes": "Backpack construction capacity, bounded item lookup/count, pickup descriptor selection by actual bin ID, and invalid-bin handling. These changes are outside this idle startup test; do not infer death/backpack gameplay parity."
+    },
+    "main_c_differences": "b1be adds capture tracing, capture option handling and capture-only CWD containment.69028 also adds the optional -character path and its validation/reset. Core static-world/inventory order and ordinary no-character CTF autostart path are retained.",
+    "limits": "Source equivalence bounds the inference. Neither current target was freshly compiled or run in this follow-up."
+  },
+  "team_play": {
+    "native_checkbox": "Team play / Friendly mode",
+    "manual_enable_required_for_these_recipes": false,
+    "initial_settings_flags": 144,
+    "observed_runtime_flags": 167,
+    "ctf_script_sets": "0x27",
+    "ctf_script_clears": "0x100",
+    "selection": "Original red/gold entry corridors; lifecycle not exercised"
+  },
+  "lighting": {
+    "path": "src/World/sithSurface.c",
+    "lines": "430-437",
+    "on_disk": "interleaved A,R,G,B per corner",
+    "in_memory": "separate A/R/G/B channel blocks",
+    "wbw_replication_correct": true,
+    "retail_parity_or_historical_failure_cause_established": false
+  },
+  "limits": [
+    "Pinned older engine builds were used, not a newly compiled current engine. Native host/character menu source exactly matches current source after line-ending normalization.",
+    "Menu diagnostic requires legacy filename aliases; those bytes are identical to service-emitted revision2 GOOs. Headless production hosts separately used the actual revisioned filenames.",
+    "Only three host-menu frames were freshly visually reviewed; remaining twelve native frames were machine-checked.",
+    "Flag pickup/drop/return/capture, team-entry gameplay, scoring, two-peer replication, current engine runtime and retail JKM parity remain untested.",
+    "Audio disabled during hosts; no sound fidelity or HUD icon interaction proof.",
+    "All game/mod data stays private; this report contains metadata only."
+  ],
+  "private_receipts_sha256": {
+    "conversion-v2.json": "22841174557db20bf2d2623c0087533a0cf5c8be021b1f26817682c93c9b0049",
+    "host-v2-results.json": "793f54ce5d4964db32ab2215de45cb464dfcfbff4fdb1293ccd279db6fdfde42",
+    "native-menu-harness-v1\\results\\current-title-v2\\result.json": "7cd10a449104d92d5ef32b229497890baa92e825cf0082003a66b9d683169e8d",
+    "native-menu-harness-v1\\results\\current-title-v2\\host-visual-review.json": "6d5994ed6a332dffa727ba15c4fbe456098f0aa1784bdeef310479a13abd656e"
+  }
+}

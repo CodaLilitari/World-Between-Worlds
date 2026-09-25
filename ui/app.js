@@ -32,6 +32,12 @@ export function scanSummary(scan) {
 }
 
 export function selectable(recipe) { return ELIGIBLE.has(String(recipe.status || '').toLowerCase()); }
+export function requiresCtfMod(recipe) { return Boolean(recipe?.gameplay?.includes('ctf')); }
+export function ctfModSummary(recipe) {
+  return recipe.startup_overlay==='bridge-ctf-ui'
+    ? 'CTF mod required · WBW generates bridge-ctf-ui separately. Every host and client must install and load it to restore the red-flag HUD binding; copying only the level is insufficient.'
+    : 'Additional CTF mod required · follow this custom recipe’s reviewed mod and launch requirements in Details. Native MotS Kill the Fool with the Ysalamiri is a different mode.';
+}
 export function visibleRecipes(recipes, {kind='all',gameplay='all',search=''}={}) {
   const words = search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
   return recipes.filter(recipe => (kind==='all' || (kind==='levels' ? recipe.kind!=='mod' : recipe.kind===kind)) &&
@@ -78,6 +84,18 @@ function start() {
   const state = {recipes:[],selected:new Set(),archives:Object.create(null),dirtyPaths:new Set(),kind:'levels',gameplay:'all',search:'',job:null,jobId:null,jobRunning:false,pollTimer:null,detailRequest:0,scan:null,scanRunning:false,scanRequest:0,scanError:'',scanStale:false,pathPicking:null,pickerStatus:'',settingsSaving:false};
   const el = (tag,className='',text='')=>{const node=document.createElement(tag);if(className)node.className=className;node.textContent=text;return node;};
   const announce = text=>{$('announcements').textContent=text;};
+  function ctfInstructions(recipe, generatedPath) {
+    const box=el('aside','ctf-requirement');
+    if(recipe.startup_overlay!=='bridge-ctf-ui') {
+      box.append(el('strong','','Additional CTF mod required'),el('p','',ctfModSummary(recipe)),el('p','',recipe.ctf_instructions || 'This catalog has not supplied custom CTF installation instructions. Do not assume the stock CTF support mod is compatible; this setup needs recipe review before play.'));
+      if(generatedPath)box.append(el('span','result-path','Generated mod folder: '+generatedPath));
+      return box;
+    }
+    box.append(el('strong','','Required CTF support mod'),el('p','',`WBW generates ${recipe.startup_overlay} alongside this level. Install and load it on every host and client: the level alone cannot change MotS's startup inventory. This restores the red-flag HUD binding instead of the ysalamiri binding.`));
+    if(generatedPath)box.append(el('span','result-path','Generated mod folder: '+generatedPath));
+    box.append(el('p','',`Copy the whole ${recipe.startup_overlay} folder beside your MotS runtime's resource and episode folders. Put the selected converted level GOO in episode. From that runtime folder, launch OpenJKDF2 with:`),el('code','ctf-command',`-motsCompat -path ${recipe.startup_overlay}`),el('p','','In Multiplayer, choose the episode whose name starts CTF. Do not choose Kill the Fool with the Ysalamiri. Use matching files on all players. Keep this support mod separate from other mods; restart without -path before playing other modes. See the generated mod README for the full instructions.'));
+    return box;
+  }
   function notice(message) { $('notice-text').textContent=message;$('notice').classList.remove('hidden'); }
   function errorText(error) { return error instanceof Error ? error.message : String(error); }
   async function api(path, {method='GET',body,timeoutMs=15000}={}) {
@@ -196,7 +214,7 @@ function start() {
       const rows=matching().filter(recipe=>recipe.kind===kind && selectable(recipe));
       if (!rows.length) continue;
       const group=document.createElement('optgroup');group.label=KINDS[kind];
-      for (const recipe of rows) {const option=new Option(recipe.title+' · '+revisionLabel(recipe.revision,'Revision unavailable')+(recipe.status==='prototype'?' (prototype)':''),recipe.id);option.disabled=state.selected.has(recipe.id) || state.jobRunning;group.append(option);}
+      for (const recipe of rows) {const option=new Option(recipe.title+' · '+revisionLabel(recipe.revision,'Revision unavailable')+(requiresCtfMod(recipe)?' · CTF mod required':'')+(recipe.status==='prototype'?' (prototype)':''),recipe.id);option.disabled=state.selected.has(recipe.id) || state.jobRunning;group.append(option);}
       $('recipe-picker').append(group);
     }
     if ([...$('recipe-picker').options].some(option=>option.value===previous && !option.disabled)) $('recipe-picker').value=previous;
@@ -232,7 +250,8 @@ function start() {
       bottom.append(el('span','badge revision-badge',revisionLabel(recipe.revision,'Revision unavailable')));
       for (const mode of recipe.gameplay) bottom.append(el('span','badge',MODES[mode] || mode));
       const details=el('button','card-details','Details');details.type='button';details.setAttribute('aria-label',`Details for ${recipe.title}`);details.addEventListener('click',()=>showDetails(recipe));bottom.append(details);card.append(bottom);
-      if (recipe.startup_overlay) card.append(el('p','overlay-note',recipe.kind==='mod'?'Creates a separate mod folder; load it only when you choose.':'Includes a required startup overlay for this map.'));
+      if (requiresCtfMod(recipe)) card.append(el('p','overlay-note',ctfModSummary(recipe)+' See Details.'));
+      else if (recipe.startup_overlay) card.append(el('p','overlay-note',recipe.kind==='mod'?'Creates a separate mod folder; load it only when you choose.':'Includes a required startup overlay for this map.'));
       $('recipe-list').append(card);
     }
     $('empty-state').classList.toggle('hidden',rows.length>0);
@@ -254,6 +273,7 @@ function start() {
     rows.forEach((recipe,index)=>{
       const item=el('li','queue-item');item.append(el('span','queue-item-index',String(index+1).padStart(2,'0')));
       const content=el('div','queue-item-content');content.append(el('div','queue-item-title',recipe.title),el('span','queue-item-kind',`${KINDS[recipe.kind]} · ${recipe.gameplay.map(mode=>MODES[mode] || mode).join(', ')} · ${revisionLabel(recipe.revision,'Revision unavailable')}`));
+      if(requiresCtfMod(recipe))content.append(el('p','overlay-note',ctfModSummary(recipe)));
       const remove=el('button','remove-item','×');remove.type='button';remove.disabled=state.jobRunning;remove.setAttribute('aria-label',`Remove ${recipe.title} from queue`);remove.addEventListener('click',()=>setSelection(recipe.id,false));item.append(content,remove);$('queue-list').append(item);
     });
     $('clear-selection').disabled=!rows.length || state.jobRunning;
@@ -284,6 +304,7 @@ function start() {
     const request=++state.detailRequest;
     $('detail-title').textContent=recipe.title;$('detail-content').replaceChildren(el('p','',recipe.summary || 'Recipe provenance and conversion details.'));
     $('detail-content').append(el('p','',`Recipe revision: ${revisionLabel(recipe.revision,'Unavailable')}`));
+    if(requiresCtfMod(recipe))$('detail-content').append(ctfInstructions(recipe));
     if (recipe.author) $('detail-content').append(el('p','',`Original author: ${recipe.author}`));
     const source=safeSourceUrl(recipe.source_url);
     if (source) { const link=el('a','quiet-link','Open original source ↗');link.href=source;link.target='_blank';link.rel='noopener noreferrer';$('detail-content').append(link); }
@@ -304,12 +325,14 @@ function start() {
     $('job-current').textContent=current?String(current):state.jobRunning?'Preparing the queue…':'Job finished. Review the results below.';
     $('job-results').replaceChildren();
     for (const result of Array.isArray(job.results)?job.results:[]) {
+      const recipe=state.recipes.find(recipe=>recipe.id===result.id);
       const row=el('div','job-result'),heading=el('div','job-result-heading');
-      heading.append(el('strong','',state.recipes.find(recipe=>recipe.id===result.id)?.title || result.id || 'Recipe'),el('span','badge'+(result.error?' error':''),String(result.status || 'pending').replaceAll('_',' ')));row.append(heading);
+      heading.append(el('strong','',recipe?.title || result.id || 'Recipe'),el('span','badge'+(result.error?' error':''),String(result.status || 'pending').replaceAll('_',' ')));row.append(heading);
       row.append(el('p','',runtimeLabel(result)));
       if (result.output) row.append(el('span','result-path','Output: '+result.output));
       if (result.manifest) row.append(el('span','result-path','Manifest: '+result.manifest));
       if (result.error) row.append(el('p','result-error',String(result.error)));
+      if (requiresCtfMod(recipe) && result.output && !result.error) row.append(ctfInstructions(recipe,typeof result.startup_overlay==='string'?result.startup_overlay:null));
       $('job-results').append(row);
     }
     const log=$('job-log'),atEnd=log.scrollHeight-log.scrollTop-log.clientHeight<30;

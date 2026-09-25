@@ -55,6 +55,10 @@ Use the actual generated folder name. On Linux, use the equivalent OpenJKDF2
 binary. Choose Multiplayer and host the converted episode. With no overlay,
 launch with `-motsCompat` alone. The three stock CTF maps require `-path
 bridge-ctf-ui`; their generated README describes the shared CTF setup.
+RC6 names these episodes **CTF - …** in the native host menu and gives their
+outputs recipe revision **wbw_v2**. The CTF requirement in the workbench applies
+to stock and custom entries by declared gameplay, without assuming that a custom
+system can use the stock overlay. No custom CTF recipe is currently enabled.
 
 Use only one gameplay overlay at a time. Restart with the matching overlay when
 changing families, or restart without it for a map that needs none. Episode

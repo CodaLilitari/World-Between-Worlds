@@ -141,7 +141,7 @@ test('duplicate warnings do not mislabel a complete inventory as partial',()=>{
 
 // A small DOM adapter runs the actual application and its event handlers. It does
 // not emulate layout or replace browser QA; all requests are intercepted locally.
-async function localUI({scan=async()=>scanResponse(),convert=async()=>({job_id:'test-job'}),pick=async()=>({path:null}),settings={jk_root:'C:\\JK',mots_root:'C:\\MotS',archive_dir:'C:\\Originals',output_dir:'C:\\Output'}}={}) {
+async function localUI({catalogRecipes=recipes,jobResults=[],scan=async()=>scanResponse(),convert=async()=>({job_id:'test-job'}),pick=async()=>({path:null}),settings={jk_root:'C:\\JK',mots_root:'C:\\MotS',archive_dir:'C:\\Originals',output_dir:'C:\\Output'}}={}) {
   const nodes=new Map(),requests=[],timeouts=[];
   let doc;
   class Element {
@@ -171,12 +171,13 @@ async function localUI({scan=async()=>scanResponse(),convert=async()=>({job_id:'
   runInNewContext(code.replace(/^export /gm,''),{document:doc,Option:class extends Element{constructor(text,value){super('option');this.textContent=text;this.value=value;}},FormData:class {entries(){return ['jk_root','mots_root','archive_dir','output_dir'].map(name=>[name,[...nodes.values()].find(node=>node.name===name)?.value || '']);}},URL,AbortController,Error,console,setTimeout:(_callback,delay)=>{timeouts.push(delay);return 0;},clearTimeout(){},matchMedia:()=>({matches:true}),fetch:async(path,options)=>{
     requests.push({path,options});
     if(path==='/api/health')return response({});
-    if(path==='/api/catalog')return response({recipes:recipes.map(recipe=>({...recipe,revision:2,revision_label:'wbw_v2'}))});
+    if(path==='/api/catalog')return response({recipes:catalogRecipes.map(recipe=>({...recipe,revision:2,revision_label:'wbw_v2'}))});
+    if(path.startsWith('/api/recipes/'))return response({entry:catalogRecipes.find(recipe=>recipe.id===decodeURIComponent(path.split('/').at(-1)))});
     if(path==='/api/settings')return response(settings);
     if(path==='/api/scan')return response(await scan());
     if(path==='/api/pick-path')return response(await pick(JSON.parse(options.body)));
     if(path==='/api/convert')return response(await convert());
-    if(path==='/api/jobs/test-job')return response({id:'test-job',status:'complete',progress:1,total:1,results:[],logs:[]});
+    if(path==='/api/jobs/test-job')return response({id:'test-job',status:'complete',progress:1,total:1,results:jobResults,logs:[]});
     throw new Error('Unexpected request: '+path);
   }});
   await new Promise(resolve=>setImmediate(resolve));
@@ -255,6 +256,46 @@ test('running conversion disables scan and every installed-update action',async(
 async function addRecipe(page,id) {
   const picker=page.nodes.get('recipe-picker');picker.value=id;await picker.fire('change');await page.click('add-recipe');
 }
+
+test('stock and custom CTF both show the mandatory mod in picker, queue and details',async()=>{
+  for(const kind of ['vanilla','custom']) {
+    const recipe={...recipes[0],id:'ctf-fixture',title:'CTF fixture',kind,gameplay:['mp','ctf'],startup_overlay:'bridge-ctf-ui'};
+    const page=await localUI({catalogRecipes:[recipe,recipes[0]]});
+    assert.match(page.nodes.get('recipe-picker').options.find(option=>option.value===recipe.id).textContent,/CTF mod required/);
+    assert.doesNotMatch(page.nodes.get('recipe-picker').options.find(option=>option.value===recipes[0].id).textContent,/CTF mod required/);
+    await addRecipe(page,recipe.id);
+    assert.match(page.nodes.get('queue-list').textContent,/Every host and client must install and load/);
+    await page.nodes.get('recipe-list').querySelectorAll('button')[0].fire('click');
+    const detail=page.nodes.get('detail-content').textContent;
+    for(const text of ['bridge-ctf-ui','red-flag HUD','-motsCompat -path bridge-ctf-ui','episode whose name starts CTF','restart without -path'])assert.ok(detail.includes(text),text);
+    assert.equal(page.requests.some(request=>request.path==='/api/convert'),false);
+  }
+});
+
+test('custom CTF with a different mod shows its own requirements without assuming the stock overlay',async()=>{
+  const recipe={...recipes[1],startup_overlay:'custom-support',ctf_instructions:'Install the reviewed custom-support folder and launch its matching profile.'};
+  const page=await localUI({catalogRecipes:[recipe]});await addRecipe(page,recipe.id);
+  assert.match(page.nodes.get('queue-list').textContent,/Additional CTF mod required/);
+  await page.nodes.get('recipe-list').querySelectorAll('button')[0].fire('click');
+  const detail=page.nodes.get('detail-content').textContent;
+  assert.ok(detail.includes(recipe.ctf_instructions));assert.doesNotMatch(detail,/bridge-ctf-ui/);
+});
+
+test('CTF conversion results expose the generated mod folder and installation steps separately from runtime proof',async()=>{
+  const recipe={...recipes[0],gameplay:['mp','ctf'],startup_overlay:'bridge-ctf-ui'};
+  const result={id:recipe.id,status:'success',output:'C:\\Output\\level.goo',startup_overlay:'C:\\Output\\bridge-ctf-ui'};
+  const page=await localUI({catalogRecipes:[recipe],jobResults:[result]});await addRecipe(page,recipe.id);await page.click('convert');
+  const output=page.nodes.get('job-results').textContent;
+  assert.ok(output.includes('Generated mod folder: '+result.startup_overlay));
+  assert.match(output,/-motsCompat -path bridge-ctf-ui/);assert.match(output,/Runtime test: not run on this output/);
+});
+
+test('failed CTF conversions never present an installation as produced',async()=>{
+  const recipe={...recipes[0],gameplay:['mp','ctf'],startup_overlay:'bridge-ctf-ui'};
+  const page=await localUI({catalogRecipes:[recipe],jobResults:[{id:recipe.id,status:'failed',error:'Source mismatch'}]});await addRecipe(page,recipe.id);await page.click('convert');
+  assert.match(page.nodes.get('job-results').textContent,/Source mismatch/);
+  assert.doesNotMatch(page.nodes.get('job-results').textContent,/Generated mod folder|Copy the whole/);
+});
 test('folder Browse buttons request only their explicit kind and never scan or convert',async()=>{
   const page=await localUI({pick:async({kind})=>({path:'D:\\Chosen\\'+kind})});
   for(const [kind,id] of Object.entries({jk_root:'jk-root',mots_root:'mots-root',output_dir:'output-dir',archive_dir:'archive-dir'})){

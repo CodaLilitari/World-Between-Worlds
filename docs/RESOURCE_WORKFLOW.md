@@ -115,6 +115,30 @@ idea, not a planned implementation or an audit prerequisite:
   and two-client profile equality. Do not call a shared library safer merely
   because it is smaller or there is one copy of each basename.
 
+## CTF recipe gate (stock and custom)
+
+Review the actual episode TYPE and original controllers; a title or filename
+alone does not establish CTF. Register reviewed CTF recipes with the `ctf`
+gameplay tag so the picker, cards, queue, Details and result instructions show
+the additional mod requirement for either stock or custom content. Preserve an
+explicit CTF episode title visible in the native MotS host list.
+
+Pin the exact required startup mod and install/launch instructions. Use
+`bridge-ctf-ui` only after proving that the stock controller/inventory contract
+applies; never attach it automatically to an unrelated custom CTF system.
+For a different system, record its reviewed instructions as `ctf_instructions`
+in the catalog row and ensure its converter generates or requires the stated
+dependency. Do not enable an entry before that dependency is implemented.
+Current community and pack intake rejects TYPE 8 until a reviewed CTF conversion
+path is added; no custom CTF recipe is released by this UI change.
+
+Test the generated level plus startup mod, including the native menu label and
+mode selection, active red/gold flags and HUD bindings. Menu/host observations
+are separate from flag pickup, return, capture, scoring and peer tests. Preserve
+authored surface extra light and scalar intensities while expanding JK corner
+lighting to MotS's on-disk interleaved A/R/G/B layout. Historical ports are useful
+comparisons, not substitutes for owned originals or permission to redistribute.
+
 ## SED corrections must replay through WBW
 
 SED can inspect originals and converted JKLs, validate modeled structures,

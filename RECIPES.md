@@ -285,11 +285,16 @@ To play a converted CTF episode:
 4. Every host and client must start with the same overlay. Restart the engine
    without `-path bridge-ctf-ui` before playing other modes.
 
-In MotS mode, use the host menu's **Choose Episode** list: select **JK The Duel –
-MotS bridge prototype**, **JK The Arena of Dark and Light – MotS bridge prototype**,
-or **JK The Challenge at Nar Shaddaa – MotS bridge prototype**, then its level and
-**OK**. CTF is identified by the episode's TYPE 8 metadata; there is no separate
-CTF button to add. A native-menu test selected all three episodes and checked
+In MotS mode, use the host menu's **Choose Episode** list: select **CTF - The Duel -
+MotS bridge prototype**, **CTF - The Arena of Dark and Light - MotS bridge prototype**,
+or **CTF - The Challenge at Nar Shaddaa - MotS bridge prototype**, then its level and
+**OK**. These reviewed episodes retain TYPE 8 and their original CTF controllers;
+there is no separate CTF button to add. RC6 introduces the visible **CTF -** prefix
+and advances only these three level recipes to **wbw_v2**. Their other game members
+and the startup-mod payload are unchanged from RC5. The UI flags the additional
+mod before selection, in the queue, in Details and with each completed result.
+
+A native-menu test selected all three episodes and checked
 their actual returned map names. It also created, saved and reloaded all four
 MotS personalities using the native character menus. The production host and
 character menus needed no CTF-specific patch. See the
@@ -309,6 +314,12 @@ runtime working directory itself can contain spaces. Keep this overlay separate
 from SBX, Manowar, KFY, and other mods. Extra GOO files or loose `misc/items.dat`
 overrides can change resource precedence. The generated `README.txt` also gives
 optional multiplayer autostart arguments for each CTF episode.
+
+This requirement also applies to future custom CTF recipes, with their own
+reviewed mod instructions when they use a different system. The current custom
+catalog has no enabled CTF conversion. Neither TYPE 8 alone nor a `ctf` filename
+proves capture-the-flag behavior; inspect the original controllers and objectives.
+See [the CTF review and historical-port comparison](docs/validation/CTF_REVIEW_2026-09-25.md).
 
 ## Jedi Dojo
 

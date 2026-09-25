@@ -1,0 +1,100 @@
+{
+  "schema": "wbw.release-validation.v1",
+  "date": "2026-09-25",
+  "version": "0.2.0-rc6",
+  "repository": "CodaLilitari/World-Between-Worlds",
+  "assets": {
+    "World-Between-Worlds-0.2.0-rc6-source.zip": {
+      "sha256": "90aa51aa460c753a637332c61507ecbcb2f363542e661d1517baf9b7696a25ca",
+      "bytes": 3081864
+    },
+    "World-Between-Worlds-0.2.0-rc6-linux-x86_64.zip": {
+      "sha256": "b0a5f838ae9a8513d6d0bbb6eb2c078750d8bf715cf852711dc7ecf214c1934c",
+      "bytes": 14872074
+    },
+    "World-Between-Worlds-0.2.0-rc6-windows-x86_64.zip": {
+      "sha256": "ae98edca011e6d72d788b3864ec0e259259dafaefbaaa61ab7620c6dd6ee8675",
+      "bytes": 15706936
+    },
+    "wbw-release.json": {
+      "sha256": "2a858d0f7e7184184d89c0ce360ccfd2e7c9a5af817f586176c6b37a16767a64",
+      "bytes": 1119
+    },
+    "SHA256SUMS.txt": {
+      "sha256": "04057f184d32f8165180a52e4f2b40f17661466ce7ab2bddb304fc3308bb7797",
+      "bytes": 421
+    }
+  },
+  "source_payload_count": 72,
+  "source_zip_repeat_identical": true,
+  "native_binaries": {
+    "windows": {
+      "sha256": "8a0b1fb658c27a782e0778744cc11fa9b3f8aaaf192cb36fc05fc7f293fbc811",
+      "python": "3.13.15",
+      "pyinstaller": "6.22.2",
+      "tcl_tk": "8.6"
+    },
+    "linux": {
+      "sha256": "5c099da162b2483801cbebd74a7582744bb716c11a4a649512ad746802f7b9af",
+      "python": "3.10.12",
+      "pyinstaller": "6.22.2",
+      "tcl_tk": "8.6",
+      "glibc_min": "2.35"
+    }
+  },
+  "source_suites": {
+    "windows": {
+      "tests": 437,
+      "passed": 435,
+      "skipped": 2,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "log_sha256": "b88d0ddd5e6d527bab3d96e14b6629a3740aeb33a04b37132137d989d7229887"
+    },
+    "linux": {
+      "tests": 437,
+      "passed": 435,
+      "skipped": 2,
+      "exit_code": 0,
+      "source_unchanged": true,
+      "log_sha256": "04a0c6bd057f5cc5f7d3edc8950f55773dd7b9d089440ca5830f16558cd50682"
+    }
+  },
+  "ui_tests": {
+    "passed": 53,
+    "failed": 0
+  },
+  "maintainer_tests": {
+    "passed": 22,
+    "failed": 0
+  },
+  "packaging_checks": [
+    "Explicit allowlist; no game/mod archive or extracted asset payloads.",
+    "49 embedded source/doc/UI files matched frozen source in each native binary.",
+    "Exact binaries passed --version and no-update/no-browser hidden launcher smoke.",
+    "Loopback health, catalog and served UI bytes passed.",
+    "Source package rebuilt byte-identically; native reproducibility not claimed.",
+    "Parent independently compared source ZIP against current allowlisted working files and refreshed recipe locks."
+  ],
+  "ctf_evidence": {
+    "runtime": "../validation/ctf-runtime-20260925.json",
+    "lighting": "../validation/ctf-lighting-20260925.json",
+    "historical": "../validation/ctf-historical-20260925.json"
+  },
+  "limitations": [
+    "Packaging and passive host tests do not establish complete CTF gameplay or peer synchronization.",
+    "No retail MotS test or fresh current-HEAD engine rebuild in this follow-up.",
+    "Authenticated GitHub publication is separate from anonymous availability and live update delivery."
+  ],
+  "private_receipt_sha256": {
+    "helper-adaptation.json": "8ac99e7be8c73e3c06b0d3176a51b72f8281950552b8fa2f17934d8b010bae43",
+    "assembly-receipt.json": "ffe75ebbf9dada1c8215119c8b421cfaf6b3965526a587d0ed4ad08f3d67c0c2",
+    "windows-build/build-receipt.json": "c1293560468194457ad755057044d61be8126fbcc7e30ff564ed368f5f41b938",
+    "windows-build/inspection-receipt.json": "4d958abf75b26c2bb43f8b6efca0e111bc8725e9f6e5902c5d3f19048dd81f9a",
+    "windows-build/smoke-receipt.json": "75484e18ffd4dbbed82f5f67bbe5e77fff28aca9fd37efc47a1afdea4cbad666",
+    "linux-build/build-orchestration.json": "9045e7571c1fb039599dbf15b05e551d8c5fe2876705464bd047cc7110a74bda",
+    "linux-build/workspace/source-inputs.json": "1c830e2c5e3b55b4b4b4e3ea47e6497b57a880695fef4a770ca35d881f02e470",
+    "linux-build/workspace/native-inspection.json": "51bee0b7fc0731b6e15ad9d54a752c792c2c05a58fbc8ae10a5938944625e696",
+    "linux-build/workspace/standalone-smoke.json": "0bab1aa962a3b96435c5d5b0d43302f0d257a0011a370be3b31ffd75b1bdeb2b"
+  }
+}

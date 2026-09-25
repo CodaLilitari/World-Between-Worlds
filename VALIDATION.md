@@ -532,3 +532,25 @@ bundling is a separate packaging check.
 
 These checks do not add a claim of complete Ninja Kage gameplay, all-map traversal,
 door/elevator behavior, joined-peer synchronization or a played death cycle.
+
+## RC6 CTF presentation and launch review (September 25, 2026)
+
+RC6 exposes the required CTF support mod in the picker, cards, queue, Details and
+completed conversion results. Its notice applies to declared custom CTF entries
+too, with separate instructions for custom systems; no custom CTF conversion is
+enabled by this update. Browser inspection confirmed the stock CTF warning and
+readable install/launch instructions. UI regressions cover both stock/custom
+classifications, custom dependencies, successful results and failed conversions.
+
+The three stock episode titles now begin `CTF - ` and their individual recipe
+revisions advance to `wbw_v2`. A fresh hidden native-menu replay selected all
+three generated payloads and returned their explicit CTF titles, correct worlds
+and TYPE 8. That replay used the pinned diagnostic menu harness with legacy
+filename aliases (payload bytes unchanged); it is distinct from production host
+tests of the actual revisioned filenames. The relevant native menu source is
+unchanged from the harness baseline. No engine CTF menu patch was made.
+
+The [CTF review](docs/validation/CTF_REVIEW_2026-09-25.md) records exact build and
+artifact identities, production-host results, historical lighting comparisons
+and limits. Menu selection and passive host observations do not establish flag
+pickup, return, capture, scoring or synchronization with a second player.

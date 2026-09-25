@@ -1,7 +1,7 @@
 # World Between Worlds
 
 **Bring reviewed Jedi Knight maps into Mysteries of the Sith.**
-Local recipe-book converter · Windows 11 / Linux · **0.2.0-rc5 — experimental**
+Local recipe-book converter · Windows 11 / Linux · **0.2.0-rc6 — experimental**
 
 World Between Worlds (WBW) rebuilds selected **Jedi Knight: Dark Forces II** maps
 and mods for **Mysteries of the Sith**, using your own game installations and
@@ -18,13 +18,12 @@ and the worlds their players built.
 
 ## Download and start
 
-The [public repository](https://github.com/CodaLilitari/World-Between-Worlds) has
-moved to **CodaLilitari**. As of September 20, 2026, its
-[releases page](https://github.com/CodaLilitari/World-Between-Worlds/releases)
-has no packaged downloads. Current development recipes are available on
-[`codex/massassi-top50`](https://github.com/CodaLilitari/World-Between-Worlds/tree/codex/massassi-top50):
-check out that branch, install Python 3.10 or newer, and run `python blackwing_launcher.py`.
-The steps below apply to a standalone ZIP when one is available:
+Get the portable packages from the
+[RC6 release](https://github.com/CodaLilitari/World-Between-Worlds/releases/tag/v0.2.0-rc6)
+on **CodaLilitari/World-Between-Worlds**. The account restriction may prevent
+anonymous downloads and automatic updates; a 404 does not mean your local copy
+is broken. Source is also maintained on
+[`codex/massassi-top50`](https://github.com/CodaLilitari/World-Between-Worlds/tree/codex/massassi-top50).
 
 - **Windows 11 x64:** extract the ZIP, then open `WBW.exe`.
 - **Linux x86-64:** extract the ZIP, make `WBW` executable if necessary, then run
@@ -56,6 +55,13 @@ Nothing is selected by default. Converting several entries produces separate
 results; it does not combine or automatically load mods. **Ninja Kage 7.0** is an
 optional prototype recipe, with its remaining limits shown before conversion.
 
+**CTF levels require an additional support mod.** For the three stock CTF maps,
+WBW generates `bridge-ctf-ui` alongside the level. Every player must install that
+folder and launch with `-motsCompat -path bridge-ctf-ui`; then select the **CTF**
+episode in Multiplayer. The UI shows this requirement before and after conversion.
+Custom CTF recipes must declare their own reviewed requirements; the stock mod
+is not automatically compatible. [CTF installation](packaging/USER_GUIDE.md#capture-the-flag).
+
 New GOOs carry a recipe revision, for example `bridge-canyon_wbw_v1.goo`.
 The scanner checks the embedded record rather than trusting a renamed filename.
 When replacing an older installation, follow the generated instructions and
@@ -64,14 +70,14 @@ installed levels. [Revision details](RECIPES.md#installed-recipe-revisions).
 
 ## What's supported?
 
-The **0.2.0-rc5** candidate contains **53 recipe records, 52 selectable**:
+The **0.2.0-rc6** candidate contains **53 recipe records, 52 selectable**:
 nine stock JK multiplayer maps, 32 custom multiplayer entries (including packs),
 five custom singleplayer entries, and six optional mod prototypes. Canyon Oasis,
 the three stock CTF maps, Jedi's High School, Caesar's Palace, SM Purgatory, MLP3
 and Imperial Siege are included. Castle Conflict remains unavailable pending its
 engine prerequisite. Only the reviewed original versions are accepted.
 Recipe availability is separate from gameplay qualification; see the
-[release scope and remaining checks](docs/releases/0.2.0-rc5.md) and
+[release scope and remaining checks](docs/releases/0.2.0-rc6.md) and
 [development checkpoint](docs/top50/WAVE3_CHECKPOINT.md).
 
 - [Custom levels, authors and original download URLs](SUPPORTED_CUSTOM_SOURCES.txt)
@@ -93,9 +99,9 @@ source review and test status tracked separately from released compatibility.
 
 This source version checks `CodaLilitari/World-Between-Worlds` releases on launch, verifies compatible updates,
 and keeps a working fallback. It can run offline; `--no-update` skips the check.
-**The CodaLilitari account is currently restricted. Automatic update availability
-is unconfirmed; use your local copy or an accessible source checkout for now.**
-Local updater tests do not establish live GitHub delivery or release publishing.
+**The CodaLilitari account is currently restricted. Public automatic update
+delivery remains unconfirmed; an authenticated release check cannot establish
+anonymous access.** A downloaded copy works offline with `--no-update`.
 Application updates and individual recipe revisions are separate. Optional source
 and command-line use require Python 3.10+; run `python blackwing_launcher.py`.
 Older packages still name the former publisher and cannot automatically switch

@@ -1,0 +1,463 @@
+{
+  "schema": "wbw.historical-ctf-source-review.v1",
+  "date": "2026-09-25",
+  "assets_included": false,
+  "scope": "Read-only comparison of two historical MotS CTF ports with owned stock JK CTF source data; registered catalog classification and frozen top-50 JKMP source audit.",
+  "historical_ports": [
+    {
+      "archive": "motsctf.zip",
+      "title": "MotS CTF 1.0",
+      "author": "hedge",
+      "readme_release_date": "April 1998",
+      "readme_url": "https://jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Game%20Files/motskfy/info/motsctf/motsctf.txt",
+      "summary": "Three stock JK CTF maps. README requires Team mode for team skins and suggests a separate items.dat override to suppress the red-flag ysalamiri icon. It explicitly omits colored lights because the author lacked a 3D card; it does not itself state that lighting is broken.",
+      "permissions_summary": "README permits use as a base for additional levels and free distribution with its unmodified notice. Boilerplate disclaims LEC sounds despite the feature list identifying JK announcer WAVs; no legal clearance is inferred and no historical content is redistributed."
+    },
+    {
+      "archive": "sith-ctf.zip",
+      "title": "Mysteries of the Sith: Capture the Flag",
+      "version": "1.0",
+      "author": "Marc Sauvé",
+      "readme_release_date": "99/02/03",
+      "readme_url": "https://jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Game%20Files/motskfy/info/sith-ctf/sith-ctf.txt",
+      "summary": "Explicitly credits hedge as the basis; also requires Team mode for team skins. Three worlds and all shared COGs are identical to hedge. Episode title and final transition differ, and two ysalamiri bitmap members are added.",
+      "permissions_summary": "Distribution section contains a LucasArts disclaimer without an additional express grant; no historical content is redistributed."
+    }
+  ],
+  "archives": {
+    "motsctf.zip": {
+      "url": "https://jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Game%20Files/motskfy/motsctf.zip",
+      "sha256": "756acafd526c59e9d2f023d8cf3ba7f7e6fe84c1439012ac925f0a7e575500fe",
+      "size": 1985509,
+      "members": [
+        {
+          "name": "motsctf.goo",
+          "size": 7701749,
+          "sha256": "1afdbaa70b0b1734e5c1fb12b621c0d82efc6c2ad61b6610a22516c3bdc8f411",
+          "stored_dos_datetime": [
+            1998,
+            4,
+            23,
+            14,
+            37,
+            38
+          ]
+        },
+        {
+          "name": "motsctf.txt",
+          "size": 7293,
+          "sha256": "eca0bdaecf4f827a49e6f681f3a2884511eb687716d3fc4e9ad5d04672b7ec70",
+          "stored_dos_datetime": [
+            1998,
+            4,
+            23,
+            15,
+            42,
+            0
+          ]
+        },
+        {
+          "name": "items.dat",
+          "size": 12753,
+          "sha256": "8952966d0380f97723b3644983dbaa20b48acb030786bc008a90886ceecf93b9",
+          "stored_dos_datetime": [
+            1998,
+            4,
+            22,
+            19,
+            9,
+            42
+          ]
+        }
+      ],
+      "archive_entry_count": 136
+    },
+    "sith-ctf.zip": {
+      "url": "https://jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Game%20Files/motskfy/sith-ctf.zip",
+      "sha256": "0b5f61adf9ae291c45d911753c71acf1bf60d24d4a87ffe3dc959980afe6f60a",
+      "size": 1942996,
+      "members": [
+        {
+          "name": "sith-ctf.goo",
+          "size": 7704036,
+          "sha256": "b850448da31c99c26fe04cb46eca273a3824f55cf9a5085c9c5d041092c12b56",
+          "stored_dos_datetime": [
+            1999,
+            2,
+            9,
+            18,
+            30,
+            30
+          ]
+        },
+        {
+          "name": "sith-ctf.txt",
+          "size": 1822,
+          "sha256": "1f24332011c436bf22f954b45f917758a43e653060591d3715dce4b837c544af",
+          "stored_dos_datetime": [
+            1999,
+            2,
+            4,
+            0,
+            25,
+            46
+          ]
+        }
+      ],
+      "archive_entry_count": 138
+    }
+  },
+  "supporting_sources": [
+    {
+      "url": "https://jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Websites/Jedi%20Knight%20CTF%20Group/addons4.html",
+      "record_date": "1999-01-24",
+      "finding": "Archived listing identifies hedge, all three converted levels, new weapons without seeking rails, and Team Personalities."
+    },
+    {
+      "url": "https://jkdf2.net/JKBot/JKArchive/JKDF2/JKDF2/Websites/Jedi%20Knight%20CTF%20Group/oldnews.html",
+      "record_date": "1999-01-02",
+      "finding": "Archived news warns that an earlier link downloaded a one-level beta rather than the three-map version."
+    }
+  ],
+  "readme_normalized_comparison": "ZIP and archived-web readmes agree after CRCRLF/CRLF normalization; original bytes and hashes are preserved privately.",
+  "owned_input": {
+    "filename": "JK1CTF.GOB",
+    "sha256": "da98fe3fc769168f1bb562cc1f6532560b12d8e920fd6c34586d69b424b5b1fc",
+    "bytes": 5964087
+  },
+  "historical_port_comparison": {
+    "shared_entry_count": 136,
+    "identical_shared_entry_count": 135,
+    "changed_shared_entries": [
+      "episode.jk"
+    ],
+    "added_in_sith_ctf": [
+      "ui/bm/icysala16.bm",
+      "ui/bm/icysala8.bm"
+    ],
+    "removed_in_sith_ctf": []
+  },
+  "lighting_comparison": {
+    "jkl/c1.jkl": {
+      "original_sha256": "349fb5beffba7c84fd573fe1184f3fbb569d4fcdad07d2d9b26fcb8afdb849e0",
+      "port_sha256": "6b1321952c35656c0644c3944284866de15fe6758af5314ad0bbb81b8de77075",
+      "surface_count": 3081,
+      "surface_corner_count": 14772,
+      "surface_field_change_counts": {
+        "surface_flags": 0,
+        "face_flags": 0,
+        "geometry_mode": 0,
+        "lighting_mode": 0,
+        "texture_mode": 0,
+        "adjoin": 0,
+        "surface_extra_light": 0,
+        "corner_count": 0
+      },
+      "material_name_change_count": 0,
+      "max_corresponding_corner_coordinate_delta": "0",
+      "unequal_luminance_rgb_corners": 0,
+      "changed_vertex_light_surface_count": 0,
+      "changed_vertex_light_corner_count": 0,
+      "max_vertex_light_delta": "0",
+      "original_nonzero_surface_extra_light_count": 0,
+      "port_nonzero_surface_extra_light_count": 0,
+      "max_surface_extra_light_delta": "0",
+      "sector_lighting": {
+        "AMBIENT LIGHT": {
+          "count": 289,
+          "changed_records": 0
+        },
+        "EXTRA LIGHT": {
+          "count": 289,
+          "changed_records": 0
+        },
+        "TINT": {
+          "count": 289,
+          "changed_records": 0
+        }
+      }
+    },
+    "jkl/c2.jkl": {
+      "original_sha256": "bc9975eb3c93ee45e83928307d27dfd5d8f94ad4eea3216fa3fecf784e593ade",
+      "port_sha256": "14db6649eb959eba7c3bf7197203b9a6386fa2c24e787d4c8fe29795a5660e8d",
+      "surface_count": 4778,
+      "surface_corner_count": 23956,
+      "surface_field_change_counts": {
+        "surface_flags": 0,
+        "face_flags": 0,
+        "geometry_mode": 0,
+        "lighting_mode": 0,
+        "texture_mode": 0,
+        "adjoin": 0,
+        "surface_extra_light": 99,
+        "corner_count": 0
+      },
+      "material_name_change_count": 0,
+      "max_corresponding_corner_coordinate_delta": "0.000005",
+      "unequal_luminance_rgb_corners": 0,
+      "changed_vertex_light_surface_count": 41,
+      "changed_vertex_light_corner_count": 61,
+      "max_vertex_light_delta": "0.000005",
+      "original_nonzero_surface_extra_light_count": 99,
+      "port_nonzero_surface_extra_light_count": 0,
+      "max_surface_extra_light_delta": "1.00",
+      "sector_lighting": {
+        "AMBIENT LIGHT": {
+          "count": 359,
+          "changed_records": 0
+        },
+        "EXTRA LIGHT": {
+          "count": 359,
+          "changed_records": 0
+        },
+        "TINT": {
+          "count": 359,
+          "changed_records": 0
+        }
+      }
+    },
+    "jkl/c3.jkl": {
+      "original_sha256": "b4d804591cebebbd59f05ad42a8e059178dc468e24172bd6bc5b7d6ba1c2f0a7",
+      "port_sha256": "8d29967fb43322894742e3937199d6e4d6f641db3a1fe5d26cbad42e5ec3950c",
+      "surface_count": 9548,
+      "surface_corner_count": 47322,
+      "surface_field_change_counts": {
+        "surface_flags": 0,
+        "face_flags": 0,
+        "geometry_mode": 0,
+        "lighting_mode": 0,
+        "texture_mode": 0,
+        "adjoin": 0,
+        "surface_extra_light": 474,
+        "corner_count": 0
+      },
+      "material_name_change_count": 0,
+      "max_corresponding_corner_coordinate_delta": "0.000005",
+      "unequal_luminance_rgb_corners": 0,
+      "changed_vertex_light_surface_count": 15,
+      "changed_vertex_light_corner_count": 24,
+      "max_vertex_light_delta": "0.000005",
+      "original_nonzero_surface_extra_light_count": 474,
+      "port_nonzero_surface_extra_light_count": 0,
+      "max_surface_extra_light_delta": "10.00",
+      "sector_lighting": {
+        "AMBIENT LIGHT": {
+          "count": 794,
+          "changed_records": 0
+        },
+        "EXTRA LIGHT": {
+          "count": 794,
+          "changed_records": 0
+        },
+        "TINT": {
+          "count": 794,
+          "changed_records": 0
+        }
+      }
+    }
+  },
+  "lighting_conclusion": "Both historical ports zero all 573 original nonzero surface extra-light values: 99 in C2 and 474 in C3. Scalar corner light values are expanded to four equal components, with numeric differences no larger than 0.000005. Sector ambient/extra/tint are unchanged. This establishes source data loss, not its rendered severity or complete cause.",
+  "wbw_helper_check": {
+    "date": "2026-09-25",
+    "scope": "Pure WBW expand_surface_lighting helper on the three owned JK stock CTF worlds; no complete conversion or runtime assertion",
+    "bridge_source_sha256": "2b19ea12385497274d7e960d658ce11c03f511d915b9fedb6d91697c9c255d3e",
+    "function": "expand_surface_lighting",
+    "retail_archive_sha256": "da98fe3fc769168f1bb562cc1f6532560b12d8e920fd6c34586d69b424b5b1fc",
+    "worlds": {
+      "jkl/c1.jkl": {
+        "original_sha256": "349fb5beffba7c84fd573fe1184f3fbb569d4fcdad07d2d9b26fcb8afdb849e0",
+        "port_sha256": "464762b45b42d6714e3ba4206571cfb783b24039ffafbed4519605ed35b5fc45",
+        "surface_count": 3081,
+        "surface_corner_count": 14772,
+        "surface_field_change_counts": {
+          "surface_flags": 0,
+          "face_flags": 0,
+          "geometry_mode": 0,
+          "lighting_mode": 0,
+          "texture_mode": 0,
+          "adjoin": 0,
+          "surface_extra_light": 0,
+          "corner_count": 0
+        },
+        "changed_vertex_light_surface_count": 0,
+        "original_nonzero_surface_extra_light_count": 0,
+        "port_nonzero_surface_extra_light_count": 0,
+        "sector_lighting": {
+          "AMBIENT LIGHT": {
+            "count": 289,
+            "changed_records": 0
+          },
+          "EXTRA LIGHT": {
+            "count": 289,
+            "changed_records": 0
+          },
+          "TINT": {
+            "count": 289,
+            "changed_records": 0
+          }
+        }
+      },
+      "jkl/c2.jkl": {
+        "original_sha256": "bc9975eb3c93ee45e83928307d27dfd5d8f94ad4eea3216fa3fecf784e593ade",
+        "port_sha256": "c552b7ade5ab5cc3bf42919b7eaf17b926f8d1a9ea282d06854505aaa2948c3a",
+        "surface_count": 4778,
+        "surface_corner_count": 23956,
+        "surface_field_change_counts": {
+          "surface_flags": 0,
+          "face_flags": 0,
+          "geometry_mode": 0,
+          "lighting_mode": 0,
+          "texture_mode": 0,
+          "adjoin": 0,
+          "surface_extra_light": 0,
+          "corner_count": 0
+        },
+        "changed_vertex_light_surface_count": 0,
+        "original_nonzero_surface_extra_light_count": 99,
+        "port_nonzero_surface_extra_light_count": 99,
+        "sector_lighting": {
+          "AMBIENT LIGHT": {
+            "count": 359,
+            "changed_records": 0
+          },
+          "EXTRA LIGHT": {
+            "count": 359,
+            "changed_records": 0
+          },
+          "TINT": {
+            "count": 359,
+            "changed_records": 0
+          }
+        }
+      },
+      "jkl/c3.jkl": {
+        "original_sha256": "b4d804591cebebbd59f05ad42a8e059178dc468e24172bd6bc5b7d6ba1c2f0a7",
+        "port_sha256": "3fe5073f884ce778a950604a18a9215fc75564a14d5c7eb06bace5a29220719d",
+        "surface_count": 9548,
+        "surface_corner_count": 47322,
+        "surface_field_change_counts": {
+          "surface_flags": 0,
+          "face_flags": 0,
+          "geometry_mode": 0,
+          "lighting_mode": 0,
+          "texture_mode": 0,
+          "adjoin": 0,
+          "surface_extra_light": 0,
+          "corner_count": 0
+        },
+        "changed_vertex_light_surface_count": 0,
+        "original_nonzero_surface_extra_light_count": 474,
+        "port_nonzero_surface_extra_light_count": 474,
+        "sector_lighting": {
+          "AMBIENT LIGHT": {
+            "count": 794,
+            "changed_records": 0
+          },
+          "EXTRA LIGHT": {
+            "count": 794,
+            "changed_records": 0
+          },
+          "TINT": {
+            "count": 794,
+            "changed_records": 0
+          }
+        }
+      }
+    },
+    "passed": true
+  },
+  "custom_ctf_applicability": {
+    "catalog_source_sha256": "a83773420a9fd38256aa57b6d4698f6a02c21c3428d2ee5ef72784f76532385b",
+    "registered_custom_ctf_recipes_identified": [],
+    "registered_community_single_specs": 26,
+    "registered_community_single_episode_types": [
+      2
+    ],
+    "registered_pack_recipes": 5,
+    "registered_pack_component_worlds": 18,
+    "registered_pack_component_episode_types": [
+      2
+    ],
+    "registered_special_mp_only_recipes": [
+      "dojo",
+      "caesars"
+    ],
+    "top50_jkmp_original_zip_count": 50,
+    "top50_jkmp_embedded_gob_count": 51,
+    "top50_source_hash_errors": [],
+    "unregistered_type8_candidates": [
+      {
+        "rank": 25,
+        "massassi_id": 1135,
+        "title": "AIWARS",
+        "source_url": "https://www.massassi.net/levels/files/1135.shtml",
+        "zip_sha256": "d490a0bd4011ff22185d1715146cf578959ad289331b47c2c43e6e861c5b1134",
+        "gob_member": "AI_War/AIWARS.gob",
+        "gob_sha256": "e31be4c425efce0556a70504d43373ae1a5134e18297860b83e312c3fe13d3b9",
+        "episode_types": [
+          "8"
+        ],
+        "episode_sha256": "bd37f058dec4bd61a0a114b689ac2d1b6380950242563a6db41cd449c124351b",
+        "world_ctf_script_references": {},
+        "registered_recipe_id": null
+      },
+      {
+        "rank": 37,
+        "massassi_id": 1137,
+        "title": "AI Trench Wars",
+        "source_url": "https://www.massassi.net/levels/files/1137.shtml",
+        "zip_sha256": "ebb6379860e6dae3d664970e10e42b20c2db68648f274e68735730aff1c7a783",
+        "gob_member": "Trench Wars/trenchwars.gob",
+        "gob_sha256": "25da0b0dfb7f7d78c7ba10cc86fa3bcf01b7d0fc917097da04b8221985a7fe8a",
+        "episode_types": [
+          "8"
+        ],
+        "episode_sha256": "aef252e7d4d3ba8e9559646df0de07379e6e2c5d76feaf1261bf33434894efdd",
+        "world_ctf_script_references": {},
+        "registered_recipe_id": null
+      },
+      {
+        "rank": 38,
+        "massassi_id": 1934,
+        "title": "The Death Star",
+        "source_url": "https://www.massassi.net/levels/files/1934.shtml",
+        "zip_sha256": "ae5431b04d00236d4074bdd2730a56b1638f2ef7020a4b9356d4fb4ec31deca6",
+        "gob_member": "DS!.gob",
+        "gob_sha256": "fc4918f750bd61b457125940ffdfb03b5f9d67912df75cd5a3df1a60574d5681",
+        "episode_types": [
+          "8"
+        ],
+        "episode_sha256": "95bcb2b91677b881e786923b455cb4c82af832fb17f9ab55339b8b7b5afafd6e",
+        "world_ctf_script_references": {},
+        "registered_recipe_id": null
+      }
+    ],
+    "unregistered_type8_assessment": "These three source worlds do not reference ctf_*.cog. The bounded bundled-script scan found no mode/flag/scoring calls, and their readmes describe ordinary combat or AI encounters. TYPE 8 is a review signal, not proof of genuine CTF gameplay.",
+    "filename_only_candidate": {
+      "massassi_id": 1992,
+      "rank": 36,
+      "title": "Galactic Locations (16Bit)",
+      "source_url": "https://www.massassi.net/levels/files/1992.shtml",
+      "world": "jkl/astrctf.jkl",
+      "episode_type": 2,
+      "ctf_script_references": [],
+      "assessment": "Filename alone does not establish CTF gameplay."
+    },
+    "scope_limit": "Massassi JK CTF is a separate category outside the frozen JKMP top 50. Older custom originals outside that frozen source set were not reopened; registered recipe metadata was checked."
+  },
+  "execution": {
+    "python_version": "3.13.15",
+    "dependencies": "Python standard library only; the helper-level WBW check also imported the local bridge module.",
+    "script": "audit_historical_ctf.py",
+    "script_sha256": "5458bc4a87485fdc8cf97ad6cb6d5fe53b5ba951073fe414d05c105e45c9aa4c",
+    "comparison_receipt_sha256": "95004be2726221dc751ac4baab1dc6ca5defae7eca28955ba5229a6cc9670298",
+    "custom_audit_receipt_sha256": "79a95c44d4152d15ef4f812a14fda7421150aa78c1719440ebcaa5c610c42f8c",
+    "wbw_helper_receipt_sha256": "9da332d41c19d0aa885dc0858211e70f30572d66ac285aa4cd84477cc3428875"
+  },
+  "limits": [
+    "No historical game was launched, installed or modified.",
+    "No retail, historical mod, bitmap, sound, script, complete original readme, or final conversion is included in this evidence file.",
+    "The WBW helper check is not a full converted-package, rendered scene, gameplay or multiplayer peer result.",
+    "Original ZIP timestamps are metadata, not independent confirmation of release dates."
+  ]
+}

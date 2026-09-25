@@ -13,7 +13,7 @@ from bridge import (RecipeError, Catalog, convert_things, expand_surface_lightin
                     STOCK_MAPS, stock_selector, stock_output_name, check_output_path,
                     adapt_ctf_saber_grants, ctf_items_dat, reviewed_source_omission,
                     ctf_startup_candidate, ctf_startup_files, write_ctf_startup,
-                    check_ctf_startup_directory, CTF_STARTUP_ARCHIVE)
+                    check_ctf_startup_directory, CTF_STARTUP_ARCHIVE, single_level_episode)
 
 
 class ArchiveSafety(unittest.TestCase):
@@ -94,6 +94,24 @@ class SemanticTransforms(unittest.TestCase):
         self.assertIn('SetInv(player, 84, 1);', result)
         with self.assertRaises(RecipeError):
             adapt_ctf_saber_grants('SetInv(player, 10, 1);')
+
+    def test_ctf_episode_labels_are_explicit_and_preserve_mode_and_route(self):
+        expected = {
+            'ctf-duel': ('The Duel', 'br_ctf_duel'),
+            'ctf-arena': ('The Arena of Dark and Light', 'br_ctf_arena'),
+            'ctf-challenge': ('The Challenge at Nar Shaddaa', 'br_ctf_challenge'),
+        }
+        for key, (title, world) in expected.items():
+            with self.subTest(recipe=key):
+                spec = STOCK_MAPS[key]
+                actual = single_level_episode(spec['title'], 'br_' + spec['tag'], spec['episode_type'])
+                self.assertEqual(actual, (f'"CTF - {title} - MotS bridge prototype"\nTYPE 8\nSEQ 1\n'
+                                          f'10: 1 1 LEVEL {world}.jkl 0 0 10 10\nend\n').encode('cp1252'))
+
+    def test_non_ctf_episode_descriptor_keeps_legacy_bytes(self):
+        self.assertEqual(single_level_episode('Canyon Oasis', 'br_m10', 2),
+                         b'"JK Canyon Oasis - MotS bridge prototype"\nTYPE 2\nSEQ 1\n'
+                         b'10: 1 1 LEVEL br_m10.jkl 0 0 10 10\nend\n')
 
     def test_ctf_hud_descriptor_preserves_native_gameplay_items(self):
         value = 'ysalamiri 68 0 1 0x042\nysalamiri 81 0 1 0x048\ngoldflag 82 0 1 0x048\nlightsaber 131 0 1 0x0a4 cog=weap_saber_m.cog\n'
