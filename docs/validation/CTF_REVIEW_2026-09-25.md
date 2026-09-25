@@ -13,7 +13,7 @@ Copying only the level is insufficient. The generated mod changes native MotS
 inventory descriptor 81 from `ysalamiri` to `redflag`; it preserves all other
 rows. Native ysalamiri gameplay inventory at bin 68 is deliberately unchanged.
 
-![CTF support-mod instructions](../screenshots/ctf-requirements-20260925.png)
+![CTF support-mod instructions](../screenshots/ctf-requirements-20260925.jpg)
 
 All three converted episode titles now begin **CTF -**, keeping that label
 visible even when the native list clips the longer suffix. Their revisions
