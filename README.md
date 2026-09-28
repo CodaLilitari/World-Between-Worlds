@@ -19,15 +19,20 @@ and the worlds their players built.
 ## Download and start
 
 Get the portable packages from the
-[RC6 release](https://github.com/CodaLilitari/World-Between-Worlds/releases/tag/v0.2.0-rc6)
-on **CodaLilitari/World-Between-Worlds**. The account restriction may prevent
-anonymous downloads and automatic updates; a 404 does not mean your local copy
-is broken. For matching source, use the RC6 source ZIP or the
+[portfolio downloads](https://richard-pemberton-research.darkahn.chatgpt.site/downloads/#world-between-worlds)
+or the [GitLab RC6 release](https://gitlab.com/codalilitari/World-Between-Worlds/-/releases/v0.2.0-rc6).
+[GitHub also hosts RC6](https://github.com/CodaLilitari/World-Between-Worlds/releases/tag/v0.2.0-rc6),
+but its account restriction may block downloads and automatic updates. Existing
+packages still use that GitHub updater; use the manual downloads if needed.
+For matching source, use the RC6 source ZIP or the
 [`v0.2.0-rc6` tag](https://github.com/CodaLilitari/World-Between-Worlds/tree/v0.2.0-rc6).
 This landing page describes RC6; the default `main` branch still contains an
 older source snapshot. Use the release source above for the matching app.
 Ongoing development is maintained on
 [`codex/massassi-top50`](https://github.com/CodaLilitari/World-Between-Worlds/tree/codex/massassi-top50).
+The [GitLab mirror](https://gitlab.com/codalilitari/World-Between-Worlds) opens that development branch.
+The [September 27 checkpoint](https://gitlab.com/codalilitari/World-Between-Worlds/-/blob/codex/massassi-top50/docs/top50/CHECKPOINT_2026-09-27.md)
+records ongoing Chaos Eternal and Dark Emperor II work; neither is selectable yet.
 
 - **Windows 11 x64:** extract the ZIP, then open `WBW.exe`.
 - **Linux x86-64:** extract the ZIP, make `WBW` executable if necessary, then run
