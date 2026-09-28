@@ -1,7 +1,7 @@
 # World Between Worlds
 
 **Bring reviewed Jedi Knight maps into Mysteries of the Sith.**
-Local recipe-book converter · Windows 11 / Linux · **0.2.0-rc6 — experimental**
+Local recipe-book converter · Windows 11 / Linux · **Latest prerelease: 0.2.0-rc6 — experimental**
 
 World Between Worlds (WBW) rebuilds selected **Jedi Knight: Dark Forces II** maps
 and mods for **Mysteries of the Sith**, using your own game installations and
@@ -22,7 +22,9 @@ Get the portable packages from the
 [RC6 release](https://github.com/CodaLilitari/World-Between-Worlds/releases/tag/v0.2.0-rc6)
 on **CodaLilitari/World-Between-Worlds**. The account restriction may prevent
 anonymous downloads and automatic updates; a 404 does not mean your local copy
-is broken. Source is also maintained on
+is broken. For matching source, use the RC6 source ZIP or the
+[`v0.2.0-rc6` tag](https://github.com/CodaLilitari/World-Between-Worlds/tree/v0.2.0-rc6).
+Ongoing development is maintained on
 [`codex/massassi-top50`](https://github.com/CodaLilitari/World-Between-Worlds/tree/codex/massassi-top50).
 
 - **Windows 11 x64:** extract the ZIP, then open `WBW.exe`.
@@ -97,16 +99,16 @@ when deciding what to test.
 Development work: [50 Massassi entries per category](docs/top50/README.md), with
 source review and test status tracked separately from released compatibility.
 
-This source version checks `CodaLilitari/World-Between-Worlds` releases on launch, verifies compatible updates,
+RC6 checks `CodaLilitari/World-Between-Worlds` releases on launch, verifies compatible updates,
 and keeps a working fallback. It can run offline; `--no-update` skips the check.
 **The CodaLilitari account is currently restricted. Public automatic update
 delivery remains unconfirmed; an authenticated release check cannot establish
 anonymous access.** A downloaded copy works offline with `--no-update`.
 Application updates and individual recipe revisions are separate. Optional source
-and command-line use require Python 3.10+; run `python blackwing_launcher.py`.
+and command-line use require Python 3.10+: extract the RC6 source ZIP or check out
+the `v0.2.0-rc6` tag, then run `python blackwing_launcher.py`.
 Older packages still name the former publisher and cannot automatically switch
-repositories. Use this source checkout, or a new package from the public
-repository when released, to change the update source.
+repositories. Install an RC6 package manually to change the update source.
 
 Original tooling by **Andrei Pemberton**, with **Coda Lilitari in Astra Codex**.
 Original map and mod authors retain their credits. WBW is separate from our
