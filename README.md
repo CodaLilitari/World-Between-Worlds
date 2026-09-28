@@ -1,7 +1,7 @@
 # World Between Worlds
 
 **Bring reviewed Jedi Knight maps into Mysteries of the Sith.**
-Local recipe-book converter · Windows 11 / Linux · **0.2.0-rc4 — experimental**
+Local recipe-book converter · Windows 11 / Linux · **Latest prerelease: 0.2.0-rc6 — experimental**
 
 World Between Worlds (WBW) rebuilds selected **Jedi Knight: Dark Forces II** maps
 and mods for **Mysteries of the Sith**, using your own game installations and
@@ -18,15 +18,16 @@ and the worlds their players built.
 
 ## Download and start
 
-Check the [CodaLilitari releases page](https://github.com/CodaLilitari/World-Between-Worlds/releases)
-for your platform's **standalone ZIP** and its release notes. The source has moved
-to the public CodaLilitari repository; this change does not itself publish a new
-binary release. Historical ZIPs retain their original updater destination.
-
-**Moving from an Andrei build:** its updater still points to the now-private
-`andreipemberton/World-Between-Worlds` repository. Install a newly built Coda
-release manually when available, or run this source with Python 3.10+ using
-`python blackwing_launcher.py --no-update`. [Migration details](packaging/USER_GUIDE.md#moving-to-the-codalilitari-repository).
+Get the portable packages from the
+[RC6 release](https://github.com/CodaLilitari/World-Between-Worlds/releases/tag/v0.2.0-rc6)
+on **CodaLilitari/World-Between-Worlds**. The account restriction may prevent
+anonymous downloads and automatic updates; a 404 does not mean your local copy
+is broken. For matching source, use the RC6 source ZIP or the
+[`v0.2.0-rc6` tag](https://github.com/CodaLilitari/World-Between-Worlds/tree/v0.2.0-rc6).
+This landing page describes RC6; the default `main` branch still contains an
+older source snapshot. Use the release source above for the matching app.
+Ongoing development is maintained on
+[`codex/massassi-top50`](https://github.com/CodaLilitari/World-Between-Worlds/tree/codex/massassi-top50).
 
 - **Windows 11 x64:** extract the ZIP, then open `WBW.exe`.
 - **Linux x86-64:** extract the ZIP, make `WBW` executable if necessary, then run
@@ -43,8 +44,9 @@ Its illustrated gothic interface is completely silent.
 2. **Check older conversions.** Click **Scan MotS folder** to see which installed
    WBW levels are current, older, unversioned, changed, or duplicated. Queue only
    the updates you want. The scan changes no files.
-3. **Choose a level or mod.** Use the dropdown and add one or several to your queue.
-   The full library has search and filters for stock/custom content and gameplay.
+3. **Choose Levels or Mods.** Levels contains stock and custom maps; Mods contains
+   optional gameplay conversions such as Ninja Kage. Add entries to your queue
+   using the dropdown. Search and gameplay filters stay within that section.
 4. **Supply the original when needed.** For a custom level or mod, select its
    original ZIP/GOB. **Download original** opens the reviewed author's/archive page;
    download it there, then come back and explicitly choose the file. Stock maps
@@ -57,26 +59,37 @@ Nothing is selected by default. Converting several entries produces separate
 results; it does not combine or automatically load mods. **Ninja Kage 7.0** is an
 optional prototype recipe, with its remaining limits shown before conversion.
 
+**CTF levels require an additional support mod.** For the three stock CTF maps,
+WBW generates `bridge-ctf-ui` alongside the level. Every player must install that
+folder and launch with `-motsCompat -path bridge-ctf-ui`; then select the **CTF**
+episode in Multiplayer. The UI shows this requirement before and after conversion.
+Custom CTF recipes must declare their own reviewed requirements; the stock mod
+is not automatically compatible. [CTF installation](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/packaging/USER_GUIDE.md#capture-the-flag).
+
 New GOOs carry a recipe revision, for example `bridge-canyon_wbw_v1.goo`.
 The scanner checks the embedded record rather than trusting a renamed filename.
 When replacing an older installation, follow the generated instructions and
 update any required startup folder too; WBW does not delete or overwrite your
-installed levels. [Revision details](RECIPES.md#installed-recipe-revisions).
+installed levels. [Revision details](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/RECIPES.md#installed-recipe-revisions).
 
 ## What's supported?
 
-The recipe book includes all **nine stock JK multiplayer maps**, including Canyon
-Oasis and the three CTF maps; **17 custom maps**, including Jedi's High School,
-Caesar's Palace, and SM Purgatory; and the optional Ninja Kage 7.0 prototype.
-Only the reviewed original versions are accepted. Singleplayer categories are
-reserved for future recipes.
+The **0.2.0-rc6** candidate contains **53 recipe records, 52 selectable**:
+nine stock JK multiplayer maps, 32 custom multiplayer entries (including packs),
+five custom singleplayer entries, and six optional mod prototypes. Canyon Oasis,
+the three stock CTF maps, Jedi's High School, Caesar's Palace, SM Purgatory, MLP3
+and Imperial Siege are included. Castle Conflict remains unavailable pending its
+engine prerequisite. Only the reviewed original versions are accepted.
+Recipe availability is separate from gameplay qualification; see the
+[release scope and remaining checks](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/docs/releases/0.2.0-rc6.md) and
+[development checkpoint](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/docs/top50/WAVE3_CHECKPOINT.md).
 
-- [Custom levels, authors and original download URLs](SUPPORTED_CUSTOM_SOURCES.txt)
-- [Per-map details and known differences](COMMUNITY_RC1.md) · [Ninja Kage](NINJA_KAGE.md)
-- [User guide, installing outputs and updates](packaging/USER_GUIDE.md)
-- [Launch/testing guide](TESTING.md) · [Validation and limits](VALIDATION.md)
-- [Exact recipes and optional command-line reference](RECIPES.md)
-- [Comparison screenshots and artwork provenance](SCREENSHOTS.md)
+- [Custom levels, authors and original download URLs](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/SUPPORTED_CUSTOM_SOURCES.txt)
+- [Per-map details and known differences](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/COMMUNITY_RC1.md) · [Ninja Kage](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/NINJA_KAGE.md)
+- [User guide, installing outputs and updates](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/packaging/USER_GUIDE.md)
+- [Launch/testing guide](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/TESTING.md) · [Validation and limits](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/VALIDATION.md)
+- [Exact recipes and optional command-line reference](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/RECIPES.md)
+- [Comparison screenshots and artwork provenance](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/SCREENSHOTS.md)
 
 This remains an experimental compatibility tool. Structural verification and
 selected multiplayer host tests are documented; they do not establish complete
@@ -85,18 +98,26 @@ when deciding what to test.
 
 ## Updates, credits and terms
 
-WBW checks this project's GitHub releases on launch, verifies compatible updates,
+Development work: [50 Massassi entries per category](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/docs/top50/README.md), with
+source review and test status tracked separately from released compatibility.
+
+RC6 checks `CodaLilitari/World-Between-Worlds` releases on launch, verifies compatible updates,
 and keeps a working fallback. It can run offline; `--no-update` skips the check.
+**The CodaLilitari account is currently restricted. Public automatic update
+delivery remains unconfirmed; an authenticated release check cannot establish
+anonymous access.** A downloaded copy works offline with `--no-update`.
 Application updates and individual recipe revisions are separate. Optional source
-and command-line use require Python 3.10+; run `python blackwing_launcher.py`.
+and command-line use require Python 3.10+: extract the RC6 source ZIP or check out
+the `v0.2.0-rc6` tag, then run `python blackwing_launcher.py`.
+Older packages still name the former publisher and cannot automatically switch
+repositories. Install an RC6 package manually to change the update source.
 
 Original tooling by **Andrei Pemberton**, with **Coda Lilitari in Astra Codex**.
-Current source publication is under the verified **CodaLilitari** GitHub account.
 Original map and mod authors retain their credits. WBW is separate from our
 [OpenJKDF2-MotS-Fixes engine fork](https://github.com/CodaLilitari/OpenJKDF2-MotS-Fixes)
 and from upstream OpenJKDF2. No Lucasfilm or LucasArts affiliation is claimed.
 
-The [MIT license](LICENSE) covers our original software and documentation.
+The [MIT license](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/LICENSE) covers our original software and documentation.
 Original-content terms remain separate: requiring your originals and publishing
 recipes avoids bundling or reuploading those assets, but grants no permission to
-redistribute generated levels. See the [provenance and asset boundary](NOTICE.md).
+redistribute generated levels. See the [provenance and asset boundary](https://github.com/CodaLilitari/World-Between-Worlds/blob/20c93cb202404a0d4226a4e32e1d8aec3d4e6781/NOTICE.md).
