@@ -1,5 +1,11 @@
 # Work remaining after the RC5 preparation
 
+**September 27 update:** RC6 is now the downloadable prerelease. See the
+[current development checkpoint](../top50/CHECKPOINT_2026-09-27.md) for the
+implemented Chaos source gates, remaining pack-union conflict, Dark Emperor II
+source review, regression results and current pause boundary. The older
+next-step descriptions below are historical where that checkpoint supersedes them.
+
 Andrei requested preparation of the completed WBW release checkpoint followed
 by a pause. This file records the next work; it does not schedule or resume it.
 

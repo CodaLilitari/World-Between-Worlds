@@ -1,5 +1,9 @@
 # Next highest-ranked missing entries
 
+Latest continuation: [September 27 checkpoint](CHECKPOINT_2026-09-27.md).
+The historical implementation status below is superseded there for Chaos
+Eternal and Dark Emperor II; neither has become a selectable recipe.
+
 September 20, 2026. These source reviews began as original-engine comparisons.
 MLP3 and Imperial Siege have since become selectable prototypes; Chaos Eternal
 and the mod entry below remain intake work. Recipe coverage is now 40 of the

@@ -1,0 +1,569 @@
+{
+  "author": "freddub",
+  "catalog_status": "blocked-candidate-not-registered",
+  "download_rank": 10,
+  "download_url": "https://www.massassi.net/media/levels/files/jkmp/chaosfor2.zip",
+  "episode_rows": [
+    {
+      "darkpow": 0,
+      "disc": 0,
+      "goto_a": 11,
+      "goto_b": -1,
+      "level": 1,
+      "lightpow": 0,
+      "line": 10,
+      "type": "LEVEL",
+      "world": "jkl/academy.jkl",
+      "world_spec": "academy"
+    },
+    {
+      "darkpow": 0,
+      "disc": 0,
+      "goto_a": 12,
+      "goto_b": -1,
+      "level": 2,
+      "lightpow": 0,
+      "line": 11,
+      "type": "LEVEL",
+      "world": "jkl/club.jkl",
+      "world_spec": "club"
+    },
+    {
+      "darkpow": 0,
+      "disc": 0,
+      "goto_a": -1,
+      "goto_b": -1,
+      "level": 3,
+      "lightpow": 0,
+      "line": 12,
+      "type": "LEVEL",
+      "world": "jkl/catacombs.jkl",
+      "world_spec": "catacombs"
+    }
+  ],
+  "episode_sha256": "c2b9de4f58d1f11e8b15b8fd155d646a057c4d459c814141c43a9442a9a0bde1",
+  "gob_member": "chaos.gob",
+  "gob_sha256": "2ef0acee7c1368fbeeed808ff8550ecfe743f57e00bbf340a3cb75e7da516235",
+  "key": "mp-chaos-eternal",
+  "massassi_id": 328,
+  "runtime_test": {
+    "full_gameplay": false,
+    "note": "Structural/private candidate only. Original captures and passive rank observations are separate source baselines, not converted gameplay validation.",
+    "status": "not-run-on-this-output"
+  },
+  "source_behavior_caveats": [
+    "The authored startup falls through into timer code immediately and repeats after 15 seconds: rank 1/2/4, mana 200 and Pull disabled remain. The paired native-derived controller recomputes the rank cap each pulse and synchronizes native maxmana only in multiplayer; startup timing, persona minimum and SP policy remain unchanged.",
+    "Preserve the authored pow_mana pickup and cooperative AI/SendTrigger scripts. Actor behavior, Force use and regeneration after consumption, health/pickup outcomes and peer synchronization remain unverified on this candidate.",
+    "Club and Catacombs retain the exact missing 00_glass material references as isolated br_00_glass.mat. Original unused world material slots and the shared untextured shard remain; no native glass is substituted.",
+    "Authored end controllers, undeclared team, delays and academy-to-club-to-catacombs-to-end transitions remain. Same-process transitions, death/respawn, camera/actor interactions and matching connected peers require runtime checks."
+  ],
+  "source_url": "https://www.massassi.net/levels/files/328.shtml",
+  "startup_profile": {
+    "expected_native_members": [
+      "cog/force_well.cog"
+    ],
+    "native_cog_edits": {
+      "force_well.cog": {
+        "edits": [
+          {
+            "count": 1,
+            "new": "   maximum = GetInv(player, 20) * 50;\n   if (IsMulti())\n      SetInv(player, 69, maximum);",
+            "old": "\tif (!IsMulti())\n      maximum = GetInv(player, 20) * 50;",
+            "reason": "Restore dynamic rank-based MP regeneration/cap; keep native maxmana consumers synchronized. SP bin69 policy and all startup/sleep/pulse instructions remain unchanged."
+          }
+        ],
+        "sha256": "3ac58e1280bcf46605a2c77ecc3888227679bb88b1feb559b5f001d669827c87"
+      }
+    },
+    "profile_id": "chaos-force-ranks-v1",
+    "required_world_paths": [
+      "jkl/academy.jkl",
+      "jkl/club.jkl",
+      "jkl/catacombs.jkl"
+    ],
+    "runtime_mode": "mots-multiplayer",
+    "source_gob_sha256": "2ef0acee7c1368fbeeed808ff8550ecfe743f57e00bbf340a3cb75e7da516235"
+  },
+  "summary": "Unregistered three-world cooperative campaign candidate. Exact authored graph, environment scripts and mana pickup retained; isolated reviewed native Force startup profile required.",
+  "tag": "mp328",
+  "title": "Chaos Eternal",
+  "world_specs": {
+    "academy": {
+      "author": "freddub",
+      "cog_edits": {
+        "academy_start.cog": [
+          {
+            "count": 1,
+            "new": "SetInv(player, 20, 1);\n  if (IsMulti())\n    SetInv(player, 69, GetInv(player, 20) * 50);",
+            "old": "SetInv(player, 20, 1);",
+            "reason": "Publish the authored rank cap to native full-mana consumers immediately, before first pulse and after each existing timer assignment. Do not call or restart force_well."
+          },
+          {
+            "count": 1,
+            "new": "SetInv(player, 131, 1);",
+            "old": "SetInv(player, 10, 1);",
+            "reason": "Existing independently justified saber ordinal adaptation."
+          }
+        ]
+      },
+      "cog_sha256": {
+        "00_bloodtrail.cog": "90a071f66f7cc620215f8444e037ff47e062ad4c48e599b9823b2a251b5e1031",
+        "00_camera.cog": "70adcb46d2d7c59155e3c4328bbcb5d176eb7cb039d4c988d6c74a40ceb87b94",
+        "00_conveyor.cog": "3abb561d6e05c98340993d7c299e6b680ac9785c032d6af4c405f1c2200fad0b",
+        "00_door.cog": "a07fb10fadbc81bf4a970cd4ced495240ccfa86f35e3f9de954729d65cbfba5a",
+        "00_doorlocked1side.cog": "d3e1098c3584de1e778b55a84042a0817f239dd6340a212abc8f322c647128c3",
+        "00_elev_switch.cog": "c1e492ba2c3b8cc0399f777e8a61338e4a1f9aed816ab3e62974e8b92d2adcc3",
+        "00_elev_switch3.cog": "800b8d6a2d3bf37c3bb3b4190dda3b452cb5d905c792959c7306e48f230df5af",
+        "00_soundtrack.cog": "361f923f00da8d0d042572cc2619e93e31214b9f49a2815a9c2816232e8b4839",
+        "00_twoonebee.cog": "61da50bb6ab5201e7873e47e780307eef5eafe5452a9480d648ad99be7cd0b70",
+        "00m_transport_land.cog": "d736405a6106874e9f9835caccfcc30dfa019c7f6b9b6d0af819c617eb805823",
+        "06_drawbridge.cog": "53fc2ecf803713cc16736f3729e1be2c2d662834d8a6e4411b9f86452bd35dd8",
+        "academy_start.cog": "df060a1d1ea25ea79b596e083cb5faa2c06b460230212fbbb14744dcabce1fea",
+        "academyend.cog": "7d347be164d89fb7348d234149ffd82227f20424c150eac48614a39ad570234a",
+        "actor_atst.cog": "80d5d53eaa92d8af0434a8f692114287548448f8a44511fe9d1a051f22ab04b2",
+        "actor_bs.cog": "692ef2c499c9fa67d8947be9ca746759208ae56d9bd289d11ee14eff320cfef1",
+        "actor_cr.cog": "4a75eba98f0b7ec24d8487031cb4bf75039afc56da5f7d9a986c4d71d29f6a3e",
+        "actor_cs.cog": "3b2d4afc49c0440c2cb1e997a0415c1f260545808e97b78f73843bc2a9bebf44",
+        "actor_gg.cog": "eaac3e09a98dd2728add870d3aaf155ef8cc3651b79a0f6df5b2dc80128e1209",
+        "actor_gr.cog": "8312e3869a2f27dab514b9426fa434d69e9d73d1626308fe1833bfbe9097361d",
+        "actor_i2.cog": "84f9e5851295560c3d0ec64e284e252427ee1bea37f374391251199d5a85c79e",
+        "actor_ic.cog": "325d6426b148240d176c3656796bb637c7f4a75eaa47e51e90cf27a3c4ea52f0",
+        "actor_pf.cog": "ffd2d95f752a88626fe59ac8409a36174834581c38ce16610ba34b02a1d34692",
+        "actor_pm.cog": "2c8a56586bc40c484b0b2f27b08e95da129365ca54abeb6b6c4ce38be60e2b4a",
+        "actor_rf.cog": "852e6491b290f00ee7c61ba05d2c69d312dfc449b642c9abf39d1a574835c6bb",
+        "actor_ry.cog": "2b15152b84ba876768a3081205a625ff471af973102a728a9191f917048454b7",
+        "actor_s3.cog": "bda9a2c4a16ceff79b30d4f57bf0c28253631dd41f53195fb6588c1b662dc93a",
+        "actor_st.cog": "b2b27471f59972e928746f57442bc40e0a29b3080b0433713d56bfdfd19ed1d5",
+        "ais_basic_jk.cog": "82b729d9856d749432b004e73f795c78dd430b00344f0882caeea4944cdd390c",
+        "healsector.cog": "f049e73164d6d09ef040370dc34ee800eab5ac8c8450fb3a252522585fbe1b8a",
+        "hothelevator.cog": "28524bf9800a37c82e4d00fd1522805c7649cf1d0de3e2345ee94dfa88e687f2",
+        "m2_ffieldswitch.cog": "d7ab83b77df27d5901a73c98bfe313b1f56b3d1a3d0a1d444faff389c045f3b2",
+        "m5_antigrav_going_up.cog": "918e6fdaf5323b20d64ce51093bc4f0f7f7313e7d7ef75d7ec39e7d5e61f46f6",
+        "s4l3_balconythrust.cog": "e9647ddb88a3f383cc2ae985be6f342e1afd0509e18c15e26ed85ef74c626888",
+        "speeder.cog": "6eb4621de9738a09b46421926422912a38914355123c5c0c49dda1800cd1df74",
+        "xcrane.cog": "61c07d0fc8b04069b8d2c2d077ec7a9b443cf7f3cb55656e0560ce8b5bfa1572",
+        "xtank3.cog": "581508d8eebd8ce141cf5d23a8768c42175794950579ae2b517a3cc24f1e3104",
+        "xtank4.cog": "8c4e0711fe15256c93a709f55192eddbc070d5999e8fc48d19595a86e54958ca",
+        "xtank4rd.cog": "2ef6e12f2b1dd3bfa7f6e4a4f437ab10c2a3fd2a7241eaf6cd6352ac2c3639f6"
+      },
+      "download_rank": 10,
+      "download_url": "https://www.massassi.net/media/levels/files/jkmp/chaosfor2.zip",
+      "environment": "00_bloodtrail.cog 00_camera.cog 00_conveyor.cog 00_door.cog 00_doorlocked1side.cog 00_elev_switch.cog 00_elev_switch3.cog 00_soundtrack.cog 00_twoonebee.cog 00m_transport_land.cog 06_drawbridge.cog academy_start.cog academyend.cog actor_atst.cog actor_bs.cog actor_cr.cog actor_cs.cog actor_gg.cog actor_gr.cog actor_i2.cog actor_ic.cog actor_pf.cog actor_pm.cog actor_rf.cog actor_ry.cog actor_s3.cog actor_st.cog ais_basic_jk.cog healsector.cog hothelevator.cog m2_ffieldswitch.cog m5_antigrav_going_up.cog s4l3_balconythrust.cog speeder.cog xcrane.cog xtank3.cog xtank4.cog xtank4rd.cog",
+      "episode_type": 2,
+      "gob_member": "chaos.gob",
+      "gob_sha256": "2ef0acee7c1368fbeeed808ff8550ecfe743f57e00bbf340a3cb75e7da516235",
+      "key": "mp-chaos-eternal-academy",
+      "massassi_id": 328,
+      "native_cog_edits": {
+        "force_well.cog": {
+          "edits": [
+            {
+              "count": 1,
+              "new": "   maximum = GetInv(player, 20) * 50;\n   if (IsMulti())\n      SetInv(player, 69, maximum);",
+              "old": "\tif (!IsMulti())\n      maximum = GetInv(player, 20) * 50;",
+              "reason": "Restore dynamic rank-based MP regeneration/cap; keep native maxmana consumers synchronized. SP bin69 policy and all startup/sleep/pulse instructions remain unchanged."
+            }
+          ],
+          "sha256": "3ac58e1280bcf46605a2c77ecc3888227679bb88b1feb559b5f001d669827c87"
+        }
+      },
+      "native_resource_overrides": {},
+      "native_template_overrides": {},
+      "native_text_edits": {},
+      "notes": [
+        "Unregistered source-pinned candidate; complete pack remains blocked by resource-union conflict. Preserve authored cooperative AI, environments, graph, mana pickup, original omissions and notices. Only reviewed startup rank-cap synchronization, Force pulse and saber131 operations apply."
+      ],
+      "readme_provenance": [
+        {
+          "bytes": 4503,
+          "path": "Chaos.txt",
+          "sha256": "cf4b98b53d93a25416df7eac21ca97e21ce9aa1a87224499921e109652a20e6b"
+        },
+        {
+          "bytes": 613,
+          "path": "coopreadme.txt",
+          "sha256": "d00a8d42aa98c057dbc4754da30dd31e85cca5191a4093fb9c96d1b6ddecc94e"
+        }
+      ],
+      "requires_jksp": false,
+      "resource_aliases": {},
+      "runtime_cogs": "00_desttrail.cog 00_smoketrail.cog class_sequencer.cog kyle.cog pow_backpack.cog pow_bacta.cog pow_battery.cog pow_bryar.cog pow_concrifle.cog pow_crossbow.cog pow_darkside.cog pow_dconcrifle.cog pow_drailgun.cog pow_drepeater.cog pow_dstrifle.cog pow_energy.cog pow_health.cog pow_keyred.cog pow_lightside.cog pow_power.cog pow_powerboost.cog pow_railcharges.cog pow_railgun.cog pow_repeater.cog pow_revive.cog pow_saber.cog pow_sequencer.cog pow_shields.cog pow_single_sequencer.cog pow_single_thermal.cog pow_smbkpk.cog pow_stbkpk.cog pow_strifle.cog pow_thermal.cog pow_vest.cog",
+      "runtime_source_sha256": {
+        "00_desttrail.cog": "6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48",
+        "00_smoketrail.cog": "2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf",
+        "class_sequencer.cog": "7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5",
+        "kyle.cog": "cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955",
+        "pow_backpack.cog": "7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed",
+        "pow_bacta.cog": "8b420d7556d92a9f2bcfbb99aeac690e85d7beb54baa7f7e7321f4121b090d56",
+        "pow_battery.cog": "d5580c827623ee20f6ef0e235c4b9f1dccff38a0ed4a50bb77392d59fbd4e9eb",
+        "pow_bryar.cog": "d533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169",
+        "pow_concrifle.cog": "a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011",
+        "pow_crossbow.cog": "e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85",
+        "pow_darkside.cog": "739d2bd52cd1ad550178805a780db8095a1a34bb5d366c41d5871995b069c504",
+        "pow_dconcrifle.cog": "26332b5977db8a5650fb6a849f3871487c0f33df7a031c5171a936c5d8d73e37",
+        "pow_drailgun.cog": "2812ae55d215dde58d7551a844c0bb4c09a93f446579bb41a7022dcabc2ec166",
+        "pow_drepeater.cog": "95eafcf256cbe99aa92df0cc668490ccc41988caed79871532a290935e6ffc87",
+        "pow_dstrifle.cog": "483513c35d918b1344e558f4da3adf5d67f13ec5382f010686a3fe455e2088b2",
+        "pow_energy.cog": "1bcd549121e3e9afd5ebe2bbe4b509d6d022265eee3239a164f3a7816bf10d8f",
+        "pow_health.cog": "764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011",
+        "pow_keyred.cog": "d7c4e2e806c0280ec2720ca69354fa20cf332073ba3e2fe6556ea633ca4e4e9f",
+        "pow_lightside.cog": "a5f632793d2366554dd40d6cefeadba3e111a7f52b3b626c3a53c698cb84abf3",
+        "pow_power.cog": "073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061",
+        "pow_powerboost.cog": "1dd3214a7c95a9c88f32c0710747648aefcc54495d666496cbfeae697aa085d8",
+        "pow_railcharges.cog": "18e5b0cf2ee4cc133582ba8879577f060b06c8eeda22d63bbc401deb998f57e3",
+        "pow_railgun.cog": "4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc",
+        "pow_repeater.cog": "83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6",
+        "pow_revive.cog": "6904811bf2f22d8fbfde1c206ec8f1c0da2ed66f4217312fa31c934f52f3214e",
+        "pow_saber.cog": "03f0c408fd35fe3bb749d95b31ae2de36d3d316af59a5c8452fac8bca711bc21",
+        "pow_sequencer.cog": "0f5b9acde5776625fd32f7d7582c4676dfc3b64cf784614fcd69733bcd324392",
+        "pow_shields.cog": "8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad",
+        "pow_single_sequencer.cog": "2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e",
+        "pow_single_thermal.cog": "fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf",
+        "pow_smbkpk.cog": "60411d9c952634486dac6629db2f40fefb28af0389281208e3534c1b76c97c31",
+        "pow_stbkpk.cog": "8093f45d41451564c816c2085289ad1c394a265da48f136467dbde5cd42b081e",
+        "pow_strifle.cog": "edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73",
+        "pow_thermal.cog": "962d2fb78f1e818439056039b76573f69ec50b0ffcea442cecedb05783290f3b",
+        "pow_vest.cog": "d3550f626554565280f3fa30bbc4c0c5b9032caad6f6d5fed47e16732efe2d5f"
+      },
+      "runtime_test": {
+        "full_gameplay": false,
+        "note": "Structural/private candidate only. Original captures and passive rank observations are separate source baselines, not converted gameplay validation.",
+        "status": "not-run-on-this-output"
+      },
+      "scripts_sha256": "d6230ec7e21f09a38e1bb0721189fd21e103a5f3289a1023752c0460307d23ca",
+      "sha256": "fdf918b8cd5d9637dddeef9a85c11037aff9e1e9893c92e377e99e809bec8178",
+      "source_omissions": [],
+      "source_url": "https://www.massassi.net/levels/files/328.shtml",
+      "tag": "chaos_academy",
+      "template_aliases": {},
+      "template_omission_profile": "chaos-ai-absences-v1",
+      "title": "Royal Guard Academy",
+      "world": "jkl/academy.jkl",
+      "zip_sha256": "c4134bb218c0f34089598f255a97adf94b7a6c9f71d38a9cbe3612980c87cbe3"
+    },
+    "catacombs": {
+      "author": "freddub",
+      "cog_edits": {
+        "catacombs_start.cog": [
+          {
+            "count": 1,
+            "new": "SetInv(player, 20, 4);\n  if (IsMulti())\n    SetInv(player, 69, GetInv(player, 20) * 50);",
+            "old": "SetInv(player, 20, 4);",
+            "reason": "Publish the authored rank cap to native full-mana consumers immediately, before first pulse and after each existing timer assignment. Do not call or restart force_well."
+          },
+          {
+            "count": 1,
+            "new": "SetInv(player, 131, 1);",
+            "old": "SetInv(player, 10, 1);",
+            "reason": "Existing independently justified saber ordinal adaptation."
+          }
+        ]
+      },
+      "cog_sha256": {
+        "00_bloodtrail.cog": "90a071f66f7cc620215f8444e037ff47e062ad4c48e599b9823b2a251b5e1031",
+        "00_breakingglass.cog": "6ffab345663d464a3c8fa846f406eaeeb5228f8d07df60c2e4bbdf3b2b0b8fd9",
+        "00_camera.cog": "70adcb46d2d7c59155e3c4328bbcb5d176eb7cb039d4c988d6c74a40ceb87b94",
+        "00_conveyor.cog": "3abb561d6e05c98340993d7c299e6b680ac9785c032d6af4c405f1c2200fad0b",
+        "00_mslashgrate.cog": "22f91918c891451bb2d6f8134ee47ae60aed75c96104dbbdb12b180e44fbdc13",
+        "00_sectorthrust.cog": "6d63da50cef46ca9279d1acd957d464ebfceda257b995bdaa4b009c13efa7b47",
+        "00_soundtrack.cog": "361f923f00da8d0d042572cc2619e93e31214b9f49a2815a9c2816232e8b4839",
+        "00m_transport_land.cog": "d736405a6106874e9f9835caccfcc30dfa019c7f6b9b6d0af819c617eb805823",
+        "10_ffieldswitch.cog": "006b7aa10427f06063867ad62c5152c32cfea66b37b1a86bc8be97ded2ae0267",
+        "actor_bs.cog": "692ef2c499c9fa67d8947be9ca746759208ae56d9bd289d11ee14eff320cfef1",
+        "actor_gg.cog": "eaac3e09a98dd2728add870d3aaf155ef8cc3651b79a0f6df5b2dc80128e1209",
+        "actor_kd.cog": "26460ded9177e10ef6a145e6f87b0683307b9bf50d9d8264b5c140feabb771bf",
+        "actor_mailoc.cog": "fcad61d1216768f29d31927aa589e28fe21073fec71be2fef69d081a7300c45e",
+        "actor_pm.cog": "2c8a56586bc40c484b0b2f27b08e95da129365ca54abeb6b6c4ce38be60e2b4a",
+        "ais_basic_jk.cog": "82b729d9856d749432b004e73f795c78dd430b00344f0882caeea4944cdd390c",
+        "bcc.cog": "ee49f0ba0a05ab533d8a6befeb066dd29fe602e1581af5e609c9610d6449aadf",
+        "bcs.cog": "6daa850a0404d1e9e72268864039187ee57fa8de97e3e07e6658b4d8e8bee121",
+        "catacombs_start.cog": "4de68f5837b0169e0fba3e20c73c85217d076612cda10379ffdafec34a335eef",
+        "catacombsend.cog": "7d347be164d89fb7348d234149ffd82227f20424c150eac48614a39ad570234a",
+        "movecoffin.cog": "e403ac21bb8f3b6a7da4a239b0eaca3eb3803fd1d6982d6cb28c9359853d2357",
+        "movetable.cog": "04553e67b8b28a018fcc6d2c163cbc010117b53d68908866d9542cdeea68d0fe",
+        "pow_mana.cog": "5145b9448cd9dad12d50f2dbe3b88983642466372bc4c405d19724af8265a326",
+        "toilet.cog": "90d8c460bd7925ad702d4886e2e03671790fb876b9e9e0ec0b89eece9ff1b62d",
+        "waterfall.cog": "1ef15f7a94f1bf1523a0852e674697f319a646ff881eac2106910764cbfb59d6"
+      },
+      "download_rank": 10,
+      "download_url": "https://www.massassi.net/media/levels/files/jkmp/chaosfor2.zip",
+      "environment": "00_bloodtrail.cog 00_breakingglass.cog 00_camera.cog 00_conveyor.cog 00_mslashgrate.cog 00_sectorthrust.cog 00_soundtrack.cog 00m_transport_land.cog 10_ffieldswitch.cog actor_bs.cog actor_gg.cog actor_kd.cog actor_mailoc.cog actor_pm.cog ais_basic_jk.cog bcc.cog bcs.cog catacombs_start.cog catacombsend.cog movecoffin.cog movetable.cog pow_mana.cog toilet.cog waterfall.cog",
+      "episode_type": 2,
+      "gob_member": "chaos.gob",
+      "gob_sha256": "2ef0acee7c1368fbeeed808ff8550ecfe743f57e00bbf340a3cb75e7da516235",
+      "key": "mp-chaos-eternal-catacombs",
+      "massassi_id": 328,
+      "native_cog_edits": {
+        "force_well.cog": {
+          "edits": [
+            {
+              "count": 1,
+              "new": "   maximum = GetInv(player, 20) * 50;\n   if (IsMulti())\n      SetInv(player, 69, maximum);",
+              "old": "\tif (!IsMulti())\n      maximum = GetInv(player, 20) * 50;",
+              "reason": "Restore dynamic rank-based MP regeneration/cap; keep native maxmana consumers synchronized. SP bin69 policy and all startup/sleep/pulse instructions remain unchanged."
+            }
+          ],
+          "sha256": "3ac58e1280bcf46605a2c77ecc3888227679bb88b1feb559b5f001d669827c87"
+        }
+      },
+      "native_resource_overrides": {},
+      "native_template_overrides": {},
+      "native_text_edits": {},
+      "notes": [
+        "Unregistered source-pinned candidate; complete pack remains blocked by resource-union conflict. Preserve authored cooperative AI, environments, graph, mana pickup, original omissions and notices. Only reviewed startup rank-cap synchronization, Force pulse and saber131 operations apply."
+      ],
+      "readme_provenance": [
+        {
+          "bytes": 4503,
+          "path": "Chaos.txt",
+          "sha256": "cf4b98b53d93a25416df7eac21ca97e21ce9aa1a87224499921e109652a20e6b"
+        },
+        {
+          "bytes": 613,
+          "path": "coopreadme.txt",
+          "sha256": "d00a8d42aa98c057dbc4754da30dd31e85cca5191a4093fb9c96d1b6ddecc94e"
+        }
+      ],
+      "requires_jksp": false,
+      "resource_aliases": {},
+      "runtime_cogs": "00_desttrail.cog 00_smoketrail.cog class_sequencer.cog kyle.cog pow_backpack.cog pow_bacta.cog pow_battery.cog pow_bryar.cog pow_concrifle.cog pow_crossbow.cog pow_darkside.cog pow_dconcrifle.cog pow_dstrifle.cog pow_energy.cog pow_health.cog pow_lightside.cog pow_power.cog pow_railgun.cog pow_repeater.cog pow_revive.cog pow_shields.cog pow_single_sequencer.cog pow_single_thermal.cog pow_strifle.cog pow_vest.cog",
+      "runtime_source_sha256": {
+        "00_desttrail.cog": "6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48",
+        "00_smoketrail.cog": "2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf",
+        "class_sequencer.cog": "7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5",
+        "kyle.cog": "cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955",
+        "pow_backpack.cog": "7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed",
+        "pow_bacta.cog": "8b420d7556d92a9f2bcfbb99aeac690e85d7beb54baa7f7e7321f4121b090d56",
+        "pow_battery.cog": "d5580c827623ee20f6ef0e235c4b9f1dccff38a0ed4a50bb77392d59fbd4e9eb",
+        "pow_bryar.cog": "d533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169",
+        "pow_concrifle.cog": "a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011",
+        "pow_crossbow.cog": "e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85",
+        "pow_darkside.cog": "739d2bd52cd1ad550178805a780db8095a1a34bb5d366c41d5871995b069c504",
+        "pow_dconcrifle.cog": "26332b5977db8a5650fb6a849f3871487c0f33df7a031c5171a936c5d8d73e37",
+        "pow_dstrifle.cog": "483513c35d918b1344e558f4da3adf5d67f13ec5382f010686a3fe455e2088b2",
+        "pow_energy.cog": "1bcd549121e3e9afd5ebe2bbe4b509d6d022265eee3239a164f3a7816bf10d8f",
+        "pow_health.cog": "764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011",
+        "pow_lightside.cog": "a5f632793d2366554dd40d6cefeadba3e111a7f52b3b626c3a53c698cb84abf3",
+        "pow_power.cog": "073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061",
+        "pow_railgun.cog": "4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc",
+        "pow_repeater.cog": "83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6",
+        "pow_revive.cog": "6904811bf2f22d8fbfde1c206ec8f1c0da2ed66f4217312fa31c934f52f3214e",
+        "pow_shields.cog": "8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad",
+        "pow_single_sequencer.cog": "2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e",
+        "pow_single_thermal.cog": "fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf",
+        "pow_strifle.cog": "edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73",
+        "pow_vest.cog": "d3550f626554565280f3fa30bbc4c0c5b9032caad6f6d5fed47e16732efe2d5f"
+      },
+      "runtime_test": {
+        "full_gameplay": false,
+        "note": "Structural/private candidate only. Original captures and passive rank observations are separate source baselines, not converted gameplay validation.",
+        "status": "not-run-on-this-output"
+      },
+      "scripts_sha256": "1d4f0ba16c5e0167f76e8dd18e7d4a5dac4f72359d098883519f5c161447d4a9",
+      "sha256": "f2dc898ea7a0ece3d2f78db3f9e92ca4f7467ad9117ccf5741b76dc6b21c168e",
+      "source_omissions": [
+        {
+          "name": "00_glass.mat",
+          "reason": "Exact original material absence in original and all five owned JK archives. The original world material table has one reference and zero surface uses of its slot; preserve the unused missing entry, not a native material substitute.",
+          "reference_count": 1,
+          "referrer": "jkl/catacombs.jkl",
+          "referrer_sha256": "f2dc898ea7a0ece3d2f78db3f9e92ca4f7467ad9117ccf5741b76dc6b21c168e"
+        },
+        {
+          "name": "00_glass.mat",
+          "reason": "Exact original material absence in original and all five owned JK archives. The source shard has geometry mode 3 and zero texture vertices; retain the missing token without a native material substitute.",
+          "reference_count": 1,
+          "referrer": "3do/shard0.3do",
+          "referrer_sha256": "f0b4102b3ba378913b6d16ee585baab2d14f46f9ae4ae293a1c24b9f2369f44d",
+          "untextured_3do": true
+        }
+      ],
+      "source_url": "https://www.massassi.net/levels/files/328.shtml",
+      "tag": "chaos_catacombs",
+      "template_aliases": {},
+      "template_omission_profile": "chaos-ai-absences-v1",
+      "title": "The Catacombs",
+      "world": "jkl/catacombs.jkl",
+      "zip_sha256": "c4134bb218c0f34089598f255a97adf94b7a6c9f71d38a9cbe3612980c87cbe3"
+    },
+    "club": {
+      "author": "freddub",
+      "cog_edits": {
+        "club_start.cog": [
+          {
+            "count": 1,
+            "new": "SetInv(player, 20, 2);\n  if (IsMulti())\n    SetInv(player, 69, GetInv(player, 20) * 50);",
+            "old": "SetInv(player, 20, 2);",
+            "reason": "Publish the authored rank cap to native full-mana consumers immediately, before first pulse and after each existing timer assignment. Do not call or restart force_well."
+          },
+          {
+            "count": 1,
+            "new": "SetInv(player, 131, 1);",
+            "old": "SetInv(player, 10, 1);",
+            "reason": "Existing independently justified saber ordinal adaptation."
+          }
+        ]
+      },
+      "cog_sha256": {
+        "00_bloodtrail.cog": "90a071f66f7cc620215f8444e037ff47e062ad4c48e599b9823b2a251b5e1031",
+        "00_breakingglass.cog": "6ffab345663d464a3c8fa846f406eaeeb5228f8d07df60c2e4bbdf3b2b0b8fd9",
+        "00_conveyor.cog": "3abb561d6e05c98340993d7c299e6b680ac9785c032d6af4c405f1c2200fad0b",
+        "00_door.cog": "a07fb10fadbc81bf4a970cd4ced495240ccfa86f35e3f9de954729d65cbfba5a",
+        "00_doorswitch.cog": "2da57ded50d3fc5b938b62c01dea38e55171ad246f58f11379c234d3be0aee06",
+        "00_doubledoor.cog": "e70e3067aa5a56a9220d22c603dac97a3c777105f26893925bbf33ae26038800",
+        "00_elev_switch2.cog": "5b1bad55a67238119b1a864c8551df2d37ad566885cb5ada07cbd605d4638f6b",
+        "00_elev_switch3.cog": "800b8d6a2d3bf37c3bb3b4190dda3b452cb5d905c792959c7306e48f230df5af",
+        "00_matanim.cog": "14247e91ecb1969a68c7a4e87404afac491028eb722e56baa782c7d5cb129197",
+        "00_neonsign.cog": "c836367af81c9e947028e6af0e03b421f7bc8cfe3f4ab78562ca87f47a608dd0",
+        "00_playdialog.cog": "cbc7a434b1e53cfc8cdf0c0bb46cd9de1c2067f69d03e95d27b5888bf90cf9d3",
+        "00_sectordamage.cog": "301f17f82d92578b686008af8d87f266e6d762166c042a97d7f428a82b1eefde",
+        "00_sectorliteanimflicker2.cog": "92f7b57be7add23ee1748caafec96694e54971dd0d3ce4c00e235b4411a5724d",
+        "00_sectorthrust.cog": "6d63da50cef46ca9279d1acd957d464ebfceda257b995bdaa4b009c13efa7b47",
+        "00_slashgrate.cog": "9b737dee56d44dff90626a865fcee9db0da241cb1c617b48735dffd6dc8e71d9",
+        "00_soundtrack.cog": "361f923f00da8d0d042572cc2619e93e31214b9f49a2815a9c2816232e8b4839",
+        "00_std_elev.cog": "709ec0fb746726a0d991d5af6aaf0e9b93ef9a90c4f15f52058855ac09974b58",
+        "00_twoonebee.cog": "61da50bb6ab5201e7873e47e780307eef5eafe5452a9480d648ad99be7cd0b70",
+        "actor_atst.cog": "80d5d53eaa92d8af0434a8f692114287548448f8a44511fe9d1a051f22ab04b2",
+        "actor_bs.cog": "692ef2c499c9fa67d8947be9ca746759208ae56d9bd289d11ee14eff320cfef1",
+        "actor_gg.cog": "eaac3e09a98dd2728add870d3aaf155ef8cc3651b79a0f6df5b2dc80128e1209",
+        "actor_gr.cog": "8312e3869a2f27dab514b9426fa434d69e9d73d1626308fe1833bfbe9097361d",
+        "actor_i2.cog": "84f9e5851295560c3d0ec64e284e252427ee1bea37f374391251199d5a85c79e",
+        "actor_ic.cog": "325d6426b148240d176c3656796bb637c7f4a75eaa47e51e90cf27a3c4ea52f0",
+        "actor_mailoc.cog": "fcad61d1216768f29d31927aa589e28fe21073fec71be2fef69d081a7300c45e",
+        "actor_rf.cog": "852e6491b290f00ee7c61ba05d2c69d312dfc449b642c9abf39d1a574835c6bb",
+        "actor_ry.cog": "2b15152b84ba876768a3081205a625ff471af973102a728a9191f917048454b7",
+        "actor_s3.cog": "bda9a2c4a16ceff79b30d4f57bf0c28253631dd41f53195fb6588c1b662dc93a",
+        "actor_st.cog": "b2b27471f59972e928746f57442bc40e0a29b3080b0433713d56bfdfd19ed1d5",
+        "ais_basic_jk.cog": "82b729d9856d749432b004e73f795c78dd430b00344f0882caeea4944cdd390c",
+        "bactatank.cog": "7f7813e52e88f2c4b591f9cf1afeb9f9418dcb80e745380d9d22cbf48c0801b9",
+        "camera.cog": "56c3c570c40ffa3a8d7fbb17ae970d3f319e2a19d482dd2e3cf1491bb07b88ac",
+        "carpet.cog": "12a7a507a0de95c5901fa558620f36c24210b93d75a2fa2ce0c8770eefed5d56",
+        "club_start.cog": "235cbe4ecdb15cbb8ba544a8c3efe705bc7d53905bd4c15c5d95e267ba83e29c",
+        "clubend.cog": "7d347be164d89fb7348d234149ffd82227f20424c150eac48614a39ad570234a",
+        "m2_ffieldswitch.cog": "d7ab83b77df27d5901a73c98bfe313b1f56b3d1a3d0a1d444faff389c045f3b2",
+        "m5_antigrav_going_up.cog": "918e6fdaf5323b20d64ce51093bc4f0f7f7313e7d7ef75d7ec39e7d5e61f46f6",
+        "pow_mana.cog": "5145b9448cd9dad12d50f2dbe3b88983642466372bc4c405d19724af8265a326",
+        "toilet.cog": "90d8c460bd7925ad702d4886e2e03671790fb876b9e9e0ec0b89eece9ff1b62d",
+        "turret.cog": "b257dc6c215f924e85fc4435570d207bd1a3b4fee197e7300d7581e6188e2b93",
+        "xtank4.cog": "8c4e0711fe15256c93a709f55192eddbc070d5999e8fc48d19595a86e54958ca",
+        "xtank4rd.cog": "2ef6e12f2b1dd3bfa7f6e4a4f437ab10c2a3fd2a7241eaf6cd6352ac2c3639f6"
+      },
+      "download_rank": 10,
+      "download_url": "https://www.massassi.net/media/levels/files/jkmp/chaosfor2.zip",
+      "environment": "00_bloodtrail.cog 00_breakingglass.cog 00_conveyor.cog 00_door.cog 00_doorswitch.cog 00_doubledoor.cog 00_elev_switch2.cog 00_elev_switch3.cog 00_matanim.cog 00_neonsign.cog 00_playdialog.cog 00_sectordamage.cog 00_sectorliteanimflicker2.cog 00_sectorthrust.cog 00_slashgrate.cog 00_soundtrack.cog 00_std_elev.cog 00_twoonebee.cog actor_atst.cog actor_bs.cog actor_gg.cog actor_gr.cog actor_i2.cog actor_ic.cog actor_mailoc.cog actor_rf.cog actor_ry.cog actor_s3.cog actor_st.cog ais_basic_jk.cog bactatank.cog camera.cog carpet.cog club_start.cog clubend.cog m2_ffieldswitch.cog m5_antigrav_going_up.cog pow_mana.cog toilet.cog turret.cog xtank4.cog xtank4rd.cog",
+      "episode_type": 2,
+      "gob_member": "chaos.gob",
+      "gob_sha256": "2ef0acee7c1368fbeeed808ff8550ecfe743f57e00bbf340a3cb75e7da516235",
+      "key": "mp-chaos-eternal-club",
+      "massassi_id": 328,
+      "missing_template_arguments": [
+        {
+          "cog": "ais_basic_jk.cog",
+          "name": "+ais_laser",
+          "reason": "Exact original melee actor has minrange=maxrange=0; its pinned ranged predicate is unreachable.",
+          "row": "48:",
+          "symbol": "weapon"
+        }
+      ],
+      "native_cog_edits": {
+        "force_well.cog": {
+          "edits": [
+            {
+              "count": 1,
+              "new": "   maximum = GetInv(player, 20) * 50;\n   if (IsMulti())\n      SetInv(player, 69, maximum);",
+              "old": "\tif (!IsMulti())\n      maximum = GetInv(player, 20) * 50;",
+              "reason": "Restore dynamic rank-based MP regeneration/cap; keep native maxmana consumers synchronized. SP bin69 policy and all startup/sleep/pulse instructions remain unchanged."
+            }
+          ],
+          "sha256": "3ac58e1280bcf46605a2c77ecc3888227679bb88b1feb559b5f001d669827c87"
+        }
+      },
+      "native_resource_overrides": {},
+      "native_template_overrides": {},
+      "native_text_edits": {},
+      "notes": [
+        "Unregistered source-pinned candidate; complete pack remains blocked by resource-union conflict. Preserve authored cooperative AI, environments, graph, mana pickup, original omissions and notices. Only reviewed startup rank-cap synchronization, Force pulse and saber131 operations apply."
+      ],
+      "readme_provenance": [
+        {
+          "bytes": 4503,
+          "path": "Chaos.txt",
+          "sha256": "cf4b98b53d93a25416df7eac21ca97e21ce9aa1a87224499921e109652a20e6b"
+        },
+        {
+          "bytes": 613,
+          "path": "coopreadme.txt",
+          "sha256": "d00a8d42aa98c057dbc4754da30dd31e85cca5191a4093fb9c96d1b6ddecc94e"
+        }
+      ],
+      "requires_jksp": false,
+      "resource_aliases": {
+        "00_sectorliteanimflicker2.cog": "br_sectorliteanimflicker2.cog"
+      },
+      "runtime_cogs": "00_desttrail.cog 00_smoketrail.cog class_sequencer.cog kyle.cog pow_backpack.cog pow_bacta.cog pow_bryar.cog pow_concrifle.cog pow_crossbow.cog pow_darkside.cog pow_dconcrifle.cog pow_drailgun.cog pow_drepeater.cog pow_dstrifle.cog pow_energy.cog pow_health.cog pow_lightside.cog pow_power.cog pow_railcharges.cog pow_railgun.cog pow_repeater.cog pow_revive.cog pow_sequencer.cog pow_shields.cog pow_single_sequencer.cog pow_single_thermal.cog pow_strifle.cog pow_thermal.cog pow_vest.cog",
+      "runtime_source_sha256": {
+        "00_desttrail.cog": "6c56bf2f756cd63625443d5fa76f8d72521c1f19ed9b61a7ce6252b1ecc00c48",
+        "00_smoketrail.cog": "2a990da3d41131bca2d1481562592742e5f8c543ac846dd95311a361189c7bbf",
+        "class_sequencer.cog": "7a057711f1e6fb33e1a7b410d657738531c5b6664af3259dad3ab16c4b30cae5",
+        "kyle.cog": "cf68cc4754acd78d2d84297eb6d05df80d0e8e265fa5d5a902b7101f8e523955",
+        "pow_backpack.cog": "7bacc8efb06a8d6b71ab3780f2ab6302ad1c63d245bd9524c0b89258053b08ed",
+        "pow_bacta.cog": "8b420d7556d92a9f2bcfbb99aeac690e85d7beb54baa7f7e7321f4121b090d56",
+        "pow_bryar.cog": "d533156b8283c2c21f44355f7146192df873f5806499cc57fb9fbfa838a2a169",
+        "pow_concrifle.cog": "a762451646e8598bc64afc70c6ef5054e434dda6da5a4d5f735c13fef00de011",
+        "pow_crossbow.cog": "e5dfce5f5f394b670ac2a7a9d2c569085127b1857bc52b3859475ae10b285f85",
+        "pow_darkside.cog": "739d2bd52cd1ad550178805a780db8095a1a34bb5d366c41d5871995b069c504",
+        "pow_dconcrifle.cog": "26332b5977db8a5650fb6a849f3871487c0f33df7a031c5171a936c5d8d73e37",
+        "pow_drailgun.cog": "2812ae55d215dde58d7551a844c0bb4c09a93f446579bb41a7022dcabc2ec166",
+        "pow_drepeater.cog": "95eafcf256cbe99aa92df0cc668490ccc41988caed79871532a290935e6ffc87",
+        "pow_dstrifle.cog": "483513c35d918b1344e558f4da3adf5d67f13ec5382f010686a3fe455e2088b2",
+        "pow_energy.cog": "1bcd549121e3e9afd5ebe2bbe4b509d6d022265eee3239a164f3a7816bf10d8f",
+        "pow_health.cog": "764f213b0dfb0623fecef59f46850fc37c5a0e4e0599f15411d35ee4b6ffb011",
+        "pow_lightside.cog": "a5f632793d2366554dd40d6cefeadba3e111a7f52b3b626c3a53c698cb84abf3",
+        "pow_power.cog": "073756cb1b74cc2f84393215297cbd6f5e739d15972c283afcccd2130ebb5061",
+        "pow_railcharges.cog": "18e5b0cf2ee4cc133582ba8879577f060b06c8eeda22d63bbc401deb998f57e3",
+        "pow_railgun.cog": "4dd2252dde766ad47c9e89a1bb59e009431c7c3838e98cd703bbc4332a5d26bc",
+        "pow_repeater.cog": "83505b4b4620ce33e494caab76769e59a9ececceaeef161122ab64dc3861feb6",
+        "pow_revive.cog": "6904811bf2f22d8fbfde1c206ec8f1c0da2ed66f4217312fa31c934f52f3214e",
+        "pow_sequencer.cog": "0f5b9acde5776625fd32f7d7582c4676dfc3b64cf784614fcd69733bcd324392",
+        "pow_shields.cog": "8d515630da6ac31126decd4ca8c94ef840c42edc1110ef102e5f48530d88e8ad",
+        "pow_single_sequencer.cog": "2777cacb7aceff81128cbf8b432cda15a32557f716cabe2ff6111183c79b965e",
+        "pow_single_thermal.cog": "fbf8c39c853bf5e9a60cf3016bba7a39936c136552ce094b80c872d205c811cf",
+        "pow_strifle.cog": "edddcde2521e57fcf7d3c8c6e83ec25b7085d6230c4e09cf1387091f08697a73",
+        "pow_thermal.cog": "962d2fb78f1e818439056039b76573f69ec50b0ffcea442cecedb05783290f3b",
+        "pow_vest.cog": "d3550f626554565280f3fa30bbc4c0c5b9032caad6f6d5fed47e16732efe2d5f"
+      },
+      "runtime_test": {
+        "full_gameplay": false,
+        "note": "Structural/private candidate only. Original captures and passive rank observations are separate source baselines, not converted gameplay validation.",
+        "status": "not-run-on-this-output"
+      },
+      "scripts_sha256": "393b37f12946a1b1a9695c7051a56f83aff53da89bb89ceacb8a1395d77ec4c3",
+      "sha256": "4e7493b19a1ebecea2d65706a24fb74caf8efbdcbc4de24e302f3891631000fe",
+      "source_omissions": [
+        {
+          "name": "00_glass.mat",
+          "reason": "Exact original material absence in original and all five owned JK archives. The original world material table has one reference and zero surface uses of its slot; preserve the unused missing entry, not a native material substitute.",
+          "reference_count": 1,
+          "referrer": "jkl/club.jkl",
+          "referrer_sha256": "4e7493b19a1ebecea2d65706a24fb74caf8efbdcbc4de24e302f3891631000fe"
+        },
+        {
+          "name": "00_glass.mat",
+          "reason": "Exact original material absence in original and all five owned JK archives. The source shard has geometry mode 3 and zero texture vertices; retain the missing token without a native material substitute.",
+          "reference_count": 1,
+          "referrer": "3do/shard0.3do",
+          "referrer_sha256": "f0b4102b3ba378913b6d16ee585baab2d14f46f9ae4ae293a1c24b9f2369f44d",
+          "untextured_3do": true
+        }
+      ],
+      "source_url": "https://www.massassi.net/levels/files/328.shtml",
+      "tag": "chaos_club",
+      "template_aliases": {},
+      "template_omission_profile": "chaos-ai-absences-v1",
+      "title": "Empire Night Club",
+      "world": "jkl/club.jkl",
+      "zip_sha256": "c4134bb218c0f34089598f255a97adf94b7a6c9f71d38a9cbe3612980c87cbe3"
+    }
+  },
+  "zip_sha256": "c4134bb218c0f34089598f255a97adf94b7a6c9f71d38a9cbe3612980c87cbe3"
+}

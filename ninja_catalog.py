@@ -32,7 +32,7 @@ RUNTIME_TEST = {
                'exe_sha256': '78c4ac380c55da5c8bf0e36f82c147bdcfef16576a192eb775f2cf4f81006ad0',
                'current_production_positive_rank_validated': False},
     'full_gameplay': False,
-    'evidence': {'url': 'https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ninja-maxmana-20260908.json',
+    'evidence': {'url': 'https://github.com/CodaLilitari/World-Between-Worlds/blob/v0.2.0-rc2/docs/validation/ninja-maxmana-20260908.json',
                  'bundled': False,
                  'sha256': '4fef964e4fc08b71264d88fe10b6023d6efcc6a85aab4d8446c78c1e800453cc'},
     'limits': ['Initialization only, with input disabled and zero allocated powers.',

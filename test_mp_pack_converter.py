@@ -1,5 +1,6 @@
 """Synthetic failures for multi-world graph preservation and archive unions."""
 import copy
+import json
 import os
 from pathlib import Path
 import tempfile
@@ -9,6 +10,237 @@ from unittest.mock import patch
 import blackwing_revisions
 from gob import Gob, build_gob
 import mp_pack_converter as converter
+import verify_retail
+
+
+class ChaosStartupProfileTests(unittest.TestCase):
+    """Synthetic source bytes exercise the narrow contract and independent verifier."""
+    def setUp(self):
+        self.original = ('symbols\nend\ncode\npulse:\n' + converter.FORCE_PULSE_OLD
+                         + '\n   Return;\nend\n').encode('cp1252')
+        self.expected = ('symbols\nend\ncode\npulse:\n'
+                         '   maximum = GetInv(player, 20) * 50;\n'
+                         '   if (IsMulti())\n      SetInv(player, 69, maximum);\n'
+                         '   Return;\nend\n').encode('cp1252')
+        self.payload = build_gob({'cog/force_well.cog': self.expected})
+        self.empty = Gob(build_gob({}))
+        self.archives = dict(motsmp=self.empty, motssnd=self.empty,
+                             motsres=Gob(build_gob({'cog/force_well.cog': self.original})))
+        rules = {'force_well.cog': dict(sha256=converter.digest(self.original), edits=[
+            dict(old=converter.FORCE_PULSE_OLD, new=converter.FORCE_PULSE_NEW,
+                 count=1, reason='Synthetic reviewed pulse operation.')])}
+        worlds = {}
+        for path, (name, rank) in converter.CHAOS_RANKS.items():
+            key = Path(path).stem
+            anchor = f'SetInv(player, 20, {rank});'
+            worlds[key] = dict(key='fixture-' + key, tag=key, world=path,
+                gob_sha256='a' * 64, episode_type=2, native_cog_edits=copy.deepcopy(rules),
+                runtime_cogs='kyle.cog', environment=('pow_mana.cog ' if key != 'academy' else '') + name,
+                cog_sha256={name: 'b' * 64}, cog_edits={name: [
+                    dict(old=anchor, new=anchor + '\n  if (IsMulti())\n    SetInv(player, 69, GetInv(player, 20) * 50);',
+                         count=1, reason='Synthetic reviewed rank synchronization.'),
+                    dict(old='SetInv(player, 10, 1);', new='SetInv(player, 131, 1);',
+                         count=1, reason='Synthetic reviewed saber operation.')]})
+        self.spec = dict(key='fixture', tag='fixture', title='Synthetic campaign',
+                         author='Fixture', source_url='https://example.test/fixture',
+                         gob_sha256='a' * 64, world_specs=worlds,
+                         startup_profile=dict(profile_id='chaos-force-ranks-v1',
+                             source_gob_sha256='a' * 64, runtime_mode='mots-multiplayer',
+                             expected_native_members=['cog/force_well.cog'],
+                             native_cog_edits=rules, required_world_paths=list(converter.CHAOS_RANKS)))
+
+    def check_bytes(self, payload=None, spec=None, archives=None):
+        return verify_retail.check_community_startup_payload(
+            self.archives if archives is None else archives, self.empty, self.empty,
+            self.spec['world_specs']['academy'] if spec is None else spec, {},
+            self.payload if payload is None else payload)
+
+    def test_exact_profile_and_source_reconstruction_pass(self):
+        self.assertEqual(converter.startup_contract(self.spec)['folder_name'], 'bridge-fixture-startup')
+        self.assertEqual(self.check_bytes()['sha256'], converter.digest(self.payload))
+
+    def test_no_profile_rejects_every_native_override_field(self):
+        for field in converter.NATIVE_OVERRIDE_FIELDS:
+            spec = dict(world_specs={'fixture': {field: {'unreviewed': {}}}})
+            with self.subTest(field=field), self.assertRaisesRegex(converter.PackError, 'does not merge'):
+                converter.startup_contract(spec)
+        self.assertIsNone(converter.startup_contract(dict(world_specs={'fixture': {}})))
+
+    def test_profile_rejects_extra_override_and_extra_metadata(self):
+        for field in converter.NATIVE_OVERRIDE_FIELDS[1:]:
+            spec = copy.deepcopy(self.spec)
+            spec['world_specs']['club'][field] = {'unreviewed': {}}
+            with self.subTest(field=field), self.assertRaisesRegex(converter.PackError, 'sole native'):
+                converter.startup_contract(spec)
+        self.spec['startup_profile']['native_template_overrides'] = {}
+        with self.assertRaisesRegex(converter.PackError, 'profile fields'):
+            converter.startup_contract(self.spec)
+
+    def test_profile_rejects_added_or_replaced_native_member(self):
+        for members in (['cog/force_well.cog', 'cog/kyle_m.cog'], ['cog/kyle_m.cog']):
+            self.spec['startup_profile']['expected_native_members'] = members
+            with self.subTest(members=members), self.assertRaisesRegex(converter.PackError, 'member set'):
+                converter.startup_contract(self.spec)
+
+    def test_every_world_must_share_the_same_rule(self):
+        self.spec['world_specs']['club']['native_cog_edits']['force_well.cog']['sha256'] = 'c' * 64
+        with self.assertRaisesRegex(converter.PackError, 'components must agree'):
+            converter.startup_contract(self.spec)
+
+    def test_missing_world_wrong_mode_or_pack_pin_is_rejected(self):
+        for change in ('world', 'mode', 'pin'):
+            spec = copy.deepcopy(self.spec)
+            if change == 'world':
+                del spec['world_specs']['club']
+            elif change == 'mode':
+                spec['world_specs']['club']['episode_type'] = 16
+            else:
+                spec['startup_profile']['source_gob_sha256'] = 'd' * 64
+            with self.subTest(change=change), self.assertRaises(converter.PackError):
+                converter.startup_contract(spec)
+
+    def test_source_operation_anchor_count_and_sp_policy_are_exact(self):
+        for field, value in (('old', 'if (!IsMulti())'), ('count', 2), ('count', True),
+                              ('new', 'SetInv(player, 69, maximum);')):
+            spec = copy.deepcopy(self.spec)
+            spec['startup_profile']['native_cog_edits']['force_well.cog']['edits'][0][field] = value
+            with self.subTest(field=field, value=value), self.assertRaisesRegex(converter.PackError, 'source operation'):
+                converter.startup_contract(spec)
+
+    def test_world_rank_saber_and_no_timer_reset_are_exact(self):
+        for field, value in (('new', 'SetTimer(0);'), ('count', 0), ('old', 'SetInv(player, 20, 4);')):
+            spec = copy.deepcopy(self.spec)
+            spec['world_specs']['academy']['cog_edits']['academy_start.cog'][0][field] = value
+            with self.subTest(field=field), self.assertRaisesRegex(converter.PackError, 'rank synchronization'):
+                converter.startup_contract(spec)
+        self.spec['world_specs']['club']['cog_edits']['club_start.cog'].pop()
+        with self.assertRaisesRegex(converter.PackError, 'rank synchronization'):
+            converter.startup_contract(self.spec)
+
+    def test_authored_mana_cannot_be_reclassified_as_native_runtime(self):
+        self.spec['world_specs']['club']['runtime_cogs'] += ' pow_mana.cog'
+        with self.assertRaisesRegex(converter.PackError, 'authored mana'):
+            converter.startup_contract(self.spec)
+
+    def test_independent_verifier_rejects_forged_output_and_extra_member(self):
+        for files in ({'cog/force_well.cog': self.expected + b' changed'},
+                      {'cog/force_well.cog': self.expected, 'cog/kyle_m.cog': b'extra'}):
+            with self.subTest(files=list(files)), self.assertRaises(AssertionError):
+                self.check_bytes(build_gob(files))
+
+    def test_independent_verifier_rejects_wrong_provider_path_or_hash(self):
+        for path, data in (('other/force_well.cog', self.original),
+                           ('cog/force_well.cog', self.original + b' changed')):
+            archives = dict(self.archives, motsres=Gob(build_gob({path: data})))
+            with self.subTest(path=path), self.assertRaises(AssertionError):
+                self.check_bytes(archives=archives)
+
+    def test_independent_verifier_requires_actual_anchor_count_even_if_repinned(self):
+        for original in (self.original.replace(converter.FORCE_PULSE_OLD.encode(), b'no anchor'),
+                         self.original + converter.FORCE_PULSE_OLD.encode()):
+            spec = copy.deepcopy(self.spec['world_specs']['academy'])
+            spec['native_cog_edits']['force_well.cog']['sha256'] = converter.digest(original)
+            archives = dict(self.archives, motsres=Gob(build_gob({'cog/force_well.cog': original})))
+            with self.subTest(sha256=converter.digest(original)), self.assertRaises(AssertionError):
+                self.check_bytes(spec=spec, archives=archives)
+
+    def test_independent_verifier_rejects_startup_without_source_rule(self):
+        with self.assertRaisesRegex(AssertionError, 'without reviewed source'):
+            self.check_bytes(spec=dict(tag='fixture'))
+
+    def test_existing_filesystem_checker_keeps_exact_folder_and_byte_checks(self):
+        spec = self.spec['world_specs']['academy']
+        with tempfile.TemporaryDirectory() as root:
+            folder = Path(root)
+            (folder / 'bridge-academy-startup.goo').write_bytes(self.payload)
+            (folder / 'README.txt').write_text('Synthetic startup instructions.')
+            args = (self.archives, self.empty, self.empty, spec, {}, folder)
+            result = verify_retail.check_community_startup(*args)
+            self.assertIn('required isolated startup folder and deterministic archive bytes', result['passed'])
+            (folder / 'extra.txt').write_text('Unexpected loose resource.')
+            with self.assertRaisesRegex(AssertionError, 'extra files'):
+                verify_retail.check_community_startup(*args)
+
+    def test_profile_writer_delivers_paired_startup_and_retains_notice(self):
+        episode = build_gob({'episode.jk': b'Synthetic episode'})
+        startup = dict(converter.startup_contract(self.spec), sha256=converter.digest(self.payload))
+        manifest = dict(verification={'status': 'fixture'}, required_startup_overlay=startup,
+                        _startup_data=self.payload)
+        with tempfile.TemporaryDirectory() as root:
+            stage = Path(root) / 'fresh'
+            with patch.object(converter, 'recipe_details', return_value=self.spec), \
+                    patch.object(converter, 'read_original', return_value=(self.empty, {'notice.txt': b'Original notice\r\n'})), \
+                    patch.object(converter, 'build_payload', return_value=(episode, manifest)):
+                result = converter.build_to_directory({}, 'unused.zip', stage, 'fixture')
+            folder = stage / result['startup_overlay']
+            self.assertEqual((folder / startup['archive_name']).read_bytes(), self.payload)
+            self.assertEqual((stage / 'ORIGINAL-01-notice.txt').read_bytes(), b'Original notice\r\n')
+            saved = json.loads((stage / result['manifest_filename']).read_text())
+            self.assertNotIn('_startup_data', saved)
+            self.assertEqual(saved['required_startup_overlay']['sha256'], converter.digest(self.payload))
+            text = (stage / 'README.txt').read_text()
+            for required in ('-motsCompat -path bridge-fixture-startup', 'restart', 'Every peer'):
+                self.assertIn(required, text)
+            self.assertNotIn('No startup overlay is required', text)
+            self.assertEqual((folder / 'README.txt').read_text(), text)
+
+    def component_build(self, change=None):
+        """Isolate pack aggregation; startup checks and union checks remain real."""
+        spec = copy.deepcopy(self.spec)
+        episode = b'"Synthetic campaign"\nTYPE 2\nSEQ 3\n'
+        for i, name in enumerate(spec['world_specs']):
+            episode += f'{10+i}: 0 {i+1} LEVEL {name}.jkl 0 0 {11+i if i<2 else -1} -1\n'.encode()
+        episode += b'end\n'
+        source = Gob(build_gob({'episode.jk': episode, 'misc/cogstrings.uni': b'MSGS 0\nEND\n'}))
+        spec.update(gob_sha256=source.sha256, zip_sha256='a'*64,
+                    episode_sha256=converter.digest(episode), episode_rows=converter.episode_rows(episode))
+        spec['startup_profile']['source_gob_sha256'] = source.sha256
+        candidates = []
+        for row, (name, world) in zip(spec['episode_rows'], spec['world_specs'].items()):
+            row['world_spec'] = name
+            world['gob_sha256'] = source.sha256
+            files = {'jkl/br_' + world['tag'] + '.jkl': b'', 'episode.jk': b''}
+            if change == 'episode-copy':
+                files['cog/force_well.cog'] = self.expected
+            manifest = dict(_startup_data=self.payload, literal_dependencies_unresolved=[])
+            if name == 'club':
+                if change == 'missing':
+                    del manifest['_startup_data']
+                elif change == 'different':
+                    manifest['_startup_data'] = build_gob({'cog/force_well.cog': self.expected + b' changed'})
+                elif change == 'extra':
+                    manifest['_startup_data'] = build_gob({'cog/force_well.cog': self.expected, 'cog/extra.cog': b'extra'})
+                elif change == 'new-omission':
+                    files['cog/extra.cog'] = b'sound missing=new_missing.wav\n'
+            candidates.append((build_gob(files), manifest))
+        def component_check(archives, generated, *, community, community_spec, community_startup_payload):
+            return verify_retail.check_community_startup_payload(
+                archives, generated, community, community_spec, {}, community_startup_payload)
+        with patch.object(converter.bridge, 'recipe', side_effect=candidates), \
+                patch.object(converter.verify_retail, 'check', side_effect=component_check) as checker:
+            result = converter.build_payload(self.archives, source, spec)
+        self.assertEqual(checker.call_count, 3)
+        return result
+
+    def test_pack_aggregation_binds_all_three_independent_startup_checks(self):
+        payload, manifest = self.component_build()
+        self.assertEqual(manifest['_startup_data'], self.payload)
+        self.assertEqual(manifest['schema'], 1)
+        self.assertNotIn('cog/force_well.cog', Gob(payload).entries)
+        self.assertEqual(len(manifest['verification']['world_checks']), 3)
+        for world in manifest['world_manifests'].values():
+            self.assertEqual(world['required_startup_overlay']['folder_name'], 'bridge-fixture-startup')
+            self.assertNotIn('_startup_data', world)
+
+    def test_pack_aggregation_rejects_missing_different_or_extra_startup(self):
+        for change, message in [('missing', 'startup payload is missing'), ('different', 'Different startup bytes'),
+                                 ('extra', 'member set'), ('episode-copy', 'must not be copied')]:
+            with self.subTest(change=change), self.assertRaisesRegex(converter.PackError, message):
+                self.component_build(change)
+
+    def test_pack_profile_does_not_waive_a_new_missing_resource(self):
+        with self.assertRaises(converter.bridge.RecipeError):
+            self.component_build('new-omission')
 
 
 class MultiplayerPackTests(unittest.TestCase):

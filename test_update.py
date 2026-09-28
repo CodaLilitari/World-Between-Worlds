@@ -568,7 +568,7 @@ class Packaging(unittest.TestCase):
         import ninja_catalog
         evidence = ninja_catalog.RUNTIME_TEST['evidence']
         relative = 'docs/validation/ninja-maxmana-20260908.json'
-        expected_url = 'https://github.com/andreipemberton/World-Between-Worlds/blob/v0.2.0-rc2/' + relative
+        expected_url = 'https://github.com/CodaLilitari/World-Between-Worlds/blob/v0.2.0-rc2/' + relative
         self.assertEqual(evidence['url'], expected_url)
         self.assertFalse(evidence['bundled'])
         self.assertNotIn('path', evidence)

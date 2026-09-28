@@ -453,9 +453,170 @@ def community_source_graph(archives, custom, spec, old, runtime_names):
     return names, graph
 
 
-def check_community_resources(generated, spec, graph, names, templates):
+CHAOS_TEMPLATE_SOURCE = '2ef0acee7c1368fbeeed808ff8550ecfe743f57e00bbf340a3cb75e7da516235'
+CHAOS_AI_SOURCE = '82b729d9856d749432b004e73f795c78dd430b00344f0882caeea4944cdd390c'
+CHAOS_AI_SCHEMA = '6b4caab758d443abec0fc89f75efeae86e41c27e62d53c107273a7d57cffda6a'
+# Independent pins: original world bytes, placed AI count, and ordered complete
+# token rows serialized as compact ASCII JSON. They are not producer receipts.
+CHAOS_TEMPLATE_WORLDS = {
+    'jkl/academy.jkl': ('fdf918b8cd5d9637dddeef9a85c11037aff9e1e9893c92e377e99e809bec8178',
+                        36, 'c874a0325313a8080dd3deec9a962133c037819ed961d43cdee09674822d64f5'),
+    'jkl/club.jkl': ('4e7493b19a1ebecea2d65706a24fb74caf8efbdcbc4de24e302f3891631000fe',
+                    52, '4e602cec18afcb3ed887bc544c5defe3f80f1a57f5d41c9d037c09a37a802888'),
+    'jkl/catacombs.jkl': ('f2dc898ea7a0ece3d2f78db3f9e92ca4f7467ad9117ccf5741b76dc6b21c168e',
+                         32, '7c0f21e4a318746b2cba6c86984a2eb6fd4894b06d2040527d924c983b875707'),
+}
+CHAOS_ABSENT_DEFAULTS = {'ais_st2': 'br_ais_st2', '+ais_laser': 'br_+ais_laser'}
+
+
+def _chaos_active(value):
+    return '\n'.join(line.split('#', 1)[0].split('//', 1)[0] for line in value.splitlines())
+
+
+def _chaos_rows(value, section, *, optional=False):
+    matches = list(re.finditer(r'^\s*World ' + re.escape(section) + r'\s+\d+\s*$(.*?)^\s*end\s*$',
+                               _chaos_active(value), re.M | re.I | re.S))
+    if optional and not matches:
+        return []
+    assert len(matches) == 1, 'Independent Chaos unique world section: ' + section
+    return [line.split() for line in matches[0][1].splitlines() if line.strip()]
+
+
+def _chaos_digest(value):
+    return hashlib.sha256(json.dumps(value, separators=(',', ':'), ensure_ascii=True).encode('ascii')).hexdigest()
+
+
+def check_chaos_template_omissions(archives, custom, spec, generated):
+    """Prove two exact absent defaults and Club's guarded absent argument.
+
+    This checker never calls the producer's omission helper or accepts a
+    manifest waiver. It checks source semantics and reconstructs the whole AI
+    resource independently; it makes no claim about executed combat or peers.
+    """
+    if 'template_omission_profile' not in spec:
+        return {}
+    assert spec['template_omission_profile'] == 'chaos-ai-absences-v1', 'Unreviewed template omission profile'
+    assert custom is not None and custom.sha256 == CHAOS_TEMPLATE_SOURCE, 'Independent Chaos original archive pin'
+    assert spec.get('gob_sha256') == CHAOS_TEMPLATE_SOURCE, 'Independent Chaos recipe archive pin'
+    world_path = spec.get('world')
+    assert world_path in CHAOS_TEMPLATE_WORLDS, 'Independent Chaos selected world'
+    assert spec.get('sha256') == CHAOS_TEMPLATE_WORLDS[world_path][0], 'Independent Chaos recipe world pin'
+    ai_name = 'ais_basic_jk.cog'
+    ai_path = 'cog/' + ai_name
+    ai_bytes = custom.read(ai_path)
+    assert hashlib.sha256(ai_bytes).hexdigest() == CHAOS_AI_SOURCE, 'Independent Chaos AI source pin'
+    assert spec.get('cog_sha256', {}).get(ai_name) == CHAOS_AI_SOURCE, 'Independent Chaos recipe AI pin'
+    assert not spec.get('cog_edits', {}).get(ai_name), 'Chaos AI code edits are outside the omission contract'
+    ai = ai_bytes.decode('cp1252').replace('\r', '')
+    active = _chaos_active(ai)
+    declarations = list(re.finditer(r'^\s*symbols\s*$(.*?)^\s*end\s*$', active, re.M | re.I | re.S))
+    assert len(declarations) == 1, 'Independent Chaos symbols block'
+    schema = [line.split() for line in declarations[0][1].splitlines()
+              if line.strip() and line.split()[0].lower() != 'message'
+              and not re.search(r'\blocal\b', line, re.I)]
+    assert len(schema) == 41 and _chaos_digest(schema) == CHAOS_AI_SCHEMA, 'Independent Chaos 41-argument schema'
+    assert schema[26][:2] == ['template', 'aitpl=ais_st2'], 'Independent Chaos actor default'
+    assert schema[38][:2] == ['template', 'weapon=+ais_laser'], 'Independent Chaos projectile default'
+    assert schema[39][:2] == ['template', 'punch=+ais_punch'], 'Independent Chaos punch default'
+    lines = ai.splitlines()
+    assert hashlib.sha256(lines[675].encode('cp1252')).hexdigest() == 'ffcf2f4212276087b3bc01f60514287c808eff5318b5333de3fc954209e3233a', 'Independent Chaos range predicate'
+    assert hashlib.sha256(lines[683].encode('cp1252')).hexdigest() == 'f0936f2167114dfbdccddf0a64d54eb46f364b3aa2ab9231ac74e1b9d25a2692', 'Independent Chaos sole projectile call'
+    token_lines = lambda token: [i for i, line in enumerate(active.splitlines(), 1)
+                                 if re.search(r'\b' + token + r'\b', line, re.I)]
+    assert token_lines('minrange') == [153, 676] and token_lines('maxrange') == [152, 676], 'Independent Chaos immutable range bounds'
+    assert token_lines('weapon') == [183, 205, 684], 'Independent Chaos duplicate weapon and sole use'
+    assert re.fullmatch(r'\s*int\s+weapon\s+local\s*', lines[204], re.I), 'Independent Chaos duplicate local preserved'
+
+    absent = set(CHAOS_ABSENT_DEFAULTS) | set(CHAOS_ABSENT_DEFAULTS.values())
+    source_worlds = {}
+    for path, (world_hash, count, row_hash) in CHAOS_TEMPLATE_WORLDS.items():
+        raw = custom.read(path)
+        assert hashlib.sha256(raw).hexdigest() == world_hash, 'Independent Chaos source world pin: ' + path
+        value = raw.decode('cp1252').replace('\r', '')
+        templates = {row[0].lower() for row in _chaos_rows(value, 'templates')}
+        assert not absent & templates, 'Chaos source unexpectedly supplies absent template'
+        rows = [row for row in _chaos_rows(value, 'cogs') if row[1].lower() == ai_name]
+        assert len(rows) == count and _chaos_digest(rows) == row_hash, 'Independent Chaos complete placed AI rows: ' + path
+        assert len({row[0] for row in rows}) == count, 'Independent Chaos unique placed AI rows'
+        for row in rows:
+            assert len(row) == 43, 'Independent Chaos complete explicit argument vector'
+            assert row[28].lower() in templates, 'Chaos actor default must be explicitly overridden'
+            for index, declaration in enumerate(schema):
+                if declaration[0].lower() != 'template':
+                    continue
+                argument = row[index + 2].lower()
+                if path == 'jkl/club.jkl' and row[0] == '48:' and index == 38:
+                    assert argument == '+ais_laser', 'Independent Chaos guarded missing projectile'
+                    assert row[5] == '16' and row[15] == row[16] == '0', 'Independent Chaos Club zero-range guard arguments'
+                    assert row[28] == 'a_reeyeesbhfist' and row[41] == '+ais_punch', 'Independent Chaos Club actor and punch'
+                    assert row[41].lower() in templates, 'Independent Chaos valid punch template'
+                else:
+                    assert argument == '-1' or argument in templates, 'Unreviewed Chaos unresolved template argument'
+        source_worlds[path] = (value, rows, templates)
+
+    missing = spec.get('missing_template_arguments', [])
+    if world_path == 'jkl/club.jkl':
+        assert isinstance(missing, list) and len(missing) == 1, 'Independent Chaos sole Club omission rule'
+        rule = missing[0]
+        assert set(rule) == {'row', 'cog', 'symbol', 'name', 'reason'}, 'Independent Chaos omission rule fields'
+        assert {key: rule[key] for key in ('row', 'cog', 'symbol', 'name')} == {
+            'row': '48:', 'cog': ai_name, 'symbol': 'weapon', 'name': '+ais_laser'}, 'Independent Chaos exact Club omission rule'
+        assert isinstance(rule['reason'], str) and rule['reason'].strip(), 'Independent Chaos omission explanation'
+    else:
+        assert missing == [], 'Other Chaos worlds have no missing placed-template arguments'
+
+    def check_absence(archive, paths, owner):
+        for path in paths:
+            value = archive.read(path).decode('cp1252').replace('\r', '')
+            names = {row[0].lower() for row in _chaos_rows(value, 'templates', optional=True)}
+            assert not absent & names, ('Independent Chaos absence filled by provider', owner, path, sorted(absent & names))
+
+    check_absence(custom, [path for path in custom.entries if path.endswith('.jkl')], 'original')
+    for key in ('jkres', 'jksnd', 'motsres', 'motssnd'):
+        assert key in archives, 'Missing Chaos static-resource provider: ' + key
+        check_absence(archives[key], [path for path in archives[key].entries if path.endswith('.jkl')], key)
+    assert 'jkl/k1.jkl' in archives['motsmp'].entries, 'Missing Chaos native template basis'
+    check_absence(archives['motsmp'], ['jkl/k1.jkl'], 'native-basis')
+    check_absence(generated, [path for path in generated.entries if path.endswith('.jkl')], 'generated')
+
+    old, original_rows, templates = source_worlds[world_path]
+    aliases = spec.get('template_aliases', {})
+    template_map = {name: aliases.get(name, 'br_' + name) for name in templates}
+    assert not absent & (set(template_map) | set(template_map.values())), 'Chaos absent alias overlaps a real template'
+    runtime = spec['runtime_cogs'].split() if isinstance(spec['runtime_cogs'], str) else spec['runtime_cogs']
+    environment = spec['environment'].split() if isinstance(spec['environment'], str) else spec['environment']
+    assert ai_name in environment and ai_name not in runtime, 'Chaos AI must retain authored ownership'
+    native_names = {Path(path).name for key in ('motsmp', 'motsres', 'motssnd') for path in archives[key].entries}
+    runtime_names = {name: FORCE_PICKUP_BINDINGS.get(name,
+                     name[:-4] + '_m.cog' if name[:-4] + '_m.cog' in native_names else name) for name in runtime}
+    names, graph = community_source_graph(archives, custom, spec, old, runtime_names)
+    assert graph[ai_name] == (ai_path, ai_bytes), 'Independent Chaos exact AI source provider'
+    assert names[ai_name] == 'br_ais_basic_jk.cog', 'Independent Chaos isolated AI name'
+    expected = rename_resource_literals(ai, names)
+    defaults = {**template_map, **CHAOS_ABSENT_DEFAULTS}
+    expected = re.sub(r'(^\s*template\s+\w+\s*=\s*)(\S+)',
+                      lambda match: match[1] + defaults.get(match[2].lower(), match[2]),
+                      expected, flags=re.M | re.I)
+    assert generated.read('cog/' + names[ai_name]) == expected.encode('cp1252'), 'Independent complete Chaos AI reconstruction'
+    output_path = 'jkl/br_' + spec['tag'] + '.jkl'
+    output_rows = [row for row in _chaos_rows(generated.read(output_path).decode('cp1252'), 'cogs')
+                   if row[1].lower() == names[ai_name]]
+    expected_rows = [[row[0], names[ai_name]] + [expected_argument(value, declaration[0].lower(),
+                     resources=names, templates=template_map) for value, declaration in zip(row[2:], schema)]
+                     for row in original_rows]
+    assert output_rows == expected_rows, 'Independent complete Chaos placed AI reconstruction'
+    return {ai_name: dict(CHAOS_ABSENT_DEFAULTS)}
+
+
+def check_community_resources(generated, spec, graph, names, templates, *, omission_defaults=None):
     """Check complete code/text reconstruction and untouched binary payloads."""
     used_edits = set()
+    omission_defaults = {} if omission_defaults is None else omission_defaults
+    assert isinstance(omission_defaults, dict), 'Invalid missing-default maps'
+    used_omissions = set()
+    if omission_defaults:
+        assert spec.get('template_omission_profile') == 'chaos-ai-absences-v1', 'Unreviewed missing-default reconstruction'
+        assert omission_defaults == {'ais_basic_jk.cog': CHAOS_ABSENT_DEFAULTS}, 'Unreviewed missing-default map'
     for name, (path, data) in graph.items():
         if Path(name).suffix in TEXT_RESOURCES:
             value = data.decode('cp1252').replace('\r', '')
@@ -464,13 +625,18 @@ def check_community_resources(generated, spec, graph, names, templates):
                 used_edits.add(name)
             value = rename_resource_literals(counted_source_edits(value, edits), names)
             if name.endswith('.cog'):
+                missing = omission_defaults.get(name, {})
+                assert not (set(missing) | set(missing.values())) & (set(templates) | set(templates.values())), 'Missing defaults overlap real templates'
+                defaults = {**templates, **missing}
+                if missing:
+                    used_omissions.add(name)
                 # The entire source is compared, so code, flags, comments and
                 # unedited spacing cannot silently change with a passing test.
                 lines = []
                 for line in value.splitlines(keepends=True):
                     match = re.match(r'(\s*template\s+\w+\s*=\s*)(\S+)', line, re.I)
-                    if match and match[2].lower() in templates:
-                        line = line[:match.start(2)] + templates[match[2].lower()] + line[match.end(2):]
+                    if match and match[2].lower() in defaults:
+                        line = line[:match.start(2)] + defaults[match[2].lower()] + line[match.end(2):]
                     lines.append(line)
                 value = ''.join(lines)
             expected = value.encode('cp1252')
@@ -479,6 +645,7 @@ def check_community_resources(generated, spec, graph, names, templates):
         target = path.rsplit('/', 1)[0] + '/' + names[name]
         assert generated.read(target) == expected, 'Independent complete source reconstruction: ' + target
     assert used_edits == set(spec.get('cog_edits', {})), 'Unused reviewed source edits'
+    assert used_omissions == set(omission_defaults), 'Unused reviewed missing-default maps'
 
 
 def check_community_templates(source_rows, native_rows, output_rows, spec, names, templates):
@@ -519,14 +686,15 @@ def check_community_templates(source_rows, native_rows, output_rows, spec, names
     assert expected_rows == [row.split() for row in output_rows], 'Independent native and authored template fields, parents and order'
 
 
-def check_community_startup(archives, generated, custom, spec, names, directory):
-    """Verify required startup files from original bytes, never a manifest."""
+def community_startup_resources(archives, generated, custom, spec, names):
+    """Reconstruct expected startup members independently from original bytes."""
     expected = {}
     for name, rule in spec.get('native_cog_edits', {}).items():
         found = [(path, archive) for key in ('motsmp', 'motsres', 'motssnd')
                  for archive in [archives[key]] for path in archive.entries if Path(path).name == name]
         assert found, 'Missing original native startup COG'
         path, archive = found[0]
+        assert path == 'cog/' + name, 'Native startup COG full path'
         original = archive.read(path)
         assert hashlib.sha256(original).hexdigest() == rule['sha256'], 'Native startup COG source pin'
         expected[path] = counted_source_edits(original.decode('cp1252').replace('\r', ''), rule['edits']).encode('cp1252')
@@ -547,6 +715,29 @@ def check_community_startup(archives, generated, custom, spec, names, directory)
         for path in generated.entries:
             if not path.endswith('.jkl') and path not in {'episode.jk', 'misc/cogstrings.uni'}:
                 expected.setdefault(path, generated.read(path))
+    return expected
+
+
+def check_community_startup_payload(archives, generated, custom, spec, names, payload):
+    """Check in-memory startup bytes without trusting production metadata."""
+    expected = community_startup_resources(archives, generated, custom, spec, names)
+    assert expected, 'Unexpected startup payload without reviewed source operations'
+    original = Gob(payload)
+    startup, marker = game_payload(original, spec.get('key', spec['tag']), role='startup')
+    assert set(startup.entries) == set(expected), 'Independent startup archive member set'
+    for path, data in expected.items():
+        assert startup.read(path) == data, 'Independent exact startup source reconstruction: ' + path
+    assert startup.data == build_gob(expected), 'Independent deterministic startup archive bytes'
+    return tracked_result({'sha256': startup.sha256, 'member_count': len(expected),
+                           'passed': ['complete startup source reconstruction and exact member set',
+                                      'deterministic in-memory startup archive bytes'],
+                           'runtime': 'Startup loading and gameplay are not executed by this verifier'},
+                          original, startup, marker)
+
+
+def check_community_startup(archives, generated, custom, spec, names, directory):
+    """Verify required startup files from original bytes, never a manifest."""
+    expected = community_startup_resources(archives, generated, custom, spec, names)
     if not expected:
         return None
     assert directory is not None, 'Required community startup directory was not supplied'
@@ -595,7 +786,7 @@ def check_ctf_startup(archives, directory, *, recipe_id=None):
             original, generated, marker)
 
 
-def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', community=None, community_key=None, community_startup=None, community_spec=None):
+def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', community=None, community_key=None, community_startup=None, community_spec=None, community_startup_payload=None):
     assert sum(value is not None for value in (dojo, caesars, community)) <= 1, 'Select one custom map'
     assert (community is None) == (community_key is None and community_spec is None), 'Supply the archive and one reviewed world specification'
     assert not any(value is not None for value in (dojo, caesars, community)) or stock_map == 'valley', 'Custom and stock selections cannot be combined'
@@ -634,6 +825,7 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
         resource_names[name] = selected
     template_map = dict(spec.get('template_aliases', {}))
     source_templates = {row.split()[0].lower() for row in bridge.records(old, 'templates')}
+    omission_defaults = {}
     if community is not None:
         script_hash = hashlib.sha256('\n'.join(sorted(original_scripts)).encode()).hexdigest()
         assert script_hash == spec['scripts_sha256'], 'Independent original script set pin'
@@ -642,6 +834,7 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
         template_map = {name: template_map.get(name, 'br_' + name) for name in source_templates}
         runtime_names = {name: resource_names[name] for name in runtime}
         resource_names, community_graph = community_source_graph(archives, custom, spec, old, runtime_names)
+        omission_defaults = check_chaos_template_omissions(archives, custom, spec, generated)
     check_force_pickup_resources(archives, generated, runtime)
     native_force_models = check_native_force_visual_resources(archives, generated, set(pickup_bindings.values()))
     model_preloads = {row.split()[1].lower() for row in bridge.records(new, 'models')}
@@ -735,8 +928,11 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
     if community is not None:
         check_source_omissions(archives, generated, custom, spec, source_world, output_world, resource_names)
         verified.append('exact original omission edges, referrer hashes and continued namespaced absence')
-        check_community_resources(generated, spec, community_graph, resource_names, template_map)
+        check_community_resources(generated, spec, community_graph, resource_names, template_map,
+                                  omission_defaults=omission_defaults)
         verified.append('independent complete source resource reconstruction, counted code edits and untouched script segments')
+        if omission_defaults:
+            verified.append('independent exact Chaos AI defaults, all 120 explicit source rows, guarded Club omission and source/native/output template absence')
         check_community_templates(bridge.records(old, 'templates'),
                                   bridge.records(bridge.text(archives['motsmp'].read('jkl/k1.jkl')), 'templates'),
                                   bridge.records(new, 'templates'), spec, resource_names, template_map)
@@ -746,7 +942,10 @@ def check(archives, generated, *, dojo=None, caesars=None, stock_map='valley', c
         assert re.search(r'^SEQ\s+1\s*$', episode, re.M)
         assert Path(output_world).name in episode
         verified.append('community episode type and selected output world')
-        startup_result = check_community_startup(archives, generated, custom, spec, resource_names, community_startup)
+        assert community_startup_payload is None or community_startup is None, 'Choose startup payload or startup directory'
+        startup_result = (check_community_startup_payload(archives, generated, custom, spec, resource_names, community_startup_payload)
+                          if community_startup_payload is not None else
+                          check_community_startup(archives, generated, custom, spec, resource_names, community_startup))
         if startup_result:
             verified.append('required community startup archive independently reconstructed from pinned source bytes')
     first, manifest = bridge.recipe(archives, dojo=dojo, caesars=caesars, stock_map=stock_map, community=community, community_key=community_key, community_spec=community_spec)

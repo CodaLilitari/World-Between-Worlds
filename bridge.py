@@ -260,6 +260,105 @@ def template_defaults(value, names):
                   value, flags=re.M | re.I)
 
 
+CHAOS_AI_WORLDS = {
+    'jkl/academy.jkl': ('fdf918b8cd5d9637dddeef9a85c11037aff9e1e9893c92e377e99e809bec8178', 36,
+                        '5911c0b41dd2b2b60a36c2851fde337a6abfdebf7e43f8f3fa37439d859d6df2'),
+    'jkl/club.jkl': ('4e7493b19a1ebecea2d65706a24fb74caf8efbdcbc4de24e302f3891631000fe', 52,
+                     '4f7ad0302f5438f101a72adbdfb456f8ec6b5665bb3e7aa0b4d39adff7dc61b5'),
+    'jkl/catacombs.jkl': ('f2dc898ea7a0ece3d2f78db3f9e92ca4f7467ad9117ccf5741b76dc6b21c168e', 32,
+                         '75379a2ddc5b8472a659bcfde15139ed236ae6bf7135c02a7ec50e6d8e8e5e66'),
+}
+
+
+def reject_template_providers(archives, names):
+    """Keep reviewed extensionless absences separate from file-path closure."""
+    for archive in archives:
+        for path in archive.entries:
+            if path.endswith('.jkl'):
+                value = text(archive.read(path))
+                if re.search(r'^World templates\s', value, re.M | re.I):
+                    defined = {row.split()[0].lower() for row in records(value, 'templates')}
+                    if defined & names:
+                        raise RecipeError('Reviewed absent template unexpectedly supplied in ' + path)
+
+
+def reviewed_template_absences(archives, custom, spec, original):
+    """Preserve only Chaos's pinned overridden defaults and zero-range argument.
+
+    The aliases stay out of the ordinary template definition map. This is a
+    source-preservation gate, not permission to ignore other missing templates.
+    """
+    if 'template_omission_profile' not in spec:
+        return {}
+
+    def require(condition, message):
+        if not condition:
+            raise RecipeError('Chaos template omission: ' + message)
+
+    require(spec['template_omission_profile'] == 'chaos-ai-absences-v1', 'unknown profile')
+    require(custom is not None and custom.sha256 ==
+            '2ef0acee7c1368fbeeed808ff8550ecfe743f57e00bbf340a3cb75e7da516235', 'original archive pin')
+    require(spec.get('world') in CHAOS_AI_WORLDS, 'unreviewed world')
+    world_hash, count, rows_hash = CHAOS_AI_WORLDS[spec['world']]
+    require(hashlib.sha256(custom.read(spec['world'])).hexdigest() == world_hash
+            and spec.get('sha256') == world_hash
+            and original == text(custom.read(spec['world'])), 'original world pin')
+    data = custom.read('cog/ais_basic_jk.cog')
+    require(hashlib.sha256(data).hexdigest() ==
+            '82b729d9856d749432b004e73f795c78dd430b00344f0882caeea4944cdd390c', 'original AI code pin')
+    require(not spec.get('cog_edits', {}).get('ais_basic_jk.cog'), 'AI edits are not permitted')
+    code = active_lines(text(data))
+    symbols = re.search(r'^\s*symbols\s*$(.*?)^\s*end\s*$', code, re.M | re.I | re.S)
+    require(symbols is not None, 'missing symbols')
+    declarations = [line.strip() for line in symbols[1].splitlines() if line.strip()
+                    and line.split()[0].lower() != 'message' and not re.search(r'\blocal\b', line, re.I)]
+    require(len(declarations) == 41 and hashlib.sha256('\n'.join(declarations).encode()).hexdigest() ==
+            '56a4c3ffdad95b22dc7e9933d2f7a1b933734cc67596c3d4250822d1aca97a10', 'exposed schema changed')
+    uses = {'minrange': [153, 676], 'maxrange': [152, 676],
+            'weapon': [183, 205, 684], 'aitpl': [167, 242, 474, 483, 727]}
+    for symbol, expected in uses.items():
+        require([i + 1 for i, line in enumerate(code.splitlines())
+                 if re.search(r'\b' + symbol + r'\b', line, re.I)] == expected, 'guard or symbol use changed')
+    require(hashlib.sha256(text(data).splitlines()[675].encode()).hexdigest() ==
+            'ffcf2f4212276087b3bc01f60514287c808eff5318b5333de3fc954209e3233a', 'ranged predicate changed')
+    require(hashlib.sha256(text(data).splitlines()[683].encode()).hexdigest() ==
+            'f0936f2167114dfbdccddf0a64d54eb46f364b3aa2ab9231ac74e1b9d25a2692', 'projectile call changed')
+    rows = [row for row in records(original, 'cogs') if row.split()[1].lower() == 'ais_basic_jk.cog']
+    ledger = '\n'.join(row.split()[0].rstrip(':') + ':' + hashlib.sha256(row.encode()).hexdigest() for row in rows)
+    require(len(rows) == count and hashlib.sha256(ledger.encode()).hexdigest() == rows_hash,
+            'placed AI rows changed')
+    names = {row.split()[0].lower() for row in records(original, 'templates')}
+    guarded = []
+    for row in rows:
+        tokens = row.split()
+        args = tokens[2:]
+        require(len(args) == 41, 'every instance must override all 41 arguments')
+        for index, declaration in enumerate(declarations):
+            if declaration.split()[0].lower() != 'template':
+                continue
+            value = args[index].lower()
+            if value == '-1' or value in names:
+                continue
+            require(spec['world'] == 'jkl/club.jkl' and tokens[0] == '48:' and index == 38
+                    and value == '+ais_laser' and args[26] == 'a_reeyeesbhfist'
+                    and args[39] == '+ais_punch' and args[3] == '16'
+                    and args[13] == args[14] == '0', 'unreviewed missing placed argument')
+            guarded.append(tokens[0])
+    require(guarded == (['48:'] if spec['world'] == 'jkl/club.jkl' else []), 'guarded instance differs')
+    rules = spec.get('missing_template_arguments', [])
+    require(len(rules) == len(guarded), 'placed omission rule count differs')
+    if guarded:
+        rule = rules[0]
+        require(set(rule) == {'row', 'cog', 'symbol', 'name', 'reason'}
+                and rule['row'] == '48:' and rule['cog'] == 'ais_basic_jk.cog'
+                and rule['symbol'] == 'weapon' and rule['name'] == '+ais_laser'
+                and isinstance(rule['reason'], str) and bool(rule['reason'].strip()), 'placed omission rule differs')
+    aliases = {'ais_st2': 'br_ais_st2', '+ais_laser': 'br_+ais_laser'}
+    require(not set(aliases.values()) & set(spec.get('template_aliases', {}).values()), 'alias collision')
+    reject_template_providers([custom, *archives.values()], set(aliases) | set(aliases.values()))
+    return {'ais_basic_jk.cog': aliases}
+
+
 def exposed_symbols(cog):
     m = re.search(r'^\s*symbols\s*$(.*?)^\s*end\s*$', active_lines(cog), re.M | re.I | re.S)
     if not m:
@@ -844,6 +943,7 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
     if (custom is None or community is not None) and hashlib.sha256(original_bytes).hexdigest() != spec['sha256']:
         raise RecipeError('Unexpected stock world hash; requires separate semantic review')
     original = text(original_bytes)
+    omission_defaults = reviewed_template_absences(archives, custom, spec, original)
     native = text(archives['motsmp'].read('jkl/k1.jkl'))
     if not re.search(r'^Version\s+1\s*$', original, re.I | re.M):
         raise RecipeError('Unsupported source JKL version')
@@ -948,9 +1048,10 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
                     transformed_resource = adapt_caesars_start(transformed_resource)
                 defaults = re.findall(r'^\s*template\s+\w+\s*=\s*([^\s]+)', active_lines(transformed_resource), flags=re.M | re.I)
                 unknown = [name for name in defaults if name.lower() not in template_names and name != '-1']
-                if unknown:
+                omitted = omission_defaults.get(original_name, {})
+                if set(name.lower() for name in unknown) != set(omitted) or len(unknown) != len(omitted):
                     raise RecipeError(f'Undefined source COG template defaults in {path}: {unknown}')
-                transformed_resource = template_defaults(transformed_resource, template_names)
+                transformed_resource = template_defaults(transformed_resource, {**template_names, **omitted})
             resources[path] = transformed_resource.encode('cp1252')
     pickup_resources, pickup_compatibility = force_pickup_resources(archives, runtime_cogs)
     if resources.keys() & pickup_resources.keys():
@@ -1049,6 +1150,9 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
 
     # Check output/native literal resource closure, never silently omit misses.
     output = Gob(build_gob(resources))
+    if omission_defaults:
+        reject_template_providers([output], {name for aliases in omission_defaults.values()
+                                             for name in (*aliases, *aliases.values())})
     available = Catalog([('output', output), ('motsmp', archives['motsmp']),
                          ('motsres', archives['motsres']), ('motssnd', archives['motssnd'])])
     if caesars_waiver:
@@ -1110,6 +1214,14 @@ def recipe(archives, *, caesars=None, dojo=None, stock_map='valley', community=N
                 'output': output.inventory()}
     if community is not None:
         manifest['community_source'] = {field: spec[field] for field in ('key', 'title', 'author', 'source_url', 'gob_sha256', 'world', 'sha256')}
+        if omission_defaults:
+            world_hash, instance_count, rows_hash = CHAOS_AI_WORLDS[source_world]
+            manifest['reviewed_template_absences'] = {
+                'profile': spec['template_omission_profile'], 'world_sha256': world_hash,
+                'instance_count': instance_count, 'instance_ledger_sha256': rows_hash,
+                'default_aliases_by_cog': omission_defaults,
+                'guarded_arguments': spec.get('missing_template_arguments', []),
+                'scope': 'Original absent defaults are overridden in all placed instances except the exact zero-range Club projectile argument. No substitute template is supplied; combat and peer behavior require runtime tests.'}
         manifest['community_cog_edits'] = spec.get('cog_edits', {})
         manifest['community_notes'] = spec.get('notes', [])
         manifest['native_template_edits'] = native_template_edits

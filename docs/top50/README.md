@@ -6,7 +6,9 @@ conversion project with separate intake, recipe and testing stages. A source
 inventory is not a compatibility certification or a promise of an immediate
 release.
 
-See the [September 20 checkpoint](WAVE3_CHECKPOINT.md) for current recipe
+See the [September 27 checkpoint](CHECKPOINT_2026-09-27.md) for the latest
+Chaos Eternal and Dark Emperor II development findings and pause boundary.
+The [September 20 checkpoint](WAVE3_CHECKPOINT.md) records current recipe
 coverage, concrete fixes, test evidence and the work still pending. The earlier
 [development checkpoint](DEVELOPMENT_CHECKPOINT.md) retains its historical evidence.
 The [remaining-source review](REMAINING_SOURCE_REVIEW.md) records individual
