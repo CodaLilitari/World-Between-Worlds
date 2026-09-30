@@ -49,7 +49,7 @@ def bounded_update(root, version, seconds=STARTUP_UPDATE_SECONDS):
 
     def check():
         try:
-            transport = updates.GitHubTransport(deadline)
+            transport = updates.PortfolioTransport(deadline)
             results.put((updates.check_and_stage(root, version, transport), None))
         except Exception as error:
             # A release outage, rate limit, offline connection or invalid package

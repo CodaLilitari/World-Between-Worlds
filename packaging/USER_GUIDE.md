@@ -73,8 +73,10 @@ standalone package runs `WBW.exe` or `./WBW` without a
 separate Python installation. If your ZIP extractor drops the Linux executable
 permission, run `chmod +x WBW` once.
 
-The current launcher checks published releases from `CodaLilitari/World-Between-Worlds`
-with an eight-second startup wait limit. If a compatible newer package finishes
+Starting with RC7, the launcher checks the portfolio's fixed HTTPS feed at
+`https://richard-pemberton-research.darkahn.chatgpt.site/downloads/wbw/releases.json`
+with an eight-second startup wait limit. Packages also come directly from that
+portfolio; a GitHub account or API response is not required. If a compatible newer package finishes
 verification in that window, it opens in the same invocation. Offline, a rate
 limit, a timeout or a rejected package leaves the installed app available.
 If a larger download exceeds the startup wait, it may finish staging in the
@@ -84,16 +86,14 @@ Release-candidate installations include later RCs and stable releases; stable
 installations ignore prereleases. Use `--no-update` to skip the network check,
 and `--no-browser` to start the local server without opening a browser.
 
-Portable packages are prepared for the `v0.2.0-rc6` GitHub prerelease.
-The CodaLilitari account is currently restricted, so anonymous download and
-automatic update delivery may be unavailable even when an authenticated owner
-can access the release. Continue using a downloaded local copy or accessible
-source checkout; `--no-update` skips the network check. Local package tests and
-authenticated asset checks do not establish public update delivery.
-Older packages retain their original `andreipemberton/World-Between-Worlds`
-update source. Install the current source checkout or a new public package when
-released to switch publisher; release metadata cannot redirect an old launcher
-to a different repository. An empty releases list leaves the installed app usable.
+**One manual upgrade is needed from RC6 or earlier.** Download RC7 from the
+[portfolio](https://richard-pemberton-research.darkahn.chatgpt.site/downloads/#world-between-worlds),
+extract it into a new folder, and launch its executable or source launcher.
+Update your shortcut to that copy. Older launchers retain their GitHub policy
+and cannot learn the new endpoint from a website change. Your normal WBW user-data
+folder, settings and generated conversions remain separate. GitLab and GitHub
+provide secondary source/release listings; the automatic feed uses the portfolio.
+An empty feed or unavailable network leaves the installed app usable.
 
 Updates are staged in a versioned user-data cache. They do not overwrite this
 downloaded folder, source checkouts, selected game installations or generated
@@ -108,11 +108,13 @@ Linux. `BLACKWING_USER_DATA_DIR` can select a different location. The diagnostic
 files `launcher.log` and `runtime/app-<version>.log` live there. Do not move game
 assets into the application cache.
 
-Update trust rests on HTTPS and the named GitHub repository's published release.
+Update trust rests on HTTPS and the fixed portfolio origin compiled into WBW.
 The updater verifies asset sizes, SHA-256 hashes, an exact file manifest, and
 safe ZIP paths. These hashes do not provide an independent publisher signature
-against compromise of that repository. Release metadata cannot name arbitrary
-commands or alternate download hosts.
+against compromise of that site. The release identity remains
+`CodaLilitari/World-Between-Worlds`. Release metadata cannot name arbitrary
+commands or alternate download hosts; redirects are rejected. Use `--no-update`
+when you want to run the installed copy without contacting the feed.
 
 Each recipe now has its own revision, independent of the program version.
 For example, Canyon exports as `bridge-canyon_wbw_v1.goo`. A future Canyon

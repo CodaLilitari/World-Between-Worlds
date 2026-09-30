@@ -1,7 +1,7 @@
 # World Between Worlds
 
 **Bring reviewed Jedi Knight maps into Mysteries of the Sith.**
-Local recipe-book converter · Windows 11 / Linux · **Latest prerelease: 0.2.0-rc6 — experimental**
+Local recipe-book converter · Windows 11 / Linux · **Latest prerelease: 0.2.0-rc7 — experimental**
 
 World Between Worlds (WBW) rebuilds selected **Jedi Knight: Dark Forces II** maps
 and mods for **Mysteries of the Sith**, using your own game installations and
@@ -14,18 +14,18 @@ as [The Massassi Temple](https://www.massassi.net/). WBW borrows its name from t
 paths connecting different times and places. Here, they connect two classic games
 and the worlds their players built.
 
-![The World Between Worlds workbench](docs/screenshots/workbench.png)
+![The World Between Worlds RC7 workbench](docs/screenshots/workbench-rc7.jpg)
 
 ## Download and start
 
 Get the portable packages from the
 [portfolio downloads](https://richard-pemberton-research.darkahn.chatgpt.site/downloads/#world-between-worlds)
-or the [GitLab RC6 release](https://gitlab.com/codalilitari/World-Between-Worlds/-/releases/v0.2.0-rc6).
-[GitHub also hosts RC6](https://github.com/CodaLilitari/World-Between-Worlds/releases/tag/v0.2.0-rc6),
-but its account restriction may block downloads and automatic updates. Existing
-packages still use that GitHub updater; use the manual downloads if needed.
-For matching source, use the RC6 source ZIP or the
-[`v0.2.0-rc6` tag](https://github.com/CodaLilitari/World-Between-Worlds/tree/v0.2.0-rc6).
+or the [GitLab RC7 release](https://gitlab.com/codalilitari/World-Between-Worlds/-/releases/v0.2.0-rc7).
+[GitHub also hosts RC7](https://github.com/CodaLilitari/World-Between-Worlds/releases/tag/v0.2.0-rc7),
+but the GitHub account restriction may block those downloads. RC7 uses the
+portfolio for automatic updates; RC6 and older need one manual RC7 download.
+For matching source, use the RC7 source ZIP or the
+[`v0.2.0-rc7` tag](https://github.com/CodaLilitari/World-Between-Worlds/tree/v0.2.0-rc7).
 Ongoing development is maintained on
 [`codex/massassi-top50`](https://github.com/CodaLilitari/World-Between-Worlds/tree/codex/massassi-top50).
 The [GitLab mirror](https://gitlab.com/codalilitari/World-Between-Worlds) opens that development branch.
@@ -77,14 +77,14 @@ installed levels. [Revision details](RECIPES.md#installed-recipe-revisions).
 
 ## What's supported?
 
-The **0.2.0-rc6** candidate contains **53 recipe records, 52 selectable**:
+The **0.2.0-rc7** candidate contains **53 recipe records, 52 selectable**:
 nine stock JK multiplayer maps, 32 custom multiplayer entries (including packs),
 five custom singleplayer entries, and six optional mod prototypes. Canyon Oasis,
 the three stock CTF maps, Jedi's High School, Caesar's Palace, SM Purgatory, MLP3
 and Imperial Siege are included. Castle Conflict remains unavailable pending its
 engine prerequisite. Only the reviewed original versions are accepted.
 Recipe availability is separate from gameplay qualification; see the
-[release scope and remaining checks](docs/releases/0.2.0-rc6.md) and
+[release scope and remaining checks](docs/releases/0.2.0-rc7.md) and
 [development checkpoint](docs/top50/WAVE3_CHECKPOINT.md).
 
 - [Custom levels, authors and original download URLs](SUPPORTED_CUSTOM_SOURCES.txt)
@@ -104,16 +104,14 @@ when deciding what to test.
 Development work: [50 Massassi entries per category](docs/top50/README.md), with
 source review and test status tracked separately from released compatibility.
 
-RC6 checks `CodaLilitari/World-Between-Worlds` releases on launch, verifies compatible updates,
-and keeps a working fallback. It can run offline; `--no-update` skips the check.
-**The CodaLilitari account is currently restricted. Public automatic update
-delivery remains unconfirmed; an authenticated release check cannot establish
-anonymous access.** A downloaded copy works offline with `--no-update`.
-Application updates and individual recipe revisions are separate. Optional source
-and command-line use require Python 3.10+: extract the RC6 source ZIP or check out
-the `v0.2.0-rc6` tag, then run `python blackwing_launcher.py`.
-Older packages still name the former publisher and cannot automatically switch
-repositories. Install an RC6 package manually to change the update source.
+RC7 checks the [portfolio update feed](https://richard-pemberton-research.darkahn.chatgpt.site/downloads/wbw/releases.json)
+on launch, downloads packages from that same site, verifies their size and hashes,
+and keeps a working fallback. It runs offline; `--no-update` skips the check.
+**Install RC7 manually once if you use RC6 or earlier**, then update your shortcut.
+Those older launchers cannot discover the portfolio through their GitHub policy.
+Application updates and individual recipe revisions remain separate. Optional
+source/CLI use requires Python 3.10+: extract the RC7 source ZIP, then run
+`python blackwing_launcher.py`. [Updater details](docs/PORTFOLIO_UPDATES.md).
 
 Original tooling by **Andrei Pemberton**, with **Coda Lilitari in Astra Codex**.
 Original map and mod authors retain their credits. WBW is separate from our

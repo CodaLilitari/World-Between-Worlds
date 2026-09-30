@@ -4,11 +4,16 @@ The runtime uses Python's standard library. Source and standalone packages share
 the same HTTPS release discovery, manifest validation, cache and ready-handshake
 logic. `USER_GUIDE.md` is the allowlisted public package guide.
 
-As of September 20, 2026, CodaLilitari's GitHub account is restricted. Live
-release publishing and automatic update delivery are unconfirmed; repository
-visibility alone does not establish either. Local deterministic package and
-synthetic release-discovery tests validate the implementation, not GitHub service
-availability. The commands below describe the release procedure once available.
+RC7 moves default update discovery and downloads to the public portfolio.
+The fixed feed is `/downloads/wbw/releases.json` at
+`https://richard-pemberton-research.darkahn.chatgpt.site`.
+Versioned manifests live at `/downloads/wbw/releases/<version>/wbw-release.json`;
+packages live at `/downloads/wbw/packages/<sha256>/<filename>` on that same origin.
+The feed pins each manifest's size and SHA-256; the manifest pins each package.
+GitHub/GitLab remain secondary distribution listings. Older clients need a
+one-time manual RC7 installation because their discovery policy is compiled in.
+See [the feed publishing contract](../docs/PORTFOLIO_UPDATES.md). A local package
+test is separate from successful anonymous feed/download verification.
 
 The original shortcut first validates and hands off to the newest previously
 ready cached launcher. That launcher performs the release check with its own

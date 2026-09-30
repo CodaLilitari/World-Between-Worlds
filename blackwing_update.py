@@ -1,8 +1,10 @@
 """Bounded, repository-pinned World Between Worlds release installation.
 
-Trust is the public HTTPS GitHub release in REPOSITORY, not an unsigned hash
-from an arbitrary URL. Hashes bind the exact release asset and all installed
-files. Metadata never supplies a command. No game assets belong in a package.
+Trust is the fixed public HTTPS portfolio origin, not an unsigned hash from an
+arbitrary URL. Repository identity remains independent of download hosting.
+Hashes bind the feed's manifest, package and every installed file; they are not
+publisher signatures. Metadata never supplies a command or URL. No game assets
+belong in a package. The legacy GitHub transport is explicit and never a fallback.
 """
 from __future__ import annotations
 
@@ -30,6 +32,9 @@ from blackwing_version import REPOSITORY
 if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", REPOSITORY):
     raise RuntimeError("Invalid compiled-in release repository")
 API_URL = f"https://api.github.com/repos/{REPOSITORY}/releases?per_page=30"
+PORTFOLIO_ORIGIN = "https://richard-pemberton-research.darkahn.chatgpt.site"
+DOWNLOAD_ROOT = PORTFOLIO_ORIGIN + "/downloads/wbw/"
+FEED_URL = DOWNLOAD_ROOT + "releases.json"
 RELEASE_MANIFEST = "wbw-release.json"
 PACKAGE_MANIFEST = "wbw-package.json"
 MAX_METADATA = 1024 * 1024
@@ -135,8 +140,10 @@ def parse_json(data):
                 raise UpdateError("Duplicate JSON key")
             result[key] = value
         return result
+    def no_constants(value):
+        raise UpdateError("Non-finite JSON value")
     try:
-        return json.loads(data, object_pairs_hook=no_duplicates)
+        return json.loads(data, object_pairs_hook=no_duplicates, parse_constant=no_constants)
     except (ValueError, UnicodeError) as error:
         raise UpdateError("Invalid update JSON") from error
 
@@ -165,6 +172,88 @@ def asset_url(version, name):
     if not isinstance(name, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,140}", name):
         raise UpdateError("Invalid release asset filename")
     return f"https://github.com/{REPOSITORY}/releases/download/v{version}/{name}"
+
+
+def manifest_url(version):
+    Version(version)
+    return DOWNLOAD_ROOT + f"releases/{version}/{RELEASE_MANIFEST}"
+
+
+def package_url(digest, filename):
+    if not isinstance(digest, str) or not HEX.fullmatch(digest):
+        raise UpdateError("Invalid package content address")
+    if not isinstance(filename, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,140}", filename):
+        raise UpdateError("Invalid release asset filename")
+    return DOWNLOAD_ROOT + f"packages/{digest}/{filename}"
+
+
+def trusted_portfolio_url(url):
+    """Only exact canonical feed/manifest/content-addressed package URLs."""
+    if not isinstance(url, str):
+        return False
+    if url == FEED_URL:
+        return True
+    # Compare original strings, not normalized URL components: credentials,
+    # ports, queries, escapes, controls and alternate spellings are not aliases.
+    if not url.startswith(DOWNLOAD_ROOT):
+        return False
+    parts = url[len(DOWNLOAD_ROOT):].split("/")
+    try:
+        if len(parts) == 3 and parts[0] == "releases" and parts[2] == RELEASE_MANIFEST:
+            return manifest_url(parts[1]) == url
+        if len(parts) == 3 and parts[0] == "packages":
+            return package_url(parts[1], parts[2]) == url
+    except UpdateError:
+        pass
+    return False
+
+
+class _NoPortfolioRedirects(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise UpdateError("Portfolio update redirects are not permitted")
+
+
+class PortfolioTransport:
+    """Bounded HTTPS access to the pinned portfolio, with no redirect fallback."""
+    def __init__(self, deadline=None):
+        self.deadline = deadline if deadline is not None else time.monotonic() + 8
+        self.opener = urllib.request.build_opener(_NoPortfolioRedirects())
+
+    def fetch(self, url, limit):
+        if not trusted_portfolio_url(url):
+            raise UpdateError("Untrusted portfolio release URL")
+        if not _integer(limit, 1, MAX_ARCHIVE):
+            raise UpdateError("Invalid update download limit")
+        remaining = self.deadline - time.monotonic()
+        if remaining <= 0:
+            raise UpdateError("Update check exceeded the startup time budget")
+        headers = {"User-Agent": "World-Between-Worlds-Updater",
+                   "Accept": "application/json" if url.endswith(".json") else "application/octet-stream",
+                   "Accept-Encoding": "identity"}
+        if url == FEED_URL:
+            headers.update({"Cache-Control": "no-cache", "Pragma": "no-cache"})
+        request = urllib.request.Request(url, headers=headers)
+        with self.opener.open(request, timeout=min(3, remaining)) as response:
+            if response.geturl() != url or response.getcode() != 200:
+                raise UpdateError("Unexpected final portfolio release response")
+            if response.headers.get("Content-Encoding", "identity").lower() != "identity":
+                raise UpdateError("Unexpected encoded update response")
+            length = response.headers.get("Content-Length")
+            if length is not None and (not re.fullmatch(r"[0-9]+", length) or int(length) > limit):
+                raise UpdateError("Release response exceeds download limit")
+            data = bytearray()
+            while True:
+                if time.monotonic() >= self.deadline:
+                    raise UpdateError("Update download exceeded startup time budget")
+                chunk = response.read(min(65536, limit + 1 - len(data)))
+                if not chunk:
+                    break
+                data.extend(chunk)
+                if len(data) > limit:
+                    raise UpdateError("Release response exceeds download limit")
+            if length is not None and len(data) != int(length):
+                raise UpdateError("Truncated release response")
+            return bytes(data)
 
 
 def trusted_url(url, redirect=False):
@@ -238,9 +327,12 @@ def _integer(value, minimum, maximum):
 
 
 def _package_fields(package):
-    if not isinstance(package, dict) or package.get("kind") not in {"source", "standalone"}:
+    if (not isinstance(package, dict) or not isinstance(package.get("kind"), str)
+            or package["kind"] not in {"source", "standalone"}):
         raise UpdateError("Invalid package kind")
     target = (package["kind"], package.get("platform"), package.get("arch"))
+    if not all(isinstance(value, str) for value in target):
+        raise UpdateError("Invalid package target")
     if target[0] == "source" and target != ("source", "any", "any"):
         raise UpdateError("Invalid source package target")
     if target[0] == "standalone" and (target[1] not in {"windows", "linux"} or target[2] not in {"x86_64", "arm64"}):
@@ -274,7 +366,85 @@ def compatible(package, target):
 
 
 def discover(current_version, transport, target=None):
-    """Return one newer compatible public release; RC installs include RCs."""
+    """Select a strictly newer compatible release from the fixed portfolio feed.
+
+    The feed is an explicit published-only inventory. Every release row must be
+    unambiguous, even when its version is not eligible for this installation.
+    A valid newer but incompatible release may yield to an older compatible
+    release. Invalid metadata fails closed instead of selecting another host.
+    """
+    current = Version(current_version)
+    target = target or runtime_target()
+    raw = transport.fetch(FEED_URL, MAX_METADATA)
+    if len(raw) > MAX_METADATA:
+        raise UpdateError("Release feed exceeds download limit")
+    feed = parse_json(raw)
+    if (not isinstance(feed, dict) or set(feed) != {"schema", "repository", "releases"}
+            or not _integer(feed.get("schema"), 1, 1) or feed.get("repository") != REPOSITORY):
+        raise UpdateError("Release feed identity mismatch")
+    releases = feed["releases"]
+    if not isinstance(releases, list) or len(releases) > 30:
+        raise UpdateError("Invalid published release list")
+    candidates, seen = [], []
+    for release in releases:
+        if not isinstance(release, dict) or set(release) != {"version", "prerelease", "manifest"}:
+            raise UpdateError("Invalid published release metadata")
+        version = Version(release["version"])
+        if type(release["prerelease"]) is not bool or release["prerelease"] != bool(version.pre):
+            raise UpdateError("Release prerelease marker contradicts its version")
+        if any(not version < prior and not prior < version for prior in seen):
+            raise UpdateError("Ambiguous release version precedence")
+        seen.append(version)
+        reference = release["manifest"]
+        if (not isinstance(reference, dict) or set(reference) != {"size", "sha256"}
+                or not _integer(reference.get("size"), 1, MAX_METADATA)
+                or not isinstance(reference.get("sha256"), str) or not HEX.fullmatch(reference["sha256"])):
+            raise UpdateError("Invalid release manifest reference")
+        # Strict less-than also refuses legacy rc01/rc1 natural-order aliases.
+        if current < version and (current.pre or not version.pre):
+            candidates.append((version, reference))
+    for version, reference in sorted(candidates, key=lambda row: row[0], reverse=True):
+        data = transport.fetch(manifest_url(version.text), reference["size"])
+        if len(data) != reference["size"] or sha256(data) != reference["sha256"]:
+            raise UpdateError("Release manifest size or digest mismatch")
+        manifest = parse_json(data)
+        if (not isinstance(manifest, dict) or set(manifest) != {"schema", "repository", "version", "packages"}
+                or not _integer(manifest.get("schema"), 1, 1) or manifest.get("repository") != REPOSITORY
+                or manifest.get("version") != version.text):
+            raise UpdateError("Release manifest identity mismatch")
+        packages = manifest["packages"]
+        if not isinstance(packages, list) or not 1 <= len(packages) <= 8:
+            raise UpdateError("Invalid release package list")
+        selected, targets, filenames = [], set(), set()
+        for package in packages:
+            package_target = _package_fields(package)
+            fields = {"filename", "kind", "platform", "arch", "python_min", "sha256", "size"}
+            if package_target[:2] == ("standalone", "linux"):
+                fields.add("libc_min")
+            if set(package) != fields:
+                raise UpdateError("Unexpected release package fields")
+            url = package_url(package["sha256"], package["filename"])
+            if not _integer(package["size"], 1, MAX_ARCHIVE):
+                raise UpdateError("Invalid release package size")
+            filename = package["filename"].lower()
+            if package_target in targets or filename in filenames:
+                raise UpdateError("Ambiguous release package target or filename")
+            targets.add(package_target)
+            filenames.add(filename)
+            if compatible(package, target):
+                selected.append({**package, "version": version.text, "url": url})
+        if len(selected) > 1:
+            raise UpdateError("Ambiguous compatible release packages")
+        if selected:
+            return selected[0]
+    return None
+
+
+def discover_github(current_version, transport, target=None):
+    """Explicit legacy discovery, retained for historical bootstrap verification.
+
+    Startup never calls this function or falls back to it after a feed failure.
+    """
     current = Version(current_version)
     target = target or runtime_target()
     releases = parse_json(transport.fetch(API_URL, MAX_METADATA))
@@ -618,7 +788,7 @@ def reject(root, candidate):
 
 
 def check_and_stage(root, current_version, transport=None, target=None):
-    transport = transport or GitHubTransport()
+    transport = transport or PortfolioTransport()
     package = discover(current_version, transport, target)
     if package is None:
         return None
@@ -631,7 +801,7 @@ def check_and_stage(root, current_version, transport=None, target=None):
         if cached["archive_sha256"] != package["sha256"]:
             raise UpdateError("Cached archive digest does not match this release")
         return cached
-    if isinstance(transport, GitHubTransport):
+    if isinstance(transport, PortfolioTransport):
         # The launcher still waits only eight seconds. A slow standalone asset
         # can finish staging in the background while the working app runs, and
         # the next launch can reuse it without downloading it again.

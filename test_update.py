@@ -92,6 +92,20 @@ def release_wire(version="0.2.0-rc2", app=None):
     return release, {murl: manifest, package["url"]: data}, package, data
 
 
+def portfolio_feed(releases):
+    return update.json_bytes({"schema": 1, "repository": update.REPOSITORY, "releases": releases})
+
+
+def portfolio_wire(version="0.2.0-rc2", app=None):
+    package, data = make_package(version, app)
+    package["url"] = update.package_url(package["sha256"], package["filename"])
+    listed = {k: v for k, v in package.items() if k not in {"version", "url"}}
+    manifest = update.json_bytes({"schema": 1, "repository": update.REPOSITORY, "version": version, "packages": [listed]})
+    release = {"version": version, "prerelease": bool(update.Version(version).pre),
+               "manifest": {"size": len(manifest), "sha256": update.sha256(manifest)}}
+    return release, {update.manifest_url(version): manifest, package["url"]: data}, package, data
+
+
 def rewrite_zip(data, transform):
     with zipfile.ZipFile(BytesIO(data)) as z:
         rows = [(info, z.read(info)) for info in z.infolist()]
@@ -117,12 +131,12 @@ class Versions(unittest.TestCase):
                 update.Version(value)
 
 
-class Discovery(unittest.TestCase):
+class LegacyDiscovery(unittest.TestCase):
     def test_publisher_migration_keeps_release_and_package_identity_explicit(self):
         self.assertEqual(update.REPOSITORY, 'CodaLilitari/World-Between-Worlds')
         release, values, package, data = release_wire()
         values[update.API_URL] = update.json_bytes([release])
-        selected = update.discover('0.2.0-rc1', FakeTransport(values))
+        selected = update.discover_github('0.2.0-rc1', FakeTransport(values))
         manifest, _ = update.inspect_archive(data, selected)
         self.assertEqual(manifest['repository'], update.REPOSITORY)
 
@@ -133,7 +147,7 @@ class Discovery(unittest.TestCase):
         release['assets'][0].pop('digest')
         values[update.API_URL] = update.json_bytes([release])
         with self.assertRaisesRegex(update.UpdateError, 'Release manifest identity mismatch'):
-            update.discover('0.2.0-rc1', FakeTransport(values))
+            update.discover_github('0.2.0-rc1', FakeTransport(values))
         manifest['repository'] = 'andreipemberton/World-Between-Worlds'
         with self.assertRaisesRegex(update.UpdateError, 'Invalid package identity'):
             update.package_manifest(update.json_bytes(manifest), package)
@@ -148,22 +162,22 @@ class Discovery(unittest.TestCase):
 
     def test_rc_gets_newest_compatible_release(self):
         transport = self.transport(["0.2.0-rc2", "0.2.0-rc10", "0.1.0"])
-        selected = update.discover("0.2.0-rc1", transport)
+        selected = update.discover_github("0.2.0-rc1", transport)
         self.assertEqual(selected["version"], "0.2.0-rc10")
         self.assertIn("/releases?", transport.calls[0])
         self.assertNotIn("latest", transport.calls[0])
 
     def test_stable_skips_prerelease(self):
-        self.assertEqual(update.discover("0.2.0", self.transport(["0.3.0-rc1", "0.2.1"]))["version"], "0.2.1")
+        self.assertEqual(update.discover_github("0.2.0", self.transport(["0.3.0-rc1", "0.2.1"]))["version"], "0.2.1")
 
     def test_no_downgrade_or_same_version_repack(self):
-        self.assertIsNone(update.discover("0.2.0", self.transport(["0.2.0", "0.1.0"])))
+        self.assertIsNone(update.discover_github("0.2.0", self.transport(["0.2.0", "0.1.0"])))
 
     def test_draft_and_unpublished_are_not_updates(self):
         release, values, _, _ = release_wire()
         for change in ({"draft": True}, {"published_at": None}):
             wire = {**values, update.API_URL: update.json_bytes([{**release, **change}])}
-            self.assertIsNone(update.discover("0.2.0-rc1", FakeTransport(wire)))
+            self.assertIsNone(update.discover_github("0.2.0-rc1", FakeTransport(wire)))
 
     def test_manifest_and_asset_identity_checks(self):
         for mutation in ("url", "repository", "version", "asset-digest", "size"):
@@ -182,7 +196,7 @@ class Discovery(unittest.TestCase):
                 release["assets"][1]["size"] += 1
             values[update.API_URL] = update.json_bytes([release])
             with self.subTest(mutation=mutation), self.assertRaises(update.UpdateError):
-                update.discover("0.2.0-rc1", FakeTransport(values))
+                update.discover_github("0.2.0-rc1", FakeTransport(values))
 
     def test_incompatible_python_falls_through_to_older_compatible(self):
         transport = self.transport(["0.2.0-rc3", "0.2.0-rc2"])
@@ -193,14 +207,249 @@ class Discovery(unittest.TestCase):
         transport.values[url] = update.json_bytes(manifest)
         first["assets"][0].pop("digest")
         transport.values[update.API_URL] = update.json_bytes(releases)
-        self.assertEqual(update.discover("0.2.0-rc1", transport)["version"], "0.2.0-rc2")
+        self.assertEqual(update.discover_github("0.2.0-rc1", transport)["version"], "0.2.0-rc2")
 
     def test_wrong_platform_is_not_downloaded(self):
-        self.assertIsNone(update.discover("0.2.0-rc1", self.transport(["0.2.0-rc2"]), target=("standalone", "linux", "x86_64")))
+        self.assertIsNone(update.discover_github("0.2.0-rc1", self.transport(["0.2.0-rc2"]), target=("standalone", "linux", "x86_64")))
 
     def test_duplicate_json_is_rejected(self):
         with self.assertRaises(update.UpdateError):
             update.parse_json(b'{"version":"1.0.0","version":"2.0.0"}')
+
+
+class PortfolioDiscovery(unittest.TestCase):
+    def transport(self, versions):
+        releases, values = [], {}
+        for version in versions:
+            release, wire, _, _ = portfolio_wire(version)
+            releases.append(release)
+            values.update(wire)
+        values[update.FEED_URL] = portfolio_feed(releases)
+        return FakeTransport(values)
+
+    def rewrite_manifest(self, transport, version, change):
+        url = update.manifest_url(version)
+        manifest = json.loads(transport.values[url])
+        change(manifest)
+        data = update.json_bytes(manifest)
+        transport.values[url] = data
+        feed = json.loads(transport.values[update.FEED_URL])
+        next(r for r in feed["releases"] if r["version"] == version)["manifest"] = {
+            "size": len(data), "sha256": update.sha256(data)}
+        transport.values[update.FEED_URL] = update.json_bytes(feed)
+
+    def test_fixed_origin_and_repository_identity_are_independent(self):
+        self.assertEqual(update.FEED_URL, "https://richard-pemberton-research.darkahn.chatgpt.site/downloads/wbw/releases.json")
+        self.assertEqual(update.REPOSITORY, "CodaLilitari/World-Between-Worlds")
+        transport = self.transport(["0.2.0-rc2", "0.2.0-rc10", "0.1.0"])
+        selected = update.discover("0.2.0-rc1", transport)
+        self.assertEqual(selected["version"], "0.2.0-rc10")
+        self.assertEqual(transport.calls, [update.FEED_URL, update.manifest_url("0.2.0-rc10")])
+        self.assertEqual(selected["url"], update.package_url(selected["sha256"], selected["filename"]))
+        manifest, _ = update.inspect_archive(transport.values[selected["url"]], selected)
+        self.assertEqual(manifest["repository"], update.REPOSITORY)
+
+    def test_stable_channel_no_downgrade_or_equal_precedence_repack(self):
+        selected = update.discover("0.2.0", self.transport(["0.3.0-rc1", "0.2.1"]))
+        self.assertEqual(selected["version"], "0.2.1")
+        for current, versions in (("0.2.0", ["0.1.0", "0.2.0"]),
+                                  ("0.2.0-rc1", ["0.2.0-rc01"])):
+            transport = self.transport(versions)
+            self.assertIsNone(update.discover(current, transport))
+            self.assertEqual(transport.calls, [update.FEED_URL])
+        transport = self.transport(["0.2.0"])
+        feed = json.loads(transport.values[update.FEED_URL])
+        feed["releases"][0]["version"] += "+repacked"
+        transport.values[update.FEED_URL] = update.json_bytes(feed)
+        self.assertIsNone(update.discover("0.2.0", transport))
+
+    def test_feed_rejects_ambiguous_or_unexpected_metadata(self):
+        def duplicate(feed):
+            feed["releases"].append(dict(feed["releases"][0]))
+        def equal_build(feed):
+            feed["releases"].append({**feed["releases"][0], "version": "0.2.0-rc2+repack"})
+        def equal_natural(feed):
+            feed["releases"].append({**feed["releases"][0], "version": "0.2.0-rc02"})
+        mutations = [lambda f: f.update(repository="other/repo"), lambda f: f.update(schema=True),
+                     lambda f: f.update(url="https://example.org/feed.json"),
+                     lambda f: f.update(releases=[f["releases"][0]] * 31),
+                     lambda f: f["releases"][0].update(prerelease=False),
+                     lambda f: f["releases"][0].update(prerelease=1),
+                     lambda f: f["releases"][0].update(draft=False),
+                     lambda f: f["releases"][0].update(version="../../elsewhere"),
+                     lambda f: f["releases"][0]["manifest"].update(size=True),
+                     lambda f: f["releases"][0]["manifest"].update(size=update.MAX_METADATA + 1),
+                     lambda f: f["releases"][0]["manifest"].update(sha256="A" * 64),
+                     lambda f: f["releases"][0]["manifest"].update(url=update.API_URL),
+                     duplicate, equal_build, equal_natural]
+        for index, mutation in enumerate(mutations):
+            transport = self.transport(["0.2.0-rc2"])
+            feed = json.loads(transport.values[update.FEED_URL])
+            mutation(feed)
+            transport.values[update.FEED_URL] = update.json_bytes(feed)
+            with self.subTest(index=index), self.assertRaises(update.UpdateError):
+                update.discover("0.2.0-rc1", transport)
+            self.assertEqual(transport.calls, [update.FEED_URL])
+
+    def test_manifest_size_and_digest_checked_before_parsing(self):
+        for change in (lambda data: data + b" ", lambda data: data[:-1], lambda data: b"!" + data[1:]):
+            transport = self.transport(["0.2.0-rc2"])
+            url = update.manifest_url("0.2.0-rc2")
+            transport.values[url] = change(transport.values[url])
+            with self.assertRaises(update.UpdateError):
+                update.discover("0.2.0-rc1", transport)
+
+    def test_release_and_package_metadata_fail_closed(self):
+        mutations = [lambda m: m.update(schema=True), lambda m: m.update(repository="other/repo"),
+                     lambda m: m.update(version="0.2.0-rc4"), lambda m: m.update(command="run"),
+                     lambda m: m.update(packages=[]),
+                     lambda m: m["packages"].append(dict(m["packages"][0])),
+                     lambda m: m["packages"][0].update(filename="../elsewhere.zip"),
+                     lambda m: m["packages"][0].update(url=update.API_URL),
+                     lambda m: m["packages"][0].update(size=True),
+                     lambda m: m["packages"][0].update(size=update.MAX_ARCHIVE + 1),
+                     lambda m: m["packages"][0].update(sha256="0" * 63),
+                     lambda m: m["packages"][0].update(python_min=[3, True]),
+                     lambda m: m["packages"][0].update(arch="x86_64"),
+                     lambda m: m["packages"][0].update(kind=[]),
+                     lambda m: m["packages"][0].update(platform=[])]
+        for index, mutation in enumerate(mutations):
+            transport = self.transport(["0.2.0-rc3", "0.2.0-rc2"])
+            self.rewrite_manifest(transport, "0.2.0-rc3", mutation)
+            with self.subTest(index=index), self.assertRaises(update.UpdateError):
+                update.discover("0.2.0-rc1", transport)
+            self.assertNotIn(update.manifest_url("0.2.0-rc2"), transport.calls)
+
+    def test_compatible_fallback_and_platform_floor(self):
+        transport = self.transport(["0.2.0-rc3", "0.2.0-rc2"])
+        self.rewrite_manifest(transport, "0.2.0-rc3", lambda m: m["packages"][0].update(python_min=[3, 99]))
+        self.assertEqual(update.discover("0.2.0-rc1", transport)["version"], "0.2.0-rc2")
+        self.assertIsNone(update.discover("0.2.0-rc1", transport, ("standalone", "windows", "x86_64")))
+        self.rewrite_manifest(transport, "0.2.0-rc3", lambda m: m["packages"][0].update(
+            kind="standalone", platform="linux", arch="x86_64", libc_min=[2, 35]))
+        for floor, expected in (((2, 34), None), ((2, 35), "0.2.0-rc3"), (None, None)):
+            with patch.object(update, "glibc_version", return_value=floor):
+                selected = update.discover("0.2.0-rc1", transport, ("standalone", "linux", "x86_64"))
+                self.assertEqual(selected["version"] if selected else None, expected)
+
+    def test_duplicate_and_nonfinite_json_rejected(self):
+        for data in (b'{"schema":1,"schema":1}', b'{"size":NaN}', b'{"size":Infinity}', b'{"size":-Infinity}'):
+            with self.assertRaises(update.UpdateError):
+                update.parse_json(data)
+
+    def test_default_stages_offline_fixture_without_github_and_extends_download_budget(self):
+        transport = self.transport(["0.2.0-rc2"])
+        deadlines = []
+        def fetch(instance, url, limit):
+            deadlines.append((url, instance.deadline - time.monotonic()))
+            return transport.fetch(url, limit)
+        with tempfile.TemporaryDirectory() as temporary, patch.object(update.PortfolioTransport, "fetch", fetch), \
+                patch.object(update, "GitHubTransport", side_effect=AssertionError("No GitHub startup dependency")), \
+                patch.object(update, "discover_github", side_effect=AssertionError("No legacy discovery fallback")):
+            candidate = update.check_and_stage(Path(temporary) / "updates", "0.2.0-rc1")
+            self.assertEqual(update.verify_cached(Path(temporary) / "updates", candidate["name"])["version"], "0.2.0-rc2")
+        self.assertLessEqual(deadlines[0][1], 8)
+        self.assertGreater(deadlines[-1][1], 110)
+        self.assertTrue(all(update.trusted_portfolio_url(url) for url in transport.calls))
+
+    def test_corrupt_download_never_replaces_active_cache(self):
+        transport = self.transport(["0.2.0-rc2"])
+        selected = update.discover("0.2.0-rc1", transport)
+        transport.values[selected["url"]] = b"!" + transport.values[selected["url"]][1:]
+        package, data = make_package("0.2.0-rc1")
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "updates"
+            previous = update.stage_update(root, package, data)
+            update.activate(root, previous)
+            with self.assertRaises(update.UpdateError):
+                update.check_and_stage(root, "0.2.0-rc1", transport)
+            self.assertEqual(update.read_state(root)["active"], previous["name"])
+            self.assertEqual(update.verify_cached(root, previous["name"])["version"], "0.2.0-rc1")
+
+    def test_launcher_offline_or_bad_feed_has_no_github_fallback(self):
+        for error in (OSError("offline"), update.UpdateError("invalid feed")):
+            with tempfile.TemporaryDirectory() as temporary, \
+                    patch.object(update.PortfolioTransport, "fetch", side_effect=error) as fetch, \
+                    patch.object(update, "GitHubTransport", side_effect=AssertionError("No fallback")), \
+                    patch.object(update, "discover_github", side_effect=AssertionError("No fallback")):
+                candidate, message = launcher.bounded_update(Path(temporary), "0.2.0-rc1")
+                self.assertIsNone(candidate)
+                self.assertIn(str(error), message)
+                fetch.assert_called_once_with(update.FEED_URL, update.MAX_METADATA)
+
+
+class PortfolioTransport(unittest.TestCase):
+    class Response(BytesIO):
+        def __init__(self, data, length=None, url=None, status=200, encoding=None):
+            super().__init__(data)
+            self.headers = {} if length is None else {"Content-Length": length}
+            if encoding is not None:
+                self.headers["Content-Encoding"] = encoding
+            self.url = url or update.FEED_URL
+            self.status = status
+        def geturl(self):
+            return self.url
+        def getcode(self):
+            return self.status
+
+    def test_exact_origin_and_route_allowlist(self):
+        valid = [update.FEED_URL, update.manifest_url("0.2.0-rc7"), update.package_url("a" * 64, "WBW.zip")]
+        for url in valid:
+            self.assertTrue(update.trusted_portfolio_url(url))
+        bad = [update.API_URL, update.asset_url("1.0.0", "WBW.zip"),
+               update.FEED_URL.replace("https:", "http:"),
+               update.FEED_URL.replace(".site/", ".site.evil.example/"),
+               update.FEED_URL.replace("https://", "https://user@"),
+               update.FEED_URL.replace(".site/", ".site:443/"),
+               update.FEED_URL.replace("/downloads/", "/other/"),
+               update.FEED_URL + "?download=1", update.FEED_URL + "#fragment", " " + update.FEED_URL,
+               update.FEED_URL + "\n", update.FEED_URL.replace("releases", "%72eleases"),
+               update.DOWNLOAD_ROOT + "packages/" + "a" * 64 + "/../WBW.zip",
+               update.DOWNLOAD_ROOT + "releases/../wbw-release.json",
+               update.DOWNLOAD_ROOT + "packages/" + "A" * 64 + "/WBW.zip",
+               update.DOWNLOAD_ROOT + "packages/" + "a" * 64 + "/a%2fb.zip",
+               update.PORTFOLIO_ORIGIN + "/downloads/unpinned.zip"]
+        for url in bad:
+            with self.subTest(url=url):
+                self.assertFalse(update.trusted_portfolio_url(url))
+                with patch.object(update.urllib.request, "build_opener") as build:
+                    transport = update.PortfolioTransport()
+                    with self.assertRaises(update.UpdateError):
+                        transport.fetch(url, 10)
+                    build.return_value.open.assert_not_called()
+
+    def test_every_redirect_rejected_including_same_origin(self):
+        for code in (301, 302, 303, 307, 308):
+            for url in (update.FEED_URL, update.manifest_url("0.2.0-rc7"), update.API_URL, "http://example.org/"):
+                with self.subTest(code=code, url=url), self.assertRaises(update.UpdateError):
+                    update._NoPortfolioRedirects().redirect_request(None, None, code, "redirect", {}, url)
+
+    def test_transport_bounds_final_url_status_encoding_and_deadline(self):
+        responses = [self.Response(b"12345"), self.Response(b"123", "4"), self.Response(b"123", "5"),
+                     self.Response(b"123", "bad"), self.Response(b"123", "-1"),
+                     self.Response(b"123", url=update.manifest_url("0.2.0-rc7")),
+                     self.Response(b"123", url=update.API_URL), self.Response(b"123", status=206),
+                     self.Response(b"123", encoding="gzip")]
+        for response in responses:
+            transport = update.PortfolioTransport()
+            with patch.object(transport.opener, "open", return_value=response), self.assertRaises(update.UpdateError):
+                transport.fetch(update.FEED_URL, 4)
+        with self.assertRaises(update.UpdateError):
+            update.PortfolioTransport(time.monotonic() - 1).fetch(update.FEED_URL, 4)
+        transport = update.PortfolioTransport()
+        for limit in (0, -1, True, update.MAX_ARCHIVE + 1):
+            with self.assertRaises(update.UpdateError):
+                transport.fetch(update.FEED_URL, limit)
+
+    def test_feed_requests_revalidation_and_identity_encoding(self):
+        transport = update.PortfolioTransport()
+        with patch.object(transport.opener, "open", return_value=self.Response(b"123", "3")) as request:
+            self.assertEqual(transport.fetch(update.FEED_URL, 4), b"123")
+        actual = request.call_args.args[0]
+        self.assertEqual(actual.get_header("Cache-control"), "no-cache")
+        self.assertEqual(actual.get_header("Pragma"), "no-cache")
+        self.assertEqual(actual.get_header("Accept-encoding"), "identity")
+        self.assertLessEqual(request.call_args.kwargs["timeout"], 3)
 
 
 class Transport(unittest.TestCase):
@@ -345,19 +594,19 @@ class ArchiveAndCache(unittest.TestCase):
     def test_reject_retains_old_app_and_blocks_repeat_candidate(self):
         first = update.stage_update(self.root, self.package, self.data)
         update.activate(self.root, first)
-        release, wire, package, data = release_wire("0.2.0-rc3")
+        release, wire, package, data = portfolio_wire("0.2.0-rc3")
         second = update.stage_update(self.root, package, data)
         update.reject(self.root, second)
-        wire[update.API_URL] = update.json_bytes([release])
+        wire[update.FEED_URL] = portfolio_feed([release])
         transport = FakeTransport(wire)
         self.assertIsNone(update.check_and_stage(self.root, "0.2.0-rc2", transport))
         self.assertNotIn(package["url"], transport.calls)
         self.assertEqual(update.read_state(self.root)["active"], first["name"])
 
     def test_verified_background_stage_is_reused_without_second_download(self):
-        release, wire, package, data = release_wire()
+        release, wire, package, data = portfolio_wire()
         candidate = update.stage_update(self.root, package, data)
-        wire[update.API_URL] = update.json_bytes([release])
+        wire[update.FEED_URL] = portfolio_feed([release])
         wire[package["url"]] = AssertionError("A verified staged ZIP must not be downloaded again")
         transport = FakeTransport(wire)
         result = update.check_and_stage(self.root, "0.2.0-rc1", transport)
@@ -415,8 +664,8 @@ class LauncherIntegration(unittest.TestCase):
         self.addCleanup(waiter.stop)
 
     def test_update_download_stage_launch_and_activate_same_invocation(self):
-        release, wire, _, _ = release_wire()
-        wire[update.API_URL] = update.json_bytes([release])
+        release, wire, _, _ = portfolio_wire()
+        wire[update.FEED_URL] = portfolio_feed([release])
         candidate = update.check_and_stage(self.root, "0.2.0-rc1", FakeTransport(wire))
         with patch.dict(os.environ, {"BLACKWING_USER_DATA_DIR": str(self.data_dir)}), patch.object(launcher, "bounded_update", return_value=(candidate, None)):
             self.assertEqual(launcher.main(["--no-browser"]), 0)

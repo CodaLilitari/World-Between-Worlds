@@ -1,4 +1,18 @@
-# Original JK and converted MotS views
+# World Between Worlds documentation screenshots
+
+## RC7 workbench
+
+![World Between Worlds RC7 interface](docs/screenshots/workbench-rc7.jpg)
+
+Captured September 30, 2026 from the actual RC7 source application's local
+browser interface, with isolated empty settings and automatic updates disabled.
+The 1265 x 1426 JPEG is an unretouched full-page browser capture. No game folders
+were selected and no conversion or game was run. The existing original Coda
+illustration is part of the interface; this is UI documentation, not evidence
+of gameplay. SHA-256:
+`2f37b66fcb70c2b11011d23f2baee1e93b93c0e376b3ae7b5e26020f0ae8d90e`.
+
+## Original JK and converted MotS views
 
 These six images are actual 1280 × 960 game framebuffer captures from three
 multiplayer levels. The left column uses the original archive in OpenJKDF2's
