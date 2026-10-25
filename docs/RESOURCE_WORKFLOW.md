@@ -78,6 +78,42 @@ example Jawa Dwelling's rapid-fire variant) require their declared overlay.
    static resources do not remain bound. This operational rule supplements the
    ownership audit; it cannot repair a broken conversion.
 
+### Startup table placement
+
+The archive auditor now recognizes three exact, case-normalized virtual paths:
+`jkl/static.jkl`, `misc/items.dat` and `ui/jkstrings.uni`. Its `startup_contracts`
+records identify the input archive, resource hash, declared profile and loading
+stage. These are whole-file resources; unrelated additions to their rows do not
+become an implicit merge when two archives supply the same path.
+
+An episode containing one of these tables produces an `episode_startup_table`
+review finding even when no other archive was supplied. This catches a placement
+question that pairwise collision detection alone cannot see. A declared startup
+archive is recorded informationally; that declaration does not prove its rows,
+hotkeys, resource references or compatibility are correct. Existing simultaneous
+provider and native-override findings still apply. The tool does not rewrite,
+merge, mount or launch anything, and does not infer load priority from filenames.
+
+Credit: **SM Sith Lord's [P69 Mod Menu integration notes](https://smsithlord.com/openjkdf2libretro/cogfactory/gen1/p69-mod-menu.html)**
+motivated this original audit improvement. We independently checked our loader's
+`sithWorld_Load` path construction, `jkHudInv_InitItems` resource path,
+`jkStrings_Startup` string loading, and static/inventory initialization before
+profile setup in `Main.c`. The existing engine already preserves that
+initialization order. This audit adds no engine behavior, copies no P69 code or
+assets, and does not transfer the site's fork-specific ordering or savegame
+claims to MotS. Recognition is deliberately limited to these three paths;
+other startup resources and the actual runtime profile need separate review.
+
+Run the asset-free synthetic checks from the source root:
+
+```text
+python -B -m unittest discover -s tools -p "test_archive_audit.py" -v
+```
+
+This maintainer-tool change does not alter converter modules, generated game
+payloads or recipe revisions. Structural audit output remains separate from
+engine execution and multiplayer qualification.
+
 At the audited engine baseline, MotS directory mounts use `.goo`. `z_` is not an
 ordering contract. Multiplayer checksum-mismatch rejection is compiled out;
 successful joining is not a parity check. Even an enabled world checksum is

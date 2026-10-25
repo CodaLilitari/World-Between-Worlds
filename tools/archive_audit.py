@@ -7,7 +7,9 @@ Native archives are global; startup profile omitted means global. Explicit episo
 profiles must be unique. No loose files, caches, discovery order, COG execution,
 dependency closure, engine checksums or gameplay are certified. Exit 1 means review
 findings; exit 2 means incomplete/invalid input. Only names, sizes and hashes leave
-the input archives. Output files must be new and use the .json suffix.
+the input archives. Known startup tables are reported separately; an episode-only
+placement requires review even without a competing provider. Output files must be
+new and use the .json suffix.
 """
 from __future__ import annotations
 
@@ -26,6 +28,16 @@ from blackwing_revisions import MARKER_NAME, _decode_marker
 LIMITS = {"archives": 16, "archive_bytes": 512 * 1024**2,
           "total_bytes": 2 * 1024**3, "entries_per_archive": 16384,
           "entry_bytes": 128 * 1024**2, "findings": 50000}
+
+# Original audit logic inspired by SM Sith Lord's P69 Mod Menu integration notes.
+# The paths/stages were independently checked in our OpenMotS loader. This does
+# not adopt the source site's fork-specific ordering or savegame behavior.
+STARTUP_TABLE_SOURCE = "https://smsithlord.com/openjkdf2libretro/cogfactory/gen1/p69-mod-menu.html"
+STARTUP_TABLES = {
+    "jkl/static.jkl": "Static world initialization before player profile setup",
+    "misc/items.dat": "Inventory function registration before player profile setup",
+    "ui/jkstrings.uni": "UI string-table initialization",
+}
 
 
 def inspect_archive(path, limits):
@@ -94,8 +106,14 @@ def audit(specs, limits=None):
               "limitations": ["Full normalized virtual paths are compared, not basenames.",
                               "Engine material directory fallback and leafname caches may alias distinct paths.",
                               "Loose files, mount priority and cached startup resources are not modeled.",
+                              "Startup-table recognition covers three exact paths, not every startup resource. Declared startup scope does not validate table rows or compatibility.",
                               "No dependency closure, checksum, marker payload integrity or gameplay certification."],
               "limits": limits, "profiles": sorted(profiles), "archives": [],
+              "startup_contracts": [],
+              "startup_contract_basis": {
+                  "credit": "SM Sith Lord, P69 Mod Menu integration lessons",
+                  "url": STARTUP_TABLE_SOURCE,
+                  "corroboration": "Exact paths and initialization stages independently inspected in our OpenMotS loader; no fork-specific precedence or savegame claim is inferred."},
               "findings": [], "errors": [], "complete": True}
 
     def finding(value):
@@ -118,6 +136,27 @@ def audit(specs, limits=None):
                              active_profiles=sorted({item["profile"]} if item["profile"] else profiles))
             inventory["id"] = len(report["archives"])
             report["archives"].append(inventory)
+            if item["role"] != "native":
+                for entry in inventory["entries"]:
+                    if entry["path"] not in STARTUP_TABLES:
+                        continue
+                    contract = {
+                        "archive": inventory["id"], "path": entry["path"],
+                        "sha256": entry["sha256"], "bytes": entry["bytes"],
+                        "declared_scope": item["role"],
+                        "active_profiles": inventory["active_profiles"],
+                        "loading_stage": STARTUP_TABLES[entry["path"]],
+                        "replacement_unit": "whole resource; rows are not implicitly merged",
+                        "assessment": "episode_placement_requires_review"
+                        if item["role"] == "episode" else "declared_startup_scope",
+                    }
+                    report["startup_contracts"].append(contract)
+                    if item["role"] == "episode":
+                        finding({
+                            "kind": "episode_startup_table", "archive": inventory["id"],
+                            "path": entry["path"], "active_profiles": inventory["active_profiles"],
+                            "note": "This table is consumed during initialization. Episode placement alone does not establish availability at that stage; review the explicit startup profile. No mount order is predicted.",
+                        })
             if item["role"] != "native" and Path(item["path"]).suffix.lower() != ".goo":
                 finding({"kind": "mots_discovery_extension", "archive": inventory["id"],
                          "expected": ".goo", "actual": Path(item["path"]).suffix,
